@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html { background: #06080c; }
+body {
+  width: 720pt; height: 405pt; margin: 0; padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-base {
+  position: absolute;
+  inset: 0;
+  background: #06080c;
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 30pt 30pt;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding: 40pt;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12pt;
+  margin-bottom: 30pt;
+}
+
+.logo-icon {
+  width: 60pt;
+  height: 60pt;
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  border-radius: 12pt;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  font-weight: 700;
+  font-size: 28pt;
+  color: #f0f4f8;
+  letter-spacing: -0.02em;
+}
+
+.main-title {
+  text-align: center;
+  margin-bottom: 20pt;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 40pt;
+}
+
+.tag-container {
+  display: flex;
+  gap: 15pt;
+}
+
+.tag {
+  padding: 10pt 24pt;
+  background: rgba(0, 212, 255, 0.15);
+  border: 1pt solid rgba(0, 212, 255, 0.3);
+  border-radius: 30pt;
+}
+
+.footer {
+  position: absolute;
+  bottom: 30pt;
+  left: 40pt;
+  right: 40pt;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+</style>
+</head>
+<body>
+<div class="bg-base"></div>
+<div class="bg-grid"></div>
+
+<div class="content">
+  <div class="logo-container">
+    <div class="logo-icon">
+      <p style="font-family: Courier New, monospace; font-weight: 600; font-size: 32pt; color: #06080c; margin: 0;">&#8364;</p>
+    </div>
+    <p class="logo-text" style="margin: 0;">Ou Va l'Argent</p>
+  </div>
+
+  <h1 class="main-title" style="font-size: 42pt; font-weight: 700; color: #f0f4f8; margin: 0 0 20pt 0;">Titre de la presentation</h1>
+
+  <p class="subtitle" style="font-size: 20pt; color: #8899a8; margin: 0 0 40pt 0;">Sous-titre ou description courte</p>
+
+  <div class="tag-container">
+    <div class="tag">
+      <p style="font-size: 12pt; font-weight: 600; color: #00d4ff; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">Theme 1</p>
+    </div>
+    <div class="tag">
+      <p style="font-size: 12pt; font-weight: 600; color: #00d4ff; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">Theme 2</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p style="font-size: 11pt; color: #4a5a6a; margin: 0;">Votre nom | Date</p>
+  <p style="font-family: Courier New, monospace; font-size: 12pt; font-weight: 500; color: #00d4ff; margin: 0;">ouvalargent.fr</p>
+</div>
+</body>
+</html>

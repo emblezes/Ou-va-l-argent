@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What The Fuck?! | Où Va l'Argent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --bg-surface: #0a0e14;
+            --bg-elevated: #111820;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-gold: #ffd700;
+            --accent-red: #ff4757;
+            --accent-orange: #ff9f43;
+            --accent-pink: #ff6b9d;
+            --accent-purple: #a855f7;
+            --glass: rgba(17, 24, 32, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-surface); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-elevated); border-radius: 4px; }
+
+        /* Animated Background */
+        .bg-animated {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(255, 71, 87, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 159, 67, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(168, 85, 247, 0.05) 0%, transparent 60%);
+            animation: pulse-bg 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-bg {
+            0% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-orange) 100%);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.75rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
+        }
+
+        /* Main Container */
+        .main-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(90deg, rgba(255, 71, 87, 0.2), rgba(255, 159, 67, 0.2));
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent-orange);
+            margin-bottom: 1.5rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(255, 71, 87, 0.3); }
+            100% { box-shadow: 0 0 20px rgba(255, 71, 87, 0.5); }
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 .wtf {
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-orange), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Live Counter */
+        .live-counter {
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1) 0%, rgba(255, 159, 67, 0.1) 100%);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .live-counter::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-orange), var(--accent-pink));
+            animation: loading 2s linear infinite;
+        }
+
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.75rem;
+            background: var(--accent-red);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .live-dot {
+            width: 8px; height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: blink 1s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .counter-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .counter-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 500;
+            color: var(--accent-red);
+            text-shadow: 0 0 30px rgba(255, 71, 87, 0.5);
+        }
+
+        .counter-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* WTF Cards Grid */
+        .wtf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .wtf-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .wtf-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--card-accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px var(--card-glow);
+        }
+
+        .wtf-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--card-accent);
+        }
+
+        .wtf-number {
+            position: absolute;
+            top: 1rem; right: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--card-accent);
+            opacity: 0.15;
+            line-height: 1;
+        }
+
+        .wtf-icon {
+            font-size: 3rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .wtf-stat {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--card-accent);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .wtf-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .wtf-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .wtf-comparison {
+            margin-top: 1.25rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--card-accent);
+        }
+
+        .wtf-comparison-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .wtf-comparison-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--card-accent);
+        }
+
+        /* Fact Banner */
+        .fact-banner {
+            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .fact-banner h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .fact-banner .highlight {
+            color: var(--accent-gold);
+            font-style: italic;
+        }
+
+        .fact-banner p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .fact-year {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent-gold);
+            color: var(--bg-deep);
+            border-radius: 50px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+        }
+
+        /* Source Footer */
+        .sources {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 2rem;
+        }
+
+        .sources p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .sources a {
+            color: var(--accent-electric);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container { padding: 5rem 1rem 2rem; }
+            .wtf-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .counter-value { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animated"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">🤯</div>
+            <span>Où Va l'Argent</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="depenses.html">Dépenses</a></li>
+            <li><a href="dettes.html">Dettes</a></li>
+            <li><a href="impots.html">Impôts</a></li>
+            <li><a href="simulateur.html">Brutes vs Nets</a></li>
+            <li><a href="wtf.html" class="active">What the fuck</a></li>
+            <li><a href="propositions.html">Je propose</a></li>
+            <li><a href="blog.html">Blog</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-container">
+        <!-- Hero -->
+        <header class="hero">
+            <div class="hero-badge">
+                <span>🚨</span> Chiffres qui font réfléchir
+            </div>
+            <h1>
+                <span class="wtf">What the fuck?!</span>
+            </h1>
+            <p>Des chiffres sur les finances publiques qui vont vous faire tomber de votre chaise</p>
+        </header>
+
+        <!-- Live Counter -->
+        <div class="live-counter">
+            <div class="live-badge">
+                <span class="live-dot"></span>
+                En direct
+            </div>
+            <div class="counter-label">Depuis que vous avez ouvert cette page, la dette française a augmenté de</div>
+            <div class="counter-value" id="debtCounter">0 €</div>
+            <div class="counter-subtitle">soit environ 1 800 € par seconde, 24h/24, 7j/7</div>
+        </div>
+
+        <!-- WTF Cards -->
+        <div class="wtf-grid">
+            <div class="wtf-card" style="--card-accent: #ff4757; --card-glow: rgba(255, 71, 87, 0.3);">
+                <div class="wtf-number">#1</div>
+                <div class="wtf-icon">💳</div>
+                <div class="wtf-stat">46 200 €</div>
+                <div class="wtf-title">Votre part de dette</div>
+                <div class="wtf-desc">C'est ce que représente la dette publique pour chaque Français, du nouveau-né au centenaire.</div>
+                <div class="wtf-comparison">
+                    <div class="wtf-comparison-label">Soit l'équivalent de</div>
+                    <div class="wtf-comparison-value">46 iPhone Pro Max</div>
+                </div>
+            </div>
+
+            <div class="wtf-card" style="--card-accent: #ff9f43; --card-glow: rgba(255, 159, 67, 0.3);">
+                <div class="wtf-number">#2</div>
+                <div class="wtf-icon">⏱️</div>
+                <div class="wtf-stat">50 963 €</div>
+                <div class="wtf-title">Chaque seconde</div>
+                <div class="wtf-desc">C'est ce que l'État français dépense chaque seconde. 24 heures sur 24, 365 jours par an.</div>
+                <div class="wtf-comparison">
+                    <div class="wtf-comparison-label">Soit par minute</div>
+                    <div class="wtf-comparison-value">3 millions d'euros</div>
+                </div>
+            </div>
+
+            <div class="wtf-card" style="--card-accent: #ffd700; --card-glow: rgba(255, 215, 0, 0.3);">
+                <div class="wtf-number">#3</div>
+                <div class="wtf-icon">📅</div>
+                <div class="wtf-stat">50 ans</div>
+                <div class="wtf-title">Sans équilibre</div>
+                <div class="wtf-desc">La France n'a pas voté un seul budget équilibré depuis 1974. 50 ans de déficits consécutifs.</div>
+                <div class="wtf-comparison">
+                    <div class="wtf-comparison-label">Dernier équilibre</div>
+                    <div class="wtf-comparison-value">Gouvernement Chirac I</div>
+                </div>
+            </div>
+
+            <div class="wtf-card" style="--card-accent: #a855f7; --card-glow: rgba(168, 85, 247, 0.3);">
+                <div class="wtf-number">#4</div>
+                <div class="wtf-icon">🏫</div>
+                <div class="wtf-stat">52 Md€/an</div>
+                <div class="wtf-title">Juste les intérêts</div>
+                <div class="wtf-desc">Ce qu'on paye chaque année uniquement pour les intérêts de la dette. Sans rembourser 1€ du capital.</div>
+                <div class="wtf-comparison">
+                    <div class="wtf-comparison-label">Équivalent à</div>
+                    <div class="wtf-comparison-value">= Budget Éducation Nationale</div>
+                </div>
+            </div>
+
+            <div class="wtf-card" style="--card-accent: #00d4ff; --card-glow: rgba(0, 212, 255, 0.3);">
+                <div class="wtf-number">#5</div>
+                <div class="wtf-icon">🏛️</div>
+                <div class="wtf-stat">57%</div>
+                <div class="wtf-title">Du PIB en dépenses</div>
+                <div class="wtf-desc">La France a le taux de dépenses publiques le plus élevé d'Europe. Plus que la Suède, plus que le Danemark.</div>
+                <div class="wtf-comparison">
+                    <div class="wtf-comparison-label">Moyenne UE</div>
+                    <div class="wtf-comparison-value">49% du PIB</div>
+                </div>
+            </div>
+
+            <div class="wtf-card" style="--card-accent: #ff6b9d; --card-glow: rgba(255, 107, 157, 0.3);">
+                <div class="wtf-number">#6</div>
+                <div class="wtf-icon">👶</div>
+                <div class="wtf-stat">46 200 €</div>
+                <div class="wtf-title">À la naissance</div>
+                <div class="wtf-desc">Un bébé qui naît aujourd'hui en France hérite immédiatement d'une dette de 46 200 €. Bienvenue !</div>
+                <div class="wtf-comparison">
+                    <div class="wtf-comparison-label">En 2000, c'était</div>
+                    <div class="wtf-comparison-value">12 500 € / habitant</div>
+                </div>
+            </div>
+
+            <div class="wtf-card" style="--card-accent: #20e3b2; --card-glow: rgba(32, 227, 178, 0.3);">
+                <div class="wtf-number">#7</div>
+                <div class="wtf-icon">🏥</div>
+                <div class="wtf-stat">815 Md€</div>
+                <div class="wtf-title">Protection sociale</div>
+                <div class="wtf-desc">Le budget "Santé & Solidarités" représente plus de 50% des dépenses totales de l'État.</div>
+                <div class="wtf-comparison">
+                    <div class="wtf-comparison-label">Par Français et par an</div>
+                    <div class="wtf-comparison-value">12 000 € de prestations</div>
+                </div>
+            </div>
+
+            <div class="wtf-card" style="--card-accent: #45b7d1; --card-glow: rgba(69, 183, 209, 0.3);">
+                <div class="wtf-number">#8</div>
+                <div class="wtf-icon">💰</div>
+                <div class="wtf-stat">45.4%</div>
+                <div class="wtf-title">Prélèvements</div>
+                <div class="wtf-desc">La France a le taux de prélèvements obligatoires (impôts + cotisations) le plus élevé de l'OCDE après le Danemark.</div>
+                <div class="wtf-comparison">
+                    <div class="wtf-comparison-label">Moyenne OCDE</div>
+                    <div class="wtf-comparison-value">34% du PIB</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fact Banner -->
+        <div class="fact-banner">
+            <h2>Le saviez-vous ?</h2>
+            <p>Si on devait rembourser la dette française en billets de 500€ empilés, la pile ferait <span class="highlight">6 300 km de haut</span>. C'est plus que le diamètre de la Terre (6 371 km).</p>
+            <div class="fact-year">
+                <span>💡</span>
+                3 150 000 000 000 €
+            </div>
+        </div>
+
+        <!-- Sources -->
+        <div class="sources">
+            <p>Sources : INSEE, Ministère des Finances, Banque de France, Eurostat (2024-2025)<br>
+            <a href="https://www.insee.fr" target="_blank">insee.fr</a> · <a href="https://www.budget.gouv.fr" target="_blank">budget.gouv.fr</a></p>
+        </div>
+    </main>
+
+    <script>
+        // Live debt counter
+        const counterEl = document.getElementById('debtCounter');
+        const debtPerSecond = 1800; // € per second
+        let elapsed = 0;
+
+        function formatNumber(num) {
+            return new Intl.NumberFormat('fr-FR', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(num);
+        }
+
+        function updateCounter() {
+            elapsed += 0.1;
+            const totalDebt = Math.floor(elapsed * debtPerSecond);
+            counterEl.textContent = formatNumber(totalDebt);
+        }
+
+        setInterval(updateCounter, 100);
+
+        // Animate cards on scroll
+        const cards = document.querySelectorAll('.wtf-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

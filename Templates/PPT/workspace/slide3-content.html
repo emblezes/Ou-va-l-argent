@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html { background: #06080c; }
+body {
+  width: 720pt; height: 405pt; margin: 0; padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-base {
+  position: absolute;
+  inset: 0;
+  background: #06080c;
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 30pt 30pt;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding: 40pt;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25pt;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10pt;
+}
+
+.logo-icon {
+  width: 40pt;
+  height: 40pt;
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  border-radius: 8pt;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tag {
+  padding: 8pt 18pt;
+  background: rgba(0, 212, 255, 0.15);
+  border: 1pt solid rgba(0, 212, 255, 0.3);
+  border-radius: 30pt;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  margin-bottom: 25pt;
+}
+
+.content-area {
+  flex: 1;
+  background: rgba(17, 24, 32, 0.85);
+  border: 1pt solid rgba(255, 255, 255, 0.1);
+  border-radius: 16pt;
+  padding: 30pt;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20pt;
+  border-top: 1pt solid rgba(255, 255, 255, 0.1);
+  margin-top: 20pt;
+}
+</style>
+</head>
+<body>
+<div class="bg-base"></div>
+<div class="bg-grid"></div>
+
+<div class="content">
+  <div class="header">
+    <div class="logo">
+      <div class="logo-icon">
+        <p style="font-family: Courier New, monospace; font-weight: 600; font-size: 20pt; color: #06080c; margin: 0;">&#8364;</p>
+      </div>
+      <p style="font-weight: 700; font-size: 16pt; color: #f0f4f8; margin: 0;">Ou Va l'Argent</p>
+    </div>
+    <div class="tag">
+      <p style="font-size: 10pt; font-weight: 600; color: #00d4ff; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">Section</p>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="section-title">
+      <h1 style="font-size: 28pt; font-weight: 400; color: #f0f4f8; margin: 0;">Titre de la <span style="color: #00d4ff; font-style: italic;">section</span></h1>
+    </div>
+
+    <div class="content-area">
+      <ul style="margin: 0; padding-left: 20pt; list-style: none;">
+        <li style="font-size: 16pt; color: #f0f4f8; margin-bottom: 18pt; padding-left: 15pt; border-left: 3pt solid #00d4ff;">Premier point important a developper</li>
+        <li style="font-size: 16pt; color: #f0f4f8; margin-bottom: 18pt; padding-left: 15pt; border-left: 3pt solid #ffd700;">Deuxieme point avec des details complementaires</li>
+        <li style="font-size: 16pt; color: #f0f4f8; margin-bottom: 18pt; padding-left: 15pt; border-left: 3pt solid #a855f7;">Troisieme point pour conclure cette section</li>
+        <li style="font-size: 16pt; color: #f0f4f8; margin-bottom: 0; padding-left: 15pt; border-left: 3pt solid #00ff88;">Quatrieme point optionnel si necessaire</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p style="font-size: 10pt; color: #4a5a6a; margin: 0;">Source : <span style="color: #8899a8;">Votre source</span></p>
+    <p style="font-family: Courier New, monospace; font-size: 11pt; font-weight: 500; color: #00d4ff; margin: 0;">ouvalargent.fr</p>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html { background: #06080c; }
+body {
+  width: 720pt; height: 405pt; margin: 0; padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-base {
+  position: absolute;
+  inset: 0;
+  background: #06080c;
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 30pt 30pt;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding: 40pt;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30pt;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10pt;
+}
+
+.logo-icon {
+  width: 40pt;
+  height: 40pt;
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  border-radius: 8pt;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tag {
+  padding: 8pt 18pt;
+  background: rgba(0, 212, 255, 0.15);
+  border: 1pt solid rgba(0, 212, 255, 0.3);
+  border-radius: 30pt;
+}
+
+.agenda-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.agenda-grid {
+  display: flex;
+  gap: 25pt;
+  flex: 1;
+}
+
+.agenda-item {
+  flex: 1;
+  background: rgba(17, 24, 32, 0.85);
+  border: 1pt solid rgba(255, 255, 255, 0.1);
+  border-radius: 16pt;
+  padding: 25pt;
+  display: flex;
+  flex-direction: column;
+}
+
+.agenda-number {
+  width: 40pt;
+  height: 40pt;
+  background: linear-gradient(135deg, #00d4ff 0%, #ffd700 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15pt;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20pt;
+  border-top: 1pt solid rgba(255, 255, 255, 0.1);
+  margin-top: 20pt;
+}
+</style>
+</head>
+<body>
+<div class="bg-base"></div>
+<div class="bg-grid"></div>
+
+<div class="content">
+  <div class="header">
+    <div class="logo">
+      <div class="logo-icon">
+        <p style="font-family: Courier New, monospace; font-weight: 600; font-size: 20pt; color: #06080c; margin: 0;">&#8364;</p>
+      </div>
+      <p style="font-weight: 700; font-size: 16pt; color: #f0f4f8; margin: 0;">Ou Va l'Argent</p>
+    </div>
+    <div class="tag">
+      <p style="font-size: 10pt; font-weight: 600; color: #00d4ff; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">Agenda</p>
+    </div>
+  </div>
+
+  <h1 style="font-size: 32pt; font-weight: 400; color: #f0f4f8; margin: 0 0 30pt 0; text-align: center;">Sommaire</h1>
+
+  <div class="agenda-grid">
+    <div class="agenda-item">
+      <div class="agenda-number">
+        <p style="font-family: Courier New, monospace; font-weight: 600; font-size: 18pt; color: #06080c; margin: 0;">01</p>
+      </div>
+      <h2 style="font-size: 16pt; font-weight: 600; color: #f0f4f8; margin: 0 0 8pt 0;">Contexte</h2>
+      <p style="font-size: 12pt; color: #8899a8; margin: 0;">Description de la premiere partie</p>
+    </div>
+
+    <div class="agenda-item">
+      <div class="agenda-number">
+        <p style="font-family: Courier New, monospace; font-weight: 600; font-size: 18pt; color: #06080c; margin: 0;">02</p>
+      </div>
+      <h2 style="font-size: 16pt; font-weight: 600; color: #f0f4f8; margin: 0 0 8pt 0;">Analyse</h2>
+      <p style="font-size: 12pt; color: #8899a8; margin: 0;">Description de la deuxieme partie</p>
+    </div>
+
+    <div class="agenda-item">
+      <div class="agenda-number">
+        <p style="font-family: Courier New, monospace; font-weight: 600; font-size: 18pt; color: #06080c; margin: 0;">03</p>
+      </div>
+      <h2 style="font-size: 16pt; font-weight: 600; color: #f0f4f8; margin: 0 0 8pt 0;">Propositions</h2>
+      <p style="font-size: 12pt; color: #8899a8; margin: 0;">Description de la troisieme partie</p>
+    </div>
+
+    <div class="agenda-item">
+      <div class="agenda-number">
+        <p style="font-family: Courier New, monospace; font-weight: 600; font-size: 18pt; color: #06080c; margin: 0;">04</p>
+      </div>
+      <h2 style="font-size: 16pt; font-weight: 600; color: #f0f4f8; margin: 0 0 8pt 0;">Conclusion</h2>
+      <p style="font-size: 12pt; color: #8899a8; margin: 0;">Description de la derniere partie</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p style="font-size: 10pt; color: #4a5a6a; margin: 0;">Source : <span style="color: #8899a8;">Votre source</span></p>
+    <p style="font-family: Courier New, monospace; font-size: 11pt; font-weight: 500; color: #00d4ff; margin: 0;">ouvalargent.fr</p>
+  </div>
+</div>
+</body>
+</html>

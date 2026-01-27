@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur Salaire | Où Va l'Argent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --bg-surface: #0a0e14;
+            --bg-elevated: #111820;
+            --bg-card: #0d1117;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-electric-dim: rgba(0, 212, 255, 0.15);
+            --accent-gold: #ffd700;
+            --accent-gold-dim: rgba(255, 215, 0, 0.1);
+            --accent-green: #00ff88;
+            --accent-green-dim: rgba(0, 255, 136, 0.15);
+            --accent-red: #ff4757;
+            --accent-purple: #a855f7;
+            --accent-orange: #ff9f43;
+            --accent-pink: #ff6b9d;
+            --glass: rgba(17, 24, 32, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-surface);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-elevated);
+            border-radius: 4px;
+        }
+
+        /* Background */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-electric) 0%, #0099cc 100%);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-links a.active {
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-electric);
+        }
+
+        /* Main Container */
+        .main-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+
+        .page-header h1 .accent {
+            color: var(--accent-electric);
+            font-style: italic;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Input Section */
+        .input-section {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            align-items: end;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .input-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .salary-input-wrapper {
+            position: relative;
+        }
+
+        .salary-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            padding-right: 3.5rem;
+            background: var(--bg-elevated);
+            border: 2px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .salary-input:focus {
+            outline: none;
+            border-color: var(--accent-electric);
+            box-shadow: 0 0 0 4px var(--accent-electric-dim);
+        }
+
+        .input-suffix {
+            position: absolute;
+            right: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .period-toggle {
+            display: flex;
+            background: var(--bg-elevated);
+            border-radius: var(--radius-md);
+            padding: 0.25rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .period-btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: 'Syne', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .period-btn.active {
+            background: var(--accent-electric);
+            color: var(--bg-deep);
+        }
+
+        .status-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .status-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .status-option:hover {
+            border-color: var(--text-muted);
+        }
+
+        .status-option.active {
+            border-color: var(--accent-electric);
+            background: var(--accent-electric-dim);
+        }
+
+        .status-option input {
+            display: none;
+        }
+
+        .status-radio {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--text-muted);
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .status-option.active .status-radio {
+            border-color: var(--accent-electric);
+        }
+
+        .status-option.active .status-radio::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: var(--accent-electric);
+            border-radius: 50%;
+        }
+
+        .status-label {
+            font-size: 0.9rem;
+        }
+
+        /* Results Section */
+        .results-section {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Salary Breakdown Visual */
+        .salary-breakdown {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .breakdown-title {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .salary-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .salary-block {
+            padding: 1rem 1.25rem;
+            position: relative;
+            border-left: 4px solid;
+            transition: all 0.3s;
+        }
+
+        .salary-block:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .block-super-brut {
+            border-color: var(--accent-purple);
+            background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);
+        }
+
+        .block-cotisations-patronales {
+            border-color: var(--accent-orange);
+            background: linear-gradient(90deg, rgba(255, 159, 67, 0.08) 0%, transparent 100%);
+            margin-left: 1rem;
+        }
+
+        .block-brut {
+            border-color: var(--accent-gold);
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.08) 0%, transparent 100%);
+        }
+
+        .block-cotisations-salariales {
+            border-color: var(--accent-pink);
+            background: linear-gradient(90deg, rgba(255, 107, 157, 0.08) 0%, transparent 100%);
+            margin-left: 1rem;
+        }
+
+        .block-net-avant-ir {
+            border-color: var(--accent-electric);
+            background: linear-gradient(90deg, rgba(0, 212, 255, 0.08) 0%, transparent 100%);
+        }
+
+        .block-ir {
+            border-color: var(--accent-red);
+            background: linear-gradient(90deg, rgba(255, 71, 87, 0.08) 0%, transparent 100%);
+            margin-left: 1rem;
+        }
+
+        .block-net {
+            border-color: var(--accent-green);
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.15) 0%, transparent 100%);
+        }
+
+        .block-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .block-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        .block-percent {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: var(--bg-elevated);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .connector {
+            width: 2px;
+            height: 20px;
+            background: var(--glass-border);
+            margin-left: 2rem;
+        }
+
+        .connector-arrow {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        .connector-arrow svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Charts Section */
+        .charts-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .chart-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .chart-title {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .chart-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .chart-container {
+            height: 200px;
+            position: relative;
+        }
+
+        /* Distribution Details */
+        .distribution-section {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .distribution-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .distribution-header h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .distribution-header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .distribution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .distribution-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .distribution-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .distribution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--card-color);
+        }
+
+        .distribution-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .distribution-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .distribution-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .distribution-amount {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .distribution-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--card-color);
+        }
+
+        .distribution-rate {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .distribution-bar {
+            height: 4px;
+            background: var(--bg-deep);
+            border-radius: 2px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+
+        .distribution-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+
+        /* Summary Cards */
+        .summary-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .summary-card.employer::before {
+            background: var(--accent-purple);
+        }
+
+        .summary-card.state::before {
+            background: var(--accent-orange);
+        }
+
+        .summary-card.you::before {
+            background: var(--accent-green);
+        }
+
+        .summary-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-card.employer .summary-value {
+            color: var(--accent-purple);
+        }
+
+        .summary-card.state .summary-value {
+            color: var(--accent-orange);
+        }
+
+        .summary-card.you .summary-value {
+            color: var(--accent-green);
+        }
+
+        .summary-detail {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: var(--accent-electric-dim);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-top: 2rem;
+        }
+
+        .info-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--accent-electric);
+            flex-shrink: 0;
+        }
+
+        .info-content h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+            color: var(--accent-electric);
+        }
+
+        .info-content p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .results-section {
+                grid-template-columns: 1fr;
+            }
+
+            .salary-breakdown {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-section {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .main-container {
+                padding: 5rem 1rem 2rem;
+            }
+
+            .salary-input {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        /* Waterfall chart styles */
+        .waterfall-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 250px;
+            padding: 1rem 0;
+            gap: 0.5rem;
+        }
+
+        .waterfall-bar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .waterfall-segment {
+            width: 100%;
+            max-width: 60px;
+            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .waterfall-segment:hover {
+            filter: brightness(1.1);
+        }
+
+        .waterfall-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .waterfall-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">€</div>
+            <span>Où Va l'Argent</span>
+        </a>
+        <div class="nav-links">
+            <a href="depenses.html">Dépenses</a>
+            <a href="dettes.html">Dettes</a>
+            <a href="impots.html">Impôts</a>
+            <a href="simulateur.html" class="active">Brutes vs Nets</a>
+            <a href="wtf.html">What the fuck</a>
+            <a href="propositions.html">Je propose</a>
+            <a href="blog.html">Blog</a>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <!-- Header -->
+        <header class="page-header">
+            <h1>Comprendre votre <span class="accent">salaire</span></h1>
+            <p>Découvrez la répartition entre ce que paie votre employeur, ce que vous percevez, et où vont vos cotisations.</p>
+        </header>
+
+        <!-- Input Section -->
+        <section class="input-section">
+            <div class="input-grid">
+                <div class="input-group">
+                    <label class="input-label">Salaire brut</label>
+                    <div class="salary-input-wrapper">
+                        <input type="number" class="salary-input" id="salaryInput" value="3000" min="0" step="100">
+                        <span class="input-suffix">€</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Période</label>
+                    <div class="period-toggle">
+                        <button class="period-btn active" data-period="monthly">Mensuel</button>
+                        <button class="period-btn" data-period="annual">Annuel</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Statut</label>
+                    <div class="status-toggle">
+                        <label class="status-option active">
+                            <input type="radio" name="status" value="non-cadre" checked>
+                            <span class="status-radio"></span>
+                            <span class="status-label">Non-cadre</span>
+                        </label>
+                        <label class="status-option">
+                            <input type="radio" name="status" value="cadre">
+                            <span class="status-radio"></span>
+                            <span class="status-label">Cadre</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Cards -->
+        <section class="summary-section">
+            <div class="summary-card employer">
+                <div class="summary-label">Coût total employeur</div>
+                <div class="summary-value" id="coutEmployeur">4 290 €</div>
+                <div class="summary-detail">Super brut mensuel</div>
+            </div>
+            <div class="summary-card state">
+                <div class="summary-label">Prélèvements totaux</div>
+                <div class="summary-value" id="prelevements">1 921 €</div>
+                <div class="summary-detail">Cotisations + IR</div>
+            </div>
+            <div class="summary-card you">
+                <div class="summary-label">Ce que vous recevez</div>
+                <div class="summary-value" id="netFinal">2 369 €</div>
+                <div class="summary-detail">Net après impôt</div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section">
+            <!-- Salary Breakdown Visual -->
+            <div class="salary-breakdown">
+                <div class="breakdown-title">Décomposition de votre salaire</div>
+
+                <div class="salary-stack">
+                    <div class="salary-block block-super-brut">
+                        <div class="block-label">Super brut (coût employeur)</div>
+                        <div class="block-value" id="superBrut">4 290 €</div>
+                        <span class="block-percent">143%</span>
+                    </div>
+
+                    <div class="connector-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <polyline points="19 12 12 19 5 12"></polyline>
+                        </svg>
+                        Cotisations patronales
+                    </div>
+
+                    <div class="salary-block block-cotisations-patronales">
+                        <div class="block-label">Charges patronales</div>
+                        <div class="block-value" id="cotisPatronales">- 1 290 €</div>
+                        <span class="block-percent">43%</span>
+                    </div>
+
+                    <div class="connector-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <polyline points="19 12 12 19 5 12"></polyline>
+                        </svg>
+                        =
+                    </div>
+
+                    <div class="salary-block block-brut">
+                        <div class="block-label">Salaire brut</div>
+                        <div class="block-value" id="brut">3 000 €</div>
+                        <span class="block-percent">100%</span>
+                    </div>
+
+                    <div class="connector-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <polyline points="19 12 12 19 5 12"></polyline>
+                        </svg>
+                        Cotisations salariales
+                    </div>
+
+                    <div class="salary-block block-cotisations-salariales">
+                        <div class="block-label">Charges salariales</div>
+                        <div class="block-value" id="cotisSalariales">- 660 €</div>
+                        <span class="block-percent">22%</span>
+                    </div>
+
+                    <div class="connector-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <polyline points="19 12 12 19 5 12"></polyline>
+                        </svg>
+                        =
+                    </div>
+
+                    <div class="salary-block block-net-avant-ir">
+                        <div class="block-label">Net avant impôt</div>
+                        <div class="block-value" id="netAvantIR">2 340 €</div>
+                        <span class="block-percent">78%</span>
+                    </div>
+
+                    <div class="connector-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <polyline points="19 12 12 19 5 12"></polyline>
+                        </svg>
+                        Impôt sur le revenu (PAS)
+                    </div>
+
+                    <div class="salary-block block-ir">
+                        <div class="block-label">Prélèvement à la source</div>
+                        <div class="block-value" id="impotRevenu">- 171 €</div>
+                        <span class="block-percent">5.7%</span>
+                    </div>
+
+                    <div class="connector-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <polyline points="19 12 12 19 5 12"></polyline>
+                        </svg>
+                        =
+                    </div>
+
+                    <div class="salary-block block-net">
+                        <div class="block-label">Net en poche</div>
+                        <div class="block-value" id="netFinalStack">2 169 €</div>
+                        <span class="block-percent">72%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts-section">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div>
+                            <div class="chart-title">Visualisation en cascade</div>
+                            <div class="chart-subtitle">Du coût employeur à votre net</div>
+                        </div>
+                    </div>
+                    <div class="waterfall-container" id="waterfallChart">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div>
+                            <div class="chart-title">Répartition des prélèvements</div>
+                            <div class="chart-subtitle">Où vont vos cotisations et impôts</div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="distributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Distribution Details -->
+        <section class="distribution-section">
+            <div class="distribution-header">
+                <h2>Où vont vos cotisations ?</h2>
+                <p>Détail des contributions mensuelles par organisme et protection</p>
+            </div>
+
+            <div class="distribution-grid" id="distributionGrid">
+                <!-- Generated by JS -->
+            </div>
+
+            <div class="info-box">
+                <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <div class="info-content">
+                    <h4>Comment sont calculées ces cotisations ?</h4>
+                    <p>Les taux utilisés sont basés sur les barèmes 2025. Les cotisations patronales représentent environ 43% du brut, les cotisations salariales environ 22%. L'impôt sur le revenu est estimé avec un taux personnalisé de 7.5% (célibataire sans enfant). Votre situation personnelle peut faire varier ces montants.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Configuration des taux de cotisations 2025
+        const TAUX = {
+            // Cotisations patronales
+            patronales: {
+                maladie: 0.07,           // 7%
+                vieillesse_plafonnee: 0.0855,  // 8.55%
+                vieillesse_deplafonnee: 0.019, // 1.90%
+                allocations_familiales: 0.0345, // 3.45% (taux réduit)
+                chomage: 0.0405,         // 4.05%
+                accidents_travail: 0.02, // ~2% (variable)
+                fnal: 0.005,             // 0.50%
+                formation: 0.0055,       // 0.55%
+                retraite_complementaire: 0.0472, // 4.72%
+                csa: 0.003,              // 0.30%
+            },
+            // Cotisations salariales
+            salariales: {
+                maladie: 0,              // 0% (supprimé)
+                vieillesse_plafonnee: 0.069,   // 6.90%
+                vieillesse_deplafonnee: 0.004, // 0.40%
+                retraite_complementaire: 0.0315, // 3.15%
+                csg_crds: 0.098,         // 9.8% (sur 98.25% du brut)
+            },
+            // Impôt sur le revenu (taux moyen estimé)
+            ir_taux_defaut: 0.075  // 7.5% taux neutre pour ~35k€/an
+        };
+
+        // Plafond de la sécurité sociale 2025
+        const PASS_MENSUEL = 3864;
+
+        // État de l'application
+        let state = {
+            salaireBrut: 3000,
+            periode: 'monthly',
+            statut: 'non-cadre'
+        };
+
+        // Calcul des cotisations
+        function calculerCotisations(brut, statut) {
+            const plafond = Math.min(brut, PASS_MENSUEL);
+
+            // Cotisations patronales
+            const patronales = {
+                maladie: brut * TAUX.patronales.maladie,
+                vieillesse: plafond * TAUX.patronales.vieillesse_plafonnee + brut * TAUX.patronales.vieillesse_deplafonnee,
+                famille: brut * TAUX.patronales.allocations_familiales,
+                chomage: brut * TAUX.patronales.chomage,
+                accidents: brut * TAUX.patronales.accidents_travail,
+                autres: brut * (TAUX.patronales.fnal + TAUX.patronales.formation + TAUX.patronales.csa),
+                retraite_comp: brut * TAUX.patronales.retraite_complementaire * (statut === 'cadre' ? 1.3 : 1)
+            };
+
+            // Cotisations salariales
+            const assiette_csg = brut * 0.9825;
+            const salariales = {
+                vieillesse: plafond * TAUX.salariales.vieillesse_plafonnee + brut * TAUX.salariales.vieillesse_deplafonnee,
+                retraite_comp: brut * TAUX.salariales.retraite_complementaire * (statut === 'cadre' ? 1.3 : 1),
+                csg_crds: assiette_csg * TAUX.salariales.csg_crds
+            };
+
+            const totalPatronales = Object.values(patronales).reduce((a, b) => a + b, 0);
+            const totalSalariales = Object.values(salariales).reduce((a, b) => a + b, 0);
+
+            const netAvantIR = brut - totalSalariales;
+
+            // Calcul IR (taux personnalisé basé sur le revenu)
+            const brutAnnuel = brut * 12;
+            let tauxIR = 0;
+            if (brutAnnuel > 27478) tauxIR = 0.075;
+            if (brutAnnuel > 45000) tauxIR = 0.12;
+            if (brutAnnuel > 60000) tauxIR = 0.18;
+            if (brutAnnuel > 85000) tauxIR = 0.25;
+            if (brutAnnuel < 20000) tauxIR = 0.03;
+            if (brutAnnuel < 15000) tauxIR = 0;
+
+            const impotRevenu = netAvantIR * tauxIR;
+            const netApresIR = netAvantIR - impotRevenu;
+            const superBrut = brut + totalPatronales;
+
+            return {
+                brut,
+                superBrut,
+                totalPatronales,
+                totalSalariales,
+                netAvantIR,
+                impotRevenu,
+                tauxIR,
+                netApresIR,
+                detail: {
+                    patronales,
+                    salariales
+                }
+            };
+        }
+
+        // Formater les montants
+        function formatMoney(amount) {
+            return new Intl.NumberFormat('fr-FR', {
+                style: 'decimal',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(Math.round(amount)) + ' €';
+        }
+
+        // Mise à jour de l'interface
+        function updateUI() {
+            const calc = calculerCotisations(state.salaireBrut, state.statut);
+            const multiplier = state.periode === 'annual' ? 12 : 1;
+
+            // Summary cards
+            document.getElementById('coutEmployeur').textContent = formatMoney(calc.superBrut * multiplier);
+            document.getElementById('prelevements').textContent = formatMoney((calc.totalPatronales + calc.totalSalariales + calc.impotRevenu) * multiplier);
+            document.getElementById('netFinal').textContent = formatMoney(calc.netApresIR * multiplier);
+
+            // Stack breakdown
+            document.getElementById('superBrut').textContent = formatMoney(calc.superBrut * multiplier);
+            document.getElementById('cotisPatronales').textContent = '- ' + formatMoney(calc.totalPatronales * multiplier);
+            document.getElementById('brut').textContent = formatMoney(calc.brut * multiplier);
+            document.getElementById('cotisSalariales').textContent = '- ' + formatMoney(calc.totalSalariales * multiplier);
+            document.getElementById('netAvantIR').textContent = formatMoney(calc.netAvantIR * multiplier);
+            document.getElementById('impotRevenu').textContent = '- ' + formatMoney(calc.impotRevenu * multiplier);
+            document.getElementById('netFinalStack').textContent = formatMoney(calc.netApresIR * multiplier);
+
+            // Percentages
+            const percentBlocks = document.querySelectorAll('.block-percent');
+            const percentages = [
+                Math.round(calc.superBrut / calc.brut * 100),
+                Math.round(calc.totalPatronales / calc.brut * 100),
+                100,
+                Math.round(calc.totalSalariales / calc.brut * 100),
+                Math.round(calc.netAvantIR / calc.brut * 100),
+                (calc.tauxIR * 100).toFixed(1),
+                Math.round(calc.netApresIR / calc.brut * 100)
+            ];
+            percentBlocks.forEach((block, i) => {
+                block.textContent = percentages[i] + '%';
+            });
+
+            // Update waterfall chart
+            updateWaterfallChart(calc, multiplier);
+
+            // Update distribution chart
+            updateDistributionChart(calc, multiplier);
+
+            // Update distribution grid
+            updateDistributionGrid(calc, multiplier);
+        }
+
+        // Waterfall Chart
+        function updateWaterfallChart(calc, multiplier) {
+            const container = document.getElementById('waterfallChart');
+            const maxValue = calc.superBrut * multiplier;
+            const scale = 200 / maxValue;
+
+            const data = [
+                { label: 'Coût employeur', value: calc.superBrut * multiplier, color: 'var(--accent-purple)', cumulative: calc.superBrut },
+                { label: 'Cotis. patronales', value: -calc.totalPatronales * multiplier, color: 'var(--accent-orange)', cumulative: calc.brut },
+                { label: 'Brut', value: calc.brut * multiplier, color: 'var(--accent-gold)', cumulative: calc.brut },
+                { label: 'Cotis. salariales', value: -calc.totalSalariales * multiplier, color: 'var(--accent-pink)', cumulative: calc.netAvantIR },
+                { label: 'Net avant IR', value: calc.netAvantIR * multiplier, color: 'var(--accent-electric)', cumulative: calc.netAvantIR },
+                { label: 'Impôt revenu', value: -calc.impotRevenu * multiplier, color: 'var(--accent-red)', cumulative: calc.netApresIR },
+                { label: 'Net final', value: calc.netApresIR * multiplier, color: 'var(--accent-green)', cumulative: calc.netApresIR }
+            ];
+
+            container.innerHTML = data.map((item, index) => {
+                const height = Math.abs(item.cumulative * multiplier) * scale;
+                const isNegative = item.value < 0;
+
+                return `
+                    <div class="waterfall-bar">
+                        <div class="waterfall-segment" style="
+                            height: ${height}px;
+                            background: ${item.color};
+                            opacity: ${isNegative ? 0.6 : 1};
+                        ">
+                            <span class="waterfall-value" style="color: ${item.color}">
+                                ${isNegative ? '' : ''}${formatMoney(Math.abs(item.value))}
+                            </span>
+                        </div>
+                        <div class="waterfall-label">${item.label}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Distribution Chart
+        let distributionChart = null;
+
+        function updateDistributionChart(calc, multiplier) {
+            const ctx = document.getElementById('distributionChart').getContext('2d');
+
+            const data = {
+                labels: ['Retraite', 'Santé', 'Famille', 'Chômage', 'CSG/CRDS', 'IR', 'Autres'],
+                datasets: [{
+                    data: [
+                        (calc.detail.patronales.vieillesse + calc.detail.patronales.retraite_comp + calc.detail.salariales.vieillesse + calc.detail.salariales.retraite_comp) * multiplier,
+                        calc.detail.patronales.maladie * multiplier,
+                        calc.detail.patronales.famille * multiplier,
+                        calc.detail.patronales.chomage * multiplier,
+                        calc.detail.salariales.csg_crds * multiplier,
+                        calc.impotRevenu * multiplier,
+                        (calc.detail.patronales.accidents + calc.detail.patronales.autres) * multiplier
+                    ],
+                    backgroundColor: [
+                        '#a855f7',
+                        '#ff6b6b',
+                        '#4ecdc4',
+                        '#45b7d1',
+                        '#ffd700',
+                        '#ff4757',
+                        '#8899a8'
+                    ],
+                    borderWidth: 0
+                }]
+            };
+
+            if (distributionChart) {
+                distributionChart.data = data;
+                distributionChart.update();
+            } else {
+                distributionChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: '65%',
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                                labels: {
+                                    padding: 12,
+                                    usePointStyle: true,
+                                    pointStyle: 'circle',
+                                    font: {
+                                        size: 11,
+                                        family: "'Syne', sans-serif"
+                                    },
+                                    color: '#8899a8'
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: '#111820',
+                                borderColor: 'rgba(255, 255, 255, 0.1)',
+                                borderWidth: 1,
+                                titleColor: '#f0f4f8',
+                                bodyColor: '#8899a8',
+                                padding: 12,
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.label + ': ' + formatMoney(context.raw);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Distribution Grid
+        function updateDistributionGrid(calc, multiplier) {
+            const grid = document.getElementById('distributionGrid');
+            const totalPrelevements = calc.totalPatronales + calc.totalSalariales + calc.impotRevenu;
+
+            const distributions = [
+                {
+                    icon: '👴',
+                    name: 'Retraite',
+                    desc: 'Assurance vieillesse + complémentaire',
+                    amount: (calc.detail.patronales.vieillesse + calc.detail.patronales.retraite_comp + calc.detail.salariales.vieillesse + calc.detail.salariales.retraite_comp) * multiplier,
+                    rate: '~17%',
+                    color: '#a855f7'
+                },
+                {
+                    icon: '🏥',
+                    name: 'Santé & Maladie',
+                    desc: 'Assurance maladie, maternité, invalidité',
+                    amount: calc.detail.patronales.maladie * multiplier,
+                    rate: '7%',
+                    color: '#ff6b6b'
+                },
+                {
+                    icon: '👨‍👩‍👧‍👦',
+                    name: 'Allocations familiales',
+                    desc: 'CAF, prestations familiales',
+                    amount: calc.detail.patronales.famille * multiplier,
+                    rate: '3.45%',
+                    color: '#4ecdc4'
+                },
+                {
+                    icon: '💼',
+                    name: 'Assurance chômage',
+                    desc: 'Pôle Emploi, France Travail',
+                    amount: calc.detail.patronales.chomage * multiplier,
+                    rate: '4.05%',
+                    color: '#45b7d1'
+                },
+                {
+                    icon: '🏛️',
+                    name: 'CSG & CRDS',
+                    desc: 'Contribution sociale généralisée',
+                    amount: calc.detail.salariales.csg_crds * multiplier,
+                    rate: '9.8%',
+                    color: '#ffd700'
+                },
+                {
+                    icon: '📋',
+                    name: 'Impôt sur le revenu',
+                    desc: 'Prélèvement à la source',
+                    amount: calc.impotRevenu * multiplier,
+                    rate: (calc.tauxIR * 100).toFixed(1) + '%',
+                    color: '#ff4757'
+                },
+                {
+                    icon: '🛡️',
+                    name: 'Accidents du travail',
+                    desc: 'Prévention et indemnisation AT/MP',
+                    amount: calc.detail.patronales.accidents * multiplier,
+                    rate: '~2%',
+                    color: '#ff9f43'
+                },
+                {
+                    icon: '📚',
+                    name: 'Formation & Autres',
+                    desc: 'Formation pro, FNAL, CSA',
+                    amount: calc.detail.patronales.autres * multiplier,
+                    rate: '~1.4%',
+                    color: '#8899a8'
+                }
+            ];
+
+            grid.innerHTML = distributions.map(d => `
+                <div class="distribution-card" style="--card-color: ${d.color}">
+                    <div class="distribution-icon" style="background: ${d.color}20">${d.icon}</div>
+                    <div class="distribution-name">${d.name}</div>
+                    <div class="distribution-desc">${d.desc}</div>
+                    <div class="distribution-amount">
+                        <span class="distribution-value" style="color: ${d.color}">${formatMoney(d.amount)}</span>
+                        <span class="distribution-rate">${d.rate} du brut</span>
+                    </div>
+                    <div class="distribution-bar">
+                        <div class="distribution-bar-fill" style="width: ${(d.amount / (totalPrelevements * multiplier)) * 100}%; background: ${d.color}"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Event Listeners
+        document.getElementById('salaryInput').addEventListener('input', function(e) {
+            state.salaireBrut = parseFloat(e.target.value) || 0;
+            updateUI();
+        });
+
+        document.querySelectorAll('.period-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                state.periode = this.dataset.period;
+                updateUI();
+            });
+        });
+
+        document.querySelectorAll('.status-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.status-option').forEach(o => o.classList.remove('active'));
+                this.classList.add('active');
+                state.statut = this.querySelector('input').value;
+                updateUI();
+            });
+        });
+
+        // Initialize
+        Chart.defaults.color = '#8899a8';
+        Chart.defaults.font.family = "'Syne', sans-serif";
+        updateUI();
+    </script>
+</body>
+</html>

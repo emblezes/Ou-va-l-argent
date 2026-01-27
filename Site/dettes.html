@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dette Publique | Où Va l'Argent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --bg-surface: #0a0e14;
+            --bg-elevated: #111820;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-electric-dim: rgba(0, 212, 255, 0.15);
+            --accent-gold: #ffd700;
+            --accent-gold-dim: rgba(255, 215, 0, 0.1);
+            --accent-green: #00ff88;
+            --accent-red: #ff4757;
+            --accent-red-dim: rgba(255, 71, 87, 0.15);
+            --accent-purple: #a855f7;
+            --accent-orange: #ff9f43;
+            --glass: rgba(17, 24, 32, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-surface); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-elevated); border-radius: 4px; }
+
+        /* Background */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(ellipse at 20% 30%, rgba(255, 71, 87, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 70%, rgba(255, 159, 67, 0.05) 0%, transparent 50%);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-red) 0%, #cc3344 100%);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.75rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active { color: var(--text-primary); }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-red);
+        }
+
+        /* Main Container */
+        .main-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 5rem 2rem 3rem;
+        }
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+
+        .page-header h1 .accent {
+            color: var(--accent-red);
+            font-style: italic;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Alert Banner */
+        .alert-banner {
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.15) 0%, rgba(255, 159, 67, 0.1) 100%);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .alert-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .alert-content h3 {
+            font-size: 1.1rem;
+            color: var(--accent-red);
+            margin-bottom: 0.25rem;
+        }
+
+        .alert-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .alert-stat {
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .alert-stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--accent-red);
+        }
+
+        .alert-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* KPI Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .kpi-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--kpi-color);
+        }
+
+        .kpi-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+        .kpi-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+        .kpi-value { font-family: 'JetBrains Mono', monospace; font-size: 1.75rem; font-weight: 500; color: var(--kpi-color); margin-bottom: 0.25rem; }
+        .kpi-subtext { font-size: 0.85rem; color: var(--text-secondary); }
+
+        .kpi-trend {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        .trend-up { background: var(--accent-red-dim); color: var(--accent-red); }
+        .trend-down { background: rgba(0, 255, 136, 0.15); color: var(--accent-green); }
+
+        /* Charts */
+        .charts-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title { font-size: 1rem; font-weight: 600; }
+        .chart-subtitle { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+        .chart-container { height: 300px; position: relative; }
+        .chart-container.tall { height: 400px; }
+
+        /* Timeline */
+        .timeline-section {
+            margin-top: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-red), var(--accent-orange), var(--accent-gold));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--bg-deep);
+            border: 3px solid var(--accent-red);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .timeline-desc { font-size: 0.9rem; color: var(--text-secondary); }
+
+        .timeline-stat {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--accent-red-dim);
+            border-radius: var(--radius-sm);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-red);
+        }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .info-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .info-card-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .info-card-value { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; color: var(--accent-orange); margin-bottom: 0.5rem; }
+        .info-card-desc { font-size: 0.85rem; color: var(--text-secondary); }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .charts-row { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .main-container { padding: 4.5rem 1rem 2rem; }
+            .kpi-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .alert-banner { flex-direction: column; text-align: center; }
+            .alert-stat { margin-left: 0; margin-top: 1rem; }
+            .timeline::before { left: 20px; }
+            .timeline-item, .timeline-item:nth-child(odd) { flex-direction: row; padding-left: 50px; }
+            .timeline-content { width: 100%; }
+            .timeline-dot { left: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">€</div>
+            <span>Où Va l'Argent</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="depenses.html">Dépenses</a></li>
+            <li><a href="dettes.html" class="active">Dettes</a></li>
+            <li><a href="impots.html">Impôts</a></li>
+            <li><a href="simulateur.html">Brutes vs Nets</a></li>
+            <li><a href="wtf.html">What the fuck</a></li>
+            <li><a href="propositions.html">Je propose</a></li>
+            <li><a href="blog.html">Blog</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-container">
+        <!-- Header -->
+        <header class="page-header">
+            <h1>La <span class="accent">dette</span> publique française</h1>
+            <p>Comprendre l'évolution, la composition et les enjeux de la dette nationale</p>
+        </header>
+
+        <!-- Alert Banner -->
+        <div class="alert-banner">
+            <div class="alert-icon">📈</div>
+            <div class="alert-content">
+                <h3>Record historique atteint</h3>
+                <p>La dette publique française a dépassé les 3 000 milliards d'euros pour la première fois en 2023</p>
+            </div>
+            <div class="alert-stat">
+                <div class="alert-stat-value">3 150 Md€</div>
+                <div class="alert-stat-label">Dette totale 2025</div>
+            </div>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+            <div class="kpi-card" style="--kpi-color: var(--accent-red);">
+                <div class="kpi-icon">💰</div>
+                <div class="kpi-label">Dette totale</div>
+                <div class="kpi-value">3 150 Md€</div>
+                <div class="kpi-subtext">Administrations publiques</div>
+                <span class="kpi-trend trend-up">↑ +57 Md€ vs 2024</span>
+            </div>
+
+            <div class="kpi-card" style="--kpi-color: var(--accent-orange);">
+                <div class="kpi-icon">📊</div>
+                <div class="kpi-label">Ratio dette/PIB</div>
+                <div class="kpi-value">110.6%</div>
+                <div class="kpi-subtext">Critère Maastricht: 60%</div>
+                <span class="kpi-trend trend-up">↑ +0.8 pts</span>
+            </div>
+
+            <div class="kpi-card" style="--kpi-color: var(--accent-gold);">
+                <div class="kpi-icon">💸</div>
+                <div class="kpi-label">Charge d'intérêts</div>
+                <div class="kpi-value">52 Md€</div>
+                <div class="kpi-subtext">Par an en 2025</div>
+                <span class="kpi-trend trend-up">↑ +8 Md€</span>
+            </div>
+
+            <div class="kpi-card" style="--kpi-color: var(--accent-purple);">
+                <div class="kpi-icon">👤</div>
+                <div class="kpi-label">Dette par habitant</div>
+                <div class="kpi-value">46 200 €</div>
+                <div class="kpi-subtext">Pour 68 millions d'habitants</div>
+                <span class="kpi-trend trend-up">↑ +840 €</span>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="charts-row">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div>
+                        <div class="chart-title">Évolution de la dette publique</div>
+                        <div class="chart-subtitle">En milliards d'euros et en % du PIB, 2000-2025</div>
+                    </div>
+                </div>
+                <div class="chart-container tall">
+                    <canvas id="debtEvolutionChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div>
+                        <div class="chart-title">Comparaison européenne</div>
+                        <div class="chart-subtitle">Ratio dette/PIB en 2024</div>
+                    </div>
+                </div>
+                <div class="chart-container tall">
+                    <canvas id="europeComparisonChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Row -->
+        <div class="charts-row">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div>
+                        <div class="chart-title">Qui détient la dette française ?</div>
+                        <div class="chart-subtitle">Répartition des créanciers</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="holdersChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div>
+                        <div class="chart-title">Évolution de la charge d'intérêts</div>
+                        <div class="chart-subtitle">En milliards d'euros par an</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="interestChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <section class="timeline-section">
+            <h2 class="section-title">Les crises qui ont creusé la dette</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1974</div>
+                        <div class="timeline-title">Dernier budget équilibré</div>
+                        <div class="timeline-desc">Le dernier budget voté à l'équilibre. Depuis, 50 ans de déficits consécutifs.</div>
+                        <div class="timeline-stat">Dette: 15% du PIB</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2008-2009</div>
+                        <div class="timeline-title">Crise financière mondiale</div>
+                        <div class="timeline-desc">Sauvetage des banques et plans de relance massifs. La dette bondit de 15 points de PIB.</div>
+                        <div class="timeline-stat">+260 Md€ de dette</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020-2021</div>
+                        <div class="timeline-title">Crise Covid-19</div>
+                        <div class="timeline-desc">"Quoi qu'il en coûte" : chômage partiel, aides aux entreprises, fonds de solidarité.</div>
+                        <div class="timeline-stat">+420 Md€ de dette</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2022-2023</div>
+                        <div class="timeline-title">Crise énergétique</div>
+                        <div class="timeline-desc">Bouclier tarifaire gaz et électricité, chèques énergie pour les ménages.</div>
+                        <div class="timeline-stat">+80 Md€ de mesures</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-title">Aujourd'hui</div>
+                        <div class="timeline-desc">La France doit refinancer sa dette à des taux plus élevés (>3%) après des années de taux quasi-nuls.</div>
+                        <div class="timeline-stat">3 150 Md€ - 110% du PIB</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Info Cards -->
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-card-icon">⏱️</div>
+                <div class="info-card-title">Chaque seconde</div>
+                <div class="info-card-value">+1 800 €</div>
+                <div class="info-card-desc">La dette augmente de 1 800 € chaque seconde en moyenne</div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-icon">🏫</div>
+                <div class="info-card-title">Intérêts annuels</div>
+                <div class="info-card-value">= Budget Éducation</div>
+                <div class="info-card-desc">Les 52 Md€ d'intérêts équivalent au budget de l'Éducation nationale</div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-icon">📅</div>
+                <div class="info-card-title">Durée moyenne</div>
+                <div class="info-card-value">8.5 ans</div>
+                <div class="info-card-desc">Maturité moyenne de la dette française (objectif: allongement)</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        Chart.defaults.color = '#8899a8';
+        Chart.defaults.font.family = "'Syne', sans-serif";
+        Chart.defaults.font.size = 11;
+
+        // Debt Evolution Chart (dual axis)
+        const debtCtx = document.getElementById('debtEvolutionChart').getContext('2d');
+        const debtGradient = debtCtx.createLinearGradient(0, 0, 0, 400);
+        debtGradient.addColorStop(0, 'rgba(255, 71, 87, 0.3)');
+        debtGradient.addColorStop(1, 'rgba(255, 71, 87, 0)');
+
+        new Chart(debtCtx, {
+            type: 'line',
+            data: {
+                labels: ['2000', '2005', '2008', '2010', '2012', '2015', '2017', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [
+                    {
+                        label: 'Dette (Md€)',
+                        data: [826, 1147, 1319, 1595, 1841, 2101, 2254, 2380, 2650, 2813, 2950, 3088, 3101, 3150],
+                        borderColor: '#ff4757',
+                        backgroundColor: debtGradient,
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3,
+                        yAxisID: 'y',
+                        pointRadius: 4,
+                        pointBackgroundColor: '#ff4757'
+                    },
+                    {
+                        label: 'Ratio PIB (%)',
+                        data: [58, 67, 68, 85, 90, 95, 98, 97, 115, 113, 111, 110, 109, 110.6],
+                        borderColor: '#ff9f43',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        fill: false,
+                        tension: 0.3,
+                        yAxisID: 'y1',
+                        pointRadius: 3,
+                        pointBackgroundColor: '#ff9f43'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { usePointStyle: true, padding: 20 }
+                    },
+                    tooltip: {
+                        backgroundColor: '#111820',
+                        padding: 12
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        min: 500,
+                        max: 3500,
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        ticks: { callback: v => v + ' Md€' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        min: 40,
+                        max: 130,
+                        grid: { display: false },
+                        ticks: { callback: v => v + '%' }
+                    },
+                    x: { grid: { color: 'rgba(255, 255, 255, 0.05)' } }
+                }
+            }
+        });
+
+        // Europe Comparison Chart
+        new Chart(document.getElementById('europeComparisonChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Grèce', 'Italie', 'France', 'Espagne', 'Belgique', 'Allemagne', 'Pays-Bas', 'UE moy.'],
+                datasets: [{
+                    label: 'Dette/PIB',
+                    data: [160.5, 137.3, 110.6, 107.7, 105.2, 63.7, 46.5, 82.6],
+                    backgroundColor: ctx => {
+                        if (ctx.dataIndex === 2) return '#ff4757';
+                        if (ctx.dataIndex === 7) return '#ffd700';
+                        return ctx.raw > 100 ? 'rgba(255, 71, 87, 0.5)' : '#2a3a4a';
+                    },
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#111820',
+                        callbacks: { label: ctx => ctx.parsed.x + '% du PIB' }
+                    }
+                },
+                scales: {
+                    x: {
+                        min: 0,
+                        max: 180,
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        ticks: { callback: v => v + '%' }
+                    },
+                    y: { grid: { display: false } }
+                }
+            }
+        });
+
+        // Holders Chart (Donut)
+        new Chart(document.getElementById('holdersChart').getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Investisseurs étrangers', 'Banques centrales (BCE)', 'Assurances françaises', 'Banques françaises', 'Autres résidents'],
+                datasets: [{
+                    data: [48, 25, 12, 8, 7],
+                    backgroundColor: ['#ff4757', '#ff9f43', '#ffd700', '#00d4ff', '#a855f7'],
+                    borderColor: '#0a0e14',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '60%',
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { usePointStyle: true, padding: 12 }
+                    },
+                    tooltip: {
+                        backgroundColor: '#111820',
+                        callbacks: { label: ctx => ctx.label + ': ' + ctx.parsed + '%' }
+                    }
+                }
+            }
+        });
+
+        // Interest Evolution Chart
+        const interestCtx = document.getElementById('interestChart').getContext('2d');
+        const interestGradient = interestCtx.createLinearGradient(0, 0, 0, 250);
+        interestGradient.addColorStop(0, 'rgba(255, 215, 0, 0.3)');
+        interestGradient.addColorStop(1, 'rgba(255, 215, 0, 0)');
+
+        new Chart(interestCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2015', '2017', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'Charge d\'intérêts',
+                    data: [42, 41, 38, 36, 38, 44, 48, 50, 52],
+                    backgroundColor: ctx => ctx.raw >= 50 ? '#ffd700' : '#2a3a4a',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#111820',
+                        callbacks: { label: ctx => ctx.parsed.y + ' Md€/an' }
+                    }
+                },
+                scales: {
+                    y: {
+                        min: 30,
+                        max: 60,
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        ticks: { callback: v => v + ' Md€' }
+                    },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
