@@ -5,22 +5,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Logo } from './Logo'
 
-// Sous-catégories de dépenses
-const depensesCategories = [
+// Navigation avec sous-menu pour Dépenses
+const depensesSubLinks = [
   { href: '/depenses', label: 'Vue d\'ensemble', icon: '📊' },
-  { href: '/depenses/retraites', label: 'Retraites', icon: '👴' },
-  { href: '/depenses/sante', label: 'Santé', icon: '🏥' },
-  { href: '/depenses/protection-sociale', label: 'Protection sociale', icon: '👨‍👩‍👧' },
-  { href: '/depenses/politiques-sectorielles', label: 'Politiques sectorielles', icon: '🏗️' },
-  { href: '/depenses/affaires-economiques', label: 'Affaires économiques', icon: '💼' },
-  { href: '/depenses/services-publics', label: 'Services publics', icon: '🏛️' },
-  { href: '/depenses/education', label: 'Éducation', icon: '🎓' },
-  { href: '/depenses/defense', label: 'Défense', icon: '🛡️' },
-  { href: '/depenses/dette', label: 'Charge de la dette', icon: '💳' },
-  { href: '/depenses/securite', label: 'Ordre & Sécurité', icon: '👮' },
-  { href: '/depenses/logement', label: 'Logement', icon: '🏠' },
-  { href: '/depenses/culture', label: 'Culture & Loisirs', icon: '🎭' },
-  { href: '/depenses/environnement', label: 'Environnement', icon: '🌱' },
+  { href: '/depenses/retraites', label: 'Focus Retraite', icon: '👴', isHighlight: true },
 ]
 
 const navLinks = [
@@ -102,6 +90,7 @@ export function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
+
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault()
     if (email) {
@@ -168,9 +157,9 @@ export function Navbar() {
 
                 {/* Dropdown Menu */}
                 {depensesDropdownOpen && (
-                  <div className="absolute top-full left-0 mt-2 w-64 bg-bg-surface border border-glass-border rounded-xl shadow-xl overflow-hidden">
-                    <div className="py-2 max-h-[70vh] overflow-y-auto">
-                      {depensesCategories.map((cat) => (
+                  <div className="absolute top-full left-0 mt-2 w-56 bg-bg-surface border border-glass-border rounded-xl shadow-xl overflow-hidden">
+                    <div className="py-2">
+                      {depensesSubLinks.map((cat) => (
                         <Link
                           key={cat.href}
                           href={cat.href}
@@ -178,11 +167,13 @@ export function Navbar() {
                           className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-bg-elevated ${
                             pathname === cat.href
                               ? 'text-accent-electric bg-accent-electric/10'
-                              : 'text-text-secondary hover:text-text-primary'
+                              : cat.isHighlight
+                                ? 'text-accent-red hover:text-accent-red'
+                                : 'text-text-secondary hover:text-text-primary'
                           }`}
                         >
                           <span className="text-lg">{cat.icon}</span>
-                          <span>{cat.label}</span>
+                          <span className={cat.isHighlight ? 'font-semibold' : ''}>{cat.label}</span>
                         </Link>
                       ))}
                     </div>
@@ -307,7 +298,7 @@ export function Navbar() {
 
                       {mobileDepensesOpen && (
                         <div className="ml-4 mt-1 border-l-2 border-glass-border pl-2">
-                          {depensesCategories.map((cat) => (
+                          {depensesSubLinks.map((cat) => (
                             <Link
                               key={cat.href}
                               href={cat.href}
@@ -318,11 +309,13 @@ export function Navbar() {
                               className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors ${
                                 pathname === cat.href
                                   ? 'text-accent-electric bg-accent-electric/10'
-                                  : 'text-text-secondary hover:text-text-primary hover:bg-bg-elevated'
+                                  : cat.isHighlight
+                                    ? 'text-accent-red hover:text-accent-red hover:bg-accent-red/10'
+                                    : 'text-text-secondary hover:text-text-primary hover:bg-bg-elevated'
                               }`}
                             >
                               <span>{cat.icon}</span>
-                              <span>{cat.label}</span>
+                              <span className={cat.isHighlight ? 'font-semibold' : ''}>{cat.label}</span>
                             </Link>
                           ))}
                         </div>
