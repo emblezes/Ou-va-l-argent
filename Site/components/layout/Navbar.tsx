@@ -130,14 +130,14 @@ export function Navbar() {
       <Logo variant={getLogoVariant()} icon={getLogoIcon()} />
 
       {/* Desktop Navigation */}
-      <ul className="hidden lg:flex gap-6 list-none">
+      <ul className="hidden lg:flex items-center gap-8 list-none m-0 p-0">
         {navLinks.map((link) => (
-          <li key={link.href} className="relative">
+          <li key={link.href} className="relative flex items-center">
             {link.hasDropdown ? (
-              <div ref={dropdownRef} className="relative">
+              <div ref={dropdownRef} className="relative flex items-center">
                 <button
                   onClick={() => setDepensesDropdownOpen(!depensesDropdownOpen)}
-                  className={`text-text-secondary no-underline text-sm font-medium transition-colors duration-200 relative hover:text-text-primary flex items-center gap-1 ${
+                  className={`text-text-secondary no-underline text-lg font-medium transition-colors duration-200 relative hover:text-text-primary flex items-center gap-1 ${
                     isDepensesPage ? 'text-text-primary' : ''
                   }`}
                 >
@@ -164,7 +164,7 @@ export function Navbar() {
                           key={cat.href}
                           href={cat.href}
                           onClick={() => setDepensesDropdownOpen(false)}
-                          className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-bg-elevated ${
+                          className={`flex items-center gap-3 px-4 py-2.5 text-base transition-colors hover:bg-bg-elevated ${
                             pathname === cat.href
                               ? 'text-accent-electric bg-accent-electric/10'
                               : cat.isHighlight
@@ -183,7 +183,7 @@ export function Navbar() {
             ) : (
               <Link
                 href={link.href}
-                className={`text-text-secondary no-underline text-sm font-medium transition-colors duration-200 relative hover:text-text-primary ${
+                className={`text-text-secondary no-underline text-lg font-medium transition-colors duration-200 relative hover:text-text-primary ${
                   pathname === link.href ? 'text-text-primary' : ''
                 }`}
               >

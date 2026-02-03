@@ -18,9 +18,9 @@ const variantStyles = {
 
 export function Logo({ variant = 'default', icon = '€', showText = true }: LogoProps) {
   return (
-    <Link href="/" className="flex items-center gap-3 font-bold text-lg tracking-tight no-underline text-text-primary">
+    <Link href="/" className="flex items-center gap-3 font-bold text-xl tracking-tight no-underline text-text-primary">
       <div
-        className={`w-9 h-9 ${variantStyles[variant]} rounded-lg flex items-center justify-center font-mono font-semibold text-sm`}
+        className={`w-10 h-10 ${variantStyles[variant]} rounded-lg flex items-center justify-center font-mono font-semibold text-base`}
       >
         {icon}
       </div>

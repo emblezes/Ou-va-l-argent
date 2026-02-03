@@ -2,10 +2,23 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { MINISTRIES } from '@/lib/constants/budget'
+
+interface CategoryData {
+  id: string
+  name: string
+  shortName: string
+  icon: string
+  amount: number
+  percent: number
+  evolution: number
+  color: string
+  description: string
+  href?: string
+  isHighlight?: boolean
+}
 
 interface BudgetCardProps {
-  ministry: typeof MINISTRIES[0]
+  ministry: CategoryData
   delay: number
 }
 
@@ -32,13 +45,8 @@ function BudgetCard({ ministry, delay }: BudgetCardProps) {
     return () => observer.disconnect()
   }, [delay])
 
-  return (
-    <div
-      ref={cardRef}
-      className={`bg-bg-surface border border-glass-border rounded-xl p-6 relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:border-glass-border/30 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}
-    >
+  const CardContent = (
+    <>
       {/* Color bar at top */}
       <div
         className="absolute top-0 left-0 right-0 h-1"
@@ -47,16 +55,23 @@ function BudgetCard({ ministry, delay }: BudgetCardProps) {
 
       <div className="flex justify-between items-start mb-4">
         <span className="text-3xl">{ministry.icon}</span>
-        <span
-          className={`text-xs font-medium px-2 py-1 rounded ${
-            ministry.evolution >= 0
-              ? 'bg-accent-green/10 text-accent-green'
-              : 'bg-accent-red/10 text-accent-red'
-          }`}
-        >
-          {ministry.evolution >= 0 ? '+' : ''}
-          {ministry.evolution}%
-        </span>
+        <div className="flex items-center gap-2">
+          {ministry.isHighlight && (
+            <span className="text-xs font-medium px-2 py-1 rounded bg-accent-electric/20 text-accent-electric">
+              Focus
+            </span>
+          )}
+          <span
+            className={`text-xs font-medium px-2 py-1 rounded ${
+              ministry.evolution >= 0
+                ? 'bg-accent-green/10 text-accent-green'
+                : 'bg-accent-red/10 text-accent-red'
+            }`}
+          >
+            {ministry.evolution >= 0 ? '+' : ''}
+            {ministry.evolution}%
+          </span>
+        </div>
       </div>
 
       <h3 className="font-semibold text-lg mb-1">{ministry.shortName}</h3>
@@ -77,9 +92,105 @@ function BudgetCard({ ministry, delay }: BudgetCardProps) {
         />
       </div>
       <div className="text-text-muted text-xs mt-2 text-right">{ministry.percent}% du budget</div>
+
+      {ministry.href && (
+        <div className="mt-3 text-xs text-accent-electric flex items-center gap-1">
+          Voir le détail <span>→</span>
+        </div>
+      )}
+    </>
+  )
+
+  const baseClasses = `bg-bg-surface border rounded-xl p-6 relative overflow-hidden transition-all duration-500 hover:-translate-y-1 ${
+    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+  } ${ministry.isHighlight ? 'border-accent-electric/50 hover:border-accent-electric' : 'border-glass-border hover:border-glass-border/30'}`
+
+  if (ministry.href) {
+    return (
+      <Link href={ministry.href} ref={cardRef} className={`${baseClasses} block no-underline`}>
+        {CardContent}
+      </Link>
+    )
+  }
+
+  return (
+    <div ref={cardRef} className={baseClasses}>
+      {CardContent}
     </div>
   )
 }
+
+// Catégories avec retraites et santé isolées
+const HOMEPAGE_CATEGORIES: CategoryData[] = [
+  {
+    id: 'retraites',
+    name: 'Retraites',
+    shortName: 'Retraites',
+    icon: '👴',
+    amount: 380,
+    percent: 22.8,
+    evolution: 3.8,
+    color: '#ff9f43',
+    description: '1er poste de dépenses publiques',
+    href: '/depenses/retraites',
+    isHighlight: true,
+  },
+  {
+    id: 'solidarites',
+    name: 'Autres prestations sociales',
+    shortName: 'Autres prestations sociales',
+    icon: '🤝',
+    amount: 282,
+    percent: 16.9,
+    evolution: 3.5,
+    color: '#a855f7',
+    description: 'Famille, chômage, logement, RSA',
+  },
+  {
+    id: 'sante',
+    name: 'Santé',
+    shortName: 'Santé',
+    icon: '🏥',
+    amount: 270,
+    percent: 16.2,
+    evolution: 4.2,
+    color: '#ff6b6b',
+    description: 'Assurance maladie, hôpitaux',
+  },
+  {
+    id: 'education',
+    name: 'Éducation nationale',
+    shortName: 'Éducation & Recherche',
+    icon: '🎓',
+    amount: 168,
+    percent: 10.1,
+    evolution: 2.1,
+    color: '#4ecdc4',
+    description: 'Investissement d\'avenir',
+  },
+  {
+    id: 'defense',
+    name: 'Armées',
+    shortName: 'Défense & Sécurité',
+    icon: '🛡️',
+    amount: 65,
+    percent: 3.9,
+    evolution: 7.5,
+    color: '#45b7d1',
+    description: 'Sécurité nationale',
+  },
+  {
+    id: 'autres',
+    name: 'Autres dépenses',
+    shortName: 'Autres',
+    icon: '📊',
+    amount: 505,
+    percent: 30.2,
+    evolution: 2.8,
+    color: '#64748b',
+    description: 'Administration, dette, écologie...',
+  },
+]
 
 export function BudgetGrid() {
   return (
@@ -97,14 +208,14 @@ export function BudgetGrid() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-          {MINISTRIES.slice(0, 6).map((ministry, index) => (
-            <BudgetCard key={ministry.id} ministry={ministry} delay={index} />
+          {HOMEPAGE_CATEGORIES.map((category, index) => (
+            <BudgetCard key={category.id} ministry={category} delay={index} />
           ))}
         </div>
 
         {/* CTA */}
         <div className="text-center mt-10">
-          <Link href="/dashboard" className="btn-secondary no-underline inline-flex">
+          <Link href="/depenses" className="btn-secondary no-underline inline-flex">
             Voir tous les détails
             <span>→</span>
           </Link>

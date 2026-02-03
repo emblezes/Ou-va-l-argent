@@ -104,28 +104,34 @@ export const MINISTRIES = [
 
 export const TIMELINE_EVENTS = [
   {
+    year: '1974',
+    title: 'Dernier budget équilibré',
+    description: 'Sous Giscard, la France vote son dernier budget à l\'équilibre. Le choc pétrolier marque la fin des Trente Glorieuses et le début des déficits permanents.',
+    stat: 'Dette : 15% du PIB',
+  },
+  {
+    year: '1981',
+    title: 'Explosion des dépenses sociales',
+    description: 'Mitterrand : nationalisations, 5ème semaine de congés, retraite à 60 ans, embauche massive de fonctionnaires. La dette double en 10 ans.',
+    stat: 'Dette : 35% du PIB',
+  },
+  {
+    year: '2008',
+    title: 'Crise financière mondiale',
+    description: 'Plan de relance massif, renflouement des banques. Le déficit explose à 7,2% du PIB. La dette dépasse les 1 300 milliards.',
+    stat: 'Dette : 68% du PIB',
+  },
+  {
     year: '2020',
     title: 'Crise Covid-19',
-    description: 'Le "quoi qu\'il en coûte" mobilise des ressources sans précédent pour soutenir l\'économie française.',
-    stat: '+180 Md€ de dépenses exceptionnelles',
-  },
-  {
-    year: '2022',
-    title: 'Bouclier tarifaire',
-    description: 'Face à la crise énergétique, l\'État déploie des aides massives pour protéger les ménages et les entreprises.',
-    stat: '45 Md€ de soutien énergétique',
-  },
-  {
-    year: '2024',
-    title: 'Plan de redressement',
-    description: 'Lancement d\'un programme ambitieux de réduction du déficit public avec objectif de 3% du PIB.',
-    stat: 'Objectif: -20 Md€ d\'économies',
+    description: 'Le "quoi qu\'il en coûte" : chômage partiel, prêts garantis, fonds de solidarité. La dette bondit de 600 milliards en 2 ans.',
+    stat: 'Dette : 115% du PIB',
   },
   {
     year: '2025',
-    title: 'France 2030',
-    description: 'Investissements massifs dans l\'innovation, la transition écologique et la réindustrialisation.',
-    stat: '54 Md€ d\'investissements stratégiques',
+    title: 'Crise budgétaire',
+    description: 'Déficit hors contrôle à 6% du PIB. Dégradation par les agences de notation. La France emprunte plus cher que l\'Espagne.',
+    stat: 'Dette : 117% du PIB',
   },
 ]
 

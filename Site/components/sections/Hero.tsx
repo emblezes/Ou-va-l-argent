@@ -11,19 +11,29 @@ function formatCurrency(num: number): string {
   }).format(num)
 }
 
+function formatTime(seconds: number): string {
+  const mins = Math.floor(seconds / 60)
+  const secs = seconds % 60
+  return `${mins}:${secs.toString().padStart(2, '0')}`
+}
+
 export function Hero() {
   const [debtCounter, setDebtCounter] = useState(0)
+  const [elapsedSeconds, setElapsedSeconds] = useState(0)
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-  // Calcul: déficit 169 Md€/an ÷ 31.5M secondes/an ≈ 5 365 €/s (Source: INSEE 2024)
-  const debtPerSecond = 5350 // € par seconde
+
+  // Calcul: déficit 169 Md€/an ÷ 31,536,000 secondes/an = 5 360 €/s (Source: INSEE 2024)
+  const debtPerSecond = 5360 // € par seconde
 
   useEffect(() => {
     let elapsed = 0
     const interval = setInterval(() => {
       elapsed += 0.1
       setDebtCounter(Math.floor(elapsed * debtPerSecond))
+      // Mettre à jour le compteur de temps chaque seconde complète
+      setElapsedSeconds(Math.floor(elapsed))
     }, 100)
 
     return () => clearInterval(interval)
@@ -85,8 +95,8 @@ export function Hero() {
 
         {/* Subtitle */}
         <p className="text-xl text-text-secondary max-w-2xl mx-auto mb-10">
-          Explorez les finances publiques françaises avec une transparence totale.
-          Chaque euro, chaque ministère, chaque décision budgétaire.
+          L&apos;État français dépense 1 670 Md€ chaque année mais continue de s&apos;endetter.
+          Il est temps de comprendre où va l&apos;argent.
         </p>
 
         {/* Live Debt Counter */}
@@ -113,8 +123,15 @@ export function Hero() {
           </div>
 
           <p className="text-text-muted text-sm mt-4">
-            soit environ <span className="text-accent-red font-mono font-medium">5 350 €</span> par seconde, 24h/24
+            soit environ <span className="text-accent-red font-mono font-medium">5 360 €</span> par seconde, 24h/24
           </p>
+
+          {/* Compteur de temps */}
+          <div className="mt-4 pt-4 border-t border-accent-red/20">
+            <p className="text-text-muted text-xs">
+              Temps écoulé : <span className="font-mono text-accent-orange font-medium">{formatTime(elapsedSeconds)}</span>
+            </p>
+          </div>
         </div>
 
         {/* Newsletter CTA */}
