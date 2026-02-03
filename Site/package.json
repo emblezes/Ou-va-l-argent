@@ -1,0 +1,33 @@
+{
+  "name": "ou-va-largent",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@types/node": "^25.1.0",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.4.23",
+    "chart.js": "^4.5.1",
+    "framer-motion": "^12.29.2",
+    "modele-social": "^10.0.0",
+    "next": "^14.2.35",
+    "postcss": "^8.5.6",
+    "publicodes": "^1.9.1",
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.35",
+    "yaml-loader": "^0.9.0"
+  }
+}
