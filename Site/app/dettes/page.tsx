@@ -452,12 +452,6 @@ export default function DettesPage() {
           </div>
         </div>
 
-        {/* Sources */}
-        <div className="text-center py-6 border-t border-glass-border">
-          <p className="text-text-muted text-sm">
-            Sources : Agence France Trésor, INSEE, Banque de France, Eurostat (2024-2025)
-          </p>
-        </div>
       </main>
     </div>
   )
