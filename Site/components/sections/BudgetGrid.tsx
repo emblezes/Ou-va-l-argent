@@ -90,9 +90,11 @@ function BudgetCard({ ministry, delay }: BudgetCardProps) {
 
   if (ministry.href) {
     return (
-      <Link href={ministry.href} ref={cardRef} className={`${baseClasses} block no-underline`}>
-        {CardContent}
-      </Link>
+      <div ref={cardRef}>
+        <Link href={ministry.href} className={`${baseClasses} block no-underline`}>
+          {CardContent}
+        </Link>
+      </div>
     )
   }
 
@@ -145,11 +147,11 @@ const HOMEPAGE_CATEGORIES: CategoryData[] = [
     name: 'Éducation nationale',
     shortName: 'Éducation & Recherche',
     icon: '🎓',
-    amount: 168,
-    percent: 10.1,
+    amount: 114,
+    percent: 6.8,
     evolution: 2.1,
     color: '#4ecdc4',
-    description: 'Investissement d\'avenir',
+    description: 'Enseignement scolaire, supérieur, recherche',
   },
   {
     id: 'defense',
@@ -167,8 +169,8 @@ const HOMEPAGE_CATEGORIES: CategoryData[] = [
     name: 'Autres dépenses',
     shortName: 'Autres',
     icon: '📊',
-    amount: 505,
-    percent: 30.2,
+    amount: 559,
+    percent: 33.5,
     evolution: 2.8,
     color: '#64748b',
     description: 'Administration, dette, écologie...',
@@ -182,7 +184,7 @@ export function BudgetGrid() {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="font-serif text-[clamp(2rem,5vw,3rem)] font-normal mb-4">
-            Où <span className="italic text-accent-gold">dépense-t-on</span> ?
+            Où dépense <span className="italic text-accent-gold">l&apos;État</span> ?
           </h2>
           <p className="text-text-secondary text-lg max-w-2xl mx-auto">
             Répartition des 1 670 milliards d&apos;euros de dépenses publiques par grands postes budgétaires

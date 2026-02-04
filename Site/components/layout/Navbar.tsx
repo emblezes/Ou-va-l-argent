@@ -1,18 +1,12 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Logo } from './Logo'
 
-// Navigation avec sous-menu pour Dépenses
-const depensesSubLinks = [
-  { href: '/depenses', label: 'Vue d\'ensemble', icon: '📊' },
-  { href: '/depenses/retraites', label: 'Focus Retraite', icon: '👴', isHighlight: true },
-]
-
 const navLinks = [
-  { href: '/depenses', label: 'Dépenses', hasDropdown: true },
+  { href: '/depenses', label: 'Dépenses' },
   { href: '/dettes', label: 'Dette' },
   { href: '/impots', label: 'Impôts' },
   { href: '/simulateur', label: 'Simulateur Brut vs Net' },
@@ -63,11 +57,8 @@ export function Navbar() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [depensesDropdownOpen, setDepensesDropdownOpen] = useState(false)
-  const [mobileDepensesOpen, setMobileDepensesOpen] = useState(false)
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,18 +67,6 @@ export function Navbar() {
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setDepensesDropdownOpen(false)
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
 
@@ -147,66 +126,17 @@ export function Navbar() {
       <ul className="hidden lg:flex items-center gap-8 list-none m-0 p-0">
         {navLinks.map((link) => (
           <li key={link.href} className="relative flex items-center">
-            {link.hasDropdown ? (
-              <div ref={dropdownRef} className="relative flex items-center">
-                <button
-                  onClick={() => setDepensesDropdownOpen(!depensesDropdownOpen)}
-                  className={`text-text-secondary no-underline text-lg font-medium transition-colors duration-200 relative hover:text-text-primary flex items-center gap-1 ${
-                    isDepensesPage ? 'text-text-primary' : ''
-                  }`}
-                >
-                  {link.label}
-                  <svg
-                    className={`w-4 h-4 transition-transform duration-200 ${depensesDropdownOpen ? 'rotate-180' : ''}`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                  {isDepensesPage && (
-                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-accent-electric" />
-                  )}
-                </button>
-
-                {/* Dropdown Menu */}
-                {depensesDropdownOpen && (
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-bg-surface border border-glass-border rounded-xl shadow-xl overflow-hidden">
-                    <div className="py-2">
-                      {depensesSubLinks.map((cat) => (
-                        <Link
-                          key={cat.href}
-                          href={cat.href}
-                          onClick={() => setDepensesDropdownOpen(false)}
-                          className={`flex items-center gap-3 px-4 py-2.5 text-base transition-colors hover:bg-bg-elevated ${
-                            pathname === cat.href
-                              ? 'text-accent-electric bg-accent-electric/10'
-                              : cat.isHighlight
-                                ? 'text-accent-red hover:text-accent-red'
-                                : 'text-text-secondary hover:text-text-primary'
-                          }`}
-                        >
-                          <span className="text-lg">{cat.icon}</span>
-                          <span className={cat.isHighlight ? 'font-semibold' : ''}>{cat.label}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <Link
-                href={link.href}
-                className={`text-text-secondary no-underline text-lg font-medium transition-colors duration-200 relative hover:text-text-primary ${
-                  pathname === link.href ? 'text-text-primary' : ''
-                }`}
-              >
-                {link.label}
-                {pathname === link.href && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-accent-electric" />
-                )}
-              </Link>
-            )}
+            <Link
+              href={link.href}
+              className={`text-text-secondary no-underline text-lg font-medium transition-colors duration-200 relative hover:text-text-primary ${
+                pathname === link.href || (link.href === '/depenses' && isDepensesPage) ? 'text-text-primary' : ''
+              }`}
+            >
+              {link.label}
+              {(pathname === link.href || (link.href === '/depenses' && isDepensesPage)) && (
+                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-accent-electric" />
+              )}
+            </Link>
           </li>
         ))}
       </ul>
@@ -291,61 +221,15 @@ export function Navbar() {
             <ul className="flex flex-col gap-2 mb-4">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  {link.hasDropdown ? (
-                    <div>
-                      <button
-                        onClick={() => setMobileDepensesOpen(!mobileDepensesOpen)}
-                        className={`w-full flex items-center justify-between px-4 py-3 rounded-lg text-text-secondary text-base font-medium transition-colors duration-200 hover:bg-bg-elevated hover:text-text-primary ${
-                          isDepensesPage ? 'text-accent-electric bg-accent-electric/10' : ''
-                        }`}
-                      >
-                        <span>{link.label}</span>
-                        <svg
-                          className={`w-5 h-5 transition-transform duration-200 ${mobileDepensesOpen ? 'rotate-180' : ''}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-
-                      {mobileDepensesOpen && (
-                        <div className="ml-4 mt-1 border-l-2 border-glass-border pl-2">
-                          {depensesSubLinks.map((cat) => (
-                            <Link
-                              key={cat.href}
-                              href={cat.href}
-                              onClick={() => {
-                                setMobileMenuOpen(false)
-                                setMobileDepensesOpen(false)
-                              }}
-                              className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors ${
-                                pathname === cat.href
-                                  ? 'text-accent-electric bg-accent-electric/10'
-                                  : cat.isHighlight
-                                    ? 'text-accent-red hover:text-accent-red hover:bg-accent-red/10'
-                                    : 'text-text-secondary hover:text-text-primary hover:bg-bg-elevated'
-                              }`}
-                            >
-                              <span>{cat.icon}</span>
-                              <span className={cat.isHighlight ? 'font-semibold' : ''}>{cat.label}</span>
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`block px-4 py-3 rounded-lg text-text-secondary no-underline text-base font-medium transition-colors duration-200 hover:bg-bg-elevated hover:text-text-primary ${
-                        pathname === link.href ? 'text-accent-electric bg-accent-electric/10' : ''
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  )}
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block px-4 py-3 rounded-lg text-text-secondary no-underline text-base font-medium transition-colors duration-200 hover:bg-bg-elevated hover:text-text-primary ${
+                      pathname === link.href || (link.href === '/depenses' && isDepensesPage) ? 'text-accent-electric bg-accent-electric/10' : ''
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>

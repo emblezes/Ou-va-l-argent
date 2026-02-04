@@ -19,9 +19,10 @@ interface LineChartProps {
   yMin?: number
   yMax?: number
   yCallback?: (value: number | string) => string
+  showLegend?: boolean
 }
 
-export function LineChart({ labels, datasets, yMin, yMax, yCallback }: LineChartProps) {
+export function LineChart({ labels, datasets, yMin, yMax, yCallback, showLegend = true }: LineChartProps) {
   const data = {
     labels,
     datasets: datasets.map((ds) => ({
@@ -40,6 +41,7 @@ export function LineChart({ labels, datasets, yMin, yMax, yCallback }: LineChart
     maintainAspectRatio: false,
     plugins: {
       legend: {
+        display: showLegend,
         position: 'top' as const,
         labels: {
           usePointStyle: true,

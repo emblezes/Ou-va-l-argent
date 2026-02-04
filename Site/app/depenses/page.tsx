@@ -54,7 +54,7 @@ const FRANCE_DATA = {
   total: 1670,
   recettes: 1502,
   deficit: -169,
-  ratio: 57.2,
+  ratio: 57.1, // Eurostat 2024
   population: 68, // millions
   perCapita: 24560, // €/habitant/an
 }
@@ -71,7 +71,7 @@ const REPARTITION_APU = [
 // Version enrichie avec les années clés pour afficher les annotations sur le graphique
 const EVOLUTION_HISTORIQUE = {
   labels: ['1960', '1970', '1975', '1980', '1981', '1990', '2000', '2009', '2010', '2020', '2024'],
-  ratio: [35.0, 38.5, 46.2, 48.0, 50.2, 49.8, 51.6, 56.0, 56.4, 61.7, 57.2],
+  ratio: [35.0, 38.5, 46.2, 48.0, 50.2, 49.8, 51.6, 56.0, 56.4, 61.7, 57.1],
   // Indices des années avec événements marquants (pour styliser les points)
   eventIndices: [2, 4, 7, 9], // 1975, 1981, 2009, 2020
   events: [
@@ -162,30 +162,40 @@ const SPENDING_BREAKDOWN = [
 
 // Source: Eurostat 2024 - Dépenses publiques en % du PIB
 const EU_SPENDING_PIB = [
-  { country: 'France', value: 57.2, highlight: true },
-  { country: 'Belgique', value: 54.6 },
-  { country: 'Finlande', value: 54.2 },
+  { country: 'Finlande', value: 57.6 },
+  { country: 'France', value: 57.1, highlight: true },
+  { country: 'Belgique', value: 54.5 },
   { country: 'Italie', value: 53.7 },
   { country: 'Autriche', value: 52.3 },
   { country: 'Grèce', value: 51.8 },
   { country: 'Allemagne', value: 49.5 },
   { country: 'Espagne', value: 47.3 },
   { country: 'Pays-Bas', value: 44.5 },
-  { country: 'Irlande', value: 27.1 },
+  { country: 'Moy. UE', value: 49.2, isAverage: true },
 ]
 
-// Source: OCDE 2024 - Dépenses publiques en % du PIB
+// Source: OCDE 2024 - Dépenses publiques en % du PIB (trié du plus élevé au moins élevé)
 const OECD_SPENDING_PIB = [
-  { country: 'France', value: 57.2, highlight: true },
-  { country: 'Italie', value: 53.7 },
-  { country: 'Japon', value: 44.3 },
-  { country: 'Royaume-Uni', value: 44.8 },
-  { country: 'Canada', value: 43.1 },
-  { country: 'États-Unis', value: 38.1 },
-  { country: 'Australie', value: 37.8 },
-  { country: 'Suisse', value: 34.2 },
-  { country: 'Corée du Sud', value: 28.3 },
+  { country: '🇫🇮 Finlande', value: 57.6 },
+  { country: '🇫🇷 France', value: 57.1, highlight: true },
+  { country: '🇧🇪 Belgique', value: 54.5 },
+  { country: '🇮🇹 Italie', value: 53.7 },
+  { country: '🇪🇺 Moy. UE', value: 49.2, isAverage: true },
+  { country: '📊 Moy. OCDE', value: 46.0, isAverage: true },
+  { country: '🇬🇧 Royaume-Uni', value: 44.8 },
+  { country: '🇺🇸 États-Unis', value: 38.1 },
+  { country: '🇨🇭 Suisse', value: 34.2 },
+  { country: '🇰🇷 Corée du Sud', value: 28.3 },
 ]
+
+// Écart France vs UE - Source: Eurostat, budget.gouv.fr 2024
+const ECART_FRANCE_UE = {
+  francePIB: 57.1,
+  moyenneUE: 49.2,
+  ecartPoints: 7.9,
+  pibFrance: 2930, // Md€
+  ecartMilliards: 231, // 7.9% de 2930 Md€
+}
 
 // Source: Eurostat 2024 - Dépenses de protection sociale en % du PIB
 const EU_SOCIAL_SPENDING = [
@@ -242,7 +252,7 @@ const DEFENSE_SPENDING = [
 // Évolution comparée des dépenses (2015-2024)
 const EVOLUTION_COMPARISON = {
   labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
-  france: [56.8, 56.6, 56.5, 55.6, 55.4, 61.3, 59.0, 58.4, 57.3, 57.2],
+  france: [56.8, 56.6, 56.5, 55.6, 55.4, 61.3, 59.0, 58.4, 57.3, 57.1],
   allemagne: [43.5, 43.9, 43.9, 43.9, 45.0, 50.9, 50.5, 49.4, 49.0, 49.5],
   italie: [50.3, 49.1, 48.7, 48.4, 48.5, 56.8, 56.0, 54.8, 54.2, 53.7],
   espagne: [43.8, 42.2, 41.0, 41.6, 42.1, 52.3, 50.6, 47.4, 46.8, 47.3],
@@ -292,47 +302,81 @@ const EFFICACITE_SANTE = [
 // Source: Eurostat, OCDE 2024 - Divergence France-Allemagne
 const DIVERGENCE_FR_DE = {
   labels: ['2000', '2005', '2010', '2015', '2020', '2024'],
-  france: [51.6, 53.3, 56.4, 56.8, 61.3, 57.2],
+  france: [51.6, 53.3, 56.4, 56.8, 61.3, 57.1],
   allemagne: [44.5, 46.2, 47.3, 43.5, 50.9, 49.5],
   ecart: [7.1, 7.1, 9.1, 13.3, 10.4, 7.7], // écart France - Allemagne
 }
 
-// Source: Eurostat 2024 - Déficits publics comparés (% PIB)
-const DEFICIT_COMPARISON = [
-  { country: 'Italie', value: -7.2, color: '#2a3a4a' },
-  { country: 'France', value: -5.5, highlight: true, color: '#00d4ff' },
-  { country: 'Belgique', value: -4.4, color: '#2a3a4a' },
-  { country: 'Espagne', value: -3.6, color: '#2a3a4a' },
-  { country: 'Pologne', value: -3.5, color: '#2a3a4a' },
-  { country: 'Pays-Bas', value: -0.3, color: '#2a3a4a' },
-  { country: 'Allemagne', value: -2.1, color: '#2a3a4a' },
-  { country: 'Suède', value: +0.6, color: '#00ff88' },
-  { country: 'Irlande', value: +1.7, color: '#00ff88' },
-]
+// Source: Eurostat COFOG 2024 - Structure des dépenses publiques par fonction (% du PIB)
+// Permet de comparer les priorités budgétaires de chaque pays
+const STRUCTURE_DEPENSES = {
+  categories: [
+    { id: 'protection', label: 'Protection sociale', color: '#ff6b6b' },
+    { id: 'sante', label: 'Santé', color: '#a855f7' },
+    { id: 'services', label: 'Services généraux', color: '#64748b' },
+    { id: 'education', label: 'Éducation', color: '#4ecdc4' },
+    { id: 'economie', label: 'Affaires économiques', color: '#00d4ff' },
+    { id: 'defense', label: 'Défense', color: '#45b7d1' },
+    { id: 'autres', label: 'Autres', color: '#94a3b8' },
+  ],
+  pays: [
+    {
+      country: '🇫🇷 France',
+      total: 57.1,
+      highlight: true,
+      data: { protection: 24.0, sante: 8.5, services: 6.0, education: 5.5, economie: 6.5, defense: 2.1, autres: 4.5 },
+    },
+    {
+      country: '🇧🇪 Belgique',
+      total: 54.5,
+      data: { protection: 21.0, sante: 8.0, services: 8.5, education: 6.4, economie: 5.8, defense: 1.2, autres: 3.6 },
+    },
+    {
+      country: '🇮🇹 Italie',
+      total: 53.7,
+      data: { protection: 22.0, sante: 7.0, services: 8.5, education: 4.3, economie: 5.0, defense: 1.5, autres: 5.4 },
+    },
+    {
+      country: '🇩🇪 Allemagne',
+      total: 49.5,
+      data: { protection: 21.5, sante: 8.0, services: 5.5, education: 4.7, economie: 4.2, defense: 1.6, autres: 4.0 },
+    },
+    {
+      country: '🇪🇸 Espagne',
+      total: 47.3,
+      data: { protection: 18.5, sante: 6.5, services: 5.5, education: 4.6, economie: 5.5, defense: 1.3, autres: 5.4 },
+    },
+    {
+      country: '🇳🇱 Pays-Bas',
+      total: 44.5,
+      data: { protection: 16.5, sante: 8.2, services: 5.0, education: 5.3, economie: 4.5, defense: 1.5, autres: 3.5 },
+    },
+  ],
+}
 
-// Source: Eurostat, Eurobarometer 2024 - Paradoxe satisfaction
-const SATISFACTION_DATA = [
-  { country: 'Danemark', depense: 50.1, satisfaction: 7.5 },
-  { country: 'Finlande', depense: 54.2, satisfaction: 7.4 },
-  { country: 'Pays-Bas', depense: 44.5, satisfaction: 7.3 },
-  { country: 'Suède', depense: 49.3, satisfaction: 7.2 },
-  { country: 'Allemagne', depense: 49.5, satisfaction: 7.0 },
-  { country: 'France', depense: 57.2, satisfaction: 6.4, highlight: true },
-  { country: 'Espagne', depense: 47.3, satisfaction: 6.3 },
-  { country: 'Italie', depense: 53.7, satisfaction: 6.0 },
-]
+// Décomposition de la protection sociale en France (Source: DREES 2024)
+// Total protection sociale France: ~800 Md€ de prestations
+const PROTECTION_SOCIALE_FRANCE = {
+  total: 800, // Md€
+  categories: [
+    { id: 'retraites', label: 'Retraites', amount: 380, percent: 47.5, color: '#ff9f43', description: 'Pensions vieillesse et survie' },
+    { id: 'maladie', label: 'Maladie', amount: 230, percent: 28.8, color: '#ff6b6b', description: 'Soins, indemnités journalières' },
+    { id: 'famille', label: 'Famille', amount: 55, percent: 6.9, color: '#a855f7', description: 'Allocations familiales, congé parental' },
+    { id: 'chomage', label: 'Chômage', amount: 45, percent: 5.6, color: '#00d4ff', description: 'Assurance chômage, formation' },
+    { id: 'logement', label: 'Logement', amount: 40, percent: 5.0, color: '#4ecdc4', description: 'APL, aides au logement' },
+    { id: 'pauvrete', label: 'Pauvreté/Exclusion', amount: 30, percent: 3.7, color: '#64748b', description: 'RSA, minima sociaux' },
+    { id: 'autres', label: 'Autres', amount: 20, percent: 2.5, color: '#94a3b8', description: 'Invalidité, accidents du travail' },
+  ],
+}
 
-// Source: FMI, OCDE 2024 - Dette publique comparée (% PIB)
-const DETTE_COMPARISON = [
-  { country: 'Japon', value: 255 },
-  { country: 'Italie', value: 137 },
-  { country: 'France', value: 112, highlight: true },
-  { country: 'Espagne', value: 107 },
-  { country: 'Belgique', value: 105 },
-  { country: 'Royaume-Uni', value: 101 },
-  { country: 'États-Unis', value: 123 },
-  { country: 'Allemagne', value: 63 },
-  { country: 'Pays-Bas', value: 46 },
+// Comparaison internationale : Part des retraites dans la protection sociale (Source: Eurostat 2024)
+const RETRAITES_COMPARAISON = [
+  { country: '🇮🇹 Italie', percent: 55.2, highlight: false },
+  { country: '🇫🇷 France', percent: 47.5, highlight: true },
+  { country: '🇪🇸 Espagne', percent: 44.8, highlight: false },
+  { country: '🇩🇪 Allemagne', percent: 42.1, highlight: false },
+  { country: '🇧🇪 Belgique', percent: 39.5, highlight: false },
+  { country: '🇳🇱 Pays-Bas', percent: 36.2, highlight: false },
 ]
 
 export default function DepensesPage() {
@@ -381,21 +425,6 @@ export default function DepensesPage() {
           <span className="text-lg">🌍</span>
           Comparaison internationale
         </button>
-      </div>
-
-      {/* Focus Retraite Link */}
-      <div className="flex justify-center mb-10">
-        <Link
-          href="/depenses/retraites"
-          className="px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200 bg-gradient-to-r from-accent-red/20 to-accent-red/10 border border-accent-red/30 text-text-primary hover:border-accent-red/50 flex items-center gap-3"
-        >
-          <span className="text-2xl">👴</span>
-          <div className="text-left">
-            <div className="font-semibold">Focus Retraites</div>
-            <div className="text-xs text-text-muted">380 Md€ • 1er poste de dépenses</div>
-          </div>
-          <span className="text-text-muted ml-2">→</span>
-        </Link>
       </div>
 
       {/* ============================================ */}
@@ -824,575 +853,238 @@ export default function DepensesPage() {
             <div className="flex-1 text-center lg:text-left">
               <h3 className="text-xl font-semibold mb-2">La France, championne des dépenses publiques</h3>
               <p className="text-text-secondary">
-                Avec 57,2% du PIB consacré aux dépenses publiques, la France se place en tête des pays développés.
+                Avec 57,1% du PIB consacré aux dépenses publiques, la France se place en tête des pays développés.
                 Ce niveau élevé finance notamment un système de protection sociale très développé.
               </p>
             </div>
             <div className="text-center">
-              <div className="font-mono text-4xl font-medium text-accent-electric">57.2%</div>
+              <div className="font-mono text-4xl font-medium text-accent-electric">57.1%</div>
               <div className="text-text-muted text-sm">du PIB (2024)</div>
             </div>
           </div>
 
           {/* Section 1: Dépenses totales */}
           <h2 className="font-serif text-2xl font-normal mb-6">
-            Dépenses publiques <span className="italic text-accent-electric">totales</span>
+            La France, <span className="italic text-accent-electric">2ème</span> pays le plus dépensier de l&apos;OCDE
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
             <ChartWrapper
-              title="Union Européenne"
-              subtitle="Dépenses publiques en % du PIB (2024)"
-              height="350px"
-              source="Eurostat 2024"
-            >
-              <BarChart
-                labels={EU_SPENDING_PIB.map((c) => c.country)}
-                data={EU_SPENDING_PIB.map((c) => c.value)}
-                colors={(ctx) =>
-                  EU_SPENDING_PIB[ctx.dataIndex]?.highlight ? '#00d4ff' : '#2a3a4a'
-                }
-                horizontal
-                tooltipSuffix="% du PIB"
-              />
-            </ChartWrapper>
-
-            <ChartWrapper
-              title="OCDE"
-              subtitle="Dépenses publiques en % du PIB (2024)"
-              height="350px"
+              title="Dépenses publiques en % du PIB"
+              subtitle="Comparaison OCDE 2024"
+              height="400px"
               source="OCDE 2024"
             >
               <BarChart
                 labels={OECD_SPENDING_PIB.map((c) => c.country)}
                 data={OECD_SPENDING_PIB.map((c) => c.value)}
                 colors={(ctx) =>
-                  OECD_SPENDING_PIB[ctx.dataIndex]?.highlight ? '#00d4ff' : '#2a3a4a'
+                  OECD_SPENDING_PIB[ctx.dataIndex]?.highlight ? '#00d4ff' :
+                  OECD_SPENDING_PIB[ctx.dataIndex]?.isAverage ? '#ffd700' : '#2a3a4a'
                 }
-                horizontal
                 tooltipSuffix="% du PIB"
+                yAxisSuffix="%"
+                yMin={0}
+                yMax={70}
+                showValues
               />
             </ChartWrapper>
+
+            {/* Écart France vs UE à droite */}
+            <div className="bg-gradient-to-br from-accent-gold/10 to-accent-gold/5 border border-accent-gold/30 rounded-2xl p-6 flex flex-col justify-center">
+              <div className="text-center mb-6">
+                <p className="text-text-muted text-xl font-semibold mb-3">Écart France vs moyenne UE</p>
+                <div className="font-mono text-8xl font-bold text-accent-gold">{ECART_FRANCE_UE.ecartPoints}</div>
+                <p className="text-text-secondary text-2xl">points de PIB</p>
+              </div>
+
+              <div className="flex justify-center items-center gap-6 mb-6 p-5 bg-bg-surface/50 rounded-xl">
+                <div className="text-center">
+                  <p className="text-3xl mb-1">🇫🇷</p>
+                  <p className="font-mono text-3xl font-bold text-accent-electric">{ECART_FRANCE_UE.francePIB}%</p>
+                  <p className="text-sm text-text-muted">France</p>
+                </div>
+                <div className="text-4xl text-text-muted">vs</div>
+                <div className="text-center">
+                  <p className="text-3xl mb-1">🇪🇺</p>
+                  <p className="font-mono text-3xl font-bold text-text-secondary">{ECART_FRANCE_UE.moyenneUE}%</p>
+                  <p className="text-sm text-text-muted">Moyenne UE</p>
+                </div>
+              </div>
+
+              <div className="text-center p-5 bg-bg-surface/30 rounded-xl border border-accent-gold/20">
+                <p className="text-text-muted text-base mb-1">Cet écart représente</p>
+                <p className="font-mono text-5xl font-bold text-accent-gold">{ECART_FRANCE_UE.ecartMilliards} Md€</p>
+                <p className="text-text-secondary text-base mt-1">par an de dépenses supplémentaires</p>
+              </div>
+            </div>
           </div>
 
-          {/* Section 2: Évolution comparée */}
-          <ChartWrapper
-            title="Évolution comparée des dépenses publiques"
-            subtitle="En % du PIB, 2015-2024"
-            height="350px"
-            className="mb-10"
-            source="Eurostat 2024"
-          >
-            <LineChart
-              labels={EVOLUTION_COMPARISON.labels}
-              datasets={[
-                {
-                  label: 'France',
-                  data: EVOLUTION_COMPARISON.france,
-                  borderColor: '#00d4ff',
-                  backgroundColor: 'rgba(0, 212, 255, 0.1)',
-                  fill: false,
-                  borderWidth: 3,
-                },
-                {
-                  label: 'Allemagne',
-                  data: EVOLUTION_COMPARISON.allemagne,
-                  borderColor: '#ffd700',
-                  borderWidth: 2,
-                },
-                {
-                  label: 'Italie',
-                  data: EVOLUTION_COMPARISON.italie,
-                  borderColor: '#00ff88',
-                  borderWidth: 2,
-                },
-                {
-                  label: 'Espagne',
-                  data: EVOLUTION_COMPARISON.espagne,
-                  borderColor: '#ff9f43',
-                  borderWidth: 2,
-                },
-              ]}
-              yMin={40}
-              yMax={65}
-              yCallback={(v) => `${v}%`}
-            />
-          </ChartWrapper>
-
-          {/* Section 2b: Divergence France-Allemagne */}
-          <h2 className="font-serif text-2xl font-normal mb-6">
-            Le <span className="italic text-accent-gold">décrochage</span> France-Allemagne
+          {/* Section 2: Structure des dépenses comparée */}
+          <h2 className="font-serif text-2xl font-normal mb-6 mt-10">
+            Comment chaque pays <span className="italic text-accent-purple">alloue</span> ses dépenses ?
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
-            <ChartWrapper
-              title="Écart des dépenses publiques"
-              subtitle="France vs Allemagne (% PIB, 2000-2024)"
-              height="350px"
-              source="Eurostat, OCDE 2024"
-            >
-              <LineChart
-                labels={DIVERGENCE_FR_DE.labels}
-                datasets={[
-                  {
-                    label: 'France',
-                    data: DIVERGENCE_FR_DE.france,
-                    borderColor: '#00d4ff',
-                    backgroundColor: 'rgba(0, 212, 255, 0.1)',
-                    fill: true,
-                    borderWidth: 3,
-                  },
-                  {
-                    label: 'Allemagne',
-                    data: DIVERGENCE_FR_DE.allemagne,
-                    borderColor: '#ffd700',
-                    backgroundColor: 'rgba(255, 215, 0, 0.1)',
-                    fill: true,
-                    borderWidth: 3,
-                  },
-                ]}
-                yMin={40}
-                yMax={65}
-                yCallback={(v) => `${v}%`}
-              />
-            </ChartWrapper>
-
+            {/* Gauche : Barres verticales empilées */}
             <div className="bg-bg-surface border border-glass-border rounded-2xl p-6">
-              <h3 className="text-lg font-semibold mb-4">📊 Analyse de la divergence</h3>
-              <div className="space-y-4">
-                <div className="p-4 bg-bg-elevated rounded-lg border-l-4 border-accent-gold">
-                  <div className="flex items-baseline gap-2 mb-2">
-                    <span className="text-3xl font-mono font-bold text-accent-gold">+7,7 pts</span>
+              <h3 className="text-lg font-semibold text-text-primary mb-2">Structure des dépenses par pays</h3>
+              <p className="text-sm text-text-muted mb-4">Ventilation en % du PIB</p>
+
+              {/* Légende */}
+              <div className="flex flex-wrap justify-center gap-3 mb-6">
+                {STRUCTURE_DEPENSES.categories.map((cat) => (
+                  <div key={cat.id} className="flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded" style={{ backgroundColor: cat.color }} />
+                    <span className="text-xs text-text-secondary">{cat.label}</span>
                   </div>
-                  <p className="text-sm text-text-secondary">
-                    Écart actuel France-Allemagne. En 2015, l&apos;écart était de 13,3 pts après les réformes Schröder.
-                  </p>
-                </div>
-                <div className="p-3 bg-bg-elevated rounded-lg">
-                  <p className="text-sm text-text-secondary">
-                    <strong className="text-accent-electric">2003-2005 :</strong> L&apos;Allemagne lance l&apos;Agenda 2010 (réformes Hartz). La France maintient sa trajectoire.
-                  </p>
-                </div>
-                <div className="p-3 bg-bg-elevated rounded-lg">
-                  <p className="text-sm text-text-secondary">
-                    <strong className="text-accent-green">Résultat allemand :</strong> Excédents budgétaires de 2014 à 2019, dette réduite de 81% à 59% du PIB.
-                  </p>
-                </div>
-                <div className="p-3 bg-bg-elevated rounded-lg">
-                  <p className="text-sm text-text-secondary">
-                    <strong className="text-accent-red">Résultat français :</strong> Déficits continus depuis 1974 (50 ans), dette passée de 65% à 112% du PIB.
-                  </p>
-                </div>
+                ))}
               </div>
+
+              {/* Barres verticales empilées */}
+              <div className="flex justify-around items-end h-52 border-b border-glass-border pb-2">
+                {STRUCTURE_DEPENSES.pays.map((pays) => {
+                  const maxTotal = 60 // Max fixe pour échelle cohérente
+                  const barHeight = (pays.total / maxTotal) * 200 // 200px max
+                  return (
+                    <div key={pays.country} className="flex flex-col items-center group relative">
+                      {/* Barre empilée verticale */}
+                      <div
+                        className={`w-10 md:w-12 flex flex-col rounded-t overflow-hidden ${pays.highlight ? 'ring-2 ring-accent-electric' : ''}`}
+                        style={{ height: `${barHeight}px` }}
+                      >
+                        {[...STRUCTURE_DEPENSES.categories].reverse().map((cat) => {
+                          const value = pays.data[cat.id as keyof typeof pays.data]
+                          const segmentHeight = (value / pays.total) * 100
+                          return (
+                            <div
+                              key={cat.id}
+                              className="w-full cursor-pointer transition-all hover:brightness-125 relative group/segment"
+                              style={{
+                                backgroundColor: cat.color,
+                                height: `${segmentHeight}%`,
+                                minHeight: value > 0 ? '4px' : '0',
+                              }}
+                            >
+                              {/* Tooltip au survol - juste le chiffre */}
+                              <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 opacity-0 group-hover/segment:opacity-100 transition-opacity z-20 pointer-events-none">
+                                <div className="bg-bg-elevated border border-glass-border rounded px-2 py-1 shadow-lg">
+                                  <span className="text-sm font-mono font-bold text-white">{value}%</span>
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+
+              {/* Labels pays */}
+              <div className="flex justify-around mt-2">
+                {STRUCTURE_DEPENSES.pays.map((pays) => (
+                  <div key={pays.country} className="flex flex-col items-center w-12">
+                    <span className="font-mono text-xs font-semibold text-text-primary">{pays.total}%</span>
+                    <span className={`text-[9px] text-center ${pays.highlight ? 'text-accent-electric font-semibold' : 'text-text-muted'}`}>
+                      {pays.country.split(' ')[0]}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <p className="text-xs text-text-muted/60 mt-4 text-center">Source : Eurostat COFOG 2024</p>
             </div>
+
+            {/* Droite : Focus Protection sociale (trié du + grand au + petit) */}
+            {(() => {
+              const paysSorted = [...STRUCTURE_DEPENSES.pays].sort((a, b) => b.data.protection - a.data.protection)
+              return (
+                <ChartWrapper
+                  title="🛡️ Protection sociale en % du PIB"
+                  subtitle="Premier poste de dépenses publiques"
+                  source="Eurostat 2024"
+                >
+                  <BarChart
+                    labels={paysSorted.map(p => p.country)}
+                    data={paysSorted.map(p => p.data.protection)}
+                    colors={(ctx) => {
+                      const country = paysSorted[ctx.dataIndex]
+                      return country.highlight ? '#ff6b6b' : '#64748b'
+                    }}
+                    tooltipSuffix="% du PIB"
+                    yAxisSuffix="%"
+                    yMin={0}
+                    yMax={30}
+                    showValues={true}
+                  />
+                </ChartWrapper>
+              )
+            })()}
           </div>
 
-          {/* Section 2c: Déficits comparés */}
-          <h2 className="font-serif text-2xl font-normal mb-6">
-            Déficits <span className="italic text-accent-red">publics</span> en Europe
+          {/* Section 5: Focus sur la protection sociale */}
+          <h2 className="font-serif text-2xl font-normal mb-6 mt-10">
+            Qu&apos;est-ce que la <span className="italic text-accent-gold">protection sociale</span> ?
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
-            <ChartWrapper
-              title="Solde budgétaire 2024"
-              subtitle="En % du PIB (négatif = déficit)"
-              height="350px"
-              source="Eurostat 2024"
-            >
-              <BarChart
-                labels={DEFICIT_COMPARISON.map((c) => c.country)}
-                data={DEFICIT_COMPARISON.map((c) => c.value)}
-                colors={(ctx) =>
-                  DEFICIT_COMPARISON[ctx.dataIndex]?.highlight ? '#00d4ff' :
-                  DEFICIT_COMPARISON[ctx.dataIndex]?.value > 0 ? '#00ff88' : '#2a3a4a'
-                }
-                horizontal
-                tooltipSuffix="% du PIB"
-              />
-            </ChartWrapper>
+            {/* Gauche : Décomposition de la protection sociale en France */}
+            <div className="bg-bg-surface border border-glass-border rounded-2xl p-6">
+              <h3 className="text-lg font-semibold text-text-primary mb-2">Décomposition en France</h3>
+              <p className="text-sm text-text-muted mb-4">{PROTECTION_SOCIALE_FRANCE.total} Md€ de prestations sociales</p>
 
-            <ChartWrapper
-              title="Dette publique 2024"
-              subtitle="En % du PIB"
-              height="350px"
-              source="FMI, OCDE 2024"
-            >
-              <BarChart
-                labels={DETTE_COMPARISON.map((c) => c.country)}
-                data={DETTE_COMPARISON.map((c) => c.value)}
-                colors={(ctx) =>
-                  DETTE_COMPARISON[ctx.dataIndex]?.highlight ? '#00d4ff' : '#2a3a4a'
-                }
-                horizontal
-                tooltipSuffix="% du PIB"
-              />
-            </ChartWrapper>
-          </div>
-
-          {/* Alerte déficit */}
-          <div className="bg-gradient-to-r from-accent-red/15 to-accent-red/5 border border-accent-red/30 rounded-2xl p-6 mb-10">
-            <div className="flex items-start gap-4">
-              <span className="text-4xl">⚠️</span>
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-accent-red">Procédure de déficit excessif</h3>
-                <p className="text-text-secondary mb-3">
-                  La France est sous le coup d&apos;une procédure européenne pour déficit excessif depuis 2024.
-                  Le déficit de 5,5% du PIB dépasse largement la limite de 3% du Pacte de stabilité.
-                </p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  <div className="bg-bg-surface/50 rounded-lg p-3 text-center">
-                    <div className="font-mono text-xl font-bold text-accent-red">-169 Md€</div>
-                    <div className="text-xs text-text-muted">Déficit 2024</div>
-                  </div>
-                  <div className="bg-bg-surface/50 rounded-lg p-3 text-center">
-                    <div className="font-mono text-xl font-bold text-accent-gold">50 ans</div>
-                    <div className="text-xs text-text-muted">Sans excédent</div>
-                  </div>
-                  <div className="bg-bg-surface/50 rounded-lg p-3 text-center">
-                    <div className="font-mono text-xl font-bold text-accent-electric">112%</div>
-                    <div className="text-xs text-text-muted">Dette / PIB</div>
-                  </div>
-                  <div className="bg-bg-surface/50 rounded-lg p-3 text-center">
-                    <div className="font-mono text-xl font-bold text-accent-purple">54 Md€</div>
-                    <div className="text-xs text-text-muted">Intérêts / an</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Section 2d: Paradoxe satisfaction */}
-          <h2 className="font-serif text-2xl font-normal mb-6">
-            Le <span className="italic text-accent-purple">paradoxe</span> de la satisfaction
-          </h2>
-
-          <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 mb-10">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-3xl">🤔</span>
-              <div>
-                <h3 className="text-lg font-semibold">Dépenser plus = plus satisfait ?</h3>
-                <p className="text-sm text-text-muted">Satisfaction des services publics vs dépenses (Eurobarometer 2024)</p>
-              </div>
-            </div>
-
-            <div className="space-y-3 mb-6">
-              {SATISFACTION_DATA.map((item) => (
-                <div key={item.country} className={`flex items-center gap-3 p-3 rounded-lg ${item.highlight ? 'bg-accent-purple/10 border border-accent-purple/30' : 'bg-bg-elevated'}`}>
-                  <span className={`font-medium w-24 ${item.highlight ? 'text-accent-purple' : 'text-text-primary'}`}>
-                    {item.country}
-                  </span>
-                  <div className="flex-1">
-                    <div className="flex justify-between text-sm mb-1">
-                      <span className="text-text-muted">{item.depense}% PIB</span>
-                      <span className="font-mono text-accent-gold">{item.satisfaction}/10</span>
+              <div className="space-y-3">
+                {PROTECTION_SOCIALE_FRANCE.categories.map((cat) => (
+                  <div key={cat.id} className="group">
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-sm text-text-primary font-medium">{cat.label}</span>
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-sm font-bold" style={{ color: cat.color }}>{cat.amount} Md€</span>
+                        <span className="text-xs text-text-muted">({cat.percent}%)</span>
+                      </div>
                     </div>
-                    <div className="h-2 bg-bg-deep rounded-full overflow-hidden">
+                    <div className="h-6 bg-bg-elevated rounded overflow-hidden relative">
                       <div
-                        className="h-full rounded-full"
+                        className="h-full rounded transition-all group-hover:brightness-110"
                         style={{
-                          width: `${(item.satisfaction / 10) * 100}%`,
-                          backgroundColor: item.satisfaction >= 7.2 ? '#00ff88' : item.satisfaction >= 6.5 ? '#ffd700' : '#ff6b6b'
+                          backgroundColor: cat.color,
+                          width: `${cat.percent}%`,
                         }}
                       />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="p-4 bg-accent-purple/10 border border-accent-purple/20 rounded-lg">
-              <p className="text-sm text-text-secondary">
-                <strong className="text-accent-purple">Constat :</strong> La France dépense 57,2% du PIB (record) mais obtient seulement 6,4/10 en satisfaction.
-                Le Danemark dépense 7 pts de moins (50,1%) et obtient 7,5/10. Le problème n&apos;est pas le niveau de dépense, mais l&apos;efficacité.
-              </p>
-            </div>
-          </div>
-
-          {/* Section 3: Par domaine */}
-          <h2 className="font-serif text-2xl font-normal mb-6">
-            Comparaison par <span className="italic text-accent-gold">domaine</span>
-          </h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            <ChartWrapper
-              title="Protection sociale"
-              subtitle="Dépenses en % du PIB (2024)"
-              height="300px"
-              source="Eurostat 2024"
-            >
-              <BarChart
-                labels={EU_SOCIAL_SPENDING.map((c) => c.country)}
-                data={EU_SOCIAL_SPENDING.map((c) => c.value)}
-                colors={(ctx) =>
-                  EU_SOCIAL_SPENDING[ctx.dataIndex]?.highlight ? '#ff6b6b' : '#2a3a4a'
-                }
-                horizontal
-                tooltipSuffix="% du PIB"
-              />
-            </ChartWrapper>
-
-            <ChartWrapper
-              title="Éducation"
-              subtitle="Dépenses en % du PIB (2024)"
-              height="300px"
-              source="Eurostat 2024"
-            >
-              <BarChart
-                labels={EU_EDUCATION_SPENDING.map((c) => c.country)}
-                data={EU_EDUCATION_SPENDING.map((c) => c.value)}
-                colors={(ctx) =>
-                  EU_EDUCATION_SPENDING[ctx.dataIndex]?.highlight ? '#4ecdc4' : '#2a3a4a'
-                }
-                horizontal
-                tooltipSuffix="% du PIB"
-              />
-            </ChartWrapper>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-            <ChartWrapper
-              title="Santé"
-              subtitle="Dépenses totales en % du PIB (2024)"
-              height="300px"
-              source="OCDE, Eurostat 2024"
-            >
-              <BarChart
-                labels={HEALTH_SPENDING.map((c) => c.country)}
-                data={HEALTH_SPENDING.map((c) => c.value)}
-                colors={(ctx) =>
-                  HEALTH_SPENDING[ctx.dataIndex]?.highlight ? '#a855f7' : '#2a3a4a'
-                }
-                horizontal
-                tooltipSuffix="% du PIB"
-              />
-            </ChartWrapper>
-
-            <ChartWrapper
-              title="Défense"
-              subtitle="Dépenses en % du PIB (2024)"
-              height="300px"
-              source="OTAN, Eurostat 2024"
-            >
-              <BarChart
-                labels={DEFENSE_SPENDING.map((c) => c.country)}
-                data={DEFENSE_SPENDING.map((c) => c.value)}
-                colors={(ctx) =>
-                  DEFENSE_SPENDING[ctx.dataIndex]?.highlight ? '#45b7d1' : '#2a3a4a'
-                }
-                horizontal
-                tooltipSuffix="% du PIB"
-              />
-            </ChartWrapper>
-          </div>
-
-          {/* Insights */}
-          <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 mb-8">
-            <h3 className="text-lg font-semibold mb-4">📌 Points clés de la comparaison</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex gap-3 items-start">
-                <span className="text-accent-electric text-xl">1.</span>
-                <p className="text-text-secondary text-sm">
-                  <strong className="text-text-primary">Leader européen :</strong> La France dépense 7,7 points de PIB de plus que l&apos;Allemagne en dépenses publiques.
-                </p>
-              </div>
-              <div className="flex gap-3 items-start">
-                <span className="text-accent-electric text-xl">2.</span>
-                <p className="text-text-secondary text-sm">
-                  <strong className="text-text-primary">Protection sociale :</strong> N°1 mondial avec 31,5% du PIB, contre 27% en Allemagne.
-                </p>
-              </div>
-              <div className="flex gap-3 items-start">
-                <span className="text-accent-electric text-xl">3.</span>
-                <p className="text-text-secondary text-sm">
-                  <strong className="text-text-primary">Santé :</strong> 3ème rang mondial avec 12,1% du PIB, derrière les USA (16,6%) et l&apos;Allemagne (12,7%).
-                </p>
-              </div>
-              <div className="flex gap-3 items-start">
-                <span className="text-accent-electric text-xl">4.</span>
-                <p className="text-text-secondary text-sm">
-                  <strong className="text-text-primary">Défense :</strong> 2,1% du PIB, au-dessus du seuil OTAN de 2%, mais en dessous des USA (3,4%).
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Section 4: Taille de la fonction publique */}
-          <h2 className="font-serif text-2xl font-normal mb-6">
-            Taille de la <span className="italic text-accent-purple">fonction publique</span>
-          </h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-            <ChartWrapper
-              title="Fonctionnaires pour 1 000 habitants"
-              subtitle="Emploi public comparé (2024)"
-              height="350px"
-              source="OCDE, DGAFP 2024"
-            >
-              <BarChart
-                labels={FONCTIONNAIRES_COMPARISON.map((c) => c.country)}
-                data={FONCTIONNAIRES_COMPARISON.map((c) => c.value)}
-                colors={(ctx) =>
-                  FONCTIONNAIRES_COMPARISON[ctx.dataIndex]?.highlight ? '#00d4ff' : '#2a3a4a'
-                }
-                horizontal
-                tooltipSuffix=" / 1000 hab."
-              />
-            </ChartWrapper>
-
-            <div className="bg-bg-surface border border-glass-border rounded-2xl p-6">
-              <h3 className="text-lg font-semibold mb-4">💡 Ce que révèlent ces chiffres</h3>
-              <div className="space-y-4">
-                <div className="p-3 bg-bg-elevated rounded-lg">
-                  <p className="text-sm text-text-secondary">
-                    <strong className="text-accent-electric">88 fonctionnaires / 1000 hab.</strong> — La France est loin d&apos;être le pays avec le plus de fonctionnaires. Les pays nordiques (Norvège, Danemark, Suède) ont presque 2x plus d&apos;agents publics.
-                  </p>
-                </div>
-                <div className="p-3 bg-bg-elevated rounded-lg">
-                  <p className="text-sm text-text-secondary">
-                    <strong className="text-accent-green">Baisse relative :</strong> Entre 2007 et 2021, la France a réduit son emploi public de 1,22 point (4ème plus forte réduction OCDE).
-                  </p>
-                </div>
-                <div className="p-3 bg-bg-elevated rounded-lg">
-                  <p className="text-sm text-text-secondary">
-                    <strong className="text-accent-gold">Modèle différent :</strong> Les pays nordiques ont plus de fonctionnaires mais moins de dépenses sociales directes (prestations). La France cumule les deux.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Section 5: Efficacité des dépenses */}
-          <h2 className="font-serif text-2xl font-normal mb-6">
-            Efficacité des <span className="italic text-accent-green">dépenses</span>
-          </h2>
-
-          <p className="text-text-secondary mb-6 max-w-3xl">
-            Dépenser plus ne signifie pas toujours obtenir de meilleurs résultats. Comparons les dépenses avec les résultats obtenus.
-          </p>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-            {/* Efficacité Éducation */}
-            <div className="bg-bg-surface border border-glass-border rounded-2xl p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-3xl">🎓</span>
-                <div>
-                  <h3 className="text-lg font-semibold">Éducation : dépenses vs PISA</h3>
-                  <p className="text-sm text-text-muted">Score PISA math (2022) vs % PIB éducation</p>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                {EFFICACITE_EDUCATION.slice(0, 6).map((item) => (
-                  <div key={item.country} className={`flex items-center gap-3 p-2 rounded-lg ${item.highlight ? 'bg-accent-electric/10 border border-accent-electric/30' : 'bg-bg-elevated'}`}>
-                    <span className={`font-medium w-24 ${item.highlight ? 'text-accent-electric' : 'text-text-primary'}`}>
-                      {item.country}
-                    </span>
-                    <div className="flex-1">
-                      <div className="flex justify-between text-sm mb-1">
-                        <span className="text-text-muted">{item.depense}% PIB</span>
-                        <span className="font-mono text-accent-gold">{item.pisa} pts</span>
-                      </div>
-                      <div className="h-2 bg-bg-deep rounded-full overflow-hidden">
-                        <div
-                          className="h-full rounded-full"
-                          style={{
-                            width: `${item.efficiency}%`,
-                            backgroundColor: item.efficiency >= 95 ? '#00ff88' : item.efficiency >= 85 ? '#ffd700' : '#ff6b6b'
-                          }}
-                        />
-                      </div>
+                      <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-text-muted">
+                        {cat.description}
+                      </span>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-4 p-3 bg-accent-red/10 border border-accent-red/20 rounded-lg">
-                <p className="text-sm text-text-secondary">
-                  <strong className="text-accent-red">Constat :</strong> La France dépense 5,5% du PIB mais obtient un score PISA de 474 (moyenne). L&apos;Estonie dépense moins (5,1%) et obtient 510 pts.
-                </p>
-              </div>
-              <p className="text-xs text-text-muted/60 mt-3 text-right">Source : OCDE PISA 2022, Eurostat</p>
+              <p className="text-xs text-text-muted/60 mt-4 text-center">Source : DREES 2024</p>
             </div>
 
-            {/* Efficacité Santé */}
-            <div className="bg-bg-surface border border-glass-border rounded-2xl p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-3xl">🏥</span>
-                <div>
-                  <h3 className="text-lg font-semibold">Santé : dépenses vs espérance de vie</h3>
-                  <p className="text-sm text-text-muted">Espérance de vie (ans) vs % PIB santé</p>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                {EFFICACITE_SANTE.map((item) => (
-                  <div key={item.country} className={`flex items-center gap-3 p-2 rounded-lg ${item.highlight ? 'bg-accent-purple/10 border border-accent-purple/30' : 'bg-bg-elevated'}`}>
-                    <span className={`font-medium w-24 ${item.highlight ? 'text-accent-purple' : 'text-text-primary'}`}>
-                      {item.country}
-                    </span>
-                    <div className="flex-1">
-                      <div className="flex justify-between text-sm mb-1">
-                        <span className="text-text-muted">{item.depense}% PIB</span>
-                        <span className="font-mono text-accent-green">{item.esperance} ans</span>
-                      </div>
-                      <div className="h-2 bg-bg-deep rounded-full overflow-hidden">
-                        <div
-                          className="h-full rounded-full"
-                          style={{
-                            width: `${item.efficiency}%`,
-                            backgroundColor: item.efficiency >= 95 ? '#00ff88' : item.efficiency >= 80 ? '#ffd700' : '#ff6b6b'
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-4 p-3 bg-accent-green/10 border border-accent-green/20 rounded-lg">
-                <p className="text-sm text-text-secondary">
-                  <strong className="text-accent-green">Constat :</strong> La France obtient de bons résultats en santé (82,9 ans). Les USA dépensent 37% de plus (16,6% PIB) pour 5 ans d&apos;espérance de vie en moins.
-                </p>
-              </div>
-              <p className="text-xs text-text-muted/60 mt-3 text-right">Source : OCDE 2024</p>
-            </div>
+            {/* Droite : Part des retraites dans la protection sociale */}
+            <ChartWrapper
+              title="👴 Part des retraites dans la protection sociale"
+              subtitle="Les retraites représentent près de la moitié"
+              source="Eurostat 2024"
+            >
+              <BarChart
+                labels={RETRAITES_COMPARAISON.map(p => p.country)}
+                data={RETRAITES_COMPARAISON.map(p => p.percent)}
+                colors={(ctx) => {
+                  const country = RETRAITES_COMPARAISON[ctx.dataIndex]
+                  return country.highlight ? '#ff9f43' : '#64748b'
+                }}
+                tooltipSuffix="%"
+                yAxisSuffix="%"
+                yMin={0}
+                yMax={60}
+                showValues={true}
+              />
+            </ChartWrapper>
           </div>
 
-          {/* Synthèse efficacité */}
-          <div className="bg-gradient-to-r from-accent-green/10 to-accent-red/10 border border-glass-border rounded-2xl p-6 mb-8">
-            <h3 className="text-lg font-semibold mb-4">🎯 Synthèse : où la France est efficace ?</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-bg-surface/50 rounded-xl p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl">✅</span>
-                  <h4 className="font-semibold text-accent-green">Efficace</h4>
-                </div>
-                <ul className="text-sm text-text-secondary space-y-1">
-                  <li>• <strong>Santé :</strong> Espérance de vie élevée, reste à charge faible</li>
-                  <li>• <strong>Infrastructures :</strong> Réseau routier et ferroviaire de qualité</li>
-                  <li>• <strong>Protection sociale :</strong> Faible taux de pauvreté</li>
-                </ul>
-              </div>
-              <div className="bg-bg-surface/50 rounded-xl p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl">⚠️</span>
-                  <h4 className="font-semibold text-accent-red">À améliorer</h4>
-                </div>
-                <ul className="text-sm text-text-secondary space-y-1">
-                  <li>• <strong>Éducation :</strong> Résultats PISA moyens malgré dépenses élevées</li>
-                  <li>• <strong>Emploi :</strong> Chômage structurel plus élevé que voisins</li>
-                  <li>• <strong>Administration :</strong> Complexité et délais</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Sources */}
-          <div className="text-center py-6 border-t border-glass-border">
-            <p className="text-text-muted text-sm">
-              Sources : Eurostat, OCDE, OTAN, PISA, DGAFP, Banque mondiale (2024)
-            </p>
-          </div>
         </>
       )}
     </main>

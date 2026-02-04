@@ -1,56 +1,86 @@
 'use client'
 
 import { KpiCard } from '@/components/ui/KpiCard'
-import { ChartWrapper, LineChart, DoughnutChart, BarChart } from '@/components/charts'
-import { DEBT_HISTORY, EU_COMPARISON_DEBT } from '@/lib/constants/budget'
+import { ChartWrapper, LineChart, BarChart } from '@/components/charts'
 
-const DEBT_EVOLUTION = {
-  labels: DEBT_HISTORY.map((d) => d.year),
-  dette: DEBT_HISTORY.map((d) => d.debt),
-  ratio: DEBT_HISTORY.map((d) => d.ratio),
+// Source: INSEE, FIPECO - Ratio dette/PIB historique depuis 1970
+const DEBT_RATIO_HISTORY = {
+  labels: ['1970', '1974', '1980', '1985', '1990', '1995', '2000', '2005', '2010', '2015', '2020', '2024'],
+  ratio: [15, 20, 21, 31, 36, 56, 58, 67, 85, 96, 115, 113],
 }
 
-// Source: IFRAP, Vie Publique - T1 2025
+// Source: INSEE, Vie Publique - Solde budgétaire de l'État (% PIB) depuis 1970
+const SOLDE_BUDGETAIRE_HISTORY = {
+  labels: ['1970', '1971', '1972', '1973', '1974', '1980', '1985', '1990', '1995', '2000', '2005', '2010', '2015', '2020', '2024'],
+  solde: [0.9, 0.7, 0.5, 0.5, 0.3, -0.4, -2.9, -2.1, -5.1, -1.3, -3.4, -6.9, -3.6, -9.0, -5.8],
+}
+
+// Source: Banque de France, IFRAP - T1 2025
+// Note: La BCE/BdF est incluse dans les résidents français
 const DEBT_HOLDERS = {
-  labels: ['Investisseurs français', 'Investisseurs étrangers', 'BCE / Eurosystème'],
-  data: [25, 55, 20],
-  colors: ['#00d4ff', '#ff4757', '#ffd700'],
+  labels: ['Résidents français', 'Non-résidents'],
+  data: [45.3, 54.7],
+  colors: ['#00d4ff', '#ff4757'],
 }
 
-// Source: INSEE, OFCE, Banque de France
-const CRISIS_TIMELINE = [
-  {
-    year: '2008',
-    title: 'Crise des subprimes',
-    impact: '+280 Md€',
-    description: 'Sauvetage des banques et relance économique suite à la crise financière mondiale.',
-  },
-  {
-    year: '2010',
-    title: 'Crise de l\'euro',
-    impact: '+230 Md€',
-    description: 'Plans d\'aide européens et mesures de stabilisation de la zone euro.',
-  },
-  {
-    year: '2020',
-    title: 'Covid-19',
-    impact: '+300 Md€',
-    description: '"Quoi qu\'il en coûte" : chômage partiel, aides aux entreprises, plan de relance.',
-  },
-  {
-    year: '2022',
-    title: 'Crise énergétique',
-    impact: '+90 Md€',
-    description: 'Bouclier tarifaire, aides au carburant, soutien aux ménages et entreprises.',
-  },
+// Source: Banque de France, IFRAP T1 2025 - Principaux détenteurs identifiables
+// Note: Le détail des non-résidents n'est pas publié officiellement par l'AFT
+const PRINCIPAUX_DETENTEURS = [
+  { nom: 'BCE / Banque de France', montant: 665, percent: 25, type: 'France' },
+  { nom: 'Assurances françaises', montant: 261, percent: 9.8, type: 'France' },
+  { nom: 'Banques françaises', montant: 261, percent: 9.8, type: 'France' },
+  { nom: 'Non-résidents (détail non publié)', montant: 1455, percent: 54.7, type: 'Étranger' },
 ]
 
-// Source: AFT - Maturité moyenne ~8.2 ans
-const MATURITY_DATA = {
-  labels: ['< 1 an', '1-3 ans', '3-7 ans', '7-15 ans', '> 15 ans'],
-  data: [8, 17, 25, 32, 18],
-  colors: ['#ff4757', '#ff9f43', '#ffd700', '#00d4ff', '#a855f7'],
+// Source: PLF 2025, Cour des Comptes - Charge d'intérêts (Md€) + comparaison budget Défense
+const CHARGE_INTERETS = {
+  labels: ['2019', '2020', '2021', '2022', '2023', '2024', '2025 (p)', '2026 (p)', '2027 (p)', 'Défense'],
+  data: [38, 35, 37, 46, 52, 54, 58, 65, 72, 65],
 }
+
+// Source: Banque de France - Taux OAT 10 ans (%)
+const TAUX_OAT = {
+  labels: ['2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+  data: [0.1, -0.3, 0.2, 2.4, 3.1, 3.0, 3.2],
+}
+
+// Source: Eurostat avril 2025 - Déficits publics zone euro 2024 (% PIB)
+const DEFICIT_COMPARISON = [
+  { country: '🇫🇷 France', value: -5.8, highlight: true },
+  { country: '🇧🇪 Belgique', value: -4.4 },
+  { country: '🇮🇹 Italie', value: -3.4 },
+  { country: '🇪🇸 Espagne', value: -3.2 },
+  { country: '🇪🇺 Moy. zone €', value: -3.1, isAverage: true },
+  { country: '🇩🇪 Allemagne', value: -2.8 },
+  { country: '🇳🇱 Pays-Bas', value: -0.3 },
+  { country: '🇵🇹 Portugal', value: +0.5 },
+  { country: '🇮🇪 Irlande', value: +1.7 },
+]
+
+// Source: Eurostat 2024 - Dette publique zone euro (% PIB)
+const DETTE_COMPARISON = [
+  { country: '🇬🇷 Grèce', value: 153 },
+  { country: '🇮🇹 Italie', value: 137 },
+  { country: '🇫🇷 France', value: 113, highlight: true },
+  { country: '🇧🇪 Belgique', value: 105 },
+  { country: '🇪🇸 Espagne', value: 104 },
+  { country: '🇵🇹 Portugal', value: 96 },
+  { country: '🇪🇺 Moy. zone €', value: 88, isAverage: true },
+  { country: '🇩🇪 Allemagne', value: 63 },
+  { country: '🇳🇱 Pays-Bas', value: 46 },
+]
+
+// Source: Eurostat 2024, calcul dette / population - Dette par habitant en €
+const DETTE_PAR_HABITANT = [
+  { country: '🇧🇪 Belgique', value: 52200 },
+  { country: '🇫🇷 France', value: 51200, highlight: true },
+  { country: '🇮🇹 Italie', value: 47500 },
+  { country: '🇬🇷 Grèce', value: 37500 },
+  { country: '🇪🇸 Espagne', value: 31900 },
+  { country: '🇩🇪 Allemagne', value: 30700 },
+  { country: '🇵🇹 Portugal', value: 26200 },
+  { country: '🇳🇱 Pays-Bas', value: 25700 },
+]
 
 export default function DettesPage() {
   return (
@@ -128,138 +158,299 @@ export default function DettesPage() {
           </div>
         </div>
 
-        {/* Charts Row 1 */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          <ChartWrapper title="Évolution de la dette" subtitle="En milliards d'euros, 2000-2025" height="350px" source="INSEE - Comptes nationaux">
+        {/* Section 1: Évolution dette/PIB + Solde budgétaire */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <ChartWrapper
+            title="L'endettement a été multiplié par 6 en 50 ans"
+            subtitle="Ratio dette/PIB de 1970 à 2024"
+            height="350px"
+            source="INSEE, FIPECO"
+          >
             <LineChart
-              labels={DEBT_EVOLUTION.labels}
-              datasets={[
-                {
-                  label: 'Dette publique',
-                  data: DEBT_EVOLUTION.dette,
-                  borderColor: '#ff4757',
-                  backgroundColor: 'rgba(255, 71, 87, 0.1)',
-                  fill: true,
-                  borderWidth: 3,
-                },
-              ]}
-              yMin={500}
-              yMax={3500}
-              yCallback={(v) => `${v} Md€`}
-            />
-          </ChartWrapper>
-
-          <ChartWrapper title="Ratio dette / PIB" subtitle="Évolution en pourcentage" height="350px" source="INSEE T3 2025">
-            <LineChart
-              labels={DEBT_EVOLUTION.labels}
+              labels={DEBT_RATIO_HISTORY.labels}
               datasets={[
                 {
                   label: 'Dette / PIB',
-                  data: DEBT_EVOLUTION.ratio,
-                  borderColor: '#ffd700',
-                  backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                  data: DEBT_RATIO_HISTORY.ratio,
+                  borderColor: '#ff4757',
+                  backgroundColor: 'rgba(255, 71, 87, 0.15)',
                   fill: true,
                   borderWidth: 3,
                 },
-                {
-                  label: 'Seuil Maastricht (60%)',
-                  data: Array(DEBT_EVOLUTION.labels.length).fill(60),
-                  borderColor: '#ff4757',
-                  borderWidth: 2,
-                  tension: 0,
-                },
               ]}
-              yMin={50}
+              yMin={0}
               yMax={130}
               yCallback={(v) => `${v}%`}
             />
           </ChartWrapper>
-        </div>
 
-        {/* Charts Row 2 */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <ChartWrapper title="Qui détient la dette ?" subtitle="Répartition par type de détenteur" height="300px" source="IFRAP, Banque de France T1 2025">
-            <DoughnutChart
-              labels={DEBT_HOLDERS.labels}
-              data={DEBT_HOLDERS.data}
-              colors={DEBT_HOLDERS.colors}
-              tooltipSuffix="%"
-            />
-          </ChartWrapper>
-
-          <ChartWrapper title="Comparaison européenne" subtitle="Dette publique en % du PIB" height="300px" source="Eurostat 2024">
+          <ChartWrapper
+            title="Pas de budget équilibré depuis 1974"
+            subtitle="Solde budgétaire en % du PIB"
+            height="350px"
+            source="INSEE, Vie Publique"
+          >
             <BarChart
-              labels={EU_COMPARISON_DEBT.map((c) => c.country)}
-              data={EU_COMPARISON_DEBT.map((c) => c.value)}
-              colors={(ctx) =>
-                EU_COMPARISON_DEBT[ctx.dataIndex]?.highlight ? '#ff4757' : '#2a3a4a'
-              }
-              horizontal
-              tooltipSuffix="%"
+              labels={SOLDE_BUDGETAIRE_HISTORY.labels}
+              data={SOLDE_BUDGETAIRE_HISTORY.solde}
+              colors={(ctx) => {
+                const value = SOLDE_BUDGETAIRE_HISTORY.solde[ctx.dataIndex]
+                return value >= 0 ? '#00ff88' : '#ff4757'
+              }}
+              tooltipSuffix="% du PIB"
+              yAxisSuffix="%"
+              yMin={-10}
+              yMax={2}
+              showValues
             />
           </ChartWrapper>
         </div>
 
-        {/* Crisis Timeline */}
-        <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 lg:p-8 mb-8">
-          <h3 className="text-xl font-semibold mb-6 text-center">📅 Les crises qui ont fait exploser la dette</h3>
+        {/* Section: Déficit comparé */}
+        <h2 className="font-serif text-2xl font-normal mb-6 mt-10">
+          La France a le <span className="italic text-accent-red">pire déficit</span> de la zone euro
+        </h2>
 
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-glass-border -translate-x-1/2" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+          <ChartWrapper
+            title="Solde budgétaire 2024"
+            subtitle="Déficit (↓) ou excédent (↑) en % du PIB"
+            height="400px"
+            source="Eurostat avril 2025"
+          >
+            <BarChart
+              labels={DEFICIT_COMPARISON.map((c) => c.country)}
+              data={DEFICIT_COMPARISON.map((c) => c.value)}
+              colors={(ctx) =>
+                DEFICIT_COMPARISON[ctx.dataIndex]?.highlight ? '#ff4757' :
+                DEFICIT_COMPARISON[ctx.dataIndex]?.value > 0 ? '#00ff88' :
+                DEFICIT_COMPARISON[ctx.dataIndex]?.isAverage ? '#ffd700' : '#64748b'
+              }
+              tooltipSuffix="% du PIB"
+              yAxisSuffix="%"
+              yMin={-8}
+              yMax={4}
+              showValues
+            />
+          </ChartWrapper>
 
-            <div className="space-y-8 lg:space-y-0">
-              {CRISIS_TIMELINE.map((crisis, index) => (
-                <div
-                  key={crisis.year}
-                  className={`lg:flex lg:items-center lg:gap-12 ${
-                    index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                  }`}
-                >
-                  <div className="lg:flex-1 lg:mb-8">
-                    <div
-                      className={`bg-bg-elevated border border-glass-border rounded-xl p-5 ${
-                        index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'
-                      }`}
-                    >
-                      <span className="font-mono text-accent-red text-sm">{crisis.year}</span>
-                      <h4 className="text-lg font-semibold mt-1 mb-2">{crisis.title}</h4>
-                      <p className="text-text-secondary text-sm mb-3">{crisis.description}</p>
-                      <span className="inline-block px-3 py-1 bg-accent-red/10 border border-accent-red/30 rounded-full font-mono text-accent-red text-sm">
-                        {crisis.impact}
-                      </span>
-                    </div>
-                  </div>
+          {/* Évolution du Portugal */}
+          <ChartWrapper
+            title="🇵🇹 Redressement des finances publiques du Portugal"
+            subtitle="Solde budgétaire en % du PIB (2019-2024)"
+            height="400px"
+            source="Eurostat 2024"
+          >
+            <LineChart
+              labels={['2019', '2020', '2021', '2022', '2023', '2024']}
+              datasets={[
+                {
+                  label: '',
+                  data: [0.1, -5.8, -2.9, -0.3, 1.2, 0.5],
+                  borderColor: '#00ff88',
+                  backgroundColor: 'rgba(0, 255, 136, 0.1)',
+                  fill: true,
+                  borderWidth: 3,
+                },
+              ]}
+              yMin={-8}
+              yMax={4}
+              yCallback={(v) => `${Number(v) > 0 ? '+' : ''}${v}%`}
+              showLegend={false}
+            />
+          </ChartWrapper>
+        </div>
 
-                  {/* Center dot */}
-                  <div className="hidden lg:flex flex-col items-center relative">
-                    <div className="w-4 h-4 bg-accent-red rounded-full z-10" />
-                  </div>
+        {/* Section: Dette comparée */}
+        <h2 className="font-serif text-2xl font-normal mb-6">
+          La France, <span className="italic text-accent-red">3ème dette</span> de la zone euro
+        </h2>
 
-                  <div className="hidden lg:block lg:flex-1" />
-                </div>
-              ))}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+          <ChartWrapper
+            title="Dette publique en zone euro"
+            subtitle="En % du PIB (2024)"
+            height="400px"
+            source="Eurostat 2024"
+          >
+            <BarChart
+              labels={DETTE_COMPARISON.map((c) => c.country)}
+              data={DETTE_COMPARISON.map((c) => c.value)}
+              colors={(ctx) =>
+                DETTE_COMPARISON[ctx.dataIndex]?.highlight ? '#ff4757' :
+                DETTE_COMPARISON[ctx.dataIndex]?.isAverage ? '#ffd700' : '#64748b'
+              }
+              tooltipSuffix="% du PIB"
+              yAxisSuffix="%"
+              yMin={0}
+              yMax={180}
+              showValues
+            />
+          </ChartWrapper>
+
+          {/* Dette par habitant */}
+          <ChartWrapper
+            title="Dette publique par habitant"
+            subtitle="En euros par habitant (2024)"
+            height="400px"
+            source="Eurostat 2024, calcul"
+          >
+            <BarChart
+              labels={DETTE_PAR_HABITANT.map((c) => c.country)}
+              data={DETTE_PAR_HABITANT.map((c) => c.value)}
+              colors={(ctx) =>
+                DETTE_PAR_HABITANT[ctx.dataIndex]?.highlight ? '#ff4757' : '#64748b'
+              }
+              tooltipSuffix=" €"
+              yAxisSuffix=" €"
+              yMin={0}
+              yMax={60000}
+              showValues
+            />
+          </ChartWrapper>
+        </div>
+
+        {/* Section: Charge d'intérêts */}
+        <h2 className="font-serif text-2xl font-normal mb-6 mt-10">
+          Le <span className="italic text-accent-purple">coût</span> de la dette
+        </h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+          <ChartWrapper
+            title="Intérêts bientôt supérieurs au budget de la Défense"
+            subtitle="Charge d'intérêts de la dette (Md€)"
+            height="400px"
+            source="PLF 2025, Cour des Comptes"
+          >
+            <BarChart
+              labels={CHARGE_INTERETS.labels}
+              data={CHARGE_INTERETS.data}
+              colors={(ctx) => {
+                const label = CHARGE_INTERETS.labels[ctx.dataIndex]
+                if (label === 'Défense') return '#ff4757'
+                if (label?.includes('(p)')) return '#a855f7'
+                return '#00d4ff'
+              }}
+              tooltipSuffix=" Md€"
+              yAxisSuffix=" Md€"
+              yMin={0}
+              yMax={80}
+              showValues
+            />
+          </ChartWrapper>
+
+          <ChartWrapper
+            title="Taux d'intérêt OAT 10 ans"
+            subtitle="Coût d'emprunt de la France (%)"
+            height="400px"
+            source="Banque de France"
+          >
+            <LineChart
+              labels={TAUX_OAT.labels}
+              datasets={[
+                {
+                  label: 'Taux OAT 10 ans',
+                  data: TAUX_OAT.data,
+                  borderColor: '#ffd700',
+                  backgroundColor: 'rgba(255, 215, 0, 0.15)',
+                  fill: true,
+                  borderWidth: 3,
+                },
+              ]}
+              yMin={-1}
+              yMax={4}
+              yCallback={(v) => `${v}%`}
+              showLegend={false}
+            />
+          </ChartWrapper>
+        </div>
+
+        {/* Info box charge d'intérêts */}
+        <div className="bg-gradient-to-r from-accent-purple/10 to-accent-gold/10 border border-accent-purple/30 rounded-2xl p-6 mb-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 text-center">
+            <div>
+              <div className="font-mono text-3xl font-medium text-accent-purple">72 Md€</div>
+              <div className="text-text-secondary text-sm mt-1">Charge prévue en 2027</div>
+            </div>
+            <div>
+              <div className="font-mono text-3xl font-medium text-accent-gold">+90%</div>
+              <div className="text-text-secondary text-sm mt-1">Hausse depuis 2020</div>
+            </div>
+            <div>
+              <div className="font-mono text-3xl font-medium text-accent-red">4ème</div>
+              <div className="text-text-secondary text-sm mt-1">Poste budgétaire</div>
             </div>
           </div>
         </div>
 
-        {/* Maturity Chart */}
-        <ChartWrapper
-          title="Structure de la dette par maturité"
-          subtitle="Répartition selon les échéances de remboursement"
-          height="250px"
-          className="mb-8"
-          source="Agence France Trésor"
-        >
-          <DoughnutChart
-            labels={MATURITY_DATA.labels}
-            data={MATURITY_DATA.data}
-            colors={MATURITY_DATA.colors}
-            cutout="50%"
-            legendPosition="bottom"
-            tooltipSuffix="%"
-          />
-        </ChartWrapper>
+        {/* Section: Qui détient la dette */}
+        <h2 className="font-serif text-2xl font-normal mb-6 mt-10">
+          Qui <span className="italic text-accent-electric">détient</span> la dette française ?
+        </h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+          <ChartWrapper
+            title="Répartition des détenteurs"
+            subtitle="En % de la dette négociable (2 660 Md€)"
+            height="400px"
+            source="Banque de France, T1 2025"
+          >
+            <BarChart
+              labels={DEBT_HOLDERS.labels}
+              data={DEBT_HOLDERS.data}
+              colors={DEBT_HOLDERS.colors}
+              tooltipSuffix="%"
+              yAxisSuffix="%"
+              yMin={0}
+              yMax={60}
+              showValues
+            />
+          </ChartWrapper>
+
+          {/* Principaux détenteurs identifiables */}
+          <div className="bg-bg-surface border border-glass-border rounded-2xl p-6">
+            <h3 className="text-lg font-semibold mb-2">Détail des détenteurs</h3>
+            <p className="text-text-muted text-sm mb-6">Source : Banque de France, IFRAP T1 2025</p>
+            <div className="space-y-4">
+              {PRINCIPAUX_DETENTEURS.map((detenteur, index) => (
+                <div key={index} className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className="w-3 h-3 rounded-full"
+                      style={{
+                        backgroundColor: detenteur.type === 'France' ? '#00d4ff' : '#ff4757'
+                      }}
+                    />
+                    <span className="text-text-primary">{detenteur.nom}</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="font-mono text-lg font-medium" style={{
+                      color: detenteur.type === 'France' ? '#00d4ff' : '#ff4757'
+                    }}>
+                      {detenteur.montant} Md€
+                    </span>
+                    <span className="text-text-muted text-sm ml-2">({detenteur.percent}%)</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 pt-4 border-t border-glass-border">
+              <div className="flex items-center gap-6 text-sm text-text-muted">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-accent-electric" />
+                  <span>Résidents français</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-accent-red" />
+                  <span>Non-résidents</span>
+                </div>
+              </div>
+              <p className="text-text-muted text-xs mt-3">
+                Note : L&apos;AFT ne publie pas le détail des détenteurs non-résidents (fonds de pension, fonds souverains, etc.)
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* Sources */}
         <div className="text-center py-6 border-t border-glass-border">
