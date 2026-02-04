@@ -397,7 +397,7 @@ function DettesContent() {
           </p>
         </div>
         <div className="text-center">
-          <div className="font-mono text-4xl font-medium text-accent-red">+1 800 €/s</div>
+          <div className="font-mono text-4xl font-medium text-accent-red">+5 350 €/s</div>
           <div className="text-text-muted text-sm">La dette augmente chaque seconde</div>
         </div>
       </div>

@@ -33,6 +33,7 @@ ChartJS.register(
 ChartJS.defaults.color = '#8899a8'
 ChartJS.defaults.font.family = "'Syne', sans-serif"
 ChartJS.defaults.font.size = 14
+ChartJS.defaults.devicePixelRatio = 2 // Force high-resolution rendering for Retina displays
 
 interface ChartWrapperProps {
   children: React.ReactNode

@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from 'react'
 import { calculerSalaire, type SalaryResult } from '@/lib/api/mon-entreprise'
 import { COTISATION_CATEGORIES } from '@/lib/constants/simulateur'
 import { formatMoney, formatPercent } from '@/lib/utils/formatters'
-import { ChartWrapper, DoughnutChart } from '@/components/charts'
 
 type Period = 'mensuel' | 'annuel'
 type Status = 'cadre' | 'non-cadre'
@@ -106,24 +105,13 @@ export default function SimulateurPage() {
   // Multiplier for display (monthly or annual)
   const multiplier = period === 'annuel' ? 12 : 1
 
+  // Pre-compute rounded values for consistent display (avoids rounding discrepancies)
+  const superBrutDisplay = Math.round(calc.superBrut * multiplier)
+  const netApresIRDisplay = Math.round(calc.netApresIR * multiplier)
+  const prelevementsDisplay = superBrutDisplay - netApresIRDisplay
+
   // Distribution data for chart
   const distribution = getDistributionData(calc, multiplier)
-
-  // Chart data
-  const chartData = {
-    labels: COTISATION_CATEGORIES.map((c) => c.name),
-    data: [
-      distribution.retraite,
-      distribution.sante,
-      distribution.famille,
-      distribution.chomage,
-      distribution.csg_crds,
-      distribution.ir,
-      distribution.accidents,
-      distribution.autres,
-    ],
-    colors: COTISATION_CATEGORIES.map((c) => c.color),
-  }
 
   return (
     <div className="relative min-h-screen">
@@ -144,10 +132,10 @@ export default function SimulateurPage() {
         {/* Header */}
         <header className="text-center mb-10">
           <h1 className="font-serif text-[clamp(2rem,5vw,3rem)] font-normal mb-3">
-            Comprendre votre <span className="italic text-accent-electric">salaire</span>
+            Comprendre ton <span className="italic text-accent-electric">salaire</span>
           </h1>
           <p className="text-text-secondary text-lg max-w-xl mx-auto">
-            Découvrez la répartition entre ce que paie votre employeur, ce que vous percevez, et où vont vos cotisations.
+            Découvre la répartition entre ce que paie ton employeur, ce que tu perçois, et où vont tes cotisations.
           </p>
         </header>
 
@@ -268,27 +256,27 @@ export default function SimulateurPage() {
         <section className={`grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 transition-opacity ${loading ? 'opacity-50' : ''}`}>
           <div className="bg-bg-surface border border-glass-border rounded-xl p-6 text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 bg-accent-purple" />
-            <div className="text-xs text-text-muted uppercase tracking-wider mb-2">Coût total employeur</div>
+            <div className="text-xs text-text-muted uppercase tracking-wider mb-2">Ce que ton employeur verse</div>
             <div className="font-mono text-3xl font-medium text-accent-purple mb-1">
-              {formatMoney(calc.superBrut * multiplier)}
+              {superBrutDisplay.toLocaleString('fr-FR')} €
             </div>
             <div className="text-sm text-text-secondary">Super brut {period === 'annuel' ? 'annuel' : 'mensuel'}</div>
           </div>
 
           <div className="bg-bg-surface border border-glass-border rounded-xl p-6 text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 bg-accent-orange" />
-            <div className="text-xs text-text-muted uppercase tracking-wider mb-2">Prélèvements totaux</div>
+            <div className="text-xs text-text-muted uppercase tracking-wider mb-2">Ce que prend l&apos;État</div>
             <div className="font-mono text-3xl font-medium text-accent-orange mb-1">
-              {formatMoney((calc.totalPatronales + calc.totalSalariales + calc.impotRevenu) * multiplier)}
+              {prelevementsDisplay.toLocaleString('fr-FR')} €
             </div>
             <div className="text-sm text-text-secondary">Cotisations + IR</div>
           </div>
 
           <div className="bg-bg-surface border border-glass-border rounded-xl p-6 text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 bg-accent-green" />
-            <div className="text-xs text-text-muted uppercase tracking-wider mb-2">Ce que vous recevez</div>
+            <div className="text-xs text-text-muted uppercase tracking-wider mb-2">Ce que tu reçois</div>
             <div className="font-mono text-3xl font-medium text-accent-green mb-1">
-              {formatMoney(calc.netApresIR * multiplier)}
+              {netApresIRDisplay.toLocaleString('fr-FR')} €
             </div>
             <div className="text-sm text-text-secondary">Net après impôt</div>
           </div>
@@ -299,16 +287,16 @@ export default function SimulateurPage() {
           {/* Left: Salary Breakdown Stack */}
           <div className="bg-bg-surface border border-glass-border rounded-2xl p-6">
             <div className="text-xs text-text-muted uppercase tracking-wider text-center mb-6">
-              Décomposition de votre salaire
+              Décomposition de ton salaire
             </div>
 
             <div className="flex flex-col">
-              {/* Super Brut */}
+              {/* Super Brut - LA BASE 100% */}
               <div className="p-4 border-l-4 border-accent-purple bg-gradient-to-r from-accent-purple/10 to-transparent relative hover:from-accent-purple/15 transition-all">
                 <div className="text-xs text-text-secondary mb-1">Super brut (coût employeur)</div>
                 <div className="font-mono text-xl font-medium">{formatMoney(calc.superBrut * multiplier)}</div>
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-text-muted bg-bg-elevated px-2 py-1 rounded">
-                  {calc.brut > 0 ? Math.round((calc.superBrut / calc.brut) * 100) : 0}%
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-semibold text-accent-purple bg-bg-elevated px-2 py-1 rounded">
+                  100%
                 </span>
               </div>
 
@@ -323,7 +311,7 @@ export default function SimulateurPage() {
                 <div className="text-xs text-text-secondary mb-1">Charges patronales</div>
                 <div className="font-mono text-xl font-medium">- {formatMoney(calc.totalPatronales * multiplier)}</div>
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-text-muted bg-bg-elevated px-2 py-1 rounded">
-                  {calc.brut > 0 ? Math.round((calc.totalPatronales / calc.brut) * 100) : 0}%
+                  -{calc.superBrut > 0 ? Math.round((calc.totalPatronales / calc.superBrut) * 100) : 0}%
                 </span>
               </div>
 
@@ -338,7 +326,7 @@ export default function SimulateurPage() {
                 <div className="text-xs text-text-secondary mb-1">Salaire brut</div>
                 <div className="font-mono text-xl font-medium">{formatMoney(calc.brut * multiplier)}</div>
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-text-muted bg-bg-elevated px-2 py-1 rounded">
-                  100%
+                  {calc.superBrut > 0 ? Math.round((calc.brut / calc.superBrut) * 100) : 0}%
                 </span>
               </div>
 
@@ -353,7 +341,7 @@ export default function SimulateurPage() {
                 <div className="text-xs text-text-secondary mb-1">Charges salariales</div>
                 <div className="font-mono text-xl font-medium">- {formatMoney(calc.totalSalariales * multiplier)}</div>
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-text-muted bg-bg-elevated px-2 py-1 rounded">
-                  {calc.brut > 0 ? Math.round((calc.totalSalariales / calc.brut) * 100) : 0}%
+                  -{calc.superBrut > 0 ? Math.round((calc.totalSalariales / calc.superBrut) * 100) : 0}%
                 </span>
               </div>
 
@@ -368,7 +356,7 @@ export default function SimulateurPage() {
                 <div className="text-xs text-text-secondary mb-1">Net avant impôt</div>
                 <div className="font-mono text-xl font-medium">{formatMoney(calc.netAvantIR * multiplier)}</div>
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-text-muted bg-bg-elevated px-2 py-1 rounded">
-                  {calc.brut > 0 ? Math.round((calc.netAvantIR / calc.brut) * 100) : 0}%
+                  {calc.superBrut > 0 ? Math.round((calc.netAvantIR / calc.superBrut) * 100) : 0}%
                 </span>
               </div>
 
@@ -383,7 +371,7 @@ export default function SimulateurPage() {
                 <div className="text-xs text-text-secondary mb-1">Prélèvement à la source</div>
                 <div className="font-mono text-xl font-medium">- {formatMoney(calc.impotRevenu * multiplier)}</div>
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-text-muted bg-bg-elevated px-2 py-1 rounded">
-                  {formatPercent(calc.tauxIR * 100, 1)}
+                  -{calc.superBrut > 0 ? Math.round((calc.impotRevenu / calc.superBrut) * 100) : 0}%
                 </span>
               </div>
 
@@ -398,161 +386,155 @@ export default function SimulateurPage() {
                 <div className="text-xs text-text-secondary mb-1">Net en poche</div>
                 <div className="font-mono text-xl font-medium text-accent-green">{formatMoney(calc.netApresIR * multiplier)}</div>
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-text-muted bg-bg-elevated px-2 py-1 rounded">
-                  {calc.brut > 0 ? Math.round((calc.netApresIR / calc.brut) * 100) : 0}%
+                  {calc.superBrut > 0 ? Math.round((calc.netApresIR / calc.superBrut) * 100) : 0}%
                 </span>
               </div>
             </div>
+
+            {/* Conclusion */}
+            <div className="mt-6 pt-4 border-t border-glass-border text-center">
+              <p className="text-text-secondary text-base mb-1">L&apos;État te prend</p>
+              <p className="font-mono text-4xl font-bold text-accent-red mb-1">
+                {calc.superBrut > 0 ? Math.round(((calc.totalPatronales + calc.totalSalariales + calc.impotRevenu) / calc.superBrut) * 100) : 0}%
+              </p>
+              <p className="text-text-secondary text-base">de ce que tu produis.</p>
+            </div>
           </div>
 
-          {/* Right: Charts */}
-          <div className="flex flex-col gap-6">
-            {/* Doughnut Chart */}
-            <ChartWrapper title="Répartition des prélèvements" subtitle="Où vont vos cotisations et impôts" height="280px">
-              <DoughnutChart
-                labels={chartData.labels}
-                data={chartData.data.map((v) => Math.round(v))}
-                colors={chartData.colors}
-                cutout="60%"
-                legendPosition="right"
-                tooltipSuffix=" €"
-              />
-            </ChartWrapper>
+          {/* Right: Distribution Grid */}
+          <div className="bg-bg-surface border border-glass-border rounded-2xl p-6">
+            <div className="text-center mb-6">
+              <h2 className="font-serif text-2xl font-normal mb-2">Où vont tes cotisations ?</h2>
+              <p className="text-text-secondary text-sm">Détail des contributions {period === 'annuel' ? 'annuelles' : 'mensuelles'} par organisme et protection</p>
+            </div>
 
-            {/* Detail Table */}
-            <div className="bg-bg-surface border border-glass-border rounded-2xl p-6">
-              <h3 className="text-sm font-semibold mb-4">📋 Détail des cotisations</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {COTISATION_CATEGORIES.map((cat, index) => {
+                const values = [
+                  distribution.retraite,
+                  distribution.sante,
+                  distribution.famille,
+                  distribution.chomage,
+                  distribution.csg_crds,
+                  distribution.ir,
+                  distribution.accidents,
+                  distribution.autres,
+                ]
+                const value = values[index]
+                const totalPrelevements = (calc.totalPatronales + calc.totalSalariales + calc.impotRevenu) * multiplier
+                const barWidth = totalPrelevements > 0 ? (value / totalPrelevements) * 100 : 0
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Patronales */}
-                <div>
-                  <h4 className="text-xs text-text-muted uppercase tracking-wider mb-3">
-                    Cotisations patronales
-                  </h4>
-                  <div className="space-y-1">
-                    {[
-                      { name: 'Maladie', value: calc.detail.patronales.maladie },
-                      { name: 'Vieillesse', value: calc.detail.patronales.vieillesse },
-                      { name: 'Allocations familiales', value: calc.detail.patronales.famille },
-                      { name: 'Chômage', value: calc.detail.patronales.chomage },
-                      { name: 'Accidents du travail', value: calc.detail.patronales.accidents },
-                      { name: 'Retraite complémentaire', value: calc.detail.patronales.retraite_comp },
-                      { name: 'Autres', value: calc.detail.patronales.autres },
-                    ].map((item) => (
-                      <div key={item.name} className="flex justify-between py-1.5 border-b border-glass-border/30 text-sm">
-                        <span className="text-text-secondary">{item.name}</span>
-                        <span className="font-mono text-accent-orange">
-                          {formatMoney(item.value * multiplier)}
-                        </span>
-                      </div>
-                    ))}
-                    <div className="flex justify-between py-2 font-medium text-sm">
-                      <span>Total</span>
-                      <span className="font-mono text-accent-orange">
-                        {formatMoney(calc.totalPatronales * multiplier)}
+                return (
+                  <div
+                    key={cat.id}
+                    className="bg-bg-elevated border border-glass-border rounded-xl p-4 relative overflow-hidden hover:border-white/15 hover:-translate-y-0.5 transition-all"
+                  >
+                    <div className="absolute top-0 left-0 right-0 h-1" style={{ background: cat.color }} />
+                    <div
+                      className="w-10 h-10 rounded-lg flex items-center justify-center text-xl mb-3"
+                      style={{ background: `${cat.color}20` }}
+                    >
+                      {cat.icon}
+                    </div>
+                    <div className="font-medium text-sm mb-1">{cat.name}</div>
+                    <div className="text-xs text-text-muted mb-3 line-clamp-1">{cat.description}</div>
+                    <div className="flex justify-between items-baseline mb-2">
+                      <span className="font-mono text-lg" style={{ color: cat.color }}>
+                        {formatMoney(value)}
                       </span>
                     </div>
-                  </div>
-                </div>
-
-                {/* Salariales */}
-                <div>
-                  <h4 className="text-xs text-text-muted uppercase tracking-wider mb-3">
-                    Cotisations salariales + IR
-                  </h4>
-                  <div className="space-y-1">
-                    {[
-                      { name: 'Vieillesse', value: calc.detail.salariales.vieillesse },
-                      { name: 'Retraite complémentaire', value: calc.detail.salariales.retraite_comp },
-                      { name: 'CSG / CRDS', value: calc.detail.salariales.csg_crds },
-                      { name: `Impôt sur le revenu (${formatPercent(calc.tauxIR * 100, 1)})`, value: calc.impotRevenu },
-                    ].map((item) => (
-                      <div key={item.name} className="flex justify-between py-1.5 border-b border-glass-border/30 text-sm">
-                        <span className="text-text-secondary">{item.name}</span>
-                        <span className="font-mono text-accent-red">
-                          {formatMoney(item.value * multiplier)}
-                        </span>
-                      </div>
-                    ))}
-                    <div className="flex justify-between py-2 font-medium text-sm">
-                      <span>Total</span>
-                      <span className="font-mono text-accent-red">
-                        {formatMoney((calc.totalSalariales + calc.impotRevenu) * multiplier)}
-                      </span>
+                    <div className="h-1 bg-bg-deep rounded overflow-hidden">
+                      <div
+                        className="h-full rounded transition-all duration-500"
+                        style={{ width: `${barWidth}%`, background: cat.color }}
+                      />
                     </div>
                   </div>
-                </div>
+                )
+              })}
+            </div>
+
+            {/* Info Box */}
+            <div className="mt-6 bg-accent-electric/10 border border-accent-electric/30 rounded-xl p-4 flex gap-4 items-start">
+              <svg className="w-6 h-6 text-accent-electric flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg>
+              <div>
+                <h4 className="text-sm font-medium text-accent-electric mb-1">Comment sont calculées ces cotisations ?</h4>
+                <p className="text-xs text-text-secondary">
+                  Les calculs sont effectués avec le moteur officiel <strong>publicodes</strong> de l&apos;URSSAF.
+                  L&apos;impôt sur le revenu est calculé avec le <strong>taux neutre</strong> du prélèvement à la source.
+                  Ta situation personnelle (quotient familial, autres revenus) peut faire varier ces montants.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Distribution Grid */}
+        {/* Detail Table Section */}
         <section className={`bg-bg-surface border border-glass-border rounded-2xl p-6 mb-8 transition-opacity ${loading ? 'opacity-50' : ''}`}>
-          <div className="text-center mb-6">
-            <h2 className="font-serif text-2xl font-normal mb-2">Où vont vos cotisations ?</h2>
-            <p className="text-text-secondary text-sm">Détail des contributions {period === 'annuel' ? 'annuelles' : 'mensuelles'} par organisme et protection</p>
-          </div>
+          <h3 className="text-sm font-semibold mb-4">📋 Détail des cotisations</h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {COTISATION_CATEGORIES.map((cat, index) => {
-              const values = [
-                distribution.retraite,
-                distribution.sante,
-                distribution.famille,
-                distribution.chomage,
-                distribution.csg_crds,
-                distribution.ir,
-                distribution.accidents,
-                distribution.autres,
-              ]
-              const value = values[index]
-              const totalPrelevements = (calc.totalPatronales + calc.totalSalariales + calc.impotRevenu) * multiplier
-              const barWidth = totalPrelevements > 0 ? (value / totalPrelevements) * 100 : 0
-
-              return (
-                <div
-                  key={cat.id}
-                  className="bg-bg-elevated border border-glass-border rounded-xl p-4 relative overflow-hidden hover:border-white/15 hover:-translate-y-0.5 transition-all"
-                >
-                  <div className="absolute top-0 left-0 right-0 h-1" style={{ background: cat.color }} />
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center text-xl mb-3"
-                    style={{ background: `${cat.color}20` }}
-                  >
-                    {cat.icon}
-                  </div>
-                  <div className="font-medium text-sm mb-1">{cat.name}</div>
-                  <div className="text-xs text-text-muted mb-3 line-clamp-1">{cat.description}</div>
-                  <div className="flex justify-between items-baseline mb-2">
-                    <span className="font-mono text-lg" style={{ color: cat.color }}>
-                      {formatMoney(value)}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Patronales */}
+            <div>
+              <h4 className="text-xs text-text-muted uppercase tracking-wider mb-3">
+                Cotisations patronales
+              </h4>
+              <div className="space-y-1">
+                {[
+                  { name: 'Maladie', value: calc.detail.patronales.maladie },
+                  { name: 'Vieillesse', value: calc.detail.patronales.vieillesse },
+                  { name: 'Allocations familiales', value: calc.detail.patronales.famille },
+                  { name: 'Chômage', value: calc.detail.patronales.chomage },
+                  { name: 'Accidents du travail', value: calc.detail.patronales.accidents },
+                  { name: 'Retraite complémentaire', value: calc.detail.patronales.retraite_comp },
+                  { name: 'Autres', value: calc.detail.patronales.autres },
+                ].map((item) => (
+                  <div key={item.name} className="flex justify-between py-1.5 border-b border-glass-border/30 text-sm">
+                    <span className="text-text-secondary">{item.name}</span>
+                    <span className="font-mono text-accent-orange">
+                      {formatMoney(item.value * multiplier)}
                     </span>
                   </div>
-                  <div className="h-1 bg-bg-deep rounded overflow-hidden">
-                    <div
-                      className="h-full rounded transition-all duration-500"
-                      style={{ width: `${barWidth}%`, background: cat.color }}
-                    />
-                  </div>
+                ))}
+                <div className="flex justify-between py-2 font-medium text-sm">
+                  <span>Total</span>
+                  <span className="font-mono text-accent-orange">
+                    {formatMoney(calc.totalPatronales * multiplier)}
+                  </span>
                 </div>
-              )
-            })}
-          </div>
+              </div>
+            </div>
 
-          {/* Info Box */}
-          <div className="mt-6 bg-accent-electric/10 border border-accent-electric/30 rounded-xl p-4 flex gap-4 items-start">
-            <svg className="w-6 h-6 text-accent-electric flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="12" r="10" />
-              <line x1="12" y1="16" x2="12" y2="12" />
-              <line x1="12" y1="8" x2="12.01" y2="8" />
-            </svg>
+            {/* Salariales */}
             <div>
-              <h4 className="text-sm font-medium text-accent-electric mb-1">Comment sont calculées ces cotisations ?</h4>
-              <p className="text-xs text-text-secondary">
-                Les calculs sont effectués avec le moteur officiel <strong>publicodes</strong> de l&apos;URSSAF.
-                L&apos;impôt sur le revenu est calculé avec le <strong>taux neutre</strong> du prélèvement à la source.
-                Votre situation personnelle (quotient familial, autres revenus) peut faire varier ces montants.
-              </p>
+              <h4 className="text-xs text-text-muted uppercase tracking-wider mb-3">
+                Cotisations salariales + IR
+              </h4>
+              <div className="space-y-1">
+                {[
+                  { name: 'Vieillesse', value: calc.detail.salariales.vieillesse },
+                  { name: 'Retraite complémentaire', value: calc.detail.salariales.retraite_comp },
+                  { name: 'CSG / CRDS', value: calc.detail.salariales.csg_crds },
+                  { name: `Impôt sur le revenu (${formatPercent(calc.tauxIR * 100, 1)})`, value: calc.impotRevenu },
+                ].map((item) => (
+                  <div key={item.name} className="flex justify-between py-1.5 border-b border-glass-border/30 text-sm">
+                    <span className="text-text-secondary">{item.name}</span>
+                    <span className="font-mono text-accent-red">
+                      {formatMoney(item.value * multiplier)}
+                    </span>
+                  </div>
+                ))}
+                <div className="flex justify-between py-2 font-medium text-sm">
+                  <span>Total</span>
+                  <span className="font-mono text-accent-red">
+                    {formatMoney((calc.totalSalariales + calc.impotRevenu) * multiplier)}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -570,7 +552,7 @@ export default function SimulateurPage() {
               publicodes / modele-social
             </a>
             <br />
-            Résultat indicatif pouvant varier selon votre situation personnelle.
+            Résultat indicatif pouvant varier selon ta situation personnelle.
           </p>
         </div>
       </main>

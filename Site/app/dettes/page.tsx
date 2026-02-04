@@ -105,7 +105,7 @@ export default function DettesPage() {
             La <span className="italic text-accent-red">dette</span> publique
           </h1>
           <p className="text-text-secondary text-lg max-w-xl mx-auto">
-            Comprendre l&apos;endettement de la France : son évolution, ses détenteurs, et ses enjeux
+            Comprendre l&apos;endettement de la France.
           </p>
         </header>
 
@@ -181,6 +181,7 @@ export default function DettesPage() {
               yMin={0}
               yMax={130}
               yCallback={(v) => `${v}%`}
+              showLegend={false}
             />
           </ChartWrapper>
 

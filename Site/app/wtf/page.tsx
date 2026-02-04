@@ -7,37 +7,37 @@ const WTF_FACTS = [
   {
     id: 1,
     icon: '👶',
-    stat: '46 200 €',
+    stat: '50 800 €',
     title: 'Dette à la naissance',
-    desc: 'Un bébé qui naît aujourd\'hui en France hérite immédiatement d\'une dette de 46 200 €. Avant même son premier biberon.',
-    comparison: { label: 'C\'est l\'équivalent de', value: '2 ans de SMIC net' },
+    desc: 'Un bébé qui naît aujourd\'hui en France hérite immédiatement d\'une dette de 50 800 €. Avant même son premier biberon.',
+    comparison: { label: 'C\'est l\'équivalent de', value: '2,5 ans de SMIC net' },
     color: '#ff4757',
   },
   {
     id: 2,
     icon: '⏱️',
-    stat: '1 800 €',
+    stat: '5 350 €',
     title: 'Chaque seconde',
-    desc: 'Pendant que vous lisez cette phrase, la dette française a augmenté de 5 400 €. Chaque seconde = 1 800 €.',
-    comparison: { label: 'En 1 minute', value: '108 000 € de dette en plus' },
+    desc: 'Pendant que vous lisez cette phrase, la dette française a augmenté de 16 000 €. Chaque seconde = 5 350 €.',
+    comparison: { label: 'En 1 minute', value: '321 000 € de dette en plus' },
     color: '#ff9f43',
   },
   {
     id: 3,
     icon: '🗼',
-    stat: '6 300 km',
+    stat: '7 000 km',
     title: 'La pile de billets',
-    desc: 'Si on empilait la dette en billets de 500€, la pile ferait 6 300 km de haut. Presque le diamètre de la Terre.',
-    comparison: { label: 'Soit', value: '15 fois la distance Terre-Lune en billets de 5€' },
+    desc: 'Si on empilait la dette en billets de 500€, la pile ferait 7 000 km de haut. Plus que le diamètre de la Terre.',
+    comparison: { label: 'Soit', value: '17 fois la distance Terre-Lune en billets de 5€' },
     color: '#a855f7',
   },
   {
     id: 4,
     icon: '🎓',
-    stat: '8 950 €',
+    stat: '12 250 €',
     title: 'Coût d\'un élève/an',
-    desc: 'Un élève coûte 8 950 €/an à l\'État. Pourtant la France recule au classement PISA (23ème en maths).',
-    comparison: { label: 'La Corée du Sud dépense', value: '6 500 €/élève et est 1ère mondiale' },
+    desc: 'Un élève coûte 12 250 €/an à l\'État. Pourtant la France recule au classement PISA (26ème en maths).',
+    comparison: { label: 'La Corée du Sud dépense', value: '9 000 €/élève et est dans le top 5' },
     color: '#00d4ff',
   },
   {
@@ -61,10 +61,10 @@ const WTF_FACTS = [
   {
     id: 7,
     icon: '📺',
-    stat: '3,8 Md€',
+    stat: '4 Md€',
     title: 'Audiovisuel public',
-    desc: 'France Télévisions + Radio France + Arte + France 24 coûtent 3,8 milliards/an. Netflix France fait 1,5 Md€ de CA.',
-    comparison: { label: 'Soit', value: '57 € par Français pour l\'audiovisuel public' },
+    desc: 'France Télévisions + Radio France + Arte + France 24 coûtent 4 milliards/an. Netflix France fait 1,5 Md€ de CA.',
+    comparison: { label: 'Soit', value: '59 € par Français pour l\'audiovisuel public' },
     color: '#ffd700',
   },
   {
@@ -115,10 +115,10 @@ const WTF_FACTS = [
   {
     id: 13,
     icon: '💊',
-    stat: '89 boîtes',
+    stat: '48 boîtes',
     title: 'Médicaments/Français/an',
-    desc: 'Chaque Français consomme en moyenne 89 boîtes de médicaments par an. Record européen.',
-    comparison: { label: 'L\'Allemand moyen', value: '52 boîtes/an' },
+    desc: 'Chaque Français consomme en moyenne 48 boîtes de médicaments par an. Parmi les plus gros consommateurs d\'Europe.',
+    comparison: { label: 'L\'Allemand moyen', value: '35 boîtes/an' },
     color: '#ff6b9d',
   },
   {
@@ -133,9 +133,9 @@ const WTF_FACTS = [
   {
     id: 15,
     icon: '🎭',
-    stat: '180 000',
+    stat: '276 000',
     title: 'Intermittents du spectacle',
-    desc: '180 000 intermittents touchent 1,5 Md€ d\'allocations/an. Soit 8 300 € par intermittent.',
+    desc: '276 000 intermittents touchent 2 Md€ d\'allocations/an. Soit 7 250 € par intermittent.',
     comparison: { label: 'Ce régime est unique', value: 'Il n\'existe nulle part ailleurs au monde' },
     color: '#a855f7',
   },
@@ -160,10 +160,10 @@ const WTF_FACTS = [
   {
     id: 18,
     icon: '🏦',
-    stat: '52 Md€',
+    stat: '55 Md€',
     title: 'Intérêts de la dette',
-    desc: 'On paye 52 Md€ d\'intérêts par an. Sans rembourser 1€ du capital. C\'est le budget de l\'Éducation Nationale.',
-    comparison: { label: 'Chaque seconde', value: '1 650 € d\'intérêts' },
+    desc: 'On paye 55 Md€ d\'intérêts par an. Sans rembourser 1€ du capital. C\'est le budget de l\'Éducation Nationale.',
+    comparison: { label: 'Chaque seconde', value: '1 745 € d\'intérêts' },
     color: '#ff4757',
   },
   {
@@ -268,10 +268,10 @@ const WTF_FACTS = [
   {
     id: 30,
     icon: '💸',
-    stat: '179 Md€',
+    stat: '169 Md€',
     title: 'Déficit 2024',
-    desc: 'Le déficit public de 2024 est de 179 milliards d\'euros. Plus que le budget de la Défense + Éducation + Justice.',
-    comparison: { label: 'Par jour', value: 'On dépense 490 M€ de plus qu\'on ne gagne' },
+    desc: 'Le déficit public de 2024 est de 169 milliards d\'euros. Plus que le budget de la Défense + Éducation + Justice.',
+    comparison: { label: 'Par jour', value: 'On dépense 463 M€ de plus qu\'on ne gagne' },
     color: '#ff6b9d',
   },
   {
@@ -286,28 +286,28 @@ const WTF_FACTS = [
   {
     id: 32,
     icon: '📊',
-    stat: 'x3,7',
+    stat: 'x4',
     title: 'Dette depuis 2000',
-    desc: 'La dette a été multipliée par 3,7 depuis l\'an 2000. De 870 Md€ à 3 150 Md€.',
-    comparison: { label: 'En moyenne', value: '+95 milliards de dette par an' },
+    desc: 'La dette a été multipliée par 4 depuis l\'an 2000. De 870 Md€ à 3 482 Md€.',
+    comparison: { label: 'En moyenne', value: '+104 milliards de dette par an' },
     color: '#45b7d1',
   },
   {
     id: 33,
     icon: '🏘️',
-    stat: '100 Md€',
+    stat: '38 Md€',
     title: 'Aides au logement',
-    desc: 'L\'État dépense 100 Md€/an pour le logement (APL, PTZ, Pinel...). Les loyers n\'ont jamais été aussi hauts.',
-    comparison: { label: 'Les APL seules', value: '18 milliards/an' },
+    desc: 'L\'État dépense 38 Md€/an pour le logement (APL, PTZ, Pinel...). Les loyers n\'ont jamais été aussi hauts.',
+    comparison: { label: 'Les APL seules', value: '16 milliards/an' },
     color: '#20e3b2',
   },
   {
     id: 34,
     icon: '⚡',
     stat: '9 Md€',
-    title: 'EDF dette effacée',
-    desc: 'L\'État a effacé 9 Md€ de dette d\'EDF en 2023. Payé par le contribuable.',
-    comparison: { label: 'Dette totale EDF', value: '65 milliards €' },
+    title: 'EDF dette réduite',
+    desc: 'L\'État a réduit la dette d\'EDF de 9 Md€ lors de la nationalisation en 2023. Payé par le contribuable.',
+    comparison: { label: 'Dette totale EDF', value: '54 milliards €' },
     color: '#ff4757',
   },
   {
@@ -349,19 +349,19 @@ const WTF_FACTS = [
   {
     id: 39,
     icon: '📱',
-    stat: '46',
+    stat: '42',
     title: 'iPhones de dette',
-    desc: 'Votre part de dette (46 200€) équivaut à 46 iPhone Pro Max. Ou 770 pleins d\'essence.',
-    comparison: { label: 'Ou encore', value: '23 ans d\'abonnement Netflix' },
+    desc: 'Votre part de dette (50 800€) équivaut à 42 iPhone Pro Max. Ou 850 pleins d\'essence.',
+    comparison: { label: 'Ou encore', value: '25 ans d\'abonnement Netflix' },
     color: '#00d4ff',
   },
   {
     id: 40,
     icon: '🌍',
-    stat: '48%',
+    stat: '55%',
     title: 'Dette détenue par l\'étranger',
-    desc: '48% de notre dette est détenue par des investisseurs étrangers. On dépend de leur confiance.',
-    comparison: { label: 'Si les taux montent de 1%', value: '+30 Md€ d\'intérêts/an' },
+    desc: '55% de notre dette est détenue par des investisseurs étrangers. On dépend de leur confiance.',
+    comparison: { label: 'Si les taux montent de 1%', value: '+35 Md€ d\'intérêts/an' },
     color: '#45b7d1',
   },
   {
@@ -376,18 +376,18 @@ const WTF_FACTS = [
   {
     id: 42,
     icon: '💳',
-    stat: '155 M€',
+    stat: '463 M€',
     title: 'Dette par jour',
-    desc: 'La dette française augmente de 155 millions d\'euros par jour. 6,5 millions par heure.',
-    comparison: { label: 'Depuis janvier 2025', value: '+6,5 milliards' },
+    desc: 'La dette française augmente de 463 millions d\'euros par jour. 19 millions par heure.',
+    comparison: { label: 'Depuis janvier 2025', value: '+40 milliards' },
     color: '#ff4757',
   },
   {
     id: 43,
     icon: '🏦',
-    stat: '490 000',
+    stat: '520 000',
     title: 'Élus locaux',
-    desc: 'La France compte 490 000 élus locaux pour 67 millions d\'habitants. Record mondial.',
+    desc: 'La France compte 520 000 élus locaux pour 68 millions d\'habitants. Record mondial.',
     comparison: { label: 'L\'Espagne', value: '65 000 élus pour 47 millions d\'habitants' },
     color: '#ff9f43',
   },
@@ -412,9 +412,9 @@ const WTF_FACTS = [
   {
     id: 46,
     icon: '🚆',
-    stat: '60%',
+    stat: '15%',
     title: 'Trains en retard',
-    desc: '60% des TGV arrivent avec du retard. La SNCF touche pourtant 14 Md€ de subventions directes.',
+    desc: '15% des TGV arrivent avec du retard significatif. La SNCF touche pourtant 14 Md€ de subventions directes.',
     comparison: { label: 'Au Japon', value: '99% de ponctualité' },
     color: '#ff6b9d',
   },
@@ -439,19 +439,19 @@ const WTF_FACTS = [
   {
     id: 49,
     icon: '⚰️',
-    stat: '13 000 €',
+    stat: '5 000 €',
     title: 'Coût des obsèques',
-    desc: 'Les obsèques coûtent 13 000 € en moyenne en France. Les taxes représentent 20% du prix.',
+    desc: 'Les obsèques coûtent 5 000 € en moyenne en France (hors concession). Les taxes représentent 20% du prix.',
     comparison: { label: 'TVA sur un cercueil', value: '20%' },
     color: '#20e3b2',
   },
   {
     id: 50,
     icon: '📈',
-    stat: '110%',
+    stat: '117%',
     title: 'Dette/PIB',
-    desc: 'La dette représente 110% du PIB. Le traité de Maastricht fixe la limite à 60%. On est presque au double.',
-    comparison: { label: 'Pour revenir à 60%', value: 'il faudrait rembourser 1 400 Md€' },
+    desc: 'La dette représente 117% du PIB. Le traité de Maastricht fixe la limite à 60%. On est presque au double.',
+    comparison: { label: 'Pour revenir à 60%', value: 'il faudrait rembourser 1 700 Md€' },
     color: '#ff4757',
   },
 ]
@@ -467,7 +467,7 @@ function formatCurrency(num: number): string {
 
 export default function WtfPage() {
   const [debtCounter, setDebtCounter] = useState(0)
-  const debtPerSecond = 1800
+  const debtPerSecond = 5350
 
   useEffect(() => {
     let elapsed = 0
@@ -533,7 +533,7 @@ export default function WtfPage() {
           </div>
 
           <p className="text-text-muted text-base mt-3">
-            soit environ 1 800 € par seconde, 24h/24, 7j/7
+            soit environ 5 350 € par seconde, 24h/24, 7j/7
           </p>
         </div>
 
@@ -593,11 +593,11 @@ export default function WtfPage() {
           <h2 className="font-serif text-3xl font-normal mb-4">Le saviez-vous ?</h2>
           <p className="text-text-secondary text-lg max-w-3xl mx-auto">
             Si on devait rembourser la dette française en billets de 500€ empilés, la pile ferait{' '}
-            <span className="text-accent-gold font-semibold">6 300 km de haut</span>. C&apos;est presque le diamètre de la Terre (6 371 km).
+            <span className="text-accent-gold font-semibold">7 000 km de haut</span>. C&apos;est plus que le diamètre de la Terre (6 371 km).
           </p>
           <div className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-accent-gold text-bg-deep rounded-full font-mono font-semibold">
             <span>💡</span>
-            3 150 000 000 000 €
+            3 482 000 000 000 €
           </div>
         </div>
 

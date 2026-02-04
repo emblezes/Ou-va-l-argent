@@ -5,23 +5,23 @@ import { Footer } from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Où Va l\'Argent | Observatoire de la Dépense Publique',
-    template: '%s | Où Va l\'Argent',
+    default: 'Où va l\'argent ? - par Emmanuel Blézès',
+    template: '%s | Où va l\'argent ?',
   },
   description: 'Explorez les finances publiques françaises avec une transparence totale. Chaque euro, chaque ministère, chaque décision budgétaire.',
   keywords: ['finances publiques', 'budget France', 'dépenses publiques', 'dette publique', 'impôts France'],
-  authors: [{ name: 'Où Va l\'Argent' }],
+  authors: [{ name: 'Emmanuel Blézès' }],
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
     url: 'https://ouvalargent.fr',
-    siteName: 'Où Va l\'Argent',
-    title: 'Où Va l\'Argent | Observatoire de la Dépense Publique',
+    siteName: 'Où va l\'argent ?',
+    title: 'Où va l\'argent ? - par Emmanuel Blézès',
     description: 'Explorez les finances publiques françaises avec une transparence totale.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Où Va l\'Argent | Observatoire de la Dépense Publique',
+    title: 'Où va l\'argent ? - par Emmanuel Blézès',
     description: 'Explorez les finances publiques françaises avec une transparence totale.',
   },
 }
