@@ -45,9 +45,12 @@ export function Hero() {
     setSubmitStatus('idle')
 
     try {
-      const response = await fetch('/api/newsletter', {
+      const response = await fetch('https://formspree.io/f/mbdknqpb', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify({ email }),
       })
 

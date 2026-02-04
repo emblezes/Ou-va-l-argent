@@ -59,37 +59,41 @@ const FRANCE_DATA = {
   perCapita: 24560, // €/habitant/an
 }
 
-// Source: INSEE 2024 - Répartition par administration publique
+// Source: INSEE 2024 - Répartition par administration publique (CONSOLIDÉ, ordre décroissant)
+// Chiffres consolidés = sans double-comptage des transferts entre administrations
 const REPARTITION_APU = [
-  { name: 'État (APUC)', amount: 740, percent: 44.3, color: '#00d4ff', description: 'Administrations publiques centrales' },
-  { name: 'Sécurité sociale (ASSO)', amount: 601, percent: 36.0, color: '#ff6b6b', description: 'Régimes de protection sociale' },
-  { name: 'Collectivités (APUL)', amount: 330, percent: 19.7, color: '#00ff88', description: 'Régions, départements, communes' },
+  { name: 'Sécurité sociale', amount: 768, percent: 46, color: '#ff6b6b', description: 'Retraites, santé, famille, chômage' },
+  { name: 'État', amount: 568, percent: 34, color: '#00d4ff', description: 'Ministères et administrations centrales' },
+  { name: 'Collectivités locales', amount: 334, percent: 20, color: '#00ff88', description: 'Régions, départements, communes' },
 ]
 
-// Source: INSEE, FIPECO - Évolution historique longue
+// Source: INSEE, FIPECO - Évolution historique longue (vérifié 02/2026)
+// Version enrichie avec les années clés pour afficher les annotations sur le graphique
 const EVOLUTION_HISTORIQUE = {
-  labels: ['1960', '1970', '1980', '1990', '2000', '2010', '2020', '2024'],
-  ratio: [35.0, 38.5, 46.2, 49.5, 51.6, 56.4, 61.3, 57.2],
+  labels: ['1960', '1970', '1975', '1980', '1981', '1990', '2000', '2009', '2010', '2020', '2024'],
+  ratio: [35.0, 38.5, 46.2, 48.0, 50.2, 49.8, 51.6, 56.0, 56.4, 61.7, 57.2],
+  // Indices des années avec événements marquants (pour styliser les points)
+  eventIndices: [2, 4, 7, 9], // 1975, 1981, 2009, 2020
   events: [
-    { year: '1975', label: 'Choc pétrolier', value: 46.2 },
-    { year: '1984', label: 'Pic croissance', value: 54.2 },
-    { year: '2009', label: 'Crise financière', value: 56.8 },
-    { year: '2020', label: 'COVID-19', value: 61.3 },
+    { year: '1975', label: 'Choc pétrolier', value: 46.2, index: 2 },
+    { year: '1981', label: 'Politiques Mitterrand', value: 50.2, index: 4 },
+    { year: '2009', label: 'Crise financière', value: 56.0, index: 7 },
+    { year: '2020', label: 'COVID-19', value: 61.7, index: 9 },
   ],
 }
 
 // Source: INSEE 2024 - Fonctionnement vs Investissement
 const FONCTIONNEMENT_INVESTISSEMENT = {
   fonctionnement: { amount: 1544, percent: 92.4, label: 'Fonctionnement', color: '#ff9f43' },
-  investissement: { amount: 126, percent: 7.6, label: 'Investissement (FBCF)', color: '#00d4ff' },
+  investissement: { amount: 126, percent: 7.6, label: 'Investissement', color: '#00d4ff' },
 }
 
-// Source: INSEE, DGAFP 2024 - Fonction publique
+// Source: DGAFP 2024 - Fonction publique (effectifs au 31/12/2022)
 const FONCTION_PUBLIQUE = {
-  total: 5.75, // millions
-  fpe: 2.35, // État
-  fpt: 1.97, // Territoriale
-  fph: 1.43, // Hospitalière
+  total: 5.7, // millions
+  fpe: 2.54, // État
+  fpt: 1.94, // Territoriale
+  fph: 1.21, // Hospitalière
   masseSalariale: 245, // Md€
 }
 
@@ -100,8 +104,40 @@ const EVOLUTION_DATA = {
   recettes: [1171, 1196, 1244, 1292, 1313, 1256, 1371, 1423, 1456, 1502],
 }
 
-// Répartition détaillée (source: COR 2024 pour retraites, INSEE COFOG pour le reste)
-// Total dépenses APU 2024 : 1 670 Md€
+// Source: INSEE, DREES, FIPECO - Évolution des dépenses par catégorie (% du PIB)
+// Montre l'explosion des dépenses sociales sur 40 ans
+const EVOLUTION_CATEGORIES = {
+  labels: ['1980', '1990', '2000', '2010', '2020', '2024'],
+  datasets: {
+    protectionSociale: {
+      label: 'Protection sociale',
+      data: [21.5, 25.2, 27.8, 31.2, 35.1, 31.5],
+      color: '#ff6b6b',
+      description: 'Retraites, santé, famille, chômage',
+    },
+    education: {
+      label: 'Éducation',
+      data: [5.1, 5.4, 5.8, 5.6, 5.7, 5.5],
+      color: '#4ecdc4',
+      description: 'Stable depuis 40 ans',
+    },
+    defense: {
+      label: 'Défense',
+      data: [3.8, 3.4, 2.5, 2.3, 2.0, 2.1],
+      color: '#45b7d1',
+      description: 'En baisse constante',
+    },
+    servicesPublics: {
+      label: 'Services généraux',
+      data: [4.2, 4.5, 4.8, 5.2, 5.8, 5.5],
+      color: '#dda0dd',
+      description: 'Administration, dette',
+    },
+  },
+}
+
+// Répartition détaillée (source: COR 2024 pour retraites, INSEE pour le reste)
+// Total dépenses publiques 2024 : 1 670 Md€
 // Trié du plus grand au plus petit
 const TOTAL_DEPENSES = 1670
 const SPENDING_BREAKDOWN = [
@@ -415,91 +451,6 @@ export default function DepensesPage() {
             />
           </div>
 
-          {/* Répartition par administration */}
-          <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 mb-8">
-            <h3 className="text-lg font-semibold mb-2">Qui dépense ?</h3>
-            <p className="text-sm text-text-muted mb-5">Répartition des 1 670 Md€ par administration publique</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {REPARTITION_APU.map((item) => (
-                <div key={item.name} className="bg-bg-elevated rounded-xl p-4 border border-glass-border/50">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-2xl font-mono font-bold" style={{ color: item.color }}>
-                      {item.percent}%
-                    </span>
-                    <span className="font-mono text-text-secondary">{item.amount} Md€</span>
-                  </div>
-                  <h4 className="font-medium text-text-primary mb-1">{item.name}</h4>
-                  <p className="text-xs text-text-muted">{item.description}</p>
-                </div>
-              ))}
-            </div>
-            <p className="text-xs text-text-muted/60 mt-4 text-right">Source : INSEE 2024</p>
-          </div>
-
-          {/* Fonctionnement vs Investissement */}
-          <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 mb-8">
-            <h3 className="text-lg font-semibold mb-2">Fonctionnement vs Investissement</h3>
-            <p className="text-sm text-text-muted mb-5">Comment sont utilisés les 1 670 Md€ ?</p>
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1 bg-bg-elevated rounded-xl p-5 border-l-4" style={{ borderColor: FONCTIONNEMENT_INVESTISSEMENT.fonctionnement.color }}>
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-3xl font-mono font-bold" style={{ color: FONCTIONNEMENT_INVESTISSEMENT.fonctionnement.color }}>
-                    {FONCTIONNEMENT_INVESTISSEMENT.fonctionnement.percent}%
-                  </span>
-                  <span className="text-text-secondary font-mono">{FONCTIONNEMENT_INVESTISSEMENT.fonctionnement.amount} Md€</span>
-                </div>
-                <h4 className="font-semibold mb-2">{FONCTIONNEMENT_INVESTISSEMENT.fonctionnement.label}</h4>
-                <p className="text-sm text-text-muted">Salaires, prestations sociales, achats courants, intérêts de la dette</p>
-              </div>
-              <div className="flex-1 bg-bg-elevated rounded-xl p-5 border-l-4" style={{ borderColor: FONCTIONNEMENT_INVESTISSEMENT.investissement.color }}>
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-3xl font-mono font-bold" style={{ color: FONCTIONNEMENT_INVESTISSEMENT.investissement.color }}>
-                    {FONCTIONNEMENT_INVESTISSEMENT.investissement.percent}%
-                  </span>
-                  <span className="text-text-secondary font-mono">{FONCTIONNEMENT_INVESTISSEMENT.investissement.amount} Md€</span>
-                </div>
-                <h4 className="font-semibold mb-2">{FONCTIONNEMENT_INVESTISSEMENT.investissement.label}</h4>
-                <p className="text-sm text-text-muted">Infrastructures, équipements, bâtiments publics, recherche</p>
-              </div>
-            </div>
-            <div className="mt-4 p-3 bg-accent-gold/10 border border-accent-gold/20 rounded-lg">
-              <p className="text-sm text-text-secondary">
-                <span className="font-semibold text-accent-gold">Note :</span> Seulement 7,6% des dépenses publiques sont des investissements productifs durables.
-              </p>
-            </div>
-            <p className="text-xs text-text-muted/60 mt-4 text-right">Source : INSEE - FBCF des APU 2024</p>
-          </div>
-
-          {/* Fonction publique */}
-          <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 mb-8">
-            <h3 className="text-lg font-semibold mb-2">La fonction publique</h3>
-            <p className="text-sm text-text-muted mb-5">5,75 millions d&apos;agents au service du public</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-              <div className="text-center p-4 bg-bg-elevated rounded-xl">
-                <div className="text-2xl font-mono font-bold text-accent-electric">{FONCTION_PUBLIQUE.total}M</div>
-                <div className="text-xs text-text-muted mt-1">Agents totaux</div>
-              </div>
-              <div className="text-center p-4 bg-bg-elevated rounded-xl">
-                <div className="text-2xl font-mono font-bold text-accent-purple">{FONCTION_PUBLIQUE.fpe}M</div>
-                <div className="text-xs text-text-muted mt-1">État (FPE)</div>
-              </div>
-              <div className="text-center p-4 bg-bg-elevated rounded-xl">
-                <div className="text-2xl font-mono font-bold text-accent-green">{FONCTION_PUBLIQUE.fpt}M</div>
-                <div className="text-xs text-text-muted mt-1">Territoriale (FPT)</div>
-              </div>
-              <div className="text-center p-4 bg-bg-elevated rounded-xl">
-                <div className="text-2xl font-mono font-bold text-accent-red">{FONCTION_PUBLIQUE.fph}M</div>
-                <div className="text-xs text-text-muted mt-1">Hospitalière (FPH)</div>
-              </div>
-            </div>
-            <div className="p-3 bg-bg-elevated rounded-lg">
-              <p className="text-sm text-text-secondary">
-                <span className="font-semibold">Masse salariale :</span> {FONCTION_PUBLIQUE.masseSalariale} Md€/an, soit <span className="font-mono text-accent-electric">14,7%</span> des dépenses publiques
-              </p>
-            </div>
-            <p className="text-xs text-text-muted/60 mt-4 text-right">Source : DGAFP 2024</p>
-          </div>
-
           {/* Graphiques côte à côte : Évolution récente + Évolution longue */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             {/* Évolution des dépenses (2015-2024) */}
@@ -507,7 +458,7 @@ export default function DepensesPage() {
               title="Évolution des dépenses"
               subtitle="En milliards d'euros, 2015-2024"
               height="350px"
-              source="INSEE - Comptes des APU"
+              source="INSEE - Comptes nationaux"
             >
               <LineChart
                 labels={EVOLUTION_DATA.labels}
@@ -540,8 +491,9 @@ export default function DepensesPage() {
                 <p className="text-sm text-text-muted mt-1">Dépenses publiques en % du PIB</p>
               </div>
 
-              <div className="flex-1 min-h-[200px]">
-                <ChartWrapper title="" subtitle="" height="200px" source="">
+              {/* Graphique avec annotations intégrées */}
+              <div className="flex-1 relative" style={{ minHeight: '350px' }}>
+                <ChartWrapper title="" subtitle="" height="350px" source="">
                   <LineChart
                     labels={EVOLUTION_HISTORIQUE.labels}
                     datasets={[
@@ -559,16 +511,16 @@ export default function DepensesPage() {
                     yCallback={(v) => `${v}%`}
                   />
                 </ChartWrapper>
-              </div>
 
-              <div className="grid grid-cols-4 gap-2 mt-3">
-                {EVOLUTION_HISTORIQUE.events.map((event) => (
-                  <div key={event.year} className="bg-bg-elevated rounded-lg p-2 text-center">
-                    <div className="text-[10px] text-text-muted">{event.year}</div>
-                    <div className="font-mono text-sm font-bold text-accent-gold">{event.value}%</div>
-                    <div className="text-[10px] text-text-secondary leading-tight">{event.label}</div>
-                  </div>
-                ))}
+                {/* Légende des événements clés */}
+                <div className="absolute bottom-12 left-0 right-0 flex justify-around px-4 pointer-events-none">
+                  {EVOLUTION_HISTORIQUE.events.map((event) => (
+                    <div key={event.year} className="text-center bg-bg-deep/80 backdrop-blur-sm px-2 py-1 rounded">
+                      <div className="font-mono text-xs font-bold text-accent-gold">{event.year}</div>
+                      <div className="text-[10px] text-text-secondary whitespace-nowrap">{event.label}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div className="mt-3 p-2 bg-accent-gold/10 border border-accent-gold/20 rounded-lg">
@@ -577,6 +529,91 @@ export default function DepensesPage() {
                 </p>
               </div>
               <p className="text-xs text-text-muted/60 mt-2 text-right">Source : INSEE, FIPECO</p>
+            </div>
+          </div>
+
+          {/* Nouveau graphique : Évolution par catégorie - L'explosion sociale */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            {/* Graphique carré */}
+            <div className="bg-bg-surface border border-glass-border rounded-2xl p-5">
+              <div className="mb-3">
+                <h3 className="text-lg font-semibold">L&apos;explosion des dépenses sociales</h3>
+                <p className="text-sm text-text-muted mt-1">Évolution par catégorie en % du PIB (1980-2024)</p>
+              </div>
+              <div style={{ height: '350px' }}>
+                <LineChart
+                  labels={EVOLUTION_CATEGORIES.labels}
+                  datasets={[
+                    {
+                      label: EVOLUTION_CATEGORIES.datasets.protectionSociale.label,
+                      data: EVOLUTION_CATEGORIES.datasets.protectionSociale.data,
+                      borderColor: EVOLUTION_CATEGORIES.datasets.protectionSociale.color,
+                      backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                      fill: true,
+                      borderWidth: 3,
+                    },
+                    {
+                      label: EVOLUTION_CATEGORIES.datasets.education.label,
+                      data: EVOLUTION_CATEGORIES.datasets.education.data,
+                      borderColor: EVOLUTION_CATEGORIES.datasets.education.color,
+                      borderWidth: 2,
+                    },
+                    {
+                      label: EVOLUTION_CATEGORIES.datasets.defense.label,
+                      data: EVOLUTION_CATEGORIES.datasets.defense.data,
+                      borderColor: EVOLUTION_CATEGORIES.datasets.defense.color,
+                      borderWidth: 2,
+                    },
+                    {
+                      label: EVOLUTION_CATEGORIES.datasets.servicesPublics.label,
+                      data: EVOLUTION_CATEGORIES.datasets.servicesPublics.data,
+                      borderColor: EVOLUTION_CATEGORIES.datasets.servicesPublics.color,
+                      borderWidth: 2,
+                    },
+                  ]}
+                  yMin={0}
+                  yMax={40}
+                  yCallback={(v) => `${v}%`}
+                />
+              </div>
+              <p className="text-xs text-text-muted/60 mt-3 text-right">Source : INSEE, DREES, FIPECO</p>
+            </div>
+
+            {/* Insight à droite */}
+            <div className="bg-gradient-to-br from-accent-red/10 to-accent-red/5 border border-accent-red/20 rounded-2xl p-6 flex flex-col justify-center">
+              <div className="flex items-start gap-4 mb-6">
+                <span className="text-4xl">📈</span>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">La protection sociale : moteur de la hausse</h3>
+                  <p className="text-text-secondary">
+                    En 44 ans, les dépenses de protection sociale sont passées de <span className="font-mono text-accent-red font-semibold">21,5%</span> à <span className="font-mono text-accent-red font-semibold">31,5%</span> du PIB,
+                    soit <span className="font-semibold">+10 points</span>. C&apos;est l&apos;essentiel de la hausse des dépenses publiques.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-bg-surface/50 rounded-lg p-4 text-center">
+                  <div className="font-mono text-2xl font-bold text-accent-red">+10 pts</div>
+                  <div className="text-sm text-text-muted mt-1">Protection sociale</div>
+                  <div className="text-xs text-text-muted/60">Retraites, santé, famille</div>
+                </div>
+                <div className="bg-bg-surface/50 rounded-lg p-4 text-center">
+                  <div className="font-mono text-2xl font-bold text-accent-green">+0,4 pt</div>
+                  <div className="text-sm text-text-muted mt-1">Éducation</div>
+                  <div className="text-xs text-text-muted/60">Stable depuis 40 ans</div>
+                </div>
+                <div className="bg-bg-surface/50 rounded-lg p-4 text-center">
+                  <div className="font-mono text-2xl font-bold text-accent-electric">-1,7 pt</div>
+                  <div className="text-sm text-text-muted mt-1">Défense</div>
+                  <div className="text-xs text-text-muted/60">Dividende de la paix</div>
+                </div>
+                <div className="bg-bg-surface/50 rounded-lg p-4 text-center">
+                  <div className="font-mono text-2xl font-bold text-accent-purple">+1,3 pt</div>
+                  <div className="text-sm text-text-muted mt-1">Services publics</div>
+                  <div className="text-xs text-text-muted/60">Administration, dette</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -631,15 +668,147 @@ export default function DepensesPage() {
             </div>
 
             <p className="text-xs text-text-muted/60 mt-4 text-right">
-              Sources : DREES (retraites), INSEE COFOG 2024
+              Sources : DREES, INSEE 2024
             </p>
           </div>
 
-          {/* Sources */}
-          <div className="text-center py-6 border-t border-glass-border">
-            <p className="text-text-muted text-sm">
-              Sources : INSEE - Comptes des administrations publiques, DREES, FIPECO, PLF 2025
-            </p>
+          {/* Titre section analytique */}
+          <h2 className="font-serif text-2xl font-normal mb-6 mt-10">
+            Analyse <span className="italic text-accent-electric">structurelle</span>
+          </h2>
+
+          {/* Répartition par administration */}
+          <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 mb-6">
+            <h3 className="text-lg font-semibold mb-2">Qui dépense ?</h3>
+            <p className="text-sm text-text-muted mb-5">Répartition des 1 670 Md€ par administration publique</p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Colonne gauche : les 3 chiffres */}
+              <div className="flex flex-col gap-4">
+                {REPARTITION_APU.map((item) => (
+                  <div key={item.name} className="bg-bg-elevated rounded-xl p-5 border border-glass-border/50">
+                    <div className="mb-3">
+                      <span className="text-3xl font-mono font-bold" style={{ color: item.color }}>
+                        {item.amount} Md€
+                      </span>
+                      <span className="text-lg font-mono text-text-secondary ml-2">{item.percent}%</span>
+                    </div>
+                    <h4 className="font-semibold text-text-primary mb-1">{item.name}</h4>
+                    <p className="text-xs text-text-muted">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+              {/* Colonne droite : explication */}
+              <div className="bg-accent-purple/10 border border-accent-purple/30 rounded-xl p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">💡</span>
+                  <h4 className="font-semibold text-text-primary text-lg">Sécurité sociale ≠ Protection sociale</h4>
+                </div>
+
+                <p className="text-text-secondary leading-relaxed mb-4">
+                  Le budget de la Sécurité sociale (<span className="font-mono font-semibold text-accent-red">768 Md€</span>) ne couvre pas l&apos;ensemble de la protection sociale française (<span className="font-mono font-semibold text-accent-purple">932 Md€</span>).
+                </p>
+
+                <p className="text-text-secondary leading-relaxed mb-4">
+                  Certaines prestations sociales sont versées par d&apos;autres administrations :
+                </p>
+
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-start gap-3 p-3 bg-bg-surface/50 rounded-lg">
+                    <span className="text-xl">🏛️</span>
+                    <div>
+                      <p className="text-sm font-semibold text-text-primary">Versé par l&apos;État</p>
+                      <p className="text-xs text-text-muted">Pensions des fonctionnaires (~90 Md€), allocations aux adultes handicapés (AAH), bourses étudiantes</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 bg-bg-surface/50 rounded-lg">
+                    <span className="text-xl">🏘️</span>
+                    <div>
+                      <p className="text-sm font-semibold text-text-primary">Versé par les collectivités</p>
+                      <p className="text-xs text-text-muted">RSA (~15 Md€), allocation personnalisée d&apos;autonomie (APA), aide sociale à l&apos;enfance</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-3 bg-bg-surface/30 rounded-lg border border-accent-purple/20">
+                  <p className="text-sm text-text-secondary">
+                    <span className="font-semibold">Exemple :</span> Un professeur retraité touche sa pension de l&apos;État (pas de la Sécu), mais c&apos;est bien une prestation de protection sociale.
+                  </p>
+                </div>
+
+                <div className="mt-4 pt-4 border-t border-accent-purple/20 flex justify-between items-center">
+                  <span className="text-sm text-text-muted font-semibold">Total protection sociale</span>
+                  <span className="font-mono text-xl font-bold text-accent-purple">932 Md€</span>
+                </div>
+              </div>
+            </div>
+            <p className="text-xs text-text-muted/60 mt-4 text-right">Source : INSEE 2024</p>
+          </div>
+
+          {/* Fonctionnement vs Investissement */}
+          <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 mb-6">
+            <h3 className="text-lg font-semibold mb-2">Fonctionnement vs Investissement</h3>
+            <p className="text-sm text-text-muted mb-5">Comment sont utilisés les 1 670 Md€ ?</p>
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex-1 bg-bg-elevated rounded-xl p-5 border-l-4" style={{ borderColor: FONCTIONNEMENT_INVESTISSEMENT.fonctionnement.color }}>
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-3xl font-mono font-bold" style={{ color: FONCTIONNEMENT_INVESTISSEMENT.fonctionnement.color }}>
+                    {FONCTIONNEMENT_INVESTISSEMENT.fonctionnement.percent}%
+                  </span>
+                  <span className="text-text-secondary font-mono">{FONCTIONNEMENT_INVESTISSEMENT.fonctionnement.amount} Md€</span>
+                </div>
+                <h4 className="font-semibold mb-2">{FONCTIONNEMENT_INVESTISSEMENT.fonctionnement.label}</h4>
+                <p className="text-sm text-text-muted">Salaires, prestations sociales, achats courants, intérêts de la dette</p>
+              </div>
+              <div className="flex-1 bg-bg-elevated rounded-xl p-5 border-l-4" style={{ borderColor: FONCTIONNEMENT_INVESTISSEMENT.investissement.color }}>
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-3xl font-mono font-bold" style={{ color: FONCTIONNEMENT_INVESTISSEMENT.investissement.color }}>
+                    {FONCTIONNEMENT_INVESTISSEMENT.investissement.percent}%
+                  </span>
+                  <span className="text-text-secondary font-mono">{FONCTIONNEMENT_INVESTISSEMENT.investissement.amount} Md€</span>
+                </div>
+                <h4 className="font-semibold mb-2">{FONCTIONNEMENT_INVESTISSEMENT.investissement.label}</h4>
+                <p className="text-sm text-text-muted">Infrastructures, équipements, bâtiments publics, recherche</p>
+              </div>
+            </div>
+            <div className="mt-4 p-3 bg-accent-gold/10 border border-accent-gold/20 rounded-lg">
+              <p className="text-sm text-text-secondary">
+                <span className="font-semibold text-accent-gold">Note :</span> Seulement 7,6% des dépenses publiques sont des investissements productifs durables.
+              </p>
+            </div>
+            <p className="text-xs text-text-muted/60 mt-4 text-right">Source : INSEE 2024</p>
+          </div>
+
+          {/* Fonction publique */}
+          <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 mb-8">
+            <h3 className="text-lg font-semibold mb-2">La fonction publique</h3>
+            <p className="text-sm text-text-muted mb-5">5,7 millions d&apos;agents au service du public</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+              <div className="text-center p-4 bg-bg-elevated rounded-xl">
+                <div className="text-2xl font-mono font-bold text-accent-electric">{FONCTION_PUBLIQUE.total}M</div>
+                <div className="text-xs text-text-muted mt-1">Agents totaux</div>
+              </div>
+              <div className="text-center p-4 bg-bg-elevated rounded-xl">
+                <div className="text-2xl font-mono font-bold text-accent-purple">{FONCTION_PUBLIQUE.fpe}M</div>
+                <div className="text-xs text-text-muted mt-1">État</div>
+              </div>
+              <div className="text-center p-4 bg-bg-elevated rounded-xl">
+                <div className="text-2xl font-mono font-bold text-accent-green">{FONCTION_PUBLIQUE.fpt}M</div>
+                <div className="text-xs text-text-muted mt-1">Territoriale</div>
+              </div>
+              <div className="text-center p-4 bg-bg-elevated rounded-xl">
+                <div className="text-2xl font-mono font-bold text-accent-red">{FONCTION_PUBLIQUE.fph}M</div>
+                <div className="text-xs text-text-muted mt-1">Hospitalière</div>
+              </div>
+              <div className="text-center p-4 bg-bg-elevated rounded-xl border-2 border-accent-gold/30">
+                <div className="text-2xl font-mono font-bold text-accent-gold">{FONCTION_PUBLIQUE.masseSalariale} Md€</div>
+                <div className="text-xs text-text-muted mt-1">Masse salariale</div>
+              </div>
+              <div className="text-center p-4 bg-bg-elevated rounded-xl border-2 border-accent-electric/30">
+                <div className="text-2xl font-mono font-bold text-accent-electric">14,7%</div>
+                <div className="text-xs text-text-muted mt-1">Part des dépenses</div>
+              </div>
+            </div>
+            <p className="text-xs text-text-muted/60 mt-4 text-right">Source : DGAFP 2024</p>
           </div>
         </>
       )}

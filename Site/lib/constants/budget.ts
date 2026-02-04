@@ -102,29 +102,30 @@ export const MINISTRIES = [
   },
 ]
 
+// Source : INSEE, Banque de France, Ministère de l'Économie (vérifié 02/2026)
 export const TIMELINE_EVENTS = [
   {
     year: '1974',
     title: 'Dernier budget équilibré',
-    description: 'Sous Giscard, la France vote son dernier budget à l\'équilibre. Le choc pétrolier marque la fin des Trente Glorieuses et le début des déficits permanents.',
+    description: 'Sous Giscard, la France vote son dernier budget à l\'équilibre (+0,1% du PIB). Le choc pétrolier marque la fin des Trente Glorieuses et le début de 50 ans de déficits.',
     stat: 'Dette : 15% du PIB',
   },
   {
     year: '1981',
     title: 'Explosion des dépenses sociales',
-    description: 'Mitterrand : nationalisations, 5ème semaine de congés, retraite à 60 ans, embauche massive de fonctionnaires. La dette double en 10 ans.',
-    stat: 'Dette : 35% du PIB',
+    description: 'Mitterrand : nationalisations, 5ème semaine de congés, retraite à 60 ans, embauche massive de fonctionnaires. La dette passe de 21% à 36% du PIB en 10 ans.',
+    stat: 'Dette : 21% du PIB',
   },
   {
     year: '2008',
     title: 'Crise financière mondiale',
-    description: 'Plan de relance massif, renflouement des banques. Le déficit explose à 7,2% du PIB. La dette dépasse les 1 300 milliards.',
+    description: 'Plan de relance massif, renflouement des banques. Le déficit explose à 7,5% du PIB en 2009. La dette dépasse les 1 300 milliards.',
     stat: 'Dette : 68% du PIB',
   },
   {
     year: '2020',
     title: 'Crise Covid-19',
-    description: 'Le "quoi qu\'il en coûte" : chômage partiel, prêts garantis, fonds de solidarité. La dette bondit de 600 milliards en 2 ans.',
+    description: 'Le "quoi qu\'il en coûte" : chômage partiel, prêts garantis, fonds de solidarité. La dette bondit de 270 milliards en un an (+16 points de PIB).',
     stat: 'Dette : 115% du PIB',
   },
   {

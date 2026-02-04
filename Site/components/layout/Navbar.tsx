@@ -91,12 +91,26 @@ export function Navbar() {
   }, [])
 
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault()
     if (email) {
-      setSubscribed(true)
-      setEmail('')
-      setTimeout(() => setSubscribed(false), 3000)
+      try {
+        const response = await fetch('https://formspree.io/f/mbdknqpb', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({ email }),
+        })
+        if (response.ok) {
+          setSubscribed(true)
+          setEmail('')
+          setTimeout(() => setSubscribed(false), 3000)
+        }
+      } catch {
+        // En cas d'erreur, on ne fait rien
+      }
     }
   }
 

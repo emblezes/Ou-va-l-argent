@@ -55,23 +55,6 @@ function BudgetCard({ ministry, delay }: BudgetCardProps) {
 
       <div className="flex justify-between items-start mb-4">
         <span className="text-3xl">{ministry.icon}</span>
-        <div className="flex items-center gap-2">
-          {ministry.isHighlight && (
-            <span className="text-xs font-medium px-2 py-1 rounded bg-accent-electric/20 text-accent-electric">
-              Focus
-            </span>
-          )}
-          <span
-            className={`text-xs font-medium px-2 py-1 rounded ${
-              ministry.evolution >= 0
-                ? 'bg-accent-green/10 text-accent-green'
-                : 'bg-accent-red/10 text-accent-red'
-            }`}
-          >
-            {ministry.evolution >= 0 ? '+' : ''}
-            {ministry.evolution}%
-          </span>
-        </div>
       </div>
 
       <h3 className="font-semibold text-lg mb-1">{ministry.shortName}</h3>
@@ -91,7 +74,7 @@ function BudgetCard({ ministry, delay }: BudgetCardProps) {
           }}
         />
       </div>
-      <div className="text-text-muted text-xs mt-2 text-right">{ministry.percent}% du budget</div>
+      <div className="text-text-secondary text-base font-semibold mt-2 text-right">{ministry.percent}% du budget</div>
 
       {ministry.href && (
         <div className="mt-3 text-xs text-accent-electric flex items-center gap-1">

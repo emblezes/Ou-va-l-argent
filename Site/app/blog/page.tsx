@@ -96,13 +96,37 @@ const TAGS = ['dette', 'impôts', 'TVA', 'déficit', 'PIB', 'cotisations', 'retr
 
 export default function BlogPage() {
   const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const featuredArticle = ARTICLES.find((a) => a.featured)
   const regularArticles = ARTICLES.filter((a) => !a.featured)
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    alert('Merci ! Vous recevrez notre prochaine newsletter.')
-    setEmail('')
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('https://formspree.io/f/mbdknqpb', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ email }),
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setEmail('')
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch {
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -274,13 +298,25 @@ export default function BlogPage() {
                 className="form-input"
                 placeholder="Votre email"
                 required
+                disabled={isSubmitting}
               />
               <button
                 type="submit"
-                className="py-3 bg-accent-electric text-bg-deep font-semibold rounded-lg transition-all hover:bg-[#00b8e6]"
+                disabled={isSubmitting}
+                className="py-3 bg-accent-electric text-bg-deep font-semibold rounded-lg transition-all hover:bg-[#00b8e6] disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                S&apos;abonner
+                {isSubmitting ? 'Inscription...' : "S'abonner"}
               </button>
+              {submitStatus === 'success' && (
+                <p className="text-accent-green text-sm flex items-center gap-2">
+                  <span>✓</span> Bienvenue !
+                </p>
+              )}
+              {submitStatus === 'error' && (
+                <p className="text-accent-red text-sm flex items-center gap-2">
+                  <span>✗</span> Erreur. Réessayez.
+                </p>
+              )}
             </form>
           </div>
         </aside>

@@ -96,6 +96,15 @@ function ProposalCard({ proposal, entering }: ProposalCardProps) {
 export default function PropositionsPage() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [visibleProposals, setVisibleProposals] = useState(SAMPLE_PROPOSALS.slice(0, 4))
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [formData, setFormData] = useState({
+    titre: '',
+    description: '',
+    prenom: '',
+    nom: '',
+    email: '',
+  })
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -113,9 +122,32 @@ export default function PropositionsPage() {
     return () => clearInterval(interval)
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    alert('Merci pour votre proposition ! Elle sera examinée par notre équipe.')
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('https://formspree.io/f/xnjjdrdy', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({ titre: '', description: '', prenom: '', nom: '', email: '' })
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch {
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -168,6 +200,9 @@ export default function PropositionsPage() {
                   className="form-input"
                   placeholder="Ex: Réduire le nombre d'agences publiques..."
                   required
+                  disabled={isSubmitting}
+                  value={formData.titre}
+                  onChange={(e) => setFormData({ ...formData, titre: e.target.value })}
                 />
               </div>
 
@@ -179,6 +214,9 @@ export default function PropositionsPage() {
                   className="form-textarea"
                   placeholder="Décrivez votre proposition en détail : le problème identifié, la solution proposée, les bénéfices attendus..."
                   required
+                  disabled={isSubmitting}
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 />
               </div>
 
@@ -187,13 +225,29 @@ export default function PropositionsPage() {
                   <label className="block text-xs text-text-secondary uppercase tracking-wider mb-2">
                     Prénom
                   </label>
-                  <input type="text" className="form-input" placeholder="Votre prénom" required />
+                  <input
+                    type="text"
+                    className="form-input"
+                    placeholder="Votre prénom"
+                    required
+                    disabled={isSubmitting}
+                    value={formData.prenom}
+                    onChange={(e) => setFormData({ ...formData, prenom: e.target.value })}
+                  />
                 </div>
                 <div>
                   <label className="block text-xs text-text-secondary uppercase tracking-wider mb-2">
                     Nom
                   </label>
-                  <input type="text" className="form-input" placeholder="Votre nom" required />
+                  <input
+                    type="text"
+                    className="form-input"
+                    placeholder="Votre nom"
+                    required
+                    disabled={isSubmitting}
+                    value={formData.nom}
+                    onChange={(e) => setFormData({ ...formData, nom: e.target.value })}
+                  />
                 </div>
               </div>
 
@@ -206,15 +260,30 @@ export default function PropositionsPage() {
                   className="form-input"
                   placeholder="votre.email@exemple.com"
                   required
+                  disabled={isSubmitting}
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-4 bg-accent-purple text-white font-semibold rounded-lg transition-all duration-200 hover:bg-purple-600 hover:-translate-y-0.5 hover:shadow-[0_10px_20px_rgba(168,85,247,0.3)]"
+                disabled={isSubmitting}
+                className="w-full py-4 bg-accent-purple text-white font-semibold rounded-lg transition-all duration-200 hover:bg-purple-600 hover:-translate-y-0.5 hover:shadow-[0_10px_20px_rgba(168,85,247,0.3)] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                Soumettre ma proposition
+                {isSubmitting ? 'Envoi en cours...' : 'Soumettre ma proposition'}
               </button>
+
+              {submitStatus === 'success' && (
+                <p className="text-accent-green text-sm mt-4 flex items-center gap-2 justify-center">
+                  <span>✓</span> Merci ! Votre proposition a bien été envoyée.
+                </p>
+              )}
+              {submitStatus === 'error' && (
+                <p className="text-accent-red text-sm mt-4 flex items-center gap-2 justify-center">
+                  <span>✗</span> Une erreur est survenue. Veuillez réessayer.
+                </p>
+              )}
             </form>
           </section>
 
