@@ -1,7 +1,28 @@
 import type { Metadata } from 'next'
+import { Syne, JetBrains_Mono, Instrument_Serif } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+
+const syne = Syne({
+  subsets: ['latin'],
+  variable: '--font-syne',
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+})
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -33,7 +54,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body className="font-sans antialiased">
+      <body className={`${syne.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable} font-sans antialiased`}>
         {/* Background Elements */}
         <div className="bg-atmosphere" />
         <div className="bg-grid" />

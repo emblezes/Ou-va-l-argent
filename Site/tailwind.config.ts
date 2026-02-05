@@ -34,9 +34,9 @@ const config: Config = {
         'glass-border': 'rgba(255, 255, 255, 0.08)',
       },
       fontFamily: {
-        'serif': ['Instrument Serif', 'serif'],
-        'sans': ['Syne', 'sans-serif'],
-        'mono': ['JetBrains Mono', 'monospace'],
+        'serif': ['var(--font-serif)', 'Instrument Serif', 'serif'],
+        'sans': ['var(--font-syne)', 'Syne', 'sans-serif'],
+        'mono': ['var(--font-mono)', 'JetBrains Mono', 'monospace'],
       },
       borderRadius: {
         'sm': '8px',

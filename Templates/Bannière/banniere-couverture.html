@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bannière - Où Va l'Argent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            gap: 3rem;
+        }
+
+        .label {
+            color: #666;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* LinkedIn : 1584 x 396 */
+        .banner-linkedin {
+            width: 1584px;
+            height: 396px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        /* Facebook : 820 x 312 */
+        .banner-facebook {
+            width: 820px;
+            height: 312px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-left {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.12) 0%, transparent 70%);
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .bg-glow-right {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.06) 0%, transparent 70%);
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            padding: 0 80px;
+            gap: 50px;
+        }
+
+        .logo-box {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
+        }
+
+        .logo-euro {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 70px;
+            font-weight: 600;
+            color: #06080c;
+        }
+
+        .text-content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .site-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 52px;
+            font-weight: 700;
+            color: #f0f4f8;
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            font-family: 'Instrument Serif', serif;
+            font-size: 28px;
+            font-style: italic;
+            color: #8899a8;
+        }
+
+        .tagline .accent {
+            color: #00d4ff;
+        }
+
+        /* Version Facebook - ajustements */
+        .banner-facebook .content {
+            padding: 0 50px;
+            gap: 35px;
+        }
+
+        .banner-facebook .logo-box {
+            width: 90px;
+            height: 90px;
+            border-radius: 18px;
+        }
+
+        .banner-facebook .logo-euro {
+            font-size: 52px;
+        }
+
+        .banner-facebook .site-name {
+            font-size: 38px;
+        }
+
+        .banner-facebook .tagline {
+            font-size: 20px;
+        }
+
+        .banner-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bannière LinkedIn -->
+    <div class="banner-wrapper">
+        <span class="label">LinkedIn (1584 × 396)</span>
+        <div class="banner-linkedin">
+            <div class="bg-base"></div>
+            <div class="bg-grid"></div>
+            <div class="bg-glow-left"></div>
+            <div class="bg-glow-right"></div>
+            <div class="content">
+                <div class="logo-box">
+                    <span class="logo-euro">€</span>
+                </div>
+                <div class="text-content">
+                    <div class="site-name">Où Va l'Argent</div>
+                    <div class="tagline">Comprendre les <span class="accent">finances publiques</span> en toute clarté</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bannière Facebook -->
+    <div class="banner-wrapper">
+        <span class="label">Facebook (820 × 312)</span>
+        <div class="banner-facebook">
+            <div class="bg-base"></div>
+            <div class="bg-grid"></div>
+            <div class="bg-glow-left"></div>
+            <div class="bg-glow-right"></div>
+            <div class="content">
+                <div class="logo-box">
+                    <span class="logo-euro">€</span>
+                </div>
+                <div class="text-content">
+                    <div class="site-name">Où Va l'Argent</div>
+                    <div class="tagline">Comprendre les <span class="accent">finances publiques</span> en toute clarté</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

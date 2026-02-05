@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Où Va l'Argent - Questions & Réponses sur les Finances Publiques</title>
+    <meta name="description" content="Comprendre les finances publiques françaises : dette, impôts, dépenses de l'État expliqués simplement. Questions fréquentes et analyses.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --bg-surface: #0a0e14;
+            --bg-elevated: #111820;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-electric-dim: rgba(0, 212, 255, 0.15);
+            --accent-gold: #ffd700;
+            --accent-green: #00ff88;
+            --accent-red: #ff4757;
+            --accent-purple: #a855f7;
+            --accent-orange: #ff9f43;
+            --glass: rgba(17, 24, 32, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-surface); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-elevated); border-radius: 4px; }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--accent-electric) 0%, #0099cc 100%);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.75rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 100%; height: 2px;
+            background: var(--accent-electric);
+        }
+
+        /* Main Layout */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem 3rem;
+        }
+
+        .blog-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 2rem;
+        }
+
+        /* Header */
+        .page-header {
+            grid-column: span 2;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+
+        .page-header h1 .accent {
+            color: var(--accent-electric);
+            font-style: italic;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Featured Article */
+        .featured-article {
+            grid-column: span 2;
+            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .featured-article:hover {
+            border-color: var(--accent-electric);
+            transform: translateY(-4px);
+        }
+
+        .featured-image {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            min-height: 300px;
+        }
+
+        .featured-content {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.75rem;
+            background: var(--accent-electric);
+            color: var(--bg-deep);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            width: fit-content;
+            margin-bottom: 1rem;
+        }
+
+        .featured-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .featured-excerpt {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .article-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            transition: all 0.3s;
+        }
+
+        .article-card:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            transform: translateX(4px);
+        }
+
+        .article-image {
+            background: var(--bg-elevated);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-category {
+            display: inline-flex;
+            padding: 0.3rem 0.6rem;
+            background: var(--cat-bg);
+            color: var(--cat-color);
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+            transition: color 0.2s;
+        }
+
+        .article-card:hover .article-title {
+            color: var(--accent-electric);
+        }
+
+        .article-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+        }
+
+        .sidebar-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Categories */
+        .categories-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: var(--bg-elevated);
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .category-item:hover {
+            background: var(--accent-electric-dim);
+            color: var(--accent-electric);
+        }
+
+        .category-count {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            background: var(--bg-deep);
+            border-radius: 4px;
+        }
+
+        /* Tags */
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.4rem 0.75rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .tag:hover {
+            border-color: var(--accent-electric);
+            color: var(--accent-electric);
+        }
+
+        /* Popular Posts */
+        .popular-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .popular-item {
+            display: flex;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.2s;
+        }
+
+        .popular-item:hover .popular-title {
+            color: var(--accent-electric);
+        }
+
+        .popular-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-electric);
+            opacity: 0.5;
+            line-height: 1;
+        }
+
+        .popular-content {
+            flex: 1;
+        }
+
+        .popular-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            line-height: 1.4;
+            transition: color 0.2s;
+        }
+
+        .popular-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Newsletter */
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .newsletter-input {
+            padding: 0.875rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-family: 'Syne', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--accent-electric);
+        }
+
+        .newsletter-btn {
+            padding: 0.875rem;
+            background: var(--accent-electric);
+            border: none;
+            border-radius: var(--radius-sm);
+            color: var(--bg-deep);
+            font-family: 'Syne', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .newsletter-btn:hover {
+            background: #00b8e6;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .page-btn {
+            width: 40px; height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .page-btn:hover, .page-btn.active {
+            background: var(--accent-electric);
+            border-color: var(--accent-electric);
+            color: var(--bg-deep);
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .blog-layout { grid-template-columns: 1fr; }
+            .page-header, .featured-article { grid-column: span 1; }
+            .sidebar { display: grid; grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .main-container { padding: 4.5rem 1rem 2rem; }
+            .featured-article { grid-template-columns: 1fr; }
+            .featured-image { min-height: 200px; }
+            .article-card { grid-template-columns: 1fr; }
+            .article-image { height: 150px; }
+            .sidebar { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">€</div>
+            <span>Où Va l'Argent</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="depenses.html">Dépenses</a></li>
+            <li><a href="dettes.html">Dettes</a></li>
+            <li><a href="impots.html">Impôts</a></li>
+            <li><a href="simulateur.html">Brutes vs Nets</a></li>
+            <li><a href="wtf.html">What the fuck</a></li>
+            <li><a href="propositions.html">Je propose</a></li>
+            <li><a href="blog.html" class="active">Blog</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-container">
+        <div class="blog-layout">
+            <!-- Header -->
+            <header class="page-header">
+                <h1>Le <span class="accent">Blog</span></h1>
+                <p>Questions fréquentes, analyses et décryptages pour mieux comprendre les finances publiques</p>
+            </header>
+
+            <!-- Featured Article -->
+            <article class="featured-article">
+                <div class="featured-image">📊</div>
+                <div class="featured-content">
+                    <div class="featured-badge">
+                        <span>⭐</span> Article à la une
+                    </div>
+                    <h2 class="featured-title">Pourquoi la France n'a-t-elle pas eu de budget équilibré depuis 50 ans ?</h2>
+                    <p class="featured-excerpt">Depuis 1974, chaque gouvernement français vote un budget en déficit. Comment en est-on arrivé là ? Quels mécanismes économiques et politiques expliquent cette situation unique en Europe ?</p>
+                    <div class="featured-meta">
+                        <span class="meta-item">📅 15 janvier 2025</span>
+                        <span class="meta-item">⏱️ 8 min de lecture</span>
+                        <span class="meta-item">💬 127 commentaires</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Articles Grid -->
+            <div class="articles-grid">
+                <article class="article-card" style="--cat-bg: rgba(255, 71, 87, 0.15); --cat-color: #ff4757;">
+                    <div class="article-image" style="background: linear-gradient(135deg, rgba(255, 71, 87, 0.2), rgba(255, 159, 67, 0.2));">💰</div>
+                    <div class="article-content">
+                        <span class="article-category">Dette</span>
+                        <h3 class="article-title">Qui détient vraiment la dette française ?</h3>
+                        <p class="article-excerpt">48% de la dette française est détenue par des investisseurs étrangers. Mais qui sont-ils exactement et quels risques cela représente-t-il ?</p>
+                        <div class="article-meta">
+                            <span>12 jan. 2025</span>
+                            <span>5 min</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card" style="--cat-bg: rgba(255, 215, 0, 0.15); --cat-color: #ffd700;">
+                    <div class="article-image" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 159, 67, 0.2));">🧾</div>
+                    <div class="article-content">
+                        <span class="article-category">Impôts</span>
+                        <h3 class="article-title">Pourquoi 44% des Français ne paient pas d'impôt sur le revenu ?</h3>
+                        <p class="article-excerpt">L'impôt sur le revenu est progressif et préserve les bas revenus. Mais est-ce vraiment équitable ? Analyse des chiffres et des alternatives.</p>
+                        <div class="article-meta">
+                            <span>10 jan. 2025</span>
+                            <span>6 min</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card" style="--cat-bg: rgba(0, 212, 255, 0.15); --cat-color: #00d4ff;">
+                    <div class="article-image" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(168, 85, 247, 0.2));">🏥</div>
+                    <div class="article-content">
+                        <span class="article-category">Dépenses</span>
+                        <h3 class="article-title">Santé : où passent les 815 milliards ?</h3>
+                        <p class="article-excerpt">Le budget Santé & Solidarités représente 50% des dépenses publiques. Décryptage de ce mastodonte budgétaire et de son efficacité.</p>
+                        <div class="article-meta">
+                            <span>8 jan. 2025</span>
+                            <span>7 min</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card" style="--cat-bg: rgba(168, 85, 247, 0.15); --cat-color: #a855f7;">
+                    <div class="article-image" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(0, 212, 255, 0.2));">🇪🇺</div>
+                    <div class="article-content">
+                        <span class="article-category">Europe</span>
+                        <h3 class="article-title">Comment font l'Allemagne et les Pays-Bas pour dépenser moins ?</h3>
+                        <p class="article-excerpt">Avec 49% du PIB contre 57% pour la France, nos voisins dépensent moins. Quelles recettes et quels sacrifices ?</p>
+                        <div class="article-meta">
+                            <span>5 jan. 2025</span>
+                            <span>6 min</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card" style="--cat-bg: rgba(0, 255, 136, 0.15); --cat-color: #00ff88;">
+                    <div class="article-image" style="background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 212, 255, 0.2));">📈</div>
+                    <div class="article-content">
+                        <span class="article-category">Économie</span>
+                        <h3 class="article-title">C'est quoi exactement le PIB ?</h3>
+                        <p class="article-excerpt">On parle de ratio dette/PIB, dépenses/PIB... Mais qu'est-ce que le PIB exactement et pourquoi est-il si important ?</p>
+                        <div class="article-meta">
+                            <span>3 jan. 2025</span>
+                            <span>4 min</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card" style="--cat-bg: rgba(255, 159, 67, 0.15); --cat-color: #ff9f43;">
+                    <div class="article-image" style="background: linear-gradient(135deg, rgba(255, 159, 67, 0.2), rgba(255, 215, 0, 0.2));">👔</div>
+                    <div class="article-content">
+                        <span class="article-category">Salaire</span>
+                        <h3 class="article-title">Brut vs Net : pourquoi une telle différence ?</h3>
+                        <p class="article-excerpt">Entre le coût employeur et le net en poche, la différence peut dépasser 40%. Explication des cotisations et de leur destination.</p>
+                        <div class="article-meta">
+                            <span>1 jan. 2025</span>
+                            <span>5 min</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn">4</button>
+                    <button class="page-btn">→</button>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Categories -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">📂 Catégories</h3>
+                    <div class="categories-list">
+                        <a href="#" class="category-item">
+                            <span>Dette publique</span>
+                            <span class="category-count">24</span>
+                        </a>
+                        <a href="#" class="category-item">
+                            <span>Impôts</span>
+                            <span class="category-count">31</span>
+                        </a>
+                        <a href="#" class="category-item">
+                            <span>Dépenses</span>
+                            <span class="category-count">28</span>
+                        </a>
+                        <a href="#" class="category-item">
+                            <span>Europe</span>
+                            <span class="category-count">15</span>
+                        </a>
+                        <a href="#" class="category-item">
+                            <span>Salaire</span>
+                            <span class="category-count">12</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Popular Posts -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">🔥 Les plus lus</h3>
+                    <div class="popular-list">
+                        <a href="#" class="popular-item">
+                            <span class="popular-number">01</span>
+                            <div class="popular-content">
+                                <div class="popular-title">Pourquoi la France n'a pas eu de budget équilibré depuis 1974</div>
+                                <div class="popular-meta">18k lectures</div>
+                            </div>
+                        </a>
+                        <a href="#" class="popular-item">
+                            <span class="popular-number">02</span>
+                            <div class="popular-content">
+                                <div class="popular-title">La dette française expliquée en 5 minutes</div>
+                                <div class="popular-meta">14k lectures</div>
+                            </div>
+                        </a>
+                        <a href="#" class="popular-item">
+                            <span class="popular-number">03</span>
+                            <div class="popular-content">
+                                <div class="popular-title">Où vont vraiment vos impôts ?</div>
+                                <div class="popular-meta">12k lectures</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tags -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">🏷️ Tags populaires</h3>
+                    <div class="tags-cloud">
+                        <a href="#" class="tag">dette</a>
+                        <a href="#" class="tag">impôts</a>
+                        <a href="#" class="tag">TVA</a>
+                        <a href="#" class="tag">déficit</a>
+                        <a href="#" class="tag">PIB</a>
+                        <a href="#" class="tag">cotisations</a>
+                        <a href="#" class="tag">retraite</a>
+                        <a href="#" class="tag">santé</a>
+                        <a href="#" class="tag">éducation</a>
+                        <a href="#" class="tag">Europe</a>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">📬 Newsletter</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                        Recevez nos analyses et décryptages chaque semaine.
+                    </p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Votre email">
+                        <button type="submit" class="newsletter-btn">S'abonner</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>
