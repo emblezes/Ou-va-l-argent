@@ -160,10 +160,10 @@ const WTF_FACTS = [
   {
     id: 18,
     icon: '🏦',
-    stat: '55 Md€',
+    stat: '58 Md€',
     title: 'Intérêts de la dette',
-    desc: 'On paye 55 Md€ d\'intérêts par an. Sans rembourser 1€ du capital. C\'est le budget de l\'Éducation Nationale.',
-    comparison: { label: 'Chaque seconde', value: '1 745 € d\'intérêts' },
+    desc: 'On paye 58 Md€ d\'intérêts par an. Sans rembourser 1€ du capital. C\'est le budget de l\'Éducation Nationale.',
+    comparison: { label: 'Chaque seconde', value: '1 840 € d\'intérêts' },
     color: '#ff4757',
   },
   {
@@ -288,8 +288,8 @@ const WTF_FACTS = [
     icon: '📊',
     stat: 'x4',
     title: 'Dette depuis 2000',
-    desc: 'La dette a été multipliée par 4 depuis l\'an 2000. De 870 Md€ à 3 482 Md€.',
-    comparison: { label: 'En moyenne', value: '+104 milliards de dette par an' },
+    desc: 'La dette a été multipliée par 4 depuis l\'an 2000. De 826 Md€ à 3 482 Md€.',
+    comparison: { label: 'En moyenne', value: '+106 milliards de dette par an' },
     color: '#45b7d1',
   },
   {
@@ -351,7 +351,7 @@ const WTF_FACTS = [
     icon: '📱',
     stat: '42',
     title: 'iPhones de dette',
-    desc: 'Votre part de dette (50 800€) équivaut à 42 iPhone Pro Max. Ou 850 pleins d\'essence.',
+    desc: 'Votre part de dette (50 800€) équivaut à 42 iPhone Pro Max. Ou 847 pleins d\'essence.',
     comparison: { label: 'Ou encore', value: '25 ans d\'abonnement Netflix' },
     color: '#00d4ff',
   },
@@ -552,8 +552,13 @@ export default function WtfPage() {
               <div className="absolute top-0 left-0 right-0 h-1" style={{ background: fact.color }} />
 
               {/* Number badge */}
-              <div className="absolute top-4 right-6 font-mono text-6xl font-bold opacity-15" style={{ color: fact.color }}>
-                #{fact.id}
+              <div className="absolute top-4 right-6 text-right">
+                <div className="font-mono text-6xl font-bold opacity-15" style={{ color: fact.color }}>
+                  #{fact.id}
+                </div>
+                <div className="font-mono text-xs text-gray-500 opacity-50">
+                  ouvalargent.fr
+                </div>
               </div>
 
               <div className="text-5xl mb-5">{fact.icon}</div>

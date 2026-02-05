@@ -5,8 +5,8 @@ import { ChartWrapper, LineChart, BarChart } from '@/components/charts'
 
 // Source: INSEE, FIPECO - Ratio dette/PIB historique depuis 1970
 const DEBT_RATIO_HISTORY = {
-  labels: ['1970', '1974', '1980', '1985', '1990', '1995', '2000', '2005', '2010', '2015', '2020', '2024'],
-  ratio: [15, 20, 21, 31, 36, 56, 58, 67, 85, 96, 115, 113],
+  labels: ['1970', '1974', '1980', '1985', '1990', '1995', '2000', '2005', '2010', '2015', '2020', '2024', '2025'],
+  ratio: [15, 20, 21, 31, 36, 56, 58, 67, 85, 96, 115, 113, 117],
 }
 
 // Source: INSEE, Vie Publique - Solde budgétaire de l'État (% PIB) depuis 1970
@@ -25,17 +25,18 @@ const DEBT_HOLDERS = {
 
 // Source: Banque de France, IFRAP T1 2025 - Principaux détenteurs identifiables
 // Note: Le détail des non-résidents n'est pas publié officiellement par l'AFT
+// Dette négociable ~2 660 Md€ (sur 3 482 Md€ de dette totale)
 const PRINCIPAUX_DETENTEURS = [
   { nom: 'BCE / Banque de France', montant: 665, percent: 25, type: 'France' },
-  { nom: 'Assurances françaises', montant: 261, percent: 9.8, type: 'France' },
+  { nom: 'Assurances françaises', montant: 278, percent: 10.5, type: 'France' },
   { nom: 'Banques françaises', montant: 261, percent: 9.8, type: 'France' },
-  { nom: 'Non-résidents (détail non publié)', montant: 1455, percent: 54.7, type: 'Étranger' },
+  { nom: 'Non-résidents (détail non publié)', montant: 1456, percent: 54.7, type: 'Étranger' },
 ]
 
-// Source: PLF 2025, Cour des Comptes - Charge d'intérêts (Md€) + comparaison budget Défense
+// Source: PLF 2025, Cour des Comptes, Fipeco - Charge d'intérêts (Md€) + comparaison budget Défense
 const CHARGE_INTERETS = {
   labels: ['2019', '2020', '2021', '2022', '2023', '2024', '2025 (p)', '2026 (p)', '2027 (p)', 'Défense'],
-  data: [38, 35, 37, 46, 52, 54, 58, 65, 72, 65],
+  data: [38, 35, 37, 46, 52, 58, 60, 65, 72, 65],
 }
 
 // Source: Banque de France - Taux OAT 10 ans (%)
@@ -57,23 +58,23 @@ const DEFICIT_COMPARISON = [
   { country: '🇮🇪 Irlande', value: +1.7 },
 ]
 
-// Source: Eurostat 2024 - Dette publique zone euro (% PIB)
+// Source: Eurostat 2025 - Dette publique zone euro (% PIB)
 const DETTE_COMPARISON = [
   { country: '🇬🇷 Grèce', value: 153 },
   { country: '🇮🇹 Italie', value: 137 },
-  { country: '🇫🇷 France', value: 113, highlight: true },
+  { country: '🇫🇷 France', value: 117, highlight: true },
+  { country: '🇪🇸 Espagne', value: 108 },
   { country: '🇧🇪 Belgique', value: 105 },
-  { country: '🇪🇸 Espagne', value: 104 },
   { country: '🇵🇹 Portugal', value: 96 },
-  { country: '🇪🇺 Moy. zone €', value: 88, isAverage: true },
-  { country: '🇩🇪 Allemagne', value: 63 },
-  { country: '🇳🇱 Pays-Bas', value: 46 },
+  { country: '🇪🇺 Moy. zone €', value: 83, isAverage: true },
+  { country: '🇩🇪 Allemagne', value: 64 },
+  { country: '🇳🇱 Pays-Bas', value: 47 },
 ]
 
-// Source: Eurostat 2024, calcul dette / population - Dette par habitant en €
+// Source: Eurostat 2025, calcul dette / population - Dette par habitant en €
 const DETTE_PAR_HABITANT = [
   { country: '🇧🇪 Belgique', value: 52200 },
-  { country: '🇫🇷 France', value: 51200, highlight: true },
+  { country: '🇫🇷 France', value: 50800, highlight: true },
   { country: '🇮🇹 Italie', value: 47500 },
   { country: '🇬🇷 Grèce', value: 37500 },
   { country: '🇪🇸 Espagne', value: 31900 },
@@ -136,7 +137,7 @@ export default function DettesPage() {
           <KpiCard
             icon="📈"
             label="Charge d'intérêts"
-            value="54 Md€/an"
+            value="58 Md€/an"
             subtext="Coût annuel de la dette"
             color="purple"
           />
@@ -162,7 +163,7 @@ export default function DettesPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <ChartWrapper
             title="L'endettement a été multiplié par 6 en 50 ans"
-            subtitle="Ratio dette/PIB de 1970 à 2024"
+            subtitle="Ratio dette/PIB de 1970 à 2025"
             height="350px"
             source="INSEE, FIPECO"
           >
@@ -270,9 +271,9 @@ export default function DettesPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
           <ChartWrapper
             title="Dette publique en zone euro"
-            subtitle="En % du PIB (2024)"
+            subtitle="En % du PIB (2025)"
             height="400px"
-            source="Eurostat 2024"
+            source="Eurostat 2025"
           >
             <BarChart
               labels={DETTE_COMPARISON.map((c) => c.country)}
@@ -292,9 +293,9 @@ export default function DettesPage() {
           {/* Dette par habitant */}
           <ChartWrapper
             title="Dette publique par habitant"
-            subtitle="En euros par habitant (2024)"
+            subtitle="En euros par habitant (2025)"
             height="400px"
-            source="Eurostat 2024, calcul"
+            source="Eurostat 2025, calcul"
           >
             <BarChart
               labels={DETTE_PAR_HABITANT.map((c) => c.country)}

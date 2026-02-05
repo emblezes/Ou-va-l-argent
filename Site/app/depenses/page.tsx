@@ -142,7 +142,7 @@ const EVOLUTION_CATEGORIES = {
 const TOTAL_DEPENSES = 1670
 const SPENDING_BREAKDOWN = [
   { id: 'retraites', name: 'Retraites', detail: 'tous régimes base + complémentaires', amount: 380, color: '#ff6b6b', icon: '👴' },
-  { id: 'sante', name: 'Santé', amount: 220, color: '#a855f7', icon: '🏥' },
+  { id: 'sante', name: 'Santé', amount: 230, color: '#a855f7', icon: '🏥' },
   { id: 'protection-sociale', name: 'Protection sociale hors retraites', detail: 'famille, chômage, invalidité, pauvreté', amount: 231, color: '#ff9f43', icon: '👨‍👩‍👧' },
   { id: 'politiques-sectorielles', name: 'Politiques sectorielles', detail: 'transports, agriculture, industrie, commerce', amount: 191, color: '#8899a8', icon: '🏗️' },
   { id: 'affaires-economiques', name: 'Affaires économiques', detail: 'emploi, entreprises, énergie', amount: 137, color: '#00d4ff', icon: '💼' },
@@ -355,17 +355,17 @@ const STRUCTURE_DEPENSES = {
 }
 
 // Décomposition de la protection sociale en France (Source: DREES 2024)
-// Total protection sociale France: ~800 Md€ de prestations
+// Total protection sociale France: 932 Md€ de prestations
 const PROTECTION_SOCIALE_FRANCE = {
-  total: 800, // Md€
+  total: 932, // Md€
   categories: [
-    { id: 'retraites', label: 'Retraites', amount: 380, percent: 47.5, color: '#ff9f43', description: 'Pensions vieillesse et survie' },
-    { id: 'maladie', label: 'Maladie', amount: 230, percent: 28.8, color: '#ff6b6b', description: 'Soins, indemnités journalières' },
-    { id: 'famille', label: 'Famille', amount: 55, percent: 6.9, color: '#a855f7', description: 'Allocations familiales, congé parental' },
-    { id: 'chomage', label: 'Chômage', amount: 45, percent: 5.6, color: '#00d4ff', description: 'Assurance chômage, formation' },
-    { id: 'logement', label: 'Logement', amount: 40, percent: 5.0, color: '#4ecdc4', description: 'APL, aides au logement' },
-    { id: 'pauvrete', label: 'Pauvreté/Exclusion', amount: 30, percent: 3.7, color: '#64748b', description: 'RSA, minima sociaux' },
-    { id: 'autres', label: 'Autres', amount: 20, percent: 2.5, color: '#94a3b8', description: 'Invalidité, accidents du travail' },
+    { id: 'retraites', label: 'Retraites', amount: 380, percent: 40.8, color: '#ff9f43', description: 'Pensions vieillesse et survie' },
+    { id: 'maladie', label: 'Maladie', amount: 230, percent: 24.7, color: '#ff6b6b', description: 'Soins, indemnités journalières' },
+    { id: 'famille', label: 'Famille', amount: 55, percent: 5.9, color: '#a855f7', description: 'Allocations familiales, congé parental' },
+    { id: 'chomage', label: 'Chômage', amount: 45, percent: 4.8, color: '#00d4ff', description: 'Assurance chômage, formation' },
+    { id: 'logement', label: 'Logement', amount: 40, percent: 4.3, color: '#4ecdc4', description: 'APL, aides au logement' },
+    { id: 'pauvrete', label: 'Pauvreté/Exclusion', amount: 30, percent: 3.2, color: '#64748b', description: 'RSA, minima sociaux' },
+    { id: 'autres', label: 'Autres', amount: 152, percent: 16.3, color: '#94a3b8', description: 'Invalidité, accidents du travail, autres prestations' },
   ],
 }
 

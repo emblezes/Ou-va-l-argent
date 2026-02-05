@@ -139,19 +139,29 @@ const TAX_CARDS = [
     icon: '🛒',
     name: 'TVA',
     fullName: 'Taxe sur la Valeur Ajoutée',
-    amount: '212 Md€',
-    percent: 14.8,
+    amount: '206 Md€',
+    percent: 13.7,
     barWidth: 100,
     color: '#ff6b6b',
     details: 'Taux normal 20%, réduit 10% ou 5.5%. Payée par tous les consommateurs.',
   },
   {
+    icon: '👔',
+    name: 'CSG/CRDS',
+    fullName: 'Contributions sociales',
+    amount: '163 Md€',
+    percent: 10.9,
+    barWidth: 79,
+    color: '#00d4ff',
+    details: '9.2% CSG + 0.5% CRDS sur les revenus. Finance la Sécu.',
+  },
+  {
     icon: '👤',
     name: 'IR',
     fullName: 'Impôt sur le Revenu',
-    amount: '102 Md€',
-    percent: 7.1,
-    barWidth: 48,
+    amount: '114 Md€',
+    percent: 7.6,
+    barWidth: 55,
     color: '#4ecdc4',
     details: 'Barème progressif de 0% à 45%. Seuls 44% des foyers sont imposables.',
   },
@@ -159,9 +169,9 @@ const TAX_CARDS = [
     icon: '🏢',
     name: 'IS',
     fullName: 'Impôt sur les Sociétés',
-    amount: '68 Md€',
-    percent: 4.8,
-    barWidth: 32,
+    amount: '57 Md€',
+    percent: 3.8,
+    barWidth: 28,
     color: '#ffd700',
     details: 'Taux normal 25% sur les bénéfices des entreprises.',
   },
@@ -169,9 +179,9 @@ const TAX_CARDS = [
     icon: '🏠',
     name: 'Taxes foncières',
     fullName: 'Taxe foncière & d\'habitation',
-    amount: '52 Md€',
-    percent: 3.6,
-    barWidth: 24.5,
+    amount: '55 Md€',
+    percent: 3.7,
+    barWidth: 27,
     color: '#a855f7',
     details: 'Financement des collectivités locales. TH supprimée pour les résidences principales.',
   },
@@ -179,21 +189,11 @@ const TAX_CARDS = [
     icon: '⛽',
     name: 'TICPE',
     fullName: 'Taxe sur les carburants',
-    amount: '33 Md€',
-    percent: 2.3,
-    barWidth: 15.6,
+    amount: '30 Md€',
+    percent: 2.0,
+    barWidth: 15,
     color: '#ff9f43',
     details: '~60 cts/L d\'essence. Financement de la transition écologique.',
-  },
-  {
-    icon: '👔',
-    name: 'CSG/CRDS',
-    fullName: 'Contributions sociales',
-    amount: '145 Md€',
-    percent: 10.2,
-    barWidth: 68,
-    color: '#00d4ff',
-    details: '9.2% CSG + 0.5% CRDS sur les revenus. Finance la Sécu.',
   },
 ]
 
@@ -378,12 +378,12 @@ function DepensesContent() {
 function DettesContent() {
   return (
     <>
-      {/* KPI Grid */}
+      {/* KPI Grid - Source: INSEE T3 2025 */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <KpiCard icon="💳" label="Dette totale" value="3 150 Md€" subtext="Dette publique brute" color="red" />
-        <KpiCard icon="📊" label="Dette / PIB" value="110.6%" subtext="Ratio de Maastricht" color="orange" />
-        <KpiCard icon="👤" label="Par habitant" value="46 200 €" subtext="Part de chaque Français" color="gold" />
-        <KpiCard icon="📈" label="Charge d'intérêts" value="52 Md€/an" subtext="Coût annuel de la dette" color="purple" />
+        <KpiCard icon="💳" label="Dette totale" value="3 482 Md€" subtext="Dette publique brute" color="red" />
+        <KpiCard icon="📊" label="Dette / PIB" value="117.4%" subtext="Ratio de Maastricht" color="orange" />
+        <KpiCard icon="👤" label="Par habitant" value="50 800 €" subtext="Part de chaque Français" color="gold" />
+        <KpiCard icon="📈" label="Charge d'intérêts" value="58 Md€/an" subtext="Coût annuel de la dette" color="purple" />
       </div>
 
       {/* Alert Banner */}
@@ -392,7 +392,7 @@ function DettesContent() {
         <div className="flex-1 text-center lg:text-left">
           <h3 className="text-xl font-semibold mb-2">Seuil critique atteint</h3>
           <p className="text-text-secondary">
-            La France dépasse les 110% de dette/PIB, bien au-delà du seuil de 60% prévu par le traité de Maastricht.
+            La France dépasse les 117% de dette/PIB, près du double du seuil de 60% prévu par le traité de Maastricht.
             La charge d&apos;intérêts représente désormais le 4ème poste budgétaire.
           </p>
         </div>
@@ -505,8 +505,8 @@ function ImpotsContent() {
         </div>
         <div className="flex gap-8 lg:gap-12">
           <div className="text-center">
-            <div className="font-mono text-4xl font-medium text-accent-gold">45.4%</div>
-            <div className="text-text-muted text-sm">du PIB (2024)</div>
+            <div className="font-mono text-4xl font-medium text-accent-gold">43.5%</div>
+            <div className="text-text-muted text-sm">du PIB (OCDE 2024)</div>
           </div>
           <div className="text-center">
             <div className="font-mono text-4xl font-medium text-accent-gold">1 428</div>

@@ -16,13 +16,13 @@ const INFOGRAPHIES = [
   },
   {
     id: 2,
-    title: 'Dette française : 3 150 milliards',
+    title: 'Dette française : 3 482 milliards',
     category: 'Dette',
     date: '25 jan. 2025',
     emoji: '💳',
     color: '#ff4757',
-    stats: '3 150 Md€',
-    subtitle: '110% du PIB',
+    stats: '3 482 Md€',
+    subtitle: '117% du PIB',
   },
   {
     id: 3,
@@ -56,12 +56,12 @@ const INFOGRAPHIES = [
   },
   {
     id: 6,
-    title: 'TVA : 212 milliards collectés',
+    title: 'TVA : 206 milliards collectés',
     category: 'Impôts',
     date: '15 jan. 2025',
     emoji: '🛒',
     color: '#a855f7',
-    stats: '212 Md€',
+    stats: '206 Md€',
     subtitle: 'Premier impôt de France',
   },
   {
@@ -96,12 +96,12 @@ const INFOGRAPHIES = [
   },
   {
     id: 10,
-    title: 'Intérêts de la dette : 52 milliards',
+    title: 'Intérêts de la dette : 58 milliards',
     category: 'Dette',
     date: '5 jan. 2025',
     emoji: '📈',
     color: '#ff4757',
-    stats: '52 Md€/an',
+    stats: '58 Md€/an',
     subtitle: '4ème poste budgétaire',
   },
   {
@@ -111,8 +111,8 @@ const INFOGRAPHIES = [
     date: '3 jan. 2025',
     emoji: '🏆',
     color: '#ffd700',
-    stats: '45.4%',
-    subtitle: 'Prélèvements / PIB',
+    stats: '43.5%',
+    subtitle: 'Prélèvements / PIB (OCDE)',
   },
   {
     id: 12,

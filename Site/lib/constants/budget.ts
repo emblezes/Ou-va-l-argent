@@ -1,12 +1,12 @@
-// Budget data for 2025 (actualisé T3 2025 - Source: INSEE)
+// Budget data 2025 (actualisé T3 2025 - Source: INSEE)
 export const BUDGET_2025 = {
   totalDepenses: 1670, // Md€ (INSEE 2024)
-  recettesFiscales: 1501, // Md€ (recettes totales APU)
-  deficit: -169, // Md€ (INSEE 2024: -168.6 Md€)
-  depensesPIB: 57, // %
+  recettesFiscales: 1502, // Md€ (recettes totales APU)
+  deficit: -170, // Md€ (INSEE 2024)
+  depensesPIB: 57.1, // % (Eurostat 2024)
   detteTotale: 3482, // Md€ (INSEE T3 2025)
   dettePIB: 117.4, // % (INSEE T3 2025)
-  chargeInterets: 54, // Md€ (estimation 2025)
+  chargeInterets: 58, // Md€ (Fipeco 2024)
   habitants: 68.6, // millions (INSEE 01/2025)
   detteParHabitant: 50800, // € (3482 Md€ / 68.6M)
 }
@@ -72,9 +72,9 @@ export const MINISTRIES = [
     name: 'Charge de la dette',
     shortName: 'Intérêts de la Dette',
     icon: '💳',
-    amount: 52, // Md€
-    percent: 3.2,
-    evolution: 8.0,
+    amount: 58, // Md€ (Fipeco 2024)
+    percent: 3.5,
+    evolution: 11.5,
     color: '#ffd700',
     description: 'Charge de la dette',
   },
@@ -137,13 +137,13 @@ export const TIMELINE_EVENTS = [
 ]
 
 export const STATS = [
-  { value: '57%', label: 'Dépenses publiques / PIB' },
+  { value: '57.1%', label: 'Dépenses publiques / PIB' },
   { value: '3.5T€', label: 'Dette publique totale' },
   { value: '5.8M', label: 'Agents de la fonction publique' },
   { value: '117%', label: 'Ratio dette / PIB' },
 ]
 
-// Historical debt data (Source: INSEE)
+// Historical debt data (Source: INSEE T3 2025)
 export const DEBT_HISTORY = [
   { year: '2000', debt: 826, ratio: 58 },
   { year: '2005', debt: 1147, ratio: 67 },
@@ -157,7 +157,7 @@ export const DEBT_HISTORY = [
   { year: '2021', debt: 2813, ratio: 113 },
   { year: '2022', debt: 2950, ratio: 111 },
   { year: '2023', debt: 3088, ratio: 110 },
-  { year: '2024', debt: 3305, ratio: 113.2 }, // INSEE T4 2024
+  { year: '2024', debt: 3305, ratio: 113 },
   { year: '2025', debt: 3482, ratio: 117.4 }, // INSEE T3 2025
 ]
 
@@ -172,14 +172,14 @@ export const EU_COMPARISON_SPENDING = [
   { country: 'UE Moyenne', value: 49.2, isAverage: true },
 ]
 
-// Eurostat fin 2024
+// Eurostat 2025
 export const EU_COMPARISON_DEBT = [
-  { country: 'Grèce', value: 153.6 },
-  { country: 'Italie', value: 135.3 },
-  { country: 'France', value: 117.4, highlight: true }, // T3 2025
-  { country: 'Espagne', value: 107.7 },
-  { country: 'Belgique', value: 105.2 },
-  { country: 'Allemagne', value: 63.7 },
-  { country: 'Pays-Bas', value: 46.5 },
-  { country: 'UE moy.', value: 82.6, isAverage: true },
+  { country: 'Grèce', value: 153 },
+  { country: 'Italie', value: 137 },
+  { country: 'France', value: 117.4, highlight: true }, // INSEE T3 2025
+  { country: 'Espagne', value: 108 },
+  { country: 'Belgique', value: 105 },
+  { country: 'Allemagne', value: 64 },
+  { country: 'Pays-Bas', value: 47 },
+  { country: 'UE moy.', value: 83, isAverage: true },
 ]

@@ -1,7 +1,7 @@
 'use client'
 
 import { Line } from 'react-chartjs-2'
-import type { ChartOptions } from 'chart.js'
+import type { ChartOptions, Plugin } from 'chart.js'
 
 interface DataSet {
   label: string
@@ -23,6 +23,21 @@ interface LineChartProps {
 }
 
 export function LineChart({ labels, datasets, yMin, yMax, yCallback, showLegend = true }: LineChartProps) {
+  // Plugin watermark pour identifier la source
+  const watermarkPlugin: Plugin<'line'> = {
+    id: 'watermark',
+    afterDraw(chart) {
+      const { ctx, chartArea } = chart
+      ctx.save()
+      ctx.fillStyle = '#ffffff'
+      ctx.font = '12px JetBrains Mono, monospace'
+      ctx.textAlign = 'right'
+      ctx.textBaseline = 'bottom'
+      ctx.fillText('ouvalargent.fr', chartArea.right - 5, chartArea.bottom - 5)
+      ctx.restore()
+    },
+  }
+
   const data = {
     labels,
     datasets: datasets.map((ds) => ({
@@ -74,5 +89,5 @@ export function LineChart({ labels, datasets, yMin, yMax, yCallback, showLegend 
     },
   }
 
-  return <Line data={data} options={options} />
+  return <Line data={data} options={options} plugins={[watermarkPlugin]} />
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { Doughnut } from 'react-chartjs-2'
-import type { ChartOptions } from 'chart.js'
+import type { ChartOptions, Plugin } from 'chart.js'
 
 interface DoughnutChartProps {
   labels: string[]
@@ -20,6 +20,21 @@ export function DoughnutChart({
   legendPosition = 'right',
   tooltipSuffix = '%',
 }: DoughnutChartProps) {
+  // Plugin watermark pour identifier la source
+  const watermarkPlugin: Plugin<'doughnut'> = {
+    id: 'watermark',
+    afterDraw(chart) {
+      const { ctx, chartArea } = chart
+      ctx.save()
+      ctx.fillStyle = '#ffffff'
+      ctx.font = '12px JetBrains Mono, monospace'
+      ctx.textAlign = 'right'
+      ctx.textBaseline = 'bottom'
+      ctx.fillText('ouvalargent.fr', chartArea.right - 5, chartArea.bottom - 5)
+      ctx.restore()
+    },
+  }
+
   const chartData = {
     labels,
     datasets: [
@@ -55,5 +70,5 @@ export function DoughnutChart({
     },
   }
 
-  return <Doughnut data={chartData} options={options} />
+  return <Doughnut data={chartData} options={options} plugins={[watermarkPlugin]} />
 }

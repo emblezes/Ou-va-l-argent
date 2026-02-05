@@ -1,7 +1,7 @@
 'use client'
 
 import { KpiCard } from '@/components/ui/KpiCard'
-import { ChartWrapper, LineChart, DoughnutChart, BarChart } from '@/components/charts'
+import { ChartWrapper, BarChart } from '@/components/charts'
 
 // Source: DGFiP 2024
 const TAX_CARDS = [
@@ -9,8 +9,8 @@ const TAX_CARDS = [
     icon: '🛒',
     name: 'TVA',
     fullName: 'Taxe sur la Valeur Ajoutée',
-    amount: '204 Md€',
-    percent: 13.6,
+    amount: '206 Md€',
+    percent: 13.7,
     barWidth: 100,
     color: '#ff6b6b',
     details: 'Taux normal 20%, réduit 10% ou 5.5%. Payée par tous les consommateurs.',
@@ -21,7 +21,7 @@ const TAX_CARDS = [
     fullName: 'Contributions sociales',
     amount: '163 Md€',
     percent: 10.9,
-    barWidth: 80,
+    barWidth: 79,
     color: '#00d4ff',
     details: '9.2% CSG + 0.5% CRDS sur les revenus. Finance la Sécu.',
   },
@@ -29,9 +29,9 @@ const TAX_CARDS = [
     icon: '👤',
     name: 'IR',
     fullName: 'Impôt sur le Revenu',
-    amount: '92 Md€',
-    percent: 6.1,
-    barWidth: 45,
+    amount: '114 Md€',
+    percent: 7.6,
+    barWidth: 55,
     color: '#4ecdc4',
     details: 'Barème progressif de 0% à 45%. 44% des foyers imposables, 56% non imposables.',
   },
@@ -67,31 +67,37 @@ const TAX_CARDS = [
   },
 ]
 
-// Source: INSEE - Comptes nationaux
-const EVOLUTION_DATA = {
-  labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
-  total: [1171, 1196, 1244, 1292, 1243, 1256, 1371, 1423, 1456, 1502, 1540],
-  etat: [343, 355, 372, 388, 396, 362, 399, 450, 480, 510, 548],
-}
-
-const STRUCTURE_DATA = {
-  labels: ['Cotisations sociales', 'TVA', 'CSG/CRDS', 'IR', 'IS', 'Taxes locales', 'Autres'],
-  data: [38, 15, 10, 7, 5, 5, 20],
-  colors: ['#ff6b6b', '#ffd700', '#00d4ff', '#4ecdc4', '#a855f7', '#ff9f43', '#4a5a6a'],
-}
-
-// Source: Eurostat 2024
-const EU_TAX_COMPARISON = [
-  { country: 'Danemark', value: 45.8 },
-  { country: 'France', value: 45.3, highlight: true },
+// Source: OCDE Revenue Statistics 2025
+const OCDE_TAX_COMPARISON = [
+  { country: 'Danemark', value: 45.2 },
+  { country: 'France', value: 43.5, highlight: true },
+  { country: 'Autriche', value: 43.4 },
   { country: 'Belgique', value: 45.1 },
-  { country: 'Suède', value: 43.5 },
-  { country: 'Italie', value: 42.5 },
-  { country: 'Allemagne', value: 40.9 },
-  { country: 'Espagne', value: 38.2 },
-  { country: 'Pays-Bas', value: 38.1 },
+  { country: 'Suède', value: 42.6 },
+  { country: 'Finlande', value: 42.3 },
+  { country: 'Italie', value: 42.8 },
+  { country: 'Pays-Bas', value: 39.4 },
+  { country: 'Allemagne', value: 38.0 },
+  { country: 'Espagne', value: 37.0 },
   { country: 'UK', value: 35.3 },
-  { country: 'Irlande', value: 22.7 },
+  { country: 'USA', value: 25.2 },
+  { country: 'Suisse', value: 26.9 },
+  { country: 'Irlande', value: 21.7 },
+]
+
+// Source: Tax Foundation, OCDE, PwC 2025 - Flat tax sur dividendes (taux nominal personnel)
+// Pays avec flat tax ≤ France (30%)
+const FLAT_TAX_COMPARISON = [
+  { country: 'France', value: 30.0, highlight: true },
+  { country: 'Belgique', value: 30.0 },
+  { country: 'Espagne (max)', value: 30.0 },
+  { country: 'Portugal', value: 28.0 },
+  { country: 'Autriche', value: 27.5 },
+  { country: 'Allemagne', value: 26.4 },
+  { country: 'Italie', value: 26.0 },
+  { country: 'Singapour', value: 0, color: '#00ff88' },
+  { country: 'Hong Kong', value: 0, color: '#00ff88' },
+  { country: 'Dubaï', value: 0, color: '#00ff88' },
 ]
 
 export default function ImpotsPage() {
@@ -132,8 +138,8 @@ export default function ImpotsPage() {
           </div>
           <div className="flex gap-8 lg:gap-12">
             <div className="text-center">
-              <div className="font-mono text-4xl font-medium text-accent-gold">45.3%</div>
-              <div className="text-text-muted text-sm">du PIB (2024)</div>
+              <div className="font-mono text-4xl font-medium text-accent-gold">43.5%</div>
+              <div className="text-text-muted text-sm">du PIB (OCDE 2024)</div>
             </div>
             <div className="text-center">
               <div className="font-mono text-4xl font-medium text-accent-gold">1 502</div>
@@ -223,67 +229,55 @@ export default function ImpotsPage() {
           ))}
         </div>
 
-        {/* Charts */}
+        {/* Charts - Prélèvements OCDE et Flat Tax côte à côte */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <ChartWrapper title="Évolution des recettes fiscales" subtitle="En milliards d'euros, 2015-2025" height="350px" source="INSEE - Comptes nationaux">
-            <LineChart
-              labels={EVOLUTION_DATA.labels}
-              datasets={[
-                {
-                  label: 'Recettes totales',
-                  data: EVOLUTION_DATA.total,
-                  borderColor: '#ffd700',
-                  backgroundColor: 'rgba(255, 215, 0, 0.1)',
-                  fill: true,
-                  borderWidth: 3,
-                },
-                {
-                  label: 'Impôts État',
-                  data: EVOLUTION_DATA.etat,
-                  borderColor: '#00d4ff',
-                  borderWidth: 2,
-                },
-              ]}
-              yMin={300}
-              yMax={1600}
-              yCallback={(v) => `${v} Md€`}
+          <ChartWrapper
+            title="Prélèvements obligatoires : France vs OCDE"
+            subtitle="Taux de prélèvements en % du PIB - France 2ème mondiale"
+            height="400px"
+            source="OCDE Revenue Statistics 2025"
+          >
+            <BarChart
+              labels={OCDE_TAX_COMPARISON.map((c) => c.country)}
+              data={OCDE_TAX_COMPARISON.map((c) => c.value)}
+              colors={(ctx) =>
+                OCDE_TAX_COMPARISON[ctx.dataIndex]?.highlight ? '#ffd700' : '#2a3a4a'
+              }
+              yMin={0}
+              yMax={50}
+              tooltipSuffix="% du PIB"
+              yAxisSuffix="%"
+              showValues
             />
           </ChartWrapper>
 
-          <ChartWrapper title="Répartition par type d'impôt" subtitle="Structure des prélèvements" height="350px" source="DGFiP 2024">
-            <DoughnutChart
-              labels={STRUCTURE_DATA.labels}
-              data={STRUCTURE_DATA.data}
-              colors={STRUCTURE_DATA.colors}
+          <ChartWrapper
+            title="Flat Tax sur dividendes dans le monde"
+            subtitle="Taux d'imposition des dividendes (niveau personnel, hors IS)"
+            height="400px"
+            source="Tax Foundation, OCDE, PwC 2025"
+          >
+            <BarChart
+              labels={FLAT_TAX_COMPARISON.map((c) => c.country)}
+              data={FLAT_TAX_COMPARISON.map((c) => c.value)}
+              colors={(ctx) => {
+                const item = FLAT_TAX_COMPARISON[ctx.dataIndex]
+                if (item?.highlight) return '#ffd700'
+                if (item?.color) return item.color
+                return '#2a3a4a'
+              }}
+              yMin={0}
+              yMax={35}
               tooltipSuffix="%"
+              showValues
             />
           </ChartWrapper>
         </div>
 
-        {/* EU Comparison */}
-        <ChartWrapper
-          title="Prélèvements obligatoires en Europe"
-          subtitle="Comparaison du taux de prélèvements (impôts + cotisations) en % du PIB"
-          height="300px"
-          className="mb-8"
-          source="Eurostat 2024"
-        >
-          <BarChart
-            labels={EU_TAX_COMPARISON.map((c) => c.country)}
-            data={EU_TAX_COMPARISON.map((c) => c.value)}
-            colors={(ctx) =>
-              EU_TAX_COMPARISON[ctx.dataIndex]?.highlight ? '#ffd700' : '#2a3a4a'
-            }
-            yMin={0}
-            yMax={50}
-            tooltipSuffix="% du PIB"
-          />
-        </ChartWrapper>
-
         {/* Sources */}
         <div className="text-center py-6 border-t border-glass-border">
           <p className="text-text-muted text-sm">
-            Sources : Direction générale des Finances publiques, INSEE, Eurostat (2024-2025)
+            Sources : OCDE Revenue Statistics 2025, Tax Foundation Europe 2025, DGFiP (2024-2025)
           </p>
         </div>
       </main>

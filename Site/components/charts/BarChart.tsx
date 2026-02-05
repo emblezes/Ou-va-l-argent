@@ -59,28 +59,45 @@ export function BarChart({
         meta.data.forEach((bar, index) => {
           const value = dataset.data[index] as number
           ctx.save()
-          ctx.fillStyle = '#ffffff'
-          ctx.font = 'bold 12px JetBrains Mono, monospace'
+          ctx.fillStyle = '#f0f4f8'
+          ctx.font = 'bold 14px JetBrains Mono, monospace'
           ctx.textAlign = 'center'
-          ctx.textBaseline = 'middle'
+          ctx.textBaseline = 'bottom'
+
+          // Formater la valeur (sans unité pour la lisibilité)
+          const formattedValue = value.toLocaleString('fr-FR')
 
           if (horizontal) {
-            // Pour les barres horizontales
-            const x = bar.x - 20
+            // Pour les barres horizontales - valeur à droite
+            const x = bar.x + 8
             const y = bar.y
-            ctx.fillText(`${value}`, x, y)
+            ctx.textAlign = 'left'
+            ctx.textBaseline = 'middle'
+            ctx.fillText(formattedValue, x, y)
           } else {
-            // Pour les barres verticales - valeur au milieu de la barre
+            // Pour les barres verticales - valeur au-dessus de la barre
             const x = bar.x
-            const barHeight = Math.abs(bar.y - (chart.scales.y.getPixelForValue(0) || 0))
-            const y = value >= 0
-              ? bar.y + barHeight / 2
-              : bar.y - barHeight / 2
-            ctx.fillText(`${value}`, x, y)
+            const y = bar.y - 6
+            ctx.fillText(formattedValue, x, y)
           }
           ctx.restore()
         })
       })
+    },
+  }
+
+  // Plugin watermark pour identifier la source
+  const watermarkPlugin: Plugin<'bar'> = {
+    id: 'watermark',
+    afterDraw(chart) {
+      const { ctx, chartArea } = chart
+      ctx.save()
+      ctx.fillStyle = '#ffffff'
+      ctx.font = '12px JetBrains Mono, monospace'
+      ctx.textAlign = 'right'
+      ctx.textBaseline = 'bottom'
+      ctx.fillText('ouvalargent.fr', chartArea.right - 5, chartArea.bottom - 5)
+      ctx.restore()
     },
   }
 
@@ -120,5 +137,5 @@ export function BarChart({
     },
   }
 
-  return <Bar data={chartData} options={options} plugins={[dataLabelsPlugin]} />
+  return <Bar data={chartData} options={options} plugins={[dataLabelsPlugin, watermarkPlugin]} />
 }
