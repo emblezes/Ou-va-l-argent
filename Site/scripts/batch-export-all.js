@@ -1,0 +1,1028 @@
+/**
+ * Script batch pour exporter toutes les infographies HTML
+ * en formats Instagram (1080x1080) et TikTok (1080x1920)
+ * avec adaptation du contenu au format TikTok
+ *
+ * Usage: node batch-export-all.js
+ */
+
+const puppeteer = require('puppeteer');
+const path = require('path');
+const fs = require('fs');
+
+const BASE = '/Users/emmanuelblezes/Documents/08_Où va l\'argent /Production interne/Réseaux Sociaux ';
+const HTML_DIR = path.join(BASE, 'Sources HTML');
+const INSTA_DIR = path.join(BASE, 'Insta & Autres');
+const TIKTOK_V_DIR = path.join(BASE, 'Tiktok Vertical');
+const TIKTOK_H_DIR = path.join(BASE, 'Tiktok Horizontal');
+
+// CSS overrides pour adapter le contenu au format TikTok (1080x1920)
+const TIKTOK_CSS = `
+/* ===== FORMAT TIKTOK (9:16) — Contenu en haut, espace libre en bas pour la tête ===== */
+
+.infographic {
+  width: 1080px !important;
+  height: 1920px !important;
+}
+
+.content {
+  padding: 60px 65px 40px !important;
+  gap: 15px !important;
+  justify-content: flex-start !important;
+}
+
+/* Empêcher le chart-container de centrer verticalement */
+.chart-container {
+  flex: 0 !important;
+  justify-content: flex-start !important;
+}
+
+/* Le main-stat (ChatGPT) aussi en haut */
+.main-stat {
+  flex: 0 !important;
+  justify-content: flex-start !important;
+}
+
+/* Le main-content (Singapour) aussi en haut */
+.main-content {
+  flex: 0 !important;
+}
+
+/* --- Header --- */
+.header {
+  margin-bottom: 30px !important;
+}
+
+.logo-icon {
+  width: 72px !important;
+  height: 72px !important;
+  font-size: 2rem !important;
+  border-radius: 16px !important;
+}
+
+.logo-text {
+  font-size: 1.8rem !important;
+}
+
+.tag {
+  padding: 18px 36px !important;
+  font-size: 1.4rem !important;
+}
+
+/* --- Titres (gros pour TikTok mais pas trop pour laisser de la place au contenu) --- */
+.section-title, .chart-title {
+  font-size: 5rem !important;
+  margin-bottom: 30px !important;
+}
+
+.main-title {
+  margin-bottom: 30px !important;
+}
+
+.main-title h1 {
+  font-size: 4.5rem !important;
+}
+
+.subtitle {
+  font-size: 2.2rem !important;
+  margin-bottom: 60px !important;
+}
+
+/* --- Stat choc --- */
+.stat-label {
+  font-size: 2.2rem !important;
+  margin-bottom: 40px !important;
+}
+
+.stat-value {
+  font-size: 280px !important;
+  margin-bottom: 40px !important;
+}
+
+.stat-unit {
+  font-size: 5.5rem !important;
+  margin-bottom: 50px !important;
+}
+
+.stat-context {
+  font-size: 2.6rem !important;
+  line-height: 1.5 !important;
+}
+
+.chatgpt-icon {
+  width: 160px !important;
+  height: 160px !important;
+  font-size: 5rem !important;
+  margin-bottom: 50px !important;
+  border-radius: 32px !important;
+}
+
+/* --- Comparaisons --- */
+.comparison-grid {
+  gap: 50px !important;
+}
+
+.comparison-item {
+  padding: 70px 45px !important;
+  border-radius: 30px !important;
+}
+
+.flag {
+  font-size: 5.5rem !important;
+  margin-bottom: 25px !important;
+}
+
+.comparison-label {
+  font-size: 2.5rem !important;
+  margin-bottom: 30px !important;
+}
+
+.comparison-value {
+  font-size: 6rem !important;
+  margin-bottom: 15px !important;
+}
+
+.comparison-desc {
+  font-size: 1.8rem !important;
+  margin-bottom: 35px !important;
+}
+
+.growth-badge {
+  font-size: 1.9rem !important;
+  padding: 16px 30px !important;
+}
+
+.vs-badge {
+  width: 130px !important;
+  height: 130px !important;
+}
+
+.vs-text {
+  font-size: 1.6rem !important;
+}
+
+.vs-year {
+  font-size: 1.4rem !important;
+}
+
+.prediction-box {
+  padding: 40px 50px !important;
+  margin-top: 50px !important;
+  border-radius: 20px !important;
+}
+
+.prediction-text {
+  font-size: 2.4rem !important;
+  line-height: 1.5 !important;
+}
+
+/* --- Rankings / Bar charts (compact pour 7-9 items dans 1920px) --- */
+.ranking {
+  gap: 14px !important;
+  margin-bottom: 10px !important;
+}
+
+.rank-item {
+  padding: 16px 35px !important;
+  gap: 22px !important;
+  border-radius: 18px !important;
+}
+
+.rank-number {
+  font-size: 2.4rem !important;
+  width: 55px !important;
+}
+
+.rank-flag {
+  font-size: 3rem !important;
+}
+
+.rank-country {
+  font-size: 1.9rem !important;
+  margin-bottom: 4px !important;
+}
+
+.rank-value {
+  font-size: 2.4rem !important;
+  min-width: 110px !important;
+}
+
+.rank-bar {
+  height: 28px !important;
+}
+
+.separator {
+  margin: 6px 0 !important;
+}
+
+/* --- Timeline / Cuivre --- */
+.timeline-container {
+  flex: 1 !important;
+}
+
+.timeline {
+  height: 900px !important;
+  padding: 0 50px !important;
+}
+
+.timeline::before {
+  bottom: 100px !important;
+}
+
+.timeline-item {
+  width: 210px !important;
+}
+
+.timeline-value {
+  font-size: 2.5rem !important;
+  margin-bottom: 20px !important;
+}
+
+.timeline-dot {
+  width: 22px !important;
+  height: 22px !important;
+  border-width: 4px !important;
+  margin-bottom: 20px !important;
+}
+
+.timeline-year {
+  font-size: 1.7rem !important;
+}
+
+.multiplier {
+  padding: 18px 35px !important;
+  border-radius: 16px !important;
+}
+
+.multiplier-text {
+  font-size: 2rem !important;
+}
+
+/* --- Suppression des conteneurs glass en TikTok --- */
+/* Les graphiques et comparaisons occupent directement toute la slide */
+.comparison-item {
+  background: transparent !important;
+  border: none !important;
+  padding: 50px 30px !important;
+}
+
+.comparison-item.highlight::before,
+.comparison-item.dim::before {
+  height: 3px !important;
+  border-radius: 0 !important;
+}
+
+/* --- Conteneurs graphiques SVG : fond transparent, taille naturelle --- */
+.chart-wrapper {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 10px 0 !important;
+  margin-bottom: 15px !important;
+  flex-shrink: 0 !important;
+}
+
+.chart-area {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 10px 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.main-content {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.line-chart,
+.chart-svg {
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* --- Key stats (Singapour) : remplit l'espace sous le graphique --- */
+.key-stats {
+  background: rgba(17, 24, 32, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 24px !important;
+  padding: 60px 50px !important;
+  gap: 60px !important;
+  flex: 1 !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.key-stat {
+  gap: 30px !important;
+  justify-content: center !important;
+}
+
+.key-stat-flag {
+  font-size: 5.5rem !important;
+}
+
+.key-stat-label {
+  font-size: 2.2rem !important;
+  margin-bottom: 12px !important;
+}
+
+.key-stat-value {
+  font-size: 6rem !important;
+}
+
+/* --- Prediction box (Pologne) : remplit l'espace sous le graphique --- */
+.prediction-box {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 50px 60px !important;
+  margin-top: 30px !important;
+  border-radius: 24px !important;
+}
+
+.prediction-text {
+  font-size: 2.8rem !important;
+  line-height: 1.6 !important;
+}
+
+/* --- Section subtitle --- */
+.section-subtitle {
+  font-size: 2.2rem !important;
+  margin-bottom: 40px !important;
+}
+
+/* --- Footer (suit le contenu, ne colle pas au bas de la slide) --- */
+.footer {
+  padding-top: 25px !important;
+  margin-top: 20px !important;
+  margin-bottom: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+/* Annuler margin-top:auto qui pousse le footer en bas */
+.footer[style], .content > .footer {
+  margin-top: 20px !important;
+}
+
+.source {
+  font-size: 1.5rem !important;
+}
+
+.website {
+  font-size: 1.8rem !important;
+}
+
+/* --- Bar charts (salaires) : supprimer les barres, montrer les valeurs --- */
+.bar-chart {
+  gap: 35px !important;
+}
+
+.bar-item {
+  gap: 30px !important;
+  padding: 28px 35px !important;
+}
+
+.bar-label {
+  font-size: 2.4rem !important;
+  width: 350px !important;
+}
+
+.bar-track {
+  background: transparent !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.bar-fill {
+  background: transparent !important;
+  background-image: none !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  font-size: 3.5rem !important;
+  justify-content: flex-start !important;
+  border-radius: 0 !important;
+}
+
+.bar-fill.gold { color: var(--accent-gold) !important; }
+.bar-fill.electric { color: var(--accent-electric) !important; }
+.bar-fill.purple { color: var(--accent-purple) !important; }
+.bar-fill.green { color: var(--accent-green) !important; }
+
+/* --- Rank year (cigarettes) --- */
+.rank-year {
+  font-size: 1.8rem !important;
+  min-width: 85px !important;
+}
+
+/* --- Multiplier badge --- */
+.multiplier-badge {
+  margin-bottom: 20px !important;
+}
+
+.multiplier-badge span {
+  font-size: 1.6rem !important;
+  padding: 10px 30px !important;
+}
+
+/* --- Section labels --- */
+.section-label {
+  font-size: 1.2rem !important;
+  margin-bottom: 10px !important;
+}
+
+/* --- Replacement line (fertilité) --- */
+.replacement-line {
+  margin: 4px 0 !important;
+}
+
+.replacement-line .label {
+  font-size: 1.1rem !important;
+}
+
+/* --- Threshold / average lines --- */
+.threshold-line, .avg-line {
+  margin: 4px 0 !important;
+}
+
+.threshold-line .label, .avg-line .label {
+  font-size: 1.1rem !important;
+}
+
+/* --- Chart subtitle --- */
+.chart-subtitle {
+  font-size: 1.8rem !important;
+  margin-bottom: 25px !important;
+}
+
+/* Salaires table */
+.salary-table {
+  gap: 24px !important;
+}
+
+.salary-row {
+  padding: 28px 35px !important;
+  border-radius: 20px !important;
+  gap: 25px !important;
+}
+
+.salary-job {
+  font-size: 1.9rem !important;
+}
+
+.salary-amount {
+  font-size: 2.8rem !important;
+}
+
+.salary-flag {
+  font-size: 3.5rem !important;
+}
+
+.salary-country {
+  font-size: 1.8rem !important;
+}
+
+.highlight-box {
+  padding: 35px 45px !important;
+  margin-top: 40px !important;
+  border-radius: 20px !important;
+}
+
+.highlight-text {
+  font-size: 2.2rem !important;
+  line-height: 1.5 !important;
+}
+
+/* --- Vertical bar chart (déficit) --- */
+.chart-area {
+  height: 700px !important;
+  flex: 0 0 auto !important;
+}
+
+.bar-value {
+  font-size: 1.8rem !important;
+}
+
+.bar-down .bar-value {
+  bottom: -35px !important;
+}
+
+.bar-down.france .bar-value {
+  font-size: 2.2rem !important;
+}
+
+.bar-up .bar-value {
+  top: -35px !important;
+}
+
+.zero-label {
+  font-size: 1.4rem !important;
+}
+
+.country-labels {
+  margin-top: 50px !important;
+}
+
+.country-flag {
+  font-size: 3rem !important;
+}
+
+.country-name {
+  font-size: 1.4rem !important;
+}
+
+/* --- SVG line chart (retraites #16) : chiffres beaucoup plus gros en TikTok --- */
+.chart-area svg .svg-value {
+  font-size: 52px !important;
+  transform: translateY(-20px);
+}
+
+.chart-area svg .svg-annotation {
+  font-size: 30px !important;
+  transform: translateY(-45px);
+}
+
+.chart-area svg .svg-projection {
+  font-size: 28px !important;
+}
+
+.chart-area svg text[font-size="18"] {
+  font-size: 30px !important;
+}
+
+.chart-area svg circle {
+  r: 12;
+}
+`;
+
+// CSS overrides pour le format Rectangle horizontal (1080x600)
+const RECTANGLE_CSS = `
+/* ===== FORMAT RECTANGLE HORIZONTAL (1080×600) ===== */
+
+.infographic {
+  width: 1080px !important;
+  height: 600px !important;
+}
+
+.content {
+  padding: 30px 40px !important;
+}
+
+/* --- Header compact --- */
+.header {
+  margin-bottom: 12px !important;
+}
+
+.logo-icon {
+  width: 36px !important;
+  height: 36px !important;
+  font-size: 1rem !important;
+  border-radius: 8px !important;
+}
+
+.logo-text {
+  font-size: 1rem !important;
+}
+
+.tag {
+  padding: 6px 14px !important;
+  font-size: 0.7rem !important;
+}
+
+/* --- Titres compacts --- */
+.section-title, .chart-title {
+  font-size: 2rem !important;
+  margin-bottom: 12px !important;
+}
+
+.main-title {
+  margin-bottom: 10px !important;
+}
+
+.main-title h1 {
+  font-size: 1.8rem !important;
+}
+
+.subtitle, .section-subtitle {
+  font-size: 1rem !important;
+  margin-bottom: 12px !important;
+}
+
+/* --- Stat choc compact --- */
+.stat-label {
+  font-size: 1rem !important;
+  margin-bottom: 8px !important;
+}
+
+.stat-value {
+  font-size: 100px !important;
+  margin-bottom: 8px !important;
+}
+
+.stat-unit {
+  font-size: 2.2rem !important;
+  margin-bottom: 10px !important;
+}
+
+.stat-context {
+  font-size: 1.2rem !important;
+}
+
+.chatgpt-icon {
+  width: 60px !important;
+  height: 60px !important;
+  font-size: 2rem !important;
+  margin: 0 auto 12px !important;
+  border-radius: 14px !important;
+}
+
+/* --- Comparaisons horizontales --- */
+.comparison-grid {
+  gap: 20px !important;
+}
+
+.comparison-item {
+  padding: 20px 18px !important;
+  border-radius: 14px !important;
+}
+
+.flag {
+  font-size: 2.5rem !important;
+  margin-bottom: 6px !important;
+}
+
+.comparison-label {
+  font-size: 1.2rem !important;
+  margin-bottom: 6px !important;
+}
+
+.comparison-value {
+  font-size: 2.8rem !important;
+  margin-bottom: 4px !important;
+}
+
+.comparison-desc {
+  font-size: 0.9rem !important;
+  margin-bottom: 8px !important;
+}
+
+.growth-badge {
+  font-size: 0.9rem !important;
+  padding: 5px 12px !important;
+}
+
+.vs-badge {
+  width: 55px !important;
+  height: 55px !important;
+}
+
+.vs-text {
+  font-size: 0.8rem !important;
+}
+
+.vs-year {
+  font-size: 0.7rem !important;
+}
+
+.prediction-box {
+  padding: 10px 18px !important;
+  margin-top: 10px !important;
+  border-radius: 10px !important;
+}
+
+.prediction-text {
+  font-size: 1.1rem !important;
+  line-height: 1.3 !important;
+}
+
+/* --- Rankings compact (many items must fit in 600px) --- */
+.ranking {
+  gap: 3px !important;
+  margin-bottom: 4px !important;
+}
+
+.rank-item {
+  padding: 5px 12px !important;
+  gap: 10px !important;
+  border-radius: 8px !important;
+}
+
+.rank-number {
+  font-size: 1.1rem !important;
+  width: 28px !important;
+}
+
+.rank-flag {
+  font-size: 1.3rem !important;
+}
+
+.rank-country {
+  font-size: 0.8rem !important;
+}
+
+.rank-bar {
+  height: 12px !important;
+}
+
+.rank-value {
+  font-size: 1rem !important;
+  min-width: 50px !important;
+}
+
+.section-label {
+  font-size: 0.6rem !important;
+  margin-bottom: 2px !important;
+  padding-left: 2px !important;
+}
+
+.separator {
+  margin: 1px 0 !important;
+}
+
+.replacement-line {
+  margin: 1px 0 !important;
+}
+
+.replacement-line .label {
+  font-size: 0.55rem !important;
+}
+
+.chart-subtitle {
+  font-size: 0.7rem !important;
+  margin-bottom: 6px !important;
+}
+
+.multiplier-badge {
+  margin-bottom: 6px !important;
+}
+
+.multiplier-badge span {
+  font-size: 0.7rem !important;
+  padding: 3px 10px !important;
+}
+
+.rank-year {
+  font-size: 0.8rem !important;
+  min-width: 40px !important;
+}
+
+/* --- Threshold / average lines --- */
+.threshold-line, .avg-line {
+  margin: 1px 0 !important;
+}
+
+.threshold-line .label, .avg-line .label {
+  font-size: 0.55rem !important;
+}
+
+/* --- Timeline compact --- */
+.timeline {
+  height: 280px !important;
+  padding: 0 20px !important;
+}
+
+.timeline::before {
+  bottom: 50px !important;
+}
+
+.timeline-item {
+  width: 120px !important;
+}
+
+.timeline-value {
+  font-size: 1.2rem !important;
+  margin-bottom: 6px !important;
+}
+
+.timeline-dot {
+  width: 10px !important;
+  height: 10px !important;
+  margin-bottom: 8px !important;
+}
+
+.timeline-year {
+  font-size: 0.85rem !important;
+}
+
+.multiplier {
+  padding: 6px 14px !important;
+}
+
+.multiplier-text {
+  font-size: 0.95rem !important;
+}
+
+/* --- Charts SVG --- */
+.chart-wrapper {
+  padding: 5px 0 !important;
+  margin-bottom: 8px !important;
+}
+
+.chart-area {
+  padding: 5px 0 !important;
+}
+
+.key-stats {
+  padding: 12px 20px !important;
+  gap: 40px !important;
+}
+
+.key-stat-flag {
+  font-size: 1.8rem !important;
+}
+
+.key-stat-label {
+  font-size: 0.8rem !important;
+}
+
+.key-stat-value {
+  font-size: 2rem !important;
+}
+
+/* --- Bar chart (salaires) compact --- */
+.bar-chart {
+  gap: 10px !important;
+}
+
+.bar-label {
+  width: 160px !important;
+  font-size: 0.95rem !important;
+}
+
+.bar-track {
+  height: 38px !important;
+}
+
+.bar-fill {
+  font-size: 1rem !important;
+  padding-right: 12px !important;
+}
+
+/* --- Vertical bar chart compact (déficit) --- */
+.chart-area {
+  height: 250px !important;
+  flex: 0 0 auto !important;
+}
+
+.bars-container {
+  gap: 3px !important;
+}
+
+.bar-value {
+  font-size: 0.7rem !important;
+}
+
+.bar-down .bar-value {
+  bottom: -16px !important;
+}
+
+.bar-down.france .bar-value {
+  font-size: 0.85rem !important;
+}
+
+.bar-up .bar-value {
+  top: -16px !important;
+}
+
+.zero-label {
+  font-size: 0.6rem !important;
+  left: -35px !important;
+}
+
+.country-labels {
+  margin-top: 20px !important;
+  gap: 3px !important;
+  padding-left: 35px !important;
+}
+
+.country-flag {
+  font-size: 1.1rem !important;
+}
+
+.country-name {
+  font-size: 0.55rem !important;
+}
+
+/* --- Footer compact --- */
+.footer {
+  padding-top: 10px !important;
+  margin-top: 8px !important;
+}
+
+.source {
+  font-size: 0.8rem !important;
+}
+
+.website {
+  font-size: 0.9rem !important;
+}
+`;
+
+// Define infographics: [htmlFile, infographicIndex, outputBaseName]
+const INFOGRAPHICS = [
+  ['01-france-pologne-pib.html', 0, '01-france-pologne-comparaison'],
+  ['01-france-pologne-pib.html', 1, '02-pologne-rattrapage-courbes'],
+  ['03-singapour-argentine-pib.html', 0, '03-singapour-argentine-divergence'],
+  ['04-chatgpt-utilisateurs.html', 0, '04-chatgpt-utilisateurs'],
+  ['05-cuivre.html', 0, '05-cuivre'],
+  ['06-salaires-suisse.html', 0, '06-salaires-suisse'],
+  ['07-top5-pays-peuples.html', 0, '07-top5-pays-peuples'],
+  ['08-fertilite-par-pays.html', 0, '08-fertilite-par-pays'],
+  ['09-prix-cigarette-france.html', 0, '09-prix-cigarette-france'],
+  ['10-indice-big-mac.html', 0, '10-indice-big-mac'],
+  ['11-salaire-moyen-par-pays.html', 0, '11-salaire-moyen-par-pays'],
+  ['12-dette-publique-europe.html', 0, '12-dette-publique-europe'],
+  ['13-deficit-zone-euro.html', 0, '13-deficit-zone-euro'],
+  ['14-explosion-dette-france.html', 0, '14-explosion-dette-france'],
+  ['15-hotels-plus-chers-paris.html', 0, '15-hotels-plus-chers-paris'],
+  ['16-retraites-explosion-2070.html', 0, '16-retraites-explosion-2070'],
+  ['17-vieillissement-mondial-2070.html', 0, '17-vieillissement-mondial-2070'],
+  ['18-pensions-retraite-europe.html', 0, '18-pensions-retraite-europe'],
+  ['19-capitalisation-vs-repartition.html', 0, '19-capitalisation-vs-repartition'],
+  ['20-retraites-capitalisation-plus-elevees.html', 0, '20-retraites-capitalisation-plus-elevees'],
+];
+
+async function exportFormat(browser, htmlPath, items, { css, jsTransform, width, height, outputDir, suffix, label }) {
+  const page = await browser.newPage();
+  await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0' });
+  await page.evaluateHandle('document.fonts.ready');
+
+  if (css) await page.addStyleTag({ content: css });
+  if (jsTransform) await page.evaluate(jsTransform);
+
+  await new Promise(r => setTimeout(r, 300));
+
+  const allInfographics = await page.$$('.infographic');
+
+  for (const { idx, baseName } of items) {
+    if (idx >= allInfographics.length) continue;
+    const element = allInfographics[idx];
+
+    await page.setViewport({ width, height, deviceScaleFactor: 2 });
+    await new Promise(r => setTimeout(r, 200));
+
+    const outputPath = path.join(outputDir, `${baseName}-${suffix}.png`);
+    await element.screenshot({ path: outputPath, type: 'png' });
+    console.log(`  ✓ ${label.padEnd(12)} → ${baseName}-${suffix}.png`);
+  }
+
+  await page.close();
+}
+
+async function main() {
+  console.log('\n📐 Export batch — Instagram + TikTok Vertical + TikTok Horizontal\n');
+
+  [INSTA_DIR, TIKTOK_V_DIR, TIKTOK_H_DIR].forEach(dir => {
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  });
+
+  const browser = await puppeteer.launch({ headless: true });
+
+  // Group by HTML file
+  const byFile = {};
+  for (const [htmlFile, idx, baseName] of INFOGRAPHICS) {
+    if (!byFile[htmlFile]) byFile[htmlFile] = [];
+    byFile[htmlFile].push({ idx, baseName });
+  }
+
+  // JS transform for TikTok Vertical (scale timeline bars)
+  const tiktokVerticalJS = () => {
+    document.querySelectorAll('.timeline-bar').forEach(bar => {
+      const h = parseInt(bar.style.height);
+      if (h) bar.style.height = Math.round(h * 1.8) + 'px';
+    });
+  };
+
+  // JS transform for Rectangle (scale down timeline bars)
+  const rectangleJS = () => {
+    document.querySelectorAll('.timeline-bar').forEach(bar => {
+      const h = parseInt(bar.style.height);
+      if (h) bar.style.height = Math.round(h * 0.55) + 'px';
+    });
+  };
+
+  const formats = [
+    { css: null,           jsTransform: null,            width: 1080, height: 1080, outputDir: INSTA_DIR,    suffix: 'instagram',  label: 'instagram' },
+    { css: TIKTOK_CSS,     jsTransform: tiktokVerticalJS, width: 1080, height: 1920, outputDir: TIKTOK_V_DIR, suffix: 'tiktok-v',   label: 'tiktok vert' },
+    { css: RECTANGLE_CSS,  jsTransform: rectangleJS,      width: 1080, height: 600,  outputDir: TIKTOK_H_DIR, suffix: 'tiktok-h',   label: 'tiktok horiz' },
+  ];
+
+  for (const [htmlFile, items] of Object.entries(byFile)) {
+    const htmlPath = path.join(HTML_DIR, htmlFile);
+    console.log(`\n📄 ${htmlFile}`);
+
+    for (const format of formats) {
+      await exportFormat(browser, htmlPath, items, format);
+    }
+  }
+
+  await browser.close();
+  console.log('\n✅ Export terminé !\n');
+}
+
+main().catch(console.error);

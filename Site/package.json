@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@notionhq/client": "^5.9.0",
     "@types/node": "^25.1.0",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
@@ -19,6 +20,7 @@
     "next": "^14.2.35",
     "postcss": "^8.5.6",
     "publicodes": "^1.9.1",
+    "puppeteer": "^24.37.0",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.3.1",
     "react-dom": "^18.3.1",

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1080">
+    <title>Dette France Comparaison Internationale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --bg-surface: #0a0e14;
+            --bg-elevated: #111820;
+            --bg-light: #0a1628;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-electric-dim: rgba(0, 212, 255, 0.15);
+            --accent-gold: #ffd700;
+            --accent-red: #ff4757;
+            --accent-green: #00ff88;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-light) 50%, var(--bg-deep) 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.12) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.08) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 50px 60px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--accent-electric) 0%, #0099cc 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: var(--bg-deep);
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.35rem;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .tag {
+            padding: 12px 24px;
+            background: rgba(255, 71, 87, 0.15);
+            border: 1px solid rgba(255, 71, 87, 0.4);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .main-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.2rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 5px;
+        }
+
+        .main-title .accent {
+            color: var(--accent-electric);
+            font-style: italic;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-top: 10px;
+        }
+
+        .chart-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .reference-line {
+            position: absolute;
+            left: calc(130px + (100 / 250) * (100% - 130px - 80px));
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            border-left: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .reference-label {
+            position: absolute;
+            left: calc(130px + (100 / 250) * (100% - 130px - 80px));
+            top: -22px;
+            transform: translateX(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            height: 46px;
+        }
+
+        .bar-label {
+            width: 115px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .bar-label.highlight {
+            color: var(--accent-electric);
+            font-weight: 700;
+        }
+
+        .bar-track {
+            flex: 1;
+            height: 100%;
+            background: rgba(17, 24, 32, 0.6);
+            border-radius: 6px;
+            overflow: visible;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .bar-fill.red {
+            background: linear-gradient(90deg, var(--accent-red), #cc3344);
+        }
+
+        .bar-fill.green {
+            background: linear-gradient(90deg, var(--accent-green), #00cc6a);
+        }
+
+        .bar-fill.cyan {
+            background: linear-gradient(90deg, var(--accent-electric), #0099cc);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .bar-value {
+            position: absolute;
+            right: -55px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .bar-value.highlight {
+            color: var(--accent-electric);
+        }
+
+        .legend {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+            padding-top: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.red { background: var(--accent-red); }
+        .legend-dot.green { background: var(--accent-green); }
+        .legend-dot.cyan { background: var(--accent-electric); }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 15px;
+        }
+
+        .source {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .source span {
+            color: var(--text-secondary);
+        }
+
+        .website {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--accent-electric);
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <div class="logo-icon">&#8364;</div>
+                    <span class="logo-text">Ou Va l'Argent</span>
+                </div>
+                <div class="tag">Dette Publique</div>
+            </div>
+
+            <div class="title-section">
+                <h1 class="main-title">La France face a<br><span class="accent">ses voisins</span></h1>
+                <p class="subtitle">Dette publique en % du PIB (2024-2025)</p>
+            </div>
+
+            <div class="chart-container">
+                <div class="reference-label">100%</div>
+                <div class="reference-line"></div>
+                <div class="bar-chart">
+                    <div class="bar-item">
+                        <div class="bar-label">Japon</div>
+                        <div class="bar-track">
+                            <div class="bar-fill red" style="width: calc((237 / 250) * 100%);">
+                                <span class="bar-value">237%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Grece</div>
+                        <div class="bar-track">
+                            <div class="bar-fill red" style="width: calc((151 / 250) * 100%);">
+                                <span class="bar-value">151%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Italie</div>
+                        <div class="bar-track">
+                            <div class="bar-fill red" style="width: calc((138 / 250) * 100%);">
+                                <span class="bar-value">138%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">USA</div>
+                        <div class="bar-track">
+                            <div class="bar-fill red" style="width: calc((121 / 250) * 100%);">
+                                <span class="bar-value">121%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label highlight">France</div>
+                        <div class="bar-track">
+                            <div class="bar-fill cyan" style="width: calc((116 / 250) * 100%);">
+                                <span class="bar-value highlight">116%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Belgique</div>
+                        <div class="bar-track">
+                            <div class="bar-fill red" style="width: calc((106 / 250) * 100%);">
+                                <span class="bar-value">106%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Espagne</div>
+                        <div class="bar-track">
+                            <div class="bar-fill red" style="width: calc((103 / 250) * 100%);">
+                                <span class="bar-value">103%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Portugal</div>
+                        <div class="bar-track">
+                            <div class="bar-fill green" style="width: calc((97 / 250) * 100%);">
+                                <span class="bar-value">97%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Royaume-Uni</div>
+                        <div class="bar-track">
+                            <div class="bar-fill green" style="width: calc((94 / 250) * 100%);">
+                                <span class="bar-value">94%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Autriche</div>
+                        <div class="bar-track">
+                            <div class="bar-fill green" style="width: calc((82 / 250) * 100%);">
+                                <span class="bar-value">82%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Allemagne</div>
+                        <div class="bar-track">
+                            <div class="bar-fill green" style="width: calc((62 / 250) * 100%);">
+                                <span class="bar-value">62%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Pays-Bas</div>
+                        <div class="bar-track">
+                            <div class="bar-fill green" style="width: calc((43 / 250) * 100%);">
+                                <span class="bar-value">43%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-dot red"></div>
+                        <span>Dette > 100% PIB</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot green"></div>
+                        <span>Dette < 100% PIB</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot cyan"></div>
+                        <span>France</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Eurostat, FMI (2024-2025)</span></div>
+                <div class="website">ouvalargent.fr</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

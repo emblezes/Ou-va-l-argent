@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indice Big Mac selon les pays</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --bg-surface: #0a0e14;
+            --bg-elevated: #111820;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-gold: #ffd700;
+            --accent-red: #ff4757;
+            --accent-green: #00ff88;
+            --accent-purple: #a855f7;
+            --accent-orange: #ff9f43;
+            --glass: rgba(17, 24, 32, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, var(--bg-deep) 0%, #0a1628 50%, var(--bg-deep) 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.12) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 55px 60px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--accent-electric) 0%, #0099cc 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: var(--bg-deep);
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+        }
+
+        .tag {
+            padding: 12px 24px;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .chart-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.5rem;
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .chart-title .accent {
+            color: var(--accent-gold);
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+
+        .section-label.expensive { color: var(--accent-red); }
+        .section-label.mid { color: var(--accent-electric); }
+        .section-label.cheap { color: var(--accent-green); }
+
+        .ranking {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .rank-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 20px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+        }
+
+        .rank-item.france {
+            position: relative;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.12) 0%, rgba(0, 153, 204, 0.06) 100%);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .rank-item.france::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--accent-electric);
+            border-radius: 12px 0 0 12px;
+        }
+
+        .rank-flag {
+            font-size: 2rem;
+        }
+
+        .rank-country {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            flex: 1;
+        }
+
+        .rank-bar-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rank-bar {
+            height: 22px;
+            border-radius: 6px;
+            min-width: 10px;
+        }
+
+        .rank-bar.expensive {
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
+        }
+
+        .rank-bar.mid {
+            background: linear-gradient(90deg, var(--accent-electric), #0099cc);
+        }
+
+        .rank-bar.cheap {
+            background: linear-gradient(90deg, var(--accent-green), #00cc6a);
+        }
+
+        .rank-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.6rem;
+            font-weight: 600;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .rank-value.expensive { color: var(--accent-red); }
+        .rank-value.mid { color: var(--accent-electric); }
+        .rank-value.cheap { color: var(--accent-green); }
+
+        .separator {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+            margin: 6px 0;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .source span {
+            color: var(--text-secondary);
+        }
+
+        .website {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--accent-electric);
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <div class="logo-icon">€</div>
+                    <span class="logo-text">Où Va l'Argent</span>
+                </div>
+                <div class="tag">International</div>
+            </div>
+
+            <div class="chart-container">
+                <h2 class="chart-title">L'indice <span class="accent">Big Mac</span></h2>
+                <div class="chart-subtitle">Prix d'un Big Mac dans le monde (en USD)</div>
+
+                <div class="section-label expensive">▲ Les plus chers</div>
+                <div class="ranking">
+                    <div class="rank-item">
+                        <div class="rank-flag">🇨🇭</div>
+                        <div class="rank-country">Suisse</div>
+                        <div class="rank-bar-container">
+                            <div class="rank-bar expensive" style="width: 90%;"></div>
+                        </div>
+                        <div class="rank-value expensive">8,17$</div>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-flag">🇳🇴</div>
+                        <div class="rank-country">Norvège</div>
+                        <div class="rank-bar-container">
+                            <div class="rank-bar expensive" style="width: 78%;"></div>
+                        </div>
+                        <div class="rank-value expensive">7,14$</div>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-flag">🇺🇸</div>
+                        <div class="rank-country">États-Unis</div>
+                        <div class="rank-bar-container">
+                            <div class="rank-bar expensive" style="width: 65%;"></div>
+                        </div>
+                        <div class="rank-value expensive">5,69$</div>
+                    </div>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="ranking">
+                    <div class="rank-item france">
+                        <div class="rank-flag">🇫🇷</div>
+                        <div class="rank-country">France</div>
+                        <div class="rank-bar-container">
+                            <div class="rank-bar mid" style="width: 60%;"></div>
+                        </div>
+                        <div class="rank-value mid">5,40$</div>
+                    </div>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="section-label cheap">▼ Les moins chers</div>
+                <div class="ranking">
+                    <div class="rank-item">
+                        <div class="rank-flag">🇮🇳</div>
+                        <div class="rank-country">Inde</div>
+                        <div class="rank-bar-container">
+                            <div class="rank-bar cheap" style="width: 28%;"></div>
+                        </div>
+                        <div class="rank-value cheap">2,51$</div>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-flag">🇮🇩</div>
+                        <div class="rank-country">Indonésie</div>
+                        <div class="rank-bar-container">
+                            <div class="rank-bar cheap" style="width: 27%;"></div>
+                        </div>
+                        <div class="rank-value cheap">2,43$</div>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-flag">🇹🇼</div>
+                        <div class="rank-country">Taïwan</div>
+                        <div class="rank-bar-container">
+                            <div class="rank-bar cheap" style="width: 26%;"></div>
+                        </div>
+                        <div class="rank-value cheap">2,38$</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Sources : <span>The Economist, Big Mac Index · Janvier 2025</span></div>
+                <div class="website">ouvalargent.fr</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
