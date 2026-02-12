@@ -43,7 +43,8 @@ export function NewsletterPopup() {
       })
       if (response.ok) {
         setStatus('success')
-        sessionStorage.setItem('newsletter-dismissed', '1')
+        localStorage.setItem('newsletter-dismissed', '1')
+        localStorage.setItem('newsletter-subscribed', '1')
         setTimeout(() => setVisible(false), 3000)
       } else {
         setStatus('error')

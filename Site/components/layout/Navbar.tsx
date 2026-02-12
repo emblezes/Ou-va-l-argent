@@ -12,6 +12,11 @@ const dashboardLinks = [
   { href: '/simulateur', label: 'Simulateur Brut vs Net' },
 ]
 
+const investirLinks = [
+  { href: '/investir', label: 'Où placer son argent' },
+  { href: '/investir/simulateur', label: 'Simulateur intérêts composés' },
+]
+
 const directLinks = [
   { href: '/actualite', label: 'Actualités' },
   { href: '/wtf', label: 'WTF ?!' },
@@ -62,10 +67,13 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [investirDropdownOpen, setInvestirDropdownOpen] = useState(false)
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false)
+  const [mobileInvestirDropdownOpen, setMobileInvestirDropdownOpen] = useState(false)
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
   const dropdownRef = useRef<HTMLLIElement>(null)
+  const investirDropdownRef = useRef<HTMLLIElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,11 +84,14 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close dropdown when clicking outside
+  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setDropdownOpen(false)
+      }
+      if (investirDropdownRef.current && !investirDropdownRef.current.contains(e.target as Node)) {
+        setInvestirDropdownOpen(false)
       }
     }
     document.addEventListener('mousedown', handleClickOutside)
@@ -112,6 +123,7 @@ export function Navbar() {
   }
 
   const isDepensesPage = pathname?.startsWith('/depenses')
+  const isInvestirPage = pathname?.startsWith('/investir')
   const isDashboardPage = isDepensesPage || pathname === '/dettes' || pathname === '/impots' || pathname === '/simulateur'
 
   // Determine logo variant based on current page
@@ -119,6 +131,7 @@ export function Navbar() {
     if (isDepensesPage) return 'electric'
     if (pathname === '/dettes') return 'red'
     if (pathname === '/impots') return 'gold'
+    if (isInvestirPage) return 'orange'
     if (pathname === '/wtf') return 'red'
     if (pathname === '/propositions') return 'purple'
     return 'electric'
@@ -174,6 +187,48 @@ export function Navbar() {
                     className={`block px-4 py-2.5 text-text-secondary no-underline text-base font-medium transition-colors duration-200 hover:bg-accent-electric/10 hover:text-text-primary ${
                       pathname === link.href || (link.href === '/depenses' && isDepensesPage)
                         ? 'text-accent-electric bg-accent-electric/5'
+                        : ''
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+
+        {/* Dropdown: Investir */}
+        <li ref={investirDropdownRef} className="relative flex items-center">
+          <button
+            onClick={() => setInvestirDropdownOpen(!investirDropdownOpen)}
+            className={`flex items-center gap-1.5 text-text-secondary no-underline text-lg font-medium transition-colors duration-200 relative hover:text-text-primary bg-transparent border-none cursor-pointer ${
+              isInvestirPage ? 'text-text-primary' : ''
+            }`}
+          >
+            Investir
+            <svg
+              className={`w-4 h-4 transition-transform duration-200 ${investirDropdownOpen ? 'rotate-180' : ''}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+            {isInvestirPage && (
+              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-accent-orange" />
+            )}
+          </button>
+          {investirDropdownOpen && (
+            <ul className="absolute top-full left-0 mt-2 py-2 min-w-[260px] bg-bg-deep/95 backdrop-blur-xl border border-glass-border rounded-xl shadow-2xl list-none m-0 p-0">
+              {investirLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setInvestirDropdownOpen(false)}
+                    className={`block px-4 py-2.5 text-text-secondary no-underline text-base font-medium transition-colors duration-200 hover:bg-accent-orange/10 hover:text-text-primary ${
+                      pathname === link.href
+                        ? 'text-accent-orange bg-accent-orange/5'
                         : ''
                     }`}
                   >
@@ -308,6 +363,43 @@ export function Navbar() {
                           onClick={() => { setMobileMenuOpen(false); setMobileDropdownOpen(false) }}
                           className={`block px-4 py-2.5 rounded-lg text-text-secondary no-underline text-sm font-medium transition-colors duration-200 hover:bg-bg-elevated hover:text-text-primary ${
                             pathname === link.href || (link.href === '/depenses' && isDepensesPage) ? 'text-accent-electric bg-accent-electric/10' : ''
+                          }`}
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+
+              {/* Mobile dropdown: Investir */}
+              <li>
+                <button
+                  onClick={() => setMobileInvestirDropdownOpen(!mobileInvestirDropdownOpen)}
+                  className={`flex items-center justify-between w-full px-4 py-3 rounded-lg text-text-secondary text-base font-medium transition-colors duration-200 hover:bg-bg-elevated hover:text-text-primary bg-transparent border-none cursor-pointer ${
+                    isInvestirPage ? 'text-accent-orange bg-accent-orange/10' : ''
+                  }`}
+                >
+                  Investir
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${mobileInvestirDropdownOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {mobileInvestirDropdownOpen && (
+                  <ul className="mt-1 ml-4 flex flex-col gap-1 list-none p-0">
+                    {investirLinks.map((link) => (
+                      <li key={link.href}>
+                        <Link
+                          href={link.href}
+                          onClick={() => { setMobileMenuOpen(false); setMobileInvestirDropdownOpen(false) }}
+                          className={`block px-4 py-2.5 rounded-lg text-text-secondary no-underline text-sm font-medium transition-colors duration-200 hover:bg-bg-elevated hover:text-text-primary ${
+                            pathname === link.href ? 'text-accent-orange bg-accent-orange/10' : ''
                           }`}
                         >
                           {link.label}

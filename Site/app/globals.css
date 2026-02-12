@@ -24,6 +24,7 @@
   --accent-purple: #a855f7;
   --accent-purple-dim: rgba(168, 85, 247, 0.15);
   --accent-orange: #ff9f43;
+  --accent-orange-dim: rgba(255, 159, 67, 0.15);
   --accent-pink: #ff6b9d;
   --glass: rgba(17, 24, 32, 0.8);
   --glass-border: rgba(255, 255, 255, 0.08);
@@ -241,6 +242,11 @@ body {
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(30px) scale(0.97); }
   to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes slideUpBar {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
 }
 
 /* Mosaic background animation */

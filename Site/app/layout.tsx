@@ -4,6 +4,7 @@ import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { NewsletterPopup } from '@/components/NewsletterPopup'
+import { NewsletterBar } from '@/components/NewsletterBar'
 
 const syne = Syne({
   subsets: ['latin'],
@@ -80,8 +81,9 @@ export default function RootLayout({
         {/* Footer */}
         <Footer />
 
-        {/* Newsletter Popup */}
+        {/* Newsletter */}
         <NewsletterPopup />
+        <NewsletterBar />
       </body>
     </html>
   )

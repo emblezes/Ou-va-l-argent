@@ -37,7 +37,7 @@ const INFOGRAPHIES = [
   { id: 1, filename: '01-france-pologne-comparaison-instagram.png', title: 'France vs Pologne : comparaison', category: 'International' },
 ]
 
-const CATEGORIES = [...new Set(INFOGRAPHIES.map((i) => i.category))].sort()
+const CATEGORIES = Array.from(new Set(INFOGRAPHIES.map((i) => i.category))).sort()
 
 export default function ActualitePage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)

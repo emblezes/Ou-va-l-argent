@@ -3,7 +3,7 @@
 import Link from 'next/link'
 
 interface LogoProps {
-  variant?: 'default' | 'electric' | 'gold' | 'red' | 'purple'
+  variant?: 'default' | 'electric' | 'gold' | 'red' | 'purple' | 'orange'
   icon?: string
   showText?: boolean
 }
@@ -14,6 +14,7 @@ const variantStyles = {
   gold: 'bg-gradient-to-br from-accent-gold to-[#cc9900]',
   red: 'bg-gradient-to-br from-accent-red to-[#cc3344]',
   purple: 'bg-gradient-to-br from-accent-purple to-[#7c3aed]',
+  orange: 'bg-gradient-to-br from-accent-orange to-[#e68a2e]',
 }
 
 export function Logo({ variant = 'default', icon = '€', showText = true }: LogoProps) {
