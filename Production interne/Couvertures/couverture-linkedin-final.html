@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Couverture LinkedIn - Où Va l'Argent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #0a0a0a;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
+
+        /* =============================================
+           LINKEDIN COVER - 1584x396
+           ============================================= */
+        .cover {
+            width: 1584px;
+            height: 396px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.14) 0%, transparent 70%);
+            top: -300px;
+            right: 200px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.06) 0%, transparent 70%);
+            bottom: -250px;
+            right: -50px;
+            pointer-events: none;
+        }
+
+        .bg-glow-3 {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+            bottom: -50px;
+            right: 500px;
+            pointer-events: none;
+        }
+
+        /* Euro décoratif discret */
+        .euro-deco {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 300;
+            color: #00d4ff;
+            opacity: 0.03;
+            z-index: 0;
+            user-select: none;
+        }
+
+        /* Contenu aligné à droite */
+        .cover-content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 50px 70px 50px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            text-align: right;
+        }
+
+        .cover-url-small {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: #8899a8;
+            letter-spacing: 0.02em;
+            margin-top: 14px;
+        }
+
+        .cover-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.6rem;
+            color: #f0f4f8;
+            line-height: 1.2;
+            max-width: 700px;
+        }
+
+        .cover-title .accent {
+            font-style: italic;
+            color: #00d4ff;
+        }
+
+        .cover-title .gold {
+            color: #ffd700;
+            font-style: italic;
+        }
+
+        .cover-subtitle {
+            font-size: 1.05rem;
+            color: #8899a8;
+            margin-top: 12px;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .cover-subtitle span {
+            color: #f0f4f8;
+            font-weight: 600;
+        }
+
+        /* =============================================
+           LOGO PROFIL - 800x800 (export 2x = retina)
+           ============================================= */
+        .logo-profile {
+            width: 800px;
+            height: 800px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        .logo-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #0a1628 0%, #06080c 100%);
+        }
+
+        .logo-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .logo-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, transparent 65%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .logo-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-euro {
+            font-family: 'Instrument Serif', serif;
+            font-weight: 400;
+            font-size: 26rem;
+            color: #f0f4f8;
+            filter: drop-shadow(0 0 60px rgba(255, 255, 255, 0.15));
+        }
+
+        /* =============================================
+           LOGO PROFIL CARRE (variante sans crop cercle)
+           ============================================= */
+        .logo-profile-square {
+            width: 800px;
+            height: 800px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 80px;
+        }
+
+        .preview-label {
+            font-size: 1rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+        }
+
+        .preview-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================================================================
+         COUVERTURE LINKEDIN
+         ================================================================ -->
+    <div class="preview-wrapper">
+        <div class="preview-label">Couverture LinkedIn (1584x396)</div>
+        <div class="cover" data-name="couverture-linkedin">
+            <div class="bg-base"></div>
+            <div class="bg-grid"></div>
+            <div class="bg-glow-1"></div>
+            <div class="bg-glow-2"></div>
+            <div class="bg-glow-3"></div>
+            <div class="euro-deco" style="font-size: 18rem; top: -40px; right: 650px;">€</div>
+            <div class="euro-deco" style="font-size: 10rem; bottom: -10px; right: 180px;">€</div>
+
+            <div class="cover-content">
+                <div class="cover-title">
+                    <span class="gold">3 500 milliards</span> de dette :<br>
+                    <span class="accent">où va l'argent ?</span>
+                </div>
+                <div class="cover-url-small">ouvalargent.fr</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================
+         LOGO PROFIL (rond - tel qu'il apparaîtra sur LinkedIn)
+         ================================================================ -->
+    <div class="preview-wrapper">
+        <div class="preview-label">Logo Profil (rond)</div>
+        <div class="logo-profile" data-name="logo-profil-rond">
+            <div class="logo-bg"></div>
+            <div class="logo-grid"></div>
+            <div class="logo-glow"></div>
+            <div class="logo-content">
+                <div class="logo-euro">€</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================
+         LOGO PROFIL (carré arrondi - pour usage général)
+         ================================================================ -->
+    <div class="preview-wrapper">
+        <div class="preview-label">Logo Profil (carré arrondi)</div>
+        <div class="logo-profile-square" data-name="logo-profil-carre">
+            <div class="logo-bg"></div>
+            <div class="logo-grid"></div>
+            <div class="logo-glow"></div>
+            <div class="logo-content">
+                <div class="logo-euro">€</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

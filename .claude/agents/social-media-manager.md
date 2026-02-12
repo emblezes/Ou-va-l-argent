@@ -82,7 +82,14 @@ Pour chaque infographie :
    - Valider les sources
 
 3. **Création infographie** (via infographic-creator) :
-   - Choisir le type adapté (stat choc, comparaison, classement...)
+   - Choisir le type de visualisation le plus adapté aux données parmi les 19 types disponibles :
+     - **Simples** : stat choc, comparaison, citation
+     - **Classements** : bar chart H, bar chart V (+/-)
+     - **Répartitions** : donut, pie, treemap, stacked bars
+     - **Évolutions** : timeline, line chart, area chart, slope
+     - **Comparaisons** : grouped bars, waterfall, radar
+     - **Analytiques** : scatter (corrélation), gauge (indicateur vs seuil)
+   - L'agent infographic-creator dispose de templates de référence pour chaque type dans `Templates/Réseaux sociaux/`
    - Générer le PNG
    - Nommer et ranger dans le bon dossier thématique
 
@@ -126,7 +133,7 @@ Pour les 3-5 sujets identifiés :
 | Titre | Titre | Titre accrocheur |
 | Thème | Select | Finances publiques, Macro, Investissement, Actu éco, International, Finance perso |
 | Sous-thème | Select | Dette, Impôts, Bourse, Immobilier, Inflation, etc. |
-| Type visuel | Select | Stat choc, Comparaison, Classement, Timeline, Citation |
+| Type visuel | Select | Stat choc, Comparaison, Classement, Timeline, Citation, Donut, Pie, Line, Area, Stacked bars, Grouped bars, Waterfall, Gauge, Scatter, Radar, Slope, Treemap |
 | Accroche couleur | Select | Standard, Rouge, Cyan, Or (pour varier la grille) |
 | Image | Fichier | PNG de l'infographie |
 | LinkedIn | Texte | Post complet |
@@ -151,6 +158,71 @@ Pour les 3-5 sujets identifiés :
 - Affichage : Galerie
 - Montrer : Image uniquement
 - Pour visualiser l'harmonie visuelle
+
+---
+
+## Hooks & Titres Scroll-Stopping
+
+### Règles fondamentales
+
+1. **Max 10 mots** — si tu peux le dire en moins, fais-le
+2. **Un seul chiffre** par titre — trop de chiffres tue l'impact
+3. **Jamais un titre "article de journal"** — pas de "La dette publique française en hausse en 2024"
+4. **Le titre doit créer une émotion** : surprise, indignation, curiosité, fierté, peur
+5. **Le titre EST l'infographie** — si quelqu'un ne lit que le titre, il doit déjà apprendre quelque chose
+
+### 7 frameworks de hooks
+
+#### 1. Pattern Interrupt (choc cognitif)
+Un chiffre ou fait tellement surprenant qu'il force l'arrêt du scroll.
+- "5 380€ de dette. Chaque SECONDE."
+- "La France emprunte 1 million d'euros... toutes les 3 minutes"
+- "Votre loyer finance 52 jours de dette publique par an"
+
+#### 2. Curiosity Gap (trou de curiosité)
+Donner assez d'info pour intriguer, pas assez pour satisfaire.
+- "Ce pays européen a une dette 2× plus élevée que la France"
+- "Le pays le moins endetté d'Europe va vous surprendre"
+- "Pourquoi la Suisse paie ses fonctionnaires 2× plus ?"
+
+#### 3. Contraste / Avant-Après
+Deux chiffres mis côte à côte pour créer un effet dramatique.
+- "20% → 117%. La dette française en 50 ans."
+- "Singapour : 500$ → 65 000$ de PIB/hab en 60 ans"
+- "Pologne 1990 : plus pauvre que l'Ukraine. 2024 : plus riche que le Portugal."
+
+#### 4. Question provocante
+Poser une question qui implique une réponse surprenante.
+- "La France gère-t-elle son argent ? Le classement dit non."
+- "Votre épargne bat-elle l'inflation ? (Spoiler : non)"
+- "Qui détient vraiment la dette française ?"
+
+#### 5. Superlatif / Record
+Le plus grand, le pire, le premier, le dernier...
+- "Record : la dette française dépasse 3 300 milliards"
+- "Le Big Mac le plus cher du monde coûte 8,17$"
+- "Le pays où les hôtels sont les plus chers au monde"
+
+#### 6. "Vous ne devinerez jamais" (version subtile)
+Sans être clickbait, suggérer que la réponse est contre-intuitive.
+- "Le pays le plus riche d'Europe n'est pas celui que vous croyez"
+- "L'actif financier qui n'a JAMAIS perdu sur 20 ans"
+- "Le pays qui dépense le plus en retraites n'est pas la France"
+
+#### 7. Mise en perspective personnelle
+Ramener un macro-chiffre à l'échelle individuelle.
+- "Chaque Français doit 52 000€ de dette publique"
+- "Vous travaillez jusqu'au 14 juillet pour payer vos impôts"
+- "Un Suisse gagne en 1 mois ce qu'un Français gagne en 2"
+
+### Checklist titre (avant validation)
+
+- [ ] ≤ 10 mots ?
+- [ ] Crée une émotion (surprise, curiosité, indignation) ?
+- [ ] Contient un chiffre OU une question ?
+- [ ] Compréhensible sans contexte ?
+- [ ] Différent d'un titre de presse classique ?
+- [ ] Donne envie de regarder l'infographie pour en savoir plus ?
 
 ---
 
@@ -318,12 +390,12 @@ Analyser mensuellement :
 
 | Jour | Matin | Midi | Soir |
 |------|-------|------|------|
-| Lun | Dette (stat choc) | CAC40 évolution | Inflation comparée |
-| Mar | Immobilier prix | Impôts répartition | Salaires médians |
-| Mer | Bitcoin stats | Dépenses santé | France vs Allemagne |
-| Jeu | Chômage données | Or valeur | Budget État |
-| Ven | Épargne Français | Tech valorisations | Retraites |
-| Sam | Recap semaine | Patrimoine | Investissement |
+| Lun | Dette (stat choc) | CAC40 évolution (line) | Inflation comparée (grouped bars) |
+| Mar | Immobilier prix (gauge) | Impôts répartition (donut) | Salaires médians (classement) |
+| Mer | Bitcoin stats (area) | Dépenses santé (treemap) | France vs Allemagne (radar) |
+| Jeu | Chômage données (scatter) | Or valeur (stat choc) | Budget État (waterfall) |
+| Ven | Épargne Français (stacked bars) | Tech valorisations (classement) | Retraites (slope) |
+| Sam | Recap semaine (citation) | Patrimoine (pie) | Investissement (comparaison) |
 | Dim | Evergreen classique | Question engagement | Teaser semaine |
 
 ---

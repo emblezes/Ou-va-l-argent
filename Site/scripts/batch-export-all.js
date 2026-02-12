@@ -558,6 +558,324 @@ const TIKTOK_CSS = `
 .chart-area svg circle {
   r: 12;
 }
+
+/* ===== NOUVEAUX TYPES — TikTok Vertical ===== */
+
+/* --- Pie Chart --- */
+.pie-section {
+  gap: 60px !important;
+}
+
+.pie-container {
+  width: 500px !important;
+  height: 500px !important;
+}
+
+.pie-legend {
+  gap: 22px !important;
+}
+
+.pie-legend-item {
+  padding: 18px 28px !important;
+  border-radius: 18px !important;
+  min-width: 420px !important;
+}
+
+.pie-legend-item .legend-label {
+  font-size: 1.6rem !important;
+}
+
+.pie-legend-item .legend-pct {
+  font-size: 2.2rem !important;
+}
+
+/* --- Donut Chart --- */
+.donut-section {
+  gap: 60px !important;
+}
+
+.donut-container {
+  width: 500px !important;
+  height: 500px !important;
+}
+
+.donut-center-value {
+  font-size: 3.5rem !important;
+}
+
+.donut-center-label {
+  font-size: 1.4rem !important;
+}
+
+.legend {
+  gap: 22px !important;
+}
+
+.legend-item {
+  padding: 18px 28px !important;
+  border-radius: 18px !important;
+  min-width: 420px !important;
+  gap: 20px !important;
+}
+
+.legend-label {
+  font-size: 1.5rem !important;
+}
+
+.legend-pct {
+  font-size: 2rem !important;
+}
+
+.legend-amount {
+  font-size: 1.2rem !important;
+}
+
+/* --- Line Chart --- */
+.line-chart-section {
+  flex: 1 !important;
+}
+
+.line-chart-svg {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.line-chart-point {
+  r: 10 !important;
+}
+
+.line-chart-label {
+  font-size: 1.6rem !important;
+}
+
+.line-chart-legend {
+  gap: 40px !important;
+  font-size: 1.6rem !important;
+  margin-top: 30px !important;
+}
+
+/* --- Area Chart --- */
+.area-chart-section {
+  flex: 1 !important;
+}
+
+.area-chart-svg {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.area-chart-legend {
+  font-size: 1.6rem !important;
+  margin-top: 30px !important;
+}
+
+/* --- Stacked Bars --- */
+.stacked-chart {
+  gap: 30px !important;
+  height: 900px !important;
+}
+
+.stacked-col {
+  gap: 3px !important;
+}
+
+.stacked-label {
+  font-size: 1.8rem !important;
+  margin-top: 15px !important;
+}
+
+.stacked-value {
+  font-size: 1.5rem !important;
+}
+
+.stacked-legend {
+  gap: 30px !important;
+  font-size: 1.4rem !important;
+  margin-top: 30px !important;
+}
+
+.stacked-segment {
+  font-size: 1.5rem !important;
+}
+
+/* --- Grouped Bars --- */
+.grouped-chart {
+  gap: 40px !important;
+  height: 900px !important;
+}
+
+.grouped-group {
+  gap: 10px !important;
+}
+
+.grouped-bar {
+  width: 80px !important;
+}
+
+.grouped-label {
+  font-size: 1.8rem !important;
+  margin-top: 15px !important;
+}
+
+.grouped-value {
+  font-size: 1.5rem !important;
+}
+
+.grouped-legend {
+  gap: 30px !important;
+  font-size: 1.4rem !important;
+}
+
+/* --- Waterfall --- */
+.waterfall-chart {
+  height: 850px !important;
+  gap: 12px !important;
+}
+
+.waterfall-col {
+  min-width: 100px !important;
+}
+
+.waterfall-label {
+  font-size: 1.4rem !important;
+}
+
+.waterfall-value {
+  font-size: 1.8rem !important;
+}
+
+.waterfall-connector {
+  border-width: 2px !important;
+}
+
+/* --- Gauge --- */
+.gauge-section {
+  flex: 1 !important;
+  justify-content: center !important;
+}
+
+.gauge-container {
+  width: 700px !important;
+  margin: 0 auto !important;
+}
+
+.gauge-svg {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.gauge-value {
+  font-size: 8rem !important;
+}
+
+.gauge-label {
+  font-size: 2.2rem !important;
+}
+
+.gauge-threshold {
+  font-size: 1.6rem !important;
+}
+
+.gauge-scale {
+  font-size: 1.4rem !important;
+}
+
+/* --- Scatter --- */
+.scatter-section {
+  flex: 1 !important;
+}
+
+.scatter-svg {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.scatter-point {
+  r: 14 !important;
+}
+
+.scatter-label {
+  font-size: 1.5rem !important;
+}
+
+.scatter-axis {
+  font-size: 1.4rem !important;
+}
+
+.scatter-legend {
+  gap: 30px !important;
+  font-size: 1.4rem !important;
+  margin-top: 20px !important;
+}
+
+/* --- Radar --- */
+.radar-section {
+  flex: 1 !important;
+  align-items: center !important;
+}
+
+.radar-svg {
+  width: 700px !important;
+  height: 700px !important;
+}
+
+.radar-label {
+  font-size: 1.6rem !important;
+}
+
+.radar-legend {
+  gap: 40px !important;
+  font-size: 1.6rem !important;
+  margin-top: 30px !important;
+}
+
+/* --- Slope Chart --- */
+.slope-chart {
+  height: 900px !important;
+}
+
+.slope-axis {
+  font-size: 2rem !important;
+}
+
+.slope-point {
+  r: 10 !important;
+}
+
+.slope-label {
+  font-size: 1.6rem !important;
+}
+
+.slope-value {
+  font-size: 2.2rem !important;
+}
+
+.slope-line {
+  stroke-width: 3px !important;
+}
+
+/* --- Treemap --- */
+.treemap-section {
+  flex: 1 !important;
+}
+
+.treemap-grid {
+  flex: 1 !important;
+  gap: 6px !important;
+}
+
+.treemap-cell {
+  border-radius: 20px !important;
+  padding: 25px !important;
+}
+
+.treemap-label {
+  font-size: 1.8rem !important;
+}
+
+.treemap-value {
+  font-size: 2.8rem !important;
+}
 `;
 
 // CSS overrides pour le format Rectangle horizontal (1080x600)
@@ -921,6 +1239,273 @@ const RECTANGLE_CSS = `
 .website {
   font-size: 0.9rem !important;
 }
+
+/* ===== NOUVEAUX TYPES — Rectangle Horizontal ===== */
+
+/* --- Pie Chart --- */
+.pie-section {
+  gap: 20px !important;
+}
+
+.pie-container {
+  width: 200px !important;
+  height: 200px !important;
+}
+
+.pie-legend {
+  gap: 4px !important;
+}
+
+.pie-legend-item {
+  padding: 5px 10px !important;
+  border-radius: 8px !important;
+  min-width: 200px !important;
+}
+
+.pie-legend-item .legend-label {
+  font-size: 0.75rem !important;
+}
+
+.pie-legend-item .legend-pct {
+  font-size: 0.9rem !important;
+}
+
+/* --- Donut Chart --- */
+.donut-section {
+  gap: 20px !important;
+}
+
+.donut-container {
+  width: 200px !important;
+  height: 200px !important;
+}
+
+.donut-center-value {
+  font-size: 1.4rem !important;
+}
+
+.donut-center-label {
+  font-size: 0.6rem !important;
+}
+
+.legend {
+  gap: 4px !important;
+}
+
+.legend-item {
+  padding: 5px 10px !important;
+  border-radius: 8px !important;
+  min-width: 200px !important;
+  gap: 8px !important;
+}
+
+.legend-label {
+  font-size: 0.75rem !important;
+}
+
+.legend-pct {
+  font-size: 0.85rem !important;
+}
+
+.legend-amount {
+  font-size: 0.55rem !important;
+}
+
+.legend-color {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+/* --- Line Chart --- */
+.line-chart-section {
+  flex: 1 !important;
+}
+
+.line-chart-label {
+  font-size: 0.7rem !important;
+}
+
+.line-chart-legend {
+  gap: 15px !important;
+  font-size: 0.7rem !important;
+  margin-top: 8px !important;
+}
+
+/* --- Area Chart --- */
+.area-chart-section {
+  flex: 1 !important;
+}
+
+.area-chart-legend {
+  font-size: 0.7rem !important;
+  margin-top: 8px !important;
+}
+
+/* --- Stacked Bars --- */
+.stacked-chart {
+  gap: 8px !important;
+  height: 280px !important;
+}
+
+.stacked-label {
+  font-size: 0.7rem !important;
+  margin-top: 4px !important;
+}
+
+.stacked-value {
+  font-size: 0.6rem !important;
+}
+
+.stacked-legend {
+  gap: 10px !important;
+  font-size: 0.6rem !important;
+  margin-top: 6px !important;
+}
+
+.stacked-segment {
+  font-size: 0.6rem !important;
+}
+
+/* --- Grouped Bars --- */
+.grouped-chart {
+  gap: 12px !important;
+  height: 280px !important;
+}
+
+.grouped-bar {
+  width: 30px !important;
+}
+
+.grouped-label {
+  font-size: 0.7rem !important;
+  margin-top: 4px !important;
+}
+
+.grouped-value {
+  font-size: 0.6rem !important;
+}
+
+.grouped-legend {
+  gap: 10px !important;
+  font-size: 0.6rem !important;
+}
+
+/* --- Waterfall --- */
+.waterfall-chart {
+  height: 260px !important;
+  gap: 3px !important;
+}
+
+.waterfall-col {
+  min-width: 50px !important;
+}
+
+.waterfall-label {
+  font-size: 0.6rem !important;
+}
+
+.waterfall-value {
+  font-size: 0.7rem !important;
+}
+
+/* --- Gauge --- */
+.gauge-container {
+  width: 300px !important;
+}
+
+.gauge-value {
+  font-size: 3.5rem !important;
+}
+
+.gauge-label {
+  font-size: 0.9rem !important;
+}
+
+.gauge-threshold {
+  font-size: 0.7rem !important;
+}
+
+.gauge-scale {
+  font-size: 0.6rem !important;
+}
+
+/* --- Scatter --- */
+.scatter-section {
+  flex: 1 !important;
+}
+
+.scatter-point {
+  r: 6 !important;
+}
+
+.scatter-label {
+  font-size: 0.65rem !important;
+}
+
+.scatter-axis {
+  font-size: 0.6rem !important;
+}
+
+.scatter-legend {
+  gap: 10px !important;
+  font-size: 0.6rem !important;
+  margin-top: 6px !important;
+}
+
+/* --- Radar --- */
+.radar-svg {
+  width: 280px !important;
+  height: 280px !important;
+}
+
+.radar-label {
+  font-size: 0.7rem !important;
+}
+
+.radar-legend {
+  gap: 15px !important;
+  font-size: 0.7rem !important;
+  margin-top: 8px !important;
+}
+
+/* --- Slope Chart --- */
+.slope-chart {
+  height: 300px !important;
+}
+
+.slope-axis {
+  font-size: 0.85rem !important;
+}
+
+.slope-point {
+  r: 5 !important;
+}
+
+.slope-label {
+  font-size: 0.7rem !important;
+}
+
+.slope-value {
+  font-size: 0.85rem !important;
+}
+
+/* --- Treemap --- */
+.treemap-grid {
+  gap: 3px !important;
+}
+
+.treemap-cell {
+  border-radius: 8px !important;
+  padding: 8px !important;
+}
+
+.treemap-label {
+  font-size: 0.7rem !important;
+}
+
+.treemap-value {
+  font-size: 1rem !important;
+}
 `;
 
 // Define infographics: [htmlFile, infographicIndex, outputBaseName]
@@ -945,6 +1530,17 @@ const INFOGRAPHICS = [
   ['18-pensions-retraite-europe.html', 0, '18-pensions-retraite-europe'],
   ['19-capitalisation-vs-repartition.html', 0, '19-capitalisation-vs-repartition'],
   ['20-retraites-capitalisation-plus-elevees.html', 0, '20-retraites-capitalisation-plus-elevees'],
+  ['21-detenteurs-dette-france.html', 0, '21-detenteurs-dette-france'],
+  ['22-charge-interets-dette.html', 0, '22-charge-interets-dette'],
+  ['23-triple-degradation-notes.html', 0, '23-triple-degradation-notes'],
+  ['24-simulation-capitalisation-980k.html', 0, '24-simulation-capitalisation-980k'],
+  ['25-classement-mercer-retraites-2025.html', 0, '25-classement-mercer-retraites-2025'],
+  ['26-pays-bas-fonds-pension-213-pib.html', 0, '26-pays-bas-fonds-pension-213-pib'],
+  ['27-fecondite-france-plus-bas.html', 0, '27-fecondite-france-plus-bas'],
+  ['28-rendement-capitalisation-vs-repartition.html', 0, '28-rendement-capitalisation-vs-repartition'],
+  ['29-zero-perte-20-ans-actions.html', 0, '29-zero-perte-20-ans-actions'],
+  ['30-fonds-souverain-norvege.html', 0, '30-fonds-souverain-norvege'],
+  ['31-actifs-fonds-pension-monde.html', 0, '31-actifs-fonds-pension-monde'],
 ];
 
 async function exportFormat(browser, htmlPath, items, { css, jsTransform, width, height, outputDir, suffix, label }) {
@@ -990,19 +1586,62 @@ async function main() {
     byFile[htmlFile].push({ idx, baseName });
   }
 
-  // JS transform for TikTok Vertical (scale timeline bars)
+  // JS transform for TikTok Vertical (scale timeline bars + new chart types)
   const tiktokVerticalJS = () => {
+    // Timeline bars
     document.querySelectorAll('.timeline-bar').forEach(bar => {
       const h = parseInt(bar.style.height);
       if (h) bar.style.height = Math.round(h * 1.8) + 'px';
     });
+    // Waterfall bars — scale inline heights
+    document.querySelectorAll('.waterfall-bar').forEach(bar => {
+      const h = parseInt(bar.style.height);
+      if (h) bar.style.height = Math.round(h * 1.6) + 'px';
+      const t = parseInt(bar.style.top);
+      if (t) bar.style.top = Math.round(t * 1.6) + 'px';
+    });
+    // Stacked segments — scale inline heights
+    document.querySelectorAll('.stacked-segment').forEach(seg => {
+      const h = parseInt(seg.style.height);
+      if (h) seg.style.height = Math.round(h * 1.6) + 'px';
+    });
+    // Grouped bars — scale inline heights
+    document.querySelectorAll('.grouped-bar').forEach(bar => {
+      const h = parseInt(bar.style.height);
+      if (h) bar.style.height = Math.round(h * 1.6) + 'px';
+    });
+    // Scatter points — scale inline positions
+    document.querySelectorAll('.scatter-point').forEach(pt => {
+      const l = parseInt(pt.style.left);
+      const b = parseInt(pt.style.bottom);
+      if (l) pt.style.left = Math.round(l * 1.0) + 'px';
+      if (b) pt.style.bottom = Math.round(b * 1.6) + 'px';
+    });
   };
 
-  // JS transform for Rectangle (scale down timeline bars)
+  // JS transform for Rectangle (scale down timeline bars + new chart types)
   const rectangleJS = () => {
+    // Timeline bars
     document.querySelectorAll('.timeline-bar').forEach(bar => {
       const h = parseInt(bar.style.height);
       if (h) bar.style.height = Math.round(h * 0.55) + 'px';
+    });
+    // Waterfall bars — scale down
+    document.querySelectorAll('.waterfall-bar').forEach(bar => {
+      const h = parseInt(bar.style.height);
+      if (h) bar.style.height = Math.round(h * 0.5) + 'px';
+      const t = parseInt(bar.style.top);
+      if (t) bar.style.top = Math.round(t * 0.5) + 'px';
+    });
+    // Stacked segments — scale down
+    document.querySelectorAll('.stacked-segment').forEach(seg => {
+      const h = parseInt(seg.style.height);
+      if (h) seg.style.height = Math.round(h * 0.5) + 'px';
+    });
+    // Grouped bars — scale down
+    document.querySelectorAll('.grouped-bar').forEach(bar => {
+      const h = parseInt(bar.style.height);
+      if (h) bar.style.height = Math.round(h * 0.5) + 'px';
     });
   };
 

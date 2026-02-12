@@ -1,6 +1,41 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
+
+const MOSAIC_IMAGES = [
+  '01-france-pologne-comparaison-instagram.png',
+  '02-pologne-rattrapage-courbes-instagram.png',
+  '03-singapour-argentine-divergence-instagram.png',
+  '04-chatgpt-utilisateurs-instagram.png',
+  '05-cuivre-instagram.png',
+  '06-salaires-suisse-instagram.png',
+  '07-top5-pays-peuples-instagram.png',
+  '08-fertilite-par-pays-instagram.png',
+  '09-prix-cigarette-france-instagram.png',
+  '10-indice-big-mac-instagram.png',
+  '11-salaire-moyen-par-pays-instagram.png',
+  '12-dette-publique-europe-instagram.png',
+  '13-deficit-zone-euro-instagram.png',
+  '14-explosion-dette-france-instagram.png',
+  '15-hotels-plus-chers-paris-instagram.png',
+  '16-retraites-explosion-2070-instagram.png',
+  '17-vieillissement-mondial-2070-instagram.png',
+  '18-pensions-retraite-europe-instagram.png',
+  '19-capitalisation-vs-repartition-instagram.png',
+  '20-retraites-capitalisation-plus-elevees-instagram.png',
+  '21-detenteurs-dette-france-instagram.png',
+  '22-charge-interets-dette-instagram.png',
+  '23-triple-degradation-notes-instagram.png',
+  '24-simulation-capitalisation-980k-instagram.png',
+  '25-classement-mercer-retraites-2025-instagram.png',
+  '26-pays-bas-fonds-pension-213-pib-instagram.png',
+  '27-fecondite-france-plus-bas-instagram.png',
+  '28-rendement-capitalisation-vs-repartition-instagram.png',
+  '29-zero-perte-20-ans-actions-instagram.png',
+  '30-fonds-souverain-norvege-instagram.png',
+  '31-actifs-fonds-pension-monde-instagram.png',
+]
 
 function formatCurrency(num: number): string {
   return new Intl.NumberFormat('fr-FR', {
@@ -69,6 +104,28 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-24 text-center overflow-hidden">
+      {/* Mosaic Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="mosaic-scroll grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-7 gap-1.5 p-1.5 opacity-40">
+          {[...MOSAIC_IMAGES, ...MOSAIC_IMAGES].map((img, i) => (
+            <div key={i} className="relative aspect-square rounded-lg overflow-hidden">
+              <Image
+                src={`/infographies/${img}`}
+                alt=""
+                fill
+                sizes="(max-width: 640px) 25vw, (max-width: 1024px) 20vw, 14vw"
+                className="object-cover"
+                loading="eager"
+              />
+            </div>
+          ))}
+        </div>
+        {/* Dark overlay - centre plus transparent pour voir la mosaïque */}
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-deep/70 via-bg-deep/50 to-bg-deep/80" />
+        {/* Vignette edges */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,var(--bg-deep)_85%)]" />
+      </div>
+
       {/* Floating Orbs */}
       <div className="floating-orb w-[600px] h-[600px] bg-accent-red/10 left-[-200px] top-[10%] animate-float" />
       <div className="floating-orb w-[400px] h-[400px] bg-accent-orange/10 right-[-100px] top-[60%] animate-float" style={{ animationDelay: '-7s' }} />
@@ -103,7 +160,7 @@ export function Hero() {
         </p>
 
         {/* Live Debt Counter */}
-        <div className="relative bg-gradient-to-br from-accent-red/10 to-accent-orange/10 border border-accent-red/30 rounded-2xl p-6 lg:p-10 mb-10 max-w-xl mx-auto overflow-hidden">
+        <div className="relative bg-gradient-to-br from-accent-red/30 to-accent-orange/20 border border-accent-red/50 rounded-2xl p-6 lg:p-10 mb-10 max-w-xl mx-auto overflow-hidden backdrop-blur-md">
           {/* Loading bar animation */}
           <div className="absolute top-0 left-0 right-0 h-1 overflow-hidden">
             <div className="h-full w-full bg-gradient-to-r from-accent-red via-accent-orange to-accent-pink animate-loading" />
@@ -114,7 +171,7 @@ export function Hero() {
             En direct
           </div>
 
-          <p className="text-text-secondary text-base mb-3">
+          <p className="text-text-secondary text-lg lg:text-xl mb-3">
             Depuis que vous avez ouvert cette page, la dette française a augmenté de
           </p>
 
@@ -125,7 +182,7 @@ export function Hero() {
             {formatCurrency(debtCounter)}
           </div>
 
-          <p className="text-text-muted text-sm mt-4">
+          <p className="text-text-muted text-base lg:text-lg mt-4">
             soit environ <span className="text-accent-red font-mono font-medium">5 350 €</span> par seconde, 24h/24
           </p>
 

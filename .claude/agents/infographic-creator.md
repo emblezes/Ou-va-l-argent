@@ -17,15 +17,11 @@ Chaque infographie est générée en **3 formats** :
 
 ## Workflow
 
-### Étape 1 : Comprendre la demande
+### Étape 1 : Comprendre la demande et choisir le bon template
 - Identifier le sujet de l'infographie
-- Déterminer le type de visualisation adapté :
-  - **Stat choc** : Un chiffre principal impressionnant
-  - **Comparaison** : Deux valeurs côte à côte (avant/après, France/autre pays)
-  - **Classement** : Bar chart avec plusieurs items
-  - **Timeline** : Évolution chronologique
-  - **Donut** : Répartition / pourcentages
-  - **Citation** : Message fort avec mise en avant
+- Déterminer le type de visualisation le plus adapté aux données (voir **Guide de sélection** ci-dessous)
+- **Lire le template correspondant** dans `Templates/Réseaux sociaux/` pour s'en inspirer
+- Adapter le contenu au sujet demandé
 
 ### Étape 2 : Recherche des données
 Utiliser l'agent `search-specialist` pour :
@@ -159,149 +155,157 @@ Après chaque infographie créée, **ajouter une ligne** avec :
 
 ---
 
-## Types d'infographies disponibles
+## Guide de sélection : quel template pour quelles données ?
 
-Le template `/Templates/Réseaux sociaux/template-multiformat.html` contient 6 types de visualisations, chacun décliné en 3 formats.
+### Arbre de décision
 
-### 1. Stat choc (`main-stat`)
-Pour un chiffre unique impressionnant.
-```html
-<div class="main-stat">
-    <div class="stat-label">En France, en 2024</div>
-    <div class="stat-value">5 350€</div>
-    <div class="stat-unit">de dette par seconde</div>
-    <div class="stat-context">
-        Soit <strong>462 millions</strong> par jour.
-    </div>
-</div>
+```
+Quel type de données as-tu ?
+│
+├─ UN SEUL CHIFFRE marquant
+│  → Stat choc (template-multiformat.html)
+│  Ex: "5 350€ de dette par seconde"
+│
+├─ DEUX VALEURS à comparer (avant/après, France vs X)
+│  ├─ 2 valeurs simples → Comparaison (template-multiformat.html)
+│  │  Ex: "Dette France 112% vs Allemagne 63%"
+│  └─ Évolution 2 périodes, 3+ items → Slope (_template-slope.html)
+│     Ex: "Classement Mercer 2020 → 2025"
+│
+├─ MESSAGE / DÉCLARATION forte
+│  → Citation (template-multiformat.html)
+│  Ex: "La France n'a pas eu de budget équilibré depuis 50 ans"
+│
+├─ CLASSEMENT ou LISTE ordonnée
+│  → Bar chart horizontal (template-multiformat.html)
+│  Ex: "Top 10 salaires par pays", "Répartition dépenses"
+│
+├─ RÉPARTITION en % (parts d'un tout = 100%)
+│  ├─ 3-6 catégories → Donut (_template-donut-chart.html)
+│  │  Ex: "Composition recettes fiscales"
+│  ├─ 3-6 catégories (plein) → Pie (_template-pie-chart.html)
+│  │  Ex: "Budget de l'État par poste"
+│  └─ 6+ catégories, hiérarchie → Treemap (_template-treemap.html)
+│     Ex: "Dépenses publiques : retraites, santé, éducation..."
+│
+├─ ÉVOLUTION DANS LE TEMPS
+│  ├─ Dates-clés qualitatives → Timeline (template-multiformat.html)
+│  │  Ex: "L'explosion de la dette 1974-2024"
+│  ├─ Courbe continue (1-3 séries) → Line (_template-line-chart.html)
+│  │  Ex: "PIB France vs Allemagne 2000-2024"
+│  └─ Tendance avec surface → Area (_template-area-chart.html)
+│     Ex: "Dette publique % PIB depuis 1980"
+│
+├─ COMPARAISON PAR CATÉGORIES
+│  ├─ N catégories, 2-3 séries → Grouped bars (_template-grouped-bars.html)
+│  │  Ex: "PIB par secteur : France vs Allemagne"
+│  ├─ N catégories, parts empilées → Stacked bars (_template-stacked-bars.html)
+│  │  Ex: "Recettes fiscales par type et par pays"
+│  └─ Valeurs +/- (déficit/excédent) → Bar chart vertical (template-multiformat.html)
+│     Ex: "Déficit zone euro par pays"
+│
+├─ DÉCOMPOSITION ÉTAPE PAR ÉTAPE
+│  → Waterfall (_template-waterfall.html)
+│  Ex: "Du salaire brut au revenu net"
+│
+├─ JAUGE / INDICATEUR vs SEUIL
+│  → Gauge (_template-gauge.html)
+│  Ex: "Taux d'endettement 112% (seuil Maastricht 60%)"
+│
+├─ CORRÉLATION entre 2 variables
+│  → Scatter (_template-scatter.html)
+│  Ex: "Dette vs croissance en Europe"
+│
+└─ PROFIL MULTI-CRITÈRES
+   → Radar (_template-radar.html)
+   Ex: "Système retraites : France vs Pays-Bas (5 critères)"
 ```
 
-### 2. Comparaison (`comparison-grid`)
-Pour comparer deux valeurs.
-```html
-<h2 class="section-title">Dette publique :<br><span class="accent">France vs Allemagne</span></h2>
-<div class="comparison-grid" style="position: relative;">
-    <div class="comparison-item">
-        <div class="comparison-label">🇩🇪 Allemagne</div>
-        <div class="comparison-value">63%</div>
-        <div class="comparison-desc">du PIB</div>
-    </div>
-    <div class="comparison-item highlight">
-        <div class="comparison-label">🇫🇷 France</div>
-        <div class="comparison-value">112%</div>
-        <div class="comparison-desc">du PIB</div>
-    </div>
-    <div class="vs-badge">VS</div>
-</div>
-```
+---
 
-### 3. Classement / Bar Chart (`bar-chart`)
-Pour un classement ou répartition.
-```html
-<div class="chart-container">
-    <h2 class="chart-title">Où va l'argent <span class="accent">public</span> ?</h2>
-    <div class="bar-chart">
-        <div class="bar-item">
-            <div class="bar-label">Retraites</div>
-            <div class="bar-track">
-                <div class="bar-fill electric" style="width: 85%;">380 Md€</div>
-            </div>
-        </div>
-        <!-- Autres barres... -->
-    </div>
-</div>
-```
+## Templates disponibles
 
+### Fichier unique
+
+**Tous les types sont dans un seul fichier** : `Templates/Réseaux sociaux/template-multiformat.html`
+
+Ce fichier contient les CSS + exemples HTML en 3 formats (Instagram, TikTok, Rectangle) pour les 18 types :
+
+| Type | # | Classes CSS | Quand l'utiliser |
+|------|---|-------------|-----------------|
+| Stat choc | 1 | `.main-stat` | Un chiffre unique impressionnant |
+| Comparaison | 2 | `.comparison-grid` | Deux valeurs côte à côte |
+| Bar chart H | 3 | `.bar-chart` | Classement, répartition |
+| Timeline | 4 | `.timeline` | Évolution chronologique qualitative |
+| Donut CSS | 5 | `.donut-section` | Répartition simple (2 donuts) |
+| Citation | 6 | `.quote-section` | Message fort |
+| Bar chart V | 7 | `.chart-area` | Valeurs +/- (déficit/excédent) |
+| Camembert | 8 | `.pie-section` | Répartition 3-6 parts |
+| Donut SVG | 9 | `.donut-svg-section` | Répartition + chiffre central |
+| Courbes | 10 | `.line-chart-section` | Évolution temporelle, 1-3 séries |
+| Surface | 11 | `.area-chart-section` | Tendance avec remplissage |
+| Barres empilées | 12 | `.stacked-chart` | Composition par catégorie |
+| Barres groupées | 13 | `.grouped-chart` | Comparaison multi-séries |
+| Cascade | 14 | `.waterfall-chart` | Décomposition étape par étape |
+| Jauge | 15 | `.gauge-section` | Valeur vs seuil / objectif |
+| Nuage de points | 16 | `.scatter-section` | Corrélation 2 variables |
+| Radar | 17 | `.radar-section` | Profil multi-critères (3-6 axes) |
+| Pente | 18 | `.slope-chart` | Évolution rang/valeur entre 2 dates |
+| Treemap | 19 | `.treemap-section` | Répartition hiérarchique (6+) |
+
+### Exemples d'infographies existantes par type
+
+| Type | Infographies existantes (dans `Sources HTML/`) |
+|------|-----------------------------------------------|
+| Stat choc | `04-chatgpt-utilisateurs`, `05-cuivre`, `26-pays-bas-fonds-pension-213-pib`, `27-fecondite-france-plus-bas` |
+| Comparaison | `01-france-pologne-pib`, `03-singapour-argentine-pib`, `19-capitalisation-vs-repartition`, `28-rendement-capitalisation-vs-repartition` |
+| Bar chart H (classement) | `06-salaires-suisse`, `07-top5-pays-peuples`, `08-fertilite-par-pays`, `09-prix-cigarette-france`, `10-indice-big-mac`, `11-salaire-moyen-par-pays`, `12-dette-publique-europe`, `15-hotels-plus-chers-paris`, `18-pensions-retraite-europe`, `25-classement-mercer-retraites-2025`, `31-actifs-fonds-pension-monde` |
+| Bar chart V (+/-) | `13-deficit-zone-euro` |
+| Timeline | `14-explosion-dette-france`, `23-triple-degradation-notes` |
+| Line SVG | `16-retraites-explosion-2070`, `17-vieillissement-mondial-2070` |
+| Area SVG | `22-charge-interets-dette` |
+| Donut SVG | `21-detenteurs-dette-france` |
+| Stat + décomposition | `20-retraites-capitalisation-plus-elevees`, `24-simulation-capitalisation-980k`, `29-zero-perte-20-ans-actions`, `30-fonds-souverain-norvege` |
+
+### Procédure pour utiliser un template
+
+1. **Identifier le type** via le guide de sélection ci-dessus
+2. **Lire le template** `Templates/Réseaux sociaux/template-multiformat.html` avec l'outil Read
+3. **Trouver la section** du type voulu (chercher `TYPE N :` dans le HTML)
+4. **Copier le bloc Instagram** et adapter :
+   - Titre, sous-titre, tag thématique
+   - Données (valeurs, labels, couleurs)
+   - Sources dans le footer
+5. **Pour les SVG** (line, area, scatter, radar, gauge) : recalculer les coordonnées pour les nouvelles données
+6. **Pour les CSS** (bars, treemap, waterfall) : recalculer les hauteurs/largeurs proportionnelles
+7. **Les formats TikTok et Rectangle** sont gérés automatiquement par les CSS overrides intégrés au template + le script batch-export
+
+### Types du template multiformat (rappel)
+
+Le template `template-multiformat.html` contient 7 types intégrés :
+
+#### 1. Stat choc (`main-stat`)
+Un chiffre unique impressionnant.
+
+#### 2. Comparaison (`comparison-grid`)
+Deux valeurs côte à côte (avant/après, France/autre pays).
+
+#### 3. Classement / Bar Chart H (`bar-chart`)
+Classement ou répartition avec barres horizontales.
 Couleurs disponibles : `electric`, `gold`, `purple`, `green`, `orange`, `red`
 
-### 4. Timeline (`timeline`)
-Pour une évolution chronologique.
-```html
-<div class="timeline-container">
-    <h2 class="chart-title">L'<span class="accent">explosion</span> de la dette</h2>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-year">1974</div>
-            <div class="timeline-title">Dernier budget équilibré</div>
-            <div class="timeline-value">Dette : 15% du PIB</div>
-        </div>
-        <!-- Autres items... -->
-    </div>
-</div>
-```
+#### 4. Timeline (`timeline`)
+Évolution chronologique avec dates-clés.
 
-### 5. Donut (`donut-section`)
-Pour des répartitions en pourcentages.
-```html
-<h2 class="section-title">Qui paie l'<span class="accent">impôt</span> ?</h2>
-<div class="donut-section">
-    <div class="donut-wrapper">
-        <div class="donut">
-            <div class="donut-ring"></div>
-            <div class="donut-center">
-                <div class="donut-value">50%</div>
-                <div class="donut-label">des ménages</div>
-            </div>
-        </div>
-        <div class="donut-title">Ne paient pas d'IR</div>
-        <div class="donut-subtitle">Revenus trop faibles</div>
-    </div>
-    <!-- Autre donut... -->
-</div>
-```
+#### 5. Donut (`donut-section`)
+Répartition en pourcentages (version simple CSS).
 
-### 6. Citation (`quote-section`)
-Pour un message fort.
-```html
-<div class="quote-section">
-    <div class="quote-icon">⚠️</div>
-    <div class="quote-text">
-        La France n'a pas eu de budget équilibré depuis
-        <span class="highlight">50 ans</span>
-    </div>
-    <div class="quote-source">Dernier excédent budgétaire : 1974</div>
-</div>
-```
+#### 6. Citation (`quote-section`)
+Message fort avec mise en avant.
 
-### 7. Bar chart vertical (`chart-area` + `bar-col`)
-Pour des données avec valeurs positives ET négatives (ex: déficit/excédent).
-Barres vers le haut = valeurs positives, barres vers le bas = valeurs négatives.
-La ligne 0 sépare les deux zones.
-```html
-<div class="chart-area">
-    <div class="zero-label">0%</div>
-    <div class="bars-container">
-        <div class="zero-line"></div>
-        <!-- Barre déficit -->
-        <div class="bar-col">
-            <div class="surplus-zone"></div>
-            <div class="deficit-zone">
-                <div class="bar-down france" style="height: 100%;">
-                    <div class="bar-value">-5,8%</div>
-                </div>
-            </div>
-        </div>
-        <!-- Barre excédent -->
-        <div class="bar-col">
-            <div class="surplus-zone">
-                <div class="bar-up" style="height: 50%;">
-                    <div class="bar-value">+2,1%</div>
-                </div>
-            </div>
-            <div class="deficit-zone"></div>
-        </div>
-    </div>
-</div>
-<div class="country-labels">
-    <div class="country-label highlight">
-        <span class="country-flag">🇫🇷</span>
-        <span class="country-name">France</span>
-    </div>
-    <!-- ... -->
-</div>
-```
-Classes barres : `france` (rouge), `other` (gris), `average` (or)
+#### 7. Bar chart vertical (`chart-area` + `bar-col`)
+Valeurs positives ET négatives (ex: déficit/excédent par pays).
+Classes barres : `france` (rouge), `other` (gris), `average` (or).
 Référence : `13-deficit-zone-euro.html`
 
 ---

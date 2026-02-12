@@ -46,6 +46,13 @@ Les agents sont situés dans `.claude/agents/` :
    - Trouve les sources officielles (INSEE, Eurostat, ministères, etc.)
    - Valide la fiabilité des sources
 
+5. **trend-scout** (`.claude/agents/trend-scout.md`)
+   - Identifie les sujets tendance dans la niche éco/finance
+   - Scanne actualité institutionnelle, médias, réseaux sociaux
+   - Propose 10-15 sujets classés par potentiel viral
+   - À convoquer à la demande (pas systématiquement)
+   - **Usage** : "Quels sont les sujets tendance cette semaine ?"
+
 ### Protocole de vérification
 
 **Toujours** :
@@ -160,6 +167,58 @@ Les infographies suivent une charte visuelle cohérente :
 1. Header : Logo + Tag thématique
 2. Contenu principal : Statistique ou visualisation
 3. Footer : Source + URL du site
+
+---
+
+## Présentations PowerPoint (PPTX)
+
+Deux formats distincts de PPTX, chacun avec sa bibliothèque de helpers :
+
+### Format PRÉSENTATION (conférences, pitchs)
+
+**Fichier** : `Templates/PPT/workspace/pptx-helpers.js`
+
+- **Fond sombre** avec glows et grille (charte graphique dark)
+- **Visuel-first** : peu de texte, grands chiffres, graphiques impactants
+- **Polices** : Instrument Serif (titres), Syne (corps), JetBrains Mono (données)
+- **Usage** : Conférences, présentations publiques, pitchs
+
+```js
+const h = require('./pptx-helpers');
+h.addChiffreCle(pptx, 'Tag', 'Label', '42', 150, h.colors.accentRed, 'unité', 'contexte', 'Source');
+```
+
+**Types de slides** : Transition, ChiffreCle, PointsCles, Bars, Focus2Col, Projections, Cards2x2, Citation, Timeline, Scenarios + charts natifs (Pie, Donut, Line, Area, Scatter, Radar) + charts manuels (StackedBars, GroupedBars, Waterfall, Gauge, Slope, Treemap)
+
+### Format RAPPORT (études, analyses approfondies)
+
+**Fichier** : `Templates/PPT/workspace/pptx-report-helpers.js`
+
+- **Fond clair** style McKinsey / BCG
+- **Haute densité d'information** : tableaux de données, multi-colonnes, frameworks stratégiques
+- **Action titles** : chaque titre de slide = takeaway principal (pas juste un sujet)
+- **Polices** : Calibri (standard consulting)
+- **Format** : 13.33" × 7.5" (widescreen)
+- **Usage** : Rapports publiés, études sectorielles, analyses approfondies
+
+```js
+const r = require('./pptx-report-helpers');
+r.setupReport(pptx);
+r.addCover(pptx, 'Titre du rapport', 'Sous-titre', 'Février 2026');
+r.addKPIDashboard(pptx, 'La dette publique atteint un niveau record', 'Dette', kpis, 'INSEE', 3);
+```
+
+**Types de slides** : Cover, SectionDivider, TOC, ExecSummary, DataTable, KPIDashboard, Matrix2x2, ChartWithAnalysis, BridgeChart (waterfall consulting), Comparison, KeyTakeaways, TextSlide, SourcesPage, BackCover
+
+### Quand utiliser quel format ?
+
+| Critère | Présentation | Rapport |
+|---------|-------------|---------|
+| **Public** | Audience live | Lecteur seul |
+| **Densité** | 1 idée par slide | Données riches par slide |
+| **Texte** | Minimal | Détaillé + analyse |
+| **Fond** | Sombre (dark) | Clair (blanc) |
+| **Durée lecture** | 3s par slide | 30s+ par slide |
 
 ---
 

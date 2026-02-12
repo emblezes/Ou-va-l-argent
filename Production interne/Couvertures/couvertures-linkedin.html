@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Couvertures LinkedIn - Où Va l'Argent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #0a0a0a;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .preview-label {
+            font-size: 1.1rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 12px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+        }
+
+        .preview-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* =============================================
+           BASE COVER
+           ============================================= */
+        .cover {
+            width: 1584px;
+            height: 396px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1, .bg-glow-2, .bg-glow-3 {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 45px 65px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cover-left {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 60%;
+        }
+
+        .cover-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 16px;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 4px;
+        }
+
+        .logo-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: #f0f4f8;
+            letter-spacing: -0.02em;
+        }
+
+        /* Title */
+        .cover-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.2rem;
+            color: #f0f4f8;
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+        }
+
+        .cover-title .accent {
+            font-style: italic;
+        }
+
+        /* Subtitle */
+        .cover-subtitle {
+            font-size: 1.15rem;
+            color: #8899a8;
+            line-height: 1.4;
+            max-width: 600px;
+        }
+
+        /* Website URL */
+        .cover-url {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        /* Tags / keywords */
+        .cover-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .cover-tag {
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* Euro symbols decoration */
+        .euro-deco {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 300;
+            opacity: 0.04;
+            z-index: 0;
+            user-select: none;
+        }
+
+        /* Separator line */
+        .cover-separator {
+            width: 2px;
+            height: 180px;
+            border-radius: 2px;
+            opacity: 0.3;
+            margin: 0 40px;
+        }
+
+        /* =============================================
+           VERSION 1 : CYAN CLASSIC
+           ============================================= */
+        .cover.cyan .bg-base {
+            background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%);
+        }
+        .cover.cyan .bg-grid {
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+        }
+        .cover.cyan .bg-glow-1 {
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.18) 0%, transparent 70%);
+            top: -350px; right: -100px;
+        }
+        .cover.cyan .bg-glow-2 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+            bottom: -250px; left: -100px;
+        }
+        .cover.cyan .bg-glow-3 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            bottom: -100px; right: 300px;
+        }
+        .cover.cyan .logo-icon {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: #06080c;
+        }
+        .cover.cyan .cover-title .accent { color: #00d4ff; }
+        .cover.cyan .cover-url { color: #00d4ff; }
+        .cover.cyan .cover-separator { background: linear-gradient(180deg, #00d4ff, #ffd700); }
+        .cover.cyan .cover-tag {
+            background: rgba(0, 212, 255, 0.12);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            color: #00d4ff;
+        }
+        .cover.cyan .euro-deco { color: #00d4ff; }
+
+        /* =============================================
+           VERSION 2 : OR LUXE
+           ============================================= */
+        .cover.gold .bg-base {
+            background: linear-gradient(145deg, #08060c 0%, #1a1408 50%, #08060c 100%);
+        }
+        .cover.gold .bg-grid {
+            background-image:
+                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+        }
+        .cover.gold .bg-glow-1 {
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
+            top: -350px; right: -100px;
+        }
+        .cover.gold .bg-glow-2 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(255, 159, 67, 0.1) 0%, transparent 70%);
+            bottom: -250px; left: -100px;
+        }
+        .cover.gold .bg-glow-3 {
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.06) 0%, transparent 70%);
+            bottom: -50px; right: 400px;
+        }
+        .cover.gold .logo-icon {
+            background: linear-gradient(135deg, #ffd700 0%, #e5a800 100%);
+            color: #08060c;
+        }
+        .cover.gold .cover-title .accent { color: #ffd700; }
+        .cover.gold .cover-url { color: #ffd700; }
+        .cover.gold .cover-separator { background: linear-gradient(180deg, #ffd700, #ff9f43); }
+        .cover.gold .cover-tag {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            color: #ffd700;
+        }
+        .cover.gold .euro-deco { color: #ffd700; }
+
+        /* =============================================
+           VERSION 3 : ROUGE IMPACT
+           ============================================= */
+        .cover.red .bg-base {
+            background: linear-gradient(145deg, #0c0608 0%, #1a0a14 50%, #0c0608 100%);
+        }
+        .cover.red .bg-grid {
+            background-image:
+                linear-gradient(rgba(255, 71, 87, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 71, 87, 0.035) 1px, transparent 1px);
+        }
+        .cover.red .bg-glow-1 {
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.18) 0%, transparent 70%);
+            top: -350px; right: -100px;
+        }
+        .cover.red .bg-glow-2 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(255, 159, 67, 0.08) 0%, transparent 70%);
+            bottom: -250px; left: -100px;
+        }
+        .cover.red .bg-glow-3 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.08) 0%, transparent 70%);
+            bottom: -100px; right: 300px;
+        }
+        .cover.red .logo-icon {
+            background: linear-gradient(135deg, #ff4757 0%, #cc3a47 100%);
+            color: #0c0608;
+        }
+        .cover.red .cover-title .accent { color: #ff4757; }
+        .cover.red .cover-url { color: #ff4757; }
+        .cover.red .cover-separator { background: linear-gradient(180deg, #ff4757, #ff9f43); }
+        .cover.red .cover-tag {
+            background: rgba(255, 71, 87, 0.12);
+            border: 1px solid rgba(255, 71, 87, 0.25);
+            color: #ff4757;
+        }
+        .cover.red .euro-deco { color: #ff4757; }
+
+        /* =============================================
+           VERSION 4 : VIOLET PREMIUM
+           ============================================= */
+        .cover.purple .bg-base {
+            background: linear-gradient(145deg, #080612 0%, #12082a 50%, #080612 100%);
+        }
+        .cover.purple .bg-grid {
+            background-image:
+                linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
+        }
+        .cover.purple .bg-glow-1 {
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.18) 0%, transparent 70%);
+            top: -350px; right: -100px;
+        }
+        .cover.purple .bg-glow-2 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+            bottom: -250px; left: -100px;
+        }
+        .cover.purple .bg-glow-3 {
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+            bottom: -50px; right: 400px;
+        }
+        .cover.purple .logo-icon {
+            background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+            color: #080612;
+        }
+        .cover.purple .cover-title .accent { color: #a855f7; }
+        .cover.purple .cover-url { color: #a855f7; }
+        .cover.purple .cover-separator { background: linear-gradient(180deg, #a855f7, #00d4ff); }
+        .cover.purple .cover-tag {
+            background: rgba(168, 85, 247, 0.12);
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            color: #a855f7;
+        }
+        .cover.purple .euro-deco { color: #a855f7; }
+
+        /* =============================================
+           VERSION 5 : VERT CROISSANCE
+           ============================================= */
+        .cover.green .bg-base {
+            background: linear-gradient(145deg, #060c08 0%, #081a12 50%, #060c08 100%);
+        }
+        .cover.green .bg-grid {
+            background-image:
+                linear-gradient(rgba(0, 255, 136, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.025) 1px, transparent 1px);
+        }
+        .cover.green .bg-glow-1 {
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.14) 0%, transparent 70%);
+            top: -350px; right: -100px;
+        }
+        .cover.green .bg-glow-2 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+            bottom: -250px; left: -100px;
+        }
+        .cover.green .bg-glow-3 {
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.06) 0%, transparent 70%);
+            bottom: -50px; right: 400px;
+        }
+        .cover.green .logo-icon {
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            color: #060c08;
+        }
+        .cover.green .cover-title .accent { color: #00ff88; }
+        .cover.green .cover-url { color: #00ff88; }
+        .cover.green .cover-separator { background: linear-gradient(180deg, #00ff88, #ffd700); }
+        .cover.green .cover-tag {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            color: #00ff88;
+        }
+        .cover.green .euro-deco { color: #00ff88; }
+    </style>
+</head>
+<body>
+
+    <!-- ================================================================
+         VERSION 1 : CYAN CLASSIC
+         ================================================================ -->
+    <div class="preview-wrapper">
+        <div class="preview-label">Version 1 : Cyan Classic</div>
+        <div class="cover cyan" data-name="couverture-linkedin-cyan">
+            <div class="bg-base"></div>
+            <div class="bg-grid"></div>
+            <div class="bg-glow-1"></div>
+            <div class="bg-glow-2"></div>
+            <div class="bg-glow-3"></div>
+            <div class="euro-deco" style="font-size: 22rem; top: -60px; right: 80px;">€</div>
+            <div class="euro-deco" style="font-size: 8rem; bottom: 20px; left: 45%;">€</div>
+
+            <div class="cover-content">
+                <div class="cover-left">
+                    <div class="logo">
+                        <div class="logo-icon">€</div>
+                        <span class="logo-text">Où Va l'Argent</span>
+                    </div>
+                    <div class="cover-title">
+                        Comprendre les <span class="accent">finances publiques</span><br>
+                        en un coup d'oeil
+                    </div>
+                    <div class="cover-subtitle">
+                        Analyses, données et visualisations sur la dette, les impôts et les dépenses de la France
+                    </div>
+                </div>
+
+                <div class="cover-separator"></div>
+
+                <div class="cover-right">
+                    <div class="cover-url">ouvalargent.fr</div>
+                    <div class="cover-tags">
+                        <span class="cover-tag">Dette</span>
+                        <span class="cover-tag">Impôts</span>
+                        <span class="cover-tag">Dépenses</span>
+                    </div>
+                    <div class="cover-tags">
+                        <span class="cover-tag">Macro</span>
+                        <span class="cover-tag">Investissement</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================
+         VERSION 2 : OR LUXE
+         ================================================================ -->
+    <div class="preview-wrapper">
+        <div class="preview-label">Version 2 : Or Luxe</div>
+        <div class="cover gold" data-name="couverture-linkedin-or">
+            <div class="bg-base"></div>
+            <div class="bg-grid"></div>
+            <div class="bg-glow-1"></div>
+            <div class="bg-glow-2"></div>
+            <div class="bg-glow-3"></div>
+            <div class="euro-deco" style="font-size: 24rem; top: -80px; right: 60px;">€</div>
+            <div class="euro-deco" style="font-size: 10rem; bottom: -10px; left: 40%;">€</div>
+
+            <div class="cover-content">
+                <div class="cover-left">
+                    <div class="logo">
+                        <div class="logo-icon">€</div>
+                        <span class="logo-text">Où Va l'Argent</span>
+                    </div>
+                    <div class="cover-title">
+                        L'économie <span class="accent">décryptée</span>,<br>
+                        les chiffres <span class="accent">vérifiés</span>
+                    </div>
+                    <div class="cover-subtitle">
+                        Média économique indépendant : finances publiques, investissement et actualité
+                    </div>
+                </div>
+
+                <div class="cover-separator"></div>
+
+                <div class="cover-right">
+                    <div class="cover-url">ouvalargent.fr</div>
+                    <div class="cover-tags">
+                        <span class="cover-tag">Bourse</span>
+                        <span class="cover-tag">Immobilier</span>
+                    </div>
+                    <div class="cover-tags">
+                        <span class="cover-tag">Économie</span>
+                        <span class="cover-tag">Finance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================
+         VERSION 3 : ROUGE IMPACT
+         ================================================================ -->
+    <div class="preview-wrapper">
+        <div class="preview-label">Version 3 : Rouge Impact</div>
+        <div class="cover red" data-name="couverture-linkedin-rouge">
+            <div class="bg-base"></div>
+            <div class="bg-grid"></div>
+            <div class="bg-glow-1"></div>
+            <div class="bg-glow-2"></div>
+            <div class="bg-glow-3"></div>
+            <div class="euro-deco" style="font-size: 20rem; top: -50px; right: 100px;">€</div>
+            <div class="euro-deco" style="font-size: 12rem; bottom: -30px; left: 35%;">€</div>
+
+            <div class="cover-content">
+                <div class="cover-left">
+                    <div class="logo">
+                        <div class="logo-icon">€</div>
+                        <span class="logo-text">Où Va l'Argent</span>
+                    </div>
+                    <div class="cover-title">
+                        <span class="accent">3 300 milliards</span> de dette :<br>
+                        comprendre pour agir
+                    </div>
+                    <div class="cover-subtitle">
+                        Chiffres sourcés, analyses rigoureuses et données vérifiées sur les finances de la France
+                    </div>
+                </div>
+
+                <div class="cover-separator"></div>
+
+                <div class="cover-right">
+                    <div class="cover-url">ouvalargent.fr</div>
+                    <div class="cover-tags">
+                        <span class="cover-tag">Dette</span>
+                        <span class="cover-tag">Déficit</span>
+                    </div>
+                    <div class="cover-tags">
+                        <span class="cover-tag">Alerte</span>
+                        <span class="cover-tag">Données</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================
+         VERSION 4 : VIOLET PREMIUM
+         ================================================================ -->
+    <div class="preview-wrapper">
+        <div class="preview-label">Version 4 : Violet Premium</div>
+        <div class="cover purple" data-name="couverture-linkedin-violet">
+            <div class="bg-base"></div>
+            <div class="bg-grid"></div>
+            <div class="bg-glow-1"></div>
+            <div class="bg-glow-2"></div>
+            <div class="bg-glow-3"></div>
+            <div class="euro-deco" style="font-size: 22rem; top: -70px; right: 90px;">€</div>
+            <div class="euro-deco" style="font-size: 9rem; bottom: 10px; left: 42%;">€</div>
+
+            <div class="cover-content">
+                <div class="cover-left">
+                    <div class="logo">
+                        <div class="logo-icon">€</div>
+                        <span class="logo-text">Où Va l'Argent</span>
+                    </div>
+                    <div class="cover-title">
+                        Vos <span class="accent">impôts</span>, votre <span class="accent">argent</span>,<br>
+                        notre analyse
+                    </div>
+                    <div class="cover-subtitle">
+                        Décryptage économique accessible : PIB, inflation, retraites, comparaisons internationales
+                    </div>
+                </div>
+
+                <div class="cover-separator"></div>
+
+                <div class="cover-right">
+                    <div class="cover-url">ouvalargent.fr</div>
+                    <div class="cover-tags">
+                        <span class="cover-tag">International</span>
+                        <span class="cover-tag">PIB</span>
+                    </div>
+                    <div class="cover-tags">
+                        <span class="cover-tag">Retraites</span>
+                        <span class="cover-tag">Inflation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================
+         VERSION 5 : VERT CROISSANCE
+         ================================================================ -->
+    <div class="preview-wrapper">
+        <div class="preview-label">Version 5 : Vert Croissance</div>
+        <div class="cover green" data-name="couverture-linkedin-vert">
+            <div class="bg-base"></div>
+            <div class="bg-grid"></div>
+            <div class="bg-glow-1"></div>
+            <div class="bg-glow-2"></div>
+            <div class="bg-glow-3"></div>
+            <div class="euro-deco" style="font-size: 21rem; top: -60px; right: 70px;">€</div>
+            <div class="euro-deco" style="font-size: 11rem; bottom: -20px; left: 38%;">€</div>
+
+            <div class="cover-content">
+                <div class="cover-left">
+                    <div class="logo">
+                        <div class="logo-icon">€</div>
+                        <span class="logo-text">Où Va l'Argent</span>
+                    </div>
+                    <div class="cover-title">
+                        Investir <span class="accent">mieux</span>,<br>
+                        comprendre <span class="accent">l'économie</span>
+                    </div>
+                    <div class="cover-subtitle">
+                        Bourse, immobilier, crypto, épargne : analyses et données pour décider en connaissance de cause
+                    </div>
+                </div>
+
+                <div class="cover-separator"></div>
+
+                <div class="cover-right">
+                    <div class="cover-url">ouvalargent.fr</div>
+                    <div class="cover-tags">
+                        <span class="cover-tag">Bourse</span>
+                        <span class="cover-tag">Crypto</span>
+                    </div>
+                    <div class="cover-tags">
+                        <span class="cover-tag">Épargne</span>
+                        <span class="cover-tag">Croissance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

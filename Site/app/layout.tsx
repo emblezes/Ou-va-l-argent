@@ -3,6 +3,7 @@ import { Syne, JetBrains_Mono, Instrument_Serif } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { NewsletterPopup } from '@/components/NewsletterPopup'
 
 const syne = Syne({
   subsets: ['latin'],
@@ -39,11 +40,20 @@ export const metadata: Metadata = {
     siteName: 'Où va l\'argent ?',
     title: 'Où va l\'argent ?',
     description: 'Explorez les finances publiques françaises avec une transparence totale.',
+    images: [
+      {
+        url: 'https://ouvalargent.fr/og-default.png',
+        width: 1200,
+        height: 630,
+        alt: 'Où va l\'argent ? — Finances publiques, économie et investissement',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Où va l\'argent ?',
     description: 'Explorez les finances publiques françaises avec une transparence totale.',
+    images: ['https://ouvalargent.fr/og-default.png'],
   },
 }
 
@@ -69,6 +79,9 @@ export default function RootLayout({
 
         {/* Footer */}
         <Footer />
+
+        {/* Newsletter Popup */}
+        <NewsletterPopup />
       </body>
     </html>
   )
