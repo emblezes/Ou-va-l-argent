@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     description: 'Retraites menacées, dette record : préparez votre indépendance financière avec des données sourcées.',
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://ouvalargent.fr/investir',
+    url: 'https://ouvalargent.com/investir',
     images: [
       {
-        url: 'https://ouvalargent.fr/og-default.png',
+        url: 'https://ouvalargent.com/og-default.png',
         width: 1200,
         height: 630,
         alt: 'Investir son argent — Où Va l\'Argent ?',
@@ -33,10 +33,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Investir son argent en 2026 — Préparer sa liberté financière',
     description: 'Retraites menacées, dette record : préparez votre indépendance financière avec des données sourcées.',
-    images: ['https://ouvalargent.fr/og-default.png'],
+    images: ['https://ouvalargent.com/og-default.png'],
   },
   alternates: {
-    canonical: 'https://ouvalargent.fr/investir',
+    canonical: 'https://ouvalargent.com/investir',
   },
 }
 

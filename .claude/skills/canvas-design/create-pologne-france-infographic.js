@@ -292,7 +292,7 @@ ctx.fillText('Sources : Eurostat, FMI, Direction du Tresor (2024)', 60, 990);
 ctx.fillStyle = colors.accentCyan;
 ctx.font = 'bold 20px Arial';
 ctx.textAlign = 'right';
-ctx.fillText('ouvalargent.fr', 1020, 990);
+ctx.fillText('ouvalargent.com', 1020, 990);
 
 // ===== SAVE =====
 const outputPath = '/Users/emmanuelblezes/Documents/08_Où va l\'argent /Production interne/Réseaux Sociaux /Comparaisons-Internationales/pologne-rattrapage-france-pib.png';

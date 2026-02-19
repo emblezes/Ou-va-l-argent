@@ -122,7 +122,7 @@ Dans les prochains numéros de cette newsletter, on décortiquera :
 
 *Où Va l'Argent — Des chiffres, des sources, pas de bullshit.*
 
-ouvalargent.fr
+ouvalargent.com
 
 ---
 

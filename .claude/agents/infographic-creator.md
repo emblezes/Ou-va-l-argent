@@ -365,7 +365,7 @@ Le script `batch-export-all.js` applique des transformations CSS/JS pour chaque 
 - Tag thématique en haut à droite
 - Contenu au centre
 - Source en bas à gauche
-- URL ouvalargent.fr en bas à droite
+- URL ouvalargent.com en bas à droite
 
 ---
 

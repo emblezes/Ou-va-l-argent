@@ -249,4 +249,4 @@ Ce parcours illustre la complexité du système fiscal et social français, avec
 ---
 
 *Document produit le 2026-02-05*
-*Projet "Où Va l'Argent" - ouvalargent.fr*
+*Projet "Où Va l'Argent" - ouvalargent.com*

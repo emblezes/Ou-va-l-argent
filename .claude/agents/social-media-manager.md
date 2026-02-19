@@ -242,7 +242,7 @@ Ramener un macro-chiffre à l'échelle individuelle.
 
 ---
 📊 Source : [Source officielle]
-🔗 Plus de données sur ouvalargent.fr
+🔗 Plus de données sur ouvalargent.com
 ```
 
 ### Twitter/X (280 caractères)
@@ -253,7 +253,7 @@ Ramener un macro-chiffre à l'échelle individuelle.
 
 [Source]
 
-🔗 ouvalargent.fr
+🔗 ouvalargent.com
 ```
 
 ### Instagram (150-200 mots + hashtags)

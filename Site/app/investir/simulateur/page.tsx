@@ -20,10 +20,10 @@ export const metadata: Metadata = {
       'Préparez votre retraite par capitalisation. Simulez votre futur capital grâce aux intérêts composés.',
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://ouvalargent.fr/investir/simulateur',
+    url: 'https://ouvalargent.com/investir/simulateur',
     images: [
       {
-        url: 'https://ouvalargent.fr/og-default.png',
+        url: 'https://ouvalargent.com/og-default.png',
         width: 1200,
         height: 630,
         alt: "Simulateur d'intérêts composés — Où Va l'Argent ?",
@@ -35,10 +35,10 @@ export const metadata: Metadata = {
     title: "Simulateur d'intérêts composés — Préparez votre retraite",
     description:
       'Préparez votre retraite par capitalisation. Simulez votre futur capital grâce aux intérêts composés.',
-    images: ['https://ouvalargent.fr/og-default.png'],
+    images: ['https://ouvalargent.com/og-default.png'],
   },
   alternates: {
-    canonical: 'https://ouvalargent.fr/investir/simulateur',
+    canonical: 'https://ouvalargent.com/investir/simulateur',
   },
 }
 

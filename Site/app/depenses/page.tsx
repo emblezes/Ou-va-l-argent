@@ -94,7 +94,7 @@ const FONCTION_PUBLIQUE = {
   fpe: 2.54, // État
   fpt: 1.94, // Territoriale
   fph: 1.21, // Hospitalière
-  masseSalariale: 245, // Md€
+  masseSalariale: 362, // Md€ (coût total employeur : traitements bruts + cotisations patronales - Source: FIPECO/INSEE 2024)
 }
 
 // Source: INSEE - Comptes des administrations publiques (base 2020)
@@ -830,10 +830,10 @@ export default function DepensesPage() {
               </div>
               <div className="text-center p-4 bg-bg-elevated rounded-xl border-2 border-accent-gold/30">
                 <div className="text-2xl font-mono font-bold text-accent-gold">{FONCTION_PUBLIQUE.masseSalariale} Md€</div>
-                <div className="text-xs text-text-muted mt-1">Masse salariale</div>
+                <div className="text-xs text-text-muted mt-1">Masse salariale (coût employeur)</div>
               </div>
               <div className="text-center p-4 bg-bg-elevated rounded-xl border-2 border-accent-electric/30">
-                <div className="text-2xl font-mono font-bold text-accent-electric">14,7%</div>
+                <div className="text-2xl font-mono font-bold text-accent-electric">21,7%</div>
                 <div className="text-xs text-text-muted mt-1">Part des dépenses</div>
               </div>
             </div>

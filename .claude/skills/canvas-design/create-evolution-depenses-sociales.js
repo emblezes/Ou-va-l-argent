@@ -298,7 +298,7 @@ ctx.fillText('Sources : DREES, INSEE, FIPECO (2024)', 60, 960);
 ctx.fillStyle = colors.accentCyan;
 ctx.font = 'bold 18px Courier';
 ctx.textAlign = 'right';
-ctx.fillText('ouvalargent.fr', 1020, 960);
+ctx.fillText('ouvalargent.com', 1020, 960);
 
 // ===== SAVE =====
 const outputDir = '/Users/emmanuelblezes/Documents/08_Où va l\'argent /Production interne/Réseaux Sociaux /Dépenses-Sociales';

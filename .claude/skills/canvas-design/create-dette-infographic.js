@@ -128,10 +128,10 @@ ctx.font = '14px Arial';
 ctx.textAlign = 'center';
 ctx.fillText('Source : INSEE, Déficit 2024 (169 Md€ / 31,5M secondes)', 540, 1000);
 
-// ouvalargent.fr
+// ouvalargent.com
 ctx.fillStyle = '#5a6a7a';
 ctx.font = '16px Arial';
-ctx.fillText('ouvalargent.fr', 540, 1040);
+ctx.fillText('ouvalargent.com', 540, 1040);
 
 // Save
 const outputPath = '/Users/emmanuelblezes/Documents/08_Où va l\'argent /Production interne/Réseaux Sociaux /PNG/dette-5350-par-seconde.png';

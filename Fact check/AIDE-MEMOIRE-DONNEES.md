@@ -78,7 +78,7 @@ Ratio: 32.1% du PIB
 **Pour les infographies:**
 ```
 Sources: INSEE (Comptes APU 2024) | DREES (Protection sociale 2024)
-ouvalargent.fr
+ouvalargent.com
 ```
 
 **Pour le site web:**

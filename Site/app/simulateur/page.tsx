@@ -11,27 +11,28 @@ type Status = 'cadre' | 'non-cadre'
 // Valeurs par défaut pour l'affichage initial
 const defaultCalc: SalaryResult = {
   brut: 3000,
-  superBrut: 4290,
-  netAvantIR: 2340,
-  netApresIR: 2169,
-  totalPatronales: 1290,
-  totalSalariales: 660,
-  impotRevenu: 171,
-  tauxIR: 0.073,
+  superBrut: 3844,
+  netAvantIR: 2353,
+  netApresIR: 2223,
+  totalPatronales: 844,
+  totalSalariales: 647,
+  impotRevenu: 130,
+  tauxIR: 0.055,
   detail: {
     patronales: {
-      maladie: 210,
-      vieillesse: 280,
-      famille: 104,
-      chomage: 122,
-      accidents: 60,
+      maladie: 390,
+      vieillesse: 320,
+      famille: 158,
+      chomage: 120,
+      accidents: 62,
       retraite_comp: 142,
-      autres: 42,
+      autres: 115,
+      exonerations: 463,
     },
     salariales: {
-      vieillesse: 220,
+      vieillesse: 219,
       retraite_comp: 95,
-      csg_crds: 289,
+      csg_crds: 288,
     },
   },
 }
@@ -485,18 +486,19 @@ export default function SimulateurPage() {
               </h4>
               <div className="space-y-1">
                 {[
-                  { name: 'Maladie', value: calc.detail.patronales.maladie },
-                  { name: 'Vieillesse', value: calc.detail.patronales.vieillesse },
-                  { name: 'Allocations familiales', value: calc.detail.patronales.famille },
-                  { name: 'Chômage', value: calc.detail.patronales.chomage },
-                  { name: 'Accidents du travail', value: calc.detail.patronales.accidents },
-                  { name: 'Retraite complémentaire', value: calc.detail.patronales.retraite_comp },
-                  { name: 'Autres', value: calc.detail.patronales.autres },
+                  { name: 'Maladie', value: calc.detail.patronales.maladie, negative: false },
+                  { name: 'Vieillesse', value: calc.detail.patronales.vieillesse, negative: false },
+                  { name: 'Allocations familiales', value: calc.detail.patronales.famille, negative: false },
+                  { name: 'Chômage', value: calc.detail.patronales.chomage, negative: false },
+                  { name: 'Accidents du travail', value: calc.detail.patronales.accidents, negative: false },
+                  { name: 'Retraite complémentaire', value: calc.detail.patronales.retraite_comp, negative: false },
+                  ...(calc.detail.patronales.autres > 0 ? [{ name: 'Autres', value: calc.detail.patronales.autres, negative: false }] : []),
+                  ...(calc.detail.patronales.exonerations > 0 ? [{ name: 'Exonérations (allègements)', value: calc.detail.patronales.exonerations, negative: true }] : []),
                 ].map((item) => (
                   <div key={item.name} className="flex justify-between py-1.5 border-b border-glass-border/30 text-sm">
                     <span className="text-text-secondary">{item.name}</span>
-                    <span className="font-mono text-accent-orange">
-                      {formatMoney(item.value * multiplier)}
+                    <span className={`font-mono ${item.negative ? 'text-accent-green' : 'text-accent-orange'}`}>
+                      {item.negative ? '- ' : ''}{formatMoney(item.value * multiplier)}
                     </span>
                   </div>
                 ))}

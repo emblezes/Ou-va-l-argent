@@ -21,6 +21,7 @@ export interface SalaryResult {
       accidents: number
       retraite_comp: number
       autres: number
+      exonerations: number
     }
     salariales: {
       vieillesse: number

@@ -247,7 +247,7 @@ ctx.fillText('FMI - World Economic Outlook, Oct. 2024', 55 + ctx.measureText('So
 ctx.font = '18px "JetBrains Mono"';
 ctx.fillStyle = colors.accentCyan;
 ctx.textAlign = 'right';
-ctx.fillText('ouvalargent.fr', width - 55, footerY);
+ctx.fillText('ouvalargent.com', width - 55, footerY);
 
 // Helper functions
 function roundRect(ctx, x, y, w, h, r) {

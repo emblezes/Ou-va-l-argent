@@ -876,6 +876,31 @@ const TIKTOK_CSS = `
 .treemap-value {
   font-size: 2.8rem !important;
 }
+
+/* --- Sankey / Fiche de paie (format TikTok Vertical) --- */
+.sankey-wrapper {
+  flex: 0 !important;
+  justify-content: flex-start !important;
+}
+
+.title {
+  font-size: 6rem !important;
+  margin-bottom: 10px !important;
+}
+
+.bottom-bar {
+  gap: 60px !important;
+  padding-top: 30px !important;
+  margin-top: 20px !important;
+}
+
+.bottom-bar .label {
+  font-size: 1.5rem !important;
+}
+
+.bottom-bar .value {
+  font-size: 2.4rem !important;
+}
 `;
 
 // CSS overrides pour le format Rectangle horizontal (1080x600)
@@ -1506,6 +1531,32 @@ const RECTANGLE_CSS = `
 .treemap-value {
   font-size: 1rem !important;
 }
+
+/* --- Sankey / Fiche de paie (format Rectangle Horizontal) --- */
+.sankey-wrapper {
+  flex: 1 !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.sankey-wrapper svg {
+  height: 370px !important;
+  width: auto !important;
+}
+
+.title {
+  font-size: 1.6rem !important;
+  margin-bottom: 0px !important;
+}
+
+.bottom-bar {
+  display: none !important;
+}
+
+.footer {
+  padding-top: 4px !important;
+  margin-top: 0px !important;
+}
 `;
 
 // Define infographics: [htmlFile, infographicIndex, outputBaseName]
@@ -1541,6 +1592,22 @@ const INFOGRAPHICS = [
   ['29-zero-perte-20-ans-actions.html', 0, '29-zero-perte-20-ans-actions'],
   ['30-fonds-souverain-norvege.html', 0, '30-fonds-souverain-norvege'],
   ['31-actifs-fonds-pension-monde.html', 0, '31-actifs-fonds-pension-monde'],
+  ['32-emplois-remplaces-ia.html', 0, '32-emplois-remplaces-ia'],
+  ['33-guyane-98pct-inexplore.html', 0, '33-guyane-98pct-inexplore'],
+  ['34-or-illegal-guyane.html', 0, '34-or-illegal-guyane'],
+  ['35-ue-dependance-terres-rares.html', 0, '35-ue-dependance-terres-rares'],
+  ['36-guyana-vs-guyane.html', 0, '36-guyana-vs-guyane'],
+  ['37-montagne-dor-projet-rejete.html', 0, '37-montagne-dor-projet-rejete'],
+  ['38-orpaillage-cout-total.html', 0, '38-orpaillage-cout-total'],
+  ['39-richesses-sous-sol-guyane.html', 0, '39-richesses-sous-sol-guyane'],
+  ['40-chomage-guyane-vs-metropole.html', 0, '40-chomage-guyane-vs-metropole'],
+  ['41-delais-permis-miniers.html', 0, '41-delais-permis-miniers'],
+  ['42-valeur-sous-sol-guyane.html', 0, '42-valeur-sous-sol-guyane'],
+  ['43-mercure-guyane.html', 0, '43-mercure-guyane'],
+  ['44-guyana-pib-62pct.html', 0, '44-guyana-pib-62pct'],
+  ['45-nordgold-4md-arbitrage.html', 0, '45-nordgold-4md-arbitrage'],
+  ['46-qui-nourrit-etat.html', 0, '46-qui-nourrit-etat'],
+  ['47-fiche-de-paie-decomposition.html', 0, '47-fiche-de-paie-decomposition'],
 ];
 
 async function exportFormat(browser, htmlPath, items, { css, jsTransform, width, height, outputDir, suffix, label }) {

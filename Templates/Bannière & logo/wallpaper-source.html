@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Wallpapers - ouvalargent.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #06080c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            padding: 0;
+        }
+
+        .wallpaper-4k {
+            width: 3840px;
+            height: 2160px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wallpaper-phone {
+            width: 1170px;
+            height: 2532px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%);
+        }
+
+        /* Desktop glows */
+        .wallpaper-4k .glow-1 {
+            position: absolute;
+            width: 1800px;
+            height: 1600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.07) 0%, transparent 65%);
+            top: -200px;
+            right: -200px;
+        }
+
+        .wallpaper-4k .glow-2 {
+            position: absolute;
+            width: 1400px;
+            height: 1200px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 65%);
+            bottom: -300px;
+            left: 200px;
+        }
+
+        /* Phone glows — centred, symmetrical */
+        .wallpaper-phone .glow-1 {
+            position: absolute;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 65%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+        }
+
+        .wallpaper-phone .glow-2 {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.04) 0%, transparent 65%);
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .center-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .url-text {
+            font-family: 'Instrument Serif', serif;
+            color: #f0f4f8;
+            letter-spacing: -0.01em;
+        }
+
+        .url-text .cyan {
+            color: #00d4ff;
+        }
+
+        .url-text .dot {
+            color: #ffd700;
+        }
+
+        .wallpaper-4k .url-text {
+            font-size: 8rem;
+        }
+
+        .wallpaper-phone .url-text {
+            font-size: 5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wallpaper-4k" data-name="wallpaper-ouvalargent-4k">
+        <div class="bg"></div>
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+        <div class="center-content">
+            <div class="url-text"><span class="cyan">ouvalargent</span><span class="dot">.</span>com</div>
+        </div>
+    </div>
+
+    <div class="wallpaper-phone" data-name="wallpaper-ouvalargent-phone">
+        <div class="bg"></div>
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+        <div class="center-content">
+            <div class="url-text"><span class="cyan">ouvalargent</span><span class="dot">.</span>com</div>
+        </div>
+    </div>
+
+</body>
+</html>

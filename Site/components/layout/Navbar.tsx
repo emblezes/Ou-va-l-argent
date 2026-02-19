@@ -17,6 +17,9 @@ const investirLinks = [
   { href: '/investir/simulateur', label: 'Simulateur intérêts composés' },
 ]
 
+// Mettre à true pour réafficher la section Investir dans le menu
+const showInvestir = false
+
 const directLinks = [
   { href: '/actualite', label: 'Actualités' },
   { href: '/wtf', label: 'WTF ?!' },
@@ -198,7 +201,8 @@ export function Navbar() {
           )}
         </li>
 
-        {/* Dropdown: Investir */}
+        {/* Dropdown: Investir (masqué pour l'instant, showInvestir = false) */}
+        {showInvestir && (
         <li ref={investirDropdownRef} className="relative flex items-center">
           <button
             onClick={() => setInvestirDropdownOpen(!investirDropdownOpen)}
@@ -239,6 +243,7 @@ export function Navbar() {
             </ul>
           )}
         </li>
+        )}
 
         {/* Direct links */}
         {directLinks.map((link) => (
@@ -373,7 +378,8 @@ export function Navbar() {
                 )}
               </li>
 
-              {/* Mobile dropdown: Investir */}
+              {/* Mobile dropdown: Investir (masqué pour l'instant, showInvestir = false) */}
+              {showInvestir && (
               <li>
                 <button
                   onClick={() => setMobileInvestirDropdownOpen(!mobileInvestirDropdownOpen)}
@@ -409,6 +415,7 @@ export function Navbar() {
                   </ul>
                 )}
               </li>
+              )}
 
               {/* Direct links mobile */}
               {directLinks.map((link) => (

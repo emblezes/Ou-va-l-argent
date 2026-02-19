@@ -557,7 +557,7 @@ export default function WtfPage() {
                   #{fact.id}
                 </div>
                 <div className="font-mono text-xs text-gray-500 opacity-50">
-                  ouvalargent.fr
+                  ouvalargent.com
                 </div>
               </div>
 

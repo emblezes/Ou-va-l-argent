@@ -160,7 +160,7 @@ Les infographies suivent une charte visuelle cohérente :
   - **Tailles Instagram** : titre 4-4.5rem, valeurs 1.6-2.2rem, labels 0.85-1.15rem
   - Les tailles TikTok sont gérées automatiquement par le script d'export
 - **Logo** : Carré cyan avec "€" + texte "Où Va l'Argent"
-- **Footer** : Source à gauche, "ouvalargent.fr" à droite
+- **Footer** : Source à gauche, "ouvalargent.com" à droite
 
 ### Structure type d'une infographie
 
@@ -219,6 +219,8 @@ r.addKPIDashboard(pptx, 'La dette publique atteint un niveau record', 'Dette', k
 | **Texte** | Minimal | Détaillé + analyse |
 | **Fond** | Sombre (dark) | Clair (blanc) |
 | **Durée lecture** | 3s par slide | 30s+ par slide |
+
+**IMPORTANT** : Les rapports PPTX finaux doivent **toujours** être générés dans `Production interne/Rapports/`. Le dossier `Templates/PPT/workspace/` ne contient que les helpers et scripts de génération, jamais les fichiers de sortie.
 
 ---
 

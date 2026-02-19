@@ -132,7 +132,7 @@ r.setupReport(pptx);
 r.addCover(pptx, 'Titre', 'Sous-titre', 'Date', 'Auteur');
 // ...
 
-const outputPath = path.join(__dirname, '..', 'Rapport', 'nom-rapport.pptx');
+const outputPath = path.resolve(__dirname, '..', '..', '..', 'Production interne', 'Rapports', 'nom-rapport.pptx');
 pptx.writeFile({ fileName: outputPath });
 ```
 
@@ -212,7 +212,7 @@ Pour chaque slide :
 cd "/Users/emmanuelblezes/Documents/08_Ou va l'argent /Templates/PPT/workspace"
 node create-[nom-rapport].js
 ```
-3. Verifier que le fichier est genere dans `Templates/PPT/Rapport/`
+3. Verifier que le fichier est genere dans `Production interne/Rapports/`
 
 ### Etape 6 : Verifier et livrer
 
@@ -245,9 +245,11 @@ node create-[nom-rapport].js
 
 ### Nommage des fichiers
 
-- Script : `create-[sujet-court].js`
-- Sortie : `Templates/PPT/Rapport/[sujet-court].pptx`
-- Exemples : `create-dette-publique-2026.js` → `dette-publique-2026.pptx`
+- Script : `create-[sujet-court].js` ou `generate-[sujet-court].js` dans `Templates/PPT/workspace/`
+- Sortie : **`Production interne/Rapports/[sujet-court].pptx`** (JAMAIS dans Templates)
+- Exemples : `create-dette-publique-2026.js` → `Production interne/Rapports/dette-publique-2026.pptx`
+
+**IMPORTANT** : Les rapports finaux doivent TOUJOURS etre generes dans `Production interne/Rapports/`. Le dossier `Templates/` ne contient que les helpers et scripts de generation, jamais les fichiers de sortie.
 
 ---
 

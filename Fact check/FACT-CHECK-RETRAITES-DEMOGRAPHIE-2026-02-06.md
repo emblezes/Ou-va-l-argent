@@ -295,4 +295,4 @@ Le COR ne publie pas systématiquement des projections pour 2050, se concentrant
 
 **Date de finalisation** : 6 février 2026
 **Prochaine mise à jour recommandée** : Juin 2026 (publication rapport COR 2026)
-**Contact** : fact-checker@ouvalargent.fr
+**Contact** : fact-checker@ouvalargent.com

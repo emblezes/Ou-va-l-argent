@@ -8,7 +8,7 @@ import Script from 'next/script'
 const FAQ_ITEMS = [
   {
     question: 'Pourquoi la France n\'a-t-elle pas eu de budget équilibré depuis 1974 ?',
-    answer: 'Depuis 1974, chaque gouvernement français vote un budget en déficit, soit 51 années consécutives. Le dernier excédent date de 1974 (+0,3% du PIB). Cette situation s\'explique par des mécanismes économiques (croissance insuffisante, chômage élevé) et politiques (difficultés à réduire les dépenses, pression électorale). Source : INSEE, Vie-publique.fr.',
+    answer: 'Depuis 1974, chaque gouvernement français vote un budget en déficit, soit 51 années consécutives. Le dernier excédent date de 1974 (+0,1% du PIB). Cette situation s\'explique par des mécanismes économiques (croissance insuffisante, chômage élevé) et politiques (difficultés à réduire les dépenses, pression électorale). Source : INSEE, Vie-publique.fr.',
     emoji: '📊',
     category: 'Déficit',
     slug: 'budget-equilibre-50-ans',

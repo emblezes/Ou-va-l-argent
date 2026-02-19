@@ -37,13 +37,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://ouvalargent.fr',
+    url: 'https://ouvalargent.com',
     siteName: 'Où va l\'argent ?',
     title: 'Où va l\'argent ?',
     description: 'Explorez les finances publiques françaises avec une transparence totale.',
     images: [
       {
-        url: 'https://ouvalargent.fr/og-default.png',
+        url: 'https://ouvalargent.com/og-default.png',
         width: 1200,
         height: 630,
         alt: 'Où va l\'argent ? — Finances publiques, économie et investissement',
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Où va l\'argent ?',
     description: 'Explorez les finances publiques françaises avec une transparence totale.',
-    images: ['https://ouvalargent.fr/og-default.png'],
+    images: ['https://ouvalargent.com/og-default.png'],
   },
 }
 

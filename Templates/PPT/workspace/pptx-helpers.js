@@ -88,7 +88,7 @@ function addFooter(pptx, slide, source) {
             { text: source, options: { color: colors.textSecondary } }
         ], { x: 0.4, y: 5.2, w: 6, h: 0.3, fontSize: 9, fontFace: fonts.main, valign: 'middle' });
     }
-    slide.addText('ouvalargent.fr', { x: 7.5, y: 5.2, w: 2.1, h: 0.3, fontSize: 11, fontFace: fonts.mono, bold: true, color: colors.accentElectric, align: 'right', valign: 'middle' });
+    slide.addText('ouvalargent.com', { x: 7.5, y: 5.2, w: 2.1, h: 0.3, fontSize: 11, fontFace: fonts.mono, bold: true, color: colors.accentElectric, align: 'right', valign: 'middle' });
 }
 
 // ============================================================

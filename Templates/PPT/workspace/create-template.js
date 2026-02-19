@@ -117,7 +117,7 @@ function addFooter(slide, source = 'Votre source') {
     });
 
     // Website
-    slide.addText('ouvalargent.fr', {
+    slide.addText('ouvalargent.com', {
         x: 7.5, y: 5.2, w: 2.1, h: 0.3,
         fontSize: 11, fontFace: fonts.mono, bold: true,
         color: colors.accentElectric, align: 'right', valign: 'middle'
@@ -189,7 +189,7 @@ slide1.addText('Votre nom | Date', {
     fontSize: 11, fontFace: fonts.main,
     color: colors.textMuted, valign: 'middle'
 });
-slide1.addText('ouvalargent.fr', {
+slide1.addText('ouvalargent.com', {
     x: 7.5, y: 5.2, w: 2.1, h: 0.3,
     fontSize: 11, fontFace: fonts.mono, bold: true,
     color: colors.accentElectric, align: 'right', valign: 'middle'
@@ -556,7 +556,7 @@ slide8.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
     shadow: { type: 'outer', blur: 8, offset: 3, angle: 45, color: '000000', opacity: 0.25 }
 });
 slide8.addText([
-    { text: 'ouvalargent.fr', options: { color: colors.accentElectric, bold: true } },
+    { text: 'ouvalargent.com', options: { color: colors.accentElectric, bold: true } },
     { text: '\n@ouvalargent', options: { color: colors.textSecondary } }
 ], {
     x: 3, y: 4.1, w: 4, h: 0.8,

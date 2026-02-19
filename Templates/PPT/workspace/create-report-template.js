@@ -248,7 +248,7 @@ r.addSourcesPage(pptx, 'Annexes', [
 // ============================================================
 // 13. BACK COVER
 // ============================================================
-r.addBackCover(pptx, 'contact@ouvalargent.fr');
+r.addBackCover(pptx, 'contact@ouvalargent.com');
 
 // ============================================================
 // EXPORT

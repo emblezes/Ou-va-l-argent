@@ -177,9 +177,9 @@ export const EU_COMPARISON_DEBT = [
   { country: 'Grèce', value: 153 },
   { country: 'Italie', value: 137 },
   { country: 'France', value: 117.4, highlight: true }, // INSEE T3 2025
-  { country: 'Espagne', value: 108 },
+  { country: 'Espagne', value: 102 },
   { country: 'Belgique', value: 105 },
   { country: 'Allemagne', value: 64 },
-  { country: 'Pays-Bas', value: 47 },
+  { country: 'Pays-Bas', value: 43 },
   { country: 'UE moy.', value: 83, isAverage: true },
 ]

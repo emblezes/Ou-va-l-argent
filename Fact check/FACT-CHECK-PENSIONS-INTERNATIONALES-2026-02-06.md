@@ -502,7 +502,7 @@ UE-27: 1,443€/mois
 Variations importantes selon pouvoir d'achat local
 
 Source: Eurostat 2023
-ouvalargent.fr
+ouvalargent.com
 ```
 
 ### 🎯 **USAGE RÉSEAUX SOCIAUX**

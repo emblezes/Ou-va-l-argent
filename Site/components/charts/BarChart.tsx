@@ -96,7 +96,7 @@ export function BarChart({
       ctx.font = '12px JetBrains Mono, monospace'
       ctx.textAlign = 'right'
       ctx.textBaseline = 'bottom'
-      ctx.fillText('ouvalargent.fr', chartArea.right - 5, chartArea.bottom - 5)
+      ctx.fillText('ouvalargent.com', chartArea.right - 5, chartArea.bottom - 5)
       ctx.restore()
     },
   }

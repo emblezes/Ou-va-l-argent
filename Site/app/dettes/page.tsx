@@ -12,7 +12,7 @@ const DEBT_RATIO_HISTORY = {
 // Source: INSEE, Vie Publique - Solde budgétaire de l'État (% PIB) depuis 1970
 const SOLDE_BUDGETAIRE_HISTORY = {
   labels: ['1970', '1971', '1972', '1973', '1974', '1980', '1985', '1990', '1995', '2000', '2005', '2010', '2015', '2020', '2024'],
-  solde: [0.9, 0.7, 0.5, 0.5, 0.3, -0.4, -2.9, -2.1, -5.1, -1.3, -3.4, -6.9, -3.6, -9.0, -5.8],
+  solde: [0.9, 0.7, 0.5, 0.5, 0.1, -0.4, -2.9, -2.1, -5.1, -1.3, -3.4, -6.9, -3.6, -9.0, -5.8],
 }
 
 // Source: Banque de France, IFRAP - T1 2025
@@ -36,7 +36,7 @@ const PRINCIPAUX_DETENTEURS = [
 // Source: PLF 2025, Cour des Comptes, Fipeco - Charge d'intérêts (Md€) + comparaison budget Défense
 const CHARGE_INTERETS = {
   labels: ['2019', '2020', '2021', '2022', '2023', '2024', '2025 (p)', '2026 (p)', '2027 (p)', 'Défense'],
-  data: [38, 35, 37, 46, 52, 58, 60, 65, 72, 65],
+  data: [38, 35, 37, 46, 52, 58, 60, 65, 72, 57],
 }
 
 // Source: Banque de France - Taux OAT 10 ans (%)
@@ -50,12 +50,12 @@ const DEFICIT_COMPARISON = [
   { country: '🇫🇷 France', value: -5.8, highlight: true },
   { country: '🇧🇪 Belgique', value: -4.4 },
   { country: '🇮🇹 Italie', value: -3.4 },
-  { country: '🇪🇸 Espagne', value: -3.2 },
+  { country: '🇪🇸 Espagne', value: -2.8 },
   { country: '🇪🇺 Moy. zone €', value: -3.1, isAverage: true },
   { country: '🇩🇪 Allemagne', value: -2.8 },
   { country: '🇳🇱 Pays-Bas', value: -0.3 },
   { country: '🇵🇹 Portugal', value: +0.5 },
-  { country: '🇮🇪 Irlande', value: +1.7 },
+  { country: '🇮🇪 Irlande', value: +4.0 },
 ]
 
 // Source: Eurostat 2025 - Dette publique zone euro (% PIB)
@@ -63,12 +63,12 @@ const DETTE_COMPARISON = [
   { country: '🇬🇷 Grèce', value: 153 },
   { country: '🇮🇹 Italie', value: 137 },
   { country: '🇫🇷 France', value: 117, highlight: true },
-  { country: '🇪🇸 Espagne', value: 108 },
+  { country: '🇪🇸 Espagne', value: 102 },
   { country: '🇧🇪 Belgique', value: 105 },
   { country: '🇵🇹 Portugal', value: 96 },
   { country: '🇪🇺 Moy. zone €', value: 83, isAverage: true },
   { country: '🇩🇪 Allemagne', value: 64 },
-  { country: '🇳🇱 Pays-Bas', value: 47 },
+  { country: '🇳🇱 Pays-Bas', value: 43 },
 ]
 
 // Source: Eurostat 2025, calcul dette / population - Dette par habitant en €
@@ -231,7 +231,7 @@ export default function DettesPage() {
               tooltipSuffix="% du PIB"
               yAxisSuffix="%"
               yMin={-8}
-              yMax={4}
+              yMax={6}
               showValues
             />
           </ChartWrapper>

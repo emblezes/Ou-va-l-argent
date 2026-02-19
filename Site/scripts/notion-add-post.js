@@ -74,7 +74,7 @@ function addPost(post) {
   }
 
   const payload = {
-    parent: { database_id: config.DATABASE_ID },
+    parent: { database_id: config.PUBLICATIONS_DB_ID || config.DATABASE_ID },
     properties: properties
   };
 
@@ -145,7 +145,7 @@ if (require.main === module) {
       statut: 'Idee',
       reel: false,
       linkedin: 'L\'inflation en France a atteint X% en 2024...',
-      twitter: '📈 Inflation France 2024: X%\n\nouvalargent.fr',
+      twitter: '📈 Inflation France 2024: X%\n\nouvalargent.com',
       instagram: '📈 Inflation 2024\n\n#inflation #france #economie',
       source: 'INSEE 2024'
     });

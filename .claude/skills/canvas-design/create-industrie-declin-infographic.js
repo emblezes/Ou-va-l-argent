@@ -329,7 +329,7 @@ ctx.fillText('Sources : INSEE, Banque Mondiale - Industrie manufacturiere', 60, 
 ctx.fillStyle = colors.accentCyan;
 ctx.font = 'bold 18px JetBrainsMono';
 ctx.textAlign = 'right';
-ctx.fillText('ouvalargent.fr', 1020, 990);
+ctx.fillText('ouvalargent.com', 1020, 990);
 
 // ===== SAVE =====
 const outputPath = '/Users/emmanuelblezes/Documents/08_Où va l\'argent /Production interne/Réseaux Sociaux /Industrie/declin-industrie-france-pib.png';

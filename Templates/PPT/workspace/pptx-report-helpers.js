@@ -167,8 +167,8 @@ function addCover(pptx, title, subtitle, date, author) {
         color: colors.textSecondary, valign: 'middle'
     });
 
-    // ouvalargent.fr
-    s.addText('ouvalargent.fr', {
+    // ouvalargent.com
+    s.addText('ouvalargent.com', {
         x: 7.5, y: 5.0, w: 2.1, h: 0.3,
         fontSize: 11, fontFace: fonts.mono, bold: true,
         color: colors.accentElectric, align: 'right', valign: 'middle'
@@ -279,7 +279,7 @@ function addBackCover(pptx, contactInfo) {
     // Contact card
     addGlassCard(pptx, s, 3, 4.1, 4, 0.8);
     s.addText([
-        { text: 'ouvalargent.fr', options: { color: colors.accentElectric, bold: true } },
+        { text: 'ouvalargent.com', options: { color: colors.accentElectric, bold: true } },
         { text: '\n' + (contactInfo || '@ouvalargent'), options: { color: colors.textSecondary } }
     ], {
         x: 3, y: 4.1, w: 4, h: 0.8,
