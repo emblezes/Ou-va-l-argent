@@ -379,7 +379,9 @@ function generateSlideHTML(slideText, accentWords, tagColor, tag, source, slideN
         body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 0; display: flex; justify-content: center; }
         .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
         .bg-photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
-        .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(6, 8, 12, 0.95) 0%, rgba(6, 8, 12, 0.8) 25%, rgba(6, 8, 12, 0.3) 50%, rgba(6, 8, 12, 0.15) 65%, rgba(6, 8, 12, 0.25) 100%); }
+        .overlay { position: absolute; inset: 0; background: ${isFirstSlide
+          ? 'linear-gradient(to top, rgba(6, 8, 12, 0.95) 0%, rgba(6, 8, 12, 0.85) 20%, rgba(6, 8, 12, 0.5) 40%, rgba(6, 8, 12, 0.15) 60%, rgba(6, 8, 12, 0.1) 100%)'
+          : 'linear-gradient(to top, rgba(6, 8, 12, 0.95) 0%, rgba(6, 8, 12, 0.8) 25%, rgba(6, 8, 12, 0.3) 50%, rgba(6, 8, 12, 0.15) 65%, rgba(6, 8, 12, 0.25) 100%)'}; }
         .content { position: relative; z-index: 1; height: 100%; padding: 35px 45px; display: flex; flex-direction: column; justify-content: space-between; }
         .header { display: flex; justify-content: space-between; align-items: flex-start; }
         .logo { display: flex; align-items: center; gap: 10px; background: rgba(6, 8, 12, 0.5); backdrop-filter: blur(10px); padding: 8px 16px 8px 8px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); }
@@ -389,7 +391,7 @@ function generateSlideHTML(slideText, accentWords, tagColor, tag, source, slideN
         .ref-title { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.7); max-width: 60%; line-height: 1.3; background: rgba(6, 8, 12, 0.6); backdrop-filter: blur(10px); padding: 8px 14px; border-radius: 8px; border-left: 3px solid ${bgColor}; }
         .slide-indicator { position: absolute; top: 35px; right: 45px; font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.6); z-index: 2; }
         .title-area { display: flex; flex-direction: column; gap: 12px; }
-        .news-title { font-family: 'Syne', sans-serif; font-size: ${isFirstSlide ? '2.6rem' : '2.2rem'}; font-weight: 700; color: #f0f4f8; line-height: 1.25; background: rgba(6, 8, 12, 0.7); backdrop-filter: blur(8px); border-radius: 14px; padding: 25px 30px; border-left: 5px solid ${bgColor}; }
+        .news-title { font-family: 'Syne', sans-serif; font-size: ${isFirstSlide ? '2.6rem' : '2.2rem'}; font-weight: 700; color: #f0f4f8; line-height: 1.25; ${isFirstSlide ? 'padding: 0;' : `background: rgba(6, 8, 12, 0.7); backdrop-filter: blur(8px); border-radius: 14px; padding: 25px 30px; border-left: 5px solid ${bgColor};`} }
         .news-title .accent-color { color: ${bgColor}; font-weight: 800; }
         .footer-line { font-size: 0.85rem; color: rgba(255, 255, 255, 0.4); }
     </style>
