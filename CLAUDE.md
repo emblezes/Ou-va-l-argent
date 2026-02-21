@@ -2,15 +2,93 @@
 
 ## Projet "Où Va l'Argent"
 
-**Site web** : Analyses et visualisations sur les finances publiques françaises.
+**Site web** : Analyses et visualisations sur les finances publiques françaises (ouvalargent.com).
 
-**Réseaux sociaux** : Média économique au sens large couvrant :
+**Réseaux sociaux** : Média économique couvrant :
 - Finances publiques (dette, impôts, dépenses)
 - Macro-économie (inflation, PIB, chômage, croissance)
 - Investissement (bourse, immobilier, crypto, or...)
 - Actualité économique (entreprises, secteurs)
 - Comparaisons internationales
 - Finance personnelle
+
+---
+
+## Pipeline automatisé (toutes les 2 heures)
+
+Le projet dispose d'un **pipeline automatisé** qui produit des carrousels d'actualité toutes les 2 heures et les envoie sur Telegram.
+
+### Fonctionnement
+
+```
+Toutes les 2h (7h-23h) :
+  RSS (8 sources) → Déduplication (cache 48h)
+                   → Si nouveautés :
+                      Claude Haiku → 3 idées de carrousel (JSON)
+                      Pour chaque idée :
+                        1. Slide 1 : photo Google Images + titre accrocheur
+                        2. Slides 2-4 : mix de slides "photo+texte" (style Legend)
+                           et slides "infographie data" (style Où Va l'Argent)
+                        3. Envoi sur Telegram (album + caption Instagram prête à copier)
+                      → Rangement dans Actus chaudes/YYYY-MM-DD/
+```
+
+### Format des carrousels
+
+Chaque carrousel contient **4 slides** au format Instagram (1080×1080), mélangeant deux types :
+
+| Type de slide | Rendu | Usage |
+|---------------|-------|-------|
+| **photo** (style Legend) | Photo de fond + texte narratif dans un encart semi-transparent | Slides contextuelles et explicatives |
+| **infographic** (style Où Va l'Argent) | Fond sombre + gros chiffre / comparaison | Slides data avec impact visuel |
+
+- **Slide 1** : toujours une photo + titre accrocheur (avec logo + tag)
+- **Slides 2-4** : mix libre de photo et infographic (décidé par Claude Haiku)
+- Chaque slide photo utilise une **photo différente** téléchargée depuis Google Images
+
+### Script principal
+
+```bash
+cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site"
+
+# Pipeline complet (3 carrousels + envoi Telegram)
+node scripts/telegram-hourly-carousels.js
+
+# Changer le nombre de carrousels
+node scripts/telegram-hourly-carousels.js --count=2
+
+# Sans envoi Telegram (test local)
+node scripts/telegram-hourly-carousels.js --dry-run
+
+# Seulement le flash texte (pas de carrousels)
+node scripts/telegram-hourly-carousels.js --text-only
+
+# Réinitialiser le cache (tout redevient "nouveau")
+node scripts/telegram-hourly-carousels.js --reset
+```
+
+### Automatisation (cron)
+
+```bash
+# Toutes les 2 heures de 7h à 23h
+0 7-23/2 * * * cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site" && node scripts/telegram-hourly-carousels.js >> /tmp/ovla-hourly.log 2>&1
+```
+
+### Ce que produit le pipeline (par exécution)
+
+- **3 carrousels** (configurable via `--count=N`)
+- **4 slides** par carrousel (format Instagram 1080×1080 uniquement)
+- **12 fichiers PNG** au total, rangés dans `Actus chaudes/YYYY-MM-DD/`
+- **Messages Telegram** : album de 4 slides + caption Instagram prête à copier + lien source
+- Chaque message contient le **lien source de l'article** pour vérification
+
+### Déduplication
+
+Le cache `.veille-carousel-cache.json` stocke les articles déjà traités (TTL 48h). Si on relance le script dans l'heure, seuls les nouveaux articles sont traités.
+
+### Coût estimé
+
+~$15-20/mois (Claude Haiku × 9 exécutions/jour × 2 appels Claude par exécution)
 
 ---
 
@@ -22,235 +100,198 @@
 
 Les agents sont situés dans `.claude/agents/` :
 
-1. **social-media-manager** (`.claude/agents/social-media-manager.md`) ⭐ PRINCIPAL
-   - Orchestre la stratégie de publication réseaux sociaux
-   - Planifie la semaine (21 infographies = 3/jour)
-   - Coordonne les autres agents
-   - Rédige les textes pour LinkedIn, Twitter, Instagram, Facebook
-   - Prépare les briefs pour les Réels/TikTok
-   - **Usage** : "Planifie la semaine du [date]"
-
-2. **infographic-creator** (`.claude/agents/infographic-creator.md`)
-   - Crée des infographies pour les réseaux sociaux
-   - Coordonne recherche + fact-checking + génération
-   - Utilise les templates HTML et exporte en PNG haute qualité
-   - **Usage** : "Crée une infographie sur [sujet]"
-
-3. **fact-checker** (`.claude/agents/fact-checker.md`)
-   - Vérifie l'exactitude des faits et des chiffres
-   - Identifie les sources primaires
-   - Détecte les erreurs ou approximations
-
-4. **search-specialist** (`.claude/agents/search-specialist.md`)
-   - Recherche les données les plus récentes
-   - Trouve les sources officielles (INSEE, Eurostat, ministères, etc.)
-   - Valide la fiabilité des sources
-
-5. **trend-scout** (`.claude/agents/trend-scout.md`)
-   - Identifie les sujets tendance dans la niche éco/finance
-   - Scanne actualité institutionnelle, médias, réseaux sociaux
-   - Propose 10-15 sujets classés par potentiel viral
-   - À convoquer à la demande (pas systématiquement)
-   - **Usage** : "Quels sont les sujets tendance cette semaine ?"
+1. **social-media-manager** — Orchestre la stratégie de publication, planifie la semaine, rédige les textes pour les réseaux
+2. **infographic-creator** — Crée des infographies (HTML → PNG), coordonne recherche + fact-checking
+3. **fact-checker** — Vérifie l'exactitude des faits et chiffres
+4. **search-specialist** — Recherche les données les plus récentes et sources officielles
+5. **trend-scout** — Identifie les sujets tendance éco/finance
+6. **news-monitor** — Gère le pipeline automatisé (RSS → carrousels → Telegram)
 
 ### Protocole de vérification
 
-**Toujours** :
-- Consulter ces agents AVANT de finaliser tout contenu
+- Consulter les agents AVANT de finaliser tout contenu
 - Citer les sources officielles dans chaque production
 - Vérifier que les chiffres sont à jour et exacts
-- Croiser les informations avec plusieurs sources
-
-**Ne jamais** :
-- Publier un chiffre sans source vérifiée
-- Utiliser des données obsolètes sans le mentionner
-- Ignorer les alertes de fact-checking
-
-### Importance
-
-La crédibilité du projet "Où Va l'Argent" repose sur la **rigueur et l'exactitude** des informations diffusées. Toute erreur factuelle nuit à la confiance du public. Ces agents sont indispensables à la qualité de la production.
+- Ne jamais publier un chiffre sans source vérifiée
 
 ---
 
-## Instructions pour les infographies
+## Scripts disponibles
 
-### Formats disponibles (Multi-format)
+Tous dans `Site/scripts/` :
 
-Chaque infographie peut être générée en **3 formats** pour différentes plateformes :
+| Script | Usage |
+|--------|-------|
+| `telegram-hourly-carousels.js` | **Pipeline principal** : veille → 3 carrousels × 4 slides mixtes → Telegram |
+| `daily-content-pipeline.js` | Pipeline quotidien (5 carrousels, exécution manuelle) |
+| `telegram-veille-hourly.js` | Veille flash texte seule (sans carrousels) |
+| `batch-export-all.js` | Export toutes les infographies permanentes en 3 formats |
+| `create-carousel-actu.js` | Créer un carrousel 2 slides × 3 formats (photo + data) |
+| `download-google-image.js` | Télécharger une image depuis Google Images (Puppeteer) |
+| `export-actu-video.js` | Overlay titre/logo sur une vidéo (ffmpeg) |
+| `notion-add-post.js` | Ajouter un post au calendrier Notion |
 
-| Format | Dimensions | Ratio | Usage |
-|--------|------------|-------|-------|
-| **Instagram** | 1080×1080 → 2160×2160 (retina) | 1:1 | Posts Instagram, LinkedIn, Facebook |
-| **TikTok** | 1080×1920 → 2160×3840 (retina) | 9:16 | Fond plein écran pour vidéos TikTok |
-| **Rectangle** | 1080×600 → 2160×1200 (retina) | ~16:9 | ~1/3 bas d'écran pour commentaire vidéo |
+---
 
-### Format de sortie : PNG uniquement
+## Infographies
 
-**IMPORTANT** : Lorsque l'utilisateur demande de créer une ou plusieurs infographies, chaque infographie doit être générée comme un **fichier PNG individuel**.
+### Deux types de contenu
 
-**Ne jamais** :
-- Créer un fichier HTML contenant plusieurs infographies
-- Regrouper plusieurs infographies dans un seul fichier
+| Type | Slides | Rangement |
+|------|--------|-----------|
+| **Infographie permanente** | 1 slide data (chiffre / graphique) en 3 formats | `Infographies/` (via batch-export) |
+| **Carrousel actu** | 4 slides mixtes : photo+texte (Legend) et infographie (Où Va l'Argent) | `Actus chaudes/YYYY-MM-DD/` (Instagram uniquement) |
 
-**Toujours** :
-- Créer un fichier PNG séparé pour chaque infographie
-- **Numéroter** chaque infographie avec le prochain numéro disponible en préfixe
-- Nommer les fichiers : `{numéro}-nom-descriptif-{format}.png`
-  - Ex : `16-dette-5350-euros-seconde-instagram.png`
-- **Ranger par format** dans `Production interne/Réseaux Sociaux /` :
-  - `Insta & Autres/` : PNG au format Instagram (carré 1:1)
-  - `Tiktok/` : PNG aux formats TikTok (9:16) et Rectangle (~16:9)
-  - `Sources HTML/` : Fichiers HTML sources
+### Formats d'export
 
-### Méthode de création (HTML → PNG)
+| Format | Dimensions | Ratio | Layout |
+|--------|------------|-------|--------|
+| **Instagram** | 1080×1080 (retina 2x) | 1:1 | Classique : logo haut, titre bas |
+| **TikTok Vertical** | 1080×1920 (retina 2x) | 9:16 | Titre en HAUT, bas libre pour visage |
+| **TikTok Horizontal** | 1080×600 (retina 2x) | ~16:9 | Titre TRÈS GROS centré + ouvalargent.com |
 
-**Méthode recommandée** : Utiliser le template multi-format + Puppeteer.
+### Spécificités des formats TikTok
 
-#### Templates disponibles
+**TikTok Vertical (9:16)** :
+- Le titre, le logo et la source sont placés en HAUT de la slide
+- La moitié basse reste vide pour l'incrustation du visage du présentateur
+- Le gradient overlay assombrit le haut (titre lisible) et laisse le bas plus clair
+- Padding top: 150px, padding bottom: 60px (zone safe TikTok)
 
-- **Multi-format** : `/Templates/Réseaux sociaux/template-multiformat.html`
-  - Génère automatiquement les 3 formats (Instagram, TikTok, Rectangle)
-  - Classes CSS : `.format-instagram`, `.format-tiktok`, `.format-rectangle`
-  - Attribut `data-name="nom-descriptif"` pour nommer les fichiers
+**TikTok Horizontal (1080×600)** :
+- UNIQUEMENT le titre en très gros, centré, qui remplit toute la slide
+- Pas de logo, pas de tag, pas de source
+- Juste `ouvalargent.com` en petit en bas
+- Les chiffres clés sont affichés très gros
+- Conçu pour être affiché sous le visage du présentateur
 
-- **Instagram uniquement** : `/Templates/Réseaux sociaux/template-instagram.html`
-  - Format carré 1080×1080 uniquement
-  - 6 types de visualisations prêts à l'emploi
+### Méthode de création (infographies permanentes)
 
-#### Export batch (méthode principale)
+1. Créer un fichier HTML dans `Infographies/Sources HTML/`
+2. L'ajouter au tableau `INFOGRAPHICS` de `batch-export-all.js`
+3. Lancer `node scripts/batch-export-all.js`
 
-Le script `batch-export-all.js` exporte **toutes** les infographies en 3 formats (Instagram, TikTok Vertical, TikTok Horizontal) avec des CSS overrides adaptés à chaque format.
-
-```bash
-cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site"
-
-# Exporter toutes les infographies en 3 formats
-node scripts/batch-export-all.js
-```
-
-**Important** : Après avoir créé un nouveau HTML dans `Sources HTML/`, ajouter l'entrée correspondante dans le tableau `INFOGRAPHICS` de `batch-export-all.js` puis relancer l'export.
-
-Le script applique automatiquement :
-- **TikTok Vertical** : titres 6rem, éléments agrandis ~50-80%, bar charts transformés en affichage texte
-- **TikTok Horizontal** : tout compacté pour 600px, rankings très condensés
-
-#### Export multi-format (un seul fichier)
-
-```bash
-cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site"
-node scripts/html-to-png-multiformat.js "../Templates/Réseaux sociaux/mon-infographie.html"
-```
+Le pipeline `telegram-hourly-carousels.js` génère automatiquement les carrousels actu (format Instagram uniquement). Les 3 formats TikTok V/H sont réservés aux infographies permanentes via `batch-export-all.js`.
 
 ### Charte graphique
 
-Les infographies suivent une charte visuelle cohérente :
 - **Fond** : Gradient sombre (#06080c à #0a1628)
-- **Grille** : Subtile, cyan transparent
-- **Couleurs principales** :
-  - Cyan électrique : `#00d4ff`
-  - Or : `#ffd700`
-  - Rouge : `#ff4757`
-  - Vert : `#00ff88`
-  - Violet : `#a855f7`
-  - Orange : `#ff9f43`
-- **Typographie** :
-  - Titres : Instrument Serif (italique pour les accents) — **minimum 4rem pour Instagram**
-  - Corps : Syne (sans-serif)
-  - Données/chiffres : JetBrains Mono (monospace)
-  - **Tailles Instagram** : titre 4-4.5rem, valeurs 1.6-2.2rem, labels 0.85-1.15rem
-  - Les tailles TikTok sont gérées automatiquement par le script d'export
+- **Grille** : Subtile, couleur de l'accent
+- **Couleurs** : Cyan `#00d4ff`, Or `#ffd700`, Rouge `#ff4757`, Vert `#00ff88`, Violet `#a855f7`, Orange `#ff9f43`
+- **Typographie** : Instrument Serif (titres), Syne (corps), JetBrains Mono (données)
 - **Logo** : Carré cyan avec "€" + texte "Où Va l'Argent"
 - **Footer** : Source à gauche, "ouvalargent.com" à droite
 
-### Structure type d'une infographie
+---
 
-1. Header : Logo + Tag thématique
-2. Contenu principal : Statistique ou visualisation
-3. Footer : Source + URL du site
+## Actus chaudes (carrousels automatiques)
+
+### Création manuelle d'un carrousel
+
+```bash
+node scripts/create-carousel-actu.js \
+  --search="mots clés Google Images" \
+  --title="Titre avec <span class='accent-red'>mot coloré</span>" \
+  --tag="Thème" \
+  --source="Source · Année" \
+  --name="69-nom-descriptif" \
+  --infographic="69-nom-descriptif.html" \
+  --tag-color="#ff4757"
+```
+
+Le script produit automatiquement **6 fichiers** (2 slides × 3 formats). Note : pour les carrousels automatiques via le pipeline, seul le format Instagram est généré (4 slides).
+
+### Vidéo d'actualité
+
+```bash
+node scripts/export-actu-video.js <video.mp4> \
+  --title="Titre" --accent="mot" --tag="ACTU" --source="AFP"
+```
+
+Overlay transparent (Puppeteer PNG) + composite ffmpeg.
+
+---
+
+## Veille Telegram
+
+### Configuration
+
+- **Bot** : @ouvalargentveille_bot
+- **Config** : `Site/scripts/telegram-config.json` (contient token, chat ID, API key, sources RSS)
+- **8 sources RSS** : La Tribune, 20 Minutes, Challenges, Le Figaro, Le Monde, BFM Business, France Info, Reuters FR
+
+### Envoi sur Telegram
+
+Chaque carrousel est envoyé comme :
+1. **Album** de 4 slides (compressées en JPEG via `sips` avant envoi)
+2. **Caption Instagram** prête à copier (titre + texte engageant + hashtags)
+3. **Lien source** de l'article pour vérification manuelle
 
 ---
 
 ## Présentations PowerPoint (PPTX)
 
-Deux formats distincts de PPTX, chacun avec sa bibliothèque de helpers :
+### Format PRÉSENTATION (conférences)
 
-### Format PRÉSENTATION (conférences, pitchs)
+- **Helpers** : `Templates/PPT/workspace/pptx-helpers.js`
+- Fond sombre, visuel-first, grands chiffres
+- Polices : Instrument Serif, Syne, JetBrains Mono
 
-**Fichier** : `Templates/PPT/workspace/pptx-helpers.js`
+### Format RAPPORT (études)
 
-- **Fond sombre** avec glows et grille (charte graphique dark)
-- **Visuel-first** : peu de texte, grands chiffres, graphiques impactants
-- **Polices** : Instrument Serif (titres), Syne (corps), JetBrains Mono (données)
-- **Usage** : Conférences, présentations publiques, pitchs
+- **Helpers** : `Templates/PPT/workspace/pptx-report-helpers.js`
+- Fond clair style McKinsey/BCG, haute densité d'information
+- Action titles, Calibri, 13.33" × 7.5"
 
-```js
-const h = require('./pptx-helpers');
-h.addChiffreCle(pptx, 'Tag', 'Label', '42', 150, h.colors.accentRed, 'unité', 'contexte', 'Source');
-```
-
-**Types de slides** : Transition, ChiffreCle, PointsCles, Bars, Focus2Col, Projections, Cards2x2, Citation, Timeline, Scenarios + charts natifs (Pie, Donut, Line, Area, Scatter, Radar) + charts manuels (StackedBars, GroupedBars, Waterfall, Gauge, Slope, Treemap)
-
-### Format RAPPORT (études, analyses approfondies)
-
-**Fichier** : `Templates/PPT/workspace/pptx-report-helpers.js`
-
-- **Fond clair** style McKinsey / BCG
-- **Haute densité d'information** : tableaux de données, multi-colonnes, frameworks stratégiques
-- **Action titles** : chaque titre de slide = takeaway principal (pas juste un sujet)
-- **Polices** : Calibri (standard consulting)
-- **Format** : 13.33" × 7.5" (widescreen)
-- **Usage** : Rapports publiés, études sectorielles, analyses approfondies
-
-```js
-const r = require('./pptx-report-helpers');
-r.setupReport(pptx);
-r.addCover(pptx, 'Titre du rapport', 'Sous-titre', 'Février 2026');
-r.addKPIDashboard(pptx, 'La dette publique atteint un niveau record', 'Dette', kpis, 'INSEE', 3);
-```
-
-**Types de slides** : Cover, SectionDivider, TOC, ExecSummary, DataTable, KPIDashboard, Matrix2x2, ChartWithAnalysis, BridgeChart (waterfall consulting), Comparison, KeyTakeaways, TextSlide, SourcesPage, BackCover
-
-### Quand utiliser quel format ?
-
-| Critère | Présentation | Rapport |
-|---------|-------------|---------|
-| **Public** | Audience live | Lecteur seul |
-| **Densité** | 1 idée par slide | Données riches par slide |
-| **Texte** | Minimal | Détaillé + analyse |
-| **Fond** | Sombre (dark) | Clair (blanc) |
-| **Durée lecture** | 3s par slide | 30s+ par slide |
-
-**IMPORTANT** : Les rapports PPTX finaux doivent **toujours** être générés dans `Production interne/Rapports/`. Le dossier `Templates/PPT/workspace/` ne contient que les helpers et scripts de génération, jamais les fichiers de sortie.
+**Sortie** : Toujours dans `Production interne/Rapports/`
 
 ---
 
 ## Intégration Notion
 
-Le calendrier de publication est géré dans Notion.
+- **Base** : "Calendrier Publications" (`0b730033-5a9c-48fb-9395-41198de626cc`)
+- **Config** : `Site/scripts/notion-config.json`
 
-### Configuration
-- **Base de données** : "Calendrier Publications"
-- **ID** : `0b730033-5a9c-48fb-9395-41198de626cc`
-- **Config** : `/Site/scripts/notion-config.json`
-
-### Script d'ajout
 ```bash
-cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site"
 node scripts/notion-add-post.js '{"titre": "...", "date": "2025-02-10", "theme": "Dette", ...}'
 ```
 
-### Propriétés disponibles
-| Champ | Type | Valeurs possibles |
-|-------|------|-------------------|
+| Champ | Type | Valeurs |
+|-------|------|---------|
 | titre | Titre | Texte libre |
 | date | Date | YYYY-MM-DD |
 | theme | Select | Finances publiques, Macro-economie, Investissement, Actualite eco, International, Finance perso, Dette, Impots, Immobilier, Bourse |
 | type | Select | Stat choc, Comparaison, Classement, Timeline, Citation |
 | statut | Select | Idee, A creer, En cours, Pret, Publie |
-| reel | Checkbox | true/false |
-| linkedin | Texte | Max 2000 car. |
-| twitter | Texte | Max 280 car. |
-| instagram | Texte | Max 2000 car. |
-| facebook | Texte | Max 2000 car. |
+| linkedin, twitter, instagram, facebook | Texte | Textes de publication |
 | source | Texte | Source officielle |
 | briefReel | Texte | Brief pour vidéo |
+
+---
+
+## Arborescence clé
+
+```
+Production interne/
+  Réseaux Sociaux /
+    Infographies/
+      Sources HTML/         ← Fichiers HTML source (permanents + actus)
+      Insta & Autres/       ← PNG Instagram (1:1) - permanents
+      Tiktok Vertical/      ← PNG TikTok (9:16) - permanents
+      Tiktok Horizontal/    ← PNG Rectangle (~16:9) - permanents
+    Actus chaudes/
+      2026-02-20/           ← Carrousels automatiques classés par date
+        97-slug-slide1.png            (slide photo+titre)
+        97-slug-slide2.png            (slide photo+texte ou infographie)
+        97-slug-slide3.png            (slide photo+texte ou infographie)
+        97-slug-slide4.png            (slide photo+texte ou infographie)
+      2026-02-21/
+      ...
+  Rapports/                 ← PPTX finaux
+Templates/
+  Réseaux sociaux/          ← Templates HTML
+  PPT/workspace/            ← Helpers PPTX (pas de sortie ici)
+Site/scripts/               ← Tous les scripts Node.js
+  telegram-config.json      ← Config bot + API keys (NE PAS COMMIT)
+  .veille-carousel-cache.json ← Cache déduplication (auto-géré)
+```

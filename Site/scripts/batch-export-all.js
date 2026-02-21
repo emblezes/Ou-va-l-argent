@@ -11,10 +11,10 @@ const path = require('path');
 const fs = require('fs');
 
 const BASE = '/Users/emmanuelblezes/Documents/08_Où va l\'argent /Production interne/Réseaux Sociaux ';
-const HTML_DIR = path.join(BASE, 'Sources HTML');
-const INSTA_DIR = path.join(BASE, 'Insta & Autres');
-const TIKTOK_V_DIR = path.join(BASE, 'Tiktok Vertical');
-const TIKTOK_H_DIR = path.join(BASE, 'Tiktok Horizontal');
+const HTML_DIR = path.join(BASE, 'Infographies', 'Sources HTML');
+const INSTA_DIR = path.join(BASE, 'Infographies', 'Insta & Autres');
+const TIKTOK_V_DIR = path.join(BASE, 'Infographies', 'Tiktok Vertical');
+const TIKTOK_H_DIR = path.join(BASE, 'Infographies', 'Tiktok Horizontal');
 
 // CSS overrides pour adapter le contenu au format TikTok (1080x1920)
 const TIKTOK_CSS = `
@@ -1608,6 +1608,26 @@ const INFOGRAPHICS = [
   ['45-nordgold-4md-arbitrage.html', 0, '45-nordgold-4md-arbitrage'],
   ['46-qui-nourrit-etat.html', 0, '46-qui-nourrit-etat'],
   ['47-fiche-de-paie-decomposition.html', 0, '47-fiche-de-paie-decomposition'],
+  ['48-dette-titre-couverture.html', 0, '48-dette-titre-couverture'],
+  ['49-dette-3305-milliards.html', 0, '49-dette-3305-milliards'],
+  ['50-dette-113-pct-pib-europe.html', 0, '50-dette-113-pct-pib-europe'],
+  ['51-dette-48800-par-habitant.html', 0, '51-dette-48800-par-habitant'],
+  ['52-dette-53pct-etrangers.html', 0, '52-dette-53pct-etrangers'],
+  ['53-dette-58md-interets.html', 0, '53-dette-58md-interets'],
+  ['54-ecoles-commerce-couverture.html', 0, '54-ecoles-commerce-couverture'],
+  ['55-ecole-hec-paris.html', 0, '55-ecole-hec-paris'],
+  ['56-ecole-escp.html', 0, '56-ecole-escp'],
+  ['57-ecole-essec.html', 0, '57-ecole-essec'],
+  ['58-ecole-emlyon.html', 0, '58-ecole-emlyon'],
+  ['59-ecole-edhec.html', 0, '59-ecole-edhec'],
+  ['60-ecole-skema.html', 0, '60-ecole-skema'],
+  ['61-ecole-audencia.html', 0, '61-ecole-audencia'],
+  ['62-ecole-tbs.html', 0, '62-ecole-tbs'],
+  ['64-ouigo-prix-75pct.html', 0, '64-ouigo-prix-75pct'],
+  ['65-travail-noir-1-6md.html', 0, '65-travail-noir-1-6md'],
+  ['66-dette-us-interets-vs-pentagone.html', 0, '66-dette-us-interets-vs-pentagone'],
+  ['67-surendettement-10pct-jeunes.html', 0, '67-surendettement-10pct-jeunes'],
+  ['68-maprimerenov-6-mois-attente.html', 0, '68-maprimerenov-6-mois-attente'],
 ];
 
 async function exportFormat(browser, htmlPath, items, { css, jsTransform, width, height, outputDir, suffix, label }) {

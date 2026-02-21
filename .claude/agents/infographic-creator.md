@@ -7,11 +7,25 @@ Agent orchestrateur spécialisé dans la création d'infographies pour les rése
 
 Chaque infographie est générée en **3 formats** :
 
-| Format | Dimensions | Usage |
-|--------|------------|-------|
-| **Instagram** | 1080×1080 → 2160×2160 (retina) | Posts Instagram, LinkedIn, Facebook |
-| **TikTok** | 1080×1920 → 2160×3840 (retina) | Fond plein écran pour vidéos TikTok |
-| **Rectangle** | 1080×600 → 2160×1200 (retina) | ~1/3 bas d'écran pour commentaire vidéo |
+| Format | Dimensions | Layout | Usage |
+|--------|------------|--------|-------|
+| **Instagram** | 1080×1080 (retina 2x) | Classique : logo haut, titre bas | Posts Instagram, LinkedIn, Facebook |
+| **TikTok Vertical** | 1080×1920 (retina 2x) | Titre en HAUT, bas libre pour visage | Fond plein écran vidéo TikTok |
+| **TikTok Horizontal** | 1080×600 (retina 2x) | Titre TRÈS GROS centré + ouvalargent.com | Bas d'écran vidéo avec visage en haut |
+
+### Spécificités des formats TikTok
+
+**TikTok Vertical (9:16)** :
+- Tout le contenu (titre, logo, source) est placé en HAUT de la slide
+- La moitié basse reste vide pour l'incrustation du visage du présentateur
+- Le gradient overlay assombrit le haut et laisse le bas plus clair
+
+**TikTok Horizontal (1080×600)** :
+- UNIQUEMENT le titre en très gros, centré, qui remplit la slide
+- Pas de logo, pas de tag, pas de source détaillée
+- Juste `ouvalargent.com` en petit en bas
+- Les chiffres clés sont affichés très gros
+- Conçu pour être affiché sous le visage du présentateur
 
 ---
 
@@ -111,9 +125,12 @@ Le script applique automatiquement les CSS overrides (`TIKTOK_CSS`, `RECTANGLE_C
 **Structure des dossiers** :
 ```
 Production interne/Réseaux Sociaux /
-├── Insta & Autres/     ← Format Instagram (carré 1:1)
-├── Tiktok/             ← Formats TikTok (9:16) + Rectangle (~16:9)
-└── Sources HTML/       ← Fichiers HTML sources
+├── Infographies/
+│   ├── Insta & Autres/     ← Format Instagram (carré 1:1)
+│   ├── Tiktok Vertical/    ← Format TikTok (9:16)
+│   ├── Tiktok Horizontal/  ← Format TikTok (~16:9)
+│   └── Sources HTML/       ← Fichiers HTML sources
+└── Actus chaudes/          ← Infographies d'actualité avec photo
 ```
 
 **Règles de rangement** :
@@ -345,10 +362,10 @@ Les tailles TikTok-V et TikTok-H sont gérées automatiquement par les CSS overr
 
 ### Adaptations TikTok automatiques
 
-Le script `batch-export-all.js` applique des transformations CSS/JS pour chaque format :
+Les scripts d'export appliquent des transformations CSS/JS pour chaque format :
 
-- **TikTok Vertical** : Tous les éléments sont agrandis ~50-80%. Les bar charts (type salaires) sont transformés : les barres disparaissent et seules les valeurs en couleur sont affichées en gros.
-- **TikTok Horizontal** : Tout est compacté pour tenir en 600px de haut. Les rankings avec beaucoup d'items sont très condensés.
+- **TikTok Vertical** : Contenu repositionné en HAUT (justify-content: flex-start), éléments agrandis ~30%. Les bar charts sont transformés en texte gros. Gradient inversé (haut sombre, bas clair) pour l'incrustation visage.
+- **TikTok Horizontal** : Titre TRÈS GROS centré (4.2rem), chiffres gros (8rem). Logo et tag masqués. Seul `ouvalargent.com` reste en bas. Tout le contenu est centré verticalement.
 
 ### Tags thématiques
 ```html
@@ -389,6 +406,166 @@ mv "*.html" "$BASE/Sources HTML/16-nom.html"
 # Ouvrir le dossier de sortie
 open "$BASE"
 ```
+
+---
+
+## Création de carrousels (séries d'infographies)
+
+### Quand utiliser un carrousel ?
+
+Un carrousel est une série de 5 à 8 infographies sur un même thème, pensée pour être swipée sur Instagram/LinkedIn. C'est le format le plus engageant sur les réseaux sociaux.
+
+### Structure d'un carrousel impactant
+
+| Slide | Rôle | Format |
+|-------|------|--------|
+| **1. Couverture** | Titre accrocheur + "Swipe →" | Titre seul, gros texte, pas de données |
+| **2-N. Slides de contenu** | 1 stat/graphe par slide | Gros chiffre OU gros graphe, peu de texte |
+
+### Principes de conception
+
+1. **1 idée par slide** : chaque slide = 1 seul chiffre ou 1 seul graphe
+2. **Titres percutants et engagés** : pas descriptifs mais éditorialisés
+   - Mauvais : "113% du PIB" → Bon : "La France, 3ᵉ pays le plus endetté d'Europe"
+   - Mauvais : "58 Md€ d'intérêts" → Bon : "La France dépense plus pour les intérêts de sa dette que pour sa Défense"
+   - Mauvais : "48 800€ par habitant" → Bon : "Chaque Français doit déjà"
+3. **Gros visuels** : le chiffre ou le graphe doit occuper 60-80% de l'espace
+4. **Peu de texte** : titre + visuel + source, c'est tout. Pas de sous-titres, pas de contexte, pas de légendes longues
+5. **Quand c'est un seul chiffre** : police mega (10-13rem), centré, pas de graphe
+6. **Quand c'est un graphe** : barres épaisses, drapeaux emoji pour les pays, couleurs contrastées
+7. **Drapeaux** : toujours ajouter les emoji drapeaux (🇫🇷, 🇩🇪, etc.) devant les noms de pays
+8. **Comparaisons visuelles** : quand on compare 2 valeurs, utiliser des barres verticales côte à côte avec "vs" au milieu
+
+### Workflow de création d'un carrousel
+
+1. **Choisir le thème** : dette, impôts, retraites...
+2. **Identifier 4-6 stats chocs** sur le thème
+3. **Recherche + fact-check** via les agents spécialisés
+4. **Créer la couverture** (slide titre seul)
+5. **Pour chaque stat**, choisir le bon format :
+   - Chiffre seul → mega number (font-size 10-13rem)
+   - Comparaison pays → barres horizontales + drapeaux
+   - Répartition → donut
+   - Comparaison 2 valeurs → barres verticales côte à côte avec "vs"
+6. **Écrire des titres percutants** pour chaque slide (éditorialisés, pas descriptifs)
+7. **Générer les HTML** dans `Sources HTML/`, numérotation séquentielle
+8. **Ajouter au script** `batch-export-all.js`
+9. **Exporter** les 3 formats
+
+### Exemples de carrousels
+
+**Carrousel "5 chiffres chocs sur la dette"** (infographies 48-53) :
+- 48 : Couverture titre "5 chiffres chocs sur la dette publique française"
+- 49 : "La dette française n'en finit plus de s'envoler" → 3 305 milliards € (mega number)
+- 50 : "La France, 3ᵉ pays le plus endetté d'Europe" → barres horizontales + drapeaux
+- 51 : "Chaque Français doit déjà" → 48 800 € (mega number)
+- 52 : "Plus de la moitié de notre dette appartient à l'étranger" → donut 53%
+- 53 : "La France dépense plus pour les intérêts que pour la Défense" → barres verticales vs
+
+---
+
+## Format Actualité avec Photo
+
+### Quand utiliser ce format ?
+
+Pour réagir à une actualité en utilisant une **photo** (personnalité, événement, lieu) en fond avec un titre percutant par-dessus. C'est le format le plus rapide à produire et très engageant sur les réseaux.
+
+### Template
+
+**Fichier** : `/Templates/Réseaux sociaux/template-actualite-photo.html`
+
+### Structure
+
+- **Photo** : en fond, plein écran (cover)
+- **Voile gradient** : noir semi-transparent du bas vers le haut (pour lisibilité du texte)
+- **Logo** : "Où Va l'Argent" en haut à gauche (avec fond flouté)
+- **Tag** : en haut à droite (ACTU, POLITIQUE, ÉCONOMIE...)
+- **Titre** : en bas, gros (4rem), Instrument Serif. Utiliser `.accent`, `.accent-gold`, `.accent-red` pour colorer des mots-clés
+- **Footer** : source + ouvalargent.com en bas
+
+### Workflow
+
+1. **Récupérer la photo** : l'utilisateur fournit l'image (ou un lien)
+2. **Copier le template** en le renommant dans `Sources HTML/` (ex: `63-actu-macron-budget.html`)
+3. **Modifier** :
+   - Le `data-name` sur `.infographic`
+   - Le tag (ACTU, POLITIQUE, etc.)
+   - Le titre (`.news-title`)
+   - La source dans le footer
+   - L'URL de la photo dans `.bg-photo` (`background-image: url(...)`)
+4. **Exporter** :
+```bash
+cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site"
+node scripts/export-actu-photo.js "../Production interne/Réseaux Sociaux /Sources HTML/63-actu-exemple.html" --photo="../chemin/vers/photo.jpg"
+```
+
+### Classes CSS pour le titre
+
+```html
+<h1 class="news-title">
+    Texte normal <span class="accent">mot en cyan</span>
+    <span class="accent-gold">mot en or</span>
+    <span class="accent-red">mot en rouge</span>
+</h1>
+```
+
+### Couleurs de tags disponibles
+
+Le tag par défaut est rouge. Pour changer la couleur, modifier le CSS inline ou ajouter une classe :
+- Rouge (défaut) : actualité, alerte
+- Or : économie, finance
+- Cyan : technologie, innovation
+- Vert : croissance, positif
+
+---
+
+## Format Vidéo d'Actualité
+
+### Quand utiliser ce format ?
+
+Pour superposer le branding "Où Va l'Argent" sur un **clip vidéo** d'actualité. Même rendu visuel que le format photo (logo, titre, gradient, ouvalargent.com) mais sur une vidéo.
+
+### Prérequis
+
+- **ffmpeg** installé (`brew install ffmpeg`)
+- **Puppeteer** (déjà installé dans le projet)
+
+### Script
+
+```bash
+cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site"
+node scripts/export-actu-video.js <video> --title="Titre" [options]
+```
+
+### Options
+
+| Option | Description | Défaut |
+|--------|-------------|--------|
+| `--title` | Titre de l'actualité (OBLIGATOIRE) | - |
+| `--tag` | Tag en haut à droite | ACTU |
+| `--source` | Source de l'actu | (vide) |
+| `--name` | Nom du fichier de sortie | (basé sur le titre) |
+| `--format` | `square` (1080x1080), `vertical` (1080x1920), `auto` | auto |
+| `--accent` | Mots en cyan (séparés par `\|`) | - |
+| `--accent-red` | Mots en rouge (séparés par `\|`) | - |
+| `--accent-gold` | Mots en or (séparés par `\|`) | - |
+
+### Exemple
+
+```bash
+node scripts/export-actu-video.js clip.mp4 \
+  --title="Les PDG d'OpenAI et Anthropic refusent de se serrer la main" \
+  --accent="OpenAI|Anthropic" \
+  --accent-red="refusent" \
+  --source="AI Impact Summit"
+```
+
+### Fonctionnement interne
+
+1. **ffprobe** analyse les dimensions de la vidéo source
+2. **Puppeteer** génère un overlay PNG transparent (même template que les photos d'actu)
+3. **ffmpeg** superpose l'overlay sur la vidéo, redimensionne si besoin
+4. Sortie en MP4 H.264 dans `Actus chaudes/`
 
 ---
 
