@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Coût total estimé d'un salarié pour un salaire de 60 000 €</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 0; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,71,87,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,71,87,0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255,71,87,0.10) 0%, transparent 70%); top: -200px; right: -150px; }
+        .content { position: relative; z-index: 1; width: 100%; height: 100%; }
+
+        .header { position: absolute; top: 25px; left: 30px; right: 30px; display: flex; justify-content: space-between; align-items: flex-start; }
+        .logo { display: flex; align-items: center; gap: 9px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #00d4ff, #0099cc); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 1rem; color: #06080c; }
+        .logo-text { font-weight: 700; font-size: 1rem; color: #f0f4f8; }
+        .tag { padding: 8px 16px; background: rgba(255,71,87,0.15); border: 1px solid rgba(255,71,87,0.3); border-radius: 50px; font-size: 0.75rem; font-weight: 600; color: #ff4757; text-transform: uppercase; letter-spacing: 0.1em; }
+
+        .title-block { position: absolute; top: 75px; left: 0; right: 0; text-align: center; }
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 3.4rem; color: #f0f4f8; line-height: 1.08; }
+        .chart-title .accent { color: #ff4757; font-style: italic; }
+        /* subtitle supprimé */
+
+        /* stat-callout supprimé */
+
+        .chart-container { position: absolute; top: 145px; left: 25px; right: 15px; bottom: 42px; }
+        .grid-line { position: absolute; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.05); }
+        .grid-lbl { position: absolute; left: 2px; top: -10px; font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; color: #4a5a6a; }
+
+        /* Bars */
+        .bars-area { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: stretch; gap: 2px; }
+        .bar-col { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; position: relative; }
+        .bar { width: 100%; border-radius: 3px 3px 0 0; background: linear-gradient(180deg, #4a9fd4, #1a6aaa); position: relative; overflow: visible; }
+        .bar.france { background: linear-gradient(180deg, #ff4757, rgba(255,71,87,0.7)); box-shadow: 0 0 25px rgba(255,71,87,0.4); }
+        .bar.cheapest { background: linear-gradient(180deg, rgba(0,212,255,0.45), rgba(0,180,230,0.2)); border: 1.5px solid #00d4ff; border-bottom: none; }
+
+        /* ============================================
+           VALUE above bar — vertical text using writing-mode
+           ============================================ */
+        .bar-value {
+            position: absolute;
+            bottom: calc(100% + 4px);
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
+            writing-mode: vertical-rl;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.05rem; font-weight: 700;
+            color: #ffffff;
+            white-space: nowrap;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.6);
+            line-height: 1;
+        }
+        .bar.france .bar-value { color: #ff4757; font-weight: 800; font-size: 1.3rem; }
+        .bar.cheapest .bar-value { color: #00d4ff; font-weight: 800; font-size: 1.15rem; }
+
+        /* ============================================
+           CLIP container — keeps flag+name INSIDE bar
+           ============================================ */
+        .bar-clip {
+            position: absolute; inset: 0;
+            overflow: hidden;
+            clip-path: inset(0);
+            border-radius: 3px 3px 0 0;
+        }
+
+        /* ============================================
+           Flag + name INSIDE bar — vertical via writing-mode
+           ============================================ */
+        .bar-inner {
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
+            writing-mode: vertical-rl;
+            white-space: nowrap;
+            display: inline-flex; align-items: center; gap: 4px;
+            pointer-events: none;
+            line-height: 1.1;
+        }
+
+        /* Small bars (< 25%) */
+        .bar-inner.sz-s .fl { font-size: 1.0rem; }
+        .bar-inner.sz-s .nm { font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.9); }
+
+        /* Medium bars (25-50%) */
+        .bar-inner.sz-m .fl { font-size: 1.2rem; }
+        .bar-inner.sz-m .nm { font-size: 1.0rem; font-weight: 700; color: rgba(255,255,255,0.95); }
+
+        /* Large bars (> 50%) */
+        .bar-inner.sz-l .fl { font-size: 1.4rem; }
+        .bar-inner.sz-l .nm { font-size: 1.15rem; font-weight: 700; color: #ffffff; }
+
+        /* France & Romania overrides */
+        .bar.france .bar-inner .fl { font-size: 1.5rem; }
+        .bar.france .bar-inner .nm { color: #fff; font-size: 1.3rem; font-weight: 800; }
+        .bar.cheapest .bar-inner .fl { font-size: 1.0rem; }
+        .bar.cheapest .bar-inner .nm { color: #00d4ff; font-size: 0.8rem; font-weight: 700; }
+
+        .footer { position: absolute; bottom: 10px; left: 25px; right: 25px; display: flex; justify-content: space-between; align-items: center; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .source { font-size: 0.72rem; color: #4a5a6a; }
+        .source span { color: #8899a8; }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; font-weight: 600; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><div class="logo-icon">€</div><span class="logo-text">Où Va l'Argent</span></div>
+                <div class="tag">Emploi</div>
+            </div>
+            <div class="title-block">
+                <h2 class="chart-title">Coût total d'un salarié<br>pour un salaire brut de <span class="accent">60 000 €</span></h2>
+            </div>
+            <div class="chart-container">
+                <div class="grid-line" style="top: 109px;"><span class="grid-lbl">€90K</span></div>
+                <div class="grid-line" style="top: 328px;"><span class="grid-lbl">€80K</span></div>
+                <div class="grid-line" style="top: 547px;"><span class="grid-lbl">€70K</span></div>
+                <div class="grid-line" style="top: 766px;"><span class="grid-lbl">€60K</span></div>
+                <div class="bars-area">
+                    <div class="bar-col"><div class="bar cheapest" style="height:13.3%"><span class="bar-value">60 337€</span><div class="bar-clip"><span class="bar-inner sz-s"><span class="fl">🇷🇴</span><span class="nm">Roumanie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:14.6%"><span class="bar-value">60 828€</span><div class="bar-clip"><span class="bar-inner sz-s"><span class="fl">🇩🇰</span><span class="nm">Danemark</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:18.9%"><span class="bar-value">62 546€</span><div class="bar-clip"><span class="bar-inner sz-s"><span class="fl">🇱🇹</span><span class="nm">Lituanie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:21.7%"><span class="bar-value">63 691€</span><div class="bar-clip"><span class="bar-inner sz-s"><span class="fl">🇲🇹</span><span class="nm">Malte</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:21.5%"><span class="bar-value">63 580€</span><div class="bar-clip"><span class="bar-inner sz-s"><span class="fl">🇦🇱</span><span class="nm">Albanie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:22.5%"><span class="bar-value">64 003€</span><div class="bar-clip"><span class="bar-inner sz-s"><span class="fl">🇲🇪</span><span class="nm">Monténégro</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:23.4%"><span class="bar-value">64 354€</span><div class="bar-clip"><span class="bar-inner sz-s"><span class="fl">🇧🇬</span><span class="nm">Bulgarie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:24.6%"><span class="bar-value">64 854€</span><div class="bar-clip"><span class="bar-inner sz-s"><span class="fl">🇹🇷</span><span class="nm">Turquie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:27.4%"><span class="bar-value">65 942€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇺🇦</span><span class="nm">Ukraine</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:27.7%"><span class="bar-value">66 095€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇬🇧</span><span class="nm">Royaume-Uni</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:28.6%"><span class="bar-value">66 459€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇮🇪</span><span class="nm">Irlande</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:31.9%"><span class="bar-value">67 758€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇭🇺</span><span class="nm">Hongrie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:32.5%"><span class="bar-value">67 987€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇱🇺</span><span class="nm">Luxembourg</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:32.7%"><span class="bar-value">68 098€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇨🇭</span><span class="nm">Suisse</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:35.6%"><span class="bar-value">69 240€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇷🇸</span><span class="nm">Serbie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:36.1%"><span class="bar-value">69 450€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇨🇾</span><span class="nm">Chypre</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:39.6%"><span class="bar-value">70 832€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇸🇮</span><span class="nm">Slovénie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:42.8%"><span class="bar-value">72 129€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇭🇷</span><span class="nm">Croatie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:42.9%"><span class="bar-value">72 150€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇵🇱</span><span class="nm">Pologne</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:45.4%"><span class="bar-value">73 154€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇳🇴</span><span class="nm">Norvège</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:47.2%"><span class="bar-value">73 884€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇫🇮</span><span class="nm">Finlande</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:48.5%"><span class="bar-value">74 403€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇬🇷</span><span class="nm">Grèce</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:48.9%"><span class="bar-value">74 540€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇧🇪</span><span class="nm">Belgique</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:49.4%"><span class="bar-value">74 750€</span><div class="bar-clip"><span class="bar-inner sz-m"><span class="fl">🇱🇻</span><span class="nm">Lettonie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:55.0%"><span class="bar-value">77 006€</span><div class="bar-clip"><span class="bar-inner sz-l"><span class="fl">🇲🇩</span><span class="nm">Moldavie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:56.3%"><span class="bar-value">77 514€</span><div class="bar-clip"><span class="bar-inner sz-l"><span class="fl">🇩🇪</span><span class="nm">Allemagne</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:56.5%"><span class="bar-value">77 619€</span><div class="bar-clip"><span class="bar-inner sz-l"><span class="fl">🇵🇹</span><span class="nm">Portugal</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:57.3%"><span class="bar-value">77 916€</span><div class="bar-clip"><span class="bar-inner sz-l"><span class="fl">🇳🇱</span><span class="nm">Pays-Bas</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:61.0%"><span class="bar-value">79 406€</span><div class="bar-clip"><span class="bar-inner sz-l"><span class="fl">🇨🇿</span><span class="nm">Tchéquie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:61.5%"><span class="bar-value">79 616€</span><div class="bar-clip"><span class="bar-inner sz-l"><span class="fl">🇸🇪</span><span class="nm">Suède</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:63.6%"><span class="bar-value">80 458€</span><div class="bar-clip"><span class="bar-inner sz-l"><span class="fl">🇪🇸</span><span class="nm">Espagne</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:63.8%"><span class="bar-value">80 536€</span><div class="bar-clip"><span class="bar-inner sz-l"><span class="fl">🇦🇹</span><span class="nm">Autriche</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:65.3%"><span class="bar-value">81 120€</span><div class="bar-clip"><span class="bar-inner sz-l"><span class="fl">🇪🇪</span><span class="nm">Estonie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:64.9%"><span class="bar-value">80 965€</span><div class="bar-clip"><span class="bar-inner sz-l"><span class="fl">🇸🇰</span><span class="nm">Slovaquie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar" style="height:83.2%"><span class="bar-value">88 267€</span><div class="bar-clip"><span class="bar-inner sz-l"><span class="fl">🇮🇹</span><span class="nm">Italie</span></span></div></div></div>
+                    <div class="bar-col"><div class="bar france" style="height:95.3%"><span class="bar-value">93 103€</span><div class="bar-clip"><span class="bar-inner sz-l"><span class="fl">🇫🇷</span><span class="nm">France</span></span></div></div></div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="source">Sources : <span>Eurostat, OCDE · 2024</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

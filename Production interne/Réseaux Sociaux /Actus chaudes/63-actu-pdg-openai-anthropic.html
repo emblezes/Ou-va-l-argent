@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>PDG OpenAI et Anthropic refusent de se serrer la main</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-photo {
+            position: absolute; inset: 0;
+            background-image: url('file:///Users/emmanuelblezes/Documents/08_Où va l\'argent /image.png');
+            background-size: cover;
+            background-position: center top;
+        }
+        .overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(6, 8, 12, 0.95) 0%,
+                rgba(6, 8, 12, 0.88) 22%,
+                rgba(6, 8, 12, 0.35) 50%,
+                rgba(6, 8, 12, 0.15) 65%,
+                rgba(6, 8, 12, 0.25) 100%
+            );
+        }
+        .content { position: relative; z-index: 1; height: 100%; padding: 40px 50px; display: flex; flex-direction: column; justify-content: space-between; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .logo {
+            display: flex; align-items: center; gap: 12px;
+            background: rgba(6, 8, 12, 0.5); backdrop-filter: blur(10px);
+            padding: 10px 18px 10px 10px; border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .logo-icon {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 1.2rem; color: #06080c;
+        }
+        .logo-text { font-weight: 700; font-size: 1.15rem; color: #f0f4f8; }
+        .tag {
+            padding: 10px 22px;
+            background: rgba(255, 71, 87, 0.8); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 71, 87, 0.5); border-radius: 50px;
+            font-size: 0.95rem; font-weight: 700; color: #fff;
+            text-transform: uppercase; letter-spacing: 0.1em;
+        }
+        .title-area { display: flex; flex-direction: column; gap: 20px; }
+        .news-title {
+            font-family: 'Instrument Serif', serif; font-size: 4.8rem;
+            color: #f0f4f8; line-height: 1.1;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+        .news-title .accent { color: #00d4ff; font-style: italic; }
+        .news-title .accent-red { color: #ff4757; font-style: italic; }
+        .footer {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .source { font-size: 0.95rem; color: rgba(255, 255, 255, 0.5); }
+        .source span { color: rgba(255, 255, 255, 0.7); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; font-weight: 500; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="63-actu-pdg-openai-anthropic">
+        <div class="bg-photo"></div>
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <div class="logo-icon">€</div>
+                    <span class="logo-text">Où Va l'Argent</span>
+                </div>
+                <div class="tag">Actu</div>
+            </div>
+
+            <div class="title-area">
+                <h1 class="news-title">
+                    Les PDG d'<span class="accent">OpenAI</span> et<br>
+                    <span class="accent">Anthropic</span> <span class="accent-red">refusent</span><br>
+                    de se serrer la main
+                </h1>
+                <div class="footer">
+                    <div class="source">Source : <span>AI Impact Summit · Février 2026</span></div>
+                    <div class="website">ouvalargent.com</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
