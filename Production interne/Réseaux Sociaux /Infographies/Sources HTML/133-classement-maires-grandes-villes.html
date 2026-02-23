@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Votre maire a-t-il fait le job ?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-deep: #180a0c; --text-primary: #f0f4f8; --text-secondary: #8899a8; --text-muted: #4a5a6a; --accent-electric: #00d4ff; --accent-gold: #ffd700; --accent-red: #ff4757; --accent-green: #00ff88; --accent-orange: #ff9f43; --accent-purple: #a855f7; --glass-border: rgba(255, 255, 255, 0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #180a0c 0%, #451218 50%, #180a0c 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 71, 87, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 71, 87, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 71, 87, 0.1) 0%, transparent 70%); top: -100px; left: 50%; transform: translateX(-50%); }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255, 71, 87, 0.08) 0%, transparent 70%); bottom: -150px; left: -150px; }
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 55px 40px; display: flex; flex-direction: column; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 4rem; text-align: center; color: var(--text-primary); line-height: 1.1; margin-top: 20px; }
+        .chart-title .accent { color: #ff4757; font-style: italic; }
+        .chart-unit { font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-style: italic; color: var(--text-secondary); text-align: center; margin-top: 15px; margin-bottom: 60px; }
+        .center-area { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .bar-chart { width: 100%; max-width: 800px; margin: 0 auto; }
+        .bar-item { position: relative; margin-bottom: 35px; height: 70px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; padding: 0 25px; overflow: hidden; }
+        .bar-item:before { content: ''; position: absolute; left: 0; top: 0; height: 100%; border-radius: 12px; z-index: 1; }
+        .bar-item:nth-child(1):before { width: 91%; background: linear-gradient(90deg, rgba(0, 212, 255, 0.4) 0%, #00d4ff 100%); }
+        .bar-item:nth-child(2):before { width: 89%; background: linear-gradient(90deg, rgba(255, 159, 67, 0.4) 0%, #ff9f43 100%); }
+        .bar-item:nth-child(3):before { width: 86%; background: linear-gradient(90deg, rgba(255, 215, 0, 0.4) 0%, #ffd700 100%); }
+        .bar-item:nth-child(4):before { width: 84%; background: linear-gradient(90deg, rgba(0, 255, 136, 0.4) 0%, #00ff88 100%); }
+        .bar-item:nth-child(5):before { width: 71%; background: linear-gradient(90deg, rgba(255, 71, 87, 0.4) 0%, #ff4757 100%); }
+        .bar-label { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 600; color: var(--text-primary); z-index: 2; position: relative; }
+        .bar-value { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 600; color: var(--text-primary); z-index: 2; position: relative; }
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 500; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="classement-maires-grandes-villes">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent</span></div>
+            </div>
+            <h2 class="chart-title">Votre maire a-t-il fait<br><span class="accent">le job ?</span></h2>
+            <div class="chart-unit">Note de gestion des grandes villes françaises</div>
+            <div class="center-area">
+                <div class="bar-chart">
+                    <div class="bar-item">
+                        <div class="bar-label">Lille</div>
+                        <div class="bar-value">18,2/20</div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Lyon</div>
+                        <div class="bar-value">17,8/20</div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Nantes</div>
+                        <div class="bar-value">17,3/20</div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Bordeaux</div>
+                        <div class="bar-value">16,9/20</div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Paris</div>
+                        <div class="bar-value">14,2/20</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="source">Sources : <span>Challenges · 2024</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

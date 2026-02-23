@@ -1,0 +1,108 @@
+{
+  "DEEP_SOURCES": [
+    {
+      "name": "Google News - Finances publiques France",
+      "type": "rss",
+      "url": "https://news.google.com/rss/search?q=finances+publiques+france+dette+deficit&hl=fr&gl=FR&ceid=FR:fr",
+      "category": "France",
+      "priority": 1,
+      "tags": ["finances-publiques", "dette", "deficit", "budget"]
+    },
+    {
+      "name": "Google News - Économie France",
+      "type": "rss",
+      "url": "https://news.google.com/rss/search?q=économie+france+INSEE+PIB+inflation&hl=fr&gl=FR&ceid=FR:fr",
+      "category": "France",
+      "priority": 1,
+      "tags": ["macro", "emploi", "prix", "croissance"]
+    },
+    {
+      "name": "Google News - Impôts fiscalité France",
+      "type": "rss",
+      "url": "https://news.google.com/rss/search?q=impôts+fiscalité+taxe+france+contribuables&hl=fr&gl=FR&ceid=FR:fr",
+      "category": "France",
+      "priority": 1,
+      "tags": ["impots", "fiscalite", "budget"]
+    },
+    {
+      "name": "Google News - Retraites social France",
+      "type": "rss",
+      "url": "https://news.google.com/rss/search?q=retraites+pension+DREES+sécurité+sociale+france&hl=fr&gl=FR&ceid=FR:fr",
+      "category": "France",
+      "priority": 1,
+      "tags": ["retraites", "social", "sante"]
+    },
+    {
+      "name": "DREES - Études et Résultats",
+      "type": "rss",
+      "url": "https://drees.solidarites-sante.gouv.fr/rss.xml",
+      "category": "France",
+      "priority": 1,
+      "tags": ["social", "retraites", "sante", "pauvrete"]
+    },
+    {
+      "name": "OFCE - Observatoire Français des Conjonctures",
+      "type": "rss",
+      "url": "https://www.ofce.sciences-po.fr/feed/",
+      "category": "France",
+      "priority": 2,
+      "tags": ["conjoncture", "macro", "previsions"]
+    },
+    {
+      "name": "La Tribune",
+      "type": "rss",
+      "url": "https://www.latribune.fr/feed.xml",
+      "category": "France",
+      "priority": 2,
+      "tags": ["macro", "entreprises", "international"]
+    },
+    {
+      "name": "20 Minutes Économie",
+      "type": "rss",
+      "url": "https://www.20minutes.fr/feeds/rss-economie.xml",
+      "category": "France",
+      "priority": 2,
+      "tags": ["macro", "entreprises", "consommation"]
+    },
+    {
+      "name": "Challenges",
+      "type": "rss",
+      "url": "https://www.challenges.fr/rss.xml",
+      "category": "France",
+      "priority": 2,
+      "tags": ["macro", "entreprises", "finance"]
+    },
+    {
+      "name": "BCE - Press Releases",
+      "type": "rss",
+      "url": "https://www.ecb.europa.eu/rss/press.html",
+      "category": "International",
+      "priority": 1,
+      "tags": ["monetaire", "taux", "inflation", "europe"]
+    },
+    {
+      "name": "Google News - Eurostat Europe économie",
+      "type": "rss",
+      "url": "https://news.google.com/rss/search?q=eurostat+europe+économie+PIB+dette&hl=fr&gl=FR&ceid=FR:fr",
+      "category": "International",
+      "priority": 1,
+      "tags": ["europe", "macro", "comparaisons"]
+    },
+    {
+      "name": "Google News - Économie mondiale",
+      "type": "rss",
+      "url": "https://news.google.com/rss/search?q=économie+mondiale+FMI+OCDE+croissance&hl=fr&gl=FR&ceid=FR:fr",
+      "category": "International",
+      "priority": 2,
+      "tags": ["macro", "mondial", "previsions"]
+    },
+    {
+      "name": "Google News - Cour des Comptes rapport",
+      "type": "rss",
+      "url": "https://news.google.com/rss/search?q=%22cour+des+comptes%22+rapport+france&hl=fr&gl=FR&ceid=FR:fr",
+      "category": "France",
+      "priority": 1,
+      "tags": ["finances-publiques", "depenses", "audit"]
+    }
+  ]
+}

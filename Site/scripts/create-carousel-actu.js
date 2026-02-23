@@ -21,6 +21,7 @@
  *   --infographic=<fichier>  Fichier HTML de l'infographie data (dans Sources HTML/)
  *   --tag-color=<couleur>    Couleur du tag (défaut: #ff4757)
  *   --image-index=<n>        Index de l'image Google à prendre (défaut: 0)
+ *   --theme=<nom>            Thème de fond : bleu (défaut), vert, violet, or, rouge, cyan
  */
 
 const puppeteer = require('puppeteer');
@@ -64,10 +65,9 @@ function generateActuHTML(opts) {
         .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(6, 8, 12, 0.95) 0%, rgba(6, 8, 12, 0.85) 20%, rgba(6, 8, 12, 0.4) 45%, rgba(6, 8, 12, 0.15) 60%, rgba(6, 8, 12, 0.3) 100%); }
         .content { position: relative; z-index: 1; height: 100%; padding: 40px 50px; display: flex; flex-direction: column; justify-content: space-between; }
         .header { display: flex; justify-content: space-between; align-items: flex-start; }
-        .logo { display: flex; align-items: center; gap: 12px; background: rgba(6, 8, 12, 0.5); backdrop-filter: blur(10px); padding: 10px 18px 10px 10px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .logo-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 1.2rem; color: #06080c; }
-        .logo-text { font-weight: 700; font-size: 1.15rem; color: #f0f4f8; }
-        .tag { padding: 10px 22px; background: rgba(${hexToRgb(bgColor)}, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(${hexToRgb(bgColor)}, 0.5); border-radius: 50px; font-size: 0.95rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.1em; }
+        .logo { display: flex; align-items: center; gap: 10px; background: rgba(6, 8, 12, 0.6); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 10px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
         .title-area { display: flex; flex-direction: column; gap: 20px; }
         .news-title { font-family: 'Instrument Serif', serif; font-size: 4.8rem; color: #f0f4f8; line-height: 1.15; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5); }
         .news-title .accent { color: #00d4ff; font-style: italic; }
@@ -86,10 +86,9 @@ function generateActuHTML(opts) {
         <div class="content">
             <div class="header">
                 <div class="logo">
-                    <div class="logo-icon">\u20AC</div>
+                    <span class="logo-icon">\u20AC</span>
                     <span class="logo-text">O\u00F9 Va l'Argent</span>
                 </div>
-                <div class="tag">${tag}</div>
             </div>
             <div class="title-area">
                 <h1 class="news-title">${title}</h1>
@@ -111,10 +110,33 @@ function hexToRgb(hex) {
   return `${r}, ${g}, ${b}`;
 }
 
-async function exportSlide(browser, htmlPath, outputPath, width = 1080, height = 1080, photoPath = null, format = 'instagram') {
+async function exportSlide(browser, htmlPath, outputPath, width = 1080, height = 1080, photoPath = null, format = 'instagram', themeName = null) {
   const page = await browser.newPage();
   await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0', timeout: 30000 });
   await page.evaluateHandle('document.fonts.ready');
+
+  // Injecter le thème de fond si spécifié (remplace bg/grid/glow)
+  if (themeName && themeName !== 'bleu') {
+    const { getThemeCSS } = require('./infographic-themes');
+    const { bg, grid, glow, theme } = getThemeCSS(themeName);
+    await page.evaluate(({ bg, grid, glow, urlColor, borderColor }) => {
+      // Remplacer le fond (premier div absolu avec gradient)
+      const bgEl = document.querySelector('.bg') || document.querySelector('[style*="linear-gradient(145deg"]');
+      if (bgEl) bgEl.style.cssText = bgEl.style.cssText.replace(/background:[^;]+;/, bg);
+      // Remplacer la grille
+      const gridEl = document.querySelector('.grid') || document.querySelectorAll('[style*="background-image"]')[0];
+      if (gridEl && gridEl !== bgEl) gridEl.style.cssText = gridEl.style.cssText.replace(/background-image:[^;]+;/, grid);
+      // Remplacer le glow
+      const glowEl = document.querySelector('.glow') || document.querySelector('[style*="radial-gradient"]');
+      if (glowEl) glowEl.style.cssText = glowEl.style.cssText.replace(/background:[^;]+;/, 'background: ' + glow.replace('background: ', ''));
+      // Mettre à jour la couleur du lien ouvalargent.com
+      const urlEl = document.querySelector('.url') || document.querySelector('.website') || document.querySelector('[style*="ouvalargent"]');
+      if (urlEl) urlEl.style.color = urlColor;
+      // Mettre à jour le border-top du footer
+      const footer = document.querySelector('.footer') || document.querySelector('[style*="border-top"]');
+      if (footer) footer.style.borderTopColor = borderColor;
+    }, { bg, grid, glow, urlColor: theme.urlColor, borderColor: theme.borderColor });
+  }
 
   // Injecter la photo de fond en base64 (évite les problèmes d'apostrophe/espaces dans le chemin)
   if (photoPath) {
@@ -308,10 +330,12 @@ Usage: node create-carousel-actu.js
   const tagColor = opts['tag-color'] || '#ff4757';
   const infographicFile = opts.infographic;
   const imageIndex = opts['image-index'] || '0';
+  const themeName = opts.theme || 'bleu';
 
   console.log('\n🎠 Création carrousel actualité');
   console.log(`   Nom : ${name}`);
   console.log(`   Tag : ${tag}`);
+  if (themeName !== 'bleu') console.log(`   Thème : ${themeName}`);
 
   // Étape 1 : Obtenir la photo
   let photoPath = opts.photo;
@@ -372,7 +396,7 @@ Usage: node create-carousel-actu.js
     const infographicPath = path.join(HTML_DIR, infographicFile);
     if (fs.existsSync(infographicPath)) {
       const slide2Path = path.join(ACTUS_DIR, `${name}-slide2-data-instagram.png`);
-      await exportSlide(browser, infographicPath, slide2Path, 1080, 1080, null, 'instagram');
+      await exportSlide(browser, infographicPath, slide2Path, 1080, 1080, null, 'instagram', themeName);
       console.log(`     ✓ Slide 2 (data)  : ${path.basename(slide2Path)}`);
     } else {
       console.log(`     ⚠ Infographie non trouvée : ${infographicFile}`);
@@ -398,7 +422,7 @@ Usage: node create-carousel-actu.js
     const infographicPath = path.join(HTML_DIR, infographicFile);
     if (fs.existsSync(infographicPath)) {
       const slide2TiktokPath = path.join(ACTUS_DIR, `${name}-slide2-data-tiktok-v.png`);
-      await exportSlide(browser, infographicPath, slide2TiktokPath, 1080, 1920, null, 'tiktok-v');
+      await exportSlide(browser, infographicPath, slide2TiktokPath, 1080, 1920, null, 'tiktok-v', themeName);
       console.log(`     ✓ Slide 2 (data)  : ${path.basename(slide2TiktokPath)}`);
     }
   }
@@ -416,7 +440,7 @@ Usage: node create-carousel-actu.js
     const infographicPath = path.join(HTML_DIR, infographicFile);
     if (fs.existsSync(infographicPath)) {
       const slide2TiktokHPath = path.join(ACTUS_DIR, `${name}-slide2-data-tiktok-h.png`);
-      await exportSlide(browser, infographicPath, slide2TiktokHPath, 1080, 600, null, 'tiktok-h');
+      await exportSlide(browser, infographicPath, slide2TiktokHPath, 1080, 600, null, 'tiktok-h', themeName);
       console.log(`     ✓ Slide 2 (data)  : ${path.basename(slide2TiktokHPath)}`);
     }
   }

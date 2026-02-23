@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La spirale infernale de la dette française</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-deep: #180a0c; --text-primary: #f0f4f8; --text-secondary: #8899a8; --text-muted: #4a5a6a; --accent-red: #ff4757; --glass-border: rgba(255, 255, 255, 0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #180a0c 0%, #451218 50%, #180a0c 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 71, 87, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 71, 87, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 71, 87, 0.1) 0%, transparent 70%); top: -100px; left: 50%; transform: translateX(-50%); }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255, 71, 87, 0.1) 0%, transparent 70%); bottom: -150px; left: -150px; }
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 55px 40px; display: flex; flex-direction: column; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 4rem; text-align: center; color: var(--text-primary); line-height: 1.1; margin-top: 20px; }
+        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .center-area { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .chart-unit { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: var(--text-secondary); font-style: italic; text-align: center; margin-bottom: 20px; }
+        .bar-chart { width: 100%; max-width: 800px; }
+        .bar-item { position: relative; margin-bottom: 20px; display: flex; align-items: center; gap: 20px; }
+        .bar-year { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 600; color: var(--text-secondary); width: 60px; text-align: right; flex-shrink: 0; }
+        .bar-track { flex: 1; height: 60px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border); border-radius: 12px; position: relative; overflow: hidden; }
+        .bar-fill { height: 100%; background: linear-gradient(90deg, rgba(255, 71, 87, 0.5) 0%, var(--accent-red) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: flex-end; padding-right: 20px; }
+        .bar-fill-last { box-shadow: 0 0 25px rgba(255, 71, 87, 0.4); }
+        .bar-value { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: #fff; white-space: nowrap; }
+        .evolution-note { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 35px; padding: 18px 30px; background: rgba(255, 71, 87, 0.08); border: 1px solid rgba(255, 71, 87, 0.2); border-radius: 16px; }
+        .evolution-value { font-family: 'JetBrains Mono', monospace; font-size: 2.4rem; font-weight: 700; color: var(--accent-red); }
+        .evolution-text { font-size: 1.3rem; color: var(--text-secondary); }
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 500; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="evolution-charge-dette-france">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent</span></div>
+            </div>
+            <h2 class="chart-title">Les intérêts de la dette<br><span class="accent">ont bondi de 49% en 4 ans</span></h2>
+            <div class="center-area">
+                <div class="chart-unit">Charge annuelle des intérêts de la dette, en milliards d'euros</div>
+                <div class="bar-chart">
+                    <div class="bar-item">
+                        <div class="bar-year">2020</div>
+                        <div class="bar-track">
+                            <div class="bar-fill" style="width: 67%;">
+                                <span class="bar-value">35 Md€</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-year">2021</div>
+                        <div class="bar-track">
+                            <div class="bar-fill" style="width: 62%;">
+                                <span class="bar-value">32 Md€</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-year">2022</div>
+                        <div class="bar-track">
+                            <div class="bar-fill" style="width: 73%;">
+                                <span class="bar-value">38 Md€</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-year">2023</div>
+                        <div class="bar-track">
+                            <div class="bar-fill" style="width: 87%;">
+                                <span class="bar-value">45 Md€</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-year">2024</div>
+                        <div class="bar-track">
+                            <div class="bar-fill bar-fill-last" style="width: 100%;">
+                                <span class="bar-value">52 Md€</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="evolution-note">
+                    <div class="evolution-value">+49%</div>
+                    <div class="evolution-text">en 4 ans · La charge explose avec la remontée des taux</div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="source">Sources : <span>Les Échos · 2024</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

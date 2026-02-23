@@ -566,10 +566,9 @@ function generateDataInfographic(idea, name, num) {
         .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, ${c.glow} 0%, transparent 70%); top: -100px; left: 50%; transform: translateX(-50%); }
         .content { position: relative; z-index: 1; height: 100%; padding: 50px 55px 40px; display: flex; flex-direction: column; }
         .header { display: flex; justify-content: space-between; align-items: flex-start; }
-        .logo { display: flex; align-items: center; gap: 12px; }
-        .logo-icon { width: 52px; height: 52px; background: linear-gradient(135deg, var(--accent-electric) 0%, #0099cc 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 1.4rem; color: var(--bg-deep); }
-        .logo-text { font-weight: 700; font-size: 1.3rem; color: var(--text-primary); }
-        .tag { padding: 12px 24px; background: ${tagColor}26; border: 1px solid ${tagColor}4d; border-radius: 50px; font-size: 1rem; font-weight: 600; color: ${tagColor}; text-transform: uppercase; letter-spacing: 0.1em; }
+        .logo { display: flex; align-items: center; gap: 10px; background: rgba(6, 8, 12, 0.6); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 10px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
         .chart-title { font-family: 'Instrument Serif', serif; font-size: 3.8rem; text-align: center; color: var(--text-primary); line-height: 1.1; margin-top: 15px; }
         .chart-title .accent { color: var(--accent-electric); font-style: italic; }
         .chart-title .accent-red { color: #ff4757; font-style: italic; }
@@ -588,8 +587,7 @@ function generateDataInfographic(idea, name, num) {
         <div class="bg-glow-1"></div>
         <div class="content">
             <div class="header">
-                <div class="logo"><div class="logo-icon">\u20AC</div><span class="logo-text">O\u00F9 Va l'Argent</span></div>
-                <div class="tag">${idea.tag}</div>
+                <div class="logo"><span class="logo-icon">\u20AC</span><span class="logo-text">O\u00F9 Va l'Argent</span></div>
             </div>
             <h2 class="chart-title">${idea.title_html}</h2>
             ${centerContent}

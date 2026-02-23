@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>PIB par habitant — 5 pays européens (1990-2024)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 0; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%); top: -200px; right: -150px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,255,136,0.05) 0%, transparent 70%); bottom: -200px; left: -100px; }
+        .content { position: relative; z-index: 1; width: 100%; height: 100%; padding: 28px 36px 18px; display: flex; flex-direction: column; }
+
+        .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .title { font-family: 'Instrument Serif', serif; font-size: 4.2rem; text-align: center; color: #f0f4f8; line-height: 1.05; margin-bottom: 8px; }
+        .title .accent-red { color: #ff4757; font-style: italic; }
+
+        .chart-area { flex: 1; position: relative; }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; margin-top: 4px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .source { font-size: 0.8rem; color: #4a5a6a; }
+        .source span { color: #8899a8; }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 500; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent</span></div>
+            </div>
+
+            <div class="title">PIB par habitant :<br>la France <span class="accent-red">décroche</span></div>
+
+            <div class="chart-area">
+                <!--
+                    DATA (World Bank, GDP per capita current USD):
+                    Year    France   Germany   Netherlands  Ireland   Sweden
+                    1990    21586    22386     21322        14031     30549
+                    2000    22341    23926     26225        26335     29633
+                    2010    40695    42397     51306        48624     52543
+                    2020    39170    47395     53468        86514     52569
+                    2024    46103    56104     67520        112895    57117
+
+                    CHART: x=60..940, y=5..580  (w=880, h=575)
+                    Y: 0..120000   scale = 575/120000 = 0.004792
+                    X: 1990..2024  scale = 880/34 = 25.88
+
+                    Points (x = 60 + (year-1990)*25.88, y = 580 - value*0.004792):
+
+                    France (#ff4757):
+                    90:(60,477) 95:(189,452) 00:(319,473) 05:(448,414) 10:(578,385) 15:(707,404) 20:(837,392) 24:(940,359)
+
+                    Germany (#00d4ff):
+                    90:(60,473) 95:(189,428) 00:(319,465) 05:(448,412) 10:(578,377) 15:(707,379) 20:(837,353) 24:(940,311)
+
+                    Netherlands (#ffd700):
+                    90:(60,478) 95:(189,440) 00:(319,454) 05:(448,378) 10:(578,334) 15:(707,361) 20:(837,324) 24:(940,256)
+
+                    Ireland (#00ff88):
+                    90:(60,513) 95:(189,488) 00:(319,454) 05:(448,336) 10:(578,347) 15:(707,272) 20:(837,166) 24:(940,39)
+
+                    Sweden (#a855f7):
+                    90:(60,434) 95:(189,435) 00:(319,438) 05:(448,372) 10:(578,328) 15:(707,335) 20:(837,328) 24:(940,306)
+                -->
+                <svg viewBox="0 0 1000 620" width="100%" height="100%">
+                    <defs>
+                        <linearGradient id="gradIreland" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#00ff88" stop-opacity="0.12"/>
+                            <stop offset="100%" stop-color="#00ff88" stop-opacity="0"/>
+                        </linearGradient>
+                        <linearGradient id="gradFrance" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#ff4757" stop-opacity="0.08"/>
+                            <stop offset="100%" stop-color="#ff4757" stop-opacity="0"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Y-axis grid lines & labels -->
+                    <line x1="60" y1="580" x2="940" y2="580" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                    <text x="52" y="584" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="12" fill="#4a5a6a">0</text>
+
+                    <line x1="60" y1="484" x2="940" y2="484" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+                    <text x="52" y="488" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="12" fill="#4a5a6a">$20K</text>
+
+                    <line x1="60" y1="388" x2="940" y2="388" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+                    <text x="52" y="392" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="12" fill="#4a5a6a">$40K</text>
+
+                    <line x1="60" y1="292" x2="940" y2="292" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+                    <text x="52" y="296" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="12" fill="#4a5a6a">$60K</text>
+
+                    <line x1="60" y1="196" x2="940" y2="196" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+                    <text x="52" y="200" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="12" fill="#4a5a6a">$80K</text>
+
+                    <line x1="60" y1="100" x2="940" y2="100" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+                    <text x="52" y="104" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="12" fill="#4a5a6a">$100K</text>
+
+                    <!-- X-axis year labels -->
+                    <text x="60" y="602" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="600" fill="#8899a8">1990</text>
+                    <text x="319" y="602" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="600" fill="#8899a8">2000</text>
+                    <text x="578" y="602" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="600" fill="#8899a8">2010</text>
+                    <text x="837" y="602" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="600" fill="#8899a8">2020</text>
+                    <text x="940" y="602" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="600" fill="#ffd700">2024</text>
+
+                    <!-- Vertical grid -->
+                    <line x1="319" y1="5" x2="319" y2="580" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+                    <line x1="578" y1="5" x2="578" y2="580" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+                    <line x1="837" y1="5" x2="837" y2="580" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+
+                    <!-- ============================================ -->
+                    <!-- AREA FILLS                                   -->
+                    <!-- ============================================ -->
+                    <path d="M 60,513 L 189,488 319,454 448,336 578,347 707,272 837,166 940,39 L 940,580 60,580 Z" fill="url(#gradIreland)"/>
+                    <path d="M 60,477 L 189,452 319,473 448,414 578,385 707,404 837,392 940,359 L 940,580 60,580 Z" fill="url(#gradFrance)"/>
+
+                    <!-- ============================================ -->
+                    <!-- CURVES                                       -->
+                    <!-- ============================================ -->
+
+                    <!-- Ireland -->
+                    <polyline points="60,513 189,488 319,454 448,336 578,347 707,272 837,166 940,39"
+                        fill="none" stroke="#00ff88" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                    <circle cx="60" cy="513" r="5" fill="#00ff88"/>
+                    <circle cx="940" cy="39" r="7" fill="#00ff88" stroke="#06080c" stroke-width="2.5"/>
+
+                    <!-- Netherlands -->
+                    <polyline points="60,478 189,440 319,454 448,378 578,334 707,361 837,324 940,256"
+                        fill="none" stroke="#ffd700" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+                    <circle cx="60" cy="478" r="4" fill="#ffd700"/>
+                    <circle cx="940" cy="256" r="6" fill="#ffd700" stroke="#06080c" stroke-width="2"/>
+
+                    <!-- Sweden -->
+                    <polyline points="60,434 189,435 319,438 448,372 578,328 707,335 837,328 940,306"
+                        fill="none" stroke="#a855f7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+                    <circle cx="60" cy="434" r="4" fill="#a855f7"/>
+                    <circle cx="940" cy="306" r="6" fill="#a855f7" stroke="#06080c" stroke-width="2"/>
+
+                    <!-- Germany -->
+                    <polyline points="60,473 189,428 319,465 448,412 578,377 707,379 837,353 940,311"
+                        fill="none" stroke="#00d4ff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+                    <circle cx="60" cy="473" r="4" fill="#00d4ff"/>
+                    <circle cx="940" cy="311" r="6" fill="#00d4ff" stroke="#06080c" stroke-width="2"/>
+
+                    <!-- France -->
+                    <polyline points="60,477 189,452 319,473 448,414 578,385 707,404 837,392 940,359"
+                        fill="none" stroke="#ff4757" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                    <circle cx="60" cy="477" r="5" fill="#ff4757"/>
+                    <circle cx="940" cy="359" r="7" fill="#ff4757" stroke="#06080c" stroke-width="2.5"/>
+
+                    <!-- ============================================ -->
+                    <!-- BIG INLINE LABELS — inside the chart         -->
+                    <!-- Each label: flag + country + $ value          -->
+                    <!-- Positioned where each curve has clear space   -->
+                    <!-- ============================================ -->
+
+                    <!-- 🇮🇪 IRLANDE — top right, curve is alone up there -->
+                    <text x="700" y="105" font-family="Syne, sans-serif" font-size="28" font-weight="800" fill="#00ff88" opacity="0.9">🇮🇪 IRLANDE</text>
+                    <text x="700" y="138" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="700" fill="#00ff88" opacity="0.65">$112 895</text>
+
+                    <!-- 🇳🇱 PAYS-BAS — top area around 2012-2015, above others -->
+                    <text x="570" y="275" font-family="Syne, sans-serif" font-size="22" font-weight="800" fill="#ffd700" opacity="0.85">🇳🇱 PAYS-BAS</text>
+                    <text x="570" y="300" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="700" fill="#ffd700" opacity="0.55">$67 520</text>
+
+                    <!-- 🇸🇪 SUÈDE — left side, highest start at y≈434 -->
+                    <text x="100" y="398" font-family="Syne, sans-serif" font-size="22" font-weight="800" fill="#a855f7" opacity="0.85">🇸🇪 SUÈDE</text>
+                    <text x="100" y="422" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="700" fill="#a855f7" opacity="0.55">$57 117</text>
+
+                    <!-- 🇩🇪 ALLEMAGNE — mid-right, around 2017-2019 -->
+                    <text x="200" y="340" font-family="Syne, sans-serif" font-size="22" font-weight="800" fill="#00d4ff" opacity="0.85">🇩🇪 ALLEMAGNE</text>
+                    <text x="200" y="364" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="700" fill="#00d4ff" opacity="0.55">$56 104</text>
+
+                    <!-- 🇫🇷 FRANCE — bottom right, clearly at the bottom -->
+                    <text x="540" y="440" font-family="Syne, sans-serif" font-size="28" font-weight="800" fill="#ff4757" opacity="0.9">🇫🇷 FRANCE</text>
+                    <text x="540" y="473" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="700" fill="#ff4757" opacity="0.65">$46 103</text>
+
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Banque Mondiale — PIB par habitant, $ courants · 2024</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

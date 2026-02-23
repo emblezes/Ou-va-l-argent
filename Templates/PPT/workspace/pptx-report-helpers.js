@@ -105,21 +105,15 @@ function addCover(pptx, title, subtitle, date, author) {
     const s = pptx.addSlide();
     h.addBackground(pptx, s);
 
-    // Logo (top left, large)
-    s.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
-        x: 0.6, y: 0.5, w: 0.65, h: 0.65,
-        fill: { color: colors.accentElectric },
-        rectRadius: 0.1,
-        shadow: { type: 'outer', blur: 8, offset: 0, angle: 0, color: colors.accentElectric, opacity: 0.4 }
-    });
+    // Logo (top left, Instrument Serif)
     s.addText('€', {
-        x: 0.6, y: 0.5, w: 0.65, h: 0.65,
-        fontSize: 30, fontFace: fonts.mono, bold: true,
-        color: colors.bgDeep, align: 'center', valign: 'middle'
+        x: 0.6, y: 0.45, w: 0.6, h: 0.7,
+        fontSize: 36, fontFace: fonts.serif,
+        color: colors.textPrimary, align: 'center', valign: 'middle'
     });
     s.addText('Où Va l\'Argent', {
-        x: 1.4, y: 0.55, w: 2.5, h: 0.55,
-        fontSize: 18, fontFace: fonts.main, bold: true,
+        x: 1.2, y: 0.55, w: 2.5, h: 0.55,
+        fontSize: 16, fontFace: fonts.serif, italic: true,
         color: colors.textPrimary, valign: 'middle'
     });
 

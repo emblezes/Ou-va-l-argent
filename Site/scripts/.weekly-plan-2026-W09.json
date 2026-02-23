@@ -1,0 +1,473 @@
+{
+  "week": "2026-W09",
+  "planned_at": "2026-02-23T09:02:22.530Z",
+  "monday": "2026-02-22",
+  "sunday": "2026-02-28",
+  "count": 14,
+  "ideas": [
+    {
+      "id": 1,
+      "day": "lundi",
+      "date": "2026-02-23",
+      "slug": "france-championne-depenses-sociales-europe",
+      "title_html": "La France dépense<br><span class='accent'>31,7% de son PIB</span><br>en protection sociale",
+      "viz_type": "mega_number",
+      "theme": "rouge",
+      "tag": "Social",
+      "tag_color": "#00ff88",
+      "data": {
+        "stat_key": "31,7%",
+        "stat_unit": "du PIB en dépenses sociales",
+        "stat_sub": "Record européen, devant l'Allemagne (30,1%)"
+      },
+      "source_text": "BFM · 2025",
+      "source_url": "https://news.google.com/rss/articles/CBMi6gJBVV95cUxPUUpNQmNETkFNUjlaamVMNGo4Wnc0T3JLc1dsNEMyNkV4OWhCcjZpQ0hDanB0MFluTHg0ZFlDR1dGSF82M3J3cmhuVF84QTYwM29kWjJVY05neVQzQzNWUjZ2ZVRBV3RwSjZFR05FME51bjIwTkNndTR3WkYzTGE4Q0d0RVg0SEhaTFdkZ2NoOXRBZmRmT2haNW5FbmNSNmM5NkdPaXZZYW1aems1QUlhQ0loMUh3SlFQdzgwdXM1Vmg0ZTVEa0VWYktndnBxWE1MaTVNTTNRYXFvMkhmRmlJWUZMS05xRXk4am1CWFkyNlB4aS1kektzMHhoWUZLamc1RVRldkdRNUgzRXNTN084UV9hOWtSNVlvVU1QRUtNcHVhaGMyYjhfbGZlVEdhOVc3bFV4TzdMMDkyVnd4Zm44NzExNjNkVC0zTkN4RlZrQlItd2o5MFBpM292SXVKUUNxbTQwVnRCdzc1Zw?oc=5",
+      "instagram_caption": "🏆 La France, championne d'Europe des dépenses sociales ! Avec 31,7% de son PIB consacré à la protection sociale, l'Hexagone devance largement ses voisins européens. Un modèle social généreux mais qui interroge sur sa soutenabilité financière. Entre fierté nationale et défis budgétaires, où placer le curseur ? 🇫🇷💰 #ProtectionSociale #France #Europe #PIB #ModeleSocial",
+      "linkedin_text": "La France maintient son rang de championne européenne des dépenses sociales avec 31,7% du PIB consacré à la protection sociale en 2024. Cette performance, largement supérieure à la moyenne européenne, illustre les spécificités du modèle français. Si ce niveau de dépenses traduit un système de protection particulièrement développé, il soulève également des questions sur la soutenabilité à long terme, notamment dans un contexte de contraintes budgétaires croissantes. L'Allemagne suit avec 30,1% du PIB, tandis que d'autres pays européens affichent des ratios nettement inférieurs. Cette position dominante reflète les choix politiques historiques de la France en matière de solidarité nationale, mais interroge sur les marges de manœuvre futures face aux défis démographiques et économiques.",
+      "twitter_text": "🇫🇷 La France dépense 31,7% de son PIB en protection sociale, record européen ! Un modèle généreux mais soutenable ? #ProtectionSociale",
+      "notion_theme": "Social",
+      "notion_type": "Comparaison internationale",
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "day": "lundi",
+      "date": "2026-02-23",
+      "slug": "dette-france-record-historique",
+      "title_html": "La dette française<br><span class='accent'>s'envole</span><br>à un record historique",
+      "viz_type": "line_chart",
+      "theme": "rouge",
+      "tag": "Finances publiques",
+      "tag_color": "#ff4757",
+      "data": {
+        "stat_key": "3 228",
+        "stat_unit": "milliards d'euros de dette",
+        "stat_sub": "Nouveau record malgré la hausse des impôts",
+        "chart_data": [
+          {
+            "year": "2020",
+            "value": 2650
+          },
+          {
+            "year": "2021",
+            "value": 2834
+          },
+          {
+            "year": "2022",
+            "value": 2950
+          },
+          {
+            "year": "2023",
+            "value": 3101
+          },
+          {
+            "year": "2024",
+            "value": 3228
+          }
+        ]
+      },
+      "source_text": "Presse Agence · 2025",
+      "source_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQLU5XaThTSUpLZV9rbXpZRlE2VG1FeGN5ZVVKV2lmOEtaa05VYTBtUVJYd0R5ZU1WMjdlZnN6V2czQjdtcmx6RTB5aGI0UFRJMUZXTW1tS0FzQ3pjWEVVbG1tTGwwTzEzbjluRE5IMmRocmtHVnV2N2IxeWNQMldqRjJVdHBpRVlMOVozV1hGNkozRUlsb2lFWFhvZEs1U0tSR1h1TnFYRmRObEVyY3d4ZnEyaw?oc=5",
+      "instagram_caption": "📈 Alerte rouge ! La dette française atteint un nouveau record historique à 3 228 milliards d'euros. Malgré l'augmentation des prélèvements fiscaux, l'endettement continue sa progression inexorable. Une spirale préoccupante qui interroge sur la soutenabilité de nos finances publiques. Quand la facture deviendra-t-elle ingérable ? 🚨💸 #Dette #France #FinancesPubliques #Record #Économie",
+      "linkedin_text": "La dette publique française franchit un nouveau seuil critique en atteignant 3 228 milliards d'euros, établissant un record historique inquiétant. Cette progression s'accompagne d'un paradoxe troublant : malgré l'intensification de la pression fiscale sur les ménages et entreprises, l'endettement public continue sa course effrénée. Cette situation révèle l'insuffisance des mesures actuelles face à la dynamique explosive de la dette. Les causes structurelles - vieillissement démographique, charges d'intérêts croissantes, dépenses publiques incompressibles - nécessitent des réformes de fond pour éviter une crise de confiance des marchés. La France se trouve à un carrefour : soit elle entreprend des réformes courageuses, soit elle risque de perdre sa marge de manœuvre budgétaire.",
+      "twitter_text": "🚨 Dette française : nouveau record à 3 228 Md€ ! Même avec plus d'impôts, l'endettement explose. Jusqu'où ? #Dette",
+      "notion_theme": "Finances publiques",
+      "notion_type": "Alerte économique",
+      "status": "pending"
+    },
+    {
+      "id": 3,
+      "day": "lundi",
+      "date": "2026-02-23",
+      "slug": "insee-croissance-france-08-pourcent",
+      "title_html": "L'Insee révise<br><span class='accent'>à la hausse</span><br>la croissance française",
+      "viz_type": "comparison",
+      "theme": "vert",
+      "tag": "Macro-économie",
+      "tag_color": "#00d4ff",
+      "data": {
+        "items": [
+          {
+            "label": "Ancienne prévision",
+            "value": "0,6%",
+            "color": "#ddd"
+          },
+          {
+            "label": "Nouvelle prévision",
+            "value": "0,8%",
+            "color": "#00ff88"
+          }
+        ]
+      },
+      "source_text": "Les Echos · 2025",
+      "source_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNMUlacEhVMkJoaUlyLXJJLUhRcUFMaDBINmFreW5EMHpZUVR0T1pTcjE0cGx2QnFvTGZPSGNubTBwSVRsNkdLQnNVVHZjMlRfclhyS3g0UEFsTV9nS1JxblFPc2stRnp5MFFRdWVKSHpaMHFVVGFBSkY0RjVyRjB1eGhINVM3UUxOaXFYMDFjeG9KYkhhY0xOUlFod0dxQ0VDSEtWTkd5MlhpZ0x5SHJ1SUMtaXNBTktFT3lyZm9Dd3M2QnNxWUxwUksxMGh3aDUxbTV4QVdVRVE?oc=5",
+      "instagram_caption": "📊 Bonne nouvelle économique ! L'Insee relève ses prévisions de croissance pour 2025 à 0,8%, soit +0,2 point par rapport aux estimations précédentes. Cette révision à la hausse témoigne d'une résilience inattendue de l'économie française face aux turbulences mondiales. Un signal encourageant même si la croissance reste modeste ! 🇫🇷📈 #Croissance #Insee #PIB #France #Économie",
+      "linkedin_text": "L'Institut national de la statistique révise à la hausse ses prévisions de croissance du PIB français pour 2025, passant de 0,6% à 0,8%. Cette révision de +0,2 point témoigne d'une meilleure résistance de l'économie hexagonale aux chocs externes que prévu initialement. Plusieurs facteurs expliquent cet optimisme relatif : la consommation des ménages se maintient mieux que prévu, les exportations bénéficient d'une demande mondiale plus soutenue, et l'investissement des entreprises résiste. Néanmoins, cette croissance de 0,8% reste modeste au regard des enjeux de compétitivité et de réduction des déficits publics. Elle interroge sur la capacité de la France à retrouver un rythme de croissance permettant de réduire significativement son endettement public sans compromettre son modèle social.",
+      "twitter_text": "📈 L'Insee relève la croissance française à 0,8% en 2025 (+0,2 pt). Timide mais encourageant ! #Croissance #PIB",
+      "notion_theme": "Macro-économie",
+      "notion_type": "Prévision révisée",
+      "status": "pending"
+    },
+    {
+      "id": 4,
+      "day": "mardi",
+      "date": "2026-02-24",
+      "slug": "regle-deficit-3-pourcent-origine",
+      "title_html": "D'où vient la règle<br><span class='accent'>des 3% de déficit</span><br>public ?",
+      "viz_type": "mega_number",
+      "theme": "cyan",
+      "tag": "International",
+      "tag_color": "#a855f7",
+      "data": {
+        "stat_key": "3%",
+        "stat_unit": "limite de déficit public",
+        "stat_sub": "Règle européenne depuis le traité de Maastricht (1992)"
+      },
+      "source_text": "Le Monde · 2025",
+      "source_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPekJRb1h4SmF5VzdpMG9iWkgwTHFmZDRCTEVrVlZXMGxYUXEwaFExQ2FvUWpqQkczNzZIRGFiS1pYQ0VWTmdQTGJfWmNMSThiUkdBWmR5UFVlWTVDTlA2cWtDZzAzLTV1NWtUUFgtREI5eW5UQVpYUmhPdFJEMUIxNlY3TlFNSGQyYlEzUEoySWxsNjlzRF9qV3MwYUlZVTFMbHNTbHN1eDg5NDVnVzdMd2lHS1d1RElxZC1Mdm55MFBRclNlN09rQks3VXBBNjF5RHFyc2trU00?oc=5",
+      "instagram_caption": "🤔 Pourquoi 3% et pas 2% ou 4% ? Cette fameuse règle européenne qui limite le déficit public provient du traité de Maastricht de 1992. Un seuil pas si scientifique qu'on pourrait le croire ! L'objectif : éviter qu'un pays mette en danger la stabilité de la zone euro. Mais aujourd'hui, cette règle fait débat... 🇪🇺💰 #Europe #Déficit #Maastricht #RègleEuropéenne #FinancesPubliques",
+      "linkedin_text": "La règle limitant le déficit public à 3% du PIB, pierre angulaire de la discipline budgétaire européenne, trouve son origine dans le traité de Maastricht de 1992. Ce seuil, loin d'être le fruit d'une science économique précise, résulte d'un compromis politique entre les États membres fondateurs de l'Union économique et monétaire. L'objectif était double : garantir la soutenabilité des finances publiques et préserver la crédibilité de la future monnaie unique. Cette règle s'accompagne du critère de dette publique limitée à 60% du PIB. Trente ans après sa création, cette norme fait l'objet de vifs débats. Certains économistes la jugent trop rigide face aux défis contemporains (pandémie, transition écologique, vieillissement), tandis que d'autres y voient un garde-fou indispensable contre les dérives budgétaires. La réforme du Pacte de stabilité et de croissance témoigne de cette tension permanente entre discipline et flexibilité.",
+      "twitter_text": "🇪🇺 La règle des 3% de déficit ? Un compromis politique de Maastricht 1992, pas une loi économique ! #Europe",
+      "notion_theme": "International",
+      "notion_type": "Décryptage historique",
+      "status": "pending"
+    },
+    {
+      "id": 5,
+      "day": "mardi",
+      "date": "2026-02-24",
+      "slug": "per-77-pourcent-cotisations-retraite",
+      "title_html": "Les PER représentent<br><span class='accent'>77%</span><br>des cotisations retraite",
+      "viz_type": "percentage_bar",
+      "theme": "or",
+      "tag": "Retraites",
+      "tag_color": "#ff4757",
+      "data": {
+        "percentage": 77,
+        "stat_key": "77%",
+        "stat_unit": "des cotisations de retraite supplémentaire",
+        "stat_sub": "Les Plans épargne retraite dominent le marché en 2024"
+      },
+      "source_text": "DREES · 2024",
+      "source_url": "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/les-plans-epargne-retraite-cotisation",
+      "instagram_caption": "💰 Les Plans épargne retraite (PER) trustent le marché ! Avec 77% des cotisations de retraite supplémentaire en 2024, ils sont devenus l'outil de référence des Français pour préparer leurs vieux jours. Un succès qui témoigne de l'inquiétude grandissante sur l'avenir du système par répartition. Et vous, avez-vous ouvert votre PER ? 🏦💼 #PER #Retraite #Épargne #Prévoyance #France",
+      "linkedin_text": "Les Plans épargne retraite (PER) consolident leur position dominante sur le marché de la retraite supplémentaire, représentant 77% des cotisations en 2024 selon les dernières données de la DREES. Ce succès illustre l'appropriation progressive par les Français de ces nouveaux véhicules d'épargne retraite, lancés en 2019 pour simplifier et moderniser l'épargne retraite. Cette prééminence des PER traduit plusieurs tendances : l'inquiétude croissante des actifs concernant le niveau futur des pensions publiques, l'attractivité fiscale de ces produits, et leur flexibilité par rapport aux anciens dispositifs. Les données révèlent également une diversification des profils de cotisants, avec une montée en puissance des PER individuels parallèlement aux PER d'entreprise. Cette évolution structurelle du paysage de l'épargne retraite pose des questions importantes sur l'équilibre entre solidarité collective et responsabilité individuelle dans notre système de retraite.",
+      "twitter_text": "📊 Les PER captent 77% des cotisations retraite supplémentaire ! La capitalisation gagne du terrain. #PER #Retraite",
+      "notion_theme": "Retraites",
+      "notion_type": "Tendance marché",
+      "status": "pending"
+    },
+    {
+      "id": 6,
+      "day": "mardi",
+      "date": "2026-02-24",
+      "slug": "cour-comptes-deficit-objectif-5-pourcent",
+      "title_html": "La Cour des comptes<br>juge <span class='accent'>« crucial »</span><br>l'objectif de 5%",
+      "viz_type": "dual_stat",
+      "theme": "rouge",
+      "tag": "Finances publiques",
+      "tag_color": "#ff4757",
+      "data": {
+        "items": [
+          {
+            "value": "5%",
+            "label": "Objectif déficit 2026"
+          },
+          {
+            "value": "Crucial",
+            "label": "Selon la Cour des comptes"
+          }
+        ]
+      },
+      "source_text": "Sud Ouest · 2025",
+      "source_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOZHZiaERvM29JUlM5SXFRTG5jRC1lMWZpcU5NQkFZMS1yZlY1QmU3M21URWFUTFhqTDBpUDdmRGZrVUpEcXJEZkZwNndMRDdtTVVleFJHQUxGSDlUZHlhTGQ2SXMwSFRjNkFSZHN2bjlUT05OQTZwcTM1Y2ZFaTl0Q04yTXhCMm1pdHB3dzBqcDNMSGZfNXBQOVpHSkJVVjY4ZU03RTc3R3NCLXhzMFFKbl9ScDRQQWNlR015b00yRTBXTk54RGlSZDhTMERkMWIwdGxzNjd0TQ?oc=5",
+      "instagram_caption": "⚖️ La Cour des comptes tire la sonnette d'alarme ! Atteindre l'objectif de 5% de déficit public en 2026 est jugé « crucial » par nos sages de la rue Cambon. Un avertissement solennel qui souligne l'urgence de la situation budgétaire française. Sans effort supplémentaire, le risque de dérapage est réel ! 🚨📊 #CourDesComptes #Déficit #Budget #FinancesPubliques #France",
+      "linkedin_text": "La Cour des comptes hausse le ton concernant les finances publiques françaises en qualifiant de « crucial » l'objectif de réduction du déficit à 5% du PIB en 2026. Cette déclaration, loin d'être anodine, constitue un signal d'alarme majeur adressé au gouvernement et au Parlement. L'institution souligne que cet objectif, déjà moins ambitieux que les critères européens, représente néanmoins un défi considérable au regard des tendances actuelles. L'analyse de la Cour révèle les risques pesant sur la trajectoire budgétaire : charges d'intérêts croissantes, rigidité des dépenses publiques, et faible dynamisme des recettes. Cette mise en garde intervient dans un contexte où les marges de manœuvre budgétaires se réduisent et où la pression des marchés financiers pourrait s'intensifier. L'enjeu dépasse la simple conformité comptable : il s'agit de préserver la crédibilité financière de l'État et sa capacité d'action future.",
+      "twitter_text": "⚖️ Cour des comptes : ramener le déficit à 5% en 2026 est « crucial ». Message reçu ? #Déficit #CourDesComptes",
+      "notion_theme": "Finances publiques",
+      "notion_type": "Avertissement officiel",
+      "status": "pending"
+    },
+    {
+      "id": 7,
+      "day": "mercredi",
+      "date": "2026-02-25",
+      "slug": "cour-comptes-doutes-budget-2026",
+      "title_html": "Budget 2026 :<br>la Cour des comptes<br><span class='accent'>très dubitative</span>",
+      "viz_type": "comparison",
+      "theme": "rouge",
+      "tag": "Finances publiques",
+      "tag_color": "#ff4757",
+      "data": {
+        "items": [
+          {
+            "label": "Objectif gouvernement",
+            "value": "5%",
+            "color": "#00d4ff"
+          },
+          {
+            "label": "Risque selon la Cour",
+            "value": "> 5%",
+            "color": "#ff4757"
+          }
+        ]
+      },
+      "source_text": "Public Sénat · 2025",
+      "source_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQc2RnU3VFeWVOWHhIUlBGbGdLR3Z3QkFjT1dpWlV5UVJXMnBOdjdocDZOTTJHY3JlVlNoRGtNdnpVMk11RWg2c0FtZS1XMEtGc0dicHMwSUJ3WklWclJJRk9jbk94VHZvX1IxSlhldnY3TUNTc0ZxUTZfRmNJLWRVSjNfRmhPdEZJd2Q3QVFXa3luT0lES0dyeXNDQ0hOWVVkdFlvRzViNVVlQmREVVk4QXB0Q2N3UlNmSmk2c3ZrQS0zQkNHaXBrZUhyTUl5eXNsMjhFeHpZMDREaFdKWXFF?oc=5",
+      "instagram_caption": "🔍 La Cour des comptes ne mâche pas ses mots ! L'objectif de ramener le déficit à 5% du PIB en 2026 est « loin d'être garanti » selon l'institution. Entre optimisme gouvernemental et réalisme des magistrats financiers, qui croire ? Un diagnostic sévère qui interroge sur la crédibilité de notre trajectoire budgétaire... 📉⚠️ #Budget2026 #CourDesComptes #Déficit #RéalitéBudgétaire #France",
+      "linkedin_text": "La Cour des comptes exprime de sérieux doutes sur la capacité du gouvernement à atteindre l'objectif de déficit public de 5% du PIB en 2026. Cette évaluation critique, formulée par l'institution de contrôle des finances publiques, met en lumière l'écart entre les ambitions affichées et la réalité des contraintes budgétaires. Les magistrats pointent plusieurs faiblesses dans les hypothèses gouvernementales : surestimation probable des recettes, sous-évaluation de certaines dépenses, et absence de mesures structurelles suffisamment ambitieuses. Cette divergence d'appréciation révèle un débat fondamental sur l'approche de l'assainissement budgétaire : entre volontarisme politique et pragmatisme comptable. L'enjeu est considérable car l'écart entre promesses et réalisations pourrait affecter la crédibilité de la France auprès des institutions européennes et des marchés financiers, avec des conséquences potentielles sur les coûts de financement de la dette publique.",
+      "twitter_text": "🚨 Cour des comptes sur le budget 2026 : objectif déficit 5% « loin d'être garanti ». Réalisme vs optimisme. #Budget2026",
+      "notion_theme": "Finances publiques",
+      "notion_type": "Analyse critique",
+      "status": "pending"
+    },
+    {
+      "id": 8,
+      "day": "lundi",
+      "date": "2026-02-23",
+      "slug": "pib-france-croissance-t3",
+      "title_html": "Le PIB français bondit de<br><span class='accent'>0,5%</span> au T3",
+      "viz_type": "comparison",
+      "theme": "vert",
+      "tag": "Macro-économie",
+      "tag_color": "#00d4ff",
+      "data": {
+        "items": [
+          {
+            "label": "Croissance PIB T3",
+            "value": "+0,5%",
+            "color": "#00ff88"
+          },
+          {
+            "label": "Inflation novembre",
+            "value": "0,9%",
+            "color": "#00d4ff"
+          }
+        ]
+      },
+      "source_text": "INSEE · T3 2025",
+      "source_url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPYi13ZzBZanRHX2hLbXBQUW1VS2xfc2ZwS3V1bGhXVG9udC0xQlN6TjNXUXJLd0hDNzM2R0dOZDZ4R3cwaF8xLVlveV9BS0R4QWRRXzRjc09sMXVPMnVwU1Q0U3EzUTRDTXd0YmRkaXh1WEJLMlVyUno4anQyZm1wcVhRX0tLczJ4NTJ5aTdOaUhxM0dNOW5ZUFJDUWtxNzU4V1V0M3Ftd2xSOEFnR0pjN2xha3NuQ2JwU29YdlRQcWxsc3VSWUJKRzRIbVpmNVhiLVd3SjhhQ1J4YzZYVHZ0TjJsZlp3aUNLY3dEeVJDWQ?oc=5",
+      "instagram_caption": "📈 L'économie française repart ! Le PIB progresse de 0,5% au troisième trimestre pendant que l'inflation reste sage à 0,9%. Une combinaison gagnante pour le pouvoir d'achat des Français 💪\n\nCette croissance robuste contraste avec les inquiétudes européennes. La France tire son épingle du jeu grâce à une consommation intérieure résiliente. ✨\n\n#CroissanceFrance #PIB #Inflation #EconomieFrancaise #PouvoirAchat",
+      "linkedin_text": "🇫🇷 L'économie française affiche une belle résilience au troisième trimestre avec une croissance du PIB de +0,5%, dépassant les attentes.\n\nCette progression s'accompagne d'une inflation maîtrisée à 0,9% en novembre, créant un environnement économique favorable. Cette combinaison croissance/inflation modérée est particulièrement bénéfique pour le pouvoir d'achat des ménages.\n\nLa France se distingue ainsi de plusieurs de ses voisins européens qui peinent à retrouver une dynamique de croissance soutenue. Cette performance reflète la robustesse de la demande intérieure française et l'efficacité des politiques économiques mises en œuvre.\n\nCes chiffres positionnent bien l'économie française pour aborder 2026 avec confiance, même si les défis structurels demeurent.",
+      "twitter_text": "🇫🇷 PIB français : +0,5% au T3, inflation à 0,9%. La combinaison gagnante pour la croissance ! 📈 #CroissanceFrance",
+      "notion_theme": "Macro-économie",
+      "notion_type": "Stat positive",
+      "status": "pending"
+    },
+    {
+      "id": 9,
+      "day": "lundi",
+      "date": "2026-02-23",
+      "slug": "dette-france-vs-europe-2025",
+      "title_html": "Dette publique française :<br>où en sommes-nous<br><span class='accent'>vs nos voisins ?</span>",
+      "viz_type": "bar_chart",
+      "theme": "rouge",
+      "tag": "Finances publiques",
+      "tag_color": "#ff4757",
+      "data": {
+        "list_items": [
+          {
+            "label": "Italie",
+            "value": "134,8%",
+            "width": 100
+          },
+          {
+            "label": "Grèce",
+            "value": "161,9%",
+            "width": 120
+          },
+          {
+            "label": "France",
+            "value": "112,9%",
+            "width": 84
+          },
+          {
+            "label": "Espagne",
+            "value": "107,7%",
+            "width": 80
+          },
+          {
+            "label": "Allemagne",
+            "value": "63,7%",
+            "width": 47
+          },
+          {
+            "label": "Pays-Bas",
+            "value": "47,1%",
+            "width": 35
+          }
+        ]
+      },
+      "source_text": "Eurostat · 2025",
+      "source_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQUkg2ekZoUm94NE9XWElDUGcyelllVTNNeW16M1F0V2ZQT0VxVWdoSFE5LTk2QTdnSFhWUnpRWHpSZjVncnNCc3VyNTFPY1dhZUJscTRaQUw2b2x3QlZHemREOXV0Zzg0dHJlcnk4d1h3SlFvSHlGd2ZldXRqMjZ5UHdQdTQybDhnd2hSUFdBR1ZGN29xdWozUUF3QWhEeDM5N1NtSHJQYnRxbXppQU9yTUtGWG16ejdGU0JaNE1iVQ?oc=5",
+      "instagram_caption": "🚨 Classement européen des dettes publiques : la France à 112,9% du PIB 📊\n\nNous voilà 3ème du podium européen derrière la Grèce (161,9%) et l'Italie (134,8%). Loin devant l'Allemagne (63,7%) et les Pays-Bas (47,1%) qui gardent leurs finances sous contrôle 💰\n\nCette situation questionne nos marges de manœuvre budgétaires futures. Entre investissements nécessaires et contraintes européennes, l'équation devient complexe ⚖️\n\n#DettePublique #FinancesPubliques #France #Europe #Budget",
+      "linkedin_text": "📊 La dette publique française atteint 112,9% du PIB en 2025, nous plaçant en 3ème position européenne.\n\nCe niveau, bien que préoccupant, reste inférieur à celui de nos voisins méditerranéens : Grèce (161,9%) et Italie (134,8%). Cependant, l'écart avec les \"bons élèves\" européens s'creuse : Allemagne (63,7%) et Pays-Bas (47,1%).\n\nCette position intermédiaire reflète les défis structurels français : vieillissement démographique, poids des dépenses sociales, et besoins d'investissement dans la transition écologique.\n\nLes enjeux sont multiples : maintenir la confiance des marchés, respecter les critères européens post-Pacte de stabilité, tout en préservant notre modèle social. L'équation budgétaire française nécessite des arbitrages fins entre consolidation fiscale et soutien à la croissance.\n\nLa trajectoire des prochaines années sera déterminante pour notre souveraineté économique.",
+      "twitter_text": "🇫🇷 Dette française : 112,9% du PIB. 3ème en Europe derrière Grèce et Italie, mais loin de l'Allemagne (63,7%) 📊 #DettePublique",
+      "notion_theme": "Finances publiques",
+      "notion_type": "Comparaison",
+      "status": "pending"
+    },
+    {
+      "id": 10,
+      "day": "lundi",
+      "date": "2026-02-23",
+      "slug": "impot-revenu-chiffres-cles",
+      "title_html": "Impôt sur le revenu :<br>les <span class='accent'>chiffres clés</span>",
+      "viz_type": "dual_stat",
+      "theme": "or",
+      "tag": "Fiscalité",
+      "tag_color": "#ffd700",
+      "data": {
+        "items": [
+          {
+            "value": "82 Mds€",
+            "label": "Recettes IR 2024"
+          },
+          {
+            "value": "43%",
+            "label": "Foyers imposables"
+          }
+        ]
+      },
+      "source_text": "DGFiP · 2024",
+      "source_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOWmt3MVJzOEQ4eUI4dXJaVHJBRWFldjhjb1N2RmNuamJvLThvbExqZjY0NHBlbGdRZF9aalVvRmNfVmx6eUJ4dWUzcFFyQUgyRlNPbVdUUW9xU1FKUnNJcWl5bHdIWlpaN1NiUXp1M2czZUprMWFmWDk1SDZNbzBuUW8yRWZlV3l0MTg2dWNnYklyY3lMZVpPcHJIYVZvWmpGa3UzM3RHbUZEcWlFaU5NSlh6MU92OUtOeHc3bnRzUXA4MXgydXRoV1lLRm1LT1RYU1lncWZ6ME5iWXpt?oc=5",
+      "instagram_caption": "💰 L'impôt sur le revenu en chiffres : 82 milliards d'euros collectés en 2024 📈\n\nSeuls 43% des foyers fiscaux français sont imposables ! Cela signifie que plus de la moitié des ménages ne paient pas d'IR grâce aux niches fiscales, abattements et tranches d'imposition 🏠\n\nCe système redistributif français reste unique en Europe. L'IR représente environ 25% des recettes fiscales de l'État. Une mécanique complexe mais essentielle au financement des services publics ⚖️\n\n#ImpotRevenu #Fiscalite #France #ServicePublic #Redistribution",
+      "linkedin_text": "📊 L'impôt sur le revenu français en 2024 : 82 milliards d'euros de recettes pour seulement 43% de foyers imposables.\n\nCes chiffres illustrent la spécificité du système fiscal français : un impôt progressif où 57% des foyers ne paient pas d'IR grâce au système de tranches, d'abattements et de niches fiscales.\n\nL'IR représente environ 25% des recettes fiscales de l'État, soit un pilier essentiel du financement public. Cette concentration sur une base d'imposables relativement restreinte soulève des questions de justice fiscale et d'efficacité économique.\n\nLe débat récurrent sur la réforme de l'IR cristallise ces enjeux : élargir l'assiette ou maintenir le caractère redistributif ? Les choix futurs impacteront directement l'acceptabilité fiscale et les capacités de financement de l'État.\n\nUn équilibre délicat entre justice sociale et compétitivité économique.",
+      "twitter_text": "💰 Impôt sur le revenu 2024 : 82 Mds€ collectés, mais seulement 43% des foyers imposables. Le système français en chiffres 📊",
+      "notion_theme": "Fiscalité",
+      "notion_type": "Chiffres clés",
+      "status": "pending"
+    },
+    {
+      "id": 11,
+      "day": "mardi",
+      "date": "2026-02-24",
+      "slug": "deremboursement-sante-qui-paie",
+      "title_html": "Déremboursement des soins :<br><span class='accent'>qui paie</span> la facture ?",
+      "viz_type": "percentage_bar",
+      "theme": "rouge",
+      "tag": "Social",
+      "tag_color": "#00ff88",
+      "data": {
+        "stat_key": "80%",
+        "stat_unit": "des dépenses de santé financées par l'État",
+        "stat_sub": "Les déremboursements transfèrent le coût vers les ménages"
+      },
+      "source_text": "DREES · 2025",
+      "source_url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/les-dossiers-de-la-drees/260218_DD_%C3%A9valuation-impact-m%C3%A9nages-d%C3%A9remboursement-partiel-soins",
+      "instagram_caption": "🏥 80% des dépenses de santé sont financées par l'État ! Mais que se passe-t-il en cas de déremboursement ? 🤔\n\nLa DREES révèle l'impact sur les ménages quand l'Assurance Maladie réduit ses remboursements. Résultat : transfert direct du coût public vers les familles françaises 💸\n\nDans un contexte de déficit de la Sécurité Sociale, ces mesures semblent tentantes pour les finances publiques. Mais attention à l'effet sur l'accès aux soins et les inégalités ! ⚖️\n\n#SantePublique #DeremboursementSoins #AssuranceMaladie #DREES #AccesAuxSoins",
+      "linkedin_text": "🏥 La DREES publie une étude éclairante sur l'impact des déremboursements de soins sur les ménages français.\n\nAvec 80% des dépenses de santé financées par les administrations publiques, la France dispose d'un système de protection sociale robuste. Cependant, dans un contexte de déficit persistant de la branche maladie, les déremboursements partiels sont régulièrement évoqués comme levier d'économies.\n\nL'étude révèle que ces mesures opèrent un transfert direct du coût : de l'assurance maladie obligatoire vers les ménages. Si l'impact budgétaire public semble positif à court terme, les conséquences sur l'accès aux soins et les inégalités territoriales/sociales méritent attention.\n\nCette analyse quantifie pour la première fois l'effet redistributif inverse de telles politiques. Un éclairage précieux pour les décideurs publics face aux arbitrages budgétaires à venir.\n\nLa question demeure : comment concilier soutenabilité financière et égalité d'accès aux soins ?",
+      "twitter_text": "🏥 80% des dépenses de santé financées par l'État. Les déremboursements transfèrent la facture vers les ménages 💸 #SantePublique",
+      "notion_theme": "Social",
+      "notion_type": "Alerte",
+      "status": "pending"
+    },
+    {
+      "id": 12,
+      "day": "mardi",
+      "date": "2026-02-24",
+      "slug": "retour-isf-etude-effets",
+      "title_html": "Retour de l'ISF :<br>une étude mesure<br>les <span class='accent'>effets économiques</span>",
+      "viz_type": "comparison",
+      "theme": "or",
+      "tag": "Fiscalité",
+      "tag_color": "#ffd700",
+      "data": {
+        "items": [
+          {
+            "label": "Recettes potentielles",
+            "value": "3-5 Mds€",
+            "color": "#00ff88"
+          },
+          {
+            "label": "Risque d'exil fiscal",
+            "value": "10-15%",
+            "color": "#ff4757"
+          }
+        ]
+      },
+      "source_text": "Les Échos · 2025",
+      "source_url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOeVNVU180NW1iTUNHUzBzQUFpUUdKV0QxTXJYV01ReHR1WloxS0M3TWRZSVRsNERqczFJSGNqMmoyaEZzdVhyMVlBZWNuTm1LVlRlczdPbG5jbTBNYzBzQkk5b0NlZzBETGJGNVRaMmtxNE85ZllnXzJRazlyUEc2d0d2eXJJZ1ItUDd4cXpkRlREVkI0M2pWVUlRSjFFenZneUY4b1hBZ0FjTi1Mbk5zYjlMLUVzV3RaVnRkQXEyU3JvQ25tbzJVVUM4cklhdllLQVBxNThaSHZ3M1liTkIwX09OZ1Z1RDQ?oc=5",
+      "instagram_caption": "💰 L'ISF de retour ? Une nouvelle étude révèle les vrais chiffres ! 📊\n\nRecettes potentielles : 3 à 5 milliards d'euros. Mais attention au revers de la médaille : 10-15% de risque d'exil fiscal pour les plus fortunés 🛫\n\nL'équation n'est pas si simple. Entre justice fiscale et compétitivité, le débat fait rage. Les Échos décortiquent cette étude qui alimentera les discussions politiques des prochains mois ⚖️\n\n#ISF #FiscalitePatrimoine #ExilFiscal #JusticeFiscale #ImpotFortune",
+      "linkedin_text": "💼 Les Échos publient une étude approfondie sur les effets potentiels d'un retour de l'Impôt de Solidarité sur la Fortune (ISF).\n\nLes projections tablent sur des recettes de 3 à 5 milliards d'euros annuels, soit un apport non négligeable aux finances publiques. Cependant, l'étude souligne un risque d'exil fiscal de 10 à 15% parmi les contribuables concernés.\n\nCette analyse quantitative éclaire un débat souvent passionnel. Au-delà des considérations idéologiques, elle révèle la complexité des arbitrages fiscaux : optimiser les recettes tout en préservant l'attractivité territoriale.\n\nLes enseignements de la suppression de l'ISF en 2017 et son remplacement par l'IFI montrent que l'impact sur l'investissement productif reste débattu. Cette nouvelle étude apporte des éléments factuels précieux pour éclairer les choix futurs.\n\nUn enjeu majeur : concilier justice fiscale, efficacité économique et acceptabilité sociale dans un contexte de contraintes budgétaires accrues.",
+      "twitter_text": "💰 Retour ISF : 3-5 Mds€ de recettes possibles, mais 10-15% de risque d'exil fiscal. L'équation complexe révélée 📊",
+      "notion_theme": "Fiscalité",
+      "notion_type": "Analyse",
+      "status": "pending"
+    },
+    {
+      "id": 13,
+      "day": "mardi",
+      "date": "2026-02-24",
+      "slug": "goldman-sachs-prevision-croissance",
+      "title_html": "Goldman Sachs plus optimiste<br>que la <span class='accent'>Banque de France</span>",
+      "viz_type": "comparison",
+      "theme": "vert",
+      "tag": "Macro-économie",
+      "tag_color": "#00d4ff",
+      "data": {
+        "items": [
+          {
+            "label": "Goldman Sachs Q4 2025",
+            "value": "0,4%",
+            "color": "#00ff88"
+          },
+          {
+            "label": "Banque de France",
+            "value": "0,2%",
+            "color": "#00d4ff"
+          }
+        ]
+      },
+      "source_text": "Capital · 2025",
+      "source_url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQZlI3bmd0alh5VTlmVXpPUGQzSXN1dFIwdmx3bHRoOGR4aUVtZ085VHRqdldZMkcyOXJfdEJyblRsTEJreEE4MWpTUjdJcG9PWGpHYzRoVDRvWU55dV9OSHpZRU5NVWZjbENYYXZXU05wanNkeUkyUlpsNTVIM25WaUJSbTVEMDU1NXVJOC1BOGlTeGdMd2VMejBXSHV0Uy1WNUphaVBPaTg5YU84ZUxDdl9ReFVpSVFaeUxRZWc1ekNBYzgwUXk0TTNKQnFjbXd5V2ctbG91MXZEMzNZUGk1dktza2VKSHZN?oc=5",
+      "instagram_caption": "📈 Duel de prévisions ! Goldman Sachs table sur 0,4% de croissance au Q4 2025, contre 0,2% pour la Banque de France 🥊\n\nLa banque américaine se montre plus optimiste sur l'économie française. Consommation intérieure résiliente et politique monétaire accommodante alimentent cet espoir 💪\n\nQui aura raison ? Ces divergences d'experts montrent l'incertitude économique actuelle. Réponse dans quelques mois ! ⏰\n\n#CroissanceFrance #GoldmanSachs #BanqueDeFrance #PrevisionEconomique #PIB",
+      "linkedin_text": "📊 Divergence d'analyse entre Goldman Sachs et la Banque de France sur les perspectives de croissance française.\n\nGoldman Sachs anticipe une croissance de 0,4% au quatrième trimestre 2025, soit le double de la prévision de la Banque de France (0,2%). Cette différence révèle des appréciations contrastées sur la dynamique économique française.\n\nLa banque américaine fonde son optimisme sur plusieurs facteurs : résilience de la consommation des ménages, effets positifs de la politique monétaire européenne, et rebond attendu des investissements productifs.\n\nLa Banque de France, plus prudente, intègre davantage les risques géopolitiques, les tensions sur les finances publiques et l'incertitude politique nationale.\n\nCes écarts de prévision illustrent la complexité de l'exercice prospectif en période d'incertitudes multiples. Les prochains indicateurs économiques départageront ces visions divergentes et orienteront les anticipations des marchés.",
+      "twitter_text": "📈 Goldman Sachs prévoit 0,4% de croissance Q4 2025, vs 0,2% pour la Banque de France. Qui aura raison ? 🤔",
+      "notion_theme": "Macro-économie",
+      "notion_type": "Prévision",
+      "status": "pending"
+    },
+    {
+      "id": 14,
+      "day": "mercredi",
+      "date": "2026-02-25",
+      "slug": "insee-previsions-2026-emploi-inflation",
+      "title_html": "Prévisions 2026 :<br>rebond de croissance,<br><span class='accent'>légère hausse</span> du chômage",
+      "viz_type": "line_chart",
+      "theme": "vert",
+      "tag": "Emploi",
+      "tag_color": "#00ff88",
+      "data": {
+        "chart_data": [
+          {
+            "label": "2024",
+            "croissance": 1.1,
+            "chomage": 7.4,
+            "inflation": 2.3
+          },
+          {
+            "label": "2025",
+            "croissance": 0.8,
+            "chomage": 7.2,
+            "inflation": 1.5
+          },
+          {
+            "label": "2026",
+            "croissance": 1.3,
+            "chomage": 7.6,
+            "inflation": 1.8
+          }
+        ]
+      },
+      "source_text": "INSEE · Prév. 2026",
+      "source_url": "https://news.google.com/rss/articles/CBMioAJBVV85cUxNamxncC1CWndZWGV2VHZDVTNqYmpTcTg1M0ZRUHB4d21aMGNxaG01cVQ4X0h1elFfU19PeUF2Q2lkTkFNS3h2NTNDOUpqRkp3Y05kNWVQRzlBLWVwMUVERlZtUFB3TEZfb2pCWUtOQ0g0eDl5WmJ6b2k0VlIta1BuQUZDanVVaWpuX3hmR3FfTV9FanRLbzZwMG1OX1lYd0NZOUZLSWkybVNGd0JNSGpCdVh5aWFwUjJLX1RoRFF3aWlsVmpkaUZHOGd0SkxBVGtpcXNkNFBBb3pGdEx1QS1lUW5VR0FiU3RIandzck15NlVBVVphX1NTejkyTlV2ajFlY1kycE4tU0V4WENWQnE1dk5xeG5Zb1FRTXkwRWpob3Y?oc=5",
+      "instagram_caption": "📊 L'INSEE dévoile ses prévisions 2026 : rebond de croissance à 1,3% ! 📈\n\nMais attention, le chômage devrait légèrement remonter à 7,6% et l'inflation se stabiliser autour de 1,8%. Un mix économique contrasté qui interroge sur la qualité de la reprise française 🤔\n\nLa croissance repart mais l'emploi peine à suivre. Un décrochage temporaire ou structurel ? L'INSEE mise sur un rebond durable porté par l'investissement et la consommation ✨\n\n#PrevisionINSEE #Croissance2026 #ChomageFrance #InflationFrance #EconomiePrevisionnelle",
+      "linkedin_text": "📈 L'INSEE publie ses prévisions économiques pour 2026 : un tableau contrasté se dessine.\n\nLa croissance devrait rebondir à 1,3% après une année 2025 en demi-teinte (0,8%). Cette accélération s'appuierait sur la reprise de l'investissement des entreprises et la résilience de la consommation des ménages.\n\nParadoxalement, le taux de chômage augmenterait légèrement à 7,6%, contre 7,2% en 2025. Cette apparente contradiction s'explique par l'effet décalé du marché du travail sur la croissance et l'arrivée de nouveaux actifs.\n\nL'inflation se stabiliserait autour de 1,8%, proche de la cible européenne de 2%. Un niveau qui préserverait le pouvoir d'achat tout en maintenant une dynamique des prix favorable à l'investissement.\n\nCes prévisions, bien qu'encourageantes, soulignent les défis structurels français : améliorer la productivité et l'employabilité pour une croissance plus inclusive.\n\nL'année 2026 sera-t-elle celle du retour à une croissance durable ?",
+      "twitter_text": "📊 INSEE 2026 : croissance +1,3%, chômage 7,6%, inflation 1,8%. Rebond économique en vue ! 📈 #PrevisionINSEE",
+      "notion_theme": "Emploi",
+      "notion_type": "Prévision",
+      "status": "pending"
+    }
+  ]
+}

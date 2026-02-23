@@ -104,6 +104,14 @@ function cleanForTelegram(text) {
   return (text || '').replace(/<span[^>]*>/g, '').replace(/<\/span>/g, '');
 }
 
+// ── Nettoyage markdown résiduel de Claude ────────────
+function cleanMarkdown(text) {
+  return (text || '')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')  // **bold** → bold
+    .replace(/\*([^*]+)\*/g, '$1')       // *italic* → italic
+    .replace(/__([^_]+)__/g, '$1');      // __underline__ → underline
+}
+
 // ── Telegram ─────────────────────────────────────────
 async function sendTelegram(text) {
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -262,13 +270,32 @@ Sélectionne les ${count} actualités les plus visuelles/percutantes et transfor
 
 DEUX TYPES DE SLIDES possibles :
 1. "photo" : Photo plein écran + texte narratif en gras en bas (comme un post Legend/Brut)
-2. "infographic" : Infographie "Où Va l'Argent" sur fond sombre avec un GROS CHIFFRE central (PAS le même titre que la slide 1)
+2. "infographic" : Infographie "Où Va l'Argent" sur fond sombre — données visuelles, PAS juste du texte
 
 STRUCTURE idéale :
 - Slide 1 : TOUJOURS type "photo" — titre accrocheur principal
 - Slides 2-4 : Mix de "photo" et "infographic" pour varier. Au moins 1 infographic par carrousel.
   - Les slides photo = narration, contexte, histoire
-  - Les slides infographic = chiffre clé qui frappe, statistique marquante, comparaison
+  - Les slides infographic = données visuelles qui FRAPPENT (chiffre, liste, classement, comparaison)
+
+PENSE COMME UN INFOGRAPHISTE : L'infographic doit transmettre son message en 2 secondes sur mobile. Le chiffre/donnée clé doit être ÉNORME et immédiatement lisible. Choisis le type d'infographic le mieux adapté au MESSAGE, pas toujours mega_number.
+
+TYPES D'INFOGRAPHIC DISPONIBLES :
+- "mega_number" : UN SEUL gros chiffre (11rem). Utilise quand l'info clé EST un chiffre unique. stat_key = le chiffre, stat_unit = ce qu'il représente.
+- "comparison" : Deux barres verticales côte à côte avec "vs". stat_key = "valeur1 vs valeur2", stat_unit = "label1 vs label2".
+- "arrow_compare" : Avant → Après. stat_key = "avant → après".
+- "key_list" : 2-5 points clés affichés EN GROS avec icônes/numéros. UTILISE QUAND L'INFO CLÉ EST UNE LISTE (thèmes, mesures, secteurs, étapes). list_items = [{emoji:"🏗️", label:"BTP", value:"40%"}, ...].
+- "ranking" : Mini classement avec barres horizontales (3-5 items). list_items = [{emoji:"🇫🇷", label:"France", value:"112%"}, ...].
+- "percentage_bar" : Un pourcentage avec barre de progression. stat_key = "75%", stat_unit = "des Français concernés".
+- "dual_stat" : Deux chiffres côte à côte séparés par un trait. stat_key = "valeur1 | valeur2", stat_unit = "label1 | label2".
+
+GUIDE DE CHOIX :
+- L'article parle d'UN chiffre marquant → mega_number
+- L'article compare DEUX valeurs → comparison ou dual_stat
+- L'article montre une évolution → arrow_compare
+- L'article liste des mesures/secteurs/thèmes → key_list
+- L'article fait un classement → ranking
+- L'article donne un pourcentage clé → percentage_bar
 
 Retourne un JSON STRICT (rien d'autre) :
 [
@@ -277,14 +304,14 @@ Retourne un JSON STRICT (rien d'autre) :
     "slides": [
       {
         "type": "photo",
-        "text": "Titre accrocheur principal (2-3 phrases max)",
-        "search_query": "mots clés Google Images pour une PHOTO réaliste",
+        "text": "Titre accrocheur principal (2-3 phrases max, PAS de markdown)",
+        "search_query": "mots clés Google Images pour une PHOTO réaliste concrète",
         "accent_words": ["mot1", "mot2"]
       },
       {
         "type": "photo",
-        "text": "Suite de l'histoire — contexte, explication",
-        "search_query": "mots clés Google Images DIFFÉRENTS",
+        "text": "Suite de l'histoire (PAS de markdown, PAS de **gras**)",
+        "search_query": "mots clés Google Images DIFFÉRENTS et concrets",
         "accent_words": ["mot1"]
       },
       {
@@ -293,17 +320,19 @@ Retourne un JSON STRICT (rien d'autre) :
         "stat_unit": "de hausse en 2 ans",
         "stat_sub": "Détail optionnel",
         "infographic_type": "mega_number",
-        "slide_title": "Titre court et différent de la slide 1"
+        "slide_title": "Titre court et différent de la slide 1",
+        "list_items": []
       },
       {
         "type": "photo",
-        "text": "Conclusion ou mise en perspective",
+        "text": "Conclusion ou mise en perspective (texte brut)",
         "search_query": "mots clés Google Images DIFFÉRENTS",
         "accent_words": ["mot1"]
       }
     ],
     "tag": "Thème (Économie, Transport, Logement, Alerte, International, Emploi, Énergie, Finance...)",
     "tag_color": "#ff4757",
+    "theme": "bleu",
     "source": "Nom source · année",
     "source_url": "URL de l'article source",
     "instagram_caption": "Texte prêt à copier-coller pour Instagram. 3-4 phrases percutantes. Emojis. Hashtags (5 max). Pas de lien.",
@@ -313,12 +342,16 @@ Retourne un JSON STRICT (rien d'autre) :
 
 Règles :
 - tag_color : #ff4757 (rouge/alerte), #00d4ff (cyan/neutre), #ffd700 (or/argent), #ff9f43 (orange), #a855f7 (violet/international), #00ff88 (vert/positif)
-- search_query (pour slides photo) : mots clés visuels pour des PHOTOS réalistes, chaque slide doit avoir une photo DIFFÉRENTE
-- accent_words (pour slides photo) : 1-2 mots clés dans le texte à colorer
-- infographic_type : mega_number (gros chiffre central), comparison (X vs Y), arrow_compare (avant → après)
-- Le slide_title de l'infographic ne doit JAMAIS être le même que le texte de la slide 1
+- theme : bleu (défaut, majorité des sujets), vert (investissement, croissance, écologie), violet (tech, innovation, crypto, IA), or (finance, bourse, patrimoine), rouge (dette, déficit, alertes), cyan (international, comparaisons). Varier les thèmes pour diversifier visuellement.
+- search_query (pour slides photo) : mots clés visuels pour des PHOTOS réalistes (pas de dessins ni illustrations), chaque slide doit avoir une photo DIFFÉRENTE. Utiliser des termes concrets : lieu, personne, objet, événement.
+- accent_words (pour slides photo) : 1-2 mots clés dans le texte à colorer. NE PAS utiliser de markdown (**gras**, *italique*).
+- infographic_type : mega_number, comparison, arrow_compare, key_list, ranking, percentage_bar, dual_stat (voir guide ci-dessus)
+- list_items : OBLIGATOIRE pour key_list et ranking. Tableau d'objets {emoji, label, value}. 2-5 items.
+- Le slide_title de l'infographic doit être un ANGLE DIFFÉRENT de la slide 1 (pas reformulation mais complément)
+- Le stat_key de l'infographic doit être LE CHIFFRE LE PLUS PERCUTANT de l'article (pas un détail secondaire)
 - Slide 1 = TOUJOURS photo + titre accrocheur
 - Varier l'ordre des types dans les slides 2-4 (pas toujours photo-infographic-photo)
+- Texte des slides : PAS de markdown, PAS de **gras**, PAS de *italique*. Texte brut uniquement.
 - instagram_caption : engageant, informatif, avec emojis et hashtags
 - Seulement ${count} idées
 
@@ -341,8 +374,8 @@ Retourne UNIQUEMENT le JSON.`;
 function generateSlideHTML(slideText, accentWords, tagColor, tag, source, slideNum, totalSlides, mainTitle, isFirstSlide) {
   const bgColor = tagColor || '#ff4757';
 
-  // Coloriser les mots accentués dans le texte
-  let styledText = slideText;
+  // Nettoyer le markdown résiduel puis coloriser les mots accentués
+  let styledText = cleanMarkdown(slideText);
   for (const word of (accentWords || [])) {
     const regex = new RegExp(`(${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
     styledText = styledText.replace(regex, `<span class="accent-color">$1</span>`);
@@ -353,19 +386,12 @@ function generateSlideHTML(slideText, accentWords, tagColor, tag, source, slideN
     ? cleanForTelegram(mainTitle).slice(0, 57) + '...'
     : cleanForTelegram(mainTitle);
 
-  // En-tête : slide 1 = logo + tag, slides 2+ = petit titre de rappel + logo
-  const headerContent = isFirstSlide
-    ? `<div class="header">
-          <div class="logo"><div class="logo-icon">\u20AC</div><span class="logo-text">O\u00F9 Va l'Argent</span></div>
-          <div class="tag">${tag}</div>
-       </div>`
-    : `<div class="header">
-          <div class="ref-title">${shortMainTitle}</div>
+  // En-tête : slide 1 = logo + tag, slides 2+ = logo seul
+  const headerContent = `<div class="header">
           <div class="logo"><div class="logo-icon">\u20AC</div><span class="logo-text">O\u00F9 Va l'Argent</span></div>
        </div>`;
 
-  // Indicateur de slide (X/N)
-  const indicator = `<div class="slide-indicator">${slideNum}/${totalSlides}</div>`;
+  const indicator = ''; // Pas de numérotation de slide
 
   return `<!DOCTYPE html>
 <html lang="fr">
@@ -384,12 +410,11 @@ function generateSlideHTML(slideText, accentWords, tagColor, tag, source, slideN
           : 'linear-gradient(to top, rgba(6, 8, 12, 0.95) 0%, rgba(6, 8, 12, 0.8) 25%, rgba(6, 8, 12, 0.3) 50%, rgba(6, 8, 12, 0.15) 65%, rgba(6, 8, 12, 0.25) 100%)'}; }
         .content { position: relative; z-index: 1; height: 100%; padding: 35px 45px; display: flex; flex-direction: column; justify-content: space-between; }
         .header { display: flex; justify-content: space-between; align-items: flex-start; }
-        .logo { display: flex; align-items: center; gap: 10px; background: rgba(6, 8, 12, 0.5); backdrop-filter: blur(10px); padding: 8px 16px 8px 8px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 1.1rem; color: #06080c; }
-        .logo-text { font-weight: 700; font-size: 1.1rem; color: #f0f4f8; }
-        .tag { padding: 9px 20px; background: rgba(${hexToRgb(bgColor)}, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(${hexToRgb(bgColor)}, 0.5); border-radius: 50px; font-size: 0.9rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.1em; }
+        .logo { display: flex; align-items: center; gap: 10px; background: rgba(6, 8, 12, 0.6); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 10px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
         .ref-title { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.7); max-width: 60%; line-height: 1.3; background: rgba(6, 8, 12, 0.6); backdrop-filter: blur(10px); padding: 8px 14px; border-radius: 8px; border-left: 3px solid ${bgColor}; }
-        .slide-indicator { position: absolute; top: 35px; right: 45px; font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.6); z-index: 2; }
+        .slide-indicator { display: none; }
         .title-area { display: flex; flex-direction: column; gap: 12px; }
         .news-title { font-family: 'Syne', sans-serif; font-size: ${isFirstSlide ? '2.6rem' : '2.2rem'}; font-weight: 700; color: #f0f4f8; line-height: 1.25; ${isFirstSlide ? 'padding: 0;' : `background: rgba(6, 8, 12, 0.7); backdrop-filter: blur(8px); border-radius: 14px; padding: 25px 30px; border-left: 5px solid ${bgColor};`} }
         .news-title .accent-color { color: ${bgColor}; font-weight: 800; }
@@ -419,30 +444,36 @@ function hexToRgb(hex) {
   return `${r}, ${g}, ${b}`;
 }
 
+// ── Chemin complet vers Node (nécessaire pour cron) ──
+const NODE_BIN = process.execPath; // Utilise le même Node qui exécute ce script
+
 // ── Télécharger une photo Google Images ──────────────
 function downloadPhoto(searchQuery, outputPath, index = 1) {
   try {
     const dlResult = execSync(
-      `node "${path.join(SCRIPTS_DIR, 'download-google-image.js')}" "${searchQuery}" --output="${outputPath}" --index=${index}`,
+      `"${NODE_BIN}" "${path.join(SCRIPTS_DIR, 'download-google-image.js')}" "${searchQuery}" --output="${outputPath}" --index=${index}`,
       { encoding: 'utf-8', timeout: 45000, cwd: SCRIPTS_DIR }
     );
     const pathMatch = dlResult.match(/PATH=(.+)/);
     const realPath = pathMatch ? pathMatch[1].trim() : outputPath;
     if (fs.existsSync(realPath)) return realPath;
   } catch (e) {
-    // Silencieux
+    console.error(`    ⚠ Photo échouée: ${e.message.split('\n')[0]}`);
   }
   return null;
 }
 
-// ── Générateur d'infographie data HTML (fond sombre + gros chiffre) ──
-function generateInfographicHTML(slide, tagColor, tag, source, slideNum, totalSlides, mainTitle) {
+// ── Générateur d'infographie data HTML (fond sombre + data visuelle) ──
+function generateInfographicHTML(slide, tagColor, tag, source, slideNum, totalSlides, mainTitle, themeName) {
   const bgColor = tagColor || '#ff4757';
-  const statKey = slide.stat_key || '';
-  const statUnit = slide.stat_unit || '';
-  const statSub = slide.stat_sub || '';
-  const slideTitle = slide.slide_title || '';
+  const statKey = cleanMarkdown(slide.stat_key || '');
+  const statUnit = cleanMarkdown(slide.stat_unit || '');
+  const statSub = cleanMarkdown(slide.stat_sub || '');
+  const slideTitle = cleanMarkdown(slide.slide_title || '');
   const infType = slide.infographic_type || 'mega_number';
+
+  // Couleurs secondaires pour les listes et classements
+  const accentColors = ['#00d4ff', '#ffd700', '#ff4757', '#00ff88', '#a855f7', '#ff9f43'];
 
   let centerContent = '';
   if (infType === 'comparison') {
@@ -479,7 +510,91 @@ function generateInfographicHTML(slide, tagColor, tag, source, slideNum, totalSl
         </div>
         ${statSub ? `<div style="display:flex;align-items:center;gap:15px;background:${bgColor}1a;border:1px solid ${bgColor}33;border-radius:16px;padding:18px 35px;"><span style="font-family:'JetBrains Mono',monospace;font-size:2.8rem;font-weight:700;color:${bgColor};">${statSub.split(' ')[0]}</span><span style="font-size:1.3rem;color:#8899a8;">${statSub.split(' ').slice(1).join(' ')}</span></div>` : ''}
       </div>`;
+
+  } else if (infType === 'key_list') {
+    // ── Liste de points clés (2-5 items affichés en GROS) ──
+    const items = (slide.list_items || []).slice(0, 5);
+    const itemsHTML = items.map((item, i) => {
+      const color = accentColors[i % accentColors.length];
+      const emoji = item.emoji || '';
+      const label = cleanMarkdown(item.label || '');
+      const value = cleanMarkdown(item.value || '');
+      return `
+        <div style="display:flex;align-items:center;gap:20px;background:rgba(255,255,255,0.04);border-radius:16px;padding:20px 30px;border-left:5px solid ${color};">
+          ${emoji ? `<span style="font-size:2.8rem;">${emoji}</span>` : `<span style="font-family:'JetBrains Mono',monospace;font-size:2.2rem;font-weight:800;color:${color};min-width:50px;">${i + 1}</span>`}
+          <div style="flex:1;">
+            <div style="font-family:'Syne',sans-serif;font-size:${items.length <= 3 ? '2.2rem' : '1.8rem'};font-weight:700;color:#f0f4f8;line-height:1.2;">${label}</div>
+            ${value ? `<div style="font-family:'JetBrains Mono',monospace;font-size:${items.length <= 3 ? '1.8rem' : '1.4rem'};font-weight:600;color:${color};margin-top:6px;">${value}</div>` : ''}
+          </div>
+        </div>`;
+    }).join('');
+    centerContent = `
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:${items.length <= 3 ? '20px' : '14px'};padding:0 10px;">
+        ${itemsHTML}
+      </div>`;
+
+  } else if (infType === 'ranking') {
+    // ── Mini classement avec barres horizontales (3-5 items) ──
+    const items = (slide.list_items || []).slice(0, 5);
+    const maxVal = Math.max(...items.map(it => parseFloat(String(it.value || '0').replace(/[^0-9.,]/g, '').replace(',', '.')) || 0), 1);
+    const itemsHTML = items.map((item, i) => {
+      const color = i === 0 ? bgColor : (i === 1 ? '#00d4ff' : '#4a5a6a');
+      const label = cleanMarkdown(item.label || '');
+      const value = cleanMarkdown(item.value || '');
+      const numVal = parseFloat(String(value).replace(/[^0-9.,]/g, '').replace(',', '.')) || 0;
+      const pct = Math.max(15, Math.round((numVal / maxVal) * 100));
+      const emoji = item.emoji || '';
+      return `
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:800;color:${color};min-width:38px;text-align:right;">${i + 1}</span>
+          <div style="flex:1;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+              <span style="font-family:'Syne',sans-serif;font-size:${items.length <= 3 ? '1.9rem' : '1.5rem'};font-weight:700;color:#f0f4f8;">${emoji ? emoji + ' ' : ''}${label}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:${items.length <= 3 ? '1.9rem' : '1.5rem'};font-weight:700;color:${color};">${value}</span>
+            </div>
+            <div style="width:100%;height:${items.length <= 3 ? '14px' : '10px'};background:rgba(255,255,255,0.08);border-radius:7px;overflow:hidden;">
+              <div style="width:${pct}%;height:100%;background:linear-gradient(90deg,${color},${color}99);border-radius:7px;"></div>
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+    centerContent = `
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:${items.length <= 3 ? '25px' : '18px'};padding:0 10px;">
+        ${itemsHTML}
+      </div>`;
+
+  } else if (infType === 'percentage_bar') {
+    // ── Pourcentage avec barre de progression ──
+    const pctNum = parseInt(String(statKey).replace(/[^0-9]/g, '')) || 0;
+    centerContent = `
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:20px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12rem;font-weight:700;color:${bgColor};line-height:1;text-shadow:0 0 80px ${bgColor}4d;">${statKey}</div>
+        <div style="width:80%;height:28px;background:rgba(255,255,255,0.08);border-radius:14px;overflow:hidden;">
+          <div style="width:${Math.min(pctNum, 100)}%;height:100%;background:linear-gradient(90deg,${bgColor},${bgColor}dd);border-radius:14px;transition:width 1s;"></div>
+        </div>
+        <div style="font-family:'Instrument Serif',serif;font-size:3rem;color:#f0f4f8;font-style:italic;margin-top:5px;text-align:center;">${statUnit}</div>
+        ${statSub ? `<div style="font-size:1.4rem;color:#8899a8;text-align:center;">${statSub}</div>` : ''}
+      </div>`;
+
+  } else if (infType === 'dual_stat') {
+    // ── Deux chiffres côte à côte (sans barres, juste les chiffres) ──
+    const parts = statKey.split(/\s*[|\/]\s*/);
+    const labels = statUnit.split(/\s*[|\/]\s*/);
+    centerContent = `
+      <div style="flex:1;display:flex;justify-content:center;align-items:center;gap:60px;">
+        <div style="text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:7rem;font-weight:700;color:${bgColor};line-height:1;">${parts[0] || ''}</div>
+          <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:600;color:#8899a8;margin-top:12px;">${labels[0] || ''}</div>
+        </div>
+        <div style="width:2px;height:200px;background:rgba(255,255,255,0.1);"></div>
+        <div style="text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:7rem;font-weight:700;color:#00d4ff;line-height:1;">${parts[1] || ''}</div>
+          <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:600;color:#8899a8;margin-top:12px;">${labels[1] || ''}</div>
+        </div>
+      </div>`;
+
   } else {
+    // ── mega_number (défaut) : un seul gros chiffre central ──
     centerContent = `
       <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;">
         <div style="font-family:'JetBrains Mono',monospace;font-size:11rem;font-weight:700;color:${bgColor};line-height:1;text-shadow:0 0 80px ${bgColor}4d;">${statKey}</div>
@@ -488,8 +603,12 @@ function generateInfographicHTML(slide, tagColor, tag, source, slideNum, totalSl
       </div>`;
   }
 
-  const gridColor = `rgba(${hexToRgb(bgColor)}, 0.03)`;
-  const glowColor = `rgba(${hexToRgb(bgColor)}, 0.14)`;
+  // Résoudre le thème de fond
+  const { getThemeCSS } = require('./infographic-themes');
+  const { theme: t } = getThemeCSS(themeName || 'bleu');
+  const gridColor = t.gridColor;
+  const glowColor = t.glowColor;
+  const bgGrad = `linear-gradient(145deg,${t.bgStart} 0%,${t.bgMid} 50%,${t.bgEnd} 100%)`;
 
   return `<!DOCTYPE html>
 <html lang="fr">
@@ -506,23 +625,21 @@ function generateInfographicHTML(slide, tagColor, tag, source, slideNum, totalSl
 </head>
 <body>
     <div class="infographic">
-        <div style="position:absolute;inset:0;background:linear-gradient(145deg,#06080c 0%,#0a1628 50%,#06080c 100%);"></div>
+        <div style="position:absolute;inset:0;background:${bgGrad};"></div>
         <div style="position:absolute;inset:0;background-image:linear-gradient(${gridColor} 1px,transparent 1px),linear-gradient(90deg,${gridColor} 1px,transparent 1px);background-size:40px 40px;"></div>
         <div style="position:absolute;width:700px;height:700px;background:radial-gradient(circle,${glowColor} 0%,transparent 70%);top:-100px;left:50%;transform:translateX(-50%);"></div>
-        <div style="position:absolute;top:35px;right:45px;font-size:1rem;font-weight:700;color:rgba(255,255,255,0.6);z-index:2;font-family:'Syne',sans-serif;">${slideNum}/${totalSlides}</div>
         <div style="position:relative;z-index:1;height:100%;padding:50px 55px 40px;display:flex;flex-direction:column;">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-                <div style="font-size:0.85rem;font-weight:700;color:${bgColor};text-transform:uppercase;letter-spacing:0.05em;max-width:65%;line-height:1.3;background:rgba(6,8,12,0.6);padding:10px 16px;border-radius:10px;border-left:3px solid ${bgColor};">${cleanForTelegram(mainTitle).toUpperCase()}</div>
-                <div style="display:flex;align-items:center;gap:10px;background:rgba(6,8,12,0.5);padding:8px 16px 8px 8px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-                    <div style="width:40px;height:40px;background:linear-gradient(135deg,#00d4ff,#0099cc);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:1.1rem;color:#06080c;">\u20AC</div>
-                    <span style="font-weight:700;font-size:1.1rem;color:#f0f4f8;">O\u00F9 Va l'Argent</span>
+            <div style="display:flex;justify-content:flex-start;align-items:flex-start;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="font-family:'Instrument Serif',serif;font-size:4rem;color:#00d4ff;line-height:1;">\u20AC</span>
+                    <span style="font-family:'Instrument Serif',serif;font-size:1.8rem;font-style:italic;color:#ffffff;line-height:1;">O\u00F9 Va l'Argent</span>
                 </div>
             </div>
             <h2 style="font-family:'Instrument Serif',serif;font-size:3.2rem;text-align:center;color:#f0f4f8;line-height:1.1;margin-top:15px;">${slideTitle}</h2>
             ${centerContent}
-            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);">
-                <span style="font-size:1rem;color:#4a5a6a;">Sources : <span style="color:#8899a8;">${source}</span></span>
-                <span style="font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:500;color:#00d4ff;">ouvalargent.com</span>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid ${t.borderColor};">
+                <span style="font-size:1rem;color:${t.footerDim};">Sources : <span style="color:${t.footerLight};">${source}</span></span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:500;color:${t.urlColor};">ouvalargent.com</span>
             </div>
         </div>
     </div>
@@ -553,7 +670,7 @@ async function createOneCarousel(idea, name) {
 
     if (slideType === 'infographic') {
       // ── Slide infographie "Où Va l'Argent" ──
-      const infHtml = generateInfographicHTML(slide, idea.tag_color, idea.tag, idea.source, slideNum, totalSlides, mainTitle);
+      const infHtml = generateInfographicHTML(slide, idea.tag_color, idea.tag, idea.source, slideNum, totalSlides, mainTitle, idea.theme);
       const htmlPath = path.join(DAY_DIR, `${name}-slide${slideNum}.html`);
       fs.writeFileSync(htmlPath, infHtml);
       tmpFiles.push(htmlPath);
@@ -580,7 +697,9 @@ async function createOneCarousel(idea, name) {
 
       // Télécharger la photo
       const tmpPhoto = path.join(DAY_DIR, `${name}-photo${slideNum}.jpg`);
+      console.log(`    📷 Recherche photo: "${slide.search_query}" → index ${slideNum <= 2 ? 1 : slideNum}`);
       const photoPath = downloadPhoto(slide.search_query, tmpPhoto, slideNum <= 2 ? 1 : slideNum);
+      console.log(`    📷 Photo: ${photoPath ? `OK (${path.basename(photoPath)})` : 'ÉCHOUÉE'}`);
       if (photoPath) tmpFiles.push(photoPath);
 
       const page = await browser.newPage();

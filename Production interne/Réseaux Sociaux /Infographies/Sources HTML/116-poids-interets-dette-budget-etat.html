@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Les intérêts représentent 15% du budget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-deep: #180a0c; --text-primary: #f0f4f8; --text-secondary: #8899a8; --text-muted: #4a5a6a; --accent-electric: #00d4ff; --accent-gold: #ffd700; --accent-red: #ff4757; --accent-green: #00ff88; --accent-orange: #ff9f43; --glass-border: rgba(255, 255, 255, 0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #180a0c 0%, #451218 50%, #180a0c 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 71, 87, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 71, 87, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 71, 87, 0.1) 0%, transparent 70%); top: -100px; left: 50%; transform: translateX(-50%); }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255, 71, 87, 0.08) 0%, transparent 70%); bottom: -150px; left: -150px; }
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 55px 40px; display: flex; flex-direction: column; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 4rem; text-align: center; color: var(--text-primary); line-height: 1.1; margin-top: 20px; }
+        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .center-area { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .percentage-stat { font-family: 'JetBrains Mono', monospace; font-size: 11rem; font-weight: 700; color: var(--accent-red); line-height: 1; text-shadow: 0 0 80px rgba(255, 71, 87, 0.3); margin-bottom: 30px; }
+        .percentage-bar-container { width: 100%; max-width: 800px; margin: 40px 0; }
+        .percentage-bar-track { width: 100%; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 30px; position: relative; overflow: hidden; border: 2px solid rgba(255, 71, 87, 0.2); }
+        .percentage-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent-red) 0%, rgba(255, 71, 87, 0.8) 100%); border-radius: 30px; width: 15%; transition: width 2s ease; position: relative; }
+        .percentage-bar-fill::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%); animation: shine 2s infinite; }
+        @keyframes shine { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        .percentage-label { font-family: 'Instrument Serif', serif; font-size: 2.8rem; color: var(--text-primary); font-style: italic; text-align: center; margin-top: 20px; }
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 500; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="poids-interets-dette-budget-etat">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent</span></div>
+            </div>
+            <h2 class="chart-title">Les intérêts représentent<br><span class="accent">15% du budget</span></h2>
+            <div class="center-area">
+                <div class="percentage-stat">15%</div>
+                <div class="percentage-bar-container">
+                    <div class="percentage-bar-track">
+                        <div class="percentage-bar-fill"></div>
+                    </div>
+                </div>
+                <div class="percentage-label">du budget de l'État en intérêts de la dette</div>
+            </div>
+            <div class="footer">
+                <div class="source">Sources : <span>Projet de loi de finances · 2026</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

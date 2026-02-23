@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>L'Afrique tourne le dos à l'Occident</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-deep: #120c20; --text-primary: #f0f4f8; --text-secondary: #8899a8; --text-muted: #4a5a6a; --accent-violet: #a855f7; --accent-gold: #ffd700; --accent-red: #ff4757; --accent-green: #00b894; --accent-orange: #ff9f43; --glass-border: rgba(255, 255, 255, 0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #2a1555; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #120c20 0%, #2a1555 50%, #120c20 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(168,85,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%); top: -100px; left: 50%; transform: translateX(-50%); }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(168,85,247,0.06) 0%, transparent 70%); bottom: -150px; left: -150px; }
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 55px 40px; display: flex; flex-direction: column; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 4rem; text-align: center; color: var(--text-primary); line-height: 1.1; margin-top: 20px; }
+        .chart-title .accent { color: var(--accent-violet); font-style: italic; }
+        .center-area { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 40px; }
+        .chart-unit { font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-style: italic; color: var(--text-secondary); text-align: center; margin-bottom: 50px; }
+        .bar-chart { width: 100%; max-width: 800px; margin: 0 auto; }
+        .bar-item { margin-bottom: 35px; }
+        .bar-label { font-size: 1.8rem; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+        .bar-container { position: relative; height: 80px; background: rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); }
+        .bar-fill { height: 100%; position: relative; border-radius: 12px; display: flex; align-items: center; justify-content: flex-end; padding-right: 25px; transition: width 0.8s ease; }
+        .bar-value { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .bar-item:nth-child(1) .bar-fill { width: 100%; background: linear-gradient(90deg, rgba(0,184,148,0.4) 0%, #00b894 100%); }
+        .bar-item:nth-child(2) .bar-fill { width: 75%; background: linear-gradient(90deg, rgba(255,71,87,0.4) 0%, #ff4757 100%); }
+        .comparison-note { background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2); border-radius: 12px; padding: 20px; margin-top: 40px; text-align: center; }
+        .comparison-note .trend { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 600; color: var(--accent-violet); }
+        .comparison-note .detail { font-size: 1.1rem; color: var(--text-secondary); margin-top: 8px; }
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 500; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="afrique-investissements-est-pivot">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent</span></div>
+            </div>
+            <h2 class="chart-title">L'Afrique tourne le dos<br><span class="accent">à l'Occident</span></h2>
+            <div class="center-area">
+                <div class="chart-unit">Évolution des partenariats économiques africains</div>
+                <div class="bar-chart">
+                    <div class="bar-item">
+                        <div class="bar-label">Chine, Japon, Corée</div>
+                        <div class="bar-container">
+                            <div class="bar-fill">
+                                <span class="bar-value">↗️ Croissance</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Occident</div>
+                        <div class="bar-container">
+                            <div class="bar-fill">
+                                <span class="bar-value">↘️ Déclin</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-note">
+                    <div class="trend">Pivot stratégique majeur</div>
+                    <div class="detail">L'Asie devient le premier partenaire économique du continent</div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="source">Sources : <span>Challenges · 2026</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

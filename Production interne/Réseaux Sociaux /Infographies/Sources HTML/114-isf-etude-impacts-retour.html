@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Retour de l'ISF : que dit la nouvelle étude ?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-deep: #18120a; --text-primary: #f0f4f8; --text-secondary: #8899a8; --text-muted: #4a5a6a; --accent-electric: #00d4ff; --accent-gold: #ffd700; --accent-red: #ff4757; --accent-green: #00ff88; --accent-orange: #ff9f43; --glass-border: rgba(255, 255, 255, 0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #18120a 0%, #3d2a0a 50%, #18120a 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%); top: -100px; left: 50%; transform: translateX(-50%); }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%); bottom: -150px; left: -150px; }
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 55px 40px; display: flex; flex-direction: column; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 4rem; text-align: center; color: var(--text-primary); line-height: 1.1; margin-top: 20px; }
+        .chart-title .accent { color: #ffd700; font-style: italic; }
+        .center-area { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; width: 100%; max-width: 800px; position: relative; }
+        .comparison-card { background: rgba(255, 215, 0, 0.05); border: 1px solid rgba(255, 215, 0, 0.2); border-radius: 20px; padding: 40px 30px; text-align: center; backdrop-filter: blur(10px); }
+        .comparison-value { font-family: 'JetBrains Mono', monospace; font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 15px; }
+        .comparison-label { font-family: 'Syne', sans-serif; font-size: 1.4rem; color: var(--text-secondary); line-height: 1.3; }
+        .vs-circle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: #ffd700; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 700; color: #18120a; z-index: 2; box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); }
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 500; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="isf-etude-impacts-retour">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent</span></div>
+            </div>
+            <h2 class="chart-title">Retour de l'ISF :<br><span class="accent">que dit la nouvelle étude ?</span></h2>
+            <div class="center-area">
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <div class="comparison-value" style="color: #00ff88;">3,2 Md€</div>
+                        <div class="comparison-label">Recettes estimées</div>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="comparison-value" style="color: #ff4757;">1,1 Md€</div>
+                        <div class="comparison-label">Pertes par exil fiscal</div>
+                    </div>
+                    <div class="vs-circle">VS</div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="source">Sources : <span>IPP - Institut des politiques publiques · 2025</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

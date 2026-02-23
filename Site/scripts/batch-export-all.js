@@ -54,19 +54,21 @@ const TIKTOK_CSS = `
 }
 
 .logo-icon {
-  width: 72px !important;
-  height: 72px !important;
-  font-size: 2rem !important;
-  border-radius: 16px !important;
+  font-family: 'Instrument Serif', serif !important;
+  font-size: 4rem !important;
+  color: #00d4ff !important;
+  line-height: 1 !important;
+  width: auto !important;
+  height: auto !important;
+  background: none !important;
+  border-radius: 0 !important;
 }
 
 .logo-text {
+  font-family: 'Instrument Serif', serif !important;
   font-size: 1.8rem !important;
-}
-
-.tag {
-  padding: 18px 36px !important;
-  font-size: 1.4rem !important;
+  font-style: italic !important;
+  color: #ffffff !important;
 }
 
 /* --- Titres (gros pour TikTok mais pas trop pour laisser de la place au contenu) --- */
@@ -922,19 +924,21 @@ const RECTANGLE_CSS = `
 }
 
 .logo-icon {
-  width: 36px !important;
-  height: 36px !important;
-  font-size: 1rem !important;
-  border-radius: 8px !important;
+  font-family: 'Instrument Serif', serif !important;
+  font-size: 2.4rem !important;
+  color: #00d4ff !important;
+  line-height: 1 !important;
+  width: auto !important;
+  height: auto !important;
+  background: none !important;
+  border-radius: 0 !important;
 }
 
 .logo-text {
+  font-family: 'Instrument Serif', serif !important;
   font-size: 1rem !important;
-}
-
-.tag {
-  padding: 6px 14px !important;
-  font-size: 0.7rem !important;
+  font-style: italic !important;
+  color: #ffffff !important;
 }
 
 /* --- Titres compacts --- */
@@ -1628,6 +1632,34 @@ const INFOGRAPHICS = [
   ['66-dette-us-interets-vs-pentagone.html', 0, '66-dette-us-interets-vs-pentagone'],
   ['67-surendettement-10pct-jeunes.html', 0, '67-surendettement-10pct-jeunes'],
   ['68-maprimerenov-6-mois-attente.html', 0, '68-maprimerenov-6-mois-attente'],
+  ['109-france-championne-depenses-sociales-europe.html', 0, '109-france-championne-depenses-sociales-europe'],
+  ['110-charge-interets-dette-publique-france.html', 0, '110-charge-interets-dette-publique-france'],
+  ['111-per-dominent-epargne-retraite-2024.html', 0, '111-per-dominent-epargne-retraite-2024'],
+  ['112-france-championne-depenses-sociales-europe.html', 0, '112-france-championne-depenses-sociales-europe'],
+  ['113-evolution-interets-dette-publique-france.html', 0, '113-evolution-interets-dette-publique-france'],
+  ['114-isf-etude-impacts-retour.html', 0, '114-isf-etude-impacts-retour'],
+  ['115-classement-depenses-sociales-europe-top5.html', 0, '115-classement-depenses-sociales-europe-top5'],
+  ['116-poids-interets-dette-budget-etat.html', 0, '116-poids-interets-dette-budget-etat'],
+  ['117-isf-gain-net-gouvernement.html', 0, '117-isf-gain-net-gouvernement'],
+  ['118-france-vs-allemagne-depenses-sociales.html', 0, '118-france-vs-allemagne-depenses-sociales'],
+  ['119-france-championne-depenses-sociales-europe.html', 0, '119-france-championne-depenses-sociales-europe'],
+  ['120-dette-france-interets-croissants.html', 0, '120-dette-france-interets-croissants'],
+  ['121-per-dominent-epargne-retraite-2024.html', 0, '121-per-dominent-epargne-retraite-2024'],
+  ['122-modele-social-francais-vs-europe.html', 0, '122-modele-social-francais-vs-europe'],
+  ['123-evolution-charge-dette-france.html', 0, '123-evolution-charge-dette-france'],
+  ['124-success-story-per-epargne-retraite.html', 0, '124-success-story-per-epargne-retraite'],
+  ['125-france-leader-social-europe-chiffres.html', 0, '125-france-leader-social-europe-chiffres'],
+  ['126-pokemon-150-milliards-franchise.html', 0, '126-pokemon-150-milliards-franchise'],
+  ['127-proman-top-10-interim-mondial.html', 0, '127-proman-top-10-interim-mondial'],
+  ['128-mesures-rn-patronat-impact.html', 0, '128-mesures-rn-patronat-impact'],
+  ['129-mix-energetique-france-2030.html', 0, '129-mix-energetique-france-2030'],
+  ['130-chine-usa-douane-tensions.html', 0, '130-chine-usa-douane-tensions'],
+  ['131-afrique-investissements-est-pivot.html', 0, '131-afrique-investissements-est-pivot'],
+  ['132-france-services-communes-impact.html', 0, '132-france-services-communes-impact'],
+  ['133-classement-maires-grandes-villes.html', 0, '133-classement-maires-grandes-villes'],
+  ['134-echec-marques-maga-profits.html', 0, '134-echec-marques-maga-profits'],
+  ['135-montchalin-cour-comptes-polemique.html', 0, '135-montchalin-cour-comptes-polemique'],
+  ['136-tensions-commerciales-usa-chine.html', 0, '136-tensions-commerciales-usa-chine'],
 ];
 
 async function exportFormat(browser, htmlPath, items, { css, jsTransform, width, height, outputDir, suffix, label }) {

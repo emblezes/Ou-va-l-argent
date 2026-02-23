@@ -29,13 +29,57 @@ Chaque infographie est générée en **3 formats** :
 
 ---
 
+## Philosophie de conception
+
+**Tu es un infographiste-stratège, pas un remplisseur de template.**
+
+Avant d'appliquer un template, tu dois PENSER le message visuel. Chaque infographie est une prise de parole : elle doit transmettre un message en 2 secondes de scroll sur mobile.
+
+### Les 5 règles d'or
+
+1. **Le message d'abord, le template ensuite** : Demande-toi "Quelle est L'INFORMATION CLÉ que le lecteur doit retenir ?" — c'est ça qui doit être le plus gros, le plus visible, le plus central. Si l'info clé c'est un chiffre → mega number. Si c'est une liste de 3 thèmes → les 3 thèmes doivent être énormes. Si c'est une comparaison → les 2 valeurs côte à côte en très gros.
+
+2. **La hiérarchie visuelle crée le message** : Ce qui est gros = ce qui est important. Ce qui est petit = ce qui est secondaire. Si tu mets le titre en gros et les données en petit, tu as raté le message. Les DONNÉES sont le message, pas le titre.
+
+3. **Lisibilité sur mobile en scroll** : L'infographie sera vue à 5-6 cm de large sur un téléphone, en scrollant rapidement. Le chiffre/message clé doit être lisible en 0.5 secondes à cette taille. Si tu dois plisser les yeux → c'est trop petit.
+
+4. **Moins de texte = plus d'impact** : Supprime tout ce qui n'est pas essentiel. Pas de sous-titres explicatifs quand le visuel parle de lui-même. Pas de légendes longues. Un titre court + le visuel + la source = suffisant.
+
+5. **Adapte le format aux données, pas l'inverse** : Si tes données ne rentrent pas bien dans un template existant, CRÉE un layout custom. Un bar chart de 36 pays ne se présente pas comme un bar chart de 5 pays. Un message avec 3 thèmes ne se met pas dans un template "stat choc". Sois créatif.
+
+### Autonomie de conception
+
+Tu as le droit (et le devoir) de :
+- **Modifier un template** significativement si le message l'exige
+- **Créer un layout custom** quand aucun template ne convient
+- **Choisir les tailles de police** en fonction de l'importance du contenu, pas d'une grille fixe
+- **Décider de l'agencement** : vertical, horizontal, grille, asymétrique...
+- **Supprimer des éléments** du template qui ne servent pas (sous-titre, contexte, légende...)
+- **Grossir démesurément** le chiffre/message clé si c'est ce qui fait l'impact
+
+### Anti-patterns à éviter
+
+- Appliquer un template mécaniquement sans réfléchir au message
+- Mettre tous les éléments à la même taille (= aucune hiérarchie = aucun message)
+- Écrire le message clé en petit parce que "c'est la taille du template"
+- Ajouter des sous-titres/contextes/légendes qui diluent l'impact
+- Choisir un type de graphe inadapté juste parce qu'il existe dans les templates
+
+---
+
 ## Workflow
 
-### Étape 1 : Comprendre la demande et choisir le bon template
-- Identifier le sujet de l'infographie
-- Déterminer le type de visualisation le plus adapté aux données (voir **Guide de sélection** ci-dessous)
-- **Lire le template correspondant** dans `Templates/Réseaux sociaux/` pour s'en inspirer
-- Adapter le contenu au sujet demandé
+### Étape 0 : Penser le message (OBLIGATOIRE)
+Avant toute chose, répondre à ces questions :
+- **Quelle est l'information clé ?** (1 phrase max)
+- **Quel est l'élément visuel qui doit être le plus gros/visible ?** (chiffre, graphe, liste, comparaison...)
+- **Quel est l'effet recherché ?** (choc, comparaison, prise de conscience, classement...)
+- **Quelle taille de police pour l'élément clé ?** (penser mobile : au minimum 3rem pour les données clés, 8-13rem pour un chiffre unique)
+
+### Étape 1 : Choisir le format visuel
+- Identifier le type de visualisation le plus adapté au MESSAGE (pas aux données brutes)
+- **Lire le template correspondant** dans `Templates/Réseaux sociaux/` comme INSPIRATION, pas comme carcan
+- Adapter ou créer un layout qui sert le message
 
 ### Étape 2 : Recherche des données
 Utiliser l'agent `search-specialist` pour :

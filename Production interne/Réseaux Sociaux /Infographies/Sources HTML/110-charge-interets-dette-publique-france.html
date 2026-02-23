@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Les intérêts de la dette asphyxient le budget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-deep: #180a0c; --text-primary: #f0f4f8; --text-secondary: #8899a8; --text-muted: #4a5a6a; --accent-electric: #00d4ff; --accent-gold: #ffd700; --accent-red: #ff4757; --accent-green: #00ff88; --accent-orange: #ff9f43; --glass-border: rgba(255, 255, 255, 0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #180a0c 0%, #451218 50%, #180a0c 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 71, 87, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 71, 87, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 71, 87, 0.1) 0%, transparent 70%); top: -100px; left: 50%; transform: translateX(-50%); }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255, 71, 87, 0.08) 0%, transparent 70%); bottom: -150px; left: -150px; }
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 55px 40px; display: flex; flex-direction: column; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 4rem; text-align: center; color: var(--text-primary); line-height: 1.1; margin-top: 20px; }
+        .chart-title .accent { color: #ff4757; font-style: italic; }
+        .center-area { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .chart-container { width: 100%; max-width: 800px; height: 400px; margin-bottom: 40px; }
+        .chart-stats { text-align: center; margin-top: 20px; }
+        .mega-number { font-family: 'JetBrains Mono', monospace; font-size: 7rem; font-weight: 700; color: #ff4757; line-height: 1; text-shadow: 0 0 80px rgba(255, 71, 87, 0.3); }
+        .mega-unit { font-family: 'Instrument Serif', serif; font-size: 2.5rem; color: var(--text-primary); font-style: italic; margin-top: 10px; }
+        .mega-sub { font-size: 1.4rem; color: var(--text-secondary); margin-top: 15px; text-align: center; }
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 500; color: var(--accent-electric); }
+        .chart-svg { width: 100%; height: 100%; }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="charge-interets-dette-publique-france">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent</span></div>
+            </div>
+            <h2 class="chart-title">Les intérêts de la dette<br><span class="accent">asphyxient</span> le budget</h2>
+            <div class="center-area">
+                <div class="chart-container">
+                    <svg class="chart-svg" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff4757;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#ff4757;stop-opacity:0.05" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Grid lines -->
+                        <g stroke="rgba(255,71,87,0.1)" stroke-width="1" fill="none">
+                            <line x1="100" y1="80" x2="100" y2="320" />
+                            <line x1="240" y1="80" x2="240" y2="320" />
+                            <line x1="380" y1="80" x2="380" y2="320" />
+                            <line x1="520" y1="80" x2="520" y2="320" />
+                            <line x1="660" y1="80" x2="660" y2="320" />
+                            <line x1="100" y1="320" x2="700" y2="320" />
+                            <line x1="100" y1="260" x2="700" y2="260" />
+                            <line x1="100" y1="200" x2="700" y2="200" />
+                            <line x1="100" y1="140" x2="700" y2="140" />
+                            <line x1="100" y1="80" x2="700" y2="80" />
+                        </g>
+                        
+                        <!-- Y-axis labels -->
+                        <g fill="#8899a8" font-family="JetBrains Mono" font-size="14" text-anchor="end">
+                            <text x="90" y="325">30</text>
+                            <text x="90" y="265">40</text>
+                            <text x="90" y="205">50</text>
+                            <text x="90" y="145">60</text>
+                            <text x="90" y="85">70</text>
+                        </g>
+                        
+                        <!-- X-axis labels -->
+                        <g fill="#8899a8" font-family="JetBrains Mono" font-size="14" text-anchor="middle">
+                            <text x="100" y="350">2020</text>
+                            <text x="240" y="350">2021</text>
+                            <text x="380" y="350">2022</text>
+                            <text x="520" y="350">2023</text>
+                            <text x="660" y="350">2024</text>
+                            <text x="700" y="350">2025</text>
+                        </g>
+                        
+                        <!-- Area under curve -->
+                        <path d="M100,308 L240,302 L380,268 L520,236 L660,204 L700,180 L700,320 L100,320 Z" fill="url(#lineGradient)" />
+                        
+                        <!-- Main line -->
+                        <path d="M100,308 L240,302 L380,268 L520,236 L660,204 L700,180" stroke="#ff4757" stroke-width="3" fill="none" />
+                        
+                        <!-- Data points -->
+                        <g fill="#ff4757" stroke="#ffffff" stroke-width="2">
+                            <circle cx="100" cy="308" r="6" />
+                            <circle cx="240" cy="302" r="6" />
+                            <circle cx="380" cy="268" r="6" />
+                            <circle cx="520" cy="236" r="6" />
+                            <circle cx="660" cy="204" r="8" />
+                            <circle cx="700" cy="180" r="6" />
+                        </g>
+                        
+                        <!-- Value labels -->
+                        <g fill="#f0f4f8" font-family="JetBrains Mono" font-size="12" text-anchor="middle">
+                            <text x="100" y="295">35</text>
+                            <text x="240" y="289">37</text>
+                            <text x="380" y="255">42</text>
+                            <text x="520" y="223">48</text>
+                            <text x="660" y="191">52</text>
+                            <text x="700" y="167">58</text>
+                        </g>
+                        
+                        <!-- Unit label -->
+                        <text x="400" y="35" fill="#8899a8" font-family="Syne" font-size="16" text-anchor="middle">Milliards d'euros</text>
+                    </svg>
+                </div>
+                <div class="chart-stats">
+                    <div class="mega-number">52Md€</div>
+                    <div class="mega-unit">d'intérêts en 2024</div>
+                    <div class="mega-sub">Plus que le budget de l'Éducation nationale</div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="source">Sources : <span>Les Échos · 2026</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

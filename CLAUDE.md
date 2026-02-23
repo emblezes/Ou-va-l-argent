@@ -14,14 +14,14 @@
 
 ---
 
-## Pipeline automatisé (toutes les 2 heures)
+## Pipeline automatisé (2 fois par jour)
 
-Le projet dispose d'un **pipeline automatisé** qui produit des carrousels d'actualité toutes les 2 heures et les envoie sur Telegram.
+Le projet dispose d'un **pipeline automatisé** qui produit des carrousels d'actualité 2 fois par jour (8h et 18h) et les envoie sur Telegram.
 
 ### Fonctionnement
 
 ```
-Toutes les 2h (7h-23h) :
+2 fois par jour (8h et 18h) :
   RSS (8 sources) → Déduplication (cache 48h)
                    → Si nouveautés :
                       Claude Haiku → 3 idées de carrousel (JSON)
@@ -70,8 +70,8 @@ node scripts/telegram-hourly-carousels.js --reset
 ### Automatisation (cron)
 
 ```bash
-# Toutes les 2 heures de 7h à 23h
-0 7-23/2 * * * cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site" && node scripts/telegram-hourly-carousels.js >> /tmp/ovla-hourly.log 2>&1
+# 2 fois par jour : 8h et 18h
+0 8,18 * * * cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site" && /usr/local/bin/node scripts/telegram-hourly-carousels.js >> /tmp/ovla-hourly.log 2>&1
 ```
 
 ### Ce que produit le pipeline (par exécution)
@@ -88,7 +88,7 @@ Le cache `.veille-carousel-cache.json` stocke les articles déjà traités (TTL 
 
 ### Coût estimé
 
-~$15-20/mois (Claude Haiku × 9 exécutions/jour × 2 appels Claude par exécution)
+~$3-5/mois (Claude Haiku × 2 exécutions/jour × 2 appels Claude par exécution)
 
 ---
 
@@ -130,6 +130,110 @@ Tous dans `Site/scripts/` :
 | `download-google-image.js` | Télécharger une image depuis Google Images (Puppeteer) |
 | `export-actu-video.js` | Overlay titre/logo sur une vidéo (ffmpeg) |
 | `notion-add-post.js` | Ajouter un post au calendrier Notion |
+| `weekly-content-machine.js` | **Machine hebdomadaire** : veille profonde → 21 infographies/semaine → Notion + Telegram |
+
+---
+
+## Machine de contenu hebdomadaire (Weekly Content Machine)
+
+Le projet dispose d'un **pipeline hebdomadaire** qui produit automatiquement 21 infographies permanentes (3/jour × 7 jours) basées sur des sources institutionnelles profondes.
+
+### Workflow semi-automatique
+
+```
+Dimanche 22h  → --scrape   : Veille profonde (13 sources institutionnelles)
+Lundi 6h      → --plan     : Claude sélectionne 21 idées → plan envoyé sur Telegram
+[Validation]  : Éditer le JSON ou lancer directement --produce
+Lundi 8h      → --produce  : Génération 21 HTML + 63 PNG + 21 entrées Notion + Telegram
+```
+
+### Sources institutionnelles (75% France / 25% International)
+
+**France** : Les Echos, INSEE, Cour des Comptes, Banque de France, DREES, France Stratégie, OFCE, DGFiP, La Tribune
+**International** : Eurostat, BCE, OCDE, FMI
+
+Config dans `Site/scripts/weekly-sources.json`.
+
+### Script principal
+
+```bash
+cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site"
+
+# Phase 1 : Scraping profond (dimanche soir)
+node scripts/weekly-content-machine.js --scrape
+
+# Phase 2 : Plan de la semaine → Telegram (lundi matin)
+node scripts/weekly-content-machine.js --plan
+
+# Phase 3+4 : Production + publication (après validation)
+node scripts/weekly-content-machine.js --produce
+
+# Tout d'un coup (test)
+node scripts/weekly-content-machine.js --full --dry-run --count=3
+
+# Retry les infographies échouées
+node scripts/weekly-content-machine.js --retry-failed
+```
+
+### Automatisation (cron)
+
+```bash
+# Dimanche 22h : scraping profond
+0 22 * * 0 cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site" && node scripts/weekly-content-machine.js --scrape >> /tmp/ovla-weekly.log 2>&1
+
+# Lundi 6h : plan de la semaine
+0 6 * * 1 cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site" && node scripts/weekly-content-machine.js --plan >> /tmp/ovla-weekly.log 2>&1
+
+# Lundi 8h : production automatique
+0 8 * * 1 cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site" && node scripts/weekly-content-machine.js --produce >> /tmp/ovla-weekly.log 2>&1
+```
+
+### Ce que produit le pipeline (par semaine)
+
+**Infographies :**
+- **21 fichiers HTML** dans `Sources HTML/` (infographies permanentes)
+- **63 fichiers PNG** (21 × 3 formats : Instagram, TikTok V, TikTok H)
+- Mise à jour automatique du tableau `INFOGRAPHICS` dans `batch-export-all.js`
+
+**Textes de publication :**
+- **21 posts LinkedIn** longs (300-500 mots, ton expert) → `Contenu Hebdo/{WEEK}/linkedin-posts.md`
+- **21 captions Instagram** (150-250 mots, engageantes) → `Contenu Hebdo/{WEEK}/instagram-captions.md`
+- **21 tweets** (< 280 chars) → `Contenu Hebdo/{WEEK}/tweets.md`
+- **1 newsletter complète** (800-1200 mots, prête pour Substack/Mailchimp) → `Contenu Hebdo/{WEEK}/newsletter.md`
+
+**Distribution :**
+- **21 entrées Notion** dans le calendrier de publication (statut "Prêt", textes pré-remplis)
+- **7 messages Telegram** quotidiens (3 PNG + textes LinkedIn/Instagram par jour)
+- **1 newsletter** envoyée sur Telegram
+- **1 rapport final** récapitulatif
+
+### Architecture modulaire
+
+```
+Site/scripts/
+  weekly-content-machine.js              ← Orchestrateur CLI
+  weekly-sources.json                    ← Config des 13 sources institutionnelles
+  weekly-modules/
+    deep-scraper.js                      ← Phase 1 : Scraping RSS/HTML
+    weekly-planner.js                    ← Phase 2 : Claude Haiku + Sonnet → plan
+    weekly-producer.js                   ← Phase 3 : HTML + PNG via Puppeteer
+    weekly-copywriter.js                 ← Phase 3b : Rédaction LinkedIn, Instagram, newsletter
+    weekly-publisher.js                  ← Phase 4 : Notion + Telegram
+```
+
+**Sortie fichiers :**
+```
+Production interne/Réseaux Sociaux /Contenu Hebdo/
+  2026-W09/
+    newsletter-2026-W09.md               ← Newsletter complète
+    linkedin-posts-2026-W09.md           ← 21 posts LinkedIn
+    instagram-captions-2026-W09.md       ← 21 captions Instagram
+    tweets-2026-W09.md                   ← 21 tweets
+```
+
+### Coût estimé
+
+~$3/semaine (~$12/mois) : 21 Sonnet (HTML) + 5 Sonnet (copywriting) + 1 Sonnet (newsletter) + 2 planner
 
 ---
 

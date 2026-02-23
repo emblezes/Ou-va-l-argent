@@ -143,48 +143,25 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .logo-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, var(--accent-electric) 0%, #0099cc 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 600;
-            font-size: 1.5rem;
-            color: var(--bg-deep);
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem;
+            color: #00d4ff;
+            line-height: 1;
         }
 
         .logo-text {
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-        }
-
-        .tag {
-            padding: 14px 28px;
-            background: var(--accent-electric-dim);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 50px;
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--accent-electric);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            color: #ffffff;
+            line-height: 1;
         }
 
         /* Tag color variants */
-        .tag.gold { background: var(--accent-gold-dim); border-color: rgba(255, 215, 0, 0.3); color: var(--accent-gold); }
-        .tag.red { background: rgba(255, 71, 87, 0.15); border-color: rgba(255, 71, 87, 0.3); color: var(--accent-red); }
-        .tag.green { background: rgba(0, 255, 136, 0.15); border-color: rgba(0, 255, 136, 0.3); color: var(--accent-green); }
-        .tag.purple { background: rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.3); color: var(--accent-purple); }
-        .tag.orange { background: rgba(255, 159, 67, 0.15); border-color: rgba(255, 159, 67, 0.3); color: var(--accent-orange); }
 
         /* =============================================
            FOOTER
@@ -776,12 +753,10 @@
             color: rgba(0, 255, 136, 0.7);
         }
 
-
         /* =============================================================================
            BATCH 1 : TYPES 8-13 (Pie, Donut SVG, Line, Area, Stacked Bars, Grouped Bars)
            ============================================================================= */
-        
-        
+
         /* ===== TYPE 8 : PIE CHART ===== */
         
         .pie-section {
@@ -862,8 +837,7 @@
             color: var(--text-secondary);
             margin-top: 2px;
         }
-        
-        
+
         /* ===== TYPE 9 : DONUT CHART (SVG) ===== */
         
         .donut-svg-section {
@@ -966,8 +940,7 @@
             color: var(--text-secondary);
             margin-top: 2px;
         }
-        
-        
+
         /* ===== TYPE 10 : LINE CHART ===== */
         
         .line-chart-section {
@@ -1136,8 +1109,7 @@
             font-weight: 600;
             color: var(--text-primary);
         }
-        
-        
+
         /* ===== TYPE 11 : AREA CHART ===== */
         
         .area-chart-section {
@@ -1238,8 +1210,7 @@
             font-size: 13px;
             fill: var(--accent-gold);
         }
-        
-        
+
         /* ===== TYPE 12 : STACKED BARS ===== */
         
         .stacked-chart {
@@ -1322,8 +1293,7 @@
             color: var(--text-secondary);
             font-weight: 500;
         }
-        
-        
+
         /* ===== TYPE 13 : GROUPED BARS ===== */
         
         .grouped-legend {
@@ -1432,16 +1402,14 @@
             transform: translateY(-50%);
             white-space: nowrap;
         }
-        
-        
+
         /* =============================================================================
         
         /* ============================================================
            CSS BATCH 2 - Chart-specific styles for types 14-19
            Base (Instagram 1080x1080) + TikTok & Rectangle overrides
            ============================================================ */
-        
-        
+
         /* ===== TYPE 14 : WATERFALL ===== */
         
         .waterfall-chart {
@@ -1543,8 +1511,7 @@
             color: var(--text-muted);
             transform: translateY(-50%);
         }
-        
-        
+
         /* ===== TYPE 15 : GAUGE ===== */
         
         .gauge-section {
@@ -1642,8 +1609,7 @@
             color: var(--accent-gold);
             font-weight: 500;
         }
-        
-        
+
         /* ===== TYPE 16 : SCATTER ===== */
         
         .scatter-section {
@@ -1706,8 +1672,7 @@
             border-radius: 50%;
             flex-shrink: 0;
         }
-        
-        
+
         /* ===== TYPE 17 : RADAR ===== */
         
         .radar-section {
@@ -1790,8 +1755,7 @@
         .radar-legend-flag {
             font-size: 1.4rem;
         }
-        
-        
+
         /* ===== TYPE 18 : SLOPE ===== */
         
         .slope-chart {
@@ -1960,8 +1924,7 @@
             opacity: 0.6;
             stroke-dasharray: 8 4;
         }
-        
-        
+
         /* ===== TYPE 19 : TREEMAP ===== */
         
         .treemap-section {
@@ -2125,8 +2088,7 @@
         .treemap-cell.tiny .treemap-pct {
             font-size: 0.7rem;
         }
-        
-        
+
         /* ============================================================
 
         /* =============================================
@@ -2160,20 +2122,14 @@
         }
 
         .format-tiktok .logo-icon {
-            width: 72px;
-            height: 72px;
-            font-size: 2rem;
-            border-radius: 16px;
+            font-size: 4rem;
         }
 
         .format-tiktok .logo-text {
             font-size: 1.8rem;
         }
 
-        .format-tiktok .tag {
-            padding: 18px 36px;
-            font-size: 1.4rem;
-        }
+        .format-tiktok
 
         /* Titres */
         .format-tiktok .section-title,
@@ -2294,7 +2250,6 @@
             font-size: 1.1rem;
         }
 
-
            TIKTOK OVERRIDES - BATCH 1 (Types 8-13)
            ============================================================================= */
         
@@ -2364,8 +2319,7 @@
         .format-tiktok .grouped-label { font-size: 1.8rem; margin-top: 20px; }
         .format-tiktok .grouped-gridlines { height: 650px; }
         .format-tiktok .grouped-gridline-label { font-size: 1.2rem; }
-        
-        
+
         /* =============================================================================
         
            TIKTOK OVERRIDES - NEW TYPES (batch 2)
@@ -2669,8 +2623,7 @@
         .format-tiktok .treemap-cell.tiny .treemap-pct {
             font-size: 1.1rem;
         }
-        
-        
+
         /* ============================================================
 
         /* =============================================
@@ -2685,19 +2638,14 @@
         }
 
         .format-rectangle .logo-icon {
-            width: 44px;
-            height: 44px;
-            font-size: 1.2rem;
+            font-size: 4rem;
         }
 
         .format-rectangle .logo-text {
-            font-size: 1.15rem;
+            font-size: 1.8rem;
         }
 
-        .format-rectangle .tag {
-            padding: 10px 20px;
-            font-size: 0.95rem;
-        }
+        .format-rectangle
 
         .format-rectangle .footer {
             padding-top: 20px;
@@ -2930,7 +2878,6 @@
             margin-bottom: 3px;
         }
 
-
            RECTANGLE OVERRIDES - BATCH 1 (Types 8-13)
            ============================================================================= */
         
@@ -3000,8 +2947,7 @@
         .format-rectangle .grouped-label { font-size: 0.75rem; margin-top: 8px; }
         .format-rectangle .grouped-gridlines { height: 220px; }
         .format-rectangle .grouped-gridline-label { font-size: 0.5rem; }
-        
-        
+
            RECTANGLE OVERRIDES - NEW TYPES (batch 2)
            Format: 1080x600 (~16:9) - Fonts ~-50%, containers smaller
            ============================================================ */
@@ -3366,10 +3312,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag red">Dette</div>
                         </div>
 
                         <div class="main-stat">
@@ -3403,10 +3348,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag red">Dette</div>
                         </div>
 
                         <div class="main-stat">
@@ -3439,10 +3383,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag red">Dette</div>
                         </div>
 
                         <div class="main-stat">
@@ -3486,10 +3429,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag purple">International</div>
                         </div>
 
                         <h2 class="section-title">Dette publique :<br><span class="accent">France vs Allemagne</span></h2>
@@ -3529,10 +3471,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag purple">International</div>
                         </div>
 
                         <h2 class="section-title">Dette publique :<br><span class="accent">France vs Allemagne</span></h2>
@@ -3571,10 +3512,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag purple">International</div>
                         </div>
 
                         <h2 class="section-title">Dette : <span class="accent">France vs Allemagne</span></h2>
@@ -3625,10 +3565,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag gold">Dépenses</div>
                         </div>
 
                         <div class="chart-container">
@@ -3688,10 +3627,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag gold">Dépenses</div>
                         </div>
 
                         <div class="chart-container">
@@ -3750,10 +3688,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag gold">Dépenses</div>
                         </div>
 
                         <div class="chart-container">
@@ -3812,10 +3749,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag red">Dette</div>
                         </div>
 
                         <div class="timeline-container">
@@ -3869,10 +3805,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag red">Dette</div>
                         </div>
 
                         <div class="timeline-container">
@@ -3925,10 +3860,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag red">Dette</div>
                         </div>
 
                         <div class="timeline-container">
@@ -3987,10 +3921,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag gold">Impôts</div>
                         </div>
 
                         <h2 class="section-title">Qui paie l'<span class="accent">impôt</span> ?</h2>
@@ -4043,10 +3976,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag gold">Impôts</div>
                         </div>
 
                         <h2 class="section-title" style="margin-top: 80px;">Qui paie l'<span class="accent">impôt</span> ?</h2>
@@ -4098,10 +4030,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag gold">Impôts</div>
                         </div>
 
                         <h2 class="section-title">Qui paie l'<span class="accent">impôt</span> ?</h2>
@@ -4161,10 +4092,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag red">Alerte</div>
                         </div>
 
                         <div class="quote-section">
@@ -4197,10 +4127,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag red">Alerte</div>
                         </div>
 
                         <div class="quote-section">
@@ -4232,10 +4161,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag red">Alerte</div>
                         </div>
 
                         <div class="quote-section">
@@ -4274,10 +4202,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <h2 class="chart-title">Comment l'Etat <span class="accent">depense</span><br>votre argent</h2>
@@ -4400,10 +4327,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <h2 class="chart-title">Comment l'Etat <span class="accent">depense</span><br>votre argent</h2>
@@ -4525,10 +4451,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <h2 class="chart-title">Comment l'Etat <span class="accent">depense</span><br>votre argent</h2>
@@ -4659,10 +4584,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <h2 class="chart-title">D'ou viennent les <span class="accent">recettes</span><br>de l'Etat ?</h2>
@@ -4775,10 +4699,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <h2 class="chart-title">D'ou viennent les <span class="accent">recettes</span><br>de l'Etat ?</h2>
@@ -4890,10 +4813,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <h2 class="chart-title">D'ou viennent les <span class="accent">recettes</span><br>de l'Etat ?</h2>
@@ -5014,10 +4936,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <h2 class="chart-title">PIB : <span class="accent">France</span> vs <span class="gold">Allemagne</span></h2>
@@ -5130,10 +5051,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <h2 class="chart-title">PIB : <span class="accent">France</span> vs <span class="gold">Allemagne</span></h2>
@@ -5245,10 +5165,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <h2 class="chart-title">PIB : <span class="accent">France</span> vs <span class="gold">Allemagne</span></h2>
@@ -5369,10 +5288,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <h2 class="chart-title">La dette publique<br><span class="accent">hors de controle</span></h2>
@@ -5471,10 +5389,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <h2 class="chart-title">La dette publique<br><span class="accent">hors de controle</span></h2>
@@ -5572,10 +5489,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <h2 class="chart-title">La dette publique<br><span class="accent">hors de controle</span></h2>
@@ -5682,10 +5598,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Comparaison</div>
                         </div>
 
                         <div class="chart-container">
@@ -5830,10 +5745,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Comparaison</div>
                         </div>
 
                         <div class="chart-container">
@@ -5977,10 +5891,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Comparaison</div>
                         </div>
 
                         <div class="chart-container">
@@ -6133,10 +6046,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <div class="chart-container">
@@ -6236,10 +6148,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <div class="chart-container">
@@ -6338,10 +6249,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Économie</div>
                         </div>
 
                         <div class="chart-container">
@@ -6449,10 +6359,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Fiscalité</div>
                         </div>
 
                         <div class="chart-container">
@@ -6550,10 +6459,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Fiscalité</div>
                         </div>
 
                         <div class="chart-container">
@@ -6650,10 +6558,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Fiscalité</div>
                         </div>
 
                         <div class="chart-container">
@@ -6759,10 +6666,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Dette</div>
                         </div>
 
                         <div class="chart-container">
@@ -6856,10 +6762,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Dette</div>
                         </div>
 
                         <div class="chart-container">
@@ -6952,10 +6857,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">€</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Où Va l'Argent</span>
                             </div>
-                            <div class="tag">Dette</div>
                         </div>
 
                         <div class="chart-container">
@@ -7057,10 +6961,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Ou Va l'Argent</span>
                             </div>
-                            <div class="tag">Macro</div>
                         </div>
 
                         <h2 class="chart-title"><span class="accent">Dette</span> vs <span class="accent">Croissance</span><br>en Europe</h2>
@@ -7186,10 +7089,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Ou Va l'Argent</span>
                             </div>
-                            <div class="tag">Macro</div>
                         </div>
 
                         <h2 class="chart-title"><span class="accent">Dette</span> vs <span class="accent">Croissance</span><br>en Europe</h2>
@@ -7314,10 +7216,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Ou Va l'Argent</span>
                             </div>
-                            <div class="tag">Macro</div>
                         </div>
 
                         <h2 class="chart-title"><span class="accent">Dette</span> vs <span class="accent">Croissance</span><br>en Europe</h2>
@@ -7451,10 +7352,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Ou Va l'Argent</span>
                             </div>
-                            <div class="tag">Retraites</div>
                         </div>
 
                         <h2 class="chart-title">France vs <span class="accent">Pays-Bas</span><br>Syst&egrave;mes de retraite</h2>
@@ -7554,10 +7454,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Ou Va l'Argent</span>
                             </div>
-                            <div class="tag">Retraites</div>
                         </div>
 
                         <h2 class="chart-title">France vs <span class="accent">Pays-Bas</span><br>Syst&egrave;mes de retraite</h2>
@@ -7649,10 +7548,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Ou Va l'Argent</span>
                             </div>
-                            <div class="tag">Retraites</div>
                         </div>
 
                         <h2 class="chart-title">France vs <span class="accent">Pays-Bas</span><br>Syst&egrave;mes de retraite</h2>
@@ -7753,10 +7651,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Ou Va l'Argent</span>
                             </div>
-                            <div class="tag">Classement</div>
                         </div>
 
                         <h2 class="chart-title"><span class="accent">&Eacute;volution</span> Mercer<br>2020 &rarr; 2025</h2>
@@ -7854,10 +7751,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Ou Va l'Argent</span>
                             </div>
-                            <div class="tag">Classement</div>
                         </div>
 
                         <h2 class="chart-title"><span class="accent">&Eacute;volution</span> Mercer<br>2020 &rarr; 2025</h2>
@@ -7951,10 +7847,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Ou Va l'Argent</span>
                             </div>
-                            <div class="tag">Classement</div>
                         </div>
 
                         <h2 class="chart-title"><span class="accent">&Eacute;volution</span> Mercer<br>2020 &rarr; 2025</h2>
@@ -8057,10 +7952,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Ou Va l'Argent</span>
                             </div>
-                            <div class="tag">Budget</div>
                         </div>
 
                         <h2 class="chart-title">O&ugrave; vont vos <span class="accent">1 000 Md&euro;</span><br>de d&eacute;penses publiques ?</h2>
@@ -8136,10 +8030,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Ou Va l'Argent</span>
                             </div>
-                            <div class="tag">Budget</div>
                         </div>
 
                         <h2 class="chart-title">O&ugrave; vont vos <span class="accent">1 000 Md&euro;</span><br>de d&eacute;penses publiques ?</h2>
@@ -8214,10 +8107,9 @@
                     <div class="content">
                         <div class="header">
                             <div class="logo">
-                                <div class="logo-icon">&euro;</div>
+                                <span class="logo-icon">€</span>
                                 <span class="logo-text">Ou Va l'Argent</span>
                             </div>
-                            <div class="tag">Budget</div>
                         </div>
 
                         <h2 class="chart-title">O&ugrave; vont vos <span class="accent">1 000 Md&euro;</span><br>de d&eacute;penses publiques ?</h2>
@@ -8283,7 +8175,6 @@
             </div>
         </div>
     </div>
-
 
 </body>
 </html>

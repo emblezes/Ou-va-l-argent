@@ -73,9 +73,8 @@ function addBackground(pptx, slide) {
 
 function addHeader(pptx, slide, tag) {
     tag = tag || 'Section';
-    slide.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 0.4, y: 0.3, w: 0.55, h: 0.55, fill: { color: colors.accentElectric }, rectRadius: 0.08 });
-    slide.addText('€', { x: 0.4, y: 0.3, w: 0.55, h: 0.55, fontSize: 24, fontFace: fonts.mono, bold: true, color: colors.bgDeep, align: 'center', valign: 'middle' });
-    slide.addText('Où Va l\'Argent', { x: 1.05, y: 0.35, w: 2, h: 0.45, fontSize: 16, fontFace: fonts.main, bold: true, color: colors.textPrimary, valign: 'middle' });
+    slide.addText('€', { x: 0.4, y: 0.25, w: 0.5, h: 0.6, fontSize: 32, fontFace: fonts.serif, color: colors.textPrimary, align: 'center', valign: 'middle' });
+    slide.addText('Où Va l\'Argent', { x: 0.9, y: 0.35, w: 2, h: 0.45, fontSize: 14, fontFace: fonts.serif, italic: true, color: colors.textPrimary, valign: 'middle' });
     slide.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 8.0, y: 0.32, w: 1.6, h: 0.45, fill: { color: colors.accentElectric, transparency: 85 }, line: { color: colors.accentElectric, width: 1, transparency: 70 }, rectRadius: 0.25 });
     slide.addText(tag.toUpperCase(), { x: 8.0, y: 0.32, w: 1.6, h: 0.45, fontSize: 9, fontFace: fonts.main, bold: true, color: colors.accentElectric, align: 'center', valign: 'middle' });
 }
