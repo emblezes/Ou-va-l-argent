@@ -1660,6 +1660,7 @@ const INFOGRAPHICS = [
   ['134-echec-marques-maga-profits.html', 0, '134-echec-marques-maga-profits'],
   ['135-montchalin-cour-comptes-polemique.html', 0, '135-montchalin-cour-comptes-polemique'],
   ['136-tensions-commerciales-usa-chine.html', 0, '136-tensions-commerciales-usa-chine'],
+  ['47bis-fiche-de-paie-simple.html', 0, '47bis-fiche-de-paie-simple'],
 ];
 
 async function exportFormat(browser, htmlPath, items, { css, jsTransform, width, height, outputDir, suffix, label }) {
