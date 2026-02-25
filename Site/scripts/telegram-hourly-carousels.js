@@ -35,7 +35,8 @@ const ACTUS_DIR = path.join(RS_BASE, 'Actus chaudes');
 // ── Config ───────────────────────────────────────────
 const CONFIG_PATH = path.join(SCRIPTS_DIR, 'telegram-config.json');
 const CACHE_PATH = path.join(SCRIPTS_DIR, '.veille-carousel-cache.json');
-const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+const _fileConfig = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+const config = Object.fromEntries(Object.entries(_fileConfig).map(([k, v]) => [k, process.env[k] || v]));
 const { TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, NEWS_SOURCES, ANTHROPIC_API_KEY } = config;
 
 // ── Date ─────────────────────────────────────────────
@@ -388,7 +389,7 @@ function generateSlideHTML(slideText, accentWords, tagColor, tag, source, slideN
 
   // En-tête : slide 1 = logo + tag, slides 2+ = logo seul
   const headerContent = `<div class="header">
-          <div class="logo"><div class="logo-icon">\u20AC</div><span class="logo-text">O\u00F9 Va l'Argent</span></div>
+          <div class="logo"><div class="logo-icon">\u20AC</div><span class="logo-text">O\u00F9 Va l'Argent ?</span></div>
        </div>`;
 
   const indicator = ''; // Pas de numérotation de slide
@@ -632,14 +633,14 @@ function generateInfographicHTML(slide, tagColor, tag, source, slideNum, totalSl
             <div style="display:flex;justify-content:flex-start;align-items:flex-start;">
                 <div style="display:flex;align-items:center;gap:10px;">
                     <span style="font-family:'Instrument Serif',serif;font-size:4rem;color:#00d4ff;line-height:1;">\u20AC</span>
-                    <span style="font-family:'Instrument Serif',serif;font-size:1.8rem;font-style:italic;color:#ffffff;line-height:1;">O\u00F9 Va l'Argent</span>
+                    <span style="font-family:'Instrument Serif',serif;font-size:1.8rem;font-style:italic;color:#ffffff;line-height:1;">O\u00F9 Va l'Argent ?</span>
                 </div>
             </div>
             <h2 style="font-family:'Instrument Serif',serif;font-size:3.2rem;text-align:center;color:#f0f4f8;line-height:1.1;margin-top:15px;">${slideTitle}</h2>
             ${centerContent}
             <div style="display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid ${t.borderColor};">
                 <span style="font-size:1rem;color:${t.footerDim};">Sources : <span style="color:${t.footerLight};">${source}</span></span>
-                <span style="font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:500;color:${t.urlColor};">ouvalargent.com</span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:${t.urlColor};">ouvalargent.com</span>
             </div>
         </div>
     </div>

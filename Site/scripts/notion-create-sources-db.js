@@ -10,7 +10,8 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const configPath = path.join(__dirname, 'notion-config.json');
-const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+const _fileConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+const config = Object.fromEntries(Object.entries(_fileConfig).map(([k, v]) => [k, process.env[k] || v]));
 const NOTION_SECRET = config.NOTION_SECRET;
 
 // Parent page — on crée la DB sous la page principale

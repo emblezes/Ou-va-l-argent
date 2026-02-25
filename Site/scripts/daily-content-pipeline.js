@@ -32,7 +32,8 @@ const ACTUS_DIR = path.join(RS_BASE, 'Actus chaudes');
 
 // ── Config ────────────────────────────────────────────
 const CONFIG_PATH = path.join(SCRIPTS_DIR, 'telegram-config.json');
-const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+const _fileConfig = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+const config = Object.fromEntries(Object.entries(_fileConfig).map(([k, v]) => [k, process.env[k] || v]));
 const { TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, NEWS_SOURCES, ANTHROPIC_API_KEY } = config;
 
 // ── Date du jour ──────────────────────────────────────
@@ -587,7 +588,7 @@ function generateDataInfographic(idea, name, num) {
         <div class="bg-glow-1"></div>
         <div class="content">
             <div class="header">
-                <div class="logo"><span class="logo-icon">\u20AC</span><span class="logo-text">O\u00F9 Va l'Argent</span></div>
+                <div class="logo"><span class="logo-icon">\u20AC</span><span class="logo-text">O\u00F9 Va l'Argent ?</span></div>
             </div>
             <h2 class="chart-title">${idea.title_html}</h2>
             ${centerContent}

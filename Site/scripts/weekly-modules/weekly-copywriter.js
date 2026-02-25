@@ -20,7 +20,8 @@ const BASE = '/Users/emmanuelblezes/Documents/08_Où va l\'argent ';
 const OUTPUT_DIR = path.join(BASE, 'Production interne/Réseaux Sociaux /Contenu Hebdo');
 
 const CONFIG_PATH = path.join(SCRIPTS_DIR, 'telegram-config.json');
-const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+const _fileConfig = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+const config = Object.fromEntries(Object.entries(_fileConfig).map(([k, v]) => [k, process.env[k] || v]));
 const { ANTHROPIC_API_KEY } = config;
 
 // ── Claude API ───────────────────────────────────────

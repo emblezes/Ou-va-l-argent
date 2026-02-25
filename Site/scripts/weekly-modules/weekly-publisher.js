@@ -16,7 +16,8 @@ const RS_BASE = path.join(BASE, 'Production interne/Réseaux Sociaux ');
 const INSTA_DIR = path.join(RS_BASE, 'Infographies/Insta & Autres');
 
 const CONFIG_PATH = path.join(SCRIPTS_DIR, 'telegram-config.json');
-const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+const _fileConfig = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+const config = Object.fromEntries(Object.entries(_fileConfig).map(([k, v]) => [k, process.env[k] || v]));
 const { TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID } = config;
 
 const { addPost } = require(path.join(SCRIPTS_DIR, 'notion-add-post'));

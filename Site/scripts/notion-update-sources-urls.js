@@ -10,7 +10,8 @@ const fs = require('fs');
 const path = require('path');
 
 const configPath = path.join(__dirname, 'notion-config.json');
-const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+const _fileConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+const config = Object.fromEntries(Object.entries(_fileConfig).map(([k, v]) => [k, process.env[k] || v]));
 const NOTION_SECRET = config.NOTION_SECRET;
 const DB_ID = '30994e12-0e7a-8191-8108-dd359f26879f';
 

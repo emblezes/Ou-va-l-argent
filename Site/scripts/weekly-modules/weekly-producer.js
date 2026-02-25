@@ -20,7 +20,8 @@ const TIKTOK_V_DIR = path.join(RS_BASE, 'Infographies/Tiktok Vertical');
 const TIKTOK_H_DIR = path.join(RS_BASE, 'Infographies/Tiktok Horizontal');
 
 const CONFIG_PATH = path.join(SCRIPTS_DIR, 'telegram-config.json');
-const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+const _fileConfig = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+const config = Object.fromEntries(Object.entries(_fileConfig).map(([k, v]) => [k, process.env[k] || v]));
 const { ANTHROPIC_API_KEY } = config;
 
 const { THEMES, getThemeCSS } = require(path.join(SCRIPTS_DIR, 'infographic-themes'));
@@ -214,7 +215,7 @@ RÈGLES DE DESIGN (TRÈS IMPORTANT) :
 17. Chaque chiffre doit être COMPRÉHENSIBLE seul : on doit comprendre immédiatement CE QUE le chiffre représente et son unité.
 18. Pour les classements/comparaisons : barres horizontales avec label à gauche, valeur à droite dans la barre. Première barre = 100% de largeur, les autres proportionnelles.
 19. TITRES DESCRIPTIFS : le titre doit DIRE quelque chose, pas juste nommer le sujet. Mauvais : "La France championne des dépenses sociales". Bon : "Un tiers du PIB français part en dépenses sociales". Mauvais : "Les PER dominent l'épargne retraite". Bon : "3 cotisations retraite sur 4 passent par un PER". Le titre doit contenir le fait marquant.
-20. JAMAIS de tag/badge thématique en haut à droite (pas de div .tag avec "International", "Social", etc.). Le header ne contient QUE le logo € Où Va l'Argent, rien d'autre.
+20. JAMAIS de tag/badge thématique en haut à droite (pas de div .tag avec "International", "Social", etc.). Le header ne contient QUE le logo € Où Va l'Argent ?, rien d'autre.
 21. BARRES DE COULEURS DIFFÉRENTES : chaque barre d'un classement doit avoir une couleur distincte (cyan #00d4ff, orange #ff9f43, or #ffd700, vert #00ff88, violet #a855f7, rouge #ff4757). Ne JAMAIS mettre toutes les barres de la même couleur. Utiliser des linear-gradient(90deg, rgba(couleur,0.4) 0%, couleur 100%) pour chaque barre.
 
 RETOURNE UNIQUEMENT le HTML complet, rien d'autre (pas de \`\`\`html, pas d'explication).`;

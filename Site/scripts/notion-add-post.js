@@ -4,7 +4,8 @@ const path = require('path');
 
 // Charger la configuration
 const configPath = path.join(__dirname, 'notion-config.json');
-const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+const _fileConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+const config = Object.fromEntries(Object.entries(_fileConfig).map(([k, v]) => [k, process.env[k] || v]));
 
 /**
  * Ajoute une publication au calendrier Notion

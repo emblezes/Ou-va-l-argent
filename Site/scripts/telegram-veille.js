@@ -19,8 +19,8 @@ const { parseStringPromise } = require('xml2js');
 
 // ── Config ──────────────────────────────────────────────
 const CONFIG_PATH = path.join(__dirname, 'telegram-config.json');
-const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
-
+const _fileConfig = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+const config = Object.fromEntries(Object.entries(_fileConfig).map(([k, v]) => [k, process.env[k] || v]));
 const { TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, NEWS_SOURCES, ANTHROPIC_API_KEY } = config;
 
 // ── Telegram API ────────────────────────────────────────

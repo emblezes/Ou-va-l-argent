@@ -789,7 +789,8 @@ C'est la définition de la double peine.`,
 
 const fs = require('fs');
 const configPath = path.join(__dirname, 'notion-config.json');
-const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+const _fileConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+const config = Object.fromEntries(Object.entries(_fileConfig).map(([k, v]) => [k, process.env[k] || v]));
 const DB_ID = config.PUBLICATIONS_DB_ID;
 const NOTION_SECRET = config.NOTION_SECRET;
 
