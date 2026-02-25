@@ -14,6 +14,26 @@
 
 ---
 
+## Sécurité — Clés API
+
+Toutes les clés API et tokens sont stockés dans **`~/.zshrc`** (variables d'environnement). Les fichiers JSON de config (`telegram-config.json`, `notion-config.json`) **ne contiennent plus de secrets**.
+
+| Variable | Usage |
+|----------|-------|
+| `N8N_API_KEY` | n8n cloud API |
+| `TELEGRAM_BOT_TOKEN` | Bot Telegram @ouvalargentveille_bot |
+| `TELEGRAM_CHAT_ID` | Canal Telegram |
+| `ANTHROPIC_API_KEY` | API Claude (Haiku/Sonnet) |
+| `NOTION_SECRET` | API Notion |
+| `FB_APP_ID` | Facebook App ID |
+| `FB_APP_SECRET` | Facebook App Secret |
+| `FB_PAGE_TOKEN` | **Page Token PERMANENT** (Facebook + Instagram Graph API) |
+| `FB_USER_TOKEN_LONGLIVED` | Long-lived user token (backup) |
+
+Les scripts utilisent le pattern : `process.env[KEY] || config_file_value` pour charger les clés.
+
+---
+
 ## Pipeline automatisé (2 fois par jour)
 
 Le projet dispose d'un **pipeline automatisé** qui produit des carrousels d'actualité 2 fois par jour (8h et 18h) et les envoie sur Telegram.
@@ -130,6 +150,9 @@ Tous dans `Site/scripts/` :
 | `download-google-image.js` | Télécharger une image depuis Google Images (Puppeteer) |
 | `export-actu-video.js` | Overlay titre/logo sur une vidéo (ffmpeg) |
 | `notion-add-post.js` | Ajouter un post au calendrier Notion |
+| `notion-upload-images.js` | Upload images (Instagram, TikTok V/H) vers Notion "Liste des infographies" via catbox.moe |
+| `notion-create-sources-db.js` | Créer/gérer la base Notion des sources |
+| `notion-update-sources-urls.js` | Mettre à jour les URLs des sources dans Notion |
 | `weekly-content-machine.js` | **Machine hebdomadaire** : veille profonde → 21 infographies/semaine → Notion + Telegram |
 
 ---
@@ -321,7 +344,7 @@ Overlay transparent (Puppeteer PNG) + composite ffmpeg.
 ### Configuration
 
 - **Bot** : @ouvalargentveille_bot
-- **Config** : `Site/scripts/telegram-config.json` (contient token, chat ID, API key, sources RSS)
+- **Config** : `Site/scripts/telegram-config.json` (sources RSS uniquement — les secrets sont dans `~/.zshrc`)
 - **8 sources RSS** : La Tribune, 20 Minutes, Challenges, Le Figaro, Le Monde, BFM Business, France Info, Reuters FR
 
 ### Envoi sur Telegram
@@ -353,8 +376,16 @@ Chaque carrousel est envoyé comme :
 
 ## Intégration Notion
 
-- **Base** : "Calendrier Publications" (`0b730033-5a9c-48fb-9395-41198de626cc`)
-- **Config** : `Site/scripts/notion-config.json`
+### Bases de données
+
+| Base | ID | Usage |
+|------|----|-------|
+| Calendrier Publications | `9354599f-662f-45b2-8070-b41332bdd79d` | Planning et publication des posts |
+| Liste des infographies | `6cd320f7-9016-4fef-807d-9b87c2f76568` | Catalogue des infographies permanentes |
+
+**Config** : `Site/scripts/notion-config.json` (IDs de bases uniquement — le secret Notion est dans `~/.zshrc`)
+
+### Calendrier Publications — Champs
 
 ```bash
 node scripts/notion-add-post.js '{"titre": "...", "date": "2025-02-10", "theme": "Dette", ...}'
@@ -370,6 +401,50 @@ node scripts/notion-add-post.js '{"titre": "...", "date": "2025-02-10", "theme":
 | linkedin, twitter, instagram, facebook | Texte | Textes de publication |
 | source | Texte | Source officielle |
 | briefReel | Texte | Brief pour vidéo |
+| **Image** | Fichier | Image unique pour LinkedIn / Facebook / Twitter |
+| **Insta 1** à **Insta 5** | Fichier | Slides du carrousel Instagram (jusqu'à 5 images) |
+
+**Note n8n** : Dans n8n, `Image` → `property_image`, `Insta 1` → `property_insta_1`, etc.
+
+---
+
+## Publication automatique (n8n)
+
+### Instance
+
+- **URL** : `https://emblezes.app.n8n.cloud`
+- **Workflow** : `SgslJBoAiN2N73ey` — "OVLA - Publication auto Notion → Réseaux sociaux"
+- **MCP** : Connecté via `npx n8n-mcp` (API key dans `~/.zshrc`)
+
+### Fonctionnement
+
+```
+Trigger 9h/18h → Notion (Posts statut "Prêt") → Filtrer créneau + date
+  ├→ Has Fichier? → (oui) → Télécharger media → LinkedIn / Facebook / Twitter
+  ├→ Instagram? → Has Insta Images? (instaCount > 0)
+  │     → Préparer slides → IG Créer container (× N images)
+  │     → Assembler IDs → Carrousel? → oui → IG Carrousel → IG Publier
+  │                                   → non → IG Publier (image unique)
+  └→ Notion Marquer "Publié"
+```
+
+### Images par plateforme
+
+| Plateforme | Champ Notion | Format |
+|------------|-------------|--------|
+| LinkedIn, Facebook, Twitter | `Image` (1 fichier) | Image unique |
+| Instagram | `Insta 1` à `Insta 5` | Carrousel (2-5 slides) ou image unique |
+
+### Limitations n8n Cloud
+
+- L'environnement Code de n8n Cloud est très sandboxé : pas de `fetch`, `URLSearchParams`, `$http`
+- Utiliser des **noeuds HTTP Request natifs** pour les appels API (pas de Code node)
+- Le Page Token Facebook est en dur dans 4 noeuds HTTP du workflow
+
+### IDs sociaux
+
+- **Facebook Page** : `930729700123932`
+- **Instagram Account** : `17841416438993528`
 
 ---
 
@@ -391,11 +466,14 @@ Production interne/
         97-slug-slide4.png            (slide photo+texte ou infographie)
       2026-02-21/
       ...
+    Contenu Hebdo/          ← Textes hebdomadaires (LinkedIn, Instagram, newsletter)
   Rapports/                 ← PPTX finaux
 Templates/
-  Réseaux sociaux/          ← Templates HTML
+  Réseaux sociaux/          ← Templates HTML (actus chaudes, multiformat, vidéo)
+  Bannière & logo/          ← Bannières (LinkedIn, Facebook) + logos profil
   PPT/workspace/            ← Helpers PPTX (pas de sortie ici)
 Site/scripts/               ← Tous les scripts Node.js
-  telegram-config.json      ← Config bot + API keys (NE PAS COMMIT)
+  telegram-config.json      ← Config sources RSS (secrets dans ~/.zshrc)
+  notion-config.json        ← Config IDs Notion (secret dans ~/.zshrc)
   .veille-carousel-cache.json ← Cache déduplication (auto-géré)
 ```
