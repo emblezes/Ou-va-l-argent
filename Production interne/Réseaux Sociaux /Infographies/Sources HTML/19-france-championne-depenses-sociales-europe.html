@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La France dépense 31,7% de son PIB en social</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-deep: #081518; --text-primary: #f0f4f8; --text-secondary: #8899a8; --text-muted: #4a5a6a; --accent-cyan: #00d4ff; --glass-border: rgba(255, 255, 255, 0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #081518 0%, #0a3540 50%, #081518 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%); top: -100px; left: 50%; transform: translateX(-50%); }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%); bottom: -150px; left: -150px; }
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 55px 40px; display: flex; flex-direction: column; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 4rem; text-align: center; color: var(--text-primary); line-height: 1.1; margin-top: 20px; }
+        .chart-title .accent { color: var(--accent-cyan); font-style: italic; }
+        .center-area { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .bar-chart { width: 100%; max-width: 800px; margin-top: 40px; }
+        .bar-item { display: flex; align-items: center; margin-bottom: 30px; position: relative; background: rgba(0, 212, 255, 0.05); border-radius: 12px; padding: 20px; overflow: hidden; }
+        .bar-item::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; background: linear-gradient(90deg, rgba(0, 212, 255, 0.8), rgba(0, 212, 255, 0.3)); border-radius: 12px; z-index: -1; }
+        .bar-item:nth-child(1)::before { width: 100%; }
+        .bar-item:nth-child(2)::before { width: 93%; }
+        .bar-item:nth-child(3)::before { width: 91%; }
+        .bar-item:nth-child(4)::before { width: 76%; }
+        .bar-item:nth-child(5)::before { width: 72%; }
+        .bar-label { flex: 1; font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 600; color: var(--text-primary); }
+        .bar-value { font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 700; color: var(--accent-cyan); text-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-cyan); }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="france-championne-depenses-sociales-europe">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+            </div>
+            <h2 class="chart-title">La France dépense<br><span class="accent">31,7% de son PIB</span> en social</h2>
+            <div class="center-area">
+                <div class="bar-chart">
+                    <div class="bar-item">
+                        <span class="bar-label">🇫🇷 France</span>
+                        <span class="bar-value">31,7%</span>
+                    </div>
+                    <div class="bar-item">
+                        <span class="bar-label">🇩🇪 Allemagne</span>
+                        <span class="bar-value">29,4%</span>
+                    </div>
+                    <div class="bar-item">
+                        <span class="bar-label">🇮🇹 Italie</span>
+                        <span class="bar-value">28,9%</span>
+                    </div>
+                    <div class="bar-item">
+                        <span class="bar-label">🇪🇸 Espagne</span>
+                        <span class="bar-value">24,1%</span>
+                    </div>
+                    <div class="bar-item">
+                        <span class="bar-label">🇳🇱 Pays-Bas</span>
+                        <span class="bar-value">22,8%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="source">Sources : <span>BFM TV · 2026</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

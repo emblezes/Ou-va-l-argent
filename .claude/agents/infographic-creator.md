@@ -13,19 +13,48 @@ Chaque infographie est générée en **3 formats** :
 | **TikTok Vertical** | 1080×1920 (retina 2x) | Titre en HAUT, bas libre pour visage | Fond plein écran vidéo TikTok |
 | **TikTok Horizontal** | 1080×600 (retina 2x) | Titre TRÈS GROS centré + ouvalargent.com | Bas d'écran vidéo avec visage en haut |
 
-### Spécificités des formats TikTok
+### Philosophie TikTok : PUNCHY et ULTRA-VISUEL
+
+Sur TikTok, tout doit être **énorme, impactant et lisible en 0.5 seconde**. C'est un format beaucoup plus agressif visuellement qu'Instagram. Les données doivent sauter aux yeux immédiatement.
+
+**Principes TikTok** :
+- **Titres ÉNORMES** : 5rem en TikTok V, 2.4rem en TikTok H (proportionnellement plus gros qu'Instagram)
+- **Barres fines mais hautes** : pour les bar charts verticaux, utiliser des barres étroites (60px en V, 45px en H) avec un scaling adapté (×0.85 en V, ×0.3 en H)
+- **Moins de texte, plus de visuel** : supprimer tout ce qui n'est pas essentiel
+- **Tout doit tenir** : vérifier systématiquement avec Playwright que rien n'est coupé
 
 **TikTok Vertical (9:16)** :
-- Tout le contenu (titre, logo, source) est placé en HAUT de la slide
+- **Logo CENTRÉ et GROS** : € en 6rem + "Où Va l'Argent ?" en 2.8rem, empilés verticalement au centre, au-dessus du titre
+- Tag masqué (pas de tag thématique)
+- Tout le contenu placé en HAUT de la slide
 - La moitié basse reste vide pour l'incrustation du visage du présentateur
-- Le gradient overlay assombrit le haut et laisse le bas plus clair
+- Content padding serré : `50px 30px 35px`
 
 **TikTok Horizontal (1080×600)** :
-- UNIQUEMENT le titre en très gros, centré, qui remplit la slide
-- Pas de logo, pas de tag, pas de source détaillée
-- Juste `ouvalargent.com` en petit en bas
-- Les chiffres clés sont affichés très gros
-- Conçu pour être affiché sous le visage du présentateur
+- **Logo masqué** (display: none) pour maximiser l'espace
+- **Tag masqué**
+- **Chiffre/stat ÉNORME** : démarre à 12rem (192px) et s'auto-ajuste en JS pour occuper toute la largeur sans déborder
+- **Texte hook/context à 4rem** — très gros, doit remplir la largeur
+- **Footer masqué** (display: none) pour maximiser l'espace
+- **Padding minimal** : 10px 15px
+- Conçu pour être affiché sous le visage du présentateur — tout doit être lisible en un coup d'œil
+- **JS auto-resize obligatoire** pour le `.stat` :
+  ```js
+  const stat = document.querySelector('.stat');
+  if (stat) {
+    const container = 1080 - 30;
+    let fs = 192; // 12rem
+    stat.style.fontSize = fs + 'px';
+    while (stat.scrollWidth > container && fs > 60) {
+      fs -= 4;
+      stat.style.fontSize = fs + 'px';
+    }
+  }
+  ```
+
+### Vérification visuelle OBLIGATOIRE
+
+Avant de finaliser un export, **toujours vérifier** le rendu avec Playwright en simulant les CSS overrides et les JS transforms (scaling des barres). Si des éléments se chevauchent ou sont coupés, ajuster les tailles.
 
 ---
 
@@ -41,7 +70,7 @@ Avant d'appliquer un template, tu dois PENSER le message visuel. Chaque infograp
 
 2. **La hiérarchie visuelle crée le message** : Ce qui est gros = ce qui est important. Ce qui est petit = ce qui est secondaire. Si tu mets le titre en gros et les données en petit, tu as raté le message. Les DONNÉES sont le message, pas le titre.
 
-3. **Lisibilité sur mobile en scroll** : L'infographie sera vue à 5-6 cm de large sur un téléphone, en scrollant rapidement. Le chiffre/message clé doit être lisible en 0.5 secondes à cette taille. Si tu dois plisser les yeux → c'est trop petit.
+3. **ANTI-SCROLLING** : L'infographie doit **arrêter le scroll** de l'utilisateur. Elle sera vue à 5-6 cm de large sur un téléphone. TOUT le texte doit être TRÈS GROS — pas seulement le chiffre, mais aussi le hook et le contexte. L'utilisateur doit pouvoir lire l'intégralité du message en 0.5 seconde sans effort. Si un texte est petit, il sera ignoré. Police minimale pour le texte d'accroche : **5rem**. Pour les chiffres : **11rem+**.
 
 4. **Moins de texte = plus d'impact** : Supprime tout ce qui n'est pas essentiel. Pas de sous-titres explicatifs quand le visuel parle de lui-même. Pas de légendes longues. Un titre court + le visuel + la source = suffisant.
 
@@ -210,8 +239,61 @@ Après chaque infographie créée, **ajouter une ligne** avec :
 
 **Important** : les liens doivent être les URLs exactes des pages web consultées pendant la recherche, pas juste les noms des sites. C'est indispensable pour pouvoir revérifier les données avant publication.
 
-### Étape 9 : Livraison
+### Étape 9 : Rédaction des descriptions réseaux sociaux
+
+Après la création des PNG, rédiger les **4 descriptions** adaptées à chaque réseau social et les pousser dans Notion (base "Liste des infographies").
+
+**Script** : `node scripts/notion-update-descriptions.js` (à enrichir avec les descriptions de la nouvelle infographie)
+
+**Colonnes Notion** : `Instagram`, `LinkedIn`, `Facebook X`, `TikTok`
+
+#### Règles de rédaction par réseau
+
+**Instagram** (~600-800 caractères) :
+- Attaque directe par le chiffre ou le fait marquant
+- Liste à puces des données clés
+- 1-2 phrases d'analyse / mise en perspective
+- Pas de source (elle est déjà sur le graphique)
+- Terminer par des hashtags pertinents (8-12)
+- Ton : informatif, accessible, engageant
+
+**LinkedIn** (~1 200-1 800 caractères) :
+- Le texte le PLUS LONG de tous les réseaux
+- Structure aérée avec des sauts de ligne entre chaque bloc
+- Attaque par une accroche forte (titre éditorialisé)
+- Données détaillées avec contexte pour chaque chiffre
+- Analyse structurée en 2-3 points numérotés
+- Question ouverte en conclusion pour générer des commentaires
+- Ton : didactique, expert, sans emoji, sans familiarité
+- Pas de source (elle est déjà sur le graphique)
+- Terminer par des hashtags (8-12)
+
+**Facebook X** (~200-350 caractères) :
+- Ultra-concis et percutant
+- Les chiffres clés en une phrase
+- 1 comparaison frappante ou 1 question rhétorique
+- Pas de source (elle est déjà sur le graphique)
+- Terminer par des hashtags (5-8)
+
+**TikTok** (~150-250 caractères) :
+- Le plus court de tous
+- Mots-clés en MAJUSCULES pour l'impact
+- Chiffres chocs
+- Pas de source (elle est déjà sur le graphique)
+- Terminer par des hashtags (5-8)
+- Ton : direct, accrocheur
+
+#### Règles communes à tous les réseaux
+
+- **Jamais de source** dans le texte (elle est sur le graphique)
+- **Jamais d'emoji** sauf si explicitement demandé
+- **Toujours des hashtags** à la fin, adaptés au réseau
+- **Analyser le HTML source** pour extraire les données exactes (chiffres, pays, dates)
+- **Éditorialiser** : ne pas simplement décrire le graphique, mais raconter une histoire
+
+### Étape 10 : Livraison
 - Confirmer les noms et emplacements des fichiers PNG générés
+- Confirmer que les descriptions ont été poussées dans Notion
 - Fournir un résumé : numéro attribué, sujet, données utilisées, sources
 
 ---
@@ -373,8 +455,7 @@ Référence : `13-deficit-zone-euro.html`
 
 ## Charte graphique
 
-### Couleurs
-- `--bg-deep: #06080c` (fond principal)
+### Couleurs d'accent
 - `--accent-electric: #00d4ff` (cyan, accent principal)
 - `--accent-gold: #ffd700` (or, accent secondaire)
 - `--accent-red: #ff4757` (rouge, alertes)
@@ -383,6 +464,33 @@ Référence : `13-deficit-zone-euro.html`
 - `--accent-orange: #ff9f43` (orange)
 - `--text-primary: #f0f4f8` (texte blanc)
 - `--text-secondary: #8899a8` (texte gris)
+
+### Palette de fonds colorés
+
+Chaque infographie peut utiliser un **fond teinté** au lieu du fond noir/bleu classique. Le fond reste sombre mais est teinté dans la couleur d'accent, avec gradient + grille + glow assortis.
+
+| Nom | `--bg-deep` | `--bg-mid` | Accent | RGB glow/grille | Usage type |
+|-----|-------------|------------|--------|-----------------|------------|
+| **cyan** (classique) | `#06080c` | `#0a1628` | `#00d4ff` | `0,212,255` | Défaut, finance, technologie |
+| **or** | `#0c0a04` | `#1a1508` | `#ffd700` | `255,215,0` | Budget, richesse, dépenses |
+| **émeraude** | `#040c08` | `#081a10` | `#00ff88` | `0,255,136` | Croissance, positif |
+| **bordeaux** | `#1a0508` | `#2d0a10` | `#ff4757` | `255,71,87` | Dette, déficit, alerte |
+| **violet** | `#0c0616` | `#1a0c2d` | `#a855f7` | `168,85,247` | Réglementaire, international |
+| **orange** | `#0c0804` | `#1a1208` | `#ff9f43` | `255,159,67` | Immobilier, transport |
+| **teal** | `#040c0c` | `#081a1a` | `#00d4d4` | `0,212,212` | Santé, social |
+
+**Règles CSS pour les fonds colorés** :
+```css
+/* Gradient de fond */
+.bg-base { background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%) }
+/* Grille subtile teintée */
+.bg-grid { background-image: linear-gradient(rgba(R,G,B, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(R,G,B, 0.04) 1px, transparent 1px); background-size: 40px 40px }
+/* Glow central */
+.bg-glow { background: radial-gradient(circle, rgba(R,G,B, 0.12-0.15) 0%, transparent 60%) }
+```
+
+**Texte** : toujours blanc (`#f0f4f8`). Les chiffres/stats utilisent la couleur d'accent.
+**Logo €** : utilise la couleur d'accent du fond (pas toujours cyan).
 
 ### Polices
 - **Titres** : Instrument Serif (italique pour les accents)
@@ -395,10 +503,11 @@ Les titres doivent être **très gros** pour être lisibles quand on scrolle sur
 
 | Élément | Instagram (1080×1080) | TikTok-V (1080×1920) | TikTok-H (1080×600) |
 |---------|----------------------|---------------------|---------------------|
-| **Titre principal** (chart-title, section-title) | **4 à 4.5rem** | **6rem** (auto via CSS) | **2rem** (auto via CSS) |
-| **Sous-titre** | 1.3-1.5rem | 2.2rem (auto) | 0.7-1rem (auto) |
-| **Valeurs/chiffres** | 1.6-2.2rem | 3-3.5rem (auto) | 1-1.3rem (auto) |
-| **Labels** | 0.85-1.15rem | 1.4rem (auto) | 0.6-0.8rem (auto) |
+| **Titre principal** (chart-title, section-title) | **4 à 4.5rem** | **5rem** (auto via CSS) | **2.4rem** (auto via CSS) |
+| **Sous-titre** | 1-1.3rem | 1.5rem (auto) | 0.65rem (auto) |
+| **Valeurs/chiffres** | 1.15-2.2rem | 1.7rem (auto) | 0.9rem (auto) |
+| **Labels** | 0.85-1.15rem | 1.15rem (auto) | 0.65rem (auto) |
+| **Drapeaux** | 2.6rem | 2.8rem (auto) | 1.4rem (auto) |
 
 **Règle d'or** : Le titre Instagram doit faire au minimum `4rem`. C'est le premier élément vu en scrollant.
 
@@ -406,10 +515,12 @@ Les tailles TikTok-V et TikTok-H sont gérées automatiquement par les CSS overr
 
 ### Adaptations TikTok automatiques
 
-Les scripts d'export appliquent des transformations CSS/JS pour chaque format :
+Les scripts d'export (`batch-export-all.js`) appliquent des transformations CSS + JS pour chaque format :
 
-- **TikTok Vertical** : Contenu repositionné en HAUT (justify-content: flex-start), éléments agrandis ~30%. Les bar charts sont transformés en texte gros. Gradient inversé (haut sombre, bas clair) pour l'incrustation visage.
-- **TikTok Horizontal** : Titre TRÈS GROS centré (4.2rem), chiffres gros (8rem). Logo et tag masqués. Seul `ouvalargent.com` reste en bas. Tout le contenu est centré verticalement.
+- **TikTok Vertical** : Contenu repositionné en HAUT (justify-content: flex-start), titres 5rem, barres fines (60px), JS transform scale les hauteurs de barres ×0.85. Gradient inversé (haut sombre, bas clair) pour l'incrustation visage.
+- **TikTok Horizontal** : Logo masqué, footer masqué. Stat à 12rem avec JS auto-resize (shrink jusqu'à ce que ça tienne en largeur). Hook/context à 4rem. Padding 10px 15px. Tout doit prendre toute la largeur disponible. Pour les bar charts : barres fines (45px), JS transform scale les hauteurs ×0.3.
+
+**JS transforms importants** : les barres verticales (`.bars-wrapper .bar`) sont scalées automatiquement car leurs hauteurs sont définies en inline CSS pour Instagram. Sans ce scaling, elles dépassent du cadre en TikTok H.
 
 ### Tags thématiques
 ```html
@@ -422,11 +533,9 @@ Les scripts d'export appliquent des transformations CSS/JS pour chaque format :
 ```
 
 ### Structure commune
-- Logo "Où Va l'Argent" en haut à gauche
-- Tag thématique en haut à droite
-- Contenu au centre
-- Source en bas à gauche
-- URL ouvalargent.com en bas à droite
+- **Instagram** : Logo en haut à gauche, tag en haut à droite, contenu au centre, source + URL en bas
+- **TikTok V** : Logo CENTRÉ et GROS au-dessus du titre (pas de tag), contenu dans la moitié haute, source + URL en bas du contenu
+- **TikTok H** : Logo CENTRÉ au-dessus du titre (pas de tag), contenu compact, source + URL en bas
 
 ---
 
@@ -505,6 +614,47 @@ Un carrousel est une série de 5 à 8 infographies sur un même thème, pensée 
 - 51 : "Chaque Français doit déjà" → 48 800 € (mega number)
 - 52 : "Plus de la moitié de notre dette appartient à l'étranger" → donut 53%
 - 53 : "La France dépense plus pour les intérêts que pour la Défense" → barres verticales vs
+
+---
+
+## Format Carrousel WTF (infographies #113+)
+
+### Description
+
+Format carrousel "WTF" : des faits chocs sur les finances publiques, déclinés en **4 slides** Instagram (1080×1080) avec fonds colorés.
+
+### Structure du carrousel
+
+| Slide | Suffixe | Contenu | Rôle |
+|-------|---------|---------|------|
+| **1** | `NNN-slug.html` | Hook + **gros chiffre** + contexte | Choc initial |
+| **2** | `NNNbis-slug.html` | Texte explicatif avec mots en accent | Développement |
+| **3** | `NNNter-slug.html` | "C'est l'équivalent de" + valeur | Mise en perspective |
+| **4** | `NNNquater-slug.html` | Cloche + "Abonne-toi" | CTA final |
+
+### Règles de style
+
+- **Fond** : utiliser la palette de fonds colorés (voir section Charte graphique). Choisir la couleur selon le thème (dette → bordeaux, dépenses → or, etc.)
+- **Texte** : toujours **blanc** (`#f0f4f8`)
+- **Chiffres/stats** : couleur d'**accent** (pas la couleur du fond, pour rester lisible)
+- **Polices** : Instrument Serif (tout le texte : hook, explain, labels, CTA), JetBrains Mono (chiffres/stats uniquement)
+- **Logo** : `€ Où Va l'Argent ?` en haut au centre, logo € en couleur d'accent
+- **Footer** : `ouvalargent.com` en bas au centre
+- **Slide 4** : toujours identique (cloche + "Abonne-toi"), adapté au fond coloré du carrousel
+- **Mots accentués** (slide 2) : utiliser `<span class="accent">mot</span>` en couleur d'accent + italique
+
+### Exemple : #113 (dette naissance bébé)
+
+- Fond **bordeaux** (`--bg-deep: #1a0508`, `--bg-mid: #2d0a10`, accent `#ff4757`)
+- Slide 1 : "Un bébé français naît avec **50 800 €** de dette publique"
+- Slide 2 : "Chaque enfant hérite *immédiatement*..."
+- Slide 3 : "C'est l'équivalent de **2,5 ans de SMIC net**"
+- Slide 4 : Cloche + "Abonne-toi"
+
+### Fichiers
+
+- HTML dans `Sources HTML/` : `113-slug.html`, `113bis-slug.html`, `113ter-slug.html`, `113quater-slug.html`
+- PNG dans `Insta & Autres/` : `113-slug-instagram.png`, etc.
 
 ---
 

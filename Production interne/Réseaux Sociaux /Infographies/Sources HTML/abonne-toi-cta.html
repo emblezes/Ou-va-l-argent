@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    font-family: 'Syne', sans-serif;
+  }
+
+  .slide {
+    width: 1080px;
+    height: 1080px;
+    background: linear-gradient(135deg, #06080c 0%, #0a1628 40%, #0d1f3c 70%, #06080c 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* Grille subtile */
+  .slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  /* Glow central */
+  .glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  /* Cloche */
+  .bell {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #00d4ff, #0099cc);
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 60px rgba(0,212,255,0.3), 0 0 120px rgba(0,212,255,0.1);
+  }
+
+  .bell svg {
+    width: 64px;
+    height: 64px;
+    fill: #06080c;
+  }
+
+  .text-main {
+    font-family: 'Instrument Serif', serif;
+    font-size: 5.5rem;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  .text-main .accent {
+    color: #00d4ff;
+    font-style: italic;
+  }
+
+  .text-sub {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    font-weight: 400;
+    max-width: 700px;
+    line-height: 1.4;
+  }
+
+  .website {
+    position: absolute;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .website .blue { color: #00d4ff; }
+  .website .dot { color: #ffd700; }
+  .website .white { color: #ffffff; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="glow"></div>
+  <div class="content">
+    <div class="bell">
+      <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg>
+    </div>
+    <div class="text-main">
+      <span class="accent">Abonne-toi</span>
+    </div>
+    <div class="text-sub">
+      Pour ne rien rater de nos analyses<br>sur l'economie et les finances publiques
+    </div>
+  </div>
+  <div class="website"><span class="blue">ouvalargent</span><span class="dot">.</span><span class="white">com</span></div>
+</div>
+</body>
+</html>

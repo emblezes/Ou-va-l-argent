@@ -16,19 +16,19 @@ const WTF_FACTS = [
   {
     id: 2,
     icon: '⏱️',
-    stat: '5 350 €',
+    stat: '5 390 €',
     title: 'Chaque seconde',
-    desc: 'Pendant que vous lisez cette phrase, la dette française a augmenté de 16 000 €. Chaque seconde = 5 350 €.',
-    comparison: { label: 'En 1 minute', value: '321 000 € de dette en plus' },
+    desc: 'Pendant que vous lisez cette phrase, la dette française a augmenté de 16 200 €. Chaque seconde = 5 390 €.',
+    comparison: { label: 'En 1 minute', value: '323 400 € de dette en plus' },
     color: '#ff9f43',
   },
   {
     id: 3,
     icon: '🗼',
-    stat: '7 000 km',
+    stat: '79 200 km',
     title: 'La pile de billets',
-    desc: 'Si on empilait la dette en billets de 500€, la pile ferait 7 000 km de haut. Plus que le diamètre de la Terre.',
-    comparison: { label: 'Soit', value: '17 fois la distance Terre-Lune en billets de 5€' },
+    desc: 'Si on empilait la dette en billets de 5 €, la pile ferait 79 200 km de haut. Plus de 6 fois le diamètre de la Terre.',
+    comparison: { label: 'Soit', value: 'Presque 2 fois le tour de la Terre' },
     color: '#a855f7',
   },
   {
@@ -52,10 +52,10 @@ const WTF_FACTS = [
   {
     id: 6,
     icon: '🚄',
-    stat: '300 €',
-    title: 'Subvention SNCF/habitant',
-    desc: 'Chaque Français, qu\'il prenne le train ou non, paye 300 €/an pour subventionner la SNCF.',
-    comparison: { label: 'Total', value: '20 milliards de subventions/an' },
+    stat: '310 €',
+    title: 'Financement public SNCF/habitant',
+    desc: 'Chaque Français, qu\'il prenne le train ou non, finance la SNCF à hauteur de 310 €/an.',
+    comparison: { label: 'Total', value: '20,8 milliards de financement public/an' },
     color: '#45b7d1',
   },
   {
@@ -63,8 +63,8 @@ const WTF_FACTS = [
     icon: '📺',
     stat: '4 Md€',
     title: 'Audiovisuel public',
-    desc: 'France Télévisions + Radio France + Arte + France 24 coûtent 4 milliards/an. Netflix France fait 1,5 Md€ de CA.',
-    comparison: { label: 'Soit', value: '59 € par Français pour l\'audiovisuel public' },
+    desc: 'France Télévisions + Radio France + Arte + France 24 : 4 Md€/an de subventions. Soit 2,8× le chiffre d\'affaires de Netflix France (1,44 Md€).',
+    comparison: { label: 'Comparaison', value: '4 Md€ de subventions vs 1,44 Md€ de CA Netflix France' },
     color: '#ffd700',
   },
   {
@@ -467,7 +467,7 @@ function formatCurrency(num: number): string {
 
 export default function WtfPage() {
   const [debtCounter, setDebtCounter] = useState(0)
-  const debtPerSecond = 5350
+  const debtPerSecond = 5390
 
   useEffect(() => {
     let elapsed = 0
@@ -533,7 +533,7 @@ export default function WtfPage() {
           </div>
 
           <p className="text-text-muted text-base mt-3">
-            soit environ 5 350 € par seconde, 24h/24, 7j/7
+            soit environ 5 390 € par seconde, 24h/24, 7j/7
           </p>
         </div>
 
@@ -597,8 +597,8 @@ export default function WtfPage() {
         <div className="bg-gradient-to-br from-bg-surface to-bg-elevated border border-glass-border rounded-3xl p-8 lg:p-12 text-center mb-12">
           <h2 className="font-serif text-3xl font-normal mb-4">Le saviez-vous ?</h2>
           <p className="text-text-secondary text-lg max-w-3xl mx-auto">
-            Si on devait rembourser la dette française en billets de 500€ empilés, la pile ferait{' '}
-            <span className="text-accent-gold font-semibold">7 000 km de haut</span>. C&apos;est plus que le diamètre de la Terre (6 371 km).
+            Si on empilait la dette française en billets de 5 €, la pile ferait{' '}
+            <span className="text-accent-gold font-semibold">79 200 km de haut</span>. C&apos;est plus de 6 fois le diamètre de la Terre.
           </p>
           <div className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-accent-gold text-bg-deep rounded-full font-mono font-semibold">
             <span>💡</span>

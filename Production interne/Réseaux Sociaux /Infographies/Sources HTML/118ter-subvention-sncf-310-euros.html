@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WTF – 118ter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:#12040a;--bg-mid:#2a0818;--accent:#e5007d}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Syne',sans-serif;background:#1a1a2e;display:flex;justify-content:center}
+.infographic{width:1080px;height:1080px;position:relative;overflow:hidden}
+.bg-base{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%)}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(229,0,125,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(229,0,125,0.04) 1px,transparent 1px);background-size:40px 40px}
+.bg-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(229,0,125,0.15) 0%,transparent 60%);bottom:-100px;left:50%;transform:translateX(-50%);pointer-events:none}
+.content{position:relative;z-index:1;height:100%;padding:50px 60px;display:flex;flex-direction:column;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{font-family:'Instrument Serif',serif;font-size:3.5rem;color:var(--accent);line-height:1}
+.logo-text{font-family:'Instrument Serif',serif;font-size:1.7rem;font-style:italic;color:#fff;line-height:1}
+.center-block{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+.stat{font-family:'JetBrains Mono',monospace;font-size:7rem;font-weight:700;color:var(--accent);text-align:center;line-height:1;text-shadow:0 0 50px rgba(229,0,125,0.4)}
+.context{font-family:'Instrument Serif',serif;font-size:3.8rem;color:#fff;text-align:center;line-height:1.15}
+/* Bills scattered */
+.bills-cloud{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:800px;padding:15px 0}
+.b{font-size:3.2rem;line-height:1}
+.b:nth-child(3n+1){transform:rotate(-8deg) translateY(-4px)}
+.b:nth-child(3n+2){transform:rotate(5deg) translateY(6px)}
+.b:nth-child(3n){transform:rotate(-3deg) translateX(4px)}
+.b:nth-child(5n){transform:rotate(10deg) translateY(-8px)}
+.b:nth-child(7n){transform:rotate(-12deg)}
+.source-line{font-family:'JetBrains Mono',monospace;font-size:1.4rem;color:rgba(255,255,255,0.5);text-align:center}
+.footer{width:100%;text-align:center}
+.website{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:#fff}
+</style></head><body>
+<div class="infographic"><div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow"></div>
+<div class="content">
+<div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+<div class="center-block">
+  <div class="stat">21 Md€/an</div>
+  <div class="context">de financement public</div>
+  <div class="bills-cloud">
+    <div class="b">💶</div><div class="b">💶</div><div class="b">💶</div><div class="b">💶</div><div class="b">💶</div>
+    <div class="b">💶</div><div class="b">💶</div><div class="b">💶</div><div class="b">💶</div><div class="b">💶</div>
+    <div class="b">💶</div><div class="b">💶</div><div class="b">💶</div><div class="b">💶</div><div class="b">💶</div>
+    <div class="b">💶</div><div class="b">💶</div><div class="b">💶</div><div class="b">💶</div><div class="b">💶</div>
+    <div class="b">💶</div><div class="b">💶</div><div class="b">💶</div><div class="b">💶</div><div class="b">💶</div>
+    <div class="b">💶</div><div class="b">💶</div><div class="b">💶</div><div class="b">💶</div><div class="b">💶</div>
+    <div class="b">💶</div><div class="b">💶</div><div class="b">💶</div><div class="b">💶</div><div class="b">💶</div>
+  </div>
+</div>
+<div class="footer"><div class="website">ouvalargent.com</div></div>
+</div></div></body></html>

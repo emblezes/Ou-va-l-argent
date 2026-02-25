@@ -13,7 +13,7 @@ Document consolidé des données vérifiées. Dernière mise à jour : 2026-02-0
 | **Dette/habitant** | 50 800 € | Calcul (3482 Md / 68.6M) |
 | **Charge d'intérêts** | 58 Md€ | Fipeco 2024 |
 | **Déficit 2024** | 170 Md€ | INSEE 2024 |
-| **Dette/seconde** | 5 350 € | Calcul (170 Md / 31.536.000 s) |
+| **Dette/seconde** | 5 390 € | Calcul (170 Md / 31.536.000 s) |
 | **Détenteurs résidents** | 45.3% | Banque de France T1 2025 |
 | **Détenteurs non-résidents** | 54.7% | Banque de France T1 2025 |
 

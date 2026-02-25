@@ -277,19 +277,22 @@ Production interne/Réseaux Sociaux /Contenu Hebdo/
 | **TikTok Vertical** | 1080×1920 (retina 2x) | 9:16 | Titre en HAUT, bas libre pour visage |
 | **TikTok Horizontal** | 1080×600 (retina 2x) | ~16:9 | Titre TRÈS GROS centré + ouvalargent.com |
 
-### Spécificités des formats TikTok
+### Philosophie TikTok : PUNCHY et ULTRA-VISUEL
+
+Sur TikTok, tout doit être **énorme, impactant et lisible en 0.5 seconde**. C'est un format beaucoup plus agressif visuellement qu'Instagram.
 
 **TikTok Vertical (9:16)** :
-- Le titre, le logo et la source sont placés en HAUT de la slide
-- La moitié basse reste vide pour l'incrustation du visage du présentateur
-- Le gradient overlay assombrit le haut (titre lisible) et laisse le bas plus clair
-- Padding top: 150px, padding bottom: 60px (zone safe TikTok)
+- **Logo CENTRÉ et GROS** : € en 6rem + "Où Va l'Argent ?" en 2.8rem, empilés verticalement, au-dessus du titre
+- Tag thématique masqué
+- Tout le contenu en HAUT de la slide, la moitié basse reste vide pour le visage du présentateur
+- Barres verticales scalées ×0.85 via JS transform, barres fines (60px)
+- Titre 5rem, padding serré `50px 30px 35px`
 
 **TikTok Horizontal (1080×600)** :
-- UNIQUEMENT le titre en très gros, centré, qui remplit toute la slide
-- Pas de logo, pas de tag, pas de source
-- Juste `ouvalargent.com` en petit en bas
-- Les chiffres clés sont affichés très gros
+- **Logo CENTRÉ** : € en 2.8rem + texte 1.4rem, sur une ligne, centré au-dessus du titre
+- Tag masqué, titre 2.2rem
+- Barres verticales scalées ×0.45 via JS transform, barres fines (50px)
+- Footer ultra-compact (source 0.6rem + ouvalargent.com 0.85rem)
 - Conçu pour être affiché sous le visage du présentateur
 
 ### Méthode de création (infographies permanentes)

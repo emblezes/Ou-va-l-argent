@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WTF – 115</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:#0c0616;--bg-mid:#1a0c2d;--accent:#a855f7;--accent-electric:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Syne',sans-serif;background:#1a1a2e;display:flex;justify-content:center}
+.infographic{width:1080px;height:1080px;position:relative;overflow:hidden}
+.bg-base{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%)}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(168,85,247,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.04) 1px,transparent 1px);background-size:40px 40px}
+.bg-glow{position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(168,85,247,0.15) 0%,transparent 60%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.content{position:relative;z-index:1;height:100%;padding:40px 60px;display:flex;flex-direction:column;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{font-family:'Instrument Serif',serif;font-size:3.5rem;color:var(--accent);line-height:1}
+.logo-text{font-family:'Instrument Serif',serif;font-size:1.7rem;font-style:italic;color:#fff;line-height:1}
+.main{flex:1;display:flex;align-items:center;width:100%;position:relative}
+.pile-col{position:absolute;left:15px;bottom:50px;display:flex;flex-direction:column;align-items:center}
+.bill-stack{display:flex;flex-direction:column-reverse;align-items:center;gap:22px}
+.bill{font-size:4.5rem;line-height:1;filter:drop-shadow(0 0 12px rgba(168,85,247,0.3))}
+.bill:nth-child(odd){transform:rotate(-4deg) translateX(-6px)}
+.bill:nth-child(even){transform:rotate(4deg) translateX(6px)}
+.earth-emoji{font-size:7rem;margin-top:20px}
+.text-col{display:flex;flex-direction:column;align-items:center;text-align:center;gap:15px;width:100%;padding-left:80px}
+.hook{font-family:'Instrument Serif',serif;font-size:4.5rem;font-style:italic;color:#fff;line-height:1.1}
+.stat{font-family:'JetBrains Mono',monospace;font-size:8.5rem;font-weight:700;color:var(--accent);line-height:0.95;text-shadow:0 0 60px rgba(168,85,247,0.4)}
+.context{font-family:'Instrument Serif',serif;font-size:4.5rem;font-style:italic;color:#fff;line-height:1.1}
+.footer{width:100%;text-align:center}
+.website{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:#fff}
+</style></head><body>
+<div class="infographic"><div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow"></div>
+<div class="content">
+<div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+<div class="main">
+  <div class="pile-col">
+    <div class="bill-stack">
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+      <div class="bill">💶</div>
+    </div>
+    <div class="earth-emoji">🌍</div>
+  </div>
+  <div class="text-col">
+    <div class="hook">Empilée en billets<br>de 5 €, la dette ferait</div>
+    <div class="stat">79 200 km</div>
+    <div class="context">de haut.</div>
+  </div>
+</div>
+<div class="footer"><div class="website">ouvalargent.com</div></div>
+</div></div></body></html>

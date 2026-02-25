@@ -117,9 +117,14 @@ export function NewsletterPopup() {
                 <p className="text-accent-red text-sm mt-3">Une erreur est survenue. Réessayez.</p>
               )}
 
+              <p className="mt-4 text-text-muted text-[10px] leading-tight px-2">
+                En vous inscrivant, vous acceptez de recevoir notre newsletter. Vous pouvez vous désinscrire à tout moment.{' '}
+                <a href="/mentions-legales" className="underline hover:text-accent-electric">Politique de confidentialité</a>
+              </p>
+
               <button
                 onClick={dismiss}
-                className="mt-4 text-text-muted text-xs hover:text-text-secondary transition-colors"
+                className="mt-3 text-text-muted text-xs hover:text-text-secondary transition-colors"
               >
                 Je suis déjà inscrit
               </button>

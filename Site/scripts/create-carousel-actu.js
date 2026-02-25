@@ -87,7 +87,7 @@ function generateActuHTML(opts) {
             <div class="header">
                 <div class="logo">
                     <span class="logo-icon">\u20AC</span>
-                    <span class="logo-text">O\u00F9 Va l'Argent</span>
+                    <span class="logo-text">O\u00F9 Va l'Argent ?</span>
                 </div>
             </div>
             <div class="title-area">

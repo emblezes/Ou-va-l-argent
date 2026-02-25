@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dépenses vs Recettes de l'État</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --bg-mid: #0a1628;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-red: #ff4757;
+            --accent-green: #00ff88;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 71, 87, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 71, 87, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.08) 0%, transparent 70%);
+            top: -100px;
+            right: -200px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.06) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 50px 55px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.2rem;
+            text-align: center;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+            line-height: 1.15;
+        }
+
+        .chart-title .accent-red {
+            color: var(--accent-red);
+            font-style: italic;
+        }
+
+        .chart-title .accent-green {
+            color: var(--accent-green);
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .chart-area {
+            flex: 1;
+            position: relative;
+            padding: 0;
+        }
+
+        .chart-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: 12px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+
+        .website {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-electric);
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Les <span class="accent-red">dépenses</span> publiques, très largement<br>supérieures aux <span class="accent-green">recettes</span></h2>
+            <div class="chart-subtitle">Dépenses et recettes publiques en % du PIB (1960–2024)</div>
+
+            <div class="chart-area">
+                <!--
+                    SVG viewBox: 0 0 970 620
+                    X: 40 to 940 (width=900), Y: 20 to 580 (height=560)
+                    Y range: 34% (bottom) to 63% (top)
+                    x = 40 + (year - 1960) / 64 * 900
+                    y = 20 + (63 - value) / 29 * 560
+                -->
+                <svg class="chart-svg" viewBox="0 0 970 620" preserveAspectRatio="none">
+                    <!-- Y axis grid lines -->
+                    <line x1="40" y1="20" x2="940" y2="20" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                    <line x1="40" y1="116.6" x2="940" y2="116.6" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                    <line x1="40" y1="213.1" x2="940" y2="213.1" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                    <line x1="40" y1="309.7" x2="940" y2="309.7" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                    <line x1="40" y1="406.2" x2="940" y2="406.2" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                    <line x1="40" y1="502.8" x2="940" y2="502.8" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+                    <!-- Y axis labels -->
+                    <text x="32" y="25" fill="rgba(255,255,255,0.6)" font-family="JetBrains Mono" font-size="14" font-weight="500" text-anchor="end">63%</text>
+                    <text x="32" y="121" fill="rgba(255,255,255,0.6)" font-family="JetBrains Mono" font-size="14" font-weight="500" text-anchor="end">58%</text>
+                    <text x="32" y="217" fill="rgba(255,255,255,0.6)" font-family="JetBrains Mono" font-size="14" font-weight="500" text-anchor="end">53%</text>
+                    <text x="32" y="314" fill="rgba(255,255,255,0.6)" font-family="JetBrains Mono" font-size="14" font-weight="500" text-anchor="end">48%</text>
+                    <text x="32" y="410" fill="rgba(255,255,255,0.6)" font-family="JetBrains Mono" font-size="14" font-weight="500" text-anchor="end">43%</text>
+                    <text x="32" y="507" fill="rgba(255,255,255,0.6)" font-family="JetBrains Mono" font-size="14" font-weight="500" text-anchor="end">38%</text>
+
+                    <!-- Gap fill between curves — computed from real data -->
+                    <polygon fill="rgba(255, 71, 87, 0.1)" points="
+                        40.0,545.3 54.1,518.4 68.1,495.0 82.2,478.8 96.2,470.3 110.3,456.6 124.4,452.8 138.4,439.2 152.5,397.7 166.6,419.8
+                        180.6,435.0 194.7,442.0 208.8,444.7 222.8,446.5 236.9,438.2 250.9,344.5 265.0,334.2 279.1,350.8 293.1,333.2 307.2,327.8
+                        321.2,308.8 335.3,258.2 349.4,231.7 363.4,221.2 377.5,202.1 391.6,190.3 405.6,205.4 419.7,217.0 433.8,231.8 447.8,254.0
+                        461.9,239.9 475.9,218.5 490.0,193.6 504.1,144.8 518.1,157.5 532.2,154.2 546.2,154.8 560.3,163.5 574.4,194.2 588.4,200.4
+                        602.5,220.5 616.6,216.5 630.6,195.3 644.7,187.0 658.8,193.8 672.8,188.7 686.9,198.6 700.9,200.9 715.0,188.3 729.1,116.7
+                        743.1,122.1 757.2,135.6 771.2,118.6 785.3,105.1 799.4,108.9 813.4,124.3 827.5,128.5 841.6,123.1 855.6,148.1 869.7,167.8
+                        883.8,45.1 897.8,88.3 911.9,108.5 925.9,138.4 940.0,130.9
+                        940.0,243.1 925.9,242.1 911.9,200.1 897.8,215.4 883.8,217.6
+                        869.7,214.0 855.6,192.9 841.6,188.0 827.5,201.2 813.4,199.4 799.4,197.3 785.3,200.5 771.2,218.5 757.2,238.0 743.1,260.2
+                        729.1,259.2 715.0,256.0 700.9,258.7 686.9,249.9 672.8,256.4 658.8,262.4 644.7,265.9 630.6,256.6 616.6,243.9 602.5,245.8
+                        588.4,230.2 574.4,240.4 560.3,235.2 546.2,230.1 532.2,252.8 518.1,262.9 504.1,268.3 490.0,283.2 475.9,274.2 461.9,287.3
+                        447.8,288.7 433.8,281.7 419.7,256.3 405.6,267.6 391.6,248.3 377.5,255.5 363.4,270.9 349.4,287.1 335.3,305.2 321.2,317.1
+                        307.2,337.2 293.1,368.3 279.1,373.0 265.0,366.0 250.9,401.5 236.9,436.4 222.8,447.8 208.8,440.4 194.7,447.9 180.6,435.7
+                        166.6,422.9 152.5,425.7 138.4,449.8 124.4,448.6 110.3,445.7 96.2,454.1 82.2,471.2 68.1,491.6 54.1,496.2 40.0,522.4
+                    "/>
+
+                    <!-- DÉPENSES curve (red) — real data every year 1960-2024 -->
+                    <polyline fill="none" stroke="#ff4757" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" points="
+                        40.0,545.3 54.1,518.4 68.1,495.0 82.2,478.8 96.2,470.3 110.3,456.6 124.4,452.8 138.4,439.2 152.5,397.7 166.6,419.8
+                        180.6,435.0 194.7,442.0 208.8,444.7 222.8,446.5 236.9,438.2 250.9,344.5 265.0,334.2 279.1,350.8 293.1,333.2 307.2,327.8
+                        321.2,308.8 335.3,258.2 349.4,231.7 363.4,221.2 377.5,202.1 391.6,190.3 405.6,205.4 419.7,217.0 433.8,231.8 447.8,254.0
+                        461.9,239.9 475.9,218.5 490.0,193.6 504.1,144.8 518.1,157.5 532.2,154.2 546.2,154.8 560.3,163.5 574.4,194.2 588.4,200.4
+                        602.5,220.5 616.6,216.5 630.6,195.3 644.7,187.0 658.8,193.8 672.8,188.7 686.9,198.6 700.9,200.9 715.0,188.3 729.1,116.7
+                        743.1,122.1 757.2,135.6 771.2,118.6 785.3,105.1 799.4,108.9 813.4,124.3 827.5,128.5 841.6,123.1 855.6,148.1 869.7,167.8
+                        883.8,45.1 897.8,88.3 911.9,108.5 925.9,138.4 940.0,130.9
+                    "/>
+
+                    <!-- RECETTES curve (green) — real data every year 1960-2024 -->
+                    <polyline fill="none" stroke="#00ff88" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" points="
+                        40.0,522.4 54.1,496.2 68.1,491.6 82.2,471.2 96.2,454.1 110.3,445.7 124.4,448.6 138.4,449.8 152.5,425.7 166.6,422.9
+                        180.6,435.7 194.7,447.9 208.8,440.4 222.8,447.8 236.9,436.4 250.9,401.5 265.0,366.0 279.1,373.0 293.1,368.3 307.2,337.2
+                        321.2,317.1 335.3,305.2 349.4,287.1 363.4,270.9 377.5,255.5 391.6,248.3 405.6,267.6 419.7,256.3 433.8,281.7 447.8,288.7
+                        461.9,287.3 475.9,274.2 490.0,283.2 504.1,268.3 518.1,262.9 532.2,252.8 546.2,230.1 560.3,235.2 574.4,240.4 588.4,230.2
+                        602.5,245.8 616.6,243.9 630.6,256.6 644.7,265.9 658.8,262.4 672.8,256.4 686.9,249.9 700.9,258.7 715.0,256.0 729.1,259.2
+                        743.1,260.2 757.2,238.0 771.2,218.5 785.3,200.5 799.4,197.3 813.4,199.4 827.5,201.2 841.6,188.0 855.6,192.9 869.7,214.0
+                        883.8,217.6 897.8,215.4 911.9,200.1 925.9,242.1 940.0,243.1
+                    "/>
+
+                    <!-- "Dépenses" label above spending curve -->
+                    <text x="750" y="96" fill="#ff4757" font-family="Instrument Serif, serif" font-size="30" font-style="italic">Dépenses</text>
+
+                    <!-- "Recettes" label below revenue curve -->
+                    <text x="750" y="290" fill="#00ff88" font-family="Instrument Serif, serif" font-size="30" font-style="italic">Recettes</text>
+
+                    <!-- Key data points — Dépenses -->
+                    <circle cx="40" cy="545.3" r="5" fill="#ff4757"/>
+                    <text x="42" y="585" fill="#ff4757" font-family="JetBrains Mono" font-size="15" font-weight="700" text-anchor="middle">35,8%</text>
+
+                    <circle cx="883.8" cy="45.1" r="5" fill="#ff4757"/>
+                    <text x="855" y="35" fill="#ff4757" font-family="JetBrains Mono" font-size="15" font-weight="700">61,7%</text>
+
+                    <circle cx="940" cy="130.9" r="5" fill="#ff4757"/>
+                    <text x="940" y="100" fill="#ff4757" font-family="JetBrains Mono" font-size="16" font-weight="700" text-anchor="middle">57,3%</text>
+
+                    <!-- Key data points — Recettes -->
+                    <circle cx="40" cy="522.4" r="5" fill="#00ff88"/>
+
+                    <circle cx="940" cy="243.1" r="5" fill="#00ff88"/>
+                    <text x="940" y="280" fill="#00ff88" font-family="JetBrains Mono" font-size="16" font-weight="700" text-anchor="middle">51,4%</text>
+
+                    <!-- X axis year labels -->
+                    <text x="40" y="610" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="15" font-weight="500" text-anchor="middle">1960</text>
+                    <text x="181" y="610" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="15" font-weight="500" text-anchor="middle">1970</text>
+                    <text x="321" y="610" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="15" font-weight="500" text-anchor="middle">1980</text>
+                    <text x="462" y="610" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="15" font-weight="500" text-anchor="middle">1990</text>
+                    <text x="602" y="610" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="15" font-weight="500" text-anchor="middle">2000</text>
+                    <text x="743" y="610" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="15" font-weight="500" text-anchor="middle">2010</text>
+                    <text x="884" y="610" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="15" font-weight="500" text-anchor="middle">2020</text>
+                    <text x="940" y="610" fill="rgba(255,255,255,0.85)" font-family="JetBrains Mono" font-size="15" font-weight="700" text-anchor="middle">2024</text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>INSEE · 2024</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article 15 – DDHC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --bg-mid: #0a1628;
+            --accent-gold: #ffd700;
+            --accent-electric: #00d4ff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+        .bg-base {
+            position: absolute; inset: 0;
+            background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%);
+        }
+        .bg-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .bg-glow-1 {
+            position: absolute; width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.10) 0%, transparent 70%);
+            top: -250px; right: -150px; pointer-events: none;
+        }
+        .bg-glow-2 {
+            position: absolute; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+            bottom: -200px; left: -100px; pointer-events: none;
+        }
+        .content {
+            position: relative; z-index: 1; height: 100%;
+            padding: 40px 60px 40px;
+            display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+        }
+        .logo { display: flex; align-items: center; gap: 14px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4.5rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 2.2rem; font-style: italic; color: #ffffff; line-height: 1; }
+        .citation-wrapper {
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            padding: 0 10px;
+        }
+        .citation {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5.5rem;
+            font-style: italic;
+            color: #f0f4f8;
+            text-align: center;
+            line-height: 1.15;
+        }
+        .citation .highlight {
+            color: var(--accent-gold);
+        }
+        .reference {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            letter-spacing: 0.05em;
+            line-height: 1.5;
+        }
+        .website {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--accent-electric);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="logo">
+                <span class="logo-icon">€</span>
+                <span class="logo-text">Où Va l'Argent ?</span>
+            </div>
+            <div class="citation-wrapper">
+                <div class="citation">« La société a le droit de <span class="highlight">demander compte</span> à tout agent public de son administration. »</div>
+            </div>
+            <div class="reference">Article 15 — Déclaration des Droits de l'Homme et du Citoyen, 1789</div>
+            <div class="website">ouvalargent.com</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -59,8 +59,8 @@ export function Hero() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  // Calcul: déficit 169 Md€/an ÷ 31,536,000 secondes/an ≈ 5 350 €/s (Source: INSEE 2024)
-  const debtPerSecond = 5350 // € par seconde
+  // Calcul: déficit 170 Md€/an ÷ 31,536,000 secondes/an ≈ 5 390 €/s (Source: INSEE 2024)
+  const debtPerSecond = 5390 // € par seconde
 
   useEffect(() => {
     let elapsed = 0
@@ -183,7 +183,7 @@ export function Hero() {
           </div>
 
           <p className="text-text-muted text-base lg:text-lg mt-4">
-            soit environ <span className="text-accent-red font-mono font-medium">5 350 €</span> par seconde, 24h/24
+            soit environ <span className="text-accent-red font-mono font-medium">5 390 €</span> par seconde, 24h/24
           </p>
 
           {/* Compteur de temps */}

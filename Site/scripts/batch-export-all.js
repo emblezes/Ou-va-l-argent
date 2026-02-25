@@ -20,14 +20,16 @@ const TIKTOK_H_DIR = path.join(BASE, 'Infographies', 'Tiktok Horizontal');
 const TIKTOK_CSS = `
 /* ===== FORMAT TIKTOK (9:16) — Contenu en haut, espace libre en bas pour la tête ===== */
 
+body { padding: 0 !important; margin: 0 !important; }
+
 .infographic {
   width: 1080px !important;
   height: 1920px !important;
 }
 
 .content {
-  padding: 60px 65px 40px !important;
-  gap: 15px !important;
+  padding: 50px 30px 35px !important;
+  gap: 10px !important;
   justify-content: flex-start !important;
 }
 
@@ -48,14 +50,23 @@ const TIKTOK_CSS = `
   flex: 0 !important;
 }
 
-/* --- Header --- */
+/* --- Header : logo CENTRÉ et GROS pour TikTok --- */
 .header {
-  margin-bottom: 30px !important;
+  margin-bottom: 10px !important;
+  justify-content: center !important;
 }
+
+.logo {
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.tag { display: none !important; }
 
 .logo-icon {
   font-family: 'Instrument Serif', serif !important;
-  font-size: 4rem !important;
+  font-size: 5rem !important;
   color: #00d4ff !important;
   line-height: 1 !important;
   width: auto !important;
@@ -66,15 +77,17 @@ const TIKTOK_CSS = `
 
 .logo-text {
   font-family: 'Instrument Serif', serif !important;
-  font-size: 1.8rem !important;
+  font-size: 3rem !important;
   font-style: italic !important;
   color: #ffffff !important;
+  white-space: nowrap !important;
 }
 
-/* --- Titres (gros pour TikTok mais pas trop pour laisser de la place au contenu) --- */
+/* --- Titres ÉNORMES pour TikTok — impact visuel maximum --- */
 .section-title, .chart-title {
   font-size: 5rem !important;
-  margin-bottom: 30px !important;
+  margin-bottom: 10px !important;
+  line-height: 1.1 !important;
 }
 
 .main-title {
@@ -288,7 +301,7 @@ const TIKTOK_CSS = `
   background: transparent !important;
   border: none !important;
   border-radius: 0 !important;
-  padding: 10px 0 !important;
+  padding: 10px 10px !important;
   flex-shrink: 0 !important;
 }
 
@@ -432,6 +445,46 @@ const TIKTOK_CSS = `
   padding: 10px 30px !important;
 }
 
+/* --- Barres verticales (dette Europe #02 etc.) — TikTok V --- */
+.bars-wrapper {
+  gap: 6px !important;
+  padding: 0 5px !important;
+}
+
+.bars-wrapper .bar-col {
+  gap: 4px !important;
+  max-width: 105px !important;
+}
+
+/* bars-container type charts (#01, #08a) : no max-width, let flex fill */
+.bars-container .bar-col {
+  max-width: none !important;
+}
+
+.bars-wrapper .bar {
+  width: 60px !important;
+  border-radius: 6px 6px 3px 3px !important;
+}
+
+.bar-value {
+  font-size: 1.7rem !important;
+  font-weight: 700 !important;
+}
+
+.bar-flag {
+  font-size: 2.8rem !important;
+}
+
+.bar-country {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+}
+
+.bar-label {
+  margin-top: 8px !important;
+  gap: 2px !important;
+}
+
 /* --- Section labels --- */
 .section-label {
   font-size: 1.2rem !important;
@@ -458,8 +511,8 @@ const TIKTOK_CSS = `
 
 /* --- Chart subtitle --- */
 .chart-subtitle {
-  font-size: 1.8rem !important;
-  margin-bottom: 25px !important;
+  font-size: 1.5rem !important;
+  margin-bottom: 15px !important;
 }
 
 /* Salaires table */
@@ -511,31 +564,56 @@ const TIKTOK_CSS = `
 }
 
 .bar-down .bar-value {
-  bottom: -35px !important;
+  bottom: -45px !important;
 }
 
 .bar-down.france .bar-value {
   font-size: 2.2rem !important;
 }
 
+.bar-up {
+  width: 90% !important;
+}
+
 .bar-up .bar-value {
-  top: -35px !important;
+  top: -45px !important;
+}
+
+/* --- Year labels (bars-container type charts) : sync gap with bars --- */
+.year-labels {
+  gap: 10px !important;
+  margin-top: 10px !important;
+  padding: 0 10px !important;
+}
+
+.year-num {
+  font-size: 1.3rem !important;
+}
+
+.bars-container {
+  gap: 10px !important;
+}
+
+.bar-label-extra {
+  font-size: 1rem !important;
+  top: -55px !important;
 }
 
 .zero-label {
-  font-size: 1.4rem !important;
+  display: none !important;
 }
 
 .country-labels {
   margin-top: 50px !important;
+  padding: 0 10px !important;
 }
 
 .country-flag {
-  font-size: 3rem !important;
+  font-size: 3.5rem !important;
 }
 
 .country-name {
-  font-size: 1.4rem !important;
+  font-size: 1.8rem !important;
 }
 
 /* --- SVG line chart (retraites #16) : chiffres beaucoup plus gros en TikTok --- */
@@ -909,23 +987,36 @@ const TIKTOK_CSS = `
 const RECTANGLE_CSS = `
 /* ===== FORMAT RECTANGLE HORIZONTAL (1080×600) ===== */
 
+body { padding: 0 !important; margin: 0 !important; }
+
 .infographic {
   width: 1080px !important;
   height: 600px !important;
 }
 
 .content {
-  padding: 30px 40px !important;
+  padding: 10px 25px 8px !important;
+  justify-content: flex-start !important;
+  gap: 2px !important;
 }
 
-/* --- Header compact --- */
+/* --- Header : logo CENTRÉ pour TikTok H --- */
 .header {
-  margin-bottom: 12px !important;
+  margin-bottom: 2px !important;
+  justify-content: center !important;
 }
+
+.logo {
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.tag { display: none !important; }
 
 .logo-icon {
   font-family: 'Instrument Serif', serif !important;
-  font-size: 2.4rem !important;
+  font-size: 3.5rem !important;
   color: #00d4ff !important;
   line-height: 1 !important;
   width: auto !important;
@@ -936,48 +1027,50 @@ const RECTANGLE_CSS = `
 
 .logo-text {
   font-family: 'Instrument Serif', serif !important;
-  font-size: 1rem !important;
+  font-size: 2rem !important;
   font-style: italic !important;
   color: #ffffff !important;
+  white-space: nowrap !important;
 }
 
-/* --- Titres compacts --- */
+/* --- Titres ÉNORMES pour TikTok H — HOOK VISUEL MAXIMUM --- */
 .section-title, .chart-title {
-  font-size: 2rem !important;
-  margin-bottom: 12px !important;
+  font-size: 3.8rem !important;
+  margin-bottom: 4px !important;
+  line-height: 1.05 !important;
 }
 
 .main-title {
-  margin-bottom: 10px !important;
+  margin-bottom: 6px !important;
 }
 
 .main-title h1 {
-  font-size: 1.8rem !important;
+  font-size: 3.2rem !important;
 }
 
 .subtitle, .section-subtitle {
-  font-size: 1rem !important;
-  margin-bottom: 12px !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 8px !important;
 }
 
-/* --- Stat choc compact --- */
+/* --- Stat choc — GROS CHIFFRES --- */
 .stat-label {
-  font-size: 1rem !important;
-  margin-bottom: 8px !important;
+  font-size: 1.4rem !important;
+  margin-bottom: 6px !important;
 }
 
 .stat-value {
-  font-size: 100px !important;
-  margin-bottom: 8px !important;
+  font-size: 120px !important;
+  margin-bottom: 6px !important;
 }
 
 .stat-unit {
-  font-size: 2.2rem !important;
-  margin-bottom: 10px !important;
+  font-size: 2.8rem !important;
+  margin-bottom: 8px !important;
 }
 
 .stat-context {
-  font-size: 1.2rem !important;
+  font-size: 1.4rem !important;
 }
 
 .chatgpt-icon {
@@ -1081,6 +1174,47 @@ const RECTANGLE_CSS = `
   min-width: 50px !important;
 }
 
+/* --- Barres verticales (dette Europe #02 etc.) — TikTok H --- */
+.bars-wrapper {
+  gap: 6px !important;
+  padding: 0 5px !important;
+  flex: 1 !important;
+}
+
+.bars-wrapper .bar-col {
+  gap: 2px !important;
+  max-width: 105px !important;
+}
+
+/* bars-container type charts (#01, #08a) : no max-width, let flex fill */
+.bars-container .bar-col {
+  max-width: none !important;
+}
+
+.bars-wrapper .bar {
+  width: 45px !important;
+  border-radius: 4px 4px 2px 2px !important;
+}
+
+.bar-value {
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+}
+
+.bar-flag {
+  font-size: 1.4rem !important;
+}
+
+.bar-country {
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+}
+
+.bar-label {
+  margin-top: 3px !important;
+  gap: 1px !important;
+}
+
 .section-label {
   font-size: 0.6rem !important;
   margin-bottom: 2px !important;
@@ -1100,8 +1234,8 @@ const RECTANGLE_CSS = `
 }
 
 .chart-subtitle {
-  font-size: 0.7rem !important;
-  margin-bottom: 6px !important;
+  font-size: 0.8rem !important;
+  margin-bottom: 4px !important;
 }
 
 .multiplier-badge {
@@ -1171,7 +1305,7 @@ const RECTANGLE_CSS = `
 }
 
 .chart-area {
-  padding: 5px 0 !important;
+  padding: 5px 5px !important;
 }
 
 .key-stats {
@@ -1217,56 +1351,88 @@ const RECTANGLE_CSS = `
 }
 
 .bars-container {
-  gap: 3px !important;
+  gap: 8px !important;
 }
 
 .bar-value {
-  font-size: 0.7rem !important;
+  font-size: 2.2rem !important;
 }
 
 .bar-down .bar-value {
-  bottom: -16px !important;
+  bottom: -40px !important;
 }
 
 .bar-down.france .bar-value {
-  font-size: 0.85rem !important;
+  font-size: 2.6rem !important;
+}
+
+.bar-up {
+  width: 85% !important;
 }
 
 .bar-up .bar-value {
-  top: -16px !important;
+  top: -40px !important;
+}
+
+/* --- Year labels (bars-container type charts) : sync gap with bars --- */
+.year-labels {
+  gap: 8px !important;
+  margin-top: 5px !important;
+  padding: 0 5px !important;
+}
+
+.year-num {
+  font-size: 0.75rem !important;
+}
+
+.bar-label-extra {
+  font-size: 0.5rem !important;
+  top: -28px !important;
+}
+
+/* --- Highlight box compact --- */
+.highlight-box {
+  padding: 8px 15px !important;
+  margin-top: 5px !important;
+  border-radius: 8px !important;
+}
+
+.highlight-text {
+  font-size: 0.7rem !important;
+  line-height: 1.3 !important;
 }
 
 .zero-label {
-  font-size: 0.6rem !important;
-  left: -35px !important;
+  display: none !important;
 }
 
 .country-labels {
-  margin-top: 20px !important;
+  margin-top: 30px !important;
   gap: 3px !important;
-  padding-left: 35px !important;
+  padding: 0 5px !important;
 }
 
 .country-flag {
-  font-size: 1.1rem !important;
+  font-size: 2.2rem !important;
 }
 
 .country-name {
-  font-size: 0.55rem !important;
+  font-size: 1.1rem !important;
 }
 
 /* --- Footer compact --- */
 .footer {
-  padding-top: 10px !important;
-  margin-top: 8px !important;
+  padding-top: 3px !important;
+  margin-top: 2px !important;
+  border-top: none !important;
 }
 
 .source {
-  font-size: 0.8rem !important;
+  font-size: 0.6rem !important;
 }
 
 .website {
-  font-size: 0.9rem !important;
+  font-size: 0.85rem !important;
 }
 
 /* ===== NOUVEAUX TYPES — Rectangle Horizontal ===== */
@@ -1565,102 +1731,106 @@ const RECTANGLE_CSS = `
 
 // Define infographics: [htmlFile, infographicIndex, outputBaseName]
 const INFOGRAPHICS = [
-  ['01-france-pologne-pib.html', 0, '01-france-pologne-comparaison'],
-  ['01-france-pologne-pib.html', 1, '02-pologne-rattrapage-courbes'],
-  ['03-singapour-argentine-pib.html', 0, '03-singapour-argentine-divergence'],
-  ['04-chatgpt-utilisateurs.html', 0, '04-chatgpt-utilisateurs'],
-  ['05-cuivre.html', 0, '05-cuivre'],
-  ['06-salaires-suisse.html', 0, '06-salaires-suisse'],
-  ['07-top5-pays-peuples.html', 0, '07-top5-pays-peuples'],
-  ['08-fertilite-par-pays.html', 0, '08-fertilite-par-pays'],
-  ['09-prix-cigarette-france.html', 0, '09-prix-cigarette-france'],
-  ['10-indice-big-mac.html', 0, '10-indice-big-mac'],
-  ['11-salaire-moyen-par-pays.html', 0, '11-salaire-moyen-par-pays'],
-  ['12-dette-publique-europe.html', 0, '12-dette-publique-europe'],
-  ['13-deficit-zone-euro.html', 0, '13-deficit-zone-euro'],
-  ['14-explosion-dette-france.html', 0, '14-explosion-dette-france'],
-  ['15-hotels-plus-chers-paris.html', 0, '15-hotels-plus-chers-paris'],
-  ['16-retraites-explosion-2070.html', 0, '16-retraites-explosion-2070'],
-  ['17-vieillissement-mondial-2070.html', 0, '17-vieillissement-mondial-2070'],
-  ['18-pensions-retraite-europe.html', 0, '18-pensions-retraite-europe'],
-  ['19-capitalisation-vs-repartition.html', 0, '19-capitalisation-vs-repartition'],
-  ['20-retraites-capitalisation-plus-elevees.html', 0, '20-retraites-capitalisation-plus-elevees'],
-  ['21-detenteurs-dette-france.html', 0, '21-detenteurs-dette-france'],
-  ['22-charge-interets-dette.html', 0, '22-charge-interets-dette'],
-  ['23-triple-degradation-notes.html', 0, '23-triple-degradation-notes'],
-  ['24-simulation-capitalisation-980k.html', 0, '24-simulation-capitalisation-980k'],
-  ['25-classement-mercer-retraites-2025.html', 0, '25-classement-mercer-retraites-2025'],
-  ['26-pays-bas-fonds-pension-213-pib.html', 0, '26-pays-bas-fonds-pension-213-pib'],
-  ['27-fecondite-france-plus-bas.html', 0, '27-fecondite-france-plus-bas'],
-  ['28-rendement-capitalisation-vs-repartition.html', 0, '28-rendement-capitalisation-vs-repartition'],
-  ['29-zero-perte-20-ans-actions.html', 0, '29-zero-perte-20-ans-actions'],
-  ['30-fonds-souverain-norvege.html', 0, '30-fonds-souverain-norvege'],
-  ['31-actifs-fonds-pension-monde.html', 0, '31-actifs-fonds-pension-monde'],
-  ['32-emplois-remplaces-ia.html', 0, '32-emplois-remplaces-ia'],
-  ['33-guyane-98pct-inexplore.html', 0, '33-guyane-98pct-inexplore'],
-  ['34-or-illegal-guyane.html', 0, '34-or-illegal-guyane'],
-  ['35-ue-dependance-terres-rares.html', 0, '35-ue-dependance-terres-rares'],
-  ['36-guyana-vs-guyane.html', 0, '36-guyana-vs-guyane'],
-  ['37-montagne-dor-projet-rejete.html', 0, '37-montagne-dor-projet-rejete'],
-  ['38-orpaillage-cout-total.html', 0, '38-orpaillage-cout-total'],
-  ['39-richesses-sous-sol-guyane.html', 0, '39-richesses-sous-sol-guyane'],
-  ['40-chomage-guyane-vs-metropole.html', 0, '40-chomage-guyane-vs-metropole'],
-  ['41-delais-permis-miniers.html', 0, '41-delais-permis-miniers'],
-  ['42-valeur-sous-sol-guyane.html', 0, '42-valeur-sous-sol-guyane'],
-  ['43-mercure-guyane.html', 0, '43-mercure-guyane'],
-  ['44-guyana-pib-62pct.html', 0, '44-guyana-pib-62pct'],
-  ['45-nordgold-4md-arbitrage.html', 0, '45-nordgold-4md-arbitrage'],
-  ['46-qui-nourrit-etat.html', 0, '46-qui-nourrit-etat'],
-  ['47-fiche-de-paie-decomposition.html', 0, '47-fiche-de-paie-decomposition'],
-  ['48-dette-titre-couverture.html', 0, '48-dette-titre-couverture'],
-  ['49-dette-3305-milliards.html', 0, '49-dette-3305-milliards'],
-  ['50-dette-113-pct-pib-europe.html', 0, '50-dette-113-pct-pib-europe'],
-  ['51-dette-48800-par-habitant.html', 0, '51-dette-48800-par-habitant'],
-  ['52-dette-53pct-etrangers.html', 0, '52-dette-53pct-etrangers'],
-  ['53-dette-58md-interets.html', 0, '53-dette-58md-interets'],
-  ['54-ecoles-commerce-couverture.html', 0, '54-ecoles-commerce-couverture'],
-  ['55-ecole-hec-paris.html', 0, '55-ecole-hec-paris'],
-  ['56-ecole-escp.html', 0, '56-ecole-escp'],
-  ['57-ecole-essec.html', 0, '57-ecole-essec'],
-  ['58-ecole-emlyon.html', 0, '58-ecole-emlyon'],
-  ['59-ecole-edhec.html', 0, '59-ecole-edhec'],
-  ['60-ecole-skema.html', 0, '60-ecole-skema'],
-  ['61-ecole-audencia.html', 0, '61-ecole-audencia'],
-  ['62-ecole-tbs.html', 0, '62-ecole-tbs'],
-  ['64-ouigo-prix-75pct.html', 0, '64-ouigo-prix-75pct'],
-  ['65-travail-noir-1-6md.html', 0, '65-travail-noir-1-6md'],
-  ['66-dette-us-interets-vs-pentagone.html', 0, '66-dette-us-interets-vs-pentagone'],
-  ['67-surendettement-10pct-jeunes.html', 0, '67-surendettement-10pct-jeunes'],
-  ['68-maprimerenov-6-mois-attente.html', 0, '68-maprimerenov-6-mois-attente'],
-  ['109-france-championne-depenses-sociales-europe.html', 0, '109-france-championne-depenses-sociales-europe'],
-  ['110-charge-interets-dette-publique-france.html', 0, '110-charge-interets-dette-publique-france'],
-  ['111-per-dominent-epargne-retraite-2024.html', 0, '111-per-dominent-epargne-retraite-2024'],
-  ['112-france-championne-depenses-sociales-europe.html', 0, '112-france-championne-depenses-sociales-europe'],
-  ['113-evolution-interets-dette-publique-france.html', 0, '113-evolution-interets-dette-publique-france'],
-  ['114-isf-etude-impacts-retour.html', 0, '114-isf-etude-impacts-retour'],
-  ['115-classement-depenses-sociales-europe-top5.html', 0, '115-classement-depenses-sociales-europe-top5'],
-  ['116-poids-interets-dette-budget-etat.html', 0, '116-poids-interets-dette-budget-etat'],
-  ['117-isf-gain-net-gouvernement.html', 0, '117-isf-gain-net-gouvernement'],
-  ['118-france-vs-allemagne-depenses-sociales.html', 0, '118-france-vs-allemagne-depenses-sociales'],
-  ['119-france-championne-depenses-sociales-europe.html', 0, '119-france-championne-depenses-sociales-europe'],
-  ['120-dette-france-interets-croissants.html', 0, '120-dette-france-interets-croissants'],
-  ['121-per-dominent-epargne-retraite-2024.html', 0, '121-per-dominent-epargne-retraite-2024'],
-  ['122-modele-social-francais-vs-europe.html', 0, '122-modele-social-francais-vs-europe'],
-  ['123-evolution-charge-dette-france.html', 0, '123-evolution-charge-dette-france'],
-  ['124-success-story-per-epargne-retraite.html', 0, '124-success-story-per-epargne-retraite'],
-  ['125-france-leader-social-europe-chiffres.html', 0, '125-france-leader-social-europe-chiffres'],
-  ['126-pokemon-150-milliards-franchise.html', 0, '126-pokemon-150-milliards-franchise'],
-  ['127-proman-top-10-interim-mondial.html', 0, '127-proman-top-10-interim-mondial'],
-  ['128-mesures-rn-patronat-impact.html', 0, '128-mesures-rn-patronat-impact'],
-  ['129-mix-energetique-france-2030.html', 0, '129-mix-energetique-france-2030'],
-  ['130-chine-usa-douane-tensions.html', 0, '130-chine-usa-douane-tensions'],
-  ['131-afrique-investissements-est-pivot.html', 0, '131-afrique-investissements-est-pivot'],
-  ['132-france-services-communes-impact.html', 0, '132-france-services-communes-impact'],
-  ['133-classement-maires-grandes-villes.html', 0, '133-classement-maires-grandes-villes'],
-  ['134-echec-marques-maga-profits.html', 0, '134-echec-marques-maga-profits'],
-  ['135-montchalin-cour-comptes-polemique.html', 0, '135-montchalin-cour-comptes-polemique'],
-  ['136-tensions-commerciales-usa-chine.html', 0, '136-tensions-commerciales-usa-chine'],
-  ['47bis-fiche-de-paie-simple.html', 0, '47bis-fiche-de-paie-simple'],
+  ['01-explosion-dette-france.html', 0, '01-explosion-dette-france'],
+  ['02-dette-publique-europe.html', 0, '02-dette-publique-europe'],
+  ['03-deficit-zone-euro.html', 0, '03-deficit-zone-euro'],
+  ['04-deficit-historique-france.html', 0, '04-deficit-historique-france'],
+  ['05-depenses-publiques-pib-france.html', 0, '05-depenses-publiques-pib-france'],
+  ['06-depenses-vs-recettes-france.html', 0, '06-depenses-vs-recettes-france'],
+  ['07-dette-48800-par-habitant.html', 0, '07-dette-48800-par-habitant'],
+  ['08a-charge-interets-dette.html', 0, '08a-charge-interets-dette'],
+  ['08b-dette-france-interets-croissants.html', 0, '08b-dette-france-interets-croissants'],
+  ['09-dette-58md-interets.html', 0, '09-dette-58md-interets'],
+  ['10a-detenteurs-dette-france.html', 0, '10a-detenteurs-dette-france'],
+  ['10b-dette-53pct-etrangers.html', 0, '10b-dette-53pct-etrangers'],
+  ['11-triple-degradation-notes.html', 0, '11-triple-degradation-notes'],
+  ['19-france-championne-depenses-sociales-europe.html', 0, '19-france-championne-depenses-sociales-europe'],
+  ['27-qui-nourrit-etat.html', 0, '27-qui-nourrit-etat'],
+  ['28-retraites-explosion-2070.html', 0, '28-retraites-explosion-2070'],
+  ['33-capitalisation-vs-repartition.html', 0, '33-capitalisation-vs-repartition'],
+  ['37-vieillissement-mondial-2070.html', 0, '37-vieillissement-mondial-2070'],
+  ['38-actifs-fonds-pension-monde.html', 0, '38-actifs-fonds-pension-monde'],
+  ['51-fiche-de-paie-decomposition.html', 0, '51-fiche-de-paie-decomposition'],
+  ['55-simulation-300k-brut-net.html', 0, '55-simulation-300k-brut-net'],
+  ['61-mix-energetique-france-2030.html', 0, '61-mix-energetique-france-2030'],
+  ['65-salaire-moyen-par-pays.html', 0, '65-salaire-moyen-par-pays'],
+  ['73-mercure-guyane.html', 0, '73-mercure-guyane'],
+  ['75a-france-pologne-comparaison.html', 0, '75a-france-pologne-comparaison'],
+  ['80-prix-cigarette-france.html', 0, '80-prix-cigarette-france'],
+  ['81-indice-big-mac.html', 0, '81-indice-big-mac'],
+  ['90-salaires-suisse.html', 0, '90-salaires-suisse'],
+  ['91-top5-pays-peuples.html', 0, '91-top5-pays-peuples'],
+  ['92-hotels-plus-chers-paris.html', 0, '92-hotels-plus-chers-paris'],
+  ['93-ue-dependance-terres-rares.html', 0, '93-ue-dependance-terres-rares'],
+  ['94-guyana-pib-62pct.html', 0, '94-guyana-pib-62pct'],
+  ['95-fiche-de-paie-simple.html', 0, '95-fiche-de-paie-simple'],
+  ['96-cout-total-salarie-europe.html', 0, '96-cout-total-salarie-europe'],
+  ['97-dette-titre-couverture.html', 0, '97-dette-titre-couverture'],
+  ['98-dette-3305-milliards.html', 0, '98-dette-3305-milliards'],
+  ['99-dette-us-interets-vs-pentagone.html', 0, '99-dette-us-interets-vs-pentagone'],
+  ['100-classement-depenses-sociales-europe-top5.html', 0, '100-classement-depenses-sociales-europe-top5'],
+  ['101-etat-gaspille-votre-argent.html', 0, '101-etat-gaspille-votre-argent'],
+  ['102-sortir-france-enfer-fiscal.html', 0, '102-sortir-france-enfer-fiscal'],
+  ['103-france-enfer-fiscal-question.html', 0, '103-france-enfer-fiscal-question'],
+  ['104-pas-de-retraite.html', 0, '104-pas-de-retraite'],
+  ['105-etat-francais-faillite.html', 0, '105-etat-francais-faillite'],
+  ['106-ou-va-largent.html', 0, '106-ou-va-largent'],
+  ['107-ouvalargent-com.html', 0, '107-ouvalargent-com'],
+  ['108-logo-euro.html', 0, '108-logo-euro'],
+  ['109-abonne-toi.html', 0, '109-abonne-toi'],
+  ['110-partage-ami-socialiste.html', 0, '110-partage-ami-socialiste'],
+  ['111-partage-ami-chiffres.html', 0, '111-partage-ami-chiffres'],
+  ['112-article-15-ddhc.html', 0, '112-article-15-ddhc'],
+  ['113-dette-naissance-bebe.html', 0, '113-dette-naissance-bebe'],
+  ['114-dette-5350-par-seconde.html', 0, '114-dette-5350-par-seconde'],
+  ['115-dette-pile-billets-terre.html', 0, '115-dette-pile-billets-terre'],
+  ['116-cout-eleve-recul-maths.html', 0, '116-cout-eleve-recul-maths'],
+  ['117-medicaments-36-milliards.html', 0, '117-medicaments-36-milliards'],
+  ['118-subvention-sncf-300-euros.html', 0, '118-subvention-sncf-300-euros'],
+  ['119-audiovisuel-public-4-milliards.html', 0, '119-audiovisuel-public-4-milliards'],
+  ['120-communes-plus-que-ue.html', 0, '120-communes-plus-que-ue'],
+  ['121-82-jours-travail-impots.html', 0, '121-82-jours-travail-impots'],
+  ['122-salaire-suisse-double.html', 0, '122-salaire-suisse-double'],
+  ['123-ratio-actifs-retraites.html', 0, '123-ratio-actifs-retraites'],
+  ['124-taxe-fonciere-paris-52.html', 0, '124-taxe-fonciere-paris-52'],
+  ['125-48-boites-medicaments.html', 0, '125-48-boites-medicaments'],
+  ['126-code-travail-3500-pages.html', 0, '126-code-travail-3500-pages'],
+  ['127-intermittents-2-milliards.html', 0, '127-intermittents-2-milliards'],
+  ['128-1500-aides-sociales.html', 0, '128-1500-aides-sociales'],
+  ['129-singapour-france-1960.html', 0, '129-singapour-france-1960'],
+  ['130-interets-58-milliards.html', 0, '130-interets-58-milliards'],
+  ['131-taxes-essence-60-centimes.html', 0, '131-taxes-essence-60-centimes'],
+  ['132-droits-succession-45-pourcent.html', 0, '132-droits-succession-45-pourcent'],
+  ['133-fonctionnaires-5-8-millions.html', 0, '133-fonctionnaires-5-8-millions'],
+  ['134-dernier-budget-equilibre-1974.html', 0, '134-dernier-budget-equilibre-1974'],
+  ['135-france-2eme-plus-taxe.html', 0, '135-france-2eme-plus-taxe'],
+  ['136-retraite-64-vs-67-allemagne.html', 0, '136-retraite-64-vs-67-allemagne'],
+  ['137-budget-culture-15-milliards.html', 0, '137-budget-culture-15-milliards'],
+  ['138-44-pourcent-pas-impot-revenu.html', 0, '138-44-pourcent-pas-impot-revenu'],
+  ['139-lits-hopitaux-supprimes.html', 0, '139-lits-hopitaux-supprimes'],
+  ['140-impot-societes-france-irlande.html', 0, '140-impot-societes-france-irlande'],
+  ['141-400000-normes-france.html', 0, '141-400000-normes-france'],
+  ['142-deficit-169-milliards-2024.html', 0, '142-deficit-169-milliards-2024'],
+  ['143-prefets-heritage-napoleonien.html', 0, '143-prefets-heritage-napoleonien'],
+  ['144-dette-multipliee-par-4.html', 0, '144-dette-multipliee-par-4'],
+  ['145-38-milliards-logement-loyers.html', 0, '145-38-milliards-logement-loyers'],
+  ['146-9-milliards-dette-edf.html', 0, '146-9-milliards-dette-edf'],
+  ['147-60-pourcent-etudiants-echec.html', 0, '147-60-pourcent-etudiants-echec'],
+  ['148-deputes-cumul-mandats.html', 0, '148-deputes-cumul-mandats'],
+  ['149-desert-medical-30-pourcent.html', 0, '149-desert-medical-30-pourcent'],
+  ['150-attente-urgences-3-heures.html', 0, '150-attente-urgences-3-heures'],
+  ['151-dette-42-iphones.html', 0, '151-dette-42-iphones'],
+  ['152-dette-55-pourcent-etrangers.html', 0, '152-dette-55-pourcent-etrangers'],
+  ['153-industrie-moins-40-pourcent.html', 0, '153-industrie-moins-40-pourcent'],
+  ['154-463-millions-dette-par-jour.html', 0, '154-463-millions-dette-par-jour'],
+  ['155-520000-elus-locaux-record.html', 0, '155-520000-elus-locaux-record'],
+  ['156-code-travail-chomage-correlation.html', 0, '156-code-travail-chomage-correlation'],
+  ['157-fraude-100-milliards.html', 0, '157-fraude-100-milliards'],
+  ['158-tgv-retard-subventions.html', 0, '158-tgv-retard-subventions'],
+  ['159-eleves-faibles-maths-budget.html', 0, '159-eleves-faibles-maths-budget'],
+  ['160-depenses-sante-3700-par-habitant.html', 0, '160-depenses-sante-3700-par-habitant'],
+  ['161-tva-cercueil-20-pourcent.html', 0, '161-tva-cercueil-20-pourcent'],
+  ['162-dette-117-pib-double-limite.html', 0, '162-dette-117-pib-double-limite'],
 ];
 
 async function exportFormat(browser, htmlPath, items, { css, jsTransform, width, height, outputDir, suffix, label }) {
@@ -1713,6 +1883,11 @@ async function main() {
       const h = parseInt(bar.style.height);
       if (h) bar.style.height = Math.round(h * 1.8) + 'px';
     });
+    // Vertical bars (dette Europe #02 etc.) — scale down to fit in top half
+    document.querySelectorAll('.bars-wrapper .bar').forEach(bar => {
+      const h = parseInt(bar.style.height);
+      if (h) bar.style.height = Math.round(h * 0.85) + 'px';
+    });
     // Waterfall bars — scale inline heights
     document.querySelectorAll('.waterfall-bar').forEach(bar => {
       const h = parseInt(bar.style.height);
@@ -1745,6 +1920,11 @@ async function main() {
     document.querySelectorAll('.timeline-bar').forEach(bar => {
       const h = parseInt(bar.style.height);
       if (h) bar.style.height = Math.round(h * 0.55) + 'px';
+    });
+    // Vertical bars (dette Europe #02 etc.) — scale down for 600px
+    document.querySelectorAll('.bars-wrapper .bar').forEach(bar => {
+      const h = parseInt(bar.style.height);
+      if (h) bar.style.height = Math.round(h * 0.45) + 'px';
     });
     // Waterfall bars — scale down
     document.querySelectorAll('.waterfall-bar').forEach(bar => {

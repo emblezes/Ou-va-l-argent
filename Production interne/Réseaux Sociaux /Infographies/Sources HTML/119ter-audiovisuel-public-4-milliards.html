@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WTF – 119ter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:#1a1508;--bg-mid:#3d2e0a;--accent:#ffd700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Syne',sans-serif;background:#1a1a2e;display:flex;justify-content:center}
+.infographic{width:1080px;height:1080px;position:relative;overflow:hidden}
+.bg-base{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%)}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,215,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,215,0,0.03) 1px,transparent 1px);background-size:40px 40px}
+.bg-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(255,215,0,0.08) 0%,transparent 60%);bottom:-100px;left:50%;transform:translateX(-50%);pointer-events:none}
+.content{position:relative;z-index:1;height:100%;padding:50px 60px;display:flex;flex-direction:column;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{font-family:'Instrument Serif',serif;font-size:3.5rem;color:var(--accent);line-height:1}
+.logo-text{font-family:'Instrument Serif',serif;font-size:1.7rem;font-style:italic;color:#fff;line-height:1}
+.center-block{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:30px}
+/* Vertical bars */
+.bars-wrapper{display:flex;align-items:flex-end;justify-content:center;gap:80px;height:700px;padding-bottom:20px}
+.bar-col{display:flex;flex-direction:column;align-items:center;gap:15px}
+.vbar{width:180px;border-radius:16px 16px 0 0}
+.vbar-public{height:600px;background:linear-gradient(180deg,rgba(255,215,0,0.7),rgba(255,215,0,0.35))}
+.vbar-netflix{height:216px;background:linear-gradient(180deg,rgba(229,9,20,0.7),rgba(229,9,20,0.35))}
+.bar-amount{font-family:'JetBrains Mono',monospace;font-size:3rem;font-weight:700;color:#fff}
+.bar-label{font-family:'Instrument Serif',serif;font-size:2.2rem;color:#fff;text-align:center;line-height:1.15}
+.footer{width:100%;text-align:center}
+.website{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:#fff}
+</style></head><body>
+<div class="infographic"><div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow"></div>
+<div class="content">
+<div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+<div class="center-block">
+  <div class="bars-wrapper">
+    <div class="bar-col">
+      <div class="bar-amount">4 Md€</div>
+      <div class="vbar vbar-public"></div>
+      <div class="bar-label">Subventions<br>audiovisuel public</div>
+    </div>
+    <div class="bar-col">
+      <div class="bar-amount">1,44 Md€</div>
+      <div class="vbar vbar-netflix"></div>
+      <div class="bar-label">Chiffre d'affaires<br>de Netflix France</div>
+    </div>
+  </div>
+</div>
+<div class="footer"><div class="website">ouvalargent.com</div></div>
+</div></div></body></html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La France n'a pas eu de budget équilibré depuis 1974</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --bg-mid: #0a1628;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-gold: #ffd700;
+            --accent-red: #ff4757;
+            --accent-green: #00ff88;
+            --accent-orange: #ff9f43;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 71, 87, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 71, 87, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.1) 0%, transparent 70%);
+            bottom: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.06) 0%, transparent 70%);
+            top: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 50px 55px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.4rem;
+            text-align: center;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+            line-height: 1.15;
+        }
+
+        .chart-title .accent {
+            color: var(--accent-red);
+            font-style: italic;
+        }
+
+        .chart-title .accent-green {
+            color: var(--accent-green);
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        /* ===== BAR CHART ===== */
+        /* Range: +2 to -10 = 12 points. Surplus zone = 2/12 = 16.67% */
+        .chart-area {
+            flex: 1;
+            display: flex;
+            position: relative;
+            padding: 0 10px;
+        }
+
+        .bars-container {
+            flex: 1;
+            display: flex;
+            gap: 8px;
+            position: relative;
+            height: 100%;
+        }
+
+        .zero-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 16.67%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: 2;
+        }
+
+        .bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            height: 100%;
+        }
+
+        .surplus-zone {
+            height: 16.67%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+        }
+
+        .deficit-zone {
+            height: 83.33%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+        }
+
+        .bar-up {
+            width: 80%;
+            border-radius: 6px 6px 0 0;
+            background: linear-gradient(180deg, var(--accent-green), rgba(0, 255, 136, 0.6));
+            position: relative;
+        }
+
+        .bar-down {
+            width: 80%;
+            border-radius: 0 0 6px 6px;
+            position: relative;
+            background: linear-gradient(180deg, rgba(255, 71, 87, 0.7), var(--accent-red));
+        }
+
+        .bar-down.level-peak {
+            background: linear-gradient(180deg, var(--accent-red), #ff1a2e);
+            box-shadow: 0 4px 20px rgba(255, 71, 87, 0.35);
+        }
+
+        .bar-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            position: absolute;
+            white-space: nowrap;
+        }
+
+        .bar-down .bar-value {
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--accent-red);
+        }
+
+        .bar-up .bar-value {
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--accent-green);
+        }
+
+        .bar-down.level-peak .bar-value { color: #ff1a2e; font-size: 1.4rem; }
+
+        .year-labels {
+            display: flex;
+            gap: 8px;
+            margin-top: 40px;
+            padding: 0 10px;
+        }
+
+        .year-label {
+            flex: 1;
+            text-align: center;
+        }
+
+        .year-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .year-label.highlight .year-num {
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+
+        .year-label.highlight-green .year-num {
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .source span {
+            color: var(--text-secondary);
+        }
+
+        .website {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-electric);
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">La France n'a pas eu de budget<br><span class="accent">équilibré</span> depuis <span class="accent-green">1974</span></h2>
+            <div class="chart-subtitle">Solde budgétaire en % du PIB (1960–2024, INSEE)</div>
+
+            <div class="chart-area">
+                <div class="bars-container">
+                    <div class="zero-line"></div>
+
+                    <!-- 1960: +1.2% → surplus height: 1.2/2 = 60% of surplus zone -->
+                    <div class="bar-col">
+                        <div class="surplus-zone">
+                            <div class="bar-up" style="height: 60%;">
+                                <div class="bar-value">+1,2</div>
+                            </div>
+                        </div>
+                        <div class="deficit-zone"></div>
+                    </div>
+
+                    <!-- 1965: +0.6% → 0.6/2 = 30% -->
+                    <div class="bar-col">
+                        <div class="surplus-zone">
+                            <div class="bar-up" style="height: 30%;">
+                                <div class="bar-value">+0,6</div>
+                            </div>
+                        </div>
+                        <div class="deficit-zone"></div>
+                    </div>
+
+                    <!-- 1970: 0.0% → flat -->
+                    <div class="bar-col">
+                        <div class="surplus-zone">
+                            <div class="bar-up" style="height: 3%;">
+                                <div class="bar-value">0,0</div>
+                            </div>
+                        </div>
+                        <div class="deficit-zone"></div>
+                    </div>
+
+                    <!-- 1974: +0.1% → 0.1/2 = 5% -->
+                    <div class="bar-col">
+                        <div class="surplus-zone">
+                            <div class="bar-up" style="height: 5%;">
+                                <div class="bar-value">+0,1</div>
+                            </div>
+                        </div>
+                        <div class="deficit-zone"></div>
+                    </div>
+
+                    <!-- 1975: -2.9% → 2.9/10 = 29% -->
+                    <div class="bar-col">
+                        <div class="surplus-zone"></div>
+                        <div class="deficit-zone">
+                            <div class="bar-down" style="height: 29%;">
+                                <div class="bar-value">-2,9</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1980: -0.4% → 0.4/10 = 4% -->
+                    <div class="bar-col">
+                        <div class="surplus-zone"></div>
+                        <div class="deficit-zone">
+                            <div class="bar-down" style="height: 4%;">
+                                <div class="bar-value">-0,4</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1985: -3.0% → 3.0/10 = 30% -->
+                    <div class="bar-col">
+                        <div class="surplus-zone"></div>
+                        <div class="deficit-zone">
+                            <div class="bar-down" style="height: 30%;">
+                                <div class="bar-value">-3,0</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1990: -2.5% → 2.5/10 = 25% -->
+                    <div class="bar-col">
+                        <div class="surplus-zone"></div>
+                        <div class="deficit-zone">
+                            <div class="bar-down" style="height: 25%;">
+                                <div class="bar-value">-2,5</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1993: -6.4% → 6.4/10 = 64% -->
+                    <div class="bar-col">
+                        <div class="surplus-zone"></div>
+                        <div class="deficit-zone">
+                            <div class="bar-down level-peak" style="height: 64%;">
+                                <div class="bar-value">-6,4</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2000: -1.3% → 1.3/10 = 13% -->
+                    <div class="bar-col">
+                        <div class="surplus-zone"></div>
+                        <div class="deficit-zone">
+                            <div class="bar-down" style="height: 13%;">
+                                <div class="bar-value">-1,3</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2005: -3.5% → 3.5/10 = 35% -->
+                    <div class="bar-col">
+                        <div class="surplus-zone"></div>
+                        <div class="deficit-zone">
+                            <div class="bar-down" style="height: 35%;">
+                                <div class="bar-value">-3,5</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2010: -7.2% → 7.2/10 = 72% -->
+                    <div class="bar-col">
+                        <div class="surplus-zone"></div>
+                        <div class="deficit-zone">
+                            <div class="bar-down level-peak" style="height: 72%;">
+                                <div class="bar-value">-7,2</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2015: -3.9% → 3.9/10 = 39% -->
+                    <div class="bar-col">
+                        <div class="surplus-zone"></div>
+                        <div class="deficit-zone">
+                            <div class="bar-down" style="height: 39%;">
+                                <div class="bar-value">-3,9</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2020: -8.9% → 8.9/10 = 89% -->
+                    <div class="bar-col">
+                        <div class="surplus-zone"></div>
+                        <div class="deficit-zone">
+                            <div class="bar-down level-peak" style="height: 89%;">
+                                <div class="bar-value">-8,9</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2024: -5.8% → 5.8/10 = 58% -->
+                    <div class="bar-col">
+                        <div class="surplus-zone"></div>
+                        <div class="deficit-zone">
+                            <div class="bar-down" style="height: 58%;">
+                                <div class="bar-value">-5,8</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Year labels -->
+            <div class="year-labels">
+                <div class="year-label highlight-green"><div class="year-num">1960</div></div>
+                <div class="year-label highlight-green"><div class="year-num">1965</div></div>
+                <div class="year-label highlight-green"><div class="year-num">1970</div></div>
+                <div class="year-label highlight-green"><div class="year-num">1974</div></div>
+                <div class="year-label highlight"><div class="year-num">1975</div></div>
+                <div class="year-label highlight"><div class="year-num">1980</div></div>
+                <div class="year-label highlight"><div class="year-num">1985</div></div>
+                <div class="year-label highlight"><div class="year-num">1990</div></div>
+                <div class="year-label highlight"><div class="year-num">1993</div></div>
+                <div class="year-label highlight"><div class="year-num">2000</div></div>
+                <div class="year-label highlight"><div class="year-num">2005</div></div>
+                <div class="year-label highlight"><div class="year-num">2010</div></div>
+                <div class="year-label highlight"><div class="year-num">2015</div></div>
+                <div class="year-label highlight"><div class="year-num">2020</div></div>
+                <div class="year-label highlight"><div class="year-num">2024</div></div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>INSEE · 2024</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

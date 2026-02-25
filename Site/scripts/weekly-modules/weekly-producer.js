@@ -247,6 +247,11 @@ async function exportInfographic(browser, htmlPath, baseName, cssOverrides) {
       const h = parseInt(bar.style.height);
       if (h) bar.style.height = Math.round(h * 1.8) + 'px';
     });
+    // Vertical bars (bars-wrapper) — scale down to fit in top half
+    document.querySelectorAll('.bars-wrapper .bar').forEach(bar => {
+      const h = parseInt(bar.style.height);
+      if (h) bar.style.height = Math.round(h * 0.85) + 'px';
+    });
     document.querySelectorAll('.waterfall-bar').forEach(bar => {
       const h = parseInt(bar.style.height);
       if (h) bar.style.height = Math.round(h * 1.6) + 'px';
@@ -267,6 +272,11 @@ async function exportInfographic(browser, htmlPath, baseName, cssOverrides) {
     document.querySelectorAll('.timeline-bar').forEach(bar => {
       const h = parseInt(bar.style.height);
       if (h) bar.style.height = Math.round(h * 0.55) + 'px';
+    });
+    // Vertical bars (bars-wrapper) — scale down for 600px
+    document.querySelectorAll('.bars-wrapper .bar').forEach(bar => {
+      const h = parseInt(bar.style.height);
+      if (h) bar.style.height = Math.round(h * 0.45) + 'px';
     });
     document.querySelectorAll('.waterfall-bar').forEach(bar => {
       const h = parseInt(bar.style.height);

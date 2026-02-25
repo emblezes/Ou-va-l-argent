@@ -185,8 +185,8 @@
 
         .website {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.35rem;
-            font-weight: 500;
+            font-size: 1.6rem;
+            font-weight: 600;
             color: var(--accent-electric);
         }
 
@@ -2096,8 +2096,8 @@
            Contenu en haut, espace libre en bas pour la tête du présentateur
            ============================================= */
         .format-tiktok .content {
-            padding: 60px 65px 40px;
-            gap: 15px;
+            padding: 50px 30px 35px;
+            gap: 10px;
             justify-content: flex-start;
         }
 
@@ -2116,17 +2116,27 @@
             flex: 0;
         }
 
-        /* Header */
+        /* Header : logo CENTRÉ et GROS pour TikTok */
         .format-tiktok .header {
-            margin-bottom: 30px;
+            margin-bottom: 10px;
+            justify-content: center;
         }
 
+        .format-tiktok .logo {
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .format-tiktok .tag { display: none; }
+
         .format-tiktok .logo-icon {
-            font-size: 4rem;
+            font-size: 5rem;
         }
 
         .format-tiktok .logo-text {
-            font-size: 1.8rem;
+            font-size: 3rem;
+            white-space: nowrap;
         }
 
         .format-tiktok
@@ -2135,7 +2145,7 @@
         .format-tiktok .section-title,
         .format-tiktok .chart-title {
             font-size: 5rem;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
 
         /* Rankings compact pour 7-9 items */
@@ -2201,7 +2211,8 @@
         }
 
         .format-tiktok .website {
-            font-size: 1.8rem;
+            font-size: 2rem;
+            font-weight: 600;
         }
 
         /* Vertical bar chart - TikTok */
@@ -2210,8 +2221,44 @@
         }
 
         .format-tiktok .chart-subtitle {
-            font-size: 1.6rem;
-            margin-bottom: 30px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Barres verticales (bars-wrapper) — TikTok : barres fines, labels lisibles */
+        .format-tiktok .bars-wrapper {
+            gap: 6px;
+            padding: 0 5px;
+        }
+        .format-tiktok .bars-wrapper .bar-col {
+            gap: 4px;
+            max-width: 105px;
+        }
+        .format-tiktok .bars-container .bar-col {
+            max-width: none;
+        }
+        .format-tiktok .bars-wrapper .bar {
+            width: 60px;
+            border-radius: 6px 6px 3px 3px;
+        }
+        .format-tiktok .bars-wrapper .bar-value {
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+        .format-tiktok .bar-flag {
+            font-size: 2.8rem;
+        }
+        .format-tiktok .bar-country {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+        .format-tiktok .bar-label {
+            margin-top: 8px;
+            gap: 2px;
+        }
+
+        .format-tiktok .bars-container {
+            gap: 10px;
         }
 
         .format-tiktok .bar-value {
@@ -2220,6 +2267,22 @@
 
         .format-tiktok .bar-down.france .bar-value {
             font-size: 2.2rem !important;
+        }
+
+        /* Year labels (bars-container type charts) — sync gap with bars */
+        .format-tiktok .year-labels {
+            gap: 10px;
+            margin-top: 10px;
+            padding: 0 10px;
+        }
+
+        .format-tiktok .year-num {
+            font-size: 1.3rem;
+        }
+
+        .format-tiktok .bar-label-extra {
+            font-size: 1rem;
+            top: -55px;
         }
 
         .format-tiktok .country-flag {
@@ -2630,33 +2693,90 @@
            ADAPTATIONS FORMAT RECTANGLE (1080x600)
            ============================================= */
         .format-rectangle .content {
-            padding: 40px 50px;
+            padding: 15px 30px 12px;
+            justify-content: space-between;
+            gap: 4px;
         }
 
         .format-rectangle .header {
-            margin-bottom: 20px;
+            margin-bottom: 2px;
+            justify-content: center;
         }
 
+        .format-rectangle .logo {
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .format-rectangle .tag { display: none; }
+
         .format-rectangle .logo-icon {
-            font-size: 4rem;
+            font-size: 3.5rem;
         }
 
         .format-rectangle .logo-text {
-            font-size: 1.8rem;
+            font-size: 2rem;
+            white-space: nowrap;
         }
 
-        .format-rectangle
+        /* Barres verticales (bars-wrapper) — Rectangle : très compact */
+        .format-rectangle .bars-wrapper {
+            gap: 6px;
+            padding: 0 5px;
+            flex: 1;
+        }
+        .format-rectangle .bars-wrapper .bar-col {
+            gap: 2px;
+            max-width: 105px;
+        }
+        .format-rectangle .bars-container .bar-col {
+            max-width: none;
+        }
+        .format-rectangle .bars-wrapper .bar {
+            width: 45px;
+            border-radius: 4px 4px 2px 2px;
+        }
+        .format-rectangle .bars-wrapper .bar-value {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .format-rectangle .bar-flag {
+            font-size: 1.4rem;
+        }
+        .format-rectangle .bar-country {
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+        .format-rectangle .bar-label {
+            margin-top: 3px;
+            gap: 1px;
+        }
 
         .format-rectangle .footer {
-            padding-top: 20px;
+            padding-top: 6px;
+            margin-top: 4px;
         }
 
         .format-rectangle .source {
-            font-size: 1rem;
+            font-size: 0.7rem;
         }
 
         .format-rectangle .website {
-            font-size: 1.1rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .format-rectangle .chart-title,
+        .format-rectangle .section-title {
+            font-size: 3.8rem;
+            margin-bottom: 4px;
+            line-height: 1.05;
+        }
+
+        .format-rectangle .chart-subtitle {
+            font-size: 0.8rem;
+            margin-bottom: 4px;
         }
 
         /* Stat choc - Rectangle */
@@ -2859,6 +2979,33 @@
 
         .format-rectangle .bars-container {
             gap: 3px;
+        }
+
+        /* Year labels (bars-container type charts) — sync gap with bars */
+        .format-rectangle .year-labels {
+            gap: 3px;
+            margin-top: 5px;
+            padding: 0 5px;
+        }
+
+        .format-rectangle .year-num {
+            font-size: 0.75rem;
+        }
+
+        .format-rectangle .bar-label-extra {
+            font-size: 0.5rem;
+            top: -28px;
+        }
+
+        .format-rectangle .highlight-box {
+            padding: 8px 15px;
+            margin-top: 5px;
+            border-radius: 8px;
+        }
+
+        .format-rectangle .highlight-text {
+            font-size: 0.7rem;
+            line-height: 1.3;
         }
 
         /* Threshold/avg lines - Rectangle */
@@ -3313,7 +3460,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -3349,7 +3496,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -3384,7 +3531,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -3430,7 +3577,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -3472,7 +3619,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -3513,7 +3660,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -3566,7 +3713,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -3628,7 +3775,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -3689,7 +3836,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -3750,7 +3897,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -3806,7 +3953,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -3861,7 +4008,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -3922,7 +4069,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -3977,7 +4124,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -4031,7 +4178,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -4093,7 +4240,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -4128,7 +4275,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -4162,7 +4309,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -4203,7 +4350,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -4328,7 +4475,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -4452,7 +4599,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -4585,7 +4732,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -4700,7 +4847,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -4814,7 +4961,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -4937,7 +5084,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -5052,7 +5199,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -5166,7 +5313,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -5289,7 +5436,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -5390,7 +5537,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -5490,7 +5637,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -5599,7 +5746,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -5746,7 +5893,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -5892,7 +6039,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -6047,7 +6194,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -6149,7 +6296,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -6250,7 +6397,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -6360,7 +6507,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -6460,7 +6607,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -6559,7 +6706,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -6667,7 +6814,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -6763,7 +6910,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
@@ -6858,7 +7005,7 @@
                         <div class="header">
                             <div class="logo">
                                 <span class="logo-icon">€</span>
-                                <span class="logo-text">Où Va l'Argent</span>
+                                <span class="logo-text">Où Va l'Argent ?</span>
                             </div>
                         </div>
 
