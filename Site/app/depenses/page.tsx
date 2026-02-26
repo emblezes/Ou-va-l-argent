@@ -388,13 +388,13 @@ export default function DepensesPage() {
   const getPer100 = (amount: number) => ((amount / TOTAL_DEPENSES) * 100).toFixed(1)
 
   return (
-    <main className="relative z-[1] max-w-[1600px] mx-auto px-4 lg:px-8 py-20 lg:py-28">
+    <main className="relative z-[1] max-w-[1800px] mx-auto px-4 lg:px-12 pt-[100px] pb-[60px]">
       {/* Header */}
       <header className="text-center mb-8">
-        <h1 className="font-serif text-[clamp(2rem,5vw,3rem)] font-normal mb-3">
+        <h1 className="font-serif text-[clamp(3rem,10vw,6rem)] font-normal mb-4">
           Les <span className="italic text-accent-electric">dépenses</span> publiques
         </h1>
-        <p className="text-text-secondary text-lg max-w-xl mx-auto">
+        <p className="text-text-secondary text-2xl lg:text-3xl max-w-3xl mx-auto">
           {activeTab === 'france'
             ? "Analyse complète des dépenses de l'État français et leur évolution"
             : 'Comparaison internationale des dépenses publiques'}
@@ -405,7 +405,7 @@ export default function DepensesPage() {
       <div className="flex justify-center gap-2 mb-4">
         <button
           onClick={() => setActiveTab('france')}
-          className={`px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 flex items-center gap-2 ${
+          className={`px-6 py-3 rounded-xl font-medium text-xl transition-all duration-200 flex items-center gap-2 ${
             activeTab === 'france'
               ? 'bg-accent-electric text-bg-deep'
               : 'bg-bg-surface border border-glass-border text-text-secondary hover:text-text-primary hover:border-glass-border/50'
@@ -416,7 +416,7 @@ export default function DepensesPage() {
         </button>
         <button
           onClick={() => setActiveTab('comparaison')}
-          className={`px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 flex items-center gap-2 ${
+          className={`px-6 py-3 rounded-xl font-medium text-xl transition-all duration-200 flex items-center gap-2 ${
             activeTab === 'comparaison'
               ? 'bg-accent-electric text-bg-deep'
               : 'bg-bg-surface border border-glass-border text-text-secondary hover:text-text-primary hover:border-glass-border/50'
@@ -433,17 +433,17 @@ export default function DepensesPage() {
       {activeTab === 'france' && (
         <>
           {/* Big Counter Banner */}
-          <div className="bg-glass backdrop-blur-xl border border-glass-border rounded-2xl p-8 lg:p-12 mb-10 text-center max-w-2xl mx-auto">
-            <p className="text-text-muted text-sm uppercase tracking-wider mb-4">
+          <div className="bg-glass backdrop-blur-xl border border-glass-border rounded-2xl p-8 lg:p-12 mb-10 text-center max-w-6xl mx-auto">
+            <p className="text-text-muted text-xl uppercase tracking-wider mb-4">
               Dépenses publiques 2024
             </p>
             <div
               ref={counterRef}
-              className="font-mono text-[clamp(3rem,12vw,5.5rem)] font-medium text-accent-electric leading-none"
+              className="font-mono text-[clamp(4rem,14vw,7rem)] font-medium text-accent-electric leading-none"
             >
               {animatedTotal.toLocaleString('fr-FR')} <span className="text-[0.5em]">Md€</span>
             </div>
-            <p className="text-text-secondary text-lg mt-4">
+            <p className="text-text-secondary text-2xl lg:text-3xl mt-4">
               soit <span className="text-accent-gold font-mono">52 960 €</span> dépensés chaque seconde
             </p>
           </div>
@@ -486,7 +486,7 @@ export default function DepensesPage() {
             <ChartWrapper
               title="Évolution des dépenses"
               subtitle="En milliards d'euros, 2015-2024"
-              height="350px"
+              height="450px"
               source="INSEE - Comptes nationaux"
             >
               <LineChart
@@ -516,13 +516,13 @@ export default function DepensesPage() {
             {/* Évolution historique longue (1960-2024) */}
             <div className="bg-bg-surface border border-glass-border rounded-2xl p-5 flex flex-col">
               <div className="mb-3">
-                <h3 className="text-lg font-semibold">60 ans d&apos;évolution</h3>
-                <p className="text-sm text-text-muted mt-1">Dépenses publiques en % du PIB</p>
+                <h3 className="text-2xl lg:text-3xl font-semibold">60 ans d&apos;évolution</h3>
+                <p className="text-lg text-text-muted mt-1">Dépenses publiques en % du PIB</p>
               </div>
 
               {/* Graphique avec annotations intégrées */}
-              <div className="flex-1 relative" style={{ minHeight: '350px' }}>
-                <ChartWrapper title="" subtitle="" height="350px" source="">
+              <div className="flex-1 relative" style={{ minHeight: '450px' }}>
+                <ChartWrapper title="" subtitle="" height="450px" source="">
                   <LineChart
                     labels={EVOLUTION_HISTORIQUE.labels}
                     datasets={[
@@ -553,11 +553,11 @@ export default function DepensesPage() {
               </div>
 
               <div className="mt-3 p-2 bg-accent-gold/10 border border-accent-gold/20 rounded-lg">
-                <p className="text-xs text-text-secondary">
+                <p className="text-base text-text-secondary">
                   <span className="font-semibold text-accent-gold">+22 pts en 60 ans</span> — de 35% (1960) à 57% (2024)
                 </p>
               </div>
-              <p className="text-xs text-text-muted/60 mt-2 text-right">Source : INSEE, FIPECO</p>
+              <p className="text-base text-text-muted/60 mt-2 text-right">Source : INSEE, FIPECO</p>
             </div>
           </div>
 
@@ -566,8 +566,8 @@ export default function DepensesPage() {
             {/* Graphique carré */}
             <div className="bg-bg-surface border border-glass-border rounded-2xl p-5">
               <div className="mb-3">
-                <h3 className="text-lg font-semibold">L&apos;explosion des dépenses sociales</h3>
-                <p className="text-sm text-text-muted mt-1">Évolution par catégorie en % du PIB (1980-2024)</p>
+                <h3 className="text-2xl lg:text-3xl font-semibold">L&apos;explosion des dépenses sociales</h3>
+                <p className="text-lg text-text-muted mt-1">Évolution par catégorie en % du PIB (1980-2024)</p>
               </div>
               <div style={{ height: '350px' }}>
                 <LineChart
@@ -605,7 +605,7 @@ export default function DepensesPage() {
                   yCallback={(v) => `${v}%`}
                 />
               </div>
-              <p className="text-xs text-text-muted/60 mt-3 text-right">Source : INSEE, DREES, FIPECO</p>
+              <p className="text-base text-text-muted/60 mt-3 text-right">Source : INSEE, DREES, FIPECO</p>
             </div>
 
             {/* Insight à droite */}
@@ -624,23 +624,23 @@ export default function DepensesPage() {
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-bg-surface/50 rounded-lg p-4 text-center">
                   <div className="font-mono text-2xl font-bold text-accent-red">+10 pts</div>
-                  <div className="text-sm text-text-muted mt-1">Protection sociale</div>
-                  <div className="text-xs text-text-muted/60">Retraites, santé, famille</div>
+                  <div className="text-lg text-text-muted mt-1">Protection sociale</div>
+                  <div className="text-base text-text-muted/60">Retraites, santé, famille</div>
                 </div>
                 <div className="bg-bg-surface/50 rounded-lg p-4 text-center">
                   <div className="font-mono text-2xl font-bold text-accent-green">+0,4 pt</div>
-                  <div className="text-sm text-text-muted mt-1">Éducation</div>
-                  <div className="text-xs text-text-muted/60">Stable depuis 40 ans</div>
+                  <div className="text-lg text-text-muted mt-1">Éducation</div>
+                  <div className="text-base text-text-muted/60">Stable depuis 40 ans</div>
                 </div>
                 <div className="bg-bg-surface/50 rounded-lg p-4 text-center">
                   <div className="font-mono text-2xl font-bold text-accent-electric">-1,7 pt</div>
-                  <div className="text-sm text-text-muted mt-1">Défense</div>
-                  <div className="text-xs text-text-muted/60">Dividende de la paix</div>
+                  <div className="text-lg text-text-muted mt-1">Défense</div>
+                  <div className="text-base text-text-muted/60">Dividende de la paix</div>
                 </div>
                 <div className="bg-bg-surface/50 rounded-lg p-4 text-center">
                   <div className="font-mono text-2xl font-bold text-accent-purple">+1,3 pt</div>
-                  <div className="text-sm text-text-muted mt-1">Services publics</div>
-                  <div className="text-xs text-text-muted/60">Administration, dette</div>
+                  <div className="text-lg text-text-muted mt-1">Services publics</div>
+                  <div className="text-base text-text-muted/60">Administration, dette</div>
                 </div>
               </div>
             </div>
@@ -650,14 +650,14 @@ export default function DepensesPage() {
           <div className="bg-bg-surface border border-glass-border rounded-2xl p-5 mb-6">
             <div className="flex justify-between items-start mb-5">
               <div>
-                <h3 className="text-lg font-semibold">Répartition par poste</h3>
-                <p className="text-sm text-text-muted mt-1">
+                <h3 className="text-2xl lg:text-3xl font-semibold">Répartition par poste</h3>
+                <p className="text-lg text-text-muted mt-1">
                   {showRawData ? 'En milliards d\'euros (2024)' : 'Sur 100 € d\'argent public'}
                 </p>
               </div>
               <button
                 onClick={() => setShowRawData(!showRawData)}
-                className="px-4 py-2 text-sm font-medium rounded-lg border border-glass-border bg-bg-elevated hover:bg-bg-deep transition-colors"
+                className="px-4 py-2 text-lg font-medium rounded-lg border border-glass-border bg-bg-elevated hover:bg-bg-deep transition-colors"
               >
                 {showRawData ? '💶 Voir sur 100€' : '📊 Voir en Md€'}
               </button>
@@ -672,7 +672,7 @@ export default function DepensesPage() {
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-xl flex-shrink-0">{item.icon}</span>
                       <div className="min-w-0 flex-1">
-                        <span className={`text-sm block truncate ${index === 0 ? 'font-semibold text-text-primary' : 'text-text-secondary'}`}>
+                        <span className={`text-lg block truncate ${index === 0 ? 'font-semibold text-text-primary' : 'text-text-secondary'}`}>
                           {item.name}
                         </span>
                       </div>
@@ -686,7 +686,7 @@ export default function DepensesPage() {
                           minWidth: '50px'
                         }}
                       >
-                        <span className="text-sm font-mono font-bold text-white drop-shadow-sm">
+                        <span className="text-lg font-mono font-bold text-white drop-shadow-sm">
                           {showRawData ? `${item.amount}` : `${per100}€`}
                         </span>
                       </div>
@@ -696,20 +696,20 @@ export default function DepensesPage() {
               })}
             </div>
 
-            <p className="text-xs text-text-muted/60 mt-4 text-right">
+            <p className="text-base text-text-muted/60 mt-4 text-right">
               Sources : DREES, INSEE 2024
             </p>
           </div>
 
           {/* Titre section analytique */}
-          <h2 className="font-serif text-2xl font-normal mb-6 mt-10">
+          <h2 className="font-serif text-3xl lg:text-4xl font-normal mb-6 mt-10">
             Analyse <span className="italic text-accent-electric">structurelle</span>
           </h2>
 
           {/* Répartition par administration */}
           <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 mb-6">
-            <h3 className="text-lg font-semibold mb-2">Qui dépense ?</h3>
-            <p className="text-sm text-text-muted mb-5">Répartition des 1 670 Md€ par administration publique</p>
+            <h3 className="text-2xl lg:text-3xl font-semibold mb-2">Qui dépense ?</h3>
+            <p className="text-lg text-text-muted mb-5">Répartition des 1 670 Md€ par administration publique</p>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Colonne gauche : les 3 chiffres */}
               <div className="flex flex-col gap-4">
@@ -722,7 +722,7 @@ export default function DepensesPage() {
                       <span className="text-lg font-mono text-text-secondary ml-2">{item.percent}%</span>
                     </div>
                     <h4 className="font-semibold text-text-primary mb-1">{item.name}</h4>
-                    <p className="text-xs text-text-muted">{item.description}</p>
+                    <p className="text-base text-text-muted">{item.description}</p>
                   </div>
                 ))}
               </div>
@@ -745,38 +745,38 @@ export default function DepensesPage() {
                   <div className="flex items-start gap-3 p-3 bg-bg-surface/50 rounded-lg">
                     <span className="text-xl">🏛️</span>
                     <div>
-                      <p className="text-sm font-semibold text-text-primary">Versé par l&apos;État</p>
-                      <p className="text-xs text-text-muted">Pensions des fonctionnaires (~90 Md€), allocations aux adultes handicapés (AAH), bourses étudiantes</p>
+                      <p className="text-lg font-semibold text-text-primary">Versé par l&apos;État</p>
+                      <p className="text-base text-text-muted">Pensions des fonctionnaires (~90 Md€), allocations aux adultes handicapés (AAH), bourses étudiantes</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 p-3 bg-bg-surface/50 rounded-lg">
                     <span className="text-xl">🏘️</span>
                     <div>
-                      <p className="text-sm font-semibold text-text-primary">Versé par les collectivités</p>
-                      <p className="text-xs text-text-muted">RSA (~15 Md€), allocation personnalisée d&apos;autonomie (APA), aide sociale à l&apos;enfance</p>
+                      <p className="text-lg font-semibold text-text-primary">Versé par les collectivités</p>
+                      <p className="text-base text-text-muted">RSA (~15 Md€), allocation personnalisée d&apos;autonomie (APA), aide sociale à l&apos;enfance</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="p-3 bg-bg-surface/30 rounded-lg border border-accent-purple/20">
-                  <p className="text-sm text-text-secondary">
+                  <p className="text-lg text-text-secondary">
                     <span className="font-semibold">Exemple :</span> Un professeur retraité touche sa pension de l&apos;État (pas de la Sécu), mais c&apos;est bien une prestation de protection sociale.
                   </p>
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-accent-purple/20 flex justify-between items-center">
-                  <span className="text-sm text-text-muted font-semibold">Total protection sociale</span>
+                  <span className="text-lg text-text-muted font-semibold">Total protection sociale</span>
                   <span className="font-mono text-xl font-bold text-accent-purple">932 Md€</span>
                 </div>
               </div>
             </div>
-            <p className="text-xs text-text-muted/60 mt-4 text-right">Source : INSEE 2024</p>
+            <p className="text-base text-text-muted/60 mt-4 text-right">Source : INSEE 2024</p>
           </div>
 
           {/* Fonctionnement vs Investissement */}
           <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 mb-6">
-            <h3 className="text-lg font-semibold mb-2">Fonctionnement vs Investissement</h3>
-            <p className="text-sm text-text-muted mb-5">Comment sont utilisés les 1 670 Md€ ?</p>
+            <h3 className="text-2xl lg:text-3xl font-semibold mb-2">Fonctionnement vs Investissement</h3>
+            <p className="text-lg text-text-muted mb-5">Comment sont utilisés les 1 670 Md€ ?</p>
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 bg-bg-elevated rounded-xl p-5 border-l-4" style={{ borderColor: FONCTIONNEMENT_INVESTISSEMENT.fonctionnement.color }}>
                 <div className="flex items-baseline gap-2 mb-2">
@@ -786,7 +786,7 @@ export default function DepensesPage() {
                   <span className="text-text-secondary font-mono">{FONCTIONNEMENT_INVESTISSEMENT.fonctionnement.amount} Md€</span>
                 </div>
                 <h4 className="font-semibold mb-2">{FONCTIONNEMENT_INVESTISSEMENT.fonctionnement.label}</h4>
-                <p className="text-sm text-text-muted">Salaires, prestations sociales, achats courants, intérêts de la dette</p>
+                <p className="text-lg text-text-muted">Salaires, prestations sociales, achats courants, intérêts de la dette</p>
               </div>
               <div className="flex-1 bg-bg-elevated rounded-xl p-5 border-l-4" style={{ borderColor: FONCTIONNEMENT_INVESTISSEMENT.investissement.color }}>
                 <div className="flex items-baseline gap-2 mb-2">
@@ -796,48 +796,48 @@ export default function DepensesPage() {
                   <span className="text-text-secondary font-mono">{FONCTIONNEMENT_INVESTISSEMENT.investissement.amount} Md€</span>
                 </div>
                 <h4 className="font-semibold mb-2">{FONCTIONNEMENT_INVESTISSEMENT.investissement.label}</h4>
-                <p className="text-sm text-text-muted">Infrastructures, équipements, bâtiments publics, recherche</p>
+                <p className="text-lg text-text-muted">Infrastructures, équipements, bâtiments publics, recherche</p>
               </div>
             </div>
             <div className="mt-4 p-3 bg-accent-gold/10 border border-accent-gold/20 rounded-lg">
-              <p className="text-sm text-text-secondary">
+              <p className="text-lg text-text-secondary">
                 <span className="font-semibold text-accent-gold">Note :</span> Seulement 7,6% des dépenses publiques sont des investissements productifs durables.
               </p>
             </div>
-            <p className="text-xs text-text-muted/60 mt-4 text-right">Source : INSEE 2024</p>
+            <p className="text-base text-text-muted/60 mt-4 text-right">Source : INSEE 2024</p>
           </div>
 
           {/* Fonction publique */}
           <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 mb-8">
-            <h3 className="text-lg font-semibold mb-2">La fonction publique</h3>
-            <p className="text-sm text-text-muted mb-5">5,7 millions d&apos;agents au service du public</p>
+            <h3 className="text-2xl lg:text-3xl font-semibold mb-2">La fonction publique</h3>
+            <p className="text-lg text-text-muted mb-5">5,7 millions d&apos;agents au service du public</p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
               <div className="text-center p-4 bg-bg-elevated rounded-xl">
                 <div className="text-2xl font-mono font-bold text-accent-electric">{FONCTION_PUBLIQUE.total}M</div>
-                <div className="text-xs text-text-muted mt-1">Agents totaux</div>
+                <div className="text-base text-text-muted mt-1">Agents totaux</div>
               </div>
               <div className="text-center p-4 bg-bg-elevated rounded-xl">
                 <div className="text-2xl font-mono font-bold text-accent-purple">{FONCTION_PUBLIQUE.fpe}M</div>
-                <div className="text-xs text-text-muted mt-1">État</div>
+                <div className="text-base text-text-muted mt-1">État</div>
               </div>
               <div className="text-center p-4 bg-bg-elevated rounded-xl">
                 <div className="text-2xl font-mono font-bold text-accent-green">{FONCTION_PUBLIQUE.fpt}M</div>
-                <div className="text-xs text-text-muted mt-1">Territoriale</div>
+                <div className="text-base text-text-muted mt-1">Territoriale</div>
               </div>
               <div className="text-center p-4 bg-bg-elevated rounded-xl">
                 <div className="text-2xl font-mono font-bold text-accent-red">{FONCTION_PUBLIQUE.fph}M</div>
-                <div className="text-xs text-text-muted mt-1">Hospitalière</div>
+                <div className="text-base text-text-muted mt-1">Hospitalière</div>
               </div>
               <div className="text-center p-4 bg-bg-elevated rounded-xl border-2 border-accent-gold/30">
                 <div className="text-2xl font-mono font-bold text-accent-gold">{FONCTION_PUBLIQUE.masseSalariale} Md€</div>
-                <div className="text-xs text-text-muted mt-1">Masse salariale (coût employeur)</div>
+                <div className="text-base text-text-muted mt-1">Masse salariale (coût employeur)</div>
               </div>
               <div className="text-center p-4 bg-bg-elevated rounded-xl border-2 border-accent-electric/30">
                 <div className="text-2xl font-mono font-bold text-accent-electric">21,7%</div>
-                <div className="text-xs text-text-muted mt-1">Part des dépenses</div>
+                <div className="text-base text-text-muted mt-1">Part des dépenses</div>
               </div>
             </div>
-            <p className="text-xs text-text-muted/60 mt-4 text-right">Source : DGAFP 2024</p>
+            <p className="text-base text-text-muted/60 mt-4 text-right">Source : DGAFP 2024</p>
           </div>
         </>
       )}
@@ -859,12 +859,12 @@ export default function DepensesPage() {
             </div>
             <div className="text-center">
               <div className="font-mono text-4xl font-medium text-accent-electric">57.1%</div>
-              <div className="text-text-muted text-sm">du PIB (2024)</div>
+              <div className="text-text-muted text-lg">du PIB (2024)</div>
             </div>
           </div>
 
           {/* Section 1: Dépenses totales */}
-          <h2 className="font-serif text-2xl font-normal mb-6">
+          <h2 className="font-serif text-3xl lg:text-4xl font-normal mb-6">
             La France, <span className="italic text-accent-electric">2ème</span> pays le plus dépensier de l&apos;OCDE
           </h2>
 
@@ -902,13 +902,13 @@ export default function DepensesPage() {
                 <div className="text-center">
                   <p className="text-3xl mb-1">🇫🇷</p>
                   <p className="font-mono text-3xl font-bold text-accent-electric">{ECART_FRANCE_UE.francePIB}%</p>
-                  <p className="text-sm text-text-muted">France</p>
+                  <p className="text-lg text-text-muted">France</p>
                 </div>
                 <div className="text-4xl text-text-muted">vs</div>
                 <div className="text-center">
                   <p className="text-3xl mb-1">🇪🇺</p>
                   <p className="font-mono text-3xl font-bold text-text-secondary">{ECART_FRANCE_UE.moyenneUE}%</p>
-                  <p className="text-sm text-text-muted">Moyenne UE</p>
+                  <p className="text-lg text-text-muted">Moyenne UE</p>
                 </div>
               </div>
 
@@ -921,36 +921,36 @@ export default function DepensesPage() {
           </div>
 
           {/* Section 2: Structure des dépenses comparée */}
-          <h2 className="font-serif text-2xl font-normal mb-6 mt-10">
+          <h2 className="font-serif text-3xl lg:text-4xl font-normal mb-6 mt-10">
             Comment chaque pays <span className="italic text-accent-purple">alloue</span> ses dépenses ?
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
             {/* Gauche : Barres verticales empilées */}
             <div className="bg-bg-surface border border-glass-border rounded-2xl p-6">
-              <h3 className="text-lg font-semibold text-text-primary mb-2">Structure des dépenses par pays</h3>
-              <p className="text-sm text-text-muted mb-4">Ventilation en % du PIB</p>
+              <h3 className="text-2xl lg:text-3xl font-semibold text-text-primary mb-2">Structure des dépenses par pays</h3>
+              <p className="text-lg text-text-muted mb-4">Ventilation en % du PIB</p>
 
               {/* Légende */}
               <div className="flex flex-wrap justify-center gap-3 mb-6">
                 {STRUCTURE_DEPENSES.categories.map((cat) => (
                   <div key={cat.id} className="flex items-center gap-1.5">
                     <div className="w-3 h-3 rounded" style={{ backgroundColor: cat.color }} />
-                    <span className="text-xs text-text-secondary">{cat.label}</span>
+                    <span className="text-base text-text-secondary">{cat.label}</span>
                   </div>
                 ))}
               </div>
 
               {/* Barres verticales empilées */}
-              <div className="flex justify-around items-end h-52 border-b border-glass-border pb-2">
+              <div className="flex justify-around items-end h-[400px] border-b border-glass-border pb-2">
                 {STRUCTURE_DEPENSES.pays.map((pays) => {
                   const maxTotal = 60 // Max fixe pour échelle cohérente
-                  const barHeight = (pays.total / maxTotal) * 200 // 200px max
+                  const barHeight = (pays.total / maxTotal) * 380 // 380px max
                   return (
                     <div key={pays.country} className="flex flex-col items-center group relative">
                       {/* Barre empilée verticale */}
                       <div
-                        className={`w-10 md:w-12 flex flex-col rounded-t overflow-hidden ${pays.highlight ? 'ring-2 ring-accent-electric' : ''}`}
+                        className={`w-16 md:w-20 flex flex-col rounded-t overflow-hidden ${pays.highlight ? 'ring-2 ring-accent-electric' : ''}`}
                         style={{ height: `${barHeight}px` }}
                       >
                         {[...STRUCTURE_DEPENSES.categories].reverse().map((cat) => {
@@ -969,7 +969,7 @@ export default function DepensesPage() {
                               {/* Tooltip au survol - juste le chiffre */}
                               <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 opacity-0 group-hover/segment:opacity-100 transition-opacity z-20 pointer-events-none">
                                 <div className="bg-bg-elevated border border-glass-border rounded px-2 py-1 shadow-lg">
-                                  <span className="text-sm font-mono font-bold text-white">{value}%</span>
+                                  <span className="text-xl font-mono font-bold text-white">{value}%</span>
                                 </div>
                               </div>
                             </div>
@@ -981,19 +981,24 @@ export default function DepensesPage() {
                 })}
               </div>
 
-              {/* Labels pays */}
-              <div className="flex justify-around mt-2">
-                {STRUCTURE_DEPENSES.pays.map((pays) => (
-                  <div key={pays.country} className="flex flex-col items-center w-12">
-                    <span className="font-mono text-xs font-semibold text-text-primary">{pays.total}%</span>
-                    <span className={`text-[9px] text-center ${pays.highlight ? 'text-accent-electric font-semibold' : 'text-text-muted'}`}>
-                      {pays.country.split(' ')[0]}
-                    </span>
-                  </div>
-                ))}
+              {/* Labels pays : drapeau + pourcentage + nom */}
+              <div className="flex justify-around mt-3">
+                {STRUCTURE_DEPENSES.pays.map((pays) => {
+                  const flag = pays.country.split(' ')[0]
+                  const name = pays.country.split(' ').slice(1).join(' ')
+                  return (
+                    <div key={pays.country} className="flex flex-col items-center">
+                      <span className="text-3xl mb-1">{flag}</span>
+                      <span className="font-mono text-lg font-bold text-text-primary">{pays.total}%</span>
+                      <span className={`text-base text-center leading-tight ${pays.highlight ? 'text-accent-electric font-semibold' : 'text-text-muted'}`}>
+                        {name}
+                      </span>
+                    </div>
+                  )
+                })}
               </div>
 
-              <p className="text-xs text-text-muted/60 mt-4 text-center">Source : Eurostat COFOG 2024</p>
+              <p className="text-base text-text-muted/60 mt-4 text-center">Source : Eurostat COFOG 2024</p>
             </div>
 
             {/* Droite : Focus Protection sociale (trié du + grand au + petit) */}
@@ -1024,24 +1029,24 @@ export default function DepensesPage() {
           </div>
 
           {/* Section 5: Focus sur la protection sociale */}
-          <h2 className="font-serif text-2xl font-normal mb-6 mt-10">
+          <h2 className="font-serif text-3xl lg:text-4xl font-normal mb-6 mt-10">
             Qu&apos;est-ce que la <span className="italic text-accent-gold">protection sociale</span> ?
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
             {/* Gauche : Décomposition de la protection sociale en France */}
             <div className="bg-bg-surface border border-glass-border rounded-2xl p-6">
-              <h3 className="text-lg font-semibold text-text-primary mb-2">Décomposition en France</h3>
-              <p className="text-sm text-text-muted mb-4">{PROTECTION_SOCIALE_FRANCE.total} Md€ de prestations sociales</p>
+              <h3 className="text-2xl lg:text-3xl font-semibold text-text-primary mb-2">Décomposition en France</h3>
+              <p className="text-lg text-text-muted mb-4">{PROTECTION_SOCIALE_FRANCE.total} Md€ de prestations sociales</p>
 
               <div className="space-y-3">
                 {PROTECTION_SOCIALE_FRANCE.categories.map((cat) => (
                   <div key={cat.id} className="group">
                     <div className="flex justify-between items-center mb-1">
-                      <span className="text-sm text-text-primary font-medium">{cat.label}</span>
+                      <span className="text-lg text-text-primary font-medium">{cat.label}</span>
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-sm font-bold" style={{ color: cat.color }}>{cat.amount} Md€</span>
-                        <span className="text-xs text-text-muted">({cat.percent}%)</span>
+                        <span className="font-mono text-lg font-bold" style={{ color: cat.color }}>{cat.amount} Md€</span>
+                        <span className="text-base text-text-muted">({cat.percent}%)</span>
                       </div>
                     </div>
                     <div className="h-6 bg-bg-elevated rounded overflow-hidden relative">
@@ -1060,7 +1065,7 @@ export default function DepensesPage() {
                 ))}
               </div>
 
-              <p className="text-xs text-text-muted/60 mt-4 text-center">Source : DREES 2024</p>
+              <p className="text-base text-text-muted/60 mt-4 text-center">Source : DREES 2024</p>
             </div>
 
             {/* Droite : Part des retraites dans la protection sociale */}

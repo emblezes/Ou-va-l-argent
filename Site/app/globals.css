@@ -6,13 +6,13 @@
 
 :root {
   /* Color variables for easy access in CSS */
-  --bg-deep: #06080c;
-  --bg-surface: #0a0e14;
-  --bg-elevated: #111820;
-  --bg-card: #0d1117;
+  --bg-deep: #0a0e14;
+  --bg-surface: #0f1520;
+  --bg-elevated: #161e2a;
+  --bg-card: #121a24;
   --text-primary: #f0f4f8;
-  --text-secondary: #8899a8;
-  --text-muted: #4a5a6a;
+  --text-secondary: #d0dae4;
+  --text-muted: #a0b0c0;
   --accent-electric: #00d4ff;
   --accent-electric-dim: rgba(0, 212, 255, 0.15);
   --accent-gold: #ffd700;
@@ -27,7 +27,14 @@
   --accent-orange-dim: rgba(255, 159, 67, 0.15);
   --accent-pink: #ff6b9d;
   --glass: rgba(17, 24, 32, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.12);
+
+  /* Section backgrounds — tinted alternations */
+  --section-blue: #101a2e;
+  --section-teal: #0c1a15;
+  --section-purple: #1c122e;
+  --section-warm: #221a0a;
+  --section-red: #22101a;
   --gradient-electric: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
   --gradient-gold: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
 }
@@ -40,6 +47,8 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
+  zoom: 0.5;
 }
 
 body {
@@ -66,7 +75,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
+  background: #6a7a8a;
 }
 
 /* Typography utilities */
