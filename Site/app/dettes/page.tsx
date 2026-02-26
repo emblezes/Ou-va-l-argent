@@ -35,8 +35,8 @@ const PRINCIPAUX_DETENTEURS = [
 
 // Source: PLF 2025, Cour des Comptes, Fipeco - Charge d'intérêts (Md€) + comparaison budget Défense
 const CHARGE_INTERETS = {
-  labels: ['2019', '2020', '2021', '2022', '2023', '2024', '2025 (p)', '2026 (p)', '2027 (p)', 'Défense'],
-  data: [38, 35, 37, 46, 52, 58, 60, 65, 72, 57],
+  labels: ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026 (p)', '2027 (p)', 'Défense\n(hors pensions)'],
+  data: [38, 35, 37, 46, 52, 54, 54, 60, 65, 50.5],
 }
 
 // Source: Banque de France - Taux OAT 10 ans (%)
@@ -99,13 +99,13 @@ export default function DettesPage() {
         />
       </div>
 
-      <main className="relative z-[1] max-w-[1600px] mx-auto px-4 lg:px-8 py-20 lg:py-28">
+      <main className="relative z-[1] max-w-[1800px] mx-auto px-[16px] lg:px-[48px] pt-[100px] pb-[60px]">
         {/* Header */}
         <header className="text-center mb-10">
-          <h1 className="font-serif text-[clamp(2rem,5vw,3rem)] font-normal mb-3">
+          <h1 className="font-serif text-[clamp(3rem,10vw,6rem)] font-normal mb-3">
             La <span className="italic text-accent-red">dette</span> publique
           </h1>
-          <p className="text-text-secondary text-lg max-w-xl mx-auto">
+          <p className="text-text-secondary text-2xl lg:text-3xl max-w-3xl mx-auto">
             Comprendre l&apos;endettement de la France.
           </p>
         </header>
@@ -137,7 +137,7 @@ export default function DettesPage() {
           <KpiCard
             icon="📈"
             label="Charge d'intérêts"
-            value="58 Md€/an"
+            value="54 Md€/an"
             subtext="Coût annuel de la dette"
             color="purple"
           />
@@ -147,15 +147,15 @@ export default function DettesPage() {
         <div className="bg-gradient-to-r from-accent-red/10 to-accent-orange/10 border border-accent-red/30 rounded-2xl p-6 mb-8 flex flex-col lg:flex-row gap-6 items-center">
           <div className="text-5xl">⚠️</div>
           <div className="flex-1 text-center lg:text-left">
-            <h3 className="text-xl font-semibold mb-2">Seuil critique dépassé</h3>
-            <p className="text-text-secondary">
+            <h3 className="text-3xl lg:text-4xl font-semibold mb-2">Seuil critique dépassé</h3>
+            <p className="text-text-secondary text-xl lg:text-2xl">
               La France dépasse les 117% de dette/PIB, près du double du seuil de 60% prévu par le traité de Maastricht.
               La charge d&apos;intérêts représente désormais le 4ème poste budgétaire.
             </p>
           </div>
           <div className="text-center">
             <div className="font-mono text-4xl font-medium text-accent-red">+5 390 €/s</div>
-            <div className="text-text-muted text-sm">La dette augmente chaque seconde</div>
+            <div className="text-text-muted text-base">La dette augmente chaque seconde</div>
           </div>
         </div>
 
@@ -164,7 +164,7 @@ export default function DettesPage() {
           <ChartWrapper
             title="L'endettement a été multiplié par 6 en 50 ans"
             subtitle="Ratio dette/PIB de 1970 à 2025"
-            height="350px"
+            height="450px"
             source="INSEE, FIPECO"
           >
             <LineChart
@@ -189,7 +189,7 @@ export default function DettesPage() {
           <ChartWrapper
             title="Pas de budget équilibré depuis 1974"
             subtitle="Solde budgétaire en % du PIB"
-            height="350px"
+            height="450px"
             source="INSEE, Vie Publique"
           >
             <BarChart
@@ -209,7 +209,7 @@ export default function DettesPage() {
         </div>
 
         {/* Section: Déficit comparé */}
-        <h2 className="font-serif text-2xl font-normal mb-6 mt-10">
+        <h2 className="font-serif text-3xl lg:text-4xl font-normal mb-6 mt-10">
           La France a le <span className="italic text-accent-red">pire déficit</span> de la zone euro
         </h2>
 
@@ -264,7 +264,7 @@ export default function DettesPage() {
         </div>
 
         {/* Section: Dette comparée */}
-        <h2 className="font-serif text-2xl font-normal mb-6">
+        <h2 className="font-serif text-3xl lg:text-4xl font-normal mb-6">
           La France, <span className="italic text-accent-red">3ème dette</span> de la zone euro
         </h2>
 
@@ -313,7 +313,7 @@ export default function DettesPage() {
         </div>
 
         {/* Section: Charge d'intérêts */}
-        <h2 className="font-serif text-2xl font-normal mb-6 mt-10">
+        <h2 className="font-serif text-3xl lg:text-4xl font-normal mb-6 mt-10">
           Le <span className="italic text-accent-purple">coût</span> de la dette
         </h2>
 
@@ -371,22 +371,22 @@ export default function DettesPage() {
         <div className="bg-gradient-to-r from-accent-purple/10 to-accent-gold/10 border border-accent-purple/30 rounded-2xl p-6 mb-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 text-center">
             <div>
-              <div className="font-mono text-3xl font-medium text-accent-purple">72 Md€</div>
-              <div className="text-text-secondary text-sm mt-1">Charge prévue en 2027</div>
+              <div className="font-mono text-4xl lg:text-5xl font-medium text-accent-purple">72 Md€</div>
+              <div className="text-text-secondary text-base mt-1">Charge prévue en 2027</div>
             </div>
             <div>
-              <div className="font-mono text-3xl font-medium text-accent-gold">+90%</div>
-              <div className="text-text-secondary text-sm mt-1">Hausse depuis 2020</div>
+              <div className="font-mono text-4xl lg:text-5xl font-medium text-accent-gold">+90%</div>
+              <div className="text-text-secondary text-base mt-1">Hausse depuis 2020</div>
             </div>
             <div>
-              <div className="font-mono text-3xl font-medium text-accent-red">4ème</div>
-              <div className="text-text-secondary text-sm mt-1">Poste budgétaire</div>
+              <div className="font-mono text-4xl lg:text-5xl font-medium text-accent-red">4ème</div>
+              <div className="text-text-secondary text-base mt-1">Poste budgétaire</div>
             </div>
           </div>
         </div>
 
         {/* Section: Qui détient la dette */}
-        <h2 className="font-serif text-2xl font-normal mb-6 mt-10">
+        <h2 className="font-serif text-3xl lg:text-4xl font-normal mb-6 mt-10">
           Qui <span className="italic text-accent-electric">détient</span> la dette française ?
         </h2>
 
@@ -411,8 +411,8 @@ export default function DettesPage() {
 
           {/* Principaux détenteurs identifiables */}
           <div className="bg-bg-surface border border-glass-border rounded-2xl p-6">
-            <h3 className="text-lg font-semibold mb-2">Détail des détenteurs</h3>
-            <p className="text-text-muted text-sm mb-6">Source : Banque de France, IFRAP T1 2025</p>
+            <h3 className="text-2xl lg:text-3xl font-semibold mb-2">Détail des détenteurs</h3>
+            <p className="text-text-muted text-base mb-6">Source : Banque de France, IFRAP T1 2025</p>
             <div className="space-y-4">
               {PRINCIPAUX_DETENTEURS.map((detenteur, index) => (
                 <div key={index} className="flex items-center justify-between">
@@ -431,13 +431,13 @@ export default function DettesPage() {
                     }}>
                       {detenteur.montant} Md€
                     </span>
-                    <span className="text-text-muted text-sm ml-2">({detenteur.percent}%)</span>
+                    <span className="text-text-muted text-base ml-2">({detenteur.percent}%)</span>
                   </div>
                 </div>
               ))}
             </div>
             <div className="mt-6 pt-4 border-t border-glass-border">
-              <div className="flex items-center gap-6 text-sm text-text-muted">
+              <div className="flex items-center gap-6 text-base text-text-muted">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-accent-electric" />
                   <span>Résidents français</span>
@@ -447,7 +447,7 @@ export default function DettesPage() {
                   <span>Non-résidents</span>
                 </div>
               </div>
-              <p className="text-text-muted text-xs mt-3">
+              <p className="text-text-muted text-base mt-3">
                 Note : L&apos;AFT ne publie pas le détail des détenteurs non-résidents (fonds de pension, fonds souverains, etc.)
               </p>
             </div>

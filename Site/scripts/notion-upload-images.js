@@ -91,6 +91,9 @@ const SLUG_TO_NUM = {
   '114-dette-5350-par-seconde': 114,
   '115-dette-pile-billets-terre': 115,
   '116-cout-eleve-recul-maths': 116,
+  '116bis-cout-eleve-recul-maths': 116,
+  '116ter-cout-eleve-recul-maths': 116,
+  '116quater-cout-eleve-recul-maths': 116,
   '117-medicaments-36-milliards': 117,
   '118-subvention-sncf-300-euros': 118,
   '119-audiovisuel-public-4-milliards': 119,
@@ -100,43 +103,26 @@ const SLUG_TO_NUM = {
   '123-ratio-actifs-retraites': 123,
   '124-taxe-fonciere-paris-52': 124,
   '125-48-boites-medicaments': 125,
-  '126-code-travail-3500-pages': 126,
+  '126-code-travail-france-vs-suisse': 126,
+  '126bis-code-travail-france-vs-suisse': 126,
+  '126ter-code-travail-france-vs-suisse': 126,
   '127-intermittents-2-milliards': 127,
-  '128-1500-aides-sociales': 128,
+  '128-2200-aides-sociales': 128,
   '129-singapour-france-1960': 129,
   '130-interets-58-milliards': 130,
   '131-taxes-essence-60-centimes': 131,
   '132-droits-succession-45-pourcent': 132,
-  '133-fonctionnaires-5-8-millions': 133,
-  '134-dernier-budget-equilibre-1974': 134,
   '135-france-2eme-plus-taxe': 135,
   '136-retraite-64-vs-67-allemagne': 136,
-  '137-budget-culture-15-milliards': 137,
-  '138-44-pourcent-pas-impot-revenu': 138,
   '139-lits-hopitaux-supprimes': 139,
   '140-impot-societes-france-irlande': 140,
-  '141-400000-normes-france': 141,
   '142-deficit-169-milliards-2024': 142,
-  '143-prefets-heritage-napoleonien': 143,
-  '144-dette-multipliee-par-4': 144,
-  '145-38-milliards-logement-loyers': 145,
-  '146-9-milliards-dette-edf': 146,
-  '147-60-pourcent-etudiants-echec': 147,
-  '148-deputes-cumul-mandats': 148,
-  '149-desert-medical-30-pourcent': 149,
-  '150-attente-urgences-3-heures': 150,
-  '151-dette-42-iphones': 151,
-  '152-dette-55-pourcent-etrangers': 152,
-  '153-industrie-moins-40-pourcent': 153,
-  '154-463-millions-dette-par-jour': 154,
   '155-520000-elus-locaux-record': 155,
-  '156-code-travail-chomage-correlation': 156,
-  '157-fraude-100-milliards': 157,
   '158-tgv-retard-subventions': 158,
-  '159-eleves-faibles-maths-budget': 159,
   '160-depenses-sante-3700-par-habitant': 160,
   '161-tva-cercueil-20-pourcent': 161,
   '162-dette-117-pib-double-limite': 162,
+  '163-classement-pisa-maths': 163,
 };
 
 // Suffixes par format pour reconstituer le nom de fichier
@@ -187,15 +173,19 @@ function getPageIdByNum(num) {
 }
 
 function updateNotionImage(pageId, propName, fileName, imageUrl) {
+  return updateNotionImages(pageId, propName, [{ name: fileName, url: imageUrl }]);
+}
+
+function updateNotionImages(pageId, propName, images) {
   try {
     const payload = JSON.stringify({
       properties: {
         [propName]: {
-          files: [{
+          files: images.map(img => ({
             type: 'external',
-            name: fileName,
-            external: { url: imageUrl }
-          }]
+            name: img.name,
+            external: { url: img.url }
+          }))
         }
       }
     });
@@ -228,6 +218,10 @@ async function main() {
     ? ['instagram', 'tiktok-v', 'tiktok-h']
     : [requestedFormat];
 
+  // Parse --num argument (filter by N° Notion)
+  const numArg = process.argv.find(a => a.startsWith('--num='));
+  const filterNum = numArg ? parseInt(numArg.split('=')[1]) : null;
+
   for (const format of formats) {
     if (!DIRS[format]) {
       console.error(`Format inconnu: ${format}`);
@@ -236,28 +230,37 @@ async function main() {
 
     const dir = DIRS[format];
     const propName = NOTION_PROPS[format];
-    const alreadyDone = new Set();
-    const entries = Object.entries(SLUG_TO_NUM);
-    let ok = 0, skip = 0, fail = 0;
+    let entries = Object.entries(SLUG_TO_NUM);
+    if (filterNum) entries = entries.filter(([, num]) => num === filterNum);
 
-    console.log(`\n📸 Upload ${format.toUpperCase()} → Notion "${propName}" (${entries.length} entrées)\n`);
-
+    // Regrouper les slugs par numéro Notion (pour les bis/ter)
+    const byNum = new Map();
     for (const [slug, num] of entries) {
-      if (alreadyDone.has(num)) {
+      if (!byNum.has(num)) byNum.set(num, []);
+      byNum.get(num).push(slug);
+    }
+
+    let ok = 0, skip = 0, fail = 0;
+    console.log(`\n📸 Upload ${format.toUpperCase()} → Notion "${propName}" (${byNum.size} entrées)\n`);
+
+    for (const [num, slugs] of byNum) {
+      // Collecter toutes les images existantes pour ce numéro
+      const images = [];
+      for (const slug of slugs) {
+        const fileName = getFileName(slug, format);
+        const filePath = path.join(dir, fileName);
+        if (fs.existsSync(filePath)) {
+          images.push({ slug, fileName, filePath });
+        }
+      }
+
+      if (images.length === 0) {
         skip++;
         continue;
       }
 
-      const fileName = getFileName(slug, format);
-      const filePath = path.join(dir, fileName);
-
-      if (!fs.existsSync(filePath)) {
-        // Essayer sans le suffixe standard (certains fichiers ont des noms légèrement différents)
-        skip++;
-        continue;
-      }
-
-      process.stdout.write(`[${ok + fail + 1}] #${num} ${fileName}...`);
+      const label = images.map(i => i.fileName).join(', ');
+      process.stdout.write(`[${ok + fail + 1}] #${num} ${label}...`);
 
       const pageId = getPageIdByNum(num);
       if (!pageId) {
@@ -266,18 +269,25 @@ async function main() {
         continue;
       }
 
-      const imageUrl = uploadToCatbox(filePath);
-      if (!imageUrl) { fail++; console.log(''); continue; }
+      // Upload toutes les images vers catbox
+      const uploaded = [];
+      for (const img of images) {
+        const imageUrl = uploadToCatbox(img.filePath);
+        if (imageUrl) {
+          uploaded.push({ name: img.fileName, url: imageUrl });
+        }
+      }
 
-      const success = updateNotionImage(pageId, propName, fileName, imageUrl);
+      if (uploaded.length === 0) { fail++; console.log(' ✗ upload échoué'); continue; }
+
+      const success = updateNotionImages(pageId, propName, uploaded);
       if (success) {
-        console.log(` ✓`);
+        console.log(` ✓ (${uploaded.length} image${uploaded.length > 1 ? 's' : ''})`);
         ok++;
       } else {
         fail++;
       }
 
-      alreadyDone.add(num);
       await new Promise(r => setTimeout(r, 500));
     }
 

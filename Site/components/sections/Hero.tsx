@@ -4,37 +4,12 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 const MOSAIC_IMAGES = [
-  '01-france-pologne-comparaison-instagram.png',
-  '02-pologne-rattrapage-courbes-instagram.png',
-  '03-singapour-argentine-divergence-instagram.png',
-  '04-chatgpt-utilisateurs-instagram.png',
-  '05-cuivre-instagram.png',
-  '06-salaires-suisse-instagram.png',
-  '07-top5-pays-peuples-instagram.png',
-  '08-fertilite-par-pays-instagram.png',
-  '09-prix-cigarette-france-instagram.png',
-  '10-indice-big-mac-instagram.png',
-  '11-salaire-moyen-par-pays-instagram.png',
-  '12-dette-publique-europe-instagram.png',
-  '13-deficit-zone-euro-instagram.png',
-  '14-explosion-dette-france-instagram.png',
-  '15-hotels-plus-chers-paris-instagram.png',
-  '16-retraites-explosion-2070-instagram.png',
-  '17-vieillissement-mondial-2070-instagram.png',
-  '18-pensions-retraite-europe-instagram.png',
-  '19-capitalisation-vs-repartition-instagram.png',
-  '20-retraites-capitalisation-plus-elevees-instagram.png',
-  '21-detenteurs-dette-france-instagram.png',
-  '22-charge-interets-dette-instagram.png',
-  '23-triple-degradation-notes-instagram.png',
-  '24-simulation-capitalisation-980k-instagram.png',
-  '25-classement-mercer-retraites-2025-instagram.png',
-  '26-pays-bas-fonds-pension-213-pib-instagram.png',
-  '27-fecondite-france-plus-bas-instagram.png',
-  '28-rendement-capitalisation-vs-repartition-instagram.png',
-  '29-zero-perte-20-ans-actions-instagram.png',
-  '30-fonds-souverain-norvege-instagram.png',
-  '31-actifs-fonds-pension-monde-instagram.png',
+  '01-explosion-dette-france-instagram.png',
+  '03-deficit-zone-euro-instagram.png',
+  '07-dette-48800-par-habitant-instagram.png',
+  '09-dette-58md-interets-instagram.png',
+  '10a-detenteurs-dette-france-instagram.png',
+  '93-ue-dependance-terres-rares-instagram.png',
 ]
 
 function formatCurrency(num: number): string {
@@ -80,13 +55,12 @@ export function Hero() {
     setSubmitStatus('idle')
 
     try {
-      const response = await fetch('https://formspree.io/f/mbdknqpb', {
+      const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, source: 'Homepage' }),
       })
 
       if (response.ok) {
@@ -107,7 +81,7 @@ export function Hero() {
       {/* Mosaic Background */}
       <div className="absolute inset-0 z-0">
         <div className="mosaic-scroll grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-7 gap-1.5 p-1.5 opacity-40">
-          {[...MOSAIC_IMAGES, ...MOSAIC_IMAGES].map((img, i) => (
+          {[...MOSAIC_IMAGES, ...MOSAIC_IMAGES, ...MOSAIC_IMAGES, ...MOSAIC_IMAGES, ...MOSAIC_IMAGES, ...MOSAIC_IMAGES, ...MOSAIC_IMAGES, ...MOSAIC_IMAGES].map((img, i) => (
             <div key={i} className="relative aspect-square rounded-lg overflow-hidden">
               <Image
                 src={`/infographies/${img}`}
@@ -131,9 +105,9 @@ export function Hero() {
       <div className="floating-orb w-[400px] h-[400px] bg-accent-orange/10 right-[-100px] top-[60%] animate-float" style={{ animationDelay: '-7s' }} />
       <div className="floating-orb w-[300px] h-[300px] bg-accent-purple/10 left-[30%] bottom-[10%] animate-float" style={{ animationDelay: '-14s' }} />
 
-      <div className="max-w-4xl mx-auto relative z-10">
+      <div className="max-w-5xl mx-auto relative z-10">
         {/* Credit */}
-        <p className="text-text-muted/70 text-base mb-4 flex items-center justify-center gap-2">
+        <p className="text-text-muted/70 text-lg mb-4 flex items-center justify-center gap-2">
           Site créé et développé par{' '}
           <a
             href="https://www.linkedin.com/in/emmanuelblezes/"
@@ -149,85 +123,85 @@ export function Hero() {
         </p>
 
         {/* Main Title */}
-        <h1 className="font-serif text-[clamp(3rem,10vw,6rem)] font-normal leading-[1.1] mb-6">
+        <h1 className="font-serif text-[clamp(4rem,12vw,8rem)] font-normal leading-[1.1] mb-8">
           Où Va <span className="italic text-accent-electric">l&apos;Argent</span> ?
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xl text-text-secondary max-w-2xl mx-auto mb-10">
+        <p className="text-3xl lg:text-4xl text-text-primary max-w-5xl mx-auto mb-10">
           L&apos;État français dépense 1 670 Md€ chaque année mais continue de s&apos;endetter.
           Il est temps de comprendre où va l&apos;argent.
         </p>
 
         {/* Live Debt Counter */}
-        <div className="relative bg-gradient-to-br from-accent-red/30 to-accent-orange/20 border border-accent-red/50 rounded-2xl p-6 lg:p-10 mb-10 max-w-xl mx-auto overflow-hidden backdrop-blur-md">
+        <div className="relative bg-gradient-to-br from-accent-red/30 to-accent-orange/20 border border-accent-red/50 rounded-2xl p-8 lg:p-14 mb-10 max-w-4xl mx-auto overflow-hidden backdrop-blur-md">
           {/* Loading bar animation */}
           <div className="absolute top-0 left-0 right-0 h-1 overflow-hidden">
             <div className="h-full w-full bg-gradient-to-r from-accent-red via-accent-orange to-accent-pink animate-loading" />
           </div>
 
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-red rounded-full text-xs font-semibold uppercase mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent-red rounded-full text-sm font-semibold uppercase mb-4">
             <span className="w-2 h-2 bg-white rounded-full animate-blink" />
             En direct
           </div>
 
-          <p className="text-text-secondary text-lg lg:text-xl mb-3">
+          <p className="text-text-primary text-2xl lg:text-3xl mb-3">
             Depuis que vous avez ouvert cette page, la dette française a augmenté de
           </p>
 
           <div
-            className="font-mono text-[clamp(2.5rem,10vw,4.5rem)] font-medium text-accent-red leading-none"
+            className="font-mono text-[clamp(4rem,15vw,8rem)] font-medium text-accent-red leading-none"
             style={{ textShadow: '0 0 30px rgba(255, 71, 87, 0.5)' }}
           >
             {formatCurrency(debtCounter)}
           </div>
 
-          <p className="text-text-muted text-base lg:text-lg mt-4">
+          <p className="text-text-primary text-xl lg:text-2xl mt-4">
             soit environ <span className="text-accent-red font-mono font-medium">5 390 €</span> par seconde, 24h/24
           </p>
 
           {/* Compteur de temps */}
           <div className="mt-4 pt-4 border-t border-accent-red/20">
-            <p className="text-text-muted text-xs">
+            <p className="text-text-muted text-lg">
               Temps écoulé : <span className="font-mono text-accent-orange font-medium">{formatTime(elapsedSeconds)}</span>
             </p>
           </div>
         </div>
 
         {/* Newsletter CTA */}
-        <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 lg:p-8 max-w-lg mx-auto">
-          <h2 className="text-xl lg:text-2xl font-semibold mb-2">
-            Rejoignez la communauté
+        <div className="bg-gradient-to-br from-accent-electric/10 to-accent-purple/10 border border-accent-electric/30 rounded-2xl p-10 lg:p-14 max-w-5xl mx-auto">
+          <h2 className="font-serif text-[clamp(2.5rem,6vw,4rem)] font-normal mb-4 text-center">
+            Rejoignez la <span className="italic text-accent-electric">communauté</span>
           </h2>
-          <p className="text-text-secondary text-sm mb-6">
-            Restez informé chaque semaine.
+          <p className="text-text-primary text-2xl lg:text-3xl mb-8 text-center max-w-3xl mx-auto">
+            Recevez chaque semaine les chiffres clés et analyses des finances publiques.
           </p>
 
-          <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3">
+          <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-3xl mx-auto">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Votre adresse email"
               required
-              className="flex-1 px-4 py-3.5 bg-bg-elevated border border-glass-border rounded-xl text-text-primary font-sans text-base transition-all duration-200 focus:outline-none focus:border-accent-electric focus:ring-2 focus:ring-accent-electric/20"
+              className="flex-1 px-8 py-5 bg-bg-elevated border border-glass-border rounded-xl text-text-primary font-sans text-xl transition-all duration-200 focus:outline-none focus:border-accent-electric focus:ring-2 focus:ring-accent-electric/20"
             />
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-8 py-3.5 bg-accent-electric text-bg-deep font-semibold rounded-xl transition-all duration-200 hover:bg-[#00b8e6] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent-electric/30 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+              className="px-12 py-5 bg-accent-electric text-bg-deep text-xl font-semibold rounded-xl transition-all duration-200 hover:bg-[#00b8e6] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent-electric/30 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
             >
-              {isSubmitting ? 'Inscription...' : "S'inscrire"}
+              {isSubmitting ? 'Inscription...' : "S'inscrire gratuitement"}
             </button>
           </form>
 
           {submitStatus === 'success' && (
-            <p className="text-accent-green text-sm mt-3 flex items-center gap-2">
+            <p className="text-accent-green text-lg mt-4 flex items-center justify-center gap-2">
               <span>✓</span> Bienvenue dans la communauté !
             </p>
           )}
           {submitStatus === 'error' && (
-            <p className="text-accent-red text-sm mt-3 flex items-center gap-2">
+            <p className="text-accent-red text-lg mt-4 flex items-center justify-center gap-2">
               <span>✗</span> Une erreur est survenue. Réessayez.
             </p>
           )}

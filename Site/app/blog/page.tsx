@@ -130,7 +130,7 @@ export default function BlogPage() {
   }
 
   return (
-    <main className="relative z-[1] max-w-[1400px] mx-auto px-4 lg:px-8 py-20 lg:py-28">
+    <main className="relative z-[1] max-w-[1400px] mx-auto px-4 lg:px-8 pt-[100px] pb-[60px]">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
         {/* Header */}
         <header className="lg:col-span-2 text-center mb-8">

@@ -104,13 +104,13 @@ export function FAQ() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="font-serif text-[clamp(1.75rem,4vw,2.5rem)] font-normal mb-4">
+          <h2 className="font-serif text-[clamp(3rem,8vw,5rem)] font-normal mb-4">
             Questions <span className="italic text-accent-electric">fréquentes</span>
           </h2>
-          <p className="text-text-secondary text-lg max-w-xl mx-auto">
+          <p className="text-text-primary text-2xl lg:text-3xl max-w-3xl mx-auto">
             Les réponses aux questions que vous vous posez sur les finances publiques
           </p>
         </div>
@@ -131,8 +131,8 @@ export function FAQ() {
                 aria-expanded={openIndex === index}
                 aria-controls={`faq-answer-${index}`}
               >
-                <span className="text-2xl" aria-hidden="true">{item.emoji}</span>
-                <span className="flex-1 font-medium text-text-primary" itemProp="name">{item.question}</span>
+                <span className="text-3xl" aria-hidden="true">{item.emoji}</span>
+                <span className="flex-1 font-medium text-xl lg:text-2xl text-text-primary" itemProp="name">{item.question}</span>
                 <svg
                   className={`w-5 h-5 text-text-muted transition-transform duration-300 ${
                     openIndex === index ? 'rotate-180' : ''
@@ -157,7 +157,7 @@ export function FAQ() {
               >
                 <div className="px-5 pb-5 pt-0">
                   <div className="pl-10 border-l-2 border-accent-electric/30">
-                    <p className="text-text-secondary leading-relaxed" itemProp="text">{item.answer}</p>
+                    <p className="text-text-primary text-xl lg:text-2xl leading-relaxed" itemProp="text">{item.answer}</p>
                   </div>
                 </div>
               </div>

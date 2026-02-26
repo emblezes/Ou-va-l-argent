@@ -48,10 +48,10 @@ function TimelineItem({ event, index, isLeft }: TimelineItemProps) {
             isLeft ? 'lg:text-right' : 'lg:text-left'
           }`}
         >
-          <span className="font-mono text-accent-electric text-sm">{event.year}</span>
-          <h3 className="font-semibold text-lg mt-1 mb-2">{event.title}</h3>
-          <p className="text-text-secondary text-sm mb-3">{event.description}</p>
-          <span className="inline-block px-2 py-0.5 bg-accent-electric/10 border border-accent-electric/30 rounded-full font-mono text-accent-electric text-xs">
+          <span className="font-mono text-accent-electric text-lg lg:text-xl">{event.year}</span>
+          <h3 className="font-semibold text-2xl lg:text-3xl mt-1 mb-2">{event.title}</h3>
+          <p className="text-text-primary text-lg lg:text-xl mb-3">{event.description}</p>
+          <span className="inline-block px-4 py-1.5 bg-accent-electric/10 border border-accent-electric/30 rounded-full font-mono text-accent-electric text-base">
             {event.stat}
           </span>
         </div>
@@ -72,13 +72,13 @@ function TimelineItem({ event, index, isLeft }: TimelineItemProps) {
 export function Timeline() {
   return (
     <section className="py-12 lg:py-16 px-4">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-[1800px] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-10">
-          <h2 className="font-serif text-[clamp(2rem,5vw,3rem)] font-normal mb-3">
+          <h2 className="font-serif text-[clamp(3rem,8vw,5rem)] font-normal mb-3">
             Comment en est-on <span className="italic text-accent-red">arrivé là</span> ?
           </h2>
-          <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+          <p className="text-text-primary text-2xl lg:text-3xl max-w-4xl mx-auto">
             50 ans de déficits : de 15% à 117% du PIB
           </p>
         </div>

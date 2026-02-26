@@ -96,12 +96,12 @@ const INFOGRAPHIES = [
   },
   {
     id: 10,
-    title: 'Intérêts de la dette : 58 milliards',
+    title: 'Intérêts de la dette : 54 milliards',
     category: 'Dette',
     date: '5 jan. 2025',
     emoji: '📈',
     color: '#ff4757',
-    stats: '58 Md€/an',
+    stats: '54 Md€/an',
     subtitle: '4ème poste budgétaire',
   },
   {
@@ -136,7 +136,7 @@ export default function NewsPage() {
     : INFOGRAPHIES.filter(info => info.category === selectedCategory)
 
   return (
-    <main className="relative z-[1] max-w-[1600px] mx-auto px-4 lg:px-8 py-20 lg:py-28">
+    <main className="relative z-[1] max-w-[1600px] mx-auto px-4 lg:px-8 pt-[100px] pb-[60px]">
       {/* Header */}
       <header className="text-center mb-10">
         <h1 className="font-serif text-[clamp(2rem,5vw,3rem)] font-normal mb-3">

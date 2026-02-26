@@ -981,6 +981,27 @@ body { padding: 0 !important; margin: 0 !important; }
 .bottom-bar .value {
   font-size: 2.4rem !important;
 }
+
+/* --- Compare bars (intérêts vs défense #09) — TikTok V --- */
+.compare-area {
+  gap: 40px !important;
+  padding-bottom: 0 !important;
+}
+.compare-bar-wrapper {
+  height: 380px !important;
+}
+.compare-val {
+  font-size: 4rem !important;
+}
+.compare-label {
+  font-size: 1.8rem !important;
+}
+.compare-sublabel {
+  font-size: 1.2rem !important;
+}
+.chart-title {
+  font-size: 3.5rem !important;
+}
 `;
 
 // CSS overrides pour le format Rectangle horizontal (1080x600)
@@ -1727,6 +1748,32 @@ body { padding: 0 !important; margin: 0 !important; }
   padding-top: 4px !important;
   margin-top: 0px !important;
 }
+
+/* --- Compare bars (intérêts vs défense #09) — Rectangle H --- */
+.compare-area {
+  gap: 30px !important;
+}
+.compare-bar-wrapper {
+  height: 280px !important;
+  width: 140px !important;
+}
+.compare-val {
+  font-size: 2rem !important;
+  padding-top: 12px !important;
+}
+.compare-label {
+  font-size: 1rem !important;
+}
+.compare-sublabel {
+  font-size: 0.75rem !important;
+}
+.vs {
+  font-size: 2rem !important;
+}
+.chart-title {
+  font-size: 1.8rem !important;
+  margin-top: 5px !important;
+}
 `;
 
 // Define infographics: [htmlFile, infographicIndex, outputBaseName]
@@ -1785,52 +1832,44 @@ const INFOGRAPHICS = [
   ['114-dette-5350-par-seconde.html', 0, '114-dette-5350-par-seconde'],
   ['115-dette-pile-billets-terre.html', 0, '115-dette-pile-billets-terre'],
   ['116-cout-eleve-recul-maths.html', 0, '116-cout-eleve-recul-maths'],
+  ['116bis-cout-eleve-recul-maths.html', 0, '116bis-cout-eleve-recul-maths'],
+  ['116ter-cout-eleve-recul-maths.html', 0, '116ter-cout-eleve-recul-maths'],
+  ['116quater-cout-eleve-recul-maths.html', 0, '116quater-cout-eleve-recul-maths'],
   ['117-medicaments-36-milliards.html', 0, '117-medicaments-36-milliards'],
   ['118-subvention-sncf-300-euros.html', 0, '118-subvention-sncf-300-euros'],
   ['119-audiovisuel-public-4-milliards.html', 0, '119-audiovisuel-public-4-milliards'],
-  ['120-communes-plus-que-ue.html', 0, '120-communes-plus-que-ue'],
+  ['119bis-audiovisuel-public-4-milliards.html', 0, '119bis-audiovisuel-public-4-milliards'],
+  ['119ter-audiovisuel-public-4-milliards.html', 0, '119ter-audiovisuel-public-4-milliards'],
+  ['119quater-audiovisuel-public-4-milliards.html', 0, '119quater-audiovisuel-public-4-milliards'],
+  ['120-communes-france-34874.html', 0, '120-communes-france-34874'],
+  ['120bis-communes-france-34874.html', 0, '120bis-communes-france-34874'],
+  ['120ter-communes-france-34874.html', 0, '120ter-communes-france-34874'],
+  ['120quater-communes-france-34874.html', 0, '120quater-communes-france-34874'],
   ['121-82-jours-travail-impots.html', 0, '121-82-jours-travail-impots'],
   ['122-salaire-suisse-double.html', 0, '122-salaire-suisse-double'],
   ['123-ratio-actifs-retraites.html', 0, '123-ratio-actifs-retraites'],
   ['124-taxe-fonciere-paris-52.html', 0, '124-taxe-fonciere-paris-52'],
   ['125-48-boites-medicaments.html', 0, '125-48-boites-medicaments'],
-  ['126-code-travail-3500-pages.html', 0, '126-code-travail-3500-pages'],
+  ['126-code-travail-france-vs-suisse.html', 0, '126-code-travail-france-vs-suisse'],
+  ['126bis-code-travail-france-vs-suisse.html', 0, '126bis-code-travail-france-vs-suisse'],
+  ['126ter-code-travail-france-vs-suisse.html', 0, '126ter-code-travail-france-vs-suisse'],
   ['127-intermittents-2-milliards.html', 0, '127-intermittents-2-milliards'],
-  ['128-1500-aides-sociales.html', 0, '128-1500-aides-sociales'],
+  ['128-2200-aides-sociales.html', 0, '128-2200-aides-sociales'],
   ['129-singapour-france-1960.html', 0, '129-singapour-france-1960'],
   ['130-interets-58-milliards.html', 0, '130-interets-58-milliards'],
   ['131-taxes-essence-60-centimes.html', 0, '131-taxes-essence-60-centimes'],
   ['132-droits-succession-45-pourcent.html', 0, '132-droits-succession-45-pourcent'],
-  ['133-fonctionnaires-5-8-millions.html', 0, '133-fonctionnaires-5-8-millions'],
-  ['134-dernier-budget-equilibre-1974.html', 0, '134-dernier-budget-equilibre-1974'],
   ['135-france-2eme-plus-taxe.html', 0, '135-france-2eme-plus-taxe'],
   ['136-retraite-64-vs-67-allemagne.html', 0, '136-retraite-64-vs-67-allemagne'],
-  ['137-budget-culture-15-milliards.html', 0, '137-budget-culture-15-milliards'],
-  ['138-44-pourcent-pas-impot-revenu.html', 0, '138-44-pourcent-pas-impot-revenu'],
   ['139-lits-hopitaux-supprimes.html', 0, '139-lits-hopitaux-supprimes'],
   ['140-impot-societes-france-irlande.html', 0, '140-impot-societes-france-irlande'],
-  ['141-400000-normes-france.html', 0, '141-400000-normes-france'],
   ['142-deficit-169-milliards-2024.html', 0, '142-deficit-169-milliards-2024'],
-  ['143-prefets-heritage-napoleonien.html', 0, '143-prefets-heritage-napoleonien'],
-  ['144-dette-multipliee-par-4.html', 0, '144-dette-multipliee-par-4'],
-  ['145-38-milliards-logement-loyers.html', 0, '145-38-milliards-logement-loyers'],
-  ['146-9-milliards-dette-edf.html', 0, '146-9-milliards-dette-edf'],
-  ['147-60-pourcent-etudiants-echec.html', 0, '147-60-pourcent-etudiants-echec'],
-  ['148-deputes-cumul-mandats.html', 0, '148-deputes-cumul-mandats'],
-  ['149-desert-medical-30-pourcent.html', 0, '149-desert-medical-30-pourcent'],
-  ['150-attente-urgences-3-heures.html', 0, '150-attente-urgences-3-heures'],
-  ['151-dette-42-iphones.html', 0, '151-dette-42-iphones'],
-  ['152-dette-55-pourcent-etrangers.html', 0, '152-dette-55-pourcent-etrangers'],
-  ['153-industrie-moins-40-pourcent.html', 0, '153-industrie-moins-40-pourcent'],
-  ['154-463-millions-dette-par-jour.html', 0, '154-463-millions-dette-par-jour'],
   ['155-520000-elus-locaux-record.html', 0, '155-520000-elus-locaux-record'],
-  ['156-code-travail-chomage-correlation.html', 0, '156-code-travail-chomage-correlation'],
-  ['157-fraude-100-milliards.html', 0, '157-fraude-100-milliards'],
   ['158-tgv-retard-subventions.html', 0, '158-tgv-retard-subventions'],
-  ['159-eleves-faibles-maths-budget.html', 0, '159-eleves-faibles-maths-budget'],
   ['160-depenses-sante-3700-par-habitant.html', 0, '160-depenses-sante-3700-par-habitant'],
   ['161-tva-cercueil-20-pourcent.html', 0, '161-tva-cercueil-20-pourcent'],
   ['162-dette-117-pib-double-limite.html', 0, '162-dette-117-pib-double-limite'],
+  ['163-classement-pisa-maths.html', 0, '163-classement-pisa-maths'],
 ];
 
 async function exportFormat(browser, htmlPath, items, { css, jsTransform, width, height, outputDir, suffix, label }) {
@@ -1869,9 +1908,14 @@ async function main() {
 
   const browser = await puppeteer.launch({ headless: true });
 
+  // Parse --only filter (e.g. --only=127,128,09)
+  const onlyArg = process.argv.find(a => a.startsWith('--only='));
+  const onlyPrefixes = onlyArg ? onlyArg.split('=')[1].split(',') : null;
+
   // Group by HTML file
   const byFile = {};
   for (const [htmlFile, idx, baseName] of INFOGRAPHICS) {
+    if (onlyPrefixes && !onlyPrefixes.some(p => htmlFile.startsWith(p + '-') || htmlFile.startsWith(p + '.'))) continue;
     if (!byFile[htmlFile]) byFile[htmlFile] = [];
     byFile[htmlFile].push({ idx, baseName });
   }

@@ -5,7 +5,7 @@ import { KpiCard } from '@/components/ui/KpiCard'
 import { ChartWrapper, LineChart, DoughnutChart, BarChart } from '@/components/charts'
 import { MINISTRIES, EU_COMPARISON_SPENDING, DEBT_HISTORY, EU_COMPARISON_DEBT } from '@/lib/constants/budget'
 
-type TabType = 'depenses' | 'dettes' | 'impots'
+type TabType = 'depenses' | 'dettes'
 
 // Animated counter hook
 function useAnimatedCounter(end: number, duration: number = 2000) {
@@ -206,7 +206,7 @@ const TAX_EVOLUTION_DATA = {
 const STRUCTURE_DATA = {
   labels: ['Cotisations sociales', 'TVA', 'CSG/CRDS', 'IR', 'IS', 'Taxes locales', 'Autres'],
   data: [38, 15, 10, 7, 5, 5, 20],
-  colors: ['#ff6b6b', '#ffd700', '#00d4ff', '#4ecdc4', '#a855f7', '#ff9f43', '#4a5a6a'],
+  colors: ['#ff6b6b', '#ffd700', '#00d4ff', '#4ecdc4', '#a855f7', '#ff9f43', '#5a6a7a'],
 }
 
 const EU_TAX_COMPARISON = [
@@ -226,7 +226,7 @@ const EU_TAX_COMPARISON = [
 const TABS: { id: TabType; label: string; icon: string; color: string }[] = [
   { id: 'depenses', label: 'Dépenses', icon: '💰', color: 'electric' },
   { id: 'dettes', label: 'Dettes', icon: '💳', color: 'red' },
-  { id: 'impots', label: 'Impôts', icon: '🏛️', color: 'gold' },
+  // { id: 'impots', label: 'Impôts', icon: '🏛️', color: 'gold' }, // Archivé pour la V1
 ]
 
 // ==================== DEPENSES COMPONENT ====================
@@ -238,28 +238,28 @@ function DepensesContent() {
   return (
     <>
       {/* Big Counter Banner */}
-      <div className="bg-glass backdrop-blur-xl border border-glass-border rounded-2xl p-8 lg:p-12 mb-10 text-center max-w-2xl mx-auto">
-        <p className="text-text-muted text-sm uppercase tracking-wider mb-4">
+      <div className="bg-glass backdrop-blur-xl border border-glass-border rounded-2xl p-8 lg:p-12 mb-10 text-center max-w-6xl mx-auto">
+        <p className="text-text-muted text-xl uppercase tracking-wider mb-4">
           Dépenses publiques {selectedYear}
         </p>
         <div
           ref={counterRef}
-          className="font-mono text-[clamp(3rem,12vw,5.5rem)] font-medium text-accent-electric leading-none"
+          className="font-mono text-[clamp(4rem,14vw,7rem)] font-medium text-accent-electric leading-none"
         >
           {animatedTotal.toLocaleString('fr-FR')} <span className="text-[0.5em]">Md€</span>
         </div>
-        <p className="text-text-secondary text-lg mt-4">
+        <p className="text-text-secondary text-2xl lg:text-3xl mt-4">
           soit <span className="text-accent-gold font-mono">50 963 €</span> dépensés chaque seconde
         </p>
       </div>
 
       {/* Year Selector */}
-      <div className="flex justify-center gap-2 mb-10">
+      <div className="flex justify-center gap-3 mb-10">
         {Object.keys(YEARS_DATA).reverse().map((year) => (
           <button
             key={year}
             onClick={() => setSelectedYear(Number(year) as typeof selectedYear)}
-            className={`px-4 py-2 rounded-lg font-mono text-sm transition-all duration-200 ${
+            className={`px-6 py-3 rounded-lg font-mono text-lg transition-all duration-200 ${
               selectedYear === Number(year)
                 ? 'bg-accent-electric text-bg-deep'
                 : 'bg-bg-surface border border-glass-border text-text-secondary hover:text-text-primary hover:border-glass-border/50'
@@ -280,7 +280,7 @@ function DepensesContent() {
 
       {/* Charts Row 1 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        <ChartWrapper title="Évolution des dépenses" subtitle="En milliards d'euros, 2018-2025" height="300px">
+        <ChartWrapper title="Évolution des dépenses" subtitle="En milliards d'euros, 2018-2025" height="400px">
           <LineChart
             labels={EVOLUTION_DATA.labels}
             datasets={[
@@ -293,35 +293,35 @@ function DepensesContent() {
           />
         </ChartWrapper>
 
-        <ChartWrapper title="Répartition par secteur" subtitle="Part de chaque ministère" height="300px">
+        <ChartWrapper title="Répartition par secteur" subtitle="Part de chaque ministère" height="400px">
           <DoughnutChart labels={SECTOR_DATA.labels} data={SECTOR_DATA.data} colors={SECTOR_DATA.colors} tooltipSuffix="%" />
         </ChartWrapper>
       </div>
 
       {/* Ministry Table */}
-      <div className="bg-bg-surface border border-glass-border rounded-2xl p-5 mb-6">
-        <h3 className="text-base font-semibold mb-4">Budget par ministère</h3>
+      <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 mb-6">
+        <h3 className="text-2xl lg:text-3xl font-semibold mb-5">Budget par ministère</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-base">
             <thead>
               <tr className="border-b border-glass-border">
-                <th className="text-left py-3 px-4 font-medium text-text-secondary">Ministère</th>
-                <th className="text-right py-3 px-4 font-medium text-text-secondary">Budget</th>
-                <th className="text-right py-3 px-4 font-medium text-text-secondary">Part</th>
-                <th className="text-right py-3 px-4 font-medium text-text-secondary">Évolution</th>
+                <th className="text-left py-3 px-4 font-medium text-text-secondary text-lg">Ministère</th>
+                <th className="text-right py-3 px-4 font-medium text-text-secondary text-lg">Budget</th>
+                <th className="text-right py-3 px-4 font-medium text-text-secondary text-lg">Part</th>
+                <th className="text-right py-3 px-4 font-medium text-text-secondary text-lg">Évolution</th>
               </tr>
             </thead>
             <tbody>
               {MINISTRIES.slice(0, 6).map((ministry) => (
                 <tr key={ministry.id} className="border-b border-glass-border/50 hover:bg-bg-elevated/50">
-                  <td className="py-3 px-4">
+                  <td className="py-3.5 px-4">
                     <span className="flex items-center gap-3">
-                      <span className="text-xl">{ministry.icon}</span>
-                      <span>{ministry.shortName}</span>
+                      <span className="text-2xl">{ministry.icon}</span>
+                      <span className="text-lg">{ministry.shortName}</span>
                     </span>
                   </td>
-                  <td className="py-3 px-4 text-right font-mono">{ministry.amount} Md€</td>
-                  <td className="py-3 px-4 text-right font-mono text-text-secondary">{ministry.percent}%</td>
+                  <td className="py-3.5 px-4 text-right font-mono text-lg">{ministry.amount} Md€</td>
+                  <td className="py-3.5 px-4 text-right font-mono text-text-secondary text-lg">{ministry.percent}%</td>
                   <td className="py-3 px-4 text-right">
                     <span className={`font-mono ${ministry.evolution >= 0 ? 'text-accent-green' : 'text-accent-red'}`}>
                       {ministry.evolution >= 0 ? '+' : ''}{ministry.evolution}%
@@ -336,11 +336,11 @@ function DepensesContent() {
 
       {/* Charts Row 2 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        <ChartWrapper title="Comparaison européenne" subtitle="Dépenses publiques en % du PIB" height="300px">
+        <ChartWrapper title="Comparaison européenne" subtitle="Dépenses publiques en % du PIB" height="400px">
           <BarChart
             labels={EU_COMPARISON_SPENDING.map((c) => c.country)}
             data={EU_COMPARISON_SPENDING.map((c) => c.value)}
-            colors={(ctx) => EU_COMPARISON_SPENDING[ctx.dataIndex]?.highlight ? '#00d4ff' : '#2a3a4a'}
+            colors={(ctx) => EU_COMPARISON_SPENDING[ctx.dataIndex]?.highlight ? '#00d4ff' : '#3a4a5a'}
             horizontal
             tooltipSuffix="% du PIB"
             yMin={40}
@@ -348,24 +348,24 @@ function DepensesContent() {
           />
         </ChartWrapper>
 
-        <ChartWrapper title="Exécution mensuelle 2025" subtitle="Prévisionnel vs Réel (Md€)" height="300px">
+        <ChartWrapper title="Exécution mensuelle 2025" subtitle="Prévisionnel vs Réel (Md€)" height="400px">
           <BarChart
             labels={MONTHLY_DATA.labels}
             data={MONTHLY_DATA.reel.map((r, i) => r || MONTHLY_DATA.previsionnel[i])}
-            colors={MONTHLY_DATA.reel.map((r) => (r > 0 ? '#00d4ff' : '#4a5a6a'))}
+            colors={MONTHLY_DATA.reel.map((r) => (r > 0 ? '#00d4ff' : '#5a6a7a'))}
             tooltipSuffix=" Md€"
           />
         </ChartWrapper>
       </div>
 
       {/* Activity Feed */}
-      <div className="bg-bg-surface border border-glass-border rounded-2xl p-5">
-        <h3 className="text-base font-semibold mb-4">Actualités budgétaires</h3>
+      <div className="bg-bg-surface border border-glass-border rounded-2xl p-6">
+        <h3 className="text-2xl lg:text-3xl font-semibold mb-5">Actualités budgétaires</h3>
         <div className="space-y-3">
           {ACTIVITY_FEED.map((item, index) => (
-            <div key={index} className="flex gap-4 items-start py-2 border-b border-glass-border/50 last:border-0">
-              <span className="font-mono text-xs text-text-muted whitespace-nowrap">{item.date}</span>
-              <span className="text-sm text-text-secondary">{item.text}</span>
+            <div key={index} className="flex gap-4 items-start py-3 border-b border-glass-border/50 last:border-0">
+              <span className="font-mono text-base text-text-muted whitespace-nowrap">{item.date}</span>
+              <span className="text-lg lg:text-xl text-text-secondary">{item.text}</span>
             </div>
           ))}
         </div>
@@ -383,28 +383,28 @@ function DettesContent() {
         <KpiCard icon="💳" label="Dette totale" value="3 482 Md€" subtext="Dette publique brute" color="red" />
         <KpiCard icon="📊" label="Dette / PIB" value="117.4%" subtext="Ratio de Maastricht" color="orange" />
         <KpiCard icon="👤" label="Par habitant" value="50 800 €" subtext="Part de chaque Français" color="gold" />
-        <KpiCard icon="📈" label="Charge d'intérêts" value="58 Md€/an" subtext="Coût annuel de la dette" color="purple" />
+        <KpiCard icon="📈" label="Charge d'intérêts" value="54 Md€/an" subtext="Coût annuel de la dette" color="purple" />
       </div>
 
       {/* Alert Banner */}
       <div className="bg-gradient-to-r from-accent-red/10 to-accent-orange/10 border border-accent-red/30 rounded-2xl p-6 mb-8 flex flex-col lg:flex-row gap-6 items-center">
         <div className="text-5xl">⚠️</div>
         <div className="flex-1 text-center lg:text-left">
-          <h3 className="text-xl font-semibold mb-2">Seuil critique atteint</h3>
-          <p className="text-text-secondary">
+          <h3 className="text-3xl lg:text-4xl font-semibold mb-2">Seuil critique atteint</h3>
+          <p className="text-text-secondary text-xl lg:text-2xl">
             La France dépasse les 117% de dette/PIB, près du double du seuil de 60% prévu par le traité de Maastricht.
             La charge d&apos;intérêts représente désormais le 4ème poste budgétaire.
           </p>
         </div>
         <div className="text-center">
-          <div className="font-mono text-4xl font-medium text-accent-red">+5 350 €/s</div>
-          <div className="text-text-muted text-sm">La dette augmente chaque seconde</div>
+          <div className="font-mono text-5xl font-medium text-accent-red">+5 350 €/s</div>
+          <div className="text-text-muted text-lg">La dette augmente chaque seconde</div>
         </div>
       </div>
 
       {/* Charts Row 1 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        <ChartWrapper title="Évolution de la dette" subtitle="En milliards d'euros, 2000-2025" height="350px">
+        <ChartWrapper title="Évolution de la dette" subtitle="En milliards d'euros, 2000-2025" height="450px">
           <LineChart
             labels={DEBT_EVOLUTION.labels}
             datasets={[
@@ -416,7 +416,7 @@ function DettesContent() {
           />
         </ChartWrapper>
 
-        <ChartWrapper title="Ratio dette / PIB" subtitle="Évolution en pourcentage" height="350px">
+        <ChartWrapper title="Ratio dette / PIB" subtitle="Évolution en pourcentage" height="450px">
           <LineChart
             labels={DEBT_EVOLUTION.labels}
             datasets={[
@@ -432,15 +432,15 @@ function DettesContent() {
 
       {/* Charts Row 2 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <ChartWrapper title="Qui détient la dette ?" subtitle="Répartition par type de détenteur" height="300px">
+        <ChartWrapper title="Qui détient la dette ?" subtitle="Répartition par type de détenteur" height="400px">
           <DoughnutChart labels={DEBT_HOLDERS.labels} data={DEBT_HOLDERS.data} colors={DEBT_HOLDERS.colors} tooltipSuffix="%" />
         </ChartWrapper>
 
-        <ChartWrapper title="Comparaison européenne" subtitle="Dette publique en % du PIB" height="300px">
+        <ChartWrapper title="Comparaison européenne" subtitle="Dette publique en % du PIB" height="400px">
           <BarChart
             labels={EU_COMPARISON_DEBT.map((c) => c.country)}
             data={EU_COMPARISON_DEBT.map((c) => c.value)}
-            colors={(ctx) => EU_COMPARISON_DEBT[ctx.dataIndex]?.highlight ? '#ff4757' : '#2a3a4a'}
+            colors={(ctx) => EU_COMPARISON_DEBT[ctx.dataIndex]?.highlight ? '#ff4757' : '#3a4a5a'}
             horizontal
             tooltipSuffix="%"
           />
@@ -449,7 +449,7 @@ function DettesContent() {
 
       {/* Crisis Timeline */}
       <div className="bg-bg-surface border border-glass-border rounded-2xl p-6 lg:p-8 mb-8">
-        <h3 className="text-xl font-semibold mb-6 text-center">Les crises qui ont fait exploser la dette</h3>
+        <h3 className="text-3xl lg:text-4xl font-semibold mb-6 text-center">Les crises qui ont fait exploser la dette</h3>
 
         <div className="relative">
           <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-glass-border -translate-x-1/2" />
@@ -462,10 +462,10 @@ function DettesContent() {
               >
                 <div className="lg:flex-1 lg:mb-8">
                   <div className={`bg-bg-elevated border border-glass-border rounded-xl p-5 ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
-                    <span className="font-mono text-accent-red text-sm">{crisis.year}</span>
-                    <h4 className="text-lg font-semibold mt-1 mb-2">{crisis.title}</h4>
-                    <p className="text-text-secondary text-sm mb-3">{crisis.description}</p>
-                    <span className="inline-block px-3 py-1 bg-accent-red/10 border border-accent-red/30 rounded-full font-mono text-accent-red text-sm">
+                    <span className="font-mono text-accent-red text-xl">{crisis.year}</span>
+                    <h4 className="text-2xl lg:text-3xl font-semibold mt-1 mb-2">{crisis.title}</h4>
+                    <p className="text-text-secondary text-xl lg:text-2xl mb-3">{crisis.description}</p>
+                    <span className="inline-block px-3 py-1 bg-accent-red/10 border border-accent-red/30 rounded-full font-mono text-accent-red text-lg">
                       {crisis.impact}
                     </span>
                   </div>
@@ -483,7 +483,7 @@ function DettesContent() {
       </div>
 
       {/* Maturity Chart */}
-      <ChartWrapper title="Structure de la dette par maturité" subtitle="Répartition selon les échéances de remboursement" height="250px" className="mb-8">
+      <ChartWrapper title="Structure de la dette par maturité" subtitle="Répartition selon les échéances de remboursement" height="400px" className="mb-8">
         <DoughnutChart labels={MATURITY_DATA.labels} data={MATURITY_DATA.data} colors={MATURITY_DATA.colors} cutout="50%" legendPosition="bottom" tooltipSuffix="%" />
       </ChartWrapper>
     </>
@@ -584,7 +584,7 @@ function ImpotsContent() {
         <BarChart
           labels={EU_TAX_COMPARISON.map((c) => c.country)}
           data={EU_TAX_COMPARISON.map((c) => c.value)}
-          colors={(ctx) => EU_TAX_COMPARISON[ctx.dataIndex]?.highlight ? '#ffd700' : '#2a3a4a'}
+          colors={(ctx) => EU_TAX_COMPARISON[ctx.dataIndex]?.highlight ? '#ffd700' : '#3a4a5a'}
           yMin={0}
           yMax={50}
           tooltipSuffix="% du PIB"
@@ -638,13 +638,13 @@ export default function DashboardPage() {
       {/* Dynamic gradient background */}
       <div className="fixed inset-0 pointer-events-none z-0 transition-all duration-500" style={{ background: getGradientStyle() }} />
 
-      <main className="relative z-[1] max-w-[1600px] mx-auto px-4 lg:px-8 py-20 lg:py-28">
+      <main className="relative z-[1] max-w-[1800px] mx-auto px-[16px] lg:px-[48px] pt-[100px] pb-[60px]">
         {/* Header */}
         <header className="text-center mb-8">
-          <h1 className="font-serif text-[clamp(2rem,5vw,3rem)] font-normal mb-3">
+          <h1 className="font-serif text-[clamp(3rem,10vw,6rem)] font-normal mb-4">
             {title.text} <span className={`italic ${title.color}`}>{title.highlight}</span> {title.suffix}
           </h1>
-          <p className="text-text-secondary text-lg max-w-xl mx-auto">{getSubtitle()}</p>
+          <p className="text-text-secondary text-2xl lg:text-3xl max-w-5xl mx-auto">{getSubtitle()}</p>
         </header>
 
         {/* Tab Selector */}
@@ -654,7 +654,7 @@ export default function DashboardPage() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium text-sm transition-all duration-300 ${
+                className={`flex items-center gap-2 px-8 py-4 rounded-lg font-medium text-xl transition-all duration-300 ${
                   activeTab === tab.id
                     ? tab.color === 'electric'
                       ? 'bg-accent-electric text-bg-deep'
@@ -675,12 +675,12 @@ export default function DashboardPage() {
         <div className="transition-opacity duration-300">
           {activeTab === 'depenses' && <DepensesContent />}
           {activeTab === 'dettes' && <DettesContent />}
-          {activeTab === 'impots' && <ImpotsContent />}
+          {/* {activeTab === 'impots' && <ImpotsContent />} // Archivé pour la V1 */}
         </div>
 
         {/* Sources */}
         <div className="text-center py-6 border-t border-glass-border mt-8">
-          <p className="text-text-muted text-sm">
+          <p className="text-text-muted text-base">
             Sources : INSEE, Direction générale des Finances publiques, Agence France Trésor, Eurostat (2024-2025)
           </p>
         </div>

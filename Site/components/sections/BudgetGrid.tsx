@@ -57,15 +57,15 @@ function BudgetCard({ ministry, delay }: BudgetCardProps) {
         <span className="text-3xl">{ministry.icon}</span>
       </div>
 
-      <h3 className="font-semibold text-lg mb-1">{ministry.shortName}</h3>
-      <p className="text-text-muted text-sm mb-4">{ministry.description}</p>
+      <h3 className="font-semibold text-2xl lg:text-3xl mb-1">{ministry.shortName}</h3>
+      <p className="text-text-primary text-xl mb-4">{ministry.description}</p>
 
-      <div className="font-mono text-2xl font-medium" style={{ color: ministry.color }}>
+      <div className="font-mono text-4xl lg:text-5xl font-medium" style={{ color: ministry.color }}>
         {ministry.amount} Md€
       </div>
 
       {/* Progress bar */}
-      <div className="mt-4 h-1.5 bg-bg-elevated rounded-full overflow-hidden">
+      <div className="mt-4 h-2 bg-bg-elevated rounded-full overflow-hidden">
         <div
           className="h-full rounded-full transition-all duration-1000 ease-out"
           style={{
@@ -74,10 +74,10 @@ function BudgetCard({ ministry, delay }: BudgetCardProps) {
           }}
         />
       </div>
-      <div className="text-text-secondary text-base font-semibold mt-2 text-right">{ministry.percent}% du budget</div>
+      <div className="text-text-primary text-xl font-semibold mt-2 text-right">{ministry.percent}% du budget</div>
 
       {ministry.href && (
-        <div className="mt-3 text-xs text-accent-electric flex items-center gap-1">
+        <div className="mt-3 text-sm text-accent-electric flex items-center gap-1">
           Voir le détail <span>→</span>
         </div>
       )}
@@ -180,13 +180,13 @@ const HOMEPAGE_CATEGORIES: CategoryData[] = [
 export function BudgetGrid() {
   return (
     <section className="py-16 lg:py-24 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1800px] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="font-serif text-[clamp(2rem,5vw,3rem)] font-normal mb-4">
+          <h2 className="font-serif text-[clamp(3rem,8vw,5rem)] font-normal mb-4">
             Où dépense <span className="italic text-accent-gold">l&apos;État</span> ?
           </h2>
-          <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+          <p className="text-text-primary text-2xl lg:text-3xl max-w-4xl mx-auto">
             Répartition des 1 670 milliards d&apos;euros de dépenses publiques par grands postes budgétaires
           </p>
         </div>

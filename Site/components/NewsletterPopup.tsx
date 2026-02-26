@@ -36,10 +36,10 @@ export function NewsletterPopup() {
     setStatus('submitting')
 
     try {
-      const response = await fetch('https://formspree.io/f/mbdknqpb', {
+      const response = await fetch('/api/newsletter', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ email }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'Popup' }),
       })
       if (response.ok) {
         setStatus('success')
@@ -62,71 +62,62 @@ export function NewsletterPopup() {
       <div className="absolute inset-0 bg-bg-deep/70 backdrop-blur-sm" onClick={dismiss} />
 
       {/* Modal */}
-      <div className="relative w-full max-w-md bg-bg-surface border border-glass-border rounded-2xl overflow-hidden shadow-2xl shadow-accent-electric/10 animate-[slideUp_0.4s_ease]">
+      <div className="relative w-full max-w-lg bg-bg-surface border border-glass-border rounded-2xl overflow-hidden shadow-2xl shadow-accent-electric/10 animate-[slideUp_0.4s_ease]">
         {/* Accent bar */}
         <div className="h-1 bg-gradient-to-r from-accent-electric via-accent-gold to-accent-electric" />
 
         {/* Close */}
         <button
           onClick={dismiss}
-          className="absolute top-4 right-4 p-1.5 text-text-muted hover:text-text-primary transition-colors rounded-lg hover:bg-bg-elevated"
+          className="absolute top-4 right-4 p-1.5 text-text-primary hover:text-accent-electric transition-colors rounded-lg hover:bg-bg-elevated"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
-        <div className="p-6 pt-8 text-center">
+        <div className="p-8 pt-10 text-center">
           {status === 'success' ? (
             <>
-              <div className="text-4xl mb-4">🎉</div>
-              <h3 className="font-serif text-2xl mb-2">
-                Bienvenue dans la <span className="italic text-accent-electric">communauté</span> !
+              <div className="text-5xl mb-4">🎉</div>
+              <h3 className="font-serif text-3xl mb-3">
+                Bienvenue !
               </h3>
-              <p className="text-text-secondary">Vous recevrez nos prochaines analyses.</p>
+              <p className="text-text-primary text-lg">Vous serez tenu informé.</p>
             </>
           ) : (
             <>
-              <div className="text-4xl mb-4">📊</div>
-              <h3 className="font-serif text-2xl mb-2">
+              <h3 className="font-serif text-3xl lg:text-4xl mb-6">
                 Restez <span className="italic text-accent-electric">informé</span>
               </h3>
-              <p className="text-text-secondary text-sm mb-6">
-                Chaque semaine, recevez nos analyses et infographies sur l&apos;économie et les finances publiques.
-              </p>
 
-              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Votre adresse email"
                   required
-                  className="w-full px-4 py-3.5 bg-bg-elevated border border-glass-border rounded-xl text-text-primary text-base transition-all duration-200 focus:outline-none focus:border-accent-electric focus:ring-2 focus:ring-accent-electric/20"
+                  className="w-full px-5 py-4 bg-bg-elevated border border-glass-border rounded-xl text-text-primary text-lg transition-all duration-200 focus:outline-none focus:border-accent-electric focus:ring-2 focus:ring-accent-electric/20"
                 />
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full py-3.5 bg-accent-electric text-bg-deep font-semibold rounded-xl transition-all duration-200 hover:bg-[#00b8e6] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent-electric/30 disabled:opacity-50"
+                  className="w-full py-4 bg-accent-electric text-bg-deep text-lg font-semibold rounded-xl transition-all duration-200 hover:bg-[#00b8e6] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent-electric/30 disabled:opacity-50"
                 >
-                  {status === 'submitting' ? 'Inscription...' : 'Rejoindre la newsletter'}
+                  {status === 'submitting' ? 'Inscription...' : "S'abonner"}
                 </button>
               </form>
 
               {status === 'error' && (
-                <p className="text-accent-red text-sm mt-3">Une erreur est survenue. Réessayez.</p>
+                <p className="text-accent-red text-base mt-3">Une erreur est survenue. Réessayez.</p>
               )}
-
-              <p className="mt-4 text-text-muted text-[10px] leading-tight px-2">
-                En vous inscrivant, vous acceptez de recevoir notre newsletter. Vous pouvez vous désinscrire à tout moment.{' '}
-                <a href="/mentions-legales" className="underline hover:text-accent-electric">Politique de confidentialité</a>
-              </p>
 
               <button
                 onClick={dismiss}
-                className="mt-3 text-text-muted text-xs hover:text-text-secondary transition-colors"
+                className="mt-4 text-text-primary/60 text-base hover:text-text-primary transition-colors"
               >
-                Je suis déjà inscrit
+                Fermer
               </button>
             </>
           )}

@@ -48,16 +48,16 @@ export default function ActualitePage() {
     : INFOGRAPHIES
 
   return (
-    <main className="relative z-[1] max-w-[1600px] mx-auto px-4 lg:px-8 py-20 lg:py-28">
+    <main className="relative z-[1] max-w-[1800px] mx-auto px-[16px] lg:px-[48px] pt-[100px] pb-[60px]">
       {/* Header */}
       <header className="text-center mb-10">
-        <h1 className="font-serif text-[clamp(2rem,5vw,3.5rem)] font-normal mb-3">
+        <h1 className="font-serif text-[clamp(3rem,10vw,6rem)] font-normal mb-4">
           <span className="italic text-accent-electric">Actualités</span>
         </h1>
-        <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+        <p className="text-text-primary text-2xl lg:text-3xl max-w-3xl mx-auto">
           Toutes nos infographies économiques et financières, prêtes à partager
         </p>
-        <p className="text-text-muted text-sm mt-2">
+        <p className="text-text-primary text-base mt-3">
           {INFOGRAPHIES.length} infographies publiées
         </p>
       </header>
@@ -66,7 +66,7 @@ export default function ActualitePage() {
       <div className="flex flex-wrap justify-center gap-2 mb-10">
         <button
           onClick={() => setSelectedCategory(null)}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+          className={`px-5 py-2.5 rounded-lg font-medium text-base transition-all ${
             !selectedCategory
               ? 'bg-accent-electric text-bg-deep'
               : 'bg-bg-surface border border-glass-border text-text-secondary hover:text-text-primary hover:border-accent-electric/30'
@@ -80,7 +80,7 @@ export default function ActualitePage() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+              className={`px-5 py-2.5 rounded-lg font-medium text-base transition-all ${
                 selectedCategory === cat
                   ? 'bg-accent-electric text-bg-deep'
                   : 'bg-bg-surface border border-glass-border text-text-secondary hover:text-text-primary hover:border-accent-electric/30'
@@ -109,7 +109,7 @@ export default function ActualitePage() {
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bg-deep/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
-                <span className="text-text-primary text-xs font-medium leading-tight">
+                <span className="text-text-primary text-base font-medium leading-tight">
                   {infographie.title}
                 </span>
               </div>
@@ -179,12 +179,12 @@ export default function ActualitePage() {
             {/* Info bar */}
             <div className="mt-4 flex items-center justify-between">
               <div>
-                <span className="text-accent-electric text-xs uppercase tracking-wider font-medium">
+                <span className="text-accent-electric text-base uppercase tracking-wider font-medium">
                   {selectedInfographie.category}
                 </span>
-                <h2 className="text-lg font-semibold mt-0.5">{selectedInfographie.title}</h2>
+                <h2 className="text-2xl lg:text-3xl font-semibold mt-0.5">{selectedInfographie.title}</h2>
               </div>
-              <span className="text-text-muted text-sm font-mono">
+              <span className="text-text-muted text-base font-mono">
                 #{String(selectedInfographie.id).padStart(2, '0')}
               </span>
             </div>

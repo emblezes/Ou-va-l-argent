@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WTF – 120bis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:#081020;--bg-mid:#0c1a3d;--accent:#4a9eff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Syne',sans-serif;background:#1a1a2e;display:flex;justify-content:center}
+.infographic{width:1080px;height:1080px;position:relative;overflow:hidden}
+.bg-base{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%)}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(74,158,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,158,255,0.03) 1px,transparent 1px);background-size:40px 40px}
+.bg-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(74,158,255,0.08) 0%,transparent 60%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.content{position:relative;z-index:1;height:100%;padding:50px 60px;display:flex;flex-direction:column;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{font-family:'Instrument Serif',serif;font-size:3.5rem;color:var(--accent);line-height:1}
+.logo-text{font-family:'Instrument Serif',serif;font-size:1.7rem;font-style:italic;color:#fff;line-height:1}
+.center-block{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+.hook{font-family:'Instrument Serif',serif;font-size:5rem;font-style:italic;color:#fff;text-align:center;line-height:1.15}
+.stat{font-family:'JetBrains Mono',monospace;font-size:12rem;font-weight:700;color:var(--accent);text-align:center;line-height:0.95;text-shadow:0 0 50px rgba(74,158,255,0.4)}
+.context{font-family:'Instrument Serif',serif;font-size:4rem;font-style:italic;color:#fff;text-align:center;line-height:1.15}
+.flag{font-size:6rem;line-height:1}
+.footer{width:100%;text-align:center}
+.website{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:#fff}
+</style></head><body>
+<div class="infographic"><div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow"></div>
+<div class="content">
+<div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+<div class="center-block">
+  <div class="flag">🇫🇷🇪🇺</div>
+  <div class="stat">40%</div>
+  <div class="hook">des communes de l'UE<br>sont en France</div>
+  <div class="context">pour seulement 15%<br>de la population</div>
+</div>
+<div class="footer"><div class="website">ouvalargent.com</div></div>
+</div></div></body></html>

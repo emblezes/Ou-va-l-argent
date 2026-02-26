@@ -10,15 +10,15 @@ const config: Config = {
     extend: {
       colors: {
         // Deep backgrounds
-        'bg-deep': '#06080c',
-        'bg-surface': '#0a0e14',
-        'bg-elevated': '#111820',
-        'bg-card': '#0d1117',
+        'bg-deep': '#0a0e14',
+        'bg-surface': '#0f1520',
+        'bg-elevated': '#161e2a',
+        'bg-card': '#121a24',
 
         // Text colors
         'text-primary': '#f0f4f8',
-        'text-secondary': '#8899a8',
-        'text-muted': '#4a5a6a',
+        'text-secondary': '#d0dae4',
+        'text-muted': '#a0b0c0',
 
         // Accent colors
         'accent-electric': '#00d4ff',
@@ -29,9 +29,16 @@ const config: Config = {
         'accent-orange': '#ff9f43',
         'accent-pink': '#ff6b9d',
 
+        // Section backgrounds
+        'section-blue': '#0c1525',
+        'section-teal': '#0c1a15',
+        'section-purple': '#150e22',
+        'section-warm': '#1a1408',
+        'section-red': '#1a0e15',
+
         // Glass effect
         'glass': 'rgba(17, 24, 32, 0.8)',
-        'glass-border': 'rgba(255, 255, 255, 0.08)',
+        'glass-border': 'rgba(255, 255, 255, 0.12)',
       },
       fontFamily: {
         'serif': ['var(--font-serif)', 'Instrument Serif', 'serif'],

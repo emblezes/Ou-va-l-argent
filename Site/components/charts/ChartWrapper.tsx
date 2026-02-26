@@ -30,9 +30,9 @@ ChartJS.register(
 )
 
 // Set global defaults for Chart.js
-ChartJS.defaults.color = '#8899a8'
+ChartJS.defaults.color = '#d0dae4'
 ChartJS.defaults.font.family = "'Syne', sans-serif"
-ChartJS.defaults.font.size = 14
+ChartJS.defaults.font.size = 18
 ChartJS.defaults.devicePixelRatio = 2 // Force high-resolution rendering for Retina displays
 
 interface ChartWrapperProps {
@@ -50,7 +50,7 @@ export function ChartWrapper({
   subtitle,
   source,
   className = '',
-  height = '300px',
+  height = '450px',
 }: ChartWrapperProps) {
   const [isClient, setIsClient] = useState(false)
 
@@ -59,11 +59,11 @@ export function ChartWrapper({
   }, [])
 
   return (
-    <div className={`bg-bg-surface border border-glass-border rounded-2xl p-5 ${className}`}>
+    <div className={`bg-bg-surface border border-glass-border rounded-2xl p-6 lg:p-8 ${className}`}>
       <div className="flex justify-between items-start mb-5">
         <div>
-          <h3 className="text-lg font-semibold">{title}</h3>
-          {subtitle && <p className="text-sm text-text-muted mt-1">{subtitle}</p>}
+          <h3 className="text-2xl lg:text-3xl font-semibold">{title}</h3>
+          {subtitle && <p className="text-xl lg:text-2xl text-text-muted mt-1">{subtitle}</p>}
         </div>
       </div>
       <div style={{ height }} className="relative">
@@ -74,7 +74,7 @@ export function ChartWrapper({
         )}
       </div>
       {source && (
-        <p className="text-xs text-text-muted/60 mt-3 text-right">
+        <p className="text-base text-text-muted/60 mt-3 text-right">
           Source : {source}
         </p>
       )}

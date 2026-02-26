@@ -10,7 +10,7 @@ const WTF_FACTS = [
     stat: '50 800 €',
     title: 'Dette à la naissance',
     desc: 'Un bébé qui naît aujourd\'hui en France hérite immédiatement d\'une dette de 50 800 €. Avant même son premier biberon.',
-    comparison: { label: 'C\'est l\'équivalent de', value: '2,5 ans de SMIC net' },
+    comparison: { label: 'C\'est l\'équivalent de', value: '3 ans de SMIC net' },
     color: '#ff4757',
   },
   {
@@ -18,7 +18,7 @@ const WTF_FACTS = [
     icon: '⏱️',
     stat: '5 390 €',
     title: 'Chaque seconde',
-    desc: 'Pendant que vous lisez cette phrase, la dette française a augmenté de 16 200 €. Chaque seconde = 5 390 €.',
+    desc: 'Pendant que vous lisez cette phrase, la dette française a augmenté de 16 200 €. Soit 5 390 € par seconde (déficit 2024 : 170 Md€).',
     comparison: { label: 'En 1 minute', value: '323 400 € de dette en plus' },
     color: '#ff9f43',
   },
@@ -34,19 +34,19 @@ const WTF_FACTS = [
   {
     id: 4,
     icon: '🎓',
-    stat: '12 250 €',
+    stat: '10 920 €',
     title: 'Coût d\'un élève/an',
-    desc: 'Un élève coûte 12 250 €/an à l\'État. Pourtant la France recule au classement PISA (26ème en maths).',
-    comparison: { label: 'La Corée du Sud dépense', value: '9 000 €/élève et est dans le top 5' },
+    desc: 'Un élève coûte 10 920 €/an en moyenne à l\'État (DEPP 2024). Pourtant la France n\'est que 23ème au classement PISA en maths (2022).',
+    comparison: { label: 'La Corée du Sud dépense', value: '~17 500 €/élève et se classe 6ème' },
     color: '#00d4ff',
   },
   {
     id: 5,
     icon: '🏥',
-    stat: '36 Md€',
+    stat: '38 Md€',
     title: 'Médicaments remboursés',
-    desc: 'La France rembourse 36 milliards de médicaments par an. On est les 2èmes plus gros consommateurs d\'Europe.',
-    comparison: { label: 'C\'est', value: '540 € de médocs par Français/an' },
+    desc: 'La France rembourse 38 milliards d\'euros de médicaments par an. L\'un des plus gros consommateurs d\'Europe.',
+    comparison: { label: 'C\'est', value: '550 € de médocs par Français/an' },
     color: '#ff6b9d',
   },
   {
@@ -70,19 +70,19 @@ const WTF_FACTS = [
   {
     id: 8,
     icon: '🏛️',
-    stat: '36 000',
+    stat: '34 875',
     title: 'Communes françaises',
-    desc: 'La France a plus de communes que tous les autres pays de l\'UE réunis. L\'Allemagne en a 11 000.',
-    comparison: { label: 'Ça fait', value: '36 000 maires, 500 000 élus locaux' },
+    desc: 'La France a plus de communes que n\'importe quel autre pays européen. L\'Allemagne en a 11 000.',
+    comparison: { label: 'Ça fait', value: '34 875 maires, 520 000 élus locaux' },
     color: '#20e3b2',
   },
   {
     id: 9,
     icon: '👔',
-    stat: '82 jours',
+    stat: '156 jours',
     title: 'Travail pour l\'État',
-    desc: 'Un salarié français travaille 82 jours par an (jusqu\'au 23 mars) uniquement pour payer impôts et cotisations.',
-    comparison: { label: 'En Suisse', value: '55 jours suffisent' },
+    desc: 'Un salarié français travaille 156 jours par an uniquement pour payer impôts et cotisations. Jour de libération fiscale : 6 juin.',
+    comparison: { label: 'En Suisse', value: '99 jours suffisent (27% du PIB)' },
     color: '#ff4757',
   },
   {
@@ -108,71 +108,71 @@ const WTF_FACTS = [
     icon: '🏠',
     stat: '+52%',
     title: 'Taxe foncière Paris',
-    desc: 'La taxe foncière à Paris a augmenté de 52% en 2023. En une seule année.',
+    desc: 'Le taux de taxe foncière à Paris a bondi de 52% en 2023. Avec la revalorisation des bases, la facture réelle a grimpé de +65 à 70%.',
     comparison: { label: 'Moyenne nationale', value: '+30% en 10 ans' },
     color: '#ffd700',
   },
   {
     id: 13,
     icon: '💊',
-    stat: '48 boîtes',
+    stat: '41 boîtes',
     title: 'Médicaments/Français/an',
-    desc: 'Chaque Français consomme en moyenne 48 boîtes de médicaments par an. Parmi les plus gros consommateurs d\'Europe.',
-    comparison: { label: 'L\'Allemand moyen', value: '35 boîtes/an' },
+    desc: 'Chaque Français consomme en moyenne 41 boîtes de médicaments par an. Parmi les plus gros consommateurs d\'Europe.',
+    comparison: { label: 'C\'est presque', value: '1 boîte par semaine' },
     color: '#ff6b9d',
   },
   {
     id: 14,
     icon: '🗃️',
-    stat: '3 500',
+    stat: '3 600',
     title: 'Pages du Code du travail',
-    desc: 'Le Code du travail français fait 3 500 pages. Celui de la Suisse fait 60 pages.',
-    comparison: { label: 'L\'Allemagne', value: '800 pages' },
+    desc: 'Le Code du travail français fait 3 600 pages. Celui de la Suisse : 200 pages. Soit 18 fois moins.',
+    comparison: { label: 'Chômage France vs Suisse (BIT)', value: '7,3% vs 4,2%' },
     color: '#00d4ff',
   },
   {
     id: 15,
     icon: '🎭',
-    stat: '276 000',
+    stat: '1,3 Md€',
     title: 'Intermittents du spectacle',
-    desc: '276 000 intermittents touchent 2 Md€ d\'allocations/an. Soit 7 250 € par intermittent.',
-    comparison: { label: 'Ce régime est unique', value: 'Il n\'existe nulle part ailleurs au monde' },
+    desc: '154 600 intermittents indemnisés touchent ~1,3 Md€ d\'allocations/an. Le déficit net du régime : ~1 Md€ (allocations - cotisations).',
+    comparison: { label: 'Par intermittent', value: '~8 200 € d\'allocations/an' },
     color: '#a855f7',
   },
   {
     id: 16,
     icon: '📋',
-    stat: '1 500',
+    stat: '2 200',
     title: 'Aides sociales différentes',
-    desc: 'Il existe plus de 1 500 aides sociales différentes en France. Un mille-feuille unique au monde.',
+    desc: 'Il existe plus de 2 200 dispositifs d\'aides sociales en France. Un mille-feuille unique au monde.',
     comparison: { label: 'Résultat', value: '30% des ayants droit ne les demandent pas' },
     color: '#45b7d1',
   },
   {
     id: 17,
     icon: '🇸🇬',
-    stat: '1960',
-    title: 'Singapour = France',
-    desc: 'En 1960, Singapour et la France avaient le même PIB/habitant. Aujourd\'hui : 65k$ vs 44k$.',
-    comparison: { label: 'Singapour nous a dépassés', value: 'de +48% en 60 ans' },
+    stat: '85k$ vs 44k$',
+    title: 'Singapour vs France',
+    desc: 'En 1960, Singapour était 8 fois plus pauvre que la France. Aujourd\'hui, Singapour est 2 fois plus riche : 85 000 $ vs 44 000 $ par habitant.',
+    comparison: { label: 'Convergence atteinte en', value: '1993' },
     color: '#20e3b2',
   },
   {
     id: 18,
     icon: '🏦',
-    stat: '58 Md€',
+    stat: '54 Md€',
     title: 'Intérêts de la dette',
-    desc: 'On paye 58 Md€ d\'intérêts par an. Sans rembourser 1€ du capital. C\'est le budget de l\'Éducation Nationale.',
-    comparison: { label: 'Chaque seconde', value: '1 840 € d\'intérêts' },
+    desc: 'On paye 54 Md€ d\'intérêts par an. Sans rembourser 1€ du capital. C\'est plus que le budget opérationnel de la Défense (50,5 Md€).',
+    comparison: { label: 'Chaque seconde', value: '1 712 € d\'intérêts' },
     color: '#ff4757',
   },
   {
     id: 19,
     icon: '🚗',
-    stat: '60 cts',
+    stat: '~1 €',
     title: 'Taxes par litre d\'essence',
-    desc: 'Sur 1 litre d\'essence à 1,80€, 60 centimes partent en taxes. 33% du prix.',
-    comparison: { label: 'Un plein de 50L', value: '30 € de taxes' },
+    desc: 'Sur 1 litre d\'essence à 1,80 €, environ 1 € part en taxes (TICPE 68 cts + TVA ~30 cts). 55% du prix.',
+    comparison: { label: 'Un plein de 50L', value: '~50 € de taxes' },
     color: '#ff9f43',
   },
   {
@@ -180,93 +180,48 @@ const WTF_FACTS = [
     icon: '💀',
     stat: '45%',
     title: 'Droits de succession max',
-    desc: 'Les droits de succession en ligne directe peuvent atteindre 45%. Record mondial avec la Corée du Sud.',
+    desc: 'Les droits de succession en ligne directe peuvent atteindre 45%. La France est 3ème dans l\'OCDE, derrière le Japon (55%) et la Corée du Sud (50%).',
     comparison: { label: 'En Italie', value: '4% maximum' },
     color: '#ffd700',
   },
   {
     id: 21,
-    icon: '🏢',
-    stat: '5,8 M',
-    title: 'Fonctionnaires',
-    desc: '5,8 millions d\'agents publics en France. Plus que l\'Allemagne qui a pourtant 17 millions d\'habitants de plus.',
-    comparison: { label: 'Ratio', value: '86 fonctionnaires pour 1000 habitants (vs 58 en Allemagne)' },
-    color: '#00d4ff',
-  },
-  {
-    id: 22,
-    icon: '📅',
-    stat: '1974',
-    title: 'Dernier budget équilibré',
-    desc: 'La France n\'a pas voté un seul budget équilibré depuis 1974. 50 ans de déficits.',
-    comparison: { label: 'Le président était', value: 'Valéry Giscard d\'Estaing (1er mandat)' },
-    color: '#a855f7',
-  },
-  {
-    id: 23,
     icon: '🏆',
     stat: '2ème',
-    title: 'Rang mondial impôts',
-    desc: 'La France est le 2ème pays le plus taxé au monde après le Danemark. 45,4% du PIB.',
+    title: 'Rang OCDE impôts',
+    desc: 'La France est le 2ème pays le plus taxé de l\'OCDE après le Danemark. 45,4% du PIB en prélèvements obligatoires.',
     comparison: { label: 'Les USA', value: '27% du PIB' },
     color: '#ff6b9d',
   },
   {
-    id: 24,
+    id: 22,
     icon: '👴',
     stat: '64 ans',
     title: 'Retraite à 64 ans',
     desc: 'L\'âge légal de départ est passé à 64 ans après des mois de manifestations.',
-    comparison: { label: 'En Allemagne', value: '67 ans depuis 2012, sans manif' },
+    comparison: { label: 'En Allemagne', value: '66 ans en 2025, montée vers 67 ans en 2031' },
     color: '#45b7d1',
   },
   {
-    id: 25,
-    icon: '🎪',
-    stat: '15 Md€',
-    title: 'Budget culture',
-    desc: 'La France dépense 15 milliards/an pour la culture. Plus que n\'importe quel pays d\'Europe.',
-    comparison: { label: 'Le Royaume-Uni', value: '7 milliards' },
-    color: '#20e3b2',
-  },
-  {
-    id: 26,
-    icon: '📉',
-    stat: '44%',
-    title: 'Ne paient pas l\'IR',
-    desc: '44% des foyers français ne paient pas d\'impôt sur le revenu. Les 56% restants financent tout.',
-    comparison: { label: 'Les 10% les plus riches', value: 'paient 70% de l\'IR total' },
-    color: '#ff4757',
-  },
-  {
-    id: 27,
+    id: 23,
     icon: '🛏️',
-    stat: '150 000',
+    stat: '100 000',
     title: 'Lits d\'hôpitaux supprimés',
-    desc: 'La France a supprimé 150 000 lits d\'hôpitaux en 30 ans. Tout en augmentant le budget santé.',
-    comparison: { label: 'On est passé de', value: '530 000 à 380 000 lits' },
+    desc: 'La France a supprimé 100 000 lits d\'hôpitaux en 20 ans (2003-2023). De ~468 000 à 369 000 lits. Tout en doublant le budget santé.',
+    comparison: { label: 'On est passé de', value: '468 000 à 369 000 lits (DREES)' },
     color: '#ff9f43',
   },
   {
-    id: 28,
+    id: 24,
     icon: '🇮🇪',
     stat: '12,5%',
     title: 'IS en Irlande',
-    desc: 'L\'impôt sur les sociétés est de 12,5% en Irlande. En France : 25%. Résultat : Apple, Google, Meta sont là-bas.',
-    comparison: { label: 'Recettes IS Irlande', value: '22 Md€ (vs 70 Md€ France pour 14x plus d\'habitants)' },
+    desc: 'L\'impôt sur les sociétés est de 12,5% en Irlande (15% depuis 2024 pour les multinationales). En France : 25%. Résultat : Apple, Google, Meta sont là-bas.',
+    comparison: { label: 'Recettes IS Irlande', value: '24 Md€ (vs 61 Md€ France pour 14× plus d\'habitants)' },
     color: '#ffd700',
   },
   {
-    id: 29,
-    icon: '🤯',
-    stat: '400 000',
-    title: 'Normes et règlements',
-    desc: 'La France compte 400 000 normes et règlements en vigueur. Le tout fait 23 millions de mots.',
-    comparison: { label: 'La Bible', value: 'fait 800 000 mots' },
-    color: '#a855f7',
-  },
-  {
-    id: 30,
+    id: 25,
     icon: '💸',
     stat: '169 Md€',
     title: 'Déficit 2024',
@@ -275,178 +230,43 @@ const WTF_FACTS = [
     color: '#ff6b9d',
   },
   {
-    id: 31,
-    icon: '🚁',
-    stat: '73',
-    title: 'Préfets de région',
-    desc: 'La France a 101 préfets et 73 sous-préfets. Un maillage territorial napoléonien.',
-    comparison: { label: 'Coût annuel', value: '800 millions €' },
-    color: '#00d4ff',
-  },
-  {
-    id: 32,
-    icon: '📊',
-    stat: 'x4',
-    title: 'Dette depuis 2000',
-    desc: 'La dette a été multipliée par 4 depuis l\'an 2000. De 826 Md€ à 3 482 Md€.',
-    comparison: { label: 'En moyenne', value: '+106 milliards de dette par an' },
-    color: '#45b7d1',
-  },
-  {
-    id: 33,
-    icon: '🏘️',
-    stat: '38 Md€',
-    title: 'Aides au logement',
-    desc: 'L\'État dépense 38 Md€/an pour le logement (APL, PTZ, Pinel...). Les loyers n\'ont jamais été aussi hauts.',
-    comparison: { label: 'Les APL seules', value: '16 milliards/an' },
-    color: '#20e3b2',
-  },
-  {
-    id: 34,
-    icon: '⚡',
-    stat: '9 Md€',
-    title: 'EDF dette réduite',
-    desc: 'L\'État a réduit la dette d\'EDF de 9 Md€ lors de la nationalisation en 2023. Payé par le contribuable.',
-    comparison: { label: 'Dette totale EDF', value: '54 milliards €' },
-    color: '#ff4757',
-  },
-  {
-    id: 35,
-    icon: '🎓',
-    stat: '1 M',
-    title: 'Étudiants en échec',
-    desc: 'Chaque année, 1 million d\'étudiants s\'inscrivent à la fac. 60% échouent ou abandonnent.',
-    comparison: { label: 'Coût d\'un étudiant fac', value: '11 500 €/an' },
-    color: '#ff9f43',
-  },
-  {
-    id: 36,
-    icon: '🏛️',
-    stat: '348',
-    title: 'Députés cumulards',
-    desc: '348 députés cumulent leur mandat avec un autre mandat local. Ils touchent les deux indemnités.',
-    comparison: { label: 'Indemnité député', value: '7 637 € brut/mois' },
-    color: '#ffd700',
-  },
-  {
-    id: 37,
-    icon: '🩺',
-    stat: '30%',
-    title: 'Déserts médicaux',
-    desc: '30% des Français vivent dans un désert médical. 6 millions n\'ont pas de médecin traitant.',
-    comparison: { label: 'Nombre de médecins', value: '226 000 (le même qu\'en 2010)' },
-    color: '#a855f7',
-  },
-  {
-    id: 38,
-    icon: '🚨',
-    stat: '3h',
-    title: 'Attente aux urgences',
-    desc: 'Le temps d\'attente moyen aux urgences est de 3h. Il était d\'1h30 en 2010.',
-    comparison: { label: 'Record', value: '14h d\'attente à Paris en 2023' },
-    color: '#ff6b9d',
-  },
-  {
-    id: 39,
-    icon: '📱',
-    stat: '42',
-    title: 'iPhones de dette',
-    desc: 'Votre part de dette (50 800€) équivaut à 42 iPhone Pro Max. Ou 847 pleins d\'essence.',
-    comparison: { label: 'Ou encore', value: '25 ans d\'abonnement Netflix' },
-    color: '#00d4ff',
-  },
-  {
-    id: 40,
-    icon: '🌍',
-    stat: '55%',
-    title: 'Dette détenue par l\'étranger',
-    desc: '55% de notre dette est détenue par des investisseurs étrangers. On dépend de leur confiance.',
-    comparison: { label: 'Si les taux montent de 1%', value: '+35 Md€ d\'intérêts/an' },
-    color: '#45b7d1',
-  },
-  {
-    id: 41,
-    icon: '🏭',
-    stat: '-40%',
-    title: 'Industrie en 40 ans',
-    desc: 'L\'industrie représentait 24% du PIB en 1980. Aujourd\'hui : 13%. On a perdu 2 millions d\'emplois industriels.',
-    comparison: { label: 'L\'Allemagne', value: 'est restée à 23%' },
-    color: '#20e3b2',
-  },
-  {
-    id: 42,
-    icon: '💳',
-    stat: '463 M€',
-    title: 'Dette par jour',
-    desc: 'La dette française augmente de 463 millions d\'euros par jour. 19 millions par heure.',
-    comparison: { label: 'Depuis janvier 2025', value: '+40 milliards' },
-    color: '#ff4757',
-  },
-  {
-    id: 43,
+    id: 26,
     icon: '🏦',
     stat: '520 000',
     title: 'Élus locaux',
-    desc: 'La France compte 520 000 élus locaux pour 68 millions d\'habitants. Record mondial.',
-    comparison: { label: 'L\'Espagne', value: '65 000 élus pour 47 millions d\'habitants' },
+    desc: 'La France compte plus de 520 000 élus locaux pour 68 millions d\'habitants. Record européen.',
+    comparison: { label: 'L\'Espagne', value: '67 000 élus pour 47 millions d\'habitants' },
     color: '#ff9f43',
   },
   {
-    id: 44,
-    icon: '📄',
-    stat: '60',
-    title: 'Code du travail suisse',
-    desc: 'Le Code du travail suisse fait 60 pages. Taux de chômage : 2%. Le nôtre fait 3 500 pages. Chômage : 7,5%.',
-    comparison: { label: 'Corrélation ?', value: 'À vous de juger' },
-    color: '#ffd700',
-  },
-  {
-    id: 45,
-    icon: '🎰',
-    stat: '73 Md€',
-    title: 'Fraude sociale estimée',
-    desc: 'La fraude sociale + fiscale est estimée entre 50 et 100 milliards/an. L\'État en récupère moins de 20%.',
-    comparison: { label: 'Contrôleurs URSSAF', value: '1 500 pour toute la France' },
-    color: '#a855f7',
-  },
-  {
-    id: 46,
+    id: 27,
     icon: '🚆',
     stat: '15%',
     title: 'Trains en retard',
-    desc: '15% des TGV arrivent avec du retard significatif. La SNCF touche pourtant 14 Md€ de subventions directes.',
+    desc: '15% des TGV arrivent en retard (AQST, 2023). La SNCF coûte pourtant 20,8 Md€/an au contribuable (FIPECO, 2024).',
     comparison: { label: 'Au Japon', value: '99% de ponctualité' },
     color: '#ff6b9d',
   },
   {
-    id: 47,
-    icon: '🏫',
-    stat: '30%',
-    title: 'Élèves faibles en maths',
-    desc: '30% des élèves français ont un niveau faible en maths (PISA). On était à 20% il y a 20 ans.',
-    comparison: { label: 'Budget Éducation', value: 'a augmenté de +40% sur cette période' },
-    color: '#00d4ff',
-  },
-  {
-    id: 48,
+    id: 28,
     icon: '🏥',
-    stat: '3 700 €',
+    stat: '3 723 €',
     title: 'Santé par habitant',
-    desc: 'L\'assurance maladie dépense 3 700 €/an par Français en moyenne.',
-    comparison: { label: 'Ça fait', value: '10 € par jour par personne' },
+    desc: 'Le système de santé dépense 3 723 €/an par Français (DREES, 2024). Financé à 79% par la Sécu.',
+    comparison: { label: 'Ça fait', value: 'plus de 10 € par jour par personne' },
     color: '#45b7d1',
   },
   {
-    id: 49,
+    id: 29,
     icon: '⚰️',
-    stat: '5 000 €',
+    stat: '4 750 €',
     title: 'Coût des obsèques',
-    desc: 'Les obsèques coûtent 5 000 € en moyenne en France (hors concession). Les taxes représentent 20% du prix.',
-    comparison: { label: 'TVA sur un cercueil', value: '20%' },
+    desc: 'Les obsèques coûtent 4 750 € en moyenne en France (2024). La TVA à 20% s\'applique sur le cercueil et toutes les prestations funéraires.',
+    comparison: { label: 'TVA sur un cercueil', value: '20% (taux normal)' },
     color: '#20e3b2',
   },
   {
-    id: 50,
+    id: 30,
     icon: '📈',
     stat: '117%',
     title: 'Dette/PIB',
@@ -496,19 +316,19 @@ export default function WtfPage() {
         />
       </div>
 
-      <main className="relative z-[1] max-w-[1400px] mx-auto px-4 lg:px-8 py-24 lg:py-32">
+      <main className="relative z-[1] max-w-[1800px] mx-auto px-[16px] lg:px-[48px] pt-[120px] pb-[60px]">
         {/* Hero */}
         <header className="text-center mb-16">
           <Badge variant="red" icon="🚨" className="animate-glow">
-            50 chiffres qui font mal
+            30 chiffres qui font mal
           </Badge>
           <h1 className="font-serif text-[clamp(3rem,10vw,6rem)] font-normal leading-[1.1] mt-6 mb-6">
             <span className="italic bg-gradient-to-r from-accent-red via-accent-orange to-accent-pink bg-clip-text text-transparent">
               WTF?!
             </span>
           </h1>
-          <p className="text-xl text-text-secondary max-w-xl mx-auto">
-            50 chiffres sur les finances publiques qui vont vous faire tomber de votre chaise
+          <p className="text-2xl lg:text-3xl text-text-primary max-w-2xl mx-auto">
+            30 chiffres sur les finances publiques qui vont vous faire tomber de votre chaise
           </p>
         </header>
 
@@ -519,12 +339,12 @@ export default function WtfPage() {
             <div className="h-full w-full bg-gradient-to-r from-accent-red via-accent-orange to-accent-pink animate-loading" />
           </div>
 
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-red rounded-full text-xs font-semibold uppercase mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-red rounded-full text-base font-semibold uppercase mb-6">
             <span className="w-2 h-2 bg-white rounded-full animate-blink" />
             En direct
           </div>
 
-          <p className="text-text-secondary text-lg mb-3">
+          <p className="text-text-primary text-xl lg:text-2xl mb-3">
             Depuis que vous avez ouvert cette page, la dette française a augmenté de
           </p>
 
@@ -532,7 +352,7 @@ export default function WtfPage() {
             {formatCurrency(debtCounter)}
           </div>
 
-          <p className="text-text-muted text-base mt-3">
+          <p className="text-text-primary text-lg lg:text-xl mt-3">
             soit environ 5 390 € par seconde, 24h/24, 7j/7
           </p>
         </div>
@@ -563,21 +383,21 @@ export default function WtfPage() {
 
               <div className="text-5xl mb-5">{fact.icon}</div>
 
-              <div className="font-mono text-4xl font-semibold mb-2 leading-tight" style={{ color: fact.color }}>
+              <div className="font-mono text-5xl lg:text-6xl font-semibold mb-3 leading-tight" style={{ color: fact.color }}>
                 {fact.stat}
               </div>
 
-              <h3 className="text-xl font-semibold mb-3">{fact.title}</h3>
+              <h3 className="text-2xl lg:text-3xl font-semibold mb-4">{fact.title}</h3>
 
-              <p className="text-text-secondary text-base leading-relaxed mb-5">
+              <p className="text-text-primary text-xl lg:text-2xl leading-relaxed mb-6">
                 {fact.desc}
               </p>
 
-              <div className="p-4 bg-white/[0.03] rounded-lg border-l-[3px]" style={{ borderColor: fact.color }}>
-                <div className="text-xs text-text-muted uppercase tracking-wider mb-1">
+              <div className="p-5 bg-white/[0.03] rounded-lg border-l-4" style={{ borderColor: fact.color }}>
+                <div className="text-base text-text-primary uppercase tracking-wider mb-1">
                   {fact.comparison.label}
                 </div>
-                <div className="font-mono text-lg" style={{ color: fact.color }}>
+                <div className="font-mono text-2xl font-semibold" style={{ color: fact.color }}>
                   {fact.comparison.value}
                 </div>
               </div>
@@ -595,8 +415,8 @@ export default function WtfPage() {
 
         {/* Fact Banner */}
         <div className="bg-gradient-to-br from-bg-surface to-bg-elevated border border-glass-border rounded-3xl p-8 lg:p-12 text-center mb-12">
-          <h2 className="font-serif text-3xl font-normal mb-4">Le saviez-vous ?</h2>
-          <p className="text-text-secondary text-lg max-w-3xl mx-auto">
+          <h2 className="font-serif text-4xl lg:text-5xl font-normal mb-6">Le saviez-vous ?</h2>
+          <p className="text-text-primary text-xl lg:text-2xl max-w-3xl mx-auto">
             Si on empilait la dette française en billets de 5 €, la pile ferait{' '}
             <span className="text-accent-gold font-semibold">79 200 km de haut</span>. C&apos;est plus de 6 fois le diamètre de la Terre.
           </p>
@@ -608,7 +428,7 @@ export default function WtfPage() {
 
         {/* Sources */}
         <div className="text-center py-8 border-t border-glass-border">
-          <p className="text-text-muted text-sm">
+          <p className="text-text-muted text-base">
             Sources : INSEE, Ministère des Finances, Banque de France, Eurostat, OCDE (2024-2025)
             <br />
             <a href="https://www.insee.fr" target="_blank" rel="noopener noreferrer" className="text-accent-electric no-underline hover:underline">

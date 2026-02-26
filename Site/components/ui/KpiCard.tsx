@@ -29,12 +29,12 @@ const borderColors = {
 export function KpiCard({ icon, label, value, subtext, color = 'electric' }: KpiCardProps) {
   return (
     <div
-      className={`bg-bg-surface border border-glass-border rounded-xl p-5 relative overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:border-glass-border/30 before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-[3px] ${borderColors[color]}`}
+      className={`bg-bg-surface border border-glass-border rounded-xl p-6 lg:p-8 relative overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:border-glass-border/30 before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-[3px] ${borderColors[color]}`}
     >
-      <div className="text-2xl mb-4">{icon}</div>
-      <div className="text-xs text-text-muted uppercase tracking-wider mb-2">{label}</div>
-      <div className={`font-mono text-3xl font-medium mb-1 ${colorStyles[color]}`}>{value}</div>
-      {subtext && <div className="text-sm text-text-secondary">{subtext}</div>}
+      <div className="text-3xl mb-4">{icon}</div>
+      <div className="text-base text-text-muted uppercase tracking-wider mb-2">{label}</div>
+      <div className={`font-mono text-[clamp(1.5rem,2.2vw,2.8rem)] font-medium mb-1 whitespace-nowrap ${colorStyles[color]}`}>{value}</div>
+      {subtext && <div className="text-base lg:text-lg text-text-secondary">{subtext}</div>}
     </div>
   )
 }

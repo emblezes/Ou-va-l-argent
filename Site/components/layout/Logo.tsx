@@ -8,24 +8,25 @@ interface LogoProps {
   showText?: boolean
 }
 
-const variantStyles = {
-  default: 'bg-gradient-to-br from-accent-electric to-[#0099cc]',
-  electric: 'bg-gradient-to-br from-accent-electric to-[#0099cc]',
-  gold: 'bg-gradient-to-br from-accent-gold to-[#cc9900]',
-  red: 'bg-gradient-to-br from-accent-red to-[#cc3344]',
-  purple: 'bg-gradient-to-br from-accent-purple to-[#7c3aed]',
-  orange: 'bg-gradient-to-br from-accent-orange to-[#e68a2e]',
+const variantColors = {
+  default: 'text-accent-electric',
+  electric: 'text-accent-electric',
+  gold: 'text-accent-gold',
+  red: 'text-accent-red',
+  purple: 'text-accent-purple',
+  orange: 'text-accent-orange',
 }
 
 export function Logo({ variant = 'default', icon = '€', showText = true }: LogoProps) {
+  const isEmoji = icon !== '€'
   return (
-    <Link href="/" className="flex items-center gap-3 font-bold text-xl tracking-tight no-underline text-text-primary">
-      <div
-        className={`w-10 h-10 ${variantStyles[variant]} rounded-lg flex items-center justify-center font-mono font-semibold text-base`}
-      >
-        {icon}
-      </div>
-      {showText && <span>Où Va l&apos;Argent</span>}
+    <Link href="/" className="flex items-center gap-[10px] no-underline text-text-primary">
+      {isEmoji ? (
+        <span className="text-[48px] leading-none">{icon}</span>
+      ) : (
+        <span className={`font-serif text-[72px] leading-none ${variantColors[variant]}`}>€</span>
+      )}
+      {showText && <span className="font-serif text-[36px] italic text-text-primary leading-none">Où Va l&apos;Argent ?</span>}
     </Link>
   )
 }

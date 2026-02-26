@@ -1,20 +1,24 @@
 import { NextResponse } from 'next/server'
+import { Client } from '@notionhq/client'
+
+const notion = new Client({ auth: process.env.NOTION_SECRET })
+const PROPOSITIONS_DB_ID = 'bf1c3423e700407e8e4a3589b93f9885'
 
 interface ProposalBody {
-  title: string
+  titre: string
   description: string
-  firstName: string
-  lastName: string
+  prenom: string
+  nom: string
   email: string
 }
 
 export async function POST(request: Request) {
   try {
     const body: ProposalBody = await request.json()
-    const { title, description, firstName, lastName, email } = body
+    const { titre, description, prenom, nom, email } = body
 
     // Validation
-    if (!title || !description || !firstName || !lastName || !email) {
+    if (!titre || !description || !prenom || !nom || !email) {
       return NextResponse.json(
         { error: 'Tous les champs sont requis' },
         { status: 400 }
@@ -28,7 +32,7 @@ export async function POST(request: Request) {
       )
     }
 
-    if (title.length < 10) {
+    if (titre.length < 10) {
       return NextResponse.json(
         { error: 'Le titre doit contenir au moins 10 caractères' },
         { status: 400 }
@@ -42,20 +46,29 @@ export async function POST(request: Request) {
       )
     }
 
-    // In production, save to Sanity here:
-    // import { createClient } from '@sanity/client'
-    // const client = createClient({...})
-    // await client.create({
-    //   _type: 'proposal',
-    //   title,
-    //   description,
-    //   author: { firstName, lastName, email },
-    //   createdAt: new Date().toISOString(),
-    //   votes: 0
-    // })
-
-    // Mock success for now
-    console.log(`New proposal from ${firstName} ${lastName}: ${title}`)
+    await notion.pages.create({
+      parent: { database_id: PROPOSITIONS_DB_ID },
+      properties: {
+        'Titre': {
+          title: [{ text: { content: titre } }],
+        },
+        'Description': {
+          rich_text: [{ text: { content: description } }],
+        },
+        'Prénom': {
+          rich_text: [{ text: { content: prenom } }],
+        },
+        'Nom': {
+          rich_text: [{ text: { content: nom } }],
+        },
+        'Email': {
+          email: email,
+        },
+        'Statut': {
+          select: { name: 'Nouvelle' },
+        },
+      },
+    })
 
     return NextResponse.json({
       success: true,
@@ -68,28 +81,4 @@ export async function POST(request: Request) {
       { status: 500 }
     )
   }
-}
-
-export async function GET() {
-  // Mock proposals list for the carousel
-  const proposals = [
-    {
-      id: 1,
-      title: 'Fusionner les 1 200 agences de l\'État en 200 structures',
-      description: 'La France compte plus de 1 200 agences, opérateurs et autorités administratives.',
-      author: 'Marie Dupont',
-      votes: 892,
-      createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-    },
-    {
-      id: 2,
-      title: 'Plafonner les indemnités des élus au salaire médian',
-      description: 'Les indemnités des parlementaires devraient être alignées sur le salaire médian français.',
-      author: 'Thomas Martin',
-      votes: 1247,
-      createdAt: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
-    },
-  ]
-
-  return NextResponse.json({ proposals })
 }

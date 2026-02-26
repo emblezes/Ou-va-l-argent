@@ -199,7 +199,7 @@ export default function InvestirContent() {
         />
       </div>
 
-      <main className="relative z-[1] max-w-[1600px] mx-auto px-4 lg:px-8 py-20 lg:py-28">
+      <main className="relative z-[1] max-w-[1600px] mx-auto px-4 lg:px-8 pt-[100px] pb-[60px]">
         {/* Header */}
         <header className="text-center mb-10">
           <h1 className="font-serif text-[clamp(2rem,5vw,3rem)] font-normal mb-3">
