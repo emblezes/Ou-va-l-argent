@@ -56,7 +56,8 @@ const SLUG_TO_NUM = {
   '37-vieillissement-mondial-2070': 37,
   '38-actifs-fonds-pension-monde': 38,
   '51-fiche-de-paie-decomposition': 51,
-  '55-simulation-300k-brut-net': 55,
+  '55-simulation-375k-brut-net': 55,
+  '55-simulation-375k-brut-net-EN': 55,
   '61-mix-energetique-france-2030': 61,
   '65-salaire-moyen-par-pays': 65,
   '73-mercure-guyane': 73,
@@ -135,7 +136,6 @@ const SUFFIXES = {
 // Exceptions : fichiers dont le nom ne suit pas le pattern standard
 const FILENAME_OVERRIDES = {
   instagram: {
-    '55-simulation-300k-brut-net': '55-simulation-300k-brut-net.png',
     '95-fiche-de-paie-simple': '95-fiche-de-paie-simple-insta.png',
   },
 };

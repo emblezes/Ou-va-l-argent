@@ -6,7 +6,7 @@ export const BUDGET_2025 = {
   depensesPIB: 57.1, // % (Eurostat 2024)
   detteTotale: 3482, // Md€ (INSEE T3 2025)
   dettePIB: 117.4, // % (INSEE T3 2025)
-  chargeInterets: 58, // Md€ (Fipeco 2024)
+  chargeInterets: 54, // Md€ (PLF 2025)
   habitants: 68.6, // millions (INSEE 01/2025)
   detteParHabitant: 50800, // € (3482 Md€ / 68.6M)
 }
@@ -72,8 +72,8 @@ export const MINISTRIES = [
     name: 'Charge de la dette',
     shortName: 'Intérêts de la Dette',
     icon: '💳',
-    amount: 58, // Md€ (Fipeco 2024)
-    percent: 3.5,
+    amount: 54, // Md€ (PLF 2025)
+    percent: 3.2,
     evolution: 11.5,
     color: '#ffd700',
     description: 'Charge de la dette',

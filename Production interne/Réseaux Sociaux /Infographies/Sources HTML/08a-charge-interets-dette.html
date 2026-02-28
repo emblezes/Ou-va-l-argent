@@ -81,7 +81,7 @@
             position: relative;
             z-index: 1;
             height: 100%;
-            padding: 50px 55px 40px;
+            padding: 40px 50px 35px;
             display: flex;
             flex-direction: column;
         }
@@ -105,11 +105,11 @@
 
         .chart-title {
             font-family: 'Instrument Serif', serif;
-            font-size: 4rem;
+            font-size: 3.8rem;
             text-align: center;
-            margin-bottom: 4px;
+            margin-bottom: 0;
             color: var(--text-primary);
-            line-height: 1.15;
+            line-height: 1.1;
         }
 
         .chart-title .accent {
@@ -127,7 +127,7 @@
         /* ===== VERTICAL BAR CHART ===== */
         .chart-area {
             flex: 0 0 auto;
-            height: 480px;
+            height: 580px;
             display: flex;
             position: relative;
             padding: 0 10px;
@@ -310,59 +310,59 @@
                 </div>
             </div>
 
-            <h2 class="chart-title">La facture des <span class="accent">intérêts</span><br>explose</h2>
+            <h2 class="chart-title">Les intérêts de la <span class="accent">dette publique</span><br>de la France <span class="accent">explosent</span></h2>
             <div class="chart-subtitle">Charge de la dette en milliards d'euros par an</div>
 
             <div class="chart-area">
                 <div class="bars-container">
-                    <!-- 2020: 29 Md€ → height = 29/75 = 38.7% -->
+                    <!-- 2020: 35 Md€ → height = 35/70 = 50% -->
                     <div class="bar-col">
-                        <div class="bar-up level-low" style="height: 38.7%;">
-                            <div class="bar-value">29 Md€</div>
+                        <div class="bar-up level-low" style="height: 50%;">
+                            <div class="bar-value">35 Md€</div>
                         </div>
                     </div>
 
-                    <!-- 2021: 37 Md€ → height = 37/75 = 49.3% -->
+                    <!-- 2021: 38 Md€ → height = 38/70 = 54.3% -->
                     <div class="bar-col">
-                        <div class="bar-up level-mid" style="height: 49.3%;">
-                            <div class="bar-value">37 Md€</div>
+                        <div class="bar-up level-low" style="height: 54.3%;">
+                            <div class="bar-value">38 Md€</div>
                         </div>
                     </div>
 
-                    <!-- 2022: 44 Md€ → height = 44/75 = 58.7% -->
+                    <!-- 2022: 46 Md€ → height = 46/70 = 65.7% -->
                     <div class="bar-col">
-                        <div class="bar-up level-mid" style="height: 58.7%;">
-                            <div class="bar-value">44 Md€</div>
+                        <div class="bar-up level-mid" style="height: 65.7%;">
+                            <div class="bar-value">46 Md€</div>
                         </div>
                     </div>
 
-                    <!-- 2023: 52 Md€ → height = 52/75 = 69.3% -->
+                    <!-- 2023: 50 Md€ → height = 50/70 = 71.4% -->
                     <div class="bar-col">
-                        <div class="bar-up level-high" style="height: 69.3%;">
-                            <div class="bar-value">52 Md€</div>
+                        <div class="bar-up level-high" style="height: 71.4%;">
+                            <div class="bar-value">50 Md€</div>
                         </div>
                     </div>
 
-                    <!-- 2024: 59 Md€ → height = 59/75 = 78.7% -->
+                    <!-- 2024: 55 Md€ → height = 55/70 = 78.6% -->
                     <div class="bar-col">
-                        <div class="bar-up level-danger" style="height: 78.7%;">
-                            <div class="bar-value">59 Md€</div>
-                        </div>
-                    </div>
-
-                    <!-- 2025: 55 Md€ (PLF) → height = 55/75 = 73.3% -->
-                    <div class="bar-col">
-                        <div class="bar-up level-high" style="height: 73.3%;">
-                            <div class="bar-label-extra">PLF 2025</div>
+                        <div class="bar-up level-danger" style="height: 78.6%;">
                             <div class="bar-value">55 Md€</div>
                         </div>
                     </div>
 
-                    <!-- 2027: ~70 Md€ (projection) → height = 70/75 = 93.3% -->
+                    <!-- 2025: 54 Md€ (PLF) → height = 54/70 = 77.1% -->
                     <div class="bar-col">
-                        <div class="bar-up projection" style="height: 93.3%;">
+                        <div class="bar-up level-danger" style="height: 77.1%;">
+                            <div class="bar-label-extra">PLF 2025</div>
+                            <div class="bar-value">54 Md€</div>
+                        </div>
+                    </div>
+
+                    <!-- 2027: ~69 Md€ (projection) → height = 69/70 = 98.6% -->
+                    <div class="bar-col">
+                        <div class="bar-up projection" style="height: 98.6%;">
                             <div class="bar-label-extra">projection</div>
-                            <div class="bar-value">~70 Md€</div>
+                            <div class="bar-value">~69 Md€</div>
                         </div>
                     </div>
                 </div>
@@ -390,10 +390,6 @@
                 <div class="year-label highlight">
                     <div class="year-num">2027</div>
                 </div>
-            </div>
-
-            <div class="highlight-box">
-                <div class="highlight-text">En 2027, les intérêts pourraient devenir le <strong>1er poste budgétaire</strong>,<br>devant l'Éducation nationale (63 Md€)</div>
             </div>
 
             <div class="footer">
