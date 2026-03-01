@@ -128,7 +128,7 @@ function HeroFallback({ titre, categorie }: { titre: string; categorie: string }
 export default function NewsContent() {
   const [allArticles, setAllArticles] = useState<Article[]>([])
   const [loading, setLoading] = useState(true)
-  const [selectedCategory, setSelectedCategory] = useState('Toutes')
+  const [selectedCategory, setSelectedCategory] = useState('Tous')
 
   useEffect(() => {
     fetchAllArticles()
@@ -150,10 +150,10 @@ export default function NewsContent() {
   }
 
   // Catégories dynamiques — uniquement celles ayant des articles
-  const availableCategories = ['Toutes', ...Array.from(new Set(allArticles.map(a => a.categorie))).sort()]
+  const availableCategories = ['Tous', ...Array.from(new Set(allArticles.map(a => a.categorie))).sort()]
 
   // Articles filtrés
-  const articles = selectedCategory === 'Toutes'
+  const articles = selectedCategory === 'Tous'
     ? allArticles
     : allArticles.filter(a => a.categorie === selectedCategory)
 
