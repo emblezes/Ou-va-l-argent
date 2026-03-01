@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>France : championne des dépenses dans l'OCDE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --bg-mid: #0a1628;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-gold: #ffd700;
+            --accent-red: #ff4757;
+            --accent-green: #00ff88;
+            --accent-orange: #ff9f43;
+            --accent-violet: #a855f7;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.1) 0%, transparent 70%);
+            bottom: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+            top: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 40px 50px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-electric);
+            background: rgba(0, 212, 255, 0.12);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 6px 14px;
+            border-radius: 6px;
+        }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.8rem;
+            text-align: center;
+            margin-bottom: 0;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .chart-title .accent-cyan { color: var(--accent-electric); font-style: italic; }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        /* ===== RANKING ===== */
+        .ranking {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            justify-content: center;
+        }
+
+        .rank-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 15px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .rank-item.france {
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+        }
+
+        .rank-item.avg {
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px dashed rgba(255, 215, 0, 0.3);
+        }
+
+        .rank-flag {
+            font-size: 1.8rem;
+            width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .rank-country {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            width: 120px;
+            flex-shrink: 0;
+        }
+
+        .rank-item.france .rank-country { color: var(--accent-red); }
+        .rank-item.avg .rank-country { color: var(--accent-gold); font-style: italic; }
+
+        .rank-bar-track {
+            flex: 1;
+            height: 26px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rank-bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            background: linear-gradient(90deg, rgba(0, 212, 255, 0.5), var(--accent-electric));
+        }
+
+        .rank-item.france .rank-bar-fill {
+            background: linear-gradient(90deg, rgba(255, 71, 87, 0.5), var(--accent-red));
+        }
+
+        .rank-item.avg .rank-bar-fill {
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.6));
+        }
+
+        .rank-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            width: 65px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .rank-item.france .rank-value { color: var(--accent-red); font-size: 1.35rem; }
+        .rank-item.avg .rank-value { color: var(--accent-gold); }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+                <div class="tag">International</div>
+            </div>
+
+            <h2 class="chart-title"><span class="accent">France n°1</span> des dépenses<br>publiques dans l'OCDE</h2>
+            <div class="chart-subtitle">Dépenses publiques en % du PIB — Grandes économies OCDE (2023)</div>
+
+            <!-- max = 60% for bar width calc: width = val/60 * 100 -->
+            <div class="ranking">
+                <div class="rank-item france">
+                    <div class="rank-flag">🇫🇷</div>
+                    <div class="rank-country">France</div>
+                    <div class="rank-bar-track"><div class="rank-bar-fill" style="width: 95.0%;"></div></div>
+                    <div class="rank-value">57,0 %</div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-flag">🇮🇹</div>
+                    <div class="rank-country">Italie</div>
+                    <div class="rank-bar-track"><div class="rank-bar-fill" style="width: 91.5%;"></div></div>
+                    <div class="rank-value">54,9 %</div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-flag">🇸🇪</div>
+                    <div class="rank-country">Suède</div>
+                    <div class="rank-bar-track"><div class="rank-bar-fill" style="width: 83.3%;"></div></div>
+                    <div class="rank-value">50,0 %</div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-flag">🇩🇪</div>
+                    <div class="rank-country">Allemagne</div>
+                    <div class="rank-bar-track"><div class="rank-bar-fill" style="width: 80.7%;"></div></div>
+                    <div class="rank-value">48,4 %</div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-flag">🇪🇸</div>
+                    <div class="rank-country">Espagne</div>
+                    <div class="rank-bar-track"><div class="rank-bar-fill" style="width: 75.7%;"></div></div>
+                    <div class="rank-value">45,4 %</div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-flag">🇬🇧</div>
+                    <div class="rank-country">Royaume-Uni</div>
+                    <div class="rank-bar-track"><div class="rank-bar-fill" style="width: 74.2%;"></div></div>
+                    <div class="rank-value">44,5 %</div>
+                </div>
+                <div class="rank-item avg">
+                    <div class="rank-flag">📊</div>
+                    <div class="rank-country">Moy. OCDE</div>
+                    <div class="rank-bar-track"><div class="rank-bar-fill" style="width: 71.0%;"></div></div>
+                    <div class="rank-value">42,6 %</div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-flag">🇯🇵</div>
+                    <div class="rank-country">Japon</div>
+                    <div class="rank-bar-track"><div class="rank-bar-fill" style="width: 60.0%;"></div></div>
+                    <div class="rank-value">36,0 %</div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-flag">🇺🇸</div>
+                    <div class="rank-country">États-Unis</div>
+                    <div class="rank-bar-track"><div class="rank-bar-fill" style="width: 60.3%;"></div></div>
+                    <div class="rank-value">36,2 %</div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-flag">🇨🇭</div>
+                    <div class="rank-country">Suisse</div>
+                    <div class="rank-bar-track"><div class="rank-bar-fill" style="width: 55.3%;"></div></div>
+                    <div class="rank-value">33,2 %</div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Eurostat, OCDE · 2023</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
