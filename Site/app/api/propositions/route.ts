@@ -3,6 +3,12 @@ import { Client } from '@notionhq/client'
 
 const notion = new Client({ auth: process.env.NOTION_SECRET })
 const PROPOSITIONS_DB_ID = 'bf1c3423e700407e8e4a3589b93f9885'
+const PROPOSITIONS_DS_ID = '925a8de1-d947-4dc3-ad02-f1fb02687678'
+
+const CATEGORIES = [
+  'Dépenses publiques', 'Impôts & taxes', 'Retraites', 'Santé',
+  'Éducation', 'Défense', 'Collectivités', 'Institutions', 'Autre',
+] as const
 
 interface ProposalBody {
   titre: string
@@ -10,14 +16,48 @@ interface ProposalBody {
   prenom: string
   nom: string
   email: string
+  categorie?: string
+}
+
+export async function GET() {
+  try {
+    const response = await notion.dataSources.query({
+      data_source_id: PROPOSITIONS_DS_ID,
+      filter: {
+        property: 'Statut',
+        select: { equals: 'Approuvée' },
+      },
+      sorts: [{ property: 'Votes', direction: 'descending' }],
+    } as any)
+
+    const propositions = response.results.map((page: any) => {
+      const props = page.properties
+      return {
+        id: page.id,
+        titre: props['Titre']?.title?.[0]?.plain_text || '',
+        description: props['Description']?.rich_text?.[0]?.plain_text || '',
+        prenom: props['Prénom']?.rich_text?.[0]?.plain_text || '',
+        categorie: props['Catégorie']?.select?.name || 'Autre',
+        votes: props['Votes']?.number || 0,
+        date: page.created_time,
+      }
+    })
+
+    return NextResponse.json({ propositions })
+  } catch (error) {
+    console.error('GET propositions error:', error)
+    return NextResponse.json(
+      { error: 'Impossible de charger les propositions' },
+      { status: 500 }
+    )
+  }
 }
 
 export async function POST(request: Request) {
   try {
     const body: ProposalBody = await request.json()
-    const { titre, description, prenom, nom, email } = body
+    const { titre, description, prenom, nom, email, categorie } = body
 
-    // Validation
     if (!titre || !description || !prenom || !nom || !email) {
       return NextResponse.json(
         { error: 'Tous les champs sont requis' },
@@ -46,6 +86,10 @@ export async function POST(request: Request) {
       )
     }
 
+    const validCategorie = categorie && CATEGORIES.includes(categorie as any)
+      ? categorie
+      : 'Autre'
+
     await notion.pages.create({
       parent: { database_id: PROPOSITIONS_DB_ID },
       properties: {
@@ -66,6 +110,15 @@ export async function POST(request: Request) {
         },
         'Statut': {
           select: { name: 'Nouvelle' },
+        },
+        'Catégorie': {
+          select: { name: validCategorie },
+        },
+        'Votes': {
+          number: 0,
+        },
+        'Votants': {
+          rich_text: [{ text: { content: '[]' } }],
         },
       },
     })
