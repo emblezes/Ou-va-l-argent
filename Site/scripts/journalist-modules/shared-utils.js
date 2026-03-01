@@ -211,6 +211,53 @@ async function fetchAllRSS() {
   return allArticles;
 }
 
+// ── Notion File Upload ──────────────────────────────
+
+async function uploadFileToNotion(filePath) {
+  const { execSync } = require('child_process');
+  const os = require('os');
+  const filename = path.basename(filePath);
+  const notionSecret = process.env.NOTION_SECRET || loadConfig().NOTION_SECRET;
+
+  // Copy to temp dir to avoid path issues (apostrophes, spaces)
+  const safePath = path.join(os.tmpdir(), `ovla-upload-${Date.now()}-${filename.replace(/[^a-zA-Z0-9.-]/g, '_')}`);
+  const fsSU = require('fs');
+  fsSU.copyFileSync(filePath, safePath);
+
+  try {
+    // Step 1: Create upload
+    const createRes = JSON.parse(execSync(
+      `curl -s -X POST "https://api.notion.com/v1/file_uploads" ` +
+      `-H "Authorization: Bearer ${notionSecret}" ` +
+      `-H "Content-Type: application/json" ` +
+      `-H "Notion-Version: 2022-06-28" ` +
+      `-d '{"mode":"single_part","filename":"${filename.replace(/'/g, '')}","content_type":"image/png"}'`,
+      { encoding: 'utf8', timeout: 15000 }
+    ));
+
+    if (createRes.object === 'error') {
+      throw new Error(`Notion upload create failed: ${createRes.message}`);
+    }
+
+    // Step 2: Send file
+    const sendRes = JSON.parse(execSync(
+      `curl -s -X POST "https://api.notion.com/v1/file_uploads/${createRes.id}/send" ` +
+      `-H "Authorization: Bearer ${notionSecret}" ` +
+      `-H "Notion-Version: 2022-06-28" ` +
+      `-F "file=@${safePath};type=image/png"`,
+      { encoding: 'utf8', timeout: 60000 }
+    ));
+
+    if (sendRes.status !== 'uploaded') {
+      throw new Error(`Notion upload send failed: ${sendRes.message || sendRes.status}`);
+    }
+
+    return createRes.id;
+  } finally {
+    if (fsSU.existsSync(safePath)) fsSU.unlinkSync(safePath);
+  }
+}
+
 // ── Exports ─────────────────────────────────────────
 
 module.exports = {
@@ -225,5 +272,6 @@ module.exports = {
   saveCache,
   articleKey,
   slugify,
-  fetchAllRSS
+  fetchAllRSS,
+  uploadFileToNotion
 };

@@ -24,18 +24,24 @@ const {
   loadConfig, askClaude,
   sendTelegram, sendTelegramPhoto,
   loadCache, saveCache, articleKey,
-  fetchAllRSS
+  fetchAllRSS, uploadFileToNotion
 } = require('./journalist-modules/shared-utils');
 
 const { writeArticle } = require('./journalist-modules/article-writer');
 const { factCheck } = require('./journalist-modules/fact-checker');
 const { generateHeroImage, getInfographieHero } = require('./journalist-modules/hero-generator');
+const { generateArticleCarousel, generateCarouselPDF } = require('./journalist-modules/carousel-generator');
 const { writeAnalysis, listAvailableInfographies } = require('./journalist-modules/analysis-writer');
 const { publishValidatedArticles } = require('./journalist-modules/article-publisher');
 
 const CACHE_PATH = path.join(SCRIPTS_DIR, '.journalist-cache.json');
-const HEROES_DIR = path.join(BASE, 'Production interne/Réseaux Sociaux /Articles');
+const ARTICLES_DIR = path.join(BASE, 'Production interne/Réseaux Sociaux /Articles');
 const PUBLIC_HEROES_DIR = path.join(BASE, 'Site/public/news/heroes');
+
+function getArticleDir(slug, date) {
+  const dateStr = date || new Date().toISOString().split('T')[0];
+  return path.join(ARTICLES_DIR, dateStr, slug);
+}
 
 // ── CLI args ────────────────────────────────────────
 
@@ -134,16 +140,37 @@ async function newsPipeline() {
       const check = await factCheck(article, topic.description);
       article.factCheck = check;
 
+      // Create article output directory (Articles/YYYY-MM-DD/slug/)
+      const articleDir = getArticleDir(article.slug);
+      if (!fs.existsSync(articleDir)) fs.mkdirSync(articleDir, { recursive: true });
+
       // Hero image
       console.log('  🖼 Génération image hero...');
-      if (!fs.existsSync(HEROES_DIR)) fs.mkdirSync(HEROES_DIR, { recursive: true });
-      const heroPath = path.join(HEROES_DIR, `${article.slug}.png`);
+      const heroPath = path.join(articleDir, 'hero.png');
       await generateHeroImage(article, heroPath);
       article.heroPath = heroPath;
 
       // Copy to public for static serving
       if (!fs.existsSync(PUBLIC_HEROES_DIR)) fs.mkdirSync(PUBLIC_HEROES_DIR, { recursive: true });
       fs.copyFileSync(heroPath, path.join(PUBLIC_HEROES_DIR, `${article.slug}.png`));
+
+      // Instagram carousel (5 slides) + LinkedIn PDF
+      console.log('  📸 Génération carousel Instagram (5 slides)...');
+      try {
+        const carouselPaths = await generateArticleCarousel(article, articleDir);
+        article.carouselPaths = carouselPaths;
+        console.log(`  → ${carouselPaths.length} slides générées`);
+
+        // LinkedIn PDF (named after article title)
+        const safeTitre = article.titre.replace(/[\/\\:*?"<>|]/g, '-').replace(/\s+/g, ' ').trim();
+        const pdfPath = path.join(articleDir, `${safeTitre}.pdf`);
+        await generateCarouselPDF(carouselPaths, pdfPath);
+        article.linkedinPdfPath = pdfPath;
+        console.log('  → PDF LinkedIn généré');
+      } catch (e) {
+        console.error(`  ⚠ Carousel: ${e.message}`);
+        article.carouselPaths = [];
+      }
 
       // Save to Notion
       console.log('  📋 Enregistrement Notion...');
@@ -379,6 +406,60 @@ async function saveToNotion(article) {
     properties['Source URL'] = { url: article.source_url };
   }
 
+  // Upload hero image
+  if (article.heroPath && fs.existsSync(article.heroPath)) {
+    try {
+      const heroUploadId = await uploadFileToNotion(article.heroPath);
+      properties['Image Hero'] = {
+        files: [{
+          type: 'file_upload',
+          file_upload: { id: heroUploadId },
+          name: path.basename(article.heroPath)
+        }]
+      };
+    } catch (e) {
+      console.error(`  ⚠ Upload Image Hero: ${e.message}`);
+    }
+  }
+
+  // Upload carousel slides to Insta 1-5
+  if (article.carouselPaths && article.carouselPaths.length > 0) {
+    const instaFields = ['Insta 1', 'Insta 2', 'Insta 3', 'Insta 4', 'Insta 5'];
+    for (let i = 0; i < Math.min(article.carouselPaths.length, 5); i++) {
+      const slidePath = article.carouselPaths[i];
+      if (fs.existsSync(slidePath)) {
+        try {
+          const uploadId = await uploadFileToNotion(slidePath);
+          properties[instaFields[i]] = {
+            files: [{
+              type: 'file_upload',
+              file_upload: { id: uploadId },
+              name: path.basename(slidePath)
+            }]
+          };
+        } catch (e) {
+          console.error(`  ⚠ Upload ${instaFields[i]}: ${e.message}`);
+        }
+      }
+    }
+  }
+
+  // Upload LinkedIn PDF
+  if (article.linkedinPdfPath && fs.existsSync(article.linkedinPdfPath)) {
+    try {
+      const pdfUploadId = await uploadFileToNotion(article.linkedinPdfPath);
+      properties['PDF LinkedIn'] = {
+        files: [{
+          type: 'file_upload',
+          file_upload: { id: pdfUploadId },
+          name: path.basename(article.linkedinPdfPath)
+        }]
+      };
+    } catch (e) {
+      console.error(`  ⚠ Upload PDF LinkedIn: ${e.message}`);
+    }
+  }
+
   // Convert markdown content to Notion blocks (full article, no truncation)
   const children = markdownToNotionBlocks(article.contenu);
 
@@ -453,14 +534,17 @@ async function generateAnalysis(slug) {
     const check = await factCheck(article);
     article.factCheck = check;
 
+    // Create article output directory
+    const articleDir = getArticleDir(article.slug);
+    if (!fs.existsSync(articleDir)) fs.mkdirSync(articleDir, { recursive: true });
+
     // Hero image (use infographie if available)
     const infraHero = getInfographieHero(slug);
     if (infraHero) {
       article.heroPath = infraHero;
       console.log('  🖼 Réutilisation image infographie');
     } else {
-      if (!fs.existsSync(HEROES_DIR)) fs.mkdirSync(HEROES_DIR, { recursive: true });
-      const heroPath = path.join(HEROES_DIR, `${article.slug}.png`);
+      const heroPath = path.join(articleDir, 'hero.png');
       await generateHeroImage(article, heroPath);
       article.heroPath = heroPath;
       console.log('  🖼 Image hero générée');

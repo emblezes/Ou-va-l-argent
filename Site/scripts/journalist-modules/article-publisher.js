@@ -7,7 +7,7 @@
  */
 
 const path = require('path');
-const { loadConfig, SCRIPTS_DIR } = require('./shared-utils');
+const { loadConfig, SCRIPTS_DIR, uploadFileToNotion } = require('./shared-utils');
 
 async function publishValidatedArticles(dryRun = false) {
   const config = loadConfig();
@@ -55,11 +55,17 @@ async function publishValidatedArticles(dryRun = false) {
     const facebook = props['Facebook']?.rich_text?.[0]?.plain_text || '';
     const source = props['Sources']?.rich_text?.[0]?.plain_text || '';
 
+    const chapeau = props['Chapeau']?.rich_text?.[0]?.plain_text || '';
     const articleUrl = `https://ouvalargent.com/news/${slug}`;
 
     // Add article URL to social posts
     const linkedinWithUrl = linkedin.includes('ouvalargent.com') ? linkedin : `${linkedin}\n\n${articleUrl}`;
     const facebookWithUrl = facebook.includes('ouvalargent.com') ? facebook : `${facebook}\n\n${articleUrl}`;
+
+    // Instagram caption = chapeau + lien
+    const instagramCaption = chapeau
+      ? `${chapeau}\n\n🔗 Lire l'article complet : ${articleUrl}\n\n#ouvalargent #economie #france`
+      : `${titre}\n\n🔗 ${articleUrl}\n\n#ouvalargent #economie #france`;
 
     console.log(`  📰 Publication : ${titre}`);
 
@@ -74,8 +80,14 @@ async function publishValidatedArticles(dryRun = false) {
           statut: 'Pret',
           linkedin: linkedinWithUrl.substring(0, 2000),
           facebook: facebookWithUrl.substring(0, 2000),
+          instagram: instagramCaption.substring(0, 2000),
           source: source
         });
+
+        // Copy Insta 1-5 slides from article to calendar post
+        if (result && result.id) {
+          await copyInstaSlides(page, result.id, notionSecret);
+        }
 
         // Update article status to "Publié"
         await fetch(`https://api.notion.com/v1/pages/${page.id}`, {
@@ -103,6 +115,63 @@ async function publishValidatedArticles(dryRun = false) {
   }
 
   return published;
+}
+
+async function copyInstaSlides(articlePage, calendarPageId, notionSecret) {
+  const instaFields = ['Insta 1', 'Insta 2', 'Insta 3', 'Insta 4', 'Insta 5'];
+  const properties = {};
+  let count = 0;
+
+  for (const field of instaFields) {
+    const files = articlePage.properties[field]?.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      // Notion file — download and re-upload to the new page
+      const fileUrl = file.file?.url || file.external?.url;
+      if (fileUrl) {
+        try {
+          // Download the file to a temp path
+          const fs = require('fs');
+          const os = require('os');
+          const tmpPath = path.join(os.tmpdir(), `ovla-insta-${Date.now()}-${field.replace(' ', '')}.png`);
+
+          const res = await fetch(fileUrl);
+          const buffer = Buffer.from(await res.arrayBuffer());
+          fs.writeFileSync(tmpPath, buffer);
+
+          // Upload to Notion
+          const uploadId = await uploadFileToNotion(tmpPath);
+          properties[field] = {
+            files: [{
+              type: 'file_upload',
+              file_upload: { id: uploadId },
+              name: file.name || `${field}.png`
+            }]
+          };
+          count++;
+
+          // Cleanup temp file
+          fs.unlinkSync(tmpPath);
+        } catch (e) {
+          console.error(`  ⚠ Copy ${field}: ${e.message}`);
+        }
+      }
+    }
+  }
+
+  if (count > 0) {
+    // Update the calendar page with the Insta slides
+    await fetch(`https://api.notion.com/v1/pages/${calendarPageId}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${notionSecret}`,
+        'Content-Type': 'application/json',
+        'Notion-Version': '2022-06-28'
+      },
+      body: JSON.stringify({ properties })
+    });
+    console.log(`  📸 ${count} slide(s) Instagram copiée(s) vers le calendrier`);
+  }
 }
 
 function mapCategorie(cat) {

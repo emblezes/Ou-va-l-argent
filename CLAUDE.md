@@ -50,7 +50,7 @@ Le projet dispose d'un **pipeline automatisé** qui produit des carrousels d'act
                         2. Slides 2-4 : mix de slides "photo+texte" (style Legend)
                            et slides "infographie data" (style Où Va l'Argent)
                         3. Envoi sur Telegram (album + caption Instagram prête à copier)
-                      → Rangement dans Actus chaudes/YYYY-MM-DD/
+                      → Rangement dans Articles/YYYY-MM-DD/
 ```
 
 ### Format des carrousels
@@ -98,7 +98,7 @@ node scripts/telegram-hourly-carousels.js --reset
 
 - **3 carrousels** (configurable via `--count=N`)
 - **4 slides** par carrousel (format Instagram 1080×1080 uniquement)
-- **12 fichiers PNG** au total, rangés dans `Actus chaudes/YYYY-MM-DD/`
+- **12 fichiers PNG** au total, rangés dans `Articles/YYYY-MM-DD/`
 - **Messages Telegram** : album de 4 slides + caption Instagram prête à copier + lien source
 - Chaque message contient le **lien source de l'article** pour vérification
 
@@ -155,7 +155,7 @@ Tous dans `Site/scripts/` :
 | `notion-create-sources-db.js` | Créer/gérer la base Notion des sources |
 | `notion-update-sources-urls.js` | Mettre à jour les URLs des sources dans Notion |
 | `weekly-content-machine.js` | **Machine hebdomadaire** : veille profonde → 21 infographies/semaine → Notion + Telegram |
-| `article-journalist.js` | **Pipeline journaliste** : RSS → articles (Sonnet) → fact-check → hero image → Telegram + Notion |
+| `article-journalist.js` | **Pipeline journaliste** : RSS → articles (Sonnet) → fact-check → hero + carousel Instagram → Telegram + Notion |
 
 ---
 
@@ -202,9 +202,12 @@ node scripts/article-journalist.js --reset
 ```
 RSS → Dédup (cache 72h) → Haiku sélectionne 2-3 sujets
   → Sonnet rédige chaque article → Fact-check Haiku
-  → Image hero (Puppeteer) → Notion "En validation" → Telegram
+  → Image hero 1200×630 (Puppeteer)
+  → Haiku extrait 3 points clés → Carousel Instagram 5 slides 1080×1080
+  → Upload Notion (article + Image Hero + Insta 1-5) → Telegram
   → Validation manuelle dans Notion → Statut "Validé"
-  → --publish → Calendrier Publications → n8n publie LinkedIn/Facebook
+  → --publish → Calendrier Publications (avec Insta 1-5 + caption Instagram)
+  → n8n publie LinkedIn/Facebook + carousel Instagram
 ```
 
 ### Automatisation (cron)
@@ -224,14 +227,34 @@ RSS → Dédup (cache 72h) → Haiku sélectionne 2-3 sujets
 
 ```
 Site/scripts/journalist-modules/
-  shared-utils.js          ← Utilitaires partagés (Claude API, Telegram, cache)
+  shared-utils.js          ← Utilitaires partagés (Claude API, Telegram, cache, upload Notion)
   article-writer.js        ← Rédaction via Claude Sonnet
   fact-checker.js          ← Vérification automatisée (Haiku)
   hero-generator.js        ← Images hero via Puppeteer (1200×630)
+  carousel-generator.js    ← Carousel Instagram (5 slides 1080×1080) via Haiku + Puppeteer
   analysis-writer.js       ← Articles analyse depuis infographies
-  article-publisher.js     ← Pont Notion → Calendrier Publications → n8n
+  article-publisher.js     ← Pont Notion → Calendrier Publications → n8n (avec Insta 1-5)
   telegram-validator.js    ← Validation via réponses Telegram (V2)
 ```
+
+### Carousel Instagram (5 slides par article)
+
+Chaque article génère automatiquement un **carousel Instagram de 5 slides** (1080×1080) :
+
+| Slide | Contenu | Design |
+|-------|---------|--------|
+| **Slide 1** | Titre centré (105px) + badge catégorie | Logo €, gradient catégorie, grille |
+| **Slides 2-4** | Sous-titre (72px) + texte (46px) — 3 points clés Haiku | Barre accent à gauche, sous-titre blanc, marges 65px |
+| **Slide 5** | CTA : logo € géant + "Abonne-toi. Partage." | @ouvalargent centré |
+
+- **Logo** : identique aux infographies (€ 3.5rem + texte 1.7rem)
+- **Footer** : ouvalargent.com en JetBrains Mono 1.5rem
+- **Sous-titres toujours en blanc** (jamais en couleur accent pour lisibilité)
+- **Structure fichiers** : `Production interne/Réseaux Sociaux /Articles/YYYY-MM-DD/{slug}/`
+  - `hero.png` — Image hero (1200×630)
+  - `slide1.png` à `slide5.png` — Slides Instagram (1080×1080)
+  - `{Titre article}.pdf` — Carrousel LinkedIn (5 slides PDF, nommé avec le titre Notion)
+- **Notion** : champs `Image Hero`, `Insta 1` à `Insta 5`, `PDF LinkedIn` (type File) dans la base Articles
 
 ### Base Notion "Articles News"
 
@@ -250,6 +273,8 @@ Site/scripts/journalist-modules/
 | Sources | Rich text |
 | Source URL | URL |
 | Image Hero | Files |
+| Insta 1 à Insta 5 | Files |
+| PDF LinkedIn | Files |
 | LinkedIn | Rich text |
 | Facebook | Rich text |
 | Tags | Multi-select |
@@ -569,16 +594,14 @@ Production interne/
       Insta & Autres/       ← PNG Instagram (1:1) - permanents
       Tiktok Vertical/      ← PNG TikTok (9:16) - permanents
       Tiktok Horizontal/    ← PNG Rectangle (~16:9) - permanents
-    Actus chaudes/
-      2026-02-20/           ← Carrousels automatiques classés par date
-        97-slug-slide1.png            (slide photo+titre)
-        97-slug-slide2.png            (slide photo+texte ou infographie)
-        97-slug-slide3.png            (slide photo+texte ou infographie)
-        97-slug-slide4.png            (slide photo+texte ou infographie)
-      2026-02-21/
-      ...
     Contenu Hebdo/          ← Textes hebdomadaires (LinkedIn, Instagram, newsletter)
-    Articles/               ← Images hero des articles (1200×630 PNG)
+    Articles/               ← Articles classés par date puis par slug
+      2026-03-01/
+        slug-article/
+          hero.png                    (image hero 1200×630)
+          slide1.png à slide5.png     (carousel Instagram 1080×1080)
+          Titre article.pdf           (carousel LinkedIn PDF)
+      _anciens/             ← Anciens hero images (brouillons)
   Rapports/                 ← PPTX finaux
 Templates/
   Réseaux sociaux/          ← Templates HTML (actus chaudes, multiformat, vidéo)
