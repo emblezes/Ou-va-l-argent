@@ -90,6 +90,18 @@ function findInstaImages(num, dir) {
       result.bis = path.join(dir, f);
       continue;
     }
+    if ((f.startsWith(padded + "c-") || f.startsWith(numStr + "c-")) && f.endsWith(suffix)) {
+      result.ter = path.join(dir, f);
+      continue;
+    }
+    if ((f.startsWith(padded + "d-") || f.startsWith(numStr + "d-")) && f.endsWith(suffix)) {
+      result.quater = path.join(dir, f);
+      continue;
+    }
+    if ((f.startsWith(padded + "e-") || f.startsWith(numStr + "e-")) && f.endsWith(suffix)) {
+      result.quinter = path.join(dir, f);
+      continue;
+    }
 
     // Standard main: 113-xxx-instagram.png (NOT bis/ter/quater/a/b)
     if ((f.startsWith(padded + "-") || f.startsWith(numStr + "-")) && f.endsWith(suffix)) {
@@ -272,6 +284,19 @@ async function main() {
         console.log(`  ✓ Insta 4: ${path.basename(instaImages.quater)}`);
       }
 
+      // Upload carousel slide quinter → Insta 5
+      if (instaImages.quinter) {
+        const uploadId = await uploadFile(instaImages.quinter);
+        properties["Insta 5"] = {
+          files: [{
+            type: "file_upload",
+            file_upload: { id: uploadId },
+            name: path.basename(instaImages.quinter)
+          }]
+        };
+        console.log(`  ✓ Insta 5: ${path.basename(instaImages.quinter)}`);
+      }
+
       // Upload TikTok V (main only for Image TikTok V column)
       if (tiktokVFile) {
         const uploadId = await uploadFile(tiktokVFile);
@@ -305,7 +330,7 @@ async function main() {
       });
 
       success++;
-      const slideCount = [instaImages.main, instaImages.bis, instaImages.ter, instaImages.quater].filter(Boolean).length;
+      const slideCount = [instaImages.main, instaImages.bis, instaImages.ter, instaImages.quater, instaImages.quinter].filter(Boolean).length;
       console.log(`  → Page updated! (${slideCount} insta slide${slideCount > 1 ? "s" : ""})${tiktokVFile ? " + TikTok V" : ""}${tiktokHFile ? " + TikTok H" : ""}\n`);
 
       // Small delay to avoid rate limits

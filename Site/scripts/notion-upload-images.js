@@ -56,6 +56,7 @@ const SLUG_TO_NUM = {
   '37-vieillissement-mondial-2070': 37,
   '38-actifs-fonds-pension-monde': 38,
   '51-fiche-de-paie-decomposition': 51,
+  '59-croissance-france': 59,
   '55-simulation-375k-brut-net': 55,
   '55-simulation-375k-brut-net-EN': 55,
   '61-mix-energetique-france-2030': 61,

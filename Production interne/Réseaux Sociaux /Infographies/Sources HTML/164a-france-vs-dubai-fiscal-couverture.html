@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>France vs Dubaï : le choc fiscal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #1a1208;
+            --text-primary: #fff8e7;
+            --text-secondary: #c9a84c;
+            --text-muted: #8a7340;
+            --accent-gold: #ffd700;
+            --accent-red: #ff4757;
+            --accent-green: #00ff88;
+            --glass-border: rgba(255, 215, 0, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #0f0c04 0%, #2a1f0a 40%, #1a1208 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 215, 0, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.12) 0%, transparent 70%);
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.06) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 50px 60px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: absolute;
+            top: 50px;
+            left: 60px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: var(--accent-gold); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+
+        .countries-label {
+            font-family: 'Instrument Serif', serif;
+            font-size: 7rem;
+            color: var(--text-primary);
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .flags {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .flag { font-size: 11rem; }
+        .vs {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem;
+            color: var(--accent-gold);
+            font-style: italic;
+            opacity: 0.6;
+        }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5rem;
+            text-align: center;
+            color: var(--text-primary);
+            line-height: 1.15;
+        }
+
+        .chart-title .accent {
+            color: var(--accent-gold);
+            font-style: italic;
+        }
+
+        .cta {
+            margin-top: 40px;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50px;
+            padding: 14px 40px;
+            letter-spacing: 1px;
+        }
+
+        .preview-items {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .preview-item {
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 12px;
+            padding: 14px 22px;
+            text-align: center;
+        }
+
+        .preview-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .preview-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--glass-border);
+            position: absolute;
+            bottom: 40px;
+            left: 60px;
+            right: 60px;
+        }
+
+        .source {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .source span {
+            color: var(--text-secondary);
+        }
+
+        .website {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="logo">
+                <span class="logo-icon">€</span>
+                <span class="logo-text">Où Va l'Argent ?</span>
+            </div>
+
+            <div class="countries-label">France vs Dubaï</div>
+
+            <div class="flags">
+                <span class="flag">🇫🇷</span>
+                <span class="vs">vs</span>
+                <span class="flag">🇦🇪</span>
+            </div>
+
+            <h2 class="chart-title">Où est-ce qu'on paye<br>le plus d'<span class="accent">impôts</span> ?</h2>
+
+            <div class="cta">🔔 Abonne-toi</div>
+        </div>
+
+        <div class="footer">
+            <div class="source"></div>
+            <div class="website">ouvalargent.com</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; }
+
+        .cover {
+            width: 1584px;
+            height: 396px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.14) 0%, transparent 70%);
+            top: -300px;
+            right: 200px;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.06) 0%, transparent 70%);
+            bottom: -250px;
+            right: -50px;
+        }
+
+        .bg-glow-3 {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+            bottom: -50px;
+            left: 200px;
+        }
+
+        .euro-deco {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 300;
+            color: #00d4ff;
+            opacity: 0.03;
+            z-index: 0;
+            user-select: none;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cover" id="banner">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="bg-glow-3"></div>
+    </div>
+</body>
+</html>

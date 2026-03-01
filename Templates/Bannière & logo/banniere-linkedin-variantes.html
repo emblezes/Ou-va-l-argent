@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; }
+
+        .cover {
+            width: 1584px;
+            height: 396px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .glow {
+            position: absolute;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<!-- V1 : Plus clair, cyan central large -->
+<div class="cover" id="v1">
+    <div style="position:absolute;inset:0;background:linear-gradient(145deg, #0c1a2e 0%, #122640 50%, #0e1e35 100%);"></div>
+    <div class="bg-grid"></div>
+    <div class="glow" style="width:900px;height:900px;background:radial-gradient(circle,rgba(0,212,255,0.18) 0%,transparent 65%);top:-400px;left:50%;transform:translateX(-50%);"></div>
+    <div class="glow" style="width:400px;height:400px;background:radial-gradient(circle,rgba(0,212,255,0.08) 0%,transparent 70%);bottom:-100px;left:100px;"></div>
+    <div class="glow" style="width:350px;height:350px;background:radial-gradient(circle,rgba(255,215,0,0.06) 0%,transparent 70%);bottom:-150px;right:200px;"></div>
+</div>
+
+<!-- V2 : Cyan + Or chaud, diagonal -->
+<div class="cover" id="v2">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg, #0a1628 0%, #10203a 40%, #1a1a10 100%);"></div>
+    <div class="bg-grid"></div>
+    <div class="glow" style="width:700px;height:700px;background:radial-gradient(circle,rgba(0,212,255,0.16) 0%,transparent 65%);top:-300px;left:100px;"></div>
+    <div class="glow" style="width:600px;height:600px;background:radial-gradient(circle,rgba(255,215,0,0.12) 0%,transparent 65%);bottom:-300px;right:100px;"></div>
+    <div class="glow" style="width:300px;height:300px;background:radial-gradient(circle,rgba(255,159,67,0.08) 0%,transparent 70%);top:50px;right:400px;"></div>
+</div>
+
+<!-- V3 : Violet + Cyan, ambiance premium -->
+<div class="cover" id="v3">
+    <div style="position:absolute;inset:0;background:linear-gradient(145deg, #0c0e1a 0%, #12152e 50%, #0a1628 100%);"></div>
+    <div class="bg-grid" style="background-image:linear-gradient(rgba(168,85,247,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.025) 1px,transparent 1px);background-size:40px 40px;"></div>
+    <div class="glow" style="width:600px;height:600px;background:radial-gradient(circle,rgba(168,85,247,0.16) 0%,transparent 65%);top:-250px;right:300px;"></div>
+    <div class="glow" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,212,255,0.12) 0%,transparent 65%);bottom:-200px;left:200px;"></div>
+    <div class="glow" style="width:350px;height:350px;background:radial-gradient(circle,rgba(168,85,247,0.06) 0%,transparent 70%);bottom:-100px;right:0;"></div>
+</div>
+
+<!-- V4 : Multi-couleurs (cyan + or + violet + vert) -->
+<div class="cover" id="v4">
+    <div style="position:absolute;inset:0;background:linear-gradient(145deg, #0e1520 0%, #101e30 50%, #0c1420 100%);"></div>
+    <div class="bg-grid"></div>
+    <div class="glow" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,212,255,0.14) 0%,transparent 65%);top:-200px;left:200px;"></div>
+    <div class="glow" style="width:450px;height:450px;background:radial-gradient(circle,rgba(255,215,0,0.10) 0%,transparent 65%);top:-150px;right:300px;"></div>
+    <div class="glow" style="width:400px;height:400px;background:radial-gradient(circle,rgba(168,85,247,0.12) 0%,transparent 65%);bottom:-200px;left:500px;"></div>
+    <div class="glow" style="width:350px;height:350px;background:radial-gradient(circle,rgba(0,255,136,0.08) 0%,transparent 65%);bottom:-100px;right:100px;"></div>
+</div>
+
+<!-- V5 : Bleu profond très clair, halo central doux -->
+<div class="cover" id="v5">
+    <div style="position:absolute;inset:0;background:linear-gradient(160deg, #0f2035 0%, #163050 50%, #0f2035 100%);"></div>
+    <div class="bg-grid" style="background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);background-size:50px 50px;"></div>
+    <div class="glow" style="width:1200px;height:600px;background:radial-gradient(ellipse,rgba(0,180,220,0.12) 0%,transparent 60%);top:-200px;left:50%;transform:translateX(-50%);"></div>
+    <div class="glow" style="width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,0.04) 0%,transparent 70%);bottom:-100px;left:50%;transform:translateX(-50%);"></div>
+</div>
+
+<!-- V6 : Aurore boréale (cyan + vert + violet en bande) -->
+<div class="cover" id="v6">
+    <div style="position:absolute;inset:0;background:linear-gradient(145deg, #060c14 0%, #0a1628 50%, #080e18 100%);"></div>
+    <div class="bg-grid"></div>
+    <div class="glow" style="width:500px;height:600px;background:radial-gradient(ellipse,rgba(0,212,255,0.15) 0%,transparent 65%);top:-300px;left:15%;"></div>
+    <div class="glow" style="width:500px;height:600px;background:radial-gradient(ellipse,rgba(0,255,136,0.10) 0%,transparent 65%);top:-280px;left:40%;"></div>
+    <div class="glow" style="width:500px;height:600px;background:radial-gradient(ellipse,rgba(168,85,247,0.12) 0%,transparent 65%);top:-260px;left:65%;"></div>
+    <div class="glow" style="width:400px;height:400px;background:radial-gradient(circle,rgba(255,215,0,0.05) 0%,transparent 70%);bottom:-200px;right:200px;"></div>
+</div>
+
+</body>
+</html>

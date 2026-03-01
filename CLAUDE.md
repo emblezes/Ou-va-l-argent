@@ -150,7 +150,7 @@ Tous dans `Site/scripts/` :
 | `download-google-image.js` | Télécharger une image depuis Google Images (Puppeteer) |
 | `export-actu-video.js` | Overlay titre/logo sur une vidéo (ffmpeg) |
 | `notion-add-post.js` | Ajouter un post au calendrier Notion |
-| `notion-upload-images.js` | Upload images (Instagram, TikTok V/H) vers Notion "Liste des infographies" via catbox.moe |
+| `notion-reupload-images.js` | Upload images (Instagram, TikTok V/H) vers Notion "Liste des infographies" via API native Notion File Upload |
 | `notion-create-sources-db.js` | Créer/gérer la base Notion des sources |
 | `notion-update-sources-urls.js` | Mettre à jour les URLs des sources dans Notion |
 | `weekly-content-machine.js` | **Machine hebdomadaire** : veille profonde → 21 infographies/semaine → Notion + Telegram |

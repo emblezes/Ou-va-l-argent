@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVA : France 20% vs Dubaï 5%</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #1a1208;
+            --text-primary: #fff8e7;
+            --text-secondary: #c9a84c;
+            --text-muted: #8a7340;
+            --accent-gold: #ffd700;
+            --accent-red: #ff4757;
+            --accent-green: #00e676;
+            --glass-border: rgba(255, 215, 0, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #0f0c04 0%, #2a1f0a 40%, #1a1208 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 215, 0, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.12) 0%, transparent 70%);
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 50px 60px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: var(--accent-gold); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5.5rem;
+            text-align: center;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+
+        .chart-title .accent {
+            color: var(--accent-gold);
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .bars-section {
+            flex: 1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 80px;
+            padding: 0 60px;
+        }
+
+        .bar-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 280px;
+        }
+
+        .bar-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .bar-value.red { color: var(--accent-red); }
+        .bar-value.green { color: var(--accent-green); }
+
+        .bar {
+            width: 100%;
+            border-radius: 16px 16px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 20px;
+        }
+
+        .bar.red {
+            background: linear-gradient(180deg, var(--accent-red), rgba(255, 71, 87, 0.7));
+            box-shadow: 0 -6px 30px rgba(255, 71, 87, 0.3);
+        }
+
+        .bar.green {
+            background: linear-gradient(180deg, var(--accent-green), rgba(0, 230, 118, 0.7));
+            box-shadow: 0 -6px 30px rgba(0, 230, 118, 0.3);
+        }
+
+        .bar-flag {
+            font-size: 5rem;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+        }
+
+        .bar-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            margin-top: 25px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-gold); }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+
+        <div class="content">
+            <div class="logo">
+                <span class="logo-icon">€</span>
+                <span class="logo-text">Où Va l'Argent ?</span>
+            </div>
+
+            <h2 class="chart-title"><span class="accent">TVA</span></h2>
+            <div class="chart-subtitle">Taux standard</div>
+
+            <div class="bars-section">
+                <!-- France: 20% → height = 20/20 * 480 = 480px -->
+                <div class="bar-col">
+                    <div class="bar-value red">20%</div>
+                    <div class="bar red" style="height: 480px;">
+                        <span class="bar-flag">🇫🇷</span>
+                    </div>
+                    <div class="bar-label">France</div>
+                </div>
+
+                <!-- Dubaï: 5% → height = 5/20 * 480 = 120px -->
+                <div class="bar-col">
+                    <div class="bar-value green">5%</div>
+                    <div class="bar green" style="height: 120px;">
+                        <span class="bar-flag">🇦🇪</span>
+                    </div>
+                    <div class="bar-label">Dubaï</div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Sources : <span>DGFiP, UAE Federal Tax Authority · 2025</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

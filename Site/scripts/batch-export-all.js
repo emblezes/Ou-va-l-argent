@@ -1794,12 +1794,14 @@ const INFOGRAPHICS = [
   ['19-france-championne-depenses-sociales-europe.html', 0, '19-france-championne-depenses-sociales-europe'],
   ['27-qui-nourrit-etat.html', 0, '27-qui-nourrit-etat'],
   ['28-retraites-explosion-2070.html', 0, '28-retraites-explosion-2070'],
+  ['29-esperance-vie-france.html', 0, '29-esperance-vie-france'],
   ['33-capitalisation-vs-repartition.html', 0, '33-capitalisation-vs-repartition'],
   ['37-vieillissement-mondial-2070.html', 0, '37-vieillissement-mondial-2070'],
   ['38-actifs-fonds-pension-monde.html', 0, '38-actifs-fonds-pension-monde'],
   ['51-fiche-de-paie-decomposition.html', 0, '51-fiche-de-paie-decomposition'],
   ['55-simulation-375k-brut-net.html', 0, '55-simulation-375k-brut-net'],
   ['55-simulation-375k-brut-net-EN.html', 0, '55-simulation-375k-brut-net-EN'],
+  ['59-croissance-france.html', 0, '59-croissance-france'],
   ['61-mix-energetique-france-2030.html', 0, '61-mix-energetique-france-2030'],
   ['65-salaire-moyen-par-pays.html', 0, '65-salaire-moyen-par-pays'],
   ['73-mercure-guyane.html', 0, '73-mercure-guyane'],
@@ -1871,6 +1873,11 @@ const INFOGRAPHICS = [
   ['161-tva-cercueil-20-pourcent.html', 0, '161-tva-cercueil-20-pourcent'],
   ['162-dette-117-pib-double-limite.html', 0, '162-dette-117-pib-double-limite'],
   ['163-classement-pisa-maths.html', 0, '163-classement-pisa-maths'],
+  ['164a-france-vs-dubai-fiscal-couverture.html', 0, '164a-france-vs-dubai-fiscal-couverture'],
+  ['164b-france-vs-dubai-impot-revenu.html', 0, '164b-france-vs-dubai-impot-revenu'],
+  ['164c-france-vs-dubai-impot-societes.html', 0, '164c-france-vs-dubai-impot-societes'],
+  ['164d-france-vs-dubai-impot-capital.html', 0, '164d-france-vs-dubai-impot-capital'],
+  ['164e-france-vs-dubai-tva.html', 0, '164e-france-vs-dubai-tva'],
 ];
 
 async function exportFormat(browser, htmlPath, items, { css, jsTransform, width, height, outputDir, suffix, label }) {
