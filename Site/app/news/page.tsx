@@ -3,18 +3,19 @@ import { Breadcrumbs } from '@/components/Breadcrumbs'
 import NewsContent from './NewsContent'
 
 export const metadata: Metadata = {
-  title: 'Infographies — Finances publiques en images',
-  description: 'Toutes nos infographies sur les finances publiques françaises : dette, impôts, dépenses, comparaisons internationales. Partagez et informez.',
+  title: 'News — Actualité économique et finances publiques',
+  description: 'Articles et analyses sur les finances publiques françaises, la macro-économie, l\'investissement et l\'actualité économique.',
   keywords: [
-    'infographies finances publiques',
-    'infographies économie France',
-    'données budget France',
-    'graphiques dette publique',
-    'visuels impôts France',
+    'actualité économique France',
+    'finances publiques',
+    'analyses économiques',
+    'dette publique France',
+    'impôts France',
+    'macro-économie',
   ],
   openGraph: {
-    title: 'Infographies — Finances publiques en images',
-    description: 'Les finances publiques françaises en images. Infographies sourcées à partager.',
+    title: 'News — Actualité économique et finances publiques',
+    description: 'Articles et analyses sur les finances publiques françaises, la macro-économie, l\'investissement et l\'actualité économique.',
     type: 'website',
     locale: 'fr_FR',
     url: 'https://ouvalargent.com/news',
@@ -23,14 +24,14 @@ export const metadata: Metadata = {
         url: 'https://ouvalargent.com/og-default.png',
         width: 1200,
         height: 630,
-        alt: 'Infographies — Où Va l\'Argent ?',
+        alt: 'News — Où Va l\'Argent ?',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Infographies — Finances publiques en images',
-    description: 'Les finances publiques françaises en images. Infographies sourcées à partager.',
+    title: 'News — Actualité économique et finances publiques',
+    description: 'Articles et analyses sur les finances publiques françaises, la macro-économie, l\'investissement et l\'actualité économique.',
     images: ['https://ouvalargent.com/og-default.png'],
   },
   alternates: {
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <Breadcrumbs items={[{ label: 'Infographies' }]} />
+      <Breadcrumbs items={[{ label: 'News' }]} />
       <NewsContent />
     </>
   )

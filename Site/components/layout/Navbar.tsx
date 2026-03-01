@@ -21,6 +21,7 @@ const investirLinks = [
 const showInvestir = false
 
 const directLinks = [
+  { href: '/news', label: 'News' },
   { href: '/wtf', label: 'WTF ?!' },
   { href: '/propositions', label: 'Je propose' },
 ]
@@ -124,6 +125,7 @@ export function Navbar() {
     if (pathname === '/dettes') return 'red'
     if (pathname === '/impots') return 'gold'
     if (isInvestirPage) return 'orange'
+    if (pathname?.startsWith('/news')) return 'electric'
     if (pathname === '/wtf') return 'red'
     if (pathname === '/propositions') return 'purple'
     return 'electric'

@@ -1,162 +1,181 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
-// Infographies data - will be replaced with actual images from /public/infographies/
-const INFOGRAPHIES = [
-  {
-    id: 1,
-    title: 'Dépense sociale : 932 milliards',
-    category: 'Dépenses',
-    date: '28 jan. 2025',
-    emoji: '🏥',
-    color: '#ff6b6b',
-    stats: '932 Md€',
-    subtitle: 'Premier poste de dépenses publiques',
-  },
-  {
-    id: 2,
-    title: 'Dette française : 3 482 milliards',
-    category: 'Dette',
-    date: '25 jan. 2025',
-    emoji: '💳',
-    color: '#ff4757',
-    stats: '3 482 Md€',
-    subtitle: '117% du PIB',
-  },
-  {
-    id: 3,
-    title: 'France vs Pologne : PIB par habitant',
-    category: 'Comparaison',
-    date: '22 jan. 2025',
-    emoji: '🇫🇷🇵🇱',
-    color: '#00d4ff',
-    stats: '44k vs 18k €',
-    subtitle: 'Évolution sur 30 ans',
-  },
-  {
-    id: 4,
-    title: 'Retraite : système de Ponzi ?',
-    category: 'Retraite',
-    date: '20 jan. 2025',
-    emoji: '👴',
-    color: '#ffd700',
-    stats: '1.7 actif',
-    subtitle: 'pour 1 retraité',
-  },
-  {
-    id: 5,
-    title: 'Singapour vs Argentine : 50 ans d\'écart',
-    category: 'Comparaison',
-    date: '18 jan. 2025',
-    emoji: '🇸🇬🇦🇷',
-    color: '#00ff88',
-    stats: '65k vs 13k $',
-    subtitle: 'PIB par habitant',
-  },
-  {
-    id: 6,
-    title: 'TVA : 206 milliards collectés',
-    category: 'Impôts',
-    date: '15 jan. 2025',
-    emoji: '🛒',
-    color: '#a855f7',
-    stats: '206 Md€',
-    subtitle: 'Premier impôt de France',
-  },
-  {
-    id: 7,
-    title: 'Cotisations : 40% du salaire brut',
-    category: 'Salaire',
-    date: '12 jan. 2025',
-    emoji: '👔',
-    color: '#ff9f43',
-    stats: '40%',
-    subtitle: 'Charges patronales + salariales',
-  },
-  {
-    id: 8,
-    title: 'Éducation : 168 milliards',
-    category: 'Dépenses',
-    date: '10 jan. 2025',
-    emoji: '🎓',
-    color: '#4ecdc4',
-    stats: '168 Md€',
-    subtitle: '10.5% du budget',
-  },
-  {
-    id: 9,
-    title: 'Défense : 65 milliards',
-    category: 'Dépenses',
-    date: '8 jan. 2025',
-    emoji: '🛡️',
-    color: '#45b7d1',
-    stats: '65 Md€',
-    subtitle: '+7.5% en 2025',
-  },
-  {
-    id: 10,
-    title: 'Intérêts de la dette : 54 milliards',
-    category: 'Dette',
-    date: '5 jan. 2025',
-    emoji: '📈',
-    color: '#ff4757',
-    stats: '54 Md€/an',
-    subtitle: '4ème poste budgétaire',
-  },
-  {
-    id: 11,
-    title: 'France : 2ème pays le plus taxé',
-    category: 'Impôts',
-    date: '3 jan. 2025',
-    emoji: '🏆',
-    color: '#ffd700',
-    stats: '43.5%',
-    subtitle: 'Prélèvements / PIB (OCDE)',
-  },
-  {
-    id: 12,
-    title: 'Fonctionnaires : 5.8 millions',
-    category: 'Administration',
-    date: '1 jan. 2025',
-    emoji: '🏛️',
-    color: '#00d4ff',
-    stats: '5.8M',
-    subtitle: 'Agents publics en France',
-  },
-]
+interface Article {
+  id: string
+  titre: string
+  slug: string
+  type: string
+  categorie: string
+  date: string
+  chapeau: string
+  tags: string[]
+  temps_lecture: number
+  hero_url: string | null
+}
 
-const CATEGORIES = ['Tous', 'Dépenses', 'Dette', 'Impôts', 'Comparaison', 'Salaire', 'Retraite', 'Administration']
+const CATEGORY_COLORS: Record<string, string> = {
+  'Finances publiques': '#00d4ff',
+  'Macro-éco': '#ffd700',
+  'Investissement': '#00ff88',
+  'Actu éco': '#ff9f43',
+  'International': '#a855f7',
+  'Finance perso': '#ff4757',
+  'Écologie': '#22c55e',
+  'Culture': '#f472b6',
+  'Impôts': '#ef4444',
+  'Emploi': '#06b6d4',
+  'Immobilier': '#d97706',
+  'Santé': '#10b981',
+  'Éducation': '#8b5cf6',
+  'Défense': '#64748b',
+  'Retraites': '#f59e0b',
+  'Social': '#ec4899',
+}
+
+const CATEGORY_BACKGROUNDS: Record<string, string> = {
+  'Finances publiques': 'linear-gradient(135deg, #06080c 0%, #0a1628 50%, #06080c 100%)',
+  'Macro-éco': 'linear-gradient(135deg, #0c0a00 0%, #1a1400 50%, #0c0a00 100%)',
+  'Investissement': 'linear-gradient(135deg, #040c06 0%, #0a2814 50%, #040c06 100%)',
+  'Actu éco': 'linear-gradient(135deg, #0c0800 0%, #1a1000 50%, #0c0800 100%)',
+  'International': 'linear-gradient(135deg, #08040c 0%, #140a28 50%, #08040c 100%)',
+  'Finance perso': 'linear-gradient(135deg, #0c0406 0%, #28050a 50%, #0c0406 100%)',
+  'Écologie': 'linear-gradient(135deg, #030c04 0%, #0a280e 50%, #030c04 100%)',
+  'Culture': 'linear-gradient(135deg, #0c040a 0%, #28081e 50%, #0c040a 100%)',
+  'Impôts': 'linear-gradient(135deg, #0c0404 0%, #280808 50%, #0c0404 100%)',
+  'Emploi': 'linear-gradient(135deg, #040a0c 0%, #081a28 50%, #040a0c 100%)',
+  'Immobilier': 'linear-gradient(135deg, #0c0804 0%, #281a08 50%, #0c0804 100%)',
+  'Santé': 'linear-gradient(135deg, #040c08 0%, #082818 50%, #040c08 100%)',
+  'Éducation': 'linear-gradient(135deg, #06040c 0%, #120a28 50%, #06040c 100%)',
+  'Défense': 'linear-gradient(135deg, #080a0c 0%, #141a28 50%, #080a0c 100%)',
+  'Retraites': 'linear-gradient(135deg, #0c0a04 0%, #281e08 50%, #0c0a04 100%)',
+  'Social': 'linear-gradient(135deg, #0c040a 0%, #280a1e 50%, #0c040a 100%)',
+}
+
+function formatDate(dateStr: string) {
+  const d = new Date(dateStr)
+  return d.toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  })
+}
+
+function HeroFallback({ titre, categorie }: { titre: string; categorie: string }) {
+  const accentColor = CATEGORY_COLORS[categorie] || '#00d4ff'
+  const bg = CATEGORY_BACKGROUNDS[categorie] || CATEGORY_BACKGROUNDS['Finances publiques']
+  return (
+    <div
+      className="w-full h-full relative overflow-hidden"
+      style={{ background: bg }}
+    >
+      {/* Radial glow — plus intense */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `radial-gradient(ellipse at 30% 50%, ${accentColor}25 0%, transparent 60%)`,
+        }}
+      />
+      {/* Grille colorée */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `linear-gradient(${accentColor}18 1px, transparent 1px), linear-gradient(90deg, ${accentColor}18 1px, transparent 1px)`,
+          backgroundSize: '60px 60px',
+        }}
+      />
+      {/* Content — reproduit hero-generator.js */}
+      <div className="relative z-10 flex flex-col justify-between h-full p-[6%]">
+        {/* Logo — gros */}
+        <div className="flex items-center gap-2">
+          <span
+            className="font-serif text-[clamp(2rem,5vw,4rem)] leading-none"
+            style={{ color: accentColor }}
+          >
+            €
+          </span>
+          <span className="font-serif italic text-white text-[clamp(0.9rem,2.2vw,2rem)] leading-none">
+            Où Va l&apos;Argent ?
+          </span>
+        </div>
+        {/* Titre ÉNORME — prend tout l'espace */}
+        <div className="flex-1 flex flex-col justify-center">
+          <h3
+            className="font-serif text-white text-[clamp(1.4rem,4vw,3.2rem)] leading-[1.1] line-clamp-3"
+          >
+            {titre}
+          </h3>
+        </div>
+        {/* Footer */}
+        <div className="flex items-center justify-between">
+          <span
+            className="px-2 py-0.5 rounded-full text-[clamp(0.45rem,0.9vw,0.7rem)] font-semibold uppercase tracking-wider"
+            style={{ background: `${accentColor}20`, color: accentColor }}
+          >
+            {categorie}
+          </span>
+          <span className="font-semibold text-[clamp(0.5rem,1.2vw,1rem)]" style={{ color: accentColor }}>
+            ouvalargent.com
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function NewsContent() {
-  const [selectedCategory, setSelectedCategory] = useState('Tous')
+  const [allArticles, setAllArticles] = useState<Article[]>([])
+  const [loading, setLoading] = useState(true)
+  const [selectedCategory, setSelectedCategory] = useState('Toutes')
 
-  const filteredInfographies = selectedCategory === 'Tous'
-    ? INFOGRAPHIES
-    : INFOGRAPHIES.filter(info => info.category === selectedCategory)
+  useEffect(() => {
+    fetchAllArticles()
+  }, [])
+
+  async function fetchAllArticles() {
+    setLoading(true)
+    try {
+      const res = await fetch('/api/articles')
+      if (res.ok) {
+        const data = await res.json()
+        setAllArticles(data.articles || [])
+      }
+    } catch {
+      // Silently fail
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // Catégories dynamiques — uniquement celles ayant des articles
+  const availableCategories = ['Toutes', ...Array.from(new Set(allArticles.map(a => a.categorie))).sort()]
+
+  // Articles filtrés
+  const articles = selectedCategory === 'Toutes'
+    ? allArticles
+    : allArticles.filter(a => a.categorie === selectedCategory)
 
   return (
-    <main className="relative z-[1] max-w-[1600px] mx-auto px-4 lg:px-8 pt-[100px] pb-[60px]">
+    <main className="relative z-[1] max-w-[1800px] mx-auto px-[16px] lg:px-[48px] pt-[120px] pb-[60px]">
       {/* Header */}
       <header className="text-center mb-10">
-        <h1 className="font-serif text-[clamp(2rem,5vw,3rem)] font-normal mb-3">
-          Nos <span className="italic text-accent-electric">Infographies</span>
+        <h1 className="font-serif text-[clamp(3rem,10vw,6rem)] font-normal mb-3">
+          Nos <span className="italic text-accent-electric">Articles</span>
         </h1>
-        <p className="text-text-secondary text-lg max-w-xl mx-auto">
-          Les finances publiques françaises en images. Partagez, informez, comprenez.
-        </p>
       </header>
 
-      {/* Category Filter */}
-      <div className="flex flex-wrap justify-center gap-2 mb-10">
-        {CATEGORIES.map((category) => (
+      {/* Category Filter — dynamique */}
+      <div className="flex flex-wrap justify-center gap-3 mb-10">
+        {availableCategories.map((category) => (
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+            className={`px-5 py-2.5 rounded-full text-xl lg:text-2xl font-medium transition-all duration-200 ${
               selectedCategory === category
-                ? 'bg-accent-electric text-bg-deep'
-                : 'bg-bg-surface border border-glass-border text-text-secondary hover:text-text-primary hover:border-accent-electric/50'
+                ? 'bg-accent-electric/20 text-accent-electric border border-accent-electric/50'
+                : 'bg-bg-surface/50 border border-glass-border/50 text-text-muted hover:text-text-secondary hover:border-glass-border'
             }`}
           >
             {category}
@@ -164,98 +183,127 @@ export default function NewsContent() {
         ))}
       </div>
 
-      {/* Infographies Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-        {filteredInfographies.map((info) => (
-          <article
-            key={info.id}
-            className="group bg-bg-surface border border-glass-border rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-accent-electric/50 cursor-pointer"
-          >
-            {/* Infographic Preview */}
-            <div
-              className="aspect-square relative flex flex-col items-center justify-center p-6"
-              style={{
-                background: `linear-gradient(135deg, ${info.color}15 0%, ${info.color}05 100%)`,
-              }}
+      {/* Loading */}
+      {loading && (
+        <div className="flex justify-center py-20">
+          <div className="w-8 h-8 border-2 border-accent-electric/30 border-t-accent-electric rounded-full animate-spin" />
+        </div>
+      )}
+
+      {/* No results */}
+      {!loading && articles.length === 0 && (
+        <div className="text-center py-20">
+          <p className="text-text-muted text-xl">Aucun article pour le moment.</p>
+          <p className="text-text-muted text-base mt-2">Les articles seront bientôt disponibles.</p>
+        </div>
+      )}
+
+      {/* Articles Grid */}
+      {!loading && articles.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {articles.map((article) => (
+            <Link
+              key={article.id}
+              href={`/news/${article.slug}`}
+              className="group block"
             >
-              {/* Category badge */}
-              <span
-                className="absolute top-3 left-3 px-2 py-1 rounded text-xs font-semibold uppercase"
-                style={{ background: `${info.color}20`, color: info.color }}
-              >
-                {info.category}
-              </span>
+              <article className="bg-bg-surface border border-glass-border rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-accent-electric/30 h-full flex flex-col">
+                {/* Hero Image */}
+                <div className="aspect-[1200/630] relative bg-bg-deep overflow-hidden">
+                  {article.hero_url ? (
+                    <img
+                      src={article.hero_url}
+                      alt={article.titre}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <HeroFallback titre={article.titre} categorie={article.categorie} />
+                  )}
 
-              {/* Emoji */}
-              <span className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                {info.emoji}
-              </span>
-
-              {/* Main stat */}
-              <span
-                className="font-mono text-4xl font-bold"
-                style={{ color: info.color }}
-              >
-                {info.stats}
-              </span>
-
-              {/* Subtitle */}
-              <span className="text-text-secondary text-sm mt-2 text-center">
-                {info.subtitle}
-              </span>
-
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-bg-deep/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="flex gap-3">
-                  <button className="p-3 bg-accent-electric rounded-full text-bg-deep hover:bg-accent-electric/80 transition-colors">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                  </button>
-                  <button className="p-3 bg-bg-surface border border-glass-border rounded-full text-text-primary hover:bg-accent-electric hover:text-bg-deep hover:border-accent-electric transition-colors">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                    </svg>
-                  </button>
-                  <button className="p-3 bg-bg-surface border border-glass-border rounded-full text-text-primary hover:bg-accent-electric hover:text-bg-deep hover:border-accent-electric transition-colors">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                    </svg>
-                  </button>
+                  {/* Type badge */}
+                  <span className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold ${
+                    article.type === 'Analyse'
+                      ? 'bg-accent-purple/20 text-accent-purple'
+                      : 'bg-accent-electric/20 text-accent-electric'
+                  }`}>
+                    {article.type}
+                  </span>
                 </div>
-              </div>
-            </div>
 
-            {/* Info */}
-            <div className="p-4">
-              <h3 className="font-semibold text-sm mb-1 line-clamp-2 group-hover:text-accent-electric transition-colors">
-                {info.title}
-              </h3>
-              <span className="text-text-muted text-xs">{info.date}</span>
-            </div>
-          </article>
-        ))}
-      </div>
+                {/* Content */}
+                <div className="p-6 lg:p-8 flex flex-col flex-1">
+                  {/* Category + Date + Reading time */}
+                  <div className="flex items-center gap-3 mb-3 text-base">
+                    <span
+                      className="px-2.5 py-1 rounded font-medium"
+                      style={{
+                        background: `${CATEGORY_COLORS[article.categorie] || '#00d4ff'}20`,
+                        color: CATEGORY_COLORS[article.categorie] || '#00d4ff',
+                      }}
+                    >
+                      {article.categorie}
+                    </span>
+                    <span className="text-text-muted">{formatDate(article.date)}</span>
+                    <span className="text-text-muted">{article.temps_lecture} min</span>
+                  </div>
+
+                  {/* Title */}
+                  <h2 className="font-serif text-2xl lg:text-3xl font-normal mb-3 text-text-primary group-hover:text-accent-electric transition-colors line-clamp-2">
+                    {article.titre}
+                  </h2>
+
+                  {/* Excerpt */}
+                  <p className="text-text-secondary text-lg lg:text-xl leading-relaxed line-clamp-3 flex-1">
+                    {article.chapeau}
+                  </p>
+
+                  {/* Read more */}
+                  <div className="mt-4 flex items-center gap-1 text-accent-electric text-base font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                    Lire l&apos;article
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </article>
+            </Link>
+          ))}
+        </div>
+      )}
 
       {/* CTA */}
       <div className="mt-16 text-center">
         <div className="bg-gradient-to-r from-accent-electric/10 to-accent-purple/10 border border-glass-border rounded-2xl p-8 max-w-2xl mx-auto">
-          <h2 className="font-serif text-2xl mb-3">Suivez-nous sur Instagram</h2>
-          <p className="text-text-secondary mb-6">
-            Retrouvez toutes nos infographies en haute qualité et partagez-les avec votre communauté.
+          <h2 className="font-serif text-4xl lg:text-5xl mb-3">Restez informé</h2>
+          <p className="text-text-secondary text-lg mb-6">
+            Retrouvez nos analyses et infographies sur les finances publiques.
           </p>
-          <a
-            href="https://instagram.com/ouvalargent"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] text-white font-semibold rounded-full transition-transform hover:scale-105"
-          >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-            @ouvalargent
-          </a>
+          <div className="flex flex-wrap justify-center gap-3">
+            <a
+              href="https://instagram.com/ouvalargent"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] text-white font-semibold rounded-full transition-transform hover:scale-105 text-sm"
+            >
+              Instagram
+            </a>
+            <a
+              href="https://www.linkedin.com/company/ouvalargent"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0077B5] text-white font-semibold rounded-full transition-transform hover:scale-105 text-sm"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://www.facebook.com/profile.php?id=61573579498498"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1877F2] text-white font-semibold rounded-full transition-transform hover:scale-105 text-sm"
+            >
+              Facebook
+            </a>
+          </div>
         </div>
       </div>
     </main>

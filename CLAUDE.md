@@ -126,6 +126,7 @@ Les agents sont situés dans `.claude/agents/` :
 4. **search-specialist** — Recherche les données les plus récentes et sources officielles
 5. **trend-scout** — Identifie les sujets tendance éco/finance
 6. **news-monitor** — Gère le pipeline automatisé (RSS → carrousels → Telegram)
+7. **journalist** — Journaliste économique, produit 2-3 articles/jour (news + analyses)
 
 ### Protocole de vérification
 
@@ -154,6 +155,113 @@ Tous dans `Site/scripts/` :
 | `notion-create-sources-db.js` | Créer/gérer la base Notion des sources |
 | `notion-update-sources-urls.js` | Mettre à jour les URLs des sources dans Notion |
 | `weekly-content-machine.js` | **Machine hebdomadaire** : veille profonde → 21 infographies/semaine → Notion + Telegram |
+| `article-journalist.js` | **Pipeline journaliste** : RSS → articles (Sonnet) → fact-check → hero image → Telegram + Notion |
+
+---
+
+## Pipeline Journaliste (Articles News)
+
+Le projet dispose d'un **pipeline journaliste** qui produit 2-3 articles/jour à partir de l'actualité RSS.
+
+### Types d'articles
+
+| Type | Longueur | Source | Fréquence |
+|------|----------|--------|-----------|
+| **News** | 500-800 mots | Actualité RSS | 2-3/jour |
+| **Analyse** | 1000-2000 mots | Infographies existantes | 2/semaine |
+
+### Script principal
+
+```bash
+cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site"
+
+# Pipeline complet (2-3 articles news)
+node scripts/article-journalist.js
+
+# Test sans envoi
+node scripts/article-journalist.js --dry-run
+
+# Article analyse depuis infographie
+node scripts/article-journalist.js --analyse=65-travail-noir
+
+# Nombre d'articles
+node scripts/article-journalist.js --count=2
+
+# Publier les articles validés vers le calendrier Notion
+node scripts/article-journalist.js --publish
+
+# Suggérer des analyses pour infographies récentes
+node scripts/article-journalist.js --suggest-analyses
+
+# Réinitialiser le cache
+node scripts/article-journalist.js --reset
+```
+
+### Flow de validation
+
+```
+RSS → Dédup (cache 72h) → Haiku sélectionne 2-3 sujets
+  → Sonnet rédige chaque article → Fact-check Haiku
+  → Image hero (Puppeteer) → Notion "En validation" → Telegram
+  → Validation manuelle dans Notion → Statut "Validé"
+  → --publish → Calendrier Publications → n8n publie LinkedIn/Facebook
+```
+
+### Automatisation (cron)
+
+```bash
+# 8h30 et 18h30 (décalé de 30 min vs carrousels)
+30 8,18 * * * cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site" && node scripts/article-journalist.js >> /tmp/ovla-articles.log 2>&1
+
+# Publier les validés (30 min avant trigger n8n)
+30 8 * * * cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site" && node scripts/article-journalist.js --publish >> /tmp/ovla-articles.log 2>&1
+
+# Suggestions analyses (dimanche 20h)
+0 20 * * 0 cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site" && node scripts/article-journalist.js --suggest-analyses >> /tmp/ovla-articles.log 2>&1
+```
+
+### Modules
+
+```
+Site/scripts/journalist-modules/
+  shared-utils.js          ← Utilitaires partagés (Claude API, Telegram, cache)
+  article-writer.js        ← Rédaction via Claude Sonnet
+  fact-checker.js          ← Vérification automatisée (Haiku)
+  hero-generator.js        ← Images hero via Puppeteer (1200×630)
+  analysis-writer.js       ← Articles analyse depuis infographies
+  article-publisher.js     ← Pont Notion → Calendrier Publications → n8n
+  telegram-validator.js    ← Validation via réponses Telegram (V2)
+```
+
+### Base Notion "Articles News"
+
+À créer manuellement dans Notion, puis ajouter `ARTICLES_DB_ID` et `ARTICLES_DS_ID` dans `notion-config.json` et en variables d'env.
+
+| Propriété | Type |
+|-----------|------|
+| Titre | Title |
+| Slug | Rich text |
+| Type | Select (News, Analyse) |
+| Categorie | Select |
+| Date | Date |
+| Statut | Select (Brouillon, En validation, Validé, Publié, Rejeté) |
+| Contenu | Rich text |
+| Chapeau | Rich text |
+| Sources | Rich text |
+| Source URL | URL |
+| Image Hero | Files |
+| LinkedIn | Rich text |
+| Facebook | Rich text |
+| Tags | Multi-select |
+| Temps lecture | Number |
+| Fact-check | Checkbox |
+| Telegram Msg ID | Number |
+
+### Section News du site
+
+- **Liste** : `/news` — Filtres type/catégorie, cards avec hero image
+- **Article** : `/news/[slug]` — SEO dynamique, JSON-LD NewsArticle, partage social
+- **API** : `/api/articles` (GET, filtres) et `/api/articles/[slug]` (GET)
 
 ---
 
@@ -470,6 +578,7 @@ Production interne/
       2026-02-21/
       ...
     Contenu Hebdo/          ← Textes hebdomadaires (LinkedIn, Instagram, newsletter)
+    Articles/               ← Images hero des articles (1200×630 PNG)
   Rapports/                 ← PPTX finaux
 Templates/
   Réseaux sociaux/          ← Templates HTML (actus chaudes, multiformat, vidéo)
@@ -479,4 +588,6 @@ Site/scripts/               ← Tous les scripts Node.js
   telegram-config.json      ← Config sources RSS (secrets dans ~/.zshrc)
   notion-config.json        ← Config IDs Notion (secret dans ~/.zshrc)
   .veille-carousel-cache.json ← Cache déduplication (auto-géré)
+  .journalist-cache.json    ← Cache déduplication articles (72h, auto-géré)
+  journalist-modules/       ← Modules du pipeline journaliste
 ```
