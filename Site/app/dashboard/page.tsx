@@ -5,7 +5,7 @@ import { KpiCard } from '@/components/ui/KpiCard'
 import { ChartWrapper, LineChart, DoughnutChart, BarChart } from '@/components/charts'
 import { MINISTRIES, EU_COMPARISON_SPENDING, DEBT_HISTORY, EU_COMPARISON_DEBT } from '@/lib/constants/budget'
 
-type TabType = 'depenses' | 'dettes'
+type TabType = 'depenses' | 'dettes' | 'impots'
 
 // Animated counter hook
 function useAnimatedCounter(end: number, duration: number = 2000) {

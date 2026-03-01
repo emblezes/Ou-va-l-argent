@@ -63,8 +63,59 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': 'https://ouvalargent.com/#organization',
+        name: 'Où Va l\'Argent ?',
+        url: 'https://ouvalargent.com',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://ouvalargent.com/og-default.png',
+          width: 1200,
+          height: 630,
+        },
+        sameAs: [
+          'https://www.instagram.com/ouvalargent',
+          'https://www.tiktok.com/@ouvalargentfr',
+          'https://www.linkedin.com/company/ouvalargent',
+        ],
+        description: 'Média indépendant de décryptage des finances publiques françaises. Données sourcées, infographies et analyses.',
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'https://ouvalargent.com/#website',
+        url: 'https://ouvalargent.com',
+        name: 'Où Va l\'Argent ?',
+        publisher: { '@id': 'https://ouvalargent.com/#organization' },
+        inLanguage: 'fr-FR',
+      },
+      {
+        '@type': 'Person',
+        '@id': 'https://ouvalargent.com/#person',
+        name: 'Emmanuel Blézès',
+        jobTitle: 'Fondateur & Analyste',
+        description: 'Expert en finances publiques françaises. Fondateur de Où Va l\'Argent, média de décryptage économique.',
+        url: 'https://ouvalargent.com',
+        sameAs: [
+          'https://www.linkedin.com/in/emmanuelblezes',
+          'https://www.instagram.com/ouvalargent',
+          'https://www.tiktok.com/@ouvalargentfr',
+        ],
+      },
+    ],
+  }
+
   return (
     <html lang="fr">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${syne.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable} font-sans antialiased`}>
         {/* Background Elements */}
         <div className="bg-atmosphere" />

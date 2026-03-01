@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import InvestirContent from './InvestirContent'
 
 export const metadata: Metadata = {
@@ -41,5 +42,10 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <InvestirContent />
+  return (
+    <>
+      <Breadcrumbs items={[{ label: 'Investir' }]} />
+      <InvestirContent />
+    </>
+  )
 }
