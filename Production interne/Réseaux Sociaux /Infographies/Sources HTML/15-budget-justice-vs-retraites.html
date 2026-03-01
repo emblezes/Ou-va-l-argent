@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Version C — Orange / Vert</title>
+    <title>Version A — Cyan / Rouge</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #060c08;
-            --bg-mid: #0a1e14;
+            --bg-deep: #06080c;
+            --bg-mid: #0a1628;
             --text-primary: #f0f4f8;
-            --text-secondary: #88a898;
-            --text-muted: #4a6a5a;
-            --accent-1: #ff9f43;
-            --accent-2: #00ff88;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-1: #ff4757;
+            --accent-2: #00d4ff;
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
@@ -46,8 +46,8 @@
             position: absolute;
             inset: 0;
             background-image:
-                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
         }
 
@@ -55,7 +55,7 @@
             position: absolute;
             width: 700px;
             height: 700px;
-            background: radial-gradient(circle, rgba(255, 159, 67, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.08) 0%, transparent 70%);
             bottom: -200px;
             left: -100px;
             pointer-events: none;
@@ -65,7 +65,7 @@
             position: absolute;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(0, 255, 136, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
             top: -100px;
             right: -100px;
             pointer-events: none;
@@ -104,7 +104,7 @@
 
         .chart-title {
             font-family: 'Instrument Serif', serif;
-            font-size: 3.8rem;
+            font-size: 4.8rem;
             text-align: center;
             color: var(--text-primary);
             line-height: 1.1;
@@ -154,16 +154,16 @@
             line-height: 1.3;
         }
 
-        .bar-social .bar-amount { color: var(--accent-1); }
-        .bar-social .bar-body {
-            background: linear-gradient(180deg, var(--accent-1), rgba(255, 159, 67, 0.6));
-            box-shadow: 0 -4px 30px rgba(255, 159, 67, 0.2);
+        .bar-retraites .bar-amount { color: var(--accent-1); }
+        .bar-retraites .bar-body {
+            background: linear-gradient(180deg, var(--accent-1), rgba(255, 71, 87, 0.6));
+            box-shadow: 0 -4px 30px rgba(255, 71, 87, 0.2);
         }
 
-        .bar-regalien .bar-amount { color: var(--accent-2); }
-        .bar-regalien .bar-body {
-            background: linear-gradient(180deg, var(--accent-2), rgba(0, 255, 136, 0.5));
-            box-shadow: 0 -4px 30px rgba(0, 255, 136, 0.2);
+        .bar-justice .bar-amount { color: var(--accent-2); }
+        .bar-justice .bar-body {
+            background: linear-gradient(180deg, var(--accent-2), rgba(0, 212, 255, 0.5));
+            box-shadow: 0 -4px 30px rgba(0, 212, 255, 0.2);
         }
 
         .footer {
@@ -195,25 +195,25 @@
             </div>
 
             <div class="title-area">
-                <h2 class="chart-title">L'État français dépense<br><span class="accent-1">neuf fois plus</span> pour le social<br>que pour le <span class="accent-2">régalien</span></h2>
+                <h2 class="chart-title">Budget de la justice =<br><span class="accent-2">9 jours</span> de dépenses<br>de <span class="accent-1">retraite</span></h2>
             </div>
 
             <div class="bars-area">
-                <div class="bar-col bar-social">
-                    <div class="bar-amount">954 Md€</div>
+                <div class="bar-col bar-retraites">
+                    <div class="bar-amount">400 Md€</div>
                     <div class="bar-body" style="height: 75%;"></div>
-                    <div class="bar-label">Protection sociale<br>+ Santé</div>
+                    <div class="bar-label">Retraites<br>(par an)</div>
                 </div>
 
-                <div class="bar-col bar-regalien">
-                    <div class="bar-amount">106 Md€</div>
-                    <div class="bar-body" style="height: 8.3%;"></div>
-                    <div class="bar-label">Défense, police,<br>justice</div>
+                <div class="bar-col bar-justice">
+                    <div class="bar-amount">10,1 Md€</div>
+                    <div class="bar-body" style="height: 1.9%;"></div>
+                    <div class="bar-label">Justice<br>(par an)</div>
                 </div>
             </div>
 
             <div class="footer">
-                <div class="source">Source : <span>INSEE COFOG · 2024</span></div>
+                <div class="source">Source : <span>DREES, Min. Justice · 2024</span></div>
                 <div class="website">ouvalargent.com</div>
             </div>
         </div>

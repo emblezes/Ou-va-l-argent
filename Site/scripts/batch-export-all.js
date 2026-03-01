@@ -1794,7 +1794,7 @@ const INFOGRAPHICS = [
   ['12-depenses-sociales-vs-regalien.html', 0, '12-depenses-sociales-vs-regalien'],
   ['13-1000-euros-depenses-publiques.html', 0, '13-1000-euros-depenses-publiques'],
   ['14-evolution-depense-sociale.html', 0, '14-evolution-depense-sociale'],
-  ['15-evolution-depenses-justice.html', 0, '15-evolution-depenses-justice'],
+  ['15-budget-justice-vs-retraites.html', 0, '15-budget-justice-vs-retraites'],
   ['16-depenses-pib-ocde.html', 0, '16-depenses-pib-ocde'],
   ['17-france-vs-chine-urss.html', 0, '17-france-vs-chine-urss'],
   ['18-depense-publique-vs-croissance.html', 0, '18-depense-publique-vs-croissance'],
@@ -1812,9 +1812,10 @@ const INFOGRAPHICS = [
   ['61-mix-energetique-france-2030.html', 0, '61-mix-energetique-france-2030'],
   ['65-salaire-moyen-par-pays.html', 0, '65-salaire-moyen-par-pays'],
   ['73-mercure-guyane.html', 0, '73-mercure-guyane'],
-  ['75a-france-pologne-comparaison.html', 0, '75a-france-pologne-comparaison'],
   ['80-prix-cigarette-france.html', 0, '80-prix-cigarette-france'],
   ['81-indice-big-mac.html', 0, '81-indice-big-mac'],
+  ['82-evolution-prix-m2-paris.html', 0, '82-evolution-prix-m2-paris'],
+  ['83-prix-65m2-paris.html', 0, '83-prix-65m2-paris'],
   ['90-salaires-suisse.html', 0, '90-salaires-suisse'],
   ['91-top5-pays-peuples.html', 0, '91-top5-pays-peuples'],
   ['92-hotels-plus-chers-paris.html', 0, '92-hotels-plus-chers-paris'],
@@ -1885,6 +1886,8 @@ const INFOGRAPHICS = [
   ['164c-france-vs-dubai-impot-societes.html', 0, '164c-france-vs-dubai-impot-societes'],
   ['164d-france-vs-dubai-impot-capital.html', 0, '164d-france-vs-dubai-impot-capital'],
   ['164e-france-vs-dubai-tva.html', 0, '164e-france-vs-dubai-tva'],
+  ['165-nucleaire-chine-vs-allemagne.html', 0, '165-nucleaire-chine-vs-allemagne'],
+  ['166-taux-pauvrete-monde.html', 0, '166-taux-pauvrete-monde'],
 ];
 
 async function exportFormat(browser, htmlPath, items, { css, jsTransform, width, height, outputDir, suffix, label }) {

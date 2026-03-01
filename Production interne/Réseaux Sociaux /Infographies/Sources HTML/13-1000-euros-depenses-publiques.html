@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sur 1 000 € de dépenses publiques</title>
+    <title>Répartition de 1 000 € de dépenses publiques</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -57,21 +57,11 @@
 
         .bg-glow-1 {
             position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
-            bottom: -200px;
-            right: -100px;
-            pointer-events: none;
-        }
-
-        .bg-glow-2 {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
-            top: -150px;
-            left: -100px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.06) 0%, transparent 70%);
+            bottom: -250px;
+            right: -150px;
             pointer-events: none;
         }
 
@@ -86,9 +76,8 @@
 
         .header {
             display: flex;
-            justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 10px;
+            margin-bottom: 0;
         }
 
         .logo {
@@ -100,107 +89,93 @@
         .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
         .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
 
-        .tag {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--accent-gold);
-            background: rgba(255, 215, 0, 0.12);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            padding: 6px 14px;
-            border-radius: 6px;
+        .title-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0 18px;
         }
 
         .chart-title {
             font-family: 'Instrument Serif', serif;
-            font-size: 4rem;
+            font-size: 3.8rem;
             text-align: center;
-            margin-bottom: 0;
             color: var(--text-primary);
-            line-height: 1.05;
+            line-height: 1.1;
         }
 
         .chart-title .accent { color: var(--accent-gold); font-style: italic; }
 
-        .chart-subtitle {
-            text-align: center;
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-bottom: 18px;
-        }
-
-        /* ===== HORIZONTAL BARS ===== */
-        .bars-list {
+        /* ===== TREEMAP ===== */
+        .treemap {
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 6px;
-            justify-content: center;
+            gap: 4px;
+            padding: 0 5px;
         }
 
-        .bar-row {
+        .treemap-row {
             display: flex;
-            align-items: center;
-            gap: 12px;
+            gap: 4px;
         }
 
-        .bar-emoji {
-            font-size: 1.6rem;
-            width: 35px;
-            text-align: center;
-            flex-shrink: 0;
-        }
-
-        .bar-label {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            width: 170px;
-            flex-shrink: 0;
-        }
-
-        .bar-track {
-            flex: 1;
-            height: 32px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
+        .treemap-block {
+            border-radius: 10px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             position: relative;
             overflow: hidden;
         }
 
-        .bar-fill {
-            height: 100%;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 10px;
-        }
-
-        .bar-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.05rem;
+        .block-label {
+            font-family: 'Syne', sans-serif;
             font-weight: 700;
             color: #fff;
-            white-space: nowrap;
+            line-height: 1.2;
         }
 
-        .bar-fill.c1 { background: linear-gradient(90deg, rgba(255, 71, 87, 0.7), var(--accent-red)); }
-        .bar-fill.c2 { background: linear-gradient(90deg, rgba(0, 212, 255, 0.7), var(--accent-electric)); }
-        .bar-fill.c3 { background: linear-gradient(90deg, rgba(168, 85, 247, 0.7), var(--accent-violet)); }
-        .bar-fill.c4 { background: linear-gradient(90deg, rgba(255, 159, 67, 0.7), var(--accent-orange)); }
-        .bar-fill.c5 { background: linear-gradient(90deg, rgba(0, 255, 136, 0.6), var(--accent-green)); }
-        .bar-fill.c6 { background: linear-gradient(90deg, rgba(255, 215, 0, 0.6), var(--accent-gold)); }
+        .block-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Large block */
+        .block-lg .block-label { font-size: 2.2rem; }
+        .block-lg .block-amount { font-size: 3rem; margin-top: 8px; }
+
+        /* Medium block */
+        .block-md .block-label { font-size: 1.5rem; }
+        .block-md .block-amount { font-size: 2rem; margin-top: 5px; }
+
+        /* Small block */
+        .block-sm .block-label { font-size: 1.1rem; }
+        .block-sm .block-amount { font-size: 1.4rem; margin-top: 3px; }
+
+        /* Extra small block */
+        .block-xs .block-label { font-size: 0.95rem; }
+        .block-xs .block-amount { font-size: 1.15rem; margin-top: 2px; }
+
+        /* Colors */
+        .c-social { background: linear-gradient(135deg, rgba(255, 71, 87, 0.85), rgba(255, 71, 87, 0.65)); }
+        .c-admin { background: linear-gradient(135deg, rgba(168, 85, 247, 0.85), rgba(168, 85, 247, 0.65)); }
+        .c-eco { background: linear-gradient(135deg, rgba(255, 159, 67, 0.85), rgba(255, 159, 67, 0.65)); }
+        .c-educ { background: linear-gradient(135deg, rgba(0, 212, 255, 0.85), rgba(0, 212, 255, 0.65)); }
+        .c-defense { background: linear-gradient(135deg, rgba(100, 130, 160, 0.85), rgba(80, 110, 140, 0.65)); }
+        .c-police { background: linear-gradient(135deg, rgba(0, 255, 136, 0.7), rgba(0, 200, 100, 0.5)); }
+        .c-culture { background: linear-gradient(135deg, rgba(255, 215, 0, 0.8), rgba(255, 180, 0, 0.6)); }
+        .c-culture .block-label, .c-culture .block-amount { color: rgba(0, 0, 0, 0.75); }
+        .c-logement { background: linear-gradient(135deg, rgba(180, 130, 255, 0.75), rgba(150, 100, 220, 0.55)); }
+        .c-enviro { background: linear-gradient(135deg, rgba(0, 180, 120, 0.75), rgba(0, 140, 90, 0.55)); }
 
         .footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding-top: 12px;
-            margin-top: auto;
             border-top: 1px solid var(--glass-border);
         }
 
@@ -214,7 +189,6 @@
         <div class="bg-base"></div>
         <div class="bg-grid"></div>
         <div class="bg-glow-1"></div>
-        <div class="bg-glow-2"></div>
 
         <div class="content">
             <div class="header">
@@ -222,62 +196,60 @@
                     <span class="logo-icon">€</span>
                     <span class="logo-text">Où Va l'Argent ?</span>
                 </div>
-                <div class="tag">Finances publiques</div>
             </div>
 
-            <h2 class="chart-title">Sur <span class="accent">1 000 €</span> de dépenses<br>publiques, où vont-ils ?</h2>
-            <div class="chart-subtitle">Répartition par fonction COFOG — France 2024</div>
+            <div class="title-area">
+                <h2 class="chart-title">Répartition de <span class="accent">1 000 €</span><br>de dépenses publiques</h2>
+            </div>
 
-            <div class="bars-list">
-                <div class="bar-row">
-                    <div class="bar-emoji">👴</div>
-                    <div class="bar-label">Protection sociale</div>
-                    <div class="bar-track"><div class="bar-fill c1" style="width: 82.8%;"><span class="bar-value">414 €</span></div></div>
+            <!-- Total = 1000€. Proportions: Social+Santé 570, Admin 108, Éco 99, Éduc 89, Défense 32, Police 31, Culture 26, Logement 25, Enviro 18 -->
+            <!-- Row 1: Social+Santé (57%) -->
+            <div class="treemap">
+                <div class="treemap-row" style="flex: 570;">
+                    <div class="treemap-block block-lg c-social" style="flex: 1;">
+                        <div class="block-label">Protection sociale + Santé</div>
+                        <div class="block-amount">570 €</div>
+                    </div>
                 </div>
-                <div class="bar-row">
-                    <div class="bar-emoji">🏥</div>
-                    <div class="bar-label">Santé</div>
-                    <div class="bar-track"><div class="bar-fill c2" style="width: 31.2%;"><span class="bar-value">156 €</span></div></div>
+
+                <!-- Row 2: Admin (108) + Éco (99) + Éduc (89) = 296 -->
+                <div class="treemap-row" style="flex: 296;">
+                    <div class="treemap-block block-md c-admin" style="flex: 108;">
+                        <div class="block-label">Services généraux</div>
+                        <div class="block-amount">108 €</div>
+                    </div>
+                    <div class="treemap-block block-md c-eco" style="flex: 99;">
+                        <div class="block-label">Affaires éco.</div>
+                        <div class="block-amount">99 €</div>
+                    </div>
+                    <div class="treemap-block block-md c-educ" style="flex: 89;">
+                        <div class="block-label">Enseignement</div>
+                        <div class="block-amount">89 €</div>
+                    </div>
                 </div>
-                <div class="bar-row">
-                    <div class="bar-emoji">🏛️</div>
-                    <div class="bar-label">Services généraux</div>
-                    <div class="bar-track"><div class="bar-fill c3" style="width: 21.6%;"><span class="bar-value">108 €</span></div></div>
-                </div>
-                <div class="bar-row">
-                    <div class="bar-emoji">🏭</div>
-                    <div class="bar-label">Affaires éco.</div>
-                    <div class="bar-track"><div class="bar-fill c4" style="width: 19.8%;"><span class="bar-value">99 €</span></div></div>
-                </div>
-                <div class="bar-row">
-                    <div class="bar-emoji">🎓</div>
-                    <div class="bar-label">Enseignement</div>
-                    <div class="bar-track"><div class="bar-fill c5" style="width: 17.8%;"><span class="bar-value">89 €</span></div></div>
-                </div>
-                <div class="bar-row">
-                    <div class="bar-emoji">🪖</div>
-                    <div class="bar-label">Défense</div>
-                    <div class="bar-track"><div class="bar-fill c6" style="width: 6.4%;"><span class="bar-value">32 €</span></div></div>
-                </div>
-                <div class="bar-row">
-                    <div class="bar-emoji">👮</div>
-                    <div class="bar-label">Police & Justice</div>
-                    <div class="bar-track"><div class="bar-fill c6" style="width: 6.2%;"><span class="bar-value">31 €</span></div></div>
-                </div>
-                <div class="bar-row">
-                    <div class="bar-emoji">🎭</div>
-                    <div class="bar-label">Culture & Loisirs</div>
-                    <div class="bar-track"><div class="bar-fill c6" style="width: 5.2%;"><span class="bar-value">26 €</span></div></div>
-                </div>
-                <div class="bar-row">
-                    <div class="bar-emoji">🏠</div>
-                    <div class="bar-label">Logement</div>
-                    <div class="bar-track"><div class="bar-fill c6" style="width: 5.0%;"><span class="bar-value">25 €</span></div></div>
-                </div>
-                <div class="bar-row">
-                    <div class="bar-emoji">🌱</div>
-                    <div class="bar-label">Environnement</div>
-                    <div class="bar-track"><div class="bar-fill c6" style="width: 3.6%;"><span class="bar-value">18 €</span></div></div>
+
+                <!-- Row 3: Défense (32) + Police (31) + Culture (26) + Logement (25) + Enviro (18) = 132 -->
+                <div class="treemap-row" style="flex: 132;">
+                    <div class="treemap-block block-sm c-defense" style="flex: 32;">
+                        <div class="block-label">Défense</div>
+                        <div class="block-amount">32 €</div>
+                    </div>
+                    <div class="treemap-block block-sm c-police" style="flex: 31;">
+                        <div class="block-label">Police &amp; Justice</div>
+                        <div class="block-amount">31 €</div>
+                    </div>
+                    <div class="treemap-block block-xs c-culture" style="flex: 26;">
+                        <div class="block-label">Culture</div>
+                        <div class="block-amount">26 €</div>
+                    </div>
+                    <div class="treemap-block block-xs c-logement" style="flex: 25;">
+                        <div class="block-label">Logement</div>
+                        <div class="block-amount">25 €</div>
+                    </div>
+                    <div class="treemap-block block-xs c-enviro" style="flex: 18;">
+                        <div class="block-label">Enviro.</div>
+                        <div class="block-amount">18 €</div>
+                    </div>
                 </div>
             </div>
 

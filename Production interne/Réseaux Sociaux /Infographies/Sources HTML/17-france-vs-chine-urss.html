@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>France vs Chine et URSS : qui dépense le plus ?</title>
+    <title>L'État français dépense plus que l'URSS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #06080c;
-            --bg-mid: #0a1628;
+            --bg-deep: #0c1018;
+            --bg-mid: #142238;
             --text-primary: #f0f4f8;
             --text-secondary: #8899a8;
             --text-muted: #4a5a6a;
-            --accent-electric: #00d4ff;
-            --accent-gold: #ffd700;
-            --accent-red: #ff4757;
-            --accent-green: #00ff88;
-            --accent-orange: #ff9f43;
-            --accent-violet: #a855f7;
+            --accent-france: #002395;
+            --accent-urss: #CC0000;
+            --accent-russie: #0039A6;
+            --accent-chine: #DE2910;
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
@@ -59,7 +57,7 @@
             position: absolute;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(255, 71, 87, 0.12) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.1) 0%, transparent 70%);
             bottom: -200px;
             left: 50%;
             transform: translateX(-50%);
@@ -77,9 +75,8 @@
 
         .header {
             display: flex;
-            justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 12px;
+            margin-bottom: 0;
         }
 
         .logo {
@@ -88,135 +85,182 @@
             gap: 12px;
         }
 
-        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #ff4757; line-height: 1; }
         .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
 
-        .tag {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--accent-red);
-            background: rgba(255, 71, 87, 0.12);
-            border: 1px solid rgba(255, 71, 87, 0.3);
-            padding: 6px 14px;
-            border-radius: 6px;
+        .title-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 0 10px;
         }
 
         .chart-title {
             font-family: 'Instrument Serif', serif;
-            font-size: 3.8rem;
+            font-size: 4.5rem;
             text-align: center;
-            margin-bottom: 0;
             color: var(--text-primary);
-            line-height: 1.05;
+            line-height: 1.1;
         }
 
-        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .chart-title .accent { color: #ff4757; font-style: italic; }
 
         .chart-subtitle {
             text-align: center;
             font-size: 1rem;
             color: var(--text-secondary);
-            margin-bottom: 25px;
+            margin-bottom: 5px;
         }
 
-        /* ===== VERTICAL BARS (4 bars side by side) ===== */
-        .bars-wrapper {
-            flex: 1;
+        /* ===== FLAGS (CSS-only) ===== */
+        .flag {
+            width: 90px;
+            height: 60px;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+        }
+
+        /* France tricolore */
+        .flag-france {
             display: flex;
-            gap: 25px;
-            align-items: flex-end;
-            padding: 0 30px;
+        }
+        .flag-france .stripe { flex: 1; }
+        .flag-france .stripe:nth-child(1) { background: #002395; }
+        .flag-france .stripe:nth-child(2) { background: #ffffff; }
+        .flag-france .stripe:nth-child(3) { background: #ED2939; }
+
+        /* URSS — rouge + étoile et faucille/marteau */
+        .flag-urss {
+            background: #CC0000;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flag-urss::after {
+            content: "☭";
+            font-size: 2.8rem;
+            color: #FFD700;
+            line-height: 1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Russie — blanc/bleu/rouge horizontal */
+        .flag-russie {
+            display: flex;
+            flex-direction: column;
+        }
+        .flag-russie .stripe { flex: 1; }
+        .flag-russie .stripe:nth-child(1) { background: #ffffff; }
+        .flag-russie .stripe:nth-child(2) { background: #0039A6; }
+        .flag-russie .stripe:nth-child(3) { background: #D52B1E; }
+
+        /* Chine — rouge + étoiles jaunes */
+        .flag-chine {
+            background: #DE2910;
             position: relative;
         }
+        .flag-chine .star-big {
+            position: absolute;
+            top: 10px;
+            left: 12px;
+            font-size: 1.8rem;
+            color: #FFDE00;
+            line-height: 1;
+        }
+        .flag-chine .stars-small {
+            position: absolute;
+            top: 6px;
+            left: 38px;
+            font-size: 0.7rem;
+            color: #FFDE00;
+            line-height: 1.4;
+        }
 
-        .bar-item {
+        /* ===== VERTICAL BARS ===== */
+        .bars-area {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 30px;
+            padding: 0 40px 0;
+        }
+
+        .bar-col {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
+            height: 100%;
+            justify-content: flex-end;
         }
 
-        .bar-top {
+        .bar-amount {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 2.4rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .bar-body {
-            width: 100%;
+            width: 70%;
             border-radius: 12px 12px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bar-info {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 20px 10px;
-            position: relative;
-        }
-
-        .bar-flag {
-            font-size: 3.5rem;
-            margin-bottom: 8px;
+            gap: 12px;
+            margin-top: 18px;
         }
 
         .bar-country {
             font-family: 'Syne', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #fff;
+            color: var(--text-primary);
             text-align: center;
         }
 
         .bar-year {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 4px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
 
         /* France */
-        .bar-france .bar-top { color: var(--accent-red); }
-        .bar-france .bar-body {
-            background: linear-gradient(180deg, var(--accent-red), rgba(255, 71, 87, 0.6));
+        .bar-col-france .bar-amount { color: #ff4757; }
+        .bar-col-france .bar-body {
+            background: linear-gradient(180deg, #002395, rgba(0, 35, 149, 0.6));
             box-shadow: 0 -4px 30px rgba(255, 71, 87, 0.3);
         }
 
         /* URSS */
-        .bar-urss .bar-top { color: var(--text-secondary); }
-        .bar-urss .bar-body {
-            background: linear-gradient(180deg, rgba(150, 150, 150, 0.8), rgba(100, 100, 100, 0.5));
+        .bar-col-urss .bar-amount { color: var(--text-secondary); }
+        .bar-col-urss .bar-body {
+            background: linear-gradient(180deg, rgba(204, 0, 0, 0.8), rgba(150, 0, 0, 0.5));
         }
 
-        /* Russia */
-        .bar-russie .bar-top { color: var(--accent-green); }
-        .bar-russie .bar-body {
-            background: linear-gradient(180deg, rgba(0, 180, 80, 0.8), rgba(0, 120, 60, 0.5));
+        /* Russie */
+        .bar-col-russie .bar-amount { color: #0039A6; }
+        .bar-col-russie .bar-body {
+            background: linear-gradient(180deg, rgba(0, 57, 166, 0.8), rgba(0, 40, 120, 0.5));
         }
 
-        /* China */
-        .bar-chine .bar-top { color: var(--accent-orange); }
-        .bar-chine .bar-body {
-            background: linear-gradient(180deg, rgba(255, 159, 67, 0.8), rgba(255, 120, 30, 0.5));
-        }
-
-        .punch-line {
-            background: rgba(255, 71, 87, 0.08);
-            border: 1px solid rgba(255, 71, 87, 0.25);
-            border-radius: 12px;
-            padding: 15px 25px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .punch-text {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.5rem;
-            color: var(--accent-red);
-            font-style: italic;
-            line-height: 1.4;
+        /* Chine */
+        .bar-col-chine .bar-amount { color: #DE2910; }
+        .bar-col-chine .bar-body {
+            background: linear-gradient(180deg, rgba(222, 41, 16, 0.8), rgba(170, 30, 10, 0.5));
         }
 
         .footer {
@@ -224,13 +268,12 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 12px;
-            margin-top: auto;
             border-top: 1px solid var(--glass-border);
         }
 
         .source { font-size: 1rem; color: var(--text-muted); }
         .source span { color: var(--text-secondary); }
-        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-electric); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #ff4757; }
     </style>
 </head>
 <body>
@@ -245,55 +288,74 @@
                     <span class="logo-icon">€</span>
                     <span class="logo-text">Où Va l'Argent ?</span>
                 </div>
-                <div class="tag">International</div>
             </div>
 
-            <h2 class="chart-title">La France dépense <span class="accent">plus</span><br>que la Chine et la Russie</h2>
+            <div class="title-area">
+                <h2 class="chart-title">L'État français dépense<br><span class="accent">plus</span> que l'URSS</h2>
+            </div>
+
             <div class="chart-subtitle">Dépenses publiques en % du PIB — Comparaison historique et actuelle</div>
 
-            <!-- Max height reference: 57% → 100% of available space -->
-            <!-- Heights: France 57→100%, URSS 52→91.2%, Russia 38→66.7%, China 33→57.9% -->
-            <div class="bars-wrapper">
-                <div class="bar-item bar-france">
-                    <div class="bar-top">57 %</div>
-                    <div class="bar-body" style="height: 380px;">
-                        <div class="bar-flag">🇫🇷</div>
+            <!-- Heights reduced: France 65%, URSS 59%, Russia 43%, China 38% -->
+            <div class="bars-area">
+                <div class="bar-col bar-col-france">
+                    <div class="bar-amount">57 %</div>
+                    <div class="bar-body" style="height: 65%;">
+                    </div>
+                    <div class="bar-info">
+                        <div class="flag flag-france">
+                            <div class="stripe"></div>
+                            <div class="stripe"></div>
+                            <div class="stripe"></div>
+                        </div>
                         <div class="bar-country">France</div>
                         <div class="bar-year">2023</div>
                     </div>
                 </div>
-                <div class="bar-item bar-urss">
-                    <div class="bar-top">~52 %</div>
-                    <div class="bar-body" style="height: 347px;">
-                        <div class="bar-flag">☭</div>
+
+                <div class="bar-col bar-col-urss">
+                    <div class="bar-amount">~52 %</div>
+                    <div class="bar-body" style="height: 59%;">
+                    </div>
+                    <div class="bar-info">
+                        <div class="flag flag-urss"></div>
                         <div class="bar-country">URSS</div>
                         <div class="bar-year">~1985 (est.)</div>
                     </div>
                 </div>
-                <div class="bar-item bar-russie">
-                    <div class="bar-top">38 %</div>
-                    <div class="bar-body" style="height: 253px;">
-                        <div class="bar-flag">🇷🇺</div>
+
+                <div class="bar-col bar-col-russie">
+                    <div class="bar-amount">37 %</div>
+                    <div class="bar-body" style="height: 42%;">
+                    </div>
+                    <div class="bar-info">
+                        <div class="flag flag-russie">
+                            <div class="stripe"></div>
+                            <div class="stripe"></div>
+                            <div class="stripe"></div>
+                        </div>
                         <div class="bar-country">Russie</div>
                         <div class="bar-year">2024</div>
                     </div>
                 </div>
-                <div class="bar-item bar-chine">
-                    <div class="bar-top">33 %</div>
-                    <div class="bar-body" style="height: 220px;">
-                        <div class="bar-flag">🇨🇳</div>
+
+                <div class="bar-col bar-col-chine">
+                    <div class="bar-amount">33 %</div>
+                    <div class="bar-body" style="height: 38%;">
+                    </div>
+                    <div class="bar-info">
+                        <div class="flag flag-chine">
+                            <div class="star-big">★</div>
+                            <div class="stars-small">★<br>★<br>★<br>★</div>
+                        </div>
                         <div class="bar-country">Chine</div>
                         <div class="bar-year">2023</div>
                     </div>
                 </div>
             </div>
 
-            <div class="punch-line">
-                <div class="punch-text">La France consacre une part plus grande de son PIB à l'État<br>que la Russie en guerre et la Chine communiste réunies</div>
-            </div>
-
             <div class="footer">
-                <div class="source">Source : <span>Eurostat, FMI, Banque Mondiale · 2023-2024</span></div>
+                <div class="source">Source : <span>Eurostat, FMI · 2023-2024</span></div>
                 <div class="website">ouvalargent.com</div>
             </div>
         </div>

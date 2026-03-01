@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Version C — Orange / Vert</title>
+    <title>Évolution du prix au m² à Paris</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #060c08;
-            --bg-mid: #0a1e14;
+            --bg-deep: #080c0a;
+            --bg-mid: #0e1e18;
             --text-primary: #f0f4f8;
             --text-secondary: #88a898;
             --text-muted: #4a6a5a;
-            --accent-1: #ff9f43;
-            --accent-2: #00ff88;
+            --accent: #00d4ff;
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
@@ -46,28 +45,19 @@
             position: absolute;
             inset: 0;
             background-image:
-                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
         }
 
         .bg-glow-1 {
             position: absolute;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(255, 159, 67, 0.08) 0%, transparent 70%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
             bottom: -200px;
-            left: -100px;
-            pointer-events: none;
-        }
-
-        .bg-glow-2 {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0, 255, 136, 0.05) 0%, transparent 70%);
-            top: -100px;
-            right: -100px;
+            left: 50%;
+            transform: translateX(-50%);
             pointer-events: none;
         }
 
@@ -92,26 +82,32 @@
             gap: 12px;
         }
 
-        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: var(--accent-2); line-height: 1; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
         .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
 
         .title-area {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 30px 0 20px;
+            padding: 25px 0 10px;
         }
 
         .chart-title {
             font-family: 'Instrument Serif', serif;
-            font-size: 3.8rem;
+            font-size: 4.5rem;
             text-align: center;
             color: var(--text-primary);
             line-height: 1.1;
         }
 
-        .chart-title .accent-1 { color: var(--accent-1); font-style: italic; }
-        .chart-title .accent-2 { color: var(--accent-2); font-style: italic; }
+        .chart-title .accent { color: #00d4ff; font-style: italic; }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
 
         /* ===== VERTICAL BARS ===== */
         .bars-area {
@@ -120,7 +116,7 @@
             justify-content: center;
             align-items: flex-end;
             gap: 60px;
-            padding: 0 100px 0;
+            padding: 0 80px 0;
         }
 
         .bar-col {
@@ -134,7 +130,7 @@
 
         .bar-amount {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 2.6rem;
+            font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 12px;
         }
@@ -146,24 +142,39 @@
 
         .bar-label {
             font-family: 'Syne', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 600;
+            font-size: 2rem;
+            font-weight: 700;
             color: var(--text-primary);
             text-align: center;
             margin-top: 18px;
-            line-height: 1.3;
         }
 
-        .bar-social .bar-amount { color: var(--accent-1); }
-        .bar-social .bar-body {
-            background: linear-gradient(180deg, var(--accent-1), rgba(255, 159, 67, 0.6));
-            box-shadow: 0 -4px 30px rgba(255, 159, 67, 0.2);
+        /* Year 2000 — muted teal */
+        .bar-2000 .bar-amount { color: var(--text-secondary); }
+        .bar-2000 .bar-body {
+            background: linear-gradient(180deg, rgba(136, 168, 152, 0.7), rgba(100, 140, 120, 0.4));
         }
 
-        .bar-regalien .bar-amount { color: var(--accent-2); }
-        .bar-regalien .bar-body {
-            background: linear-gradient(180deg, var(--accent-2), rgba(0, 255, 136, 0.5));
-            box-shadow: 0 -4px 30px rgba(0, 255, 136, 0.2);
+        /* Year 2012 — medium cyan */
+        .bar-2012 .bar-amount { color: #4dd0e1; }
+        .bar-2012 .bar-body {
+            background: linear-gradient(180deg, rgba(77, 208, 225, 0.8), rgba(50, 170, 190, 0.5));
+            box-shadow: 0 -4px 25px rgba(77, 208, 225, 0.2);
+        }
+
+        /* Year 2025 — bright cyan accent */
+        .bar-2025 .bar-amount { color: #00d4ff; }
+        .bar-2025 .bar-body {
+            background: linear-gradient(180deg, rgba(0, 212, 255, 0.9), rgba(0, 170, 210, 0.6));
+            box-shadow: 0 -4px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .multiplier {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 10px;
         }
 
         .footer {
@@ -176,7 +187,7 @@
 
         .source { font-size: 1rem; color: var(--text-muted); }
         .source span { color: var(--text-secondary); }
-        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-2); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00d4ff; }
     </style>
 </head>
 <body>
@@ -184,7 +195,6 @@
         <div class="bg-base"></div>
         <div class="bg-grid"></div>
         <div class="bg-glow-1"></div>
-        <div class="bg-glow-2"></div>
 
         <div class="content">
             <div class="header">
@@ -195,25 +205,34 @@
             </div>
 
             <div class="title-area">
-                <h2 class="chart-title">L'État français dépense<br><span class="accent-1">neuf fois plus</span> pour le social<br>que pour le <span class="accent-2">régalien</span></h2>
+                <h2 class="chart-title">Évolution du prix au m²<br><span class="accent">à Paris</span></h2>
             </div>
 
+            <div class="chart-subtitle">Prix moyen au m² — Appartements anciens</div>
+
+            <!-- Heights: 3000/9400 = 32%, 8460/9400 = 90%, 9400/9400 = 100% → scaled to max 70% -->
             <div class="bars-area">
-                <div class="bar-col bar-social">
-                    <div class="bar-amount">954 Md€</div>
-                    <div class="bar-body" style="height: 75%;"></div>
-                    <div class="bar-label">Protection sociale<br>+ Santé</div>
+                <div class="bar-col bar-2000">
+                    <div class="bar-amount">3 000 €</div>
+                    <div class="bar-body" style="height: 22%;"></div>
+                    <div class="bar-label">2000</div>
                 </div>
 
-                <div class="bar-col bar-regalien">
-                    <div class="bar-amount">106 Md€</div>
-                    <div class="bar-body" style="height: 8.3%;"></div>
-                    <div class="bar-label">Défense, police,<br>justice</div>
+                <div class="bar-col bar-2012">
+                    <div class="bar-amount">8 460 €</div>
+                    <div class="bar-body" style="height: 63%;"></div>
+                    <div class="bar-label">2012</div>
+                </div>
+
+                <div class="bar-col bar-2025">
+                    <div class="bar-amount">9 400 €</div>
+                    <div class="bar-body" style="height: 70%;"></div>
+                    <div class="bar-label">2025</div>
                 </div>
             </div>
 
             <div class="footer">
-                <div class="source">Source : <span>INSEE COFOG · 2024</span></div>
+                <div class="source">Source : <span>Notaires du Grand Paris · 2025</span></div>
                 <div class="website">ouvalargent.com</div>
             </div>
         </div>

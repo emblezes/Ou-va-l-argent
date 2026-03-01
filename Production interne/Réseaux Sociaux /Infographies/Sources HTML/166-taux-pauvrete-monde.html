@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taux de pauvreté dans le monde</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0c0a06;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a8a088;
+            --text-muted: #6a5a4a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #0c0a06 0%, #1e1a0a 50%, #0c0a06 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 45px 40px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #ffd700; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.5rem;
+            text-align: center;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .chart-title .accent {
+            color: #ffd700;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #ffd700; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Taux de pauvreté dans le monde</h2>
+            <div class="chart-subtitle">Part de la population vivant avec moins de 3 $/jour · 1990-2025</div>
+
+            
+
+            <div class="chart-area">
+                <svg width="920" height="560" viewBox="0 0 920 560">
+                    <!-- Unit label on Y axis (top-left) -->
+                    <text x="86" y="36" fill="#a8a088" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="600">%</text>
+                    <!-- Axes -->
+                    <line x1="80" y1="20" x2="80" y2="510" stroke="#6a5a4a" stroke-opacity="0.5" stroke-width="1" />
+                    <line x1="80" y1="510" x2="890" y2="510" stroke="#6a5a4a" stroke-opacity="0.5" stroke-width="1" />
+                    
+        <line x1="80" y1="477.7" x2="890" y2="477.7" stroke="#6a5a4a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="481.7" fill="#a8a088" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">10.0%</text>
+
+        <line x1="80" y1="350.8" x2="890" y2="350.8" stroke="#6a5a4a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="354.8" fill="#a8a088" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">20.0%</text>
+
+        <line x1="80" y1="223.8" x2="890" y2="223.8" stroke="#6a5a4a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="227.8" fill="#a8a088" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">30.0%</text>
+
+        <line x1="80" y1="96.8" x2="890" y2="96.8" stroke="#6a5a4a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="100.8" fill="#a8a088" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">40.0%</text>
+                    
+        <text x="80.0" y="540" fill="#a8a088" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">1990</text>
+
+        <text x="311.4" y="540" fill="#a8a088" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2000</text>
+
+        <text x="542.9" y="540" fill="#a8a088" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2010</text>
+
+        <text x="774.3" y="540" fill="#a8a088" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2020</text>
+                    
+        <!-- World -->
+        <defs>
+          <linearGradient id="grad-OWID_WRL" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ff4757" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#ff4757" stop-opacity="0.02"/>
+          </linearGradient>
+        </defs>
+        <path d="M80.0,53.8 L103.1,57.7 L126.3,65.9 L149.4,72.3 L172.6,89.5 L195.7,106.8 L218.9,122.9 L242.0,127.4 L265.1,124.1 L288.3,131.0 L311.4,144.3 L334.6,156.4 L357.7,175.4 L380.9,195.5 L404.0,219.7 L427.1,244.5 L450.3,262.1 L473.4,283.3 L496.6,298.3 L519.7,312.1 L542.9,338.3 L566.0,361.1 L589.1,377.5 L612.3,407.2 L635.4,419.7 L658.6,434.1 L681.7,444.8 L704.9,454.2 L728.0,462.8 L751.1,467.6 L774.3,460.0 L797.4,462.0 L820.6,467.5 L843.7,471.1 L866.9,473.8 L890.0,476.2 L890.0,510.0 L80.0,510.0 Z" fill="url(#grad-OWID_WRL)" />
+        <path d="M80.0,53.8 L103.1,57.7 L126.3,65.9 L149.4,72.3 L172.6,89.5 L195.7,106.8 L218.9,122.9 L242.0,127.4 L265.1,124.1 L288.3,131.0 L311.4,144.3 L334.6,156.4 L357.7,175.4 L380.9,195.5 L404.0,219.7 L427.1,244.5 L450.3,262.1 L473.4,283.3 L496.6,298.3 L519.7,312.1 L542.9,338.3 L566.0,361.1 L589.1,377.5 L612.3,407.2 L635.4,419.7 L658.6,434.1 L681.7,444.8 L704.9,454.2 L728.0,462.8 L751.1,467.6 L774.3,460.0 L797.4,462.0 L820.6,467.5 L843.7,471.1 L866.9,473.8 L890.0,476.2" fill="none" stroke="#ff4757" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="80.0" cy="53.8" r="6" fill="#ff4757" stroke="#0c0a06" stroke-width="2.5" />
+        <text x="80.0" y="8.799999999999997" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="800" text-anchor="middle">43.4%</text>
+        <circle cx="357.7" cy="175.4" r="6" fill="#ff4757" stroke="#0c0a06" stroke-width="2.5" />
+        <text x="357.7" y="130.4" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="800" text-anchor="middle">33.8%</text>
+        <circle cx="635.4" cy="419.7" r="6" fill="#ff4757" stroke="#0c0a06" stroke-width="2.5" />
+        <text x="635.4" y="374.7" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="800" text-anchor="middle">14.6%</text>
+        <circle cx="890.0" cy="476.2" r="8" fill="#ff4757" stroke="#0c0a06" stroke-width="2.5" />
+        <text x="890.0" y="448.2" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="800" text-anchor="middle">10.1%</text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Our World in Data · OWID · 1990-2025</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

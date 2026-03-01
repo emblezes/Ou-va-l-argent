@@ -151,11 +151,12 @@ Tous dans `Site/scripts/` :
 | `download-google-image.js` | Télécharger une image depuis Google Images (Puppeteer) |
 | `export-actu-video.js` | Overlay titre/logo sur une vidéo (ffmpeg) |
 | `notion-add-post.js` | Ajouter un post au calendrier Notion |
-| `notion-reupload-images.js` | Upload images (Instagram, TikTok V/H) vers Notion "Liste des infographies" via API native Notion File Upload |
+| `notion-reupload-images.js` | Upload images (Instagram, TikTok V/H) vers Notion Calendrier Publications via API native Notion File Upload |
 | `notion-create-sources-db.js` | Créer/gérer la base Notion des sources |
 | `notion-update-sources-urls.js` | Mettre à jour les URLs des sources dans Notion |
 | `weekly-content-machine.js` | **Machine hebdomadaire** : veille profonde → 21 infographies/semaine → Notion + Telegram |
 | `article-journalist.js` | **Pipeline journaliste** : RSS → articles (Sonnet) → fact-check → hero + carousel Instagram → Telegram + Notion |
+| `owid-infographic.js` | **Infographie OWID** : URL Our World in Data → CSV → HTML style OVLA → 3 PNG → Notion |
 
 ---
 
@@ -516,8 +517,7 @@ Chaque carrousel est envoyé comme :
 
 | Base | ID | Usage |
 |------|----|-------|
-| Calendrier Publications | `9354599f-662f-45b2-8070-b41332bdd79d` | Planning et publication des posts |
-| Liste des infographies | `6cd320f7-9016-4fef-807d-9b87c2f76568` | Catalogue des infographies permanentes |
+| Calendrier Publications | `9354599f-662f-45b2-8070-b41332bdd79d` | Planning, publication des posts et infographies |
 
 **Config** : `Site/scripts/notion-config.json` (IDs de bases uniquement — le secret Notion est dans `~/.zshrc`)
 
