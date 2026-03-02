@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Singapouriens 2,4 fois plus riches que les Français</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 45px 40px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5rem;
+            text-align: center;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .chart-title .accent {
+            color: #00d4ff;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Les Singapouriens 2,4 fois<br>plus riches que les Français</h2>
+            <div class="chart-subtitle">PIB par habitant en $ internationaux constants (PPA)</div>
+
+            <div class="legend">
+              <span style="display: inline-flex; align-items: center; gap: 10px; margin-right: 40px;">
+              <span style="width: 35px; height: 5px; background: #ff4757; border-radius: 3px; display: inline-block;"></span>
+              <span style="font-size: 2.8rem;">🇫🇷</span>
+              <span style="color: #ff4757; font-weight: 700; font-size: 1.8rem;">France</span>
+            </span>
+              <span style="display: inline-flex; align-items: center; gap: 10px; margin-right: 40px;">
+              <span style="width: 35px; height: 5px; background: #ffd700; border-radius: 3px; display: inline-block;"></span>
+              <span style="font-size: 2.8rem;">🇸🇬</span>
+              <span style="color: #ffd700; font-weight: 700; font-size: 1.8rem;">Singapour</span>
+            </span>
+            </div>
+
+            <div class="chart-area">
+                <svg width="920" height="560" viewBox="0 0 920 560">
+                    <!-- Unit label on Y axis (top-left) -->
+                    <text x="86" y="36" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="600">$</text>
+                    <!-- Axes -->
+                    <line x1="80" y1="20" x2="80" y2="510" stroke="#4a5a6a" stroke-opacity="0.5" stroke-width="1" />
+                    <line x1="80" y1="510" x2="890" y2="510" stroke="#4a5a6a" stroke-opacity="0.5" stroke-width="1" />
+                    
+        <line x1="80" y1="425.7" x2="890" y2="425.7" stroke="#4a5a6a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="429.7" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">50 000$</text>
+
+        <line x1="80" y1="203.2" x2="890" y2="203.2" stroke="#4a5a6a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="207.2" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">100 000$</text>
+                    
+        <text x="80.0" y="540" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">1990</text>
+
+        <text x="318.2" y="540" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2000</text>
+
+        <text x="556.5" y="540" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2010</text>
+
+        <text x="794.7" y="540" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2020</text>
+                    
+        <!-- France -->
+        <defs>
+          <linearGradient id="grad-FRA" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ff4757" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#ff4757" stop-opacity="0.02"/>
+          </linearGradient>
+        </defs>
+        <path d="M80.0,476.2 L103.8,475.0 L127.6,473.2 L151.5,474.6 L175.3,471.1 L199.1,467.7 L222.9,465.8 L246.8,461.9 L270.6,456.2 L294.4,450.6 L318.2,443.9 L342.1,441.5 L365.9,440.8 L389.7,440.3 L413.5,435.9 L437.4,433.5 L461.2,429.2 L485.0,425.0 L508.8,425.4 L532.6,432.8 L556.5,429.6 L580.3,425.3 L604.1,426.0 L627.9,425.4 L651.8,424.3 L675.6,422.7 L699.4,421.3 L723.2,417.3 L747.1,414.3 L770.9,410.4 L794.7,428.8 L818.5,414.5 L842.4,409.4 L866.2,406.6 L890.0,404.4 L890.0,510.0 L80.0,510.0 Z" fill="url(#grad-FRA)" />
+        <path d="M80.0,476.2 L103.8,475.0 L127.6,473.2 L151.5,474.6 L175.3,471.1 L199.1,467.7 L222.9,465.8 L246.8,461.9 L270.6,456.2 L294.4,450.6 L318.2,443.9 L342.1,441.5 L365.9,440.8 L389.7,440.3 L413.5,435.9 L437.4,433.5 L461.2,429.2 L485.0,425.0 L508.8,425.4 L532.6,432.8 L556.5,429.6 L580.3,425.3 L604.1,426.0 L627.9,425.4 L651.8,424.3 L675.6,422.7 L699.4,421.3 L723.2,417.3 L747.1,414.3 L770.9,410.4 L794.7,428.8 L818.5,414.5 L842.4,409.4 L866.2,406.6 L890.0,404.4" fill="none" stroke="#ff4757" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="365.9" cy="440.8" r="6" fill="#ff4757" stroke="#06080c" stroke-width="2.5" />
+        <text x="365.9" y="395.8" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="800" text-anchor="middle">46 611$</text>
+        <circle cx="627.9" cy="425.4" r="6" fill="#ff4757" stroke="#06080c" stroke-width="2.5" />
+        <text x="627.9" y="380.4" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="800" text-anchor="middle">50 067$</text>
+        <circle cx="890.0" cy="404.4" r="8" fill="#ff4757" stroke="#06080c" stroke-width="2.5" />
+        <text x="890.0" y="376.4" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="800" text-anchor="middle">54 799$</text>
+
+        <!-- Singapore -->
+        <defs>
+          <linearGradient id="grad-SGP" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffd700" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#ffd700" stop-opacity="0.02"/>
+          </linearGradient>
+        </defs>
+        <path d="M80.0,445.4 L103.8,438.0 L127.6,430.6 L151.5,411.7 L175.3,393.6 L199.1,383.5 L222.9,375.1 L246.8,362.1 L270.6,377.7 L294.4,364.5 L318.2,344.2 L342.1,355.5 L365.9,346.8 L389.7,328.4 L413.5,300.9 L437.4,284.0 L461.2,263.4 L485.0,245.8 L508.8,259.6 L532.6,270.7 L556.5,223.4 L580.3,206.3 L604.1,197.9 L627.9,183.8 L651.8,171.8 L675.6,163.4 L699.4,151.7 L723.2,129.9 L747.1,114.5 L770.9,113.7 L794.7,132.5 L818.5,58.0 L842.4,53.8 L866.2,71.7 L890.0,58.3 L890.0,510.0 L80.0,510.0 Z" fill="url(#grad-SGP)" />
+        <path d="M80.0,445.4 L103.8,438.0 L127.6,430.6 L151.5,411.7 L175.3,393.6 L199.1,383.5 L222.9,375.1 L246.8,362.1 L270.6,377.7 L294.4,364.5 L318.2,344.2 L342.1,355.5 L365.9,346.8 L389.7,328.4 L413.5,300.9 L437.4,284.0 L461.2,263.4 L485.0,245.8 L508.8,259.6 L532.6,270.7 L556.5,223.4 L580.3,206.3 L604.1,197.9 L627.9,183.8 L651.8,171.8 L675.6,163.4 L699.4,151.7 L723.2,129.9 L747.1,114.5 L770.9,113.7 L794.7,132.5 L818.5,58.0 L842.4,53.8 L866.2,71.7 L890.0,58.3" fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="365.9" cy="346.8" r="6" fill="#ffd700" stroke="#06080c" stroke-width="2.5" />
+        <text x="340" y="301.8" fill="#ffd700" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="800" text-anchor="middle">67 744$</text>
+        <circle cx="627.9" cy="183.8" r="6" fill="#ffd700" stroke="#06080c" stroke-width="2.5" />
+        <text x="627.9" y="138.8" fill="#ffd700" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="800" text-anchor="middle">104 359$</text>
+        <circle cx="890.0" cy="58.3" r="8" fill="#ffd700" stroke="#06080c" stroke-width="2.5" />
+        <text x="890.0" y="30.299999999999997" fill="#ffd700" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="800" text-anchor="middle">132 570$</text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Our World in Data · OWID · 1990-2024</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

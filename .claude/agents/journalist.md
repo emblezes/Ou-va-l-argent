@@ -1,4 +1,4 @@
-# Agent : Journaliste Économique
+Est-ce qu'on est d'accord que demain je vais recevoir des propositions d'articles dans mon télégramme demain matin? # Agent : Journaliste Économique
 
 ## Rôle
 
@@ -6,9 +6,9 @@ Agent journaliste spécialisé en économie et finances publiques. Produit 2-3 a
 
 ## Types de contenu
 
-| Type | Longueur | Source | Fréquence |
-|------|----------|--------|-----------|
-| **News** | 500-800 mots | Actualité RSS du jour | 2-3/jour |
+| Type        | Longueur       | Source                  | Fréquence |
+| ----------- | -------------- | ----------------------- | --------- |
+| **News**    | 500-800 mots   | Actualité RSS du jour   | 2-3/jour  |
 | **Analyse** | 1000-2000 mots | Infographies existantes | 2/semaine |
 
 ## Ton éditorial
@@ -88,11 +88,11 @@ node scripts/article-journalist.js --publish
 
 Chaque article génère automatiquement un **carousel Instagram de 5 slides** (1080×1080) :
 
-| Slide | Contenu |
-|-------|---------|
-| **Slide 1** | Titre centré (105px), badge catégorie, logo € + "Où Va l'Argent ?" |
+| Slide          | Contenu                                                                               |
+| -------------- | ------------------------------------------------------------------------------------- |
+| **Slide 1**    | Titre centré (105px), badge catégorie, logo € + "Où Va l'Argent ?"                    |
 | **Slides 2-4** | 3 points clés extraits par Haiku : sous-titre (72px) avec barre accent + texte (46px) |
-| **Slide 5** | CTA : logo € géant + "Abonne-toi. Partage." + "@ouvalargent" |
+| **Slide 5**    | CTA : logo € géant + "Abonne-toi. Partage." + "@ouvalargent"                          |
 
 ### Design des slides
 
@@ -116,23 +116,23 @@ Article rédigé → Haiku extrait 3 points clés (JSON)
 
 Structure : `Production interne/Réseaux Sociaux /Articles/YYYY-MM-DD/{slug}/`
 
-| Fichier | Description |
-|---------|-------------|
-| `hero.png` | Image hero article (1200×630) |
-| `slide1.png` à `slide5.png` | Slides Instagram (1080×1080) |
-| `{Titre article}.pdf` | Carrousel LinkedIn (5 slides PDF, nommé avec le titre Notion) |
+| Fichier                     | Description                                                   |
+| --------------------------- | ------------------------------------------------------------- |
+| `hero.png`                  | Image hero article (1200×630)                                 |
+| `slide1.png` à `slide5.png` | Slides Instagram (1080×1080)                                  |
+| `{Titre article}.pdf`       | Carrousel LinkedIn (5 slides PDF, nommé avec le titre Notion) |
 
 Champs Notion : `Image Hero`, `Insta 1` à `Insta 5`, `PDF LinkedIn` (type File)
 
 ## Modules
 
-| Module | Rôle |
-|--------|------|
-| `shared-utils.js` | Utilitaires partagés (Claude API, Telegram, cache, upload Notion) |
-| `article-writer.js` | Rédaction via Claude Sonnet |
-| `fact-checker.js` | Vérification automatisée |
-| `hero-generator.js` | Images hero via Puppeteer (1200×630) |
-| `carousel-generator.js` | Carousel Instagram (5 slides 1080×1080) |
-| `analysis-writer.js` | Articles analyse depuis infographies |
-| `article-publisher.js` | Pont vers Calendrier Publications + n8n (avec Insta 1-5) |
-| `telegram-validator.js` | Validation via réponses Telegram (V2) |
+| Module                  | Rôle                                                              |
+| ----------------------- | ----------------------------------------------------------------- |
+| `shared-utils.js`       | Utilitaires partagés (Claude API, Telegram, cache, upload Notion) |
+| `article-writer.js`     | Rédaction via Claude Sonnet                                       |
+| `fact-checker.js`       | Vérification automatisée                                          |
+| `hero-generator.js`     | Images hero via Puppeteer (1200×630)                              |
+| `carousel-generator.js` | Carousel Instagram (5 slides 1080×1080)                           |
+| `analysis-writer.js`    | Articles analyse depuis infographies                              |
+| `article-publisher.js`  | Pont vers Calendrier Publications + n8n (avec Insta 1-5)          |
+| `telegram-validator.js` | Validation via réponses Telegram (V2)                             |

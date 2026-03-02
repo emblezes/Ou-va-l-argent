@@ -1,0 +1,122 @@
+{
+  "sources": {
+    "boamp": {
+      "name": "BOAMP - Marchés publics",
+      "base_url": "https://www.boamp.fr/api/explore/v2.1/catalog/datasets/boamp/records",
+      "type": "rest_ods",
+      "frequency": "twice_daily",
+      "priority": 1,
+      "description": "Appels d'offres et attributions de marchés publics",
+      "api_key_required": false
+    },
+    "ofgl": {
+      "name": "OFGL - Comptes des collectivités",
+      "base_url": "https://data.ofgl.fr/api/explore/v2.1/catalog/datasets",
+      "datasets": {
+        "communes": "ofgl-base-communes-consolidee",
+        "interco": "ofgl-base-intercommunalites-consolidee",
+        "departements": "ofgl-base-departements-consolidee",
+        "regions": "ofgl-base-regions-consolidee"
+      },
+      "type": "rest_ods",
+      "frequency": "annual",
+      "priority": 1,
+      "description": "Comptes financiers des 37k communes françaises (2017-2024)",
+      "api_key_required": false
+    },
+    "data_subvention": {
+      "name": "Data.Subvention",
+      "base_url": "https://api.datasubvention.beta.gouv.fr",
+      "type": "rest",
+      "frequency": "continuous",
+      "priority": 1,
+      "description": "100% subventions État + paiements Chorus",
+      "api_key_required": true,
+      "api_key_env": "DATA_SUBVENTION_API_KEY"
+    },
+    "sirene": {
+      "name": "INSEE Sirene",
+      "base_url": "https://api.insee.fr/entreprises/sirene/V3.11",
+      "type": "rest",
+      "frequency": "daily",
+      "priority": 1,
+      "description": "25M entreprises, 36M établissements",
+      "api_key_required": true,
+      "api_key_env": "INSEE_API_KEY"
+    },
+    "banque_france": {
+      "name": "Banque de France - Webstat",
+      "base_url": "https://api.webstat.banque-france.fr/webstat-fr/v1",
+      "type": "rest",
+      "frequency": "monthly",
+      "priority": 2,
+      "description": "40k+ séries économiques (crédit, inflation, PIB)",
+      "api_key_required": true,
+      "api_key_env": "BDF_API_KEY"
+    },
+    "eurostat": {
+      "name": "Eurostat",
+      "base_url": "https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1",
+      "type": "sdmx",
+      "frequency": "quarterly",
+      "priority": 2,
+      "description": "Dépenses publiques par fonction (COFOG), dette, déficit UE",
+      "api_key_required": false
+    },
+    "hatvp": {
+      "name": "HATVP - Déclarations patrimoine",
+      "base_url": "https://www.hatvp.fr/livraison/merge/declarations.json",
+      "type": "bulk_download",
+      "frequency": "weekly",
+      "priority": 2,
+      "description": "Déclarations de patrimoine et d'intérêts de 8k responsables publics",
+      "api_key_required": false
+    },
+    "cour_comptes": {
+      "name": "Cour des Comptes",
+      "base_url": "https://www.ccomptes.fr",
+      "type": "bulk_download",
+      "frequency": "monthly",
+      "priority": 2,
+      "description": "Rapports d'audit, observations CRC (PDF parsing)",
+      "api_key_required": false
+    },
+    "budget_etat": {
+      "name": "Budget de l'État (LOLF)",
+      "base_url": "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets",
+      "dataset": "balances-comptables-de-l-etat",
+      "type": "rest_ods",
+      "frequency": "annual",
+      "priority": 1,
+      "description": "Exécution budgétaire par mission/programme/action LOLF (~500 Md€)",
+      "api_key_required": false
+    },
+    "drees": {
+      "name": "DREES - Comptes de la protection sociale",
+      "base_url": "https://data.drees.solidarites-sante.gouv.fr/api/explore/v2.1/catalog/datasets",
+      "dataset": "723_les-comptes-de-la-protection-sociale",
+      "type": "rest_ods",
+      "frequency": "annual",
+      "priority": 1,
+      "description": "Recettes/dépenses par branche (maladie, vieillesse, famille, emploi) (~650 Md€)",
+      "api_key_required": false
+    },
+    "cofog": {
+      "name": "Eurostat COFOG - Dépenses publiques par fonction",
+      "base_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data",
+      "dataset": "gov_10a_exp",
+      "type": "sdmx",
+      "frequency": "annual",
+      "priority": 1,
+      "description": "Vue consolidée 1 600 Md€ par fonction (santé, éducation, défense...) + comparaison UE",
+      "api_key_required": false
+    }
+  },
+  "settings": {
+    "max_concurrent_requests": 5,
+    "retry_max_attempts": 3,
+    "retry_delay_seconds": 2,
+    "batch_size": 100,
+    "cache_ttl_hours": 24
+  }
+}

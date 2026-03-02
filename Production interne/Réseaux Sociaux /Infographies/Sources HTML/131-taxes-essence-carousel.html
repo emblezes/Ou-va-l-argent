@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>131 – Taxes sur l'essence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:#0c0804;--bg-mid:#281e0a;--accent:#ff9f43;--accent-soft:#ffbe76;--accent-glow:rgba(255,159,67,0.15);--cyan:#00d4ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Syne',sans-serif;background:#0a0a0a;display:flex;flex-direction:column;align-items:center;gap:20px;padding:20px}
+.infographic{width:1080px;height:1080px;position:relative;overflow:hidden;flex-shrink:0}
+.bg-base{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%)}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,159,67,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,159,67,0.03) 1px,transparent 1px);background-size:40px 40px}
+.bg-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.content{position:relative;z-index:1;height:100%;padding:45px 55px;display:flex;flex-direction:column;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{font-family:'Instrument Serif',serif;font-size:3.5rem;color:var(--cyan);line-height:1}
+.logo-text{font-family:'Instrument Serif',serif;font-size:1.7rem;font-style:italic;color:#fff;line-height:1}
+.center-block{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+.stat{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--accent);text-align:center;line-height:0.95;text-shadow:0 0 60px rgba(255,159,67,0.35)}
+.hook{font-family:'Instrument Serif',serif;font-style:italic;color:#fff;text-align:center;line-height:1.1}
+.context{font-family:'Syne',sans-serif;color:rgba(240,244,248,0.5);text-align:center;line-height:1.3;max-width:900px}
+.divider{width:100px;height:4px;background:var(--accent);border-radius:2px;opacity:0.5}
+.footer{width:100%;display:flex;justify-content:space-between;align-items:flex-end}
+.source{font-family:'JetBrains Mono',monospace;font-size:1.1rem;color:rgba(255,255,255,0.25)}
+.website{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:var(--cyan)}
+.slide-num{font-family:'JetBrains Mono',monospace;font-size:0.9rem;color:rgba(255,159,67,0.35);letter-spacing:0.3em;position:absolute;top:50px;right:55px}
+.emoji{line-height:1;text-align:center}
+</style></head><body>
+
+<!-- SLIDE 1 : Titre -->
+<div class="infographic"><div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow"></div>
+<div class="content">
+<div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+<span class="slide-num">1 / 5</span>
+<div class="center-block">
+  <div class="emoji" style="font-size:6rem">⛽</div>
+  <div class="hook" style="font-size:5.5rem">Taxes sur<br>l'essence</div>
+  <div class="stat" style="font-size:11rem">~1 €</div>
+  <div class="hook" style="font-size:5.5rem">par litre</div>
+</div>
+<div class="footer">
+  <div class="source">DGEC / Connaissance des Énergies · 2025</div>
+  <div class="website">ouvalargent.com</div>
+</div>
+</div></div>
+
+<!-- SLIDE 2 : Décomposition -->
+<div class="infographic"><div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow"></div>
+<div class="content">
+<div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+<span class="slide-num">2 / 5</span>
+<div class="center-block">
+  <div class="hook" style="font-size:4.5rem">🧾 Dans 1 litre à 1,80 €</div>
+  <div class="divider" style="margin:10px 0"></div>
+  <div style="display:flex;flex-direction:column;gap:22px;align-items:center">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:3rem;color:var(--accent);font-weight:600">TICPE : 0,68 €</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:3rem;color:var(--accent);font-weight:600">TVA : 0,30 €</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:3rem;color:rgba(240,244,248,0.4);font-weight:600">Pétrole + marges : 0,82 €</div>
+  </div>
+  <div class="divider" style="margin:10px 0"></div>
+  <div class="context" style="font-size:2.4rem">💰 55 % du prix = taxes</div>
+</div>
+<div class="footer">
+  <div class="source">DGEC · 2025</div>
+  <div class="website">ouvalargent.com</div>
+</div>
+</div></div>
+
+<!-- SLIDE 3 : Un plein -->
+<div class="infographic"><div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow"></div>
+<div class="content">
+<div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+<span class="slide-num">3 / 5</span>
+<div class="center-block">
+  <div class="emoji" style="font-size:5rem">🚗</div>
+  <div class="hook" style="font-size:5rem">Un plein de 50 litres</div>
+  <div class="stat" style="font-size:12rem">~50 €</div>
+  <div class="hook" style="font-size:5rem">de taxes</div>
+  <div class="divider"></div>
+  <div class="context" style="font-size:2.2rem">sur un plein à 90 €</div>
+</div>
+<div class="footer">
+  <div class="source">DGEC · 2025</div>
+  <div class="website">ouvalargent.com</div>
+</div>
+</div></div>
+
+<!-- SLIDE 4 : Recettes État -->
+<div class="infographic"><div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow"></div>
+<div class="content">
+<div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+<span class="slide-num">4 / 5</span>
+<div class="center-block">
+  <div class="emoji" style="font-size:5rem">🏛️</div>
+  <div class="hook" style="font-size:4.5rem">Recettes pour l'État</div>
+  <div class="stat" style="font-size:11rem">30 Md€</div>
+  <div class="hook" style="font-size:5rem">par an</div>
+  <div class="divider"></div>
+  <div class="context" style="font-size:2.2rem">Accise seule · État + collectivités</div>
+</div>
+<div class="footer">
+  <div class="source">PLF 2025 / DGEC</div>
+  <div class="website">ouvalargent.com</div>
+</div>
+</div></div>
+
+<!-- SLIDE 5 : Call to Action -->
+<div class="infographic"><div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow"></div>
+<div class="content">
+<div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+<span class="slide-num">5 / 5</span>
+<div class="center-block">
+  <div style="font-size:8rem;line-height:1;margin-bottom:10px">🔔</div>
+  <div class="hook" style="font-size:7rem">Abonne-toi.</div>
+  <div class="hook" style="font-size:7rem">Partage.</div>
+  <div class="divider" style="margin:15px 0"></div>
+  <div class="context" style="font-size:2.2rem">Chaque semaine, on décrypte<br>où va vraiment ton argent.</div>
+</div>
+<div class="footer">
+  <div></div>
+  <div class="website">ouvalargent.com</div>
+</div>
+</div></div>
+
+</body></html>

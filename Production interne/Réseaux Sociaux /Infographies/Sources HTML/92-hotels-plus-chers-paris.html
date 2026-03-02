@@ -10,18 +10,9 @@
     <style>
         :root {
             --bg-deep: #06080c;
-            --bg-surface: #0a0e14;
-            --bg-elevated: #111820;
             --text-primary: #f0f4f8;
             --text-secondary: #8899a8;
             --text-muted: #4a5a6a;
-            --accent-electric: #00d4ff;
-            --accent-gold: #ffd700;
-            --accent-red: #ff4757;
-            --accent-green: #00ff88;
-            --accent-purple: #a855f7;
-            --accent-orange: #ff9f43;
-            --glass: rgba(17, 24, 32, 0.85);
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
@@ -63,7 +54,7 @@
             height: 600px;
             background: radial-gradient(circle, rgba(255, 215, 0, 0.12) 0%, transparent 70%);
             top: -200px;
-            right: -200px;
+            right: -100px;
             pointer-events: none;
         }
 
@@ -71,7 +62,7 @@
             position: absolute;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.06) 0%, transparent 70%);
             bottom: -150px;
             left: -150px;
             pointer-events: none;
@@ -81,7 +72,7 @@
             position: relative;
             z-index: 1;
             height: 100%;
-            padding: 50px 55px 40px;
+            padding: 50px 40px 40px;
             display: flex;
             flex-direction: column;
         }
@@ -90,7 +81,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 15px;
+            margin-bottom: 6px;
         }
 
         .logo {
@@ -99,134 +90,85 @@
             gap: 12px;
         }
 
-        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
-
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #ffd700; line-height: 1; }
         .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
-
-        .chart-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
 
         .chart-title {
             font-family: 'Instrument Serif', serif;
-            font-size: 4rem;
+            font-size: 5.5rem;
             text-align: center;
-            margin-bottom: 6px;
+            margin-top: 40px;
+            margin-bottom: 2px;
             color: var(--text-primary);
-            line-height: 1.15;
+            line-height: 1.05;
         }
 
         .chart-title .accent {
-            color: var(--accent-gold);
+            color: #ffd700;
             font-style: italic;
         }
 
         .chart-subtitle {
             text-align: center;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
-            margin-bottom: 25px;
         }
 
-        /* ===== RANKING ===== */
-        .ranking {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .rank-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 16px 22px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 14px;
-        }
-
-        .rank-item:first-child {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.12) 0%, rgba(255, 159, 67, 0.06) 100%);
-            border-color: rgba(255, 215, 0, 0.3);
-        }
-
-        .rank-item:first-child .rank-num {
-            color: var(--accent-gold);
-        }
-
-        .rank-num {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            min-width: 36px;
-        }
-
-        .rank-info {
+        .chart-area {
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            justify-content: center;
+            gap: 0;
+            padding: 0 40px;
         }
 
-        .rank-hotel {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .rank-suite {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-style: italic;
-        }
-
-        .rank-bar-container {
-            flex: 0 0 auto;
-            width: 200px;
+        .rank-row {
             display: flex;
             align-items: center;
-            gap: 0;
+            gap: 20px;
+            padding: 22px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .rank-bar {
-            height: 24px;
-            border-radius: 6px;
-            min-width: 8px;
+        .rank-row:last-child {
+            border-bottom: none;
         }
 
-        .rank-bar.gold {
-            background: linear-gradient(90deg, var(--accent-gold), #ccaa00);
+        .rank-emoji {
+            font-size: 3.5rem;
+            line-height: 1;
+            flex-shrink: 0;
         }
 
-        .rank-price {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.5rem;
+        .rank-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.4rem;
             font-weight: 700;
-            min-width: 140px;
-            text-align: right;
-            color: var(--accent-gold);
+            color: #fff;
+            flex: 1;
         }
 
-        .rank-item:nth-child(n+4) .rank-price {
-            color: var(--accent-orange);
+        .rank-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ffd700;
+            white-space: nowrap;
         }
 
         .rank-unit {
-            font-size: 0.85rem;
+            font-size: 1.4rem;
             font-weight: 400;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
 
         .footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 15px;
-            margin-top: 10px;
+            padding-top: 12px;
+            margin-top: 12px;
             border-top: 1px solid var(--glass-border);
         }
 
@@ -243,7 +185,7 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.5rem;
             font-weight: 600;
-            color: var(--accent-electric);
+            color: #ffd700;
         }
     </style>
 </head>
@@ -262,52 +204,15 @@
                 </div>
             </div>
 
-            <div class="chart-container">
-                <h2 class="chart-title">Les hôtels les plus<br><span class="accent">chers</span> de Paris</h2>
-                <div class="chart-subtitle">Prix par nuit de la suite la plus chère (2025)</div>
+            <h2 class="chart-title">🏨 Les hôtels les plus <span class="accent">chers</span> de Paris</h2>
+            <div class="chart-subtitle">Prix par nuit de la suite la plus chère (2025)</div>
 
-                <div class="ranking">
-                    <div class="rank-item">
-                        <div class="rank-num">1</div>
-                        <div class="rank-info">
-                            <div class="rank-hotel">Le Bristol</div>
-                            <div class="rank-suite">Suite Impériale</div>
-                        </div>
-                        <div class="rank-price">45 000€ <span class="rank-unit">/nuit</span></div>
-                    </div>
-                    <div class="rank-item">
-                        <div class="rank-num">2</div>
-                        <div class="rank-info">
-                            <div class="rank-hotel">Ritz Paris</div>
-                            <div class="rank-suite">Suite Impériale</div>
-                        </div>
-                        <div class="rank-price">40 000€ <span class="rank-unit">/nuit</span></div>
-                    </div>
-                    <div class="rank-item">
-                        <div class="rank-num">3</div>
-                        <div class="rank-info">
-                            <div class="rank-hotel">Hôtel de Crillon</div>
-                            <div class="rank-suite">Les Grands Appartements</div>
-                        </div>
-                        <div class="rank-price">32 000€ <span class="rank-unit">/nuit</span></div>
-                    </div>
-                    <div class="rank-item">
-                        <div class="rank-num">4</div>
-                        <div class="rank-info">
-                            <div class="rank-hotel">Le Meurice</div>
-                            <div class="rank-suite">Suite Belle Étoile</div>
-                        </div>
-                        <div class="rank-price">25 000€ <span class="rank-unit">/nuit</span></div>
-                    </div>
-                    <div class="rank-item">
-                        <div class="rank-num">5</div>
-                        <div class="rank-info">
-                            <div class="rank-hotel">Plaza Athénée</div>
-                            <div class="rank-suite">Suite Royale</div>
-                        </div>
-                        <div class="rank-price">25 000€ <span class="rank-unit">/nuit</span></div>
-                    </div>
-                </div>
+            <div class="chart-area">
+                <div class="rank-row"><div class="rank-emoji">🥇</div><div class="rank-name">Le Bristol</div><div class="rank-value">45 000 € <span class="rank-unit">/nuit</span></div></div>
+                <div class="rank-row"><div class="rank-emoji">🥈</div><div class="rank-name">Ritz Paris</div><div class="rank-value">40 000 € <span class="rank-unit">/nuit</span></div></div>
+                <div class="rank-row"><div class="rank-emoji">🥉</div><div class="rank-name">Hôtel de Crillon</div><div class="rank-value">32 000 € <span class="rank-unit">/nuit</span></div></div>
+                <div class="rank-row"><div class="rank-emoji">4️⃣</div><div class="rank-name">Le Meurice</div><div class="rank-value">25 000 € <span class="rank-unit">/nuit</span></div></div>
+                <div class="rank-row"><div class="rank-emoji">5️⃣</div><div class="rank-name">Plaza Athénée</div><div class="rank-value">25 000 € <span class="rank-unit">/nuit</span></div></div>
             </div>
 
             <div class="footer">

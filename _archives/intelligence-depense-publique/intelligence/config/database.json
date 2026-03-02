@@ -1,0 +1,23 @@
+{
+  "postgresql": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "idp",
+    "user": "emmanuelblezes",
+    "password_env": "IDP_DB_PASSWORD",
+    "pool_size": 10,
+    "extensions": ["pgvector", "pg_trgm"]
+  },
+  "neo4j": {
+    "uri": "bolt://localhost:7687",
+    "user": "neo4j",
+    "password_env": "NEO4J_PASSWORD",
+    "database": "idp"
+  },
+  "embeddings": {
+    "model": "dangvantuan/french-document-embedding",
+    "dimension": 768,
+    "chunk_size": 512,
+    "chunk_overlap": 50
+  }
+}

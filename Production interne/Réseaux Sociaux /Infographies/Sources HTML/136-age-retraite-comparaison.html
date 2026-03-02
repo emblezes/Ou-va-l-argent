@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Âge de départ à la retraite : comparaison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0f1a;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #0a0f1a 0%, #1a2540 50%, #0a0f1a 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 45px 40px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #ffd700; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.5rem;
+            text-align: center;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .chart-title .accent {
+            color: #ffd700;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-top: 15px;
+        }
+
+        .bars-wrapper {
+            flex: 1;
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+            padding: 0 5px;
+        }
+
+        .bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+        }
+
+        .bar-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            white-space: nowrap;
+            margin-bottom: 6px;
+            flex-shrink: 0;
+        }
+
+        .bar-up {
+            width: 88%;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 6px;
+        }
+
+        .bar-flag {
+            font-size: 3.8rem;
+            line-height: 1;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+        }
+
+        .labels-row {
+            display: flex;
+            gap: 8px;
+            padding: 10px 5px 0;
+            flex-shrink: 0;
+        }
+
+        .label-col {
+            flex: 1;
+            text-align: center;
+        }
+
+        .bar-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .bar-name.highlight {
+            color: #ffd700;
+            font-weight: 700;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: 12px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #ffd700; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Âge de départ à la <span class="accent">retraite</span><br>selon les pays</h2>
+            <div class="chart-subtitle">Âge légal de départ à la retraite (OCDE · 2025)</div>
+
+            <div class="chart-area">
+                <div class="bars-wrapper">
+                    <!-- Scale: bars from base 60 to max 67 → height = ((value - 60) / 7) * 95% -->
+
+                    <!-- Danemark: 67 ans -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #c0392b;">67 ans</div>
+                        <div class="bar-up" style="height: 95%; background: linear-gradient(180deg, #c0392b, #922b21); box-shadow: 0 -4px 20px rgba(192, 57, 43, 0.35);">
+                            <div class="bar-flag">🇩🇰</div>
+                        </div>
+                    </div>
+
+                    <!-- Italie: 67 ans -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #8899a8;">67 ans</div>
+                        <div class="bar-up" style="height: 95%; background: linear-gradient(180deg, #4a5568, #2d3748); box-shadow: 0 -4px 20px rgba(74, 85, 104, 0.3);">
+                            <div class="bar-flag">🇮🇹</div>
+                        </div>
+                    </div>
+
+                    <!-- Pays-Bas: 67 ans -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #8899a8;">67 ans</div>
+                        <div class="bar-up" style="height: 95%; background: linear-gradient(180deg, #4a5568, #2d3748); box-shadow: 0 -4px 20px rgba(74, 85, 104, 0.3);">
+                            <div class="bar-flag">🇳🇱</div>
+                        </div>
+                    </div>
+
+                    <!-- États-Unis: 67 ans -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #8899a8;">67 ans</div>
+                        <div class="bar-up" style="height: 95%; background: linear-gradient(180deg, #4a5568, #2d3748); box-shadow: 0 -4px 20px rgba(74, 85, 104, 0.3);">
+                            <div class="bar-flag">🇺🇸</div>
+                        </div>
+                    </div>
+
+                    <!-- Allemagne: 66 ans -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #8899a8;">66 ans</div>
+                        <div class="bar-up" style="height: 81.4%; background: linear-gradient(180deg, #4a5568, #2d3748); box-shadow: 0 -4px 20px rgba(74, 85, 104, 0.3);">
+                            <div class="bar-flag">🇩🇪</div>
+                        </div>
+                    </div>
+
+                    <!-- Royaume-Uni: 66 ans -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #8899a8;">66 ans</div>
+                        <div class="bar-up" style="height: 81.4%; background: linear-gradient(180deg, #4a5568, #2d3748); box-shadow: 0 -4px 20px rgba(74, 85, 104, 0.3);">
+                            <div class="bar-flag">🇬🇧</div>
+                        </div>
+                    </div>
+
+                    <!-- Espagne: 66 ans -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #8899a8;">66 ans</div>
+                        <div class="bar-up" style="height: 81.4%; background: linear-gradient(180deg, #4a5568, #2d3748); box-shadow: 0 -4px 20px rgba(74, 85, 104, 0.3);">
+                            <div class="bar-flag">🇪🇸</div>
+                        </div>
+                    </div>
+
+                    <!-- Japon: 65 ans -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #8899a8;">65 ans</div>
+                        <div class="bar-up" style="height: 67.9%; background: linear-gradient(180deg, #4a5568, #2d3748); box-shadow: 0 -4px 20px rgba(74, 85, 104, 0.3);">
+                            <div class="bar-flag">🇯🇵</div>
+                        </div>
+                    </div>
+
+                    <!-- France: 64 ans — HIGHLIGHT -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #ffd700; font-size: 1.8rem;">64 ans</div>
+                        <div class="bar-up" style="height: 54.3%; background: linear-gradient(180deg, #ffd700, #b8960f); box-shadow: 0 -4px 30px rgba(255, 215, 0, 0.4);">
+                            <div class="bar-flag">🇫🇷</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="labels-row">
+                    <div class="label-col"><div class="bar-name">Danemark</div></div>
+                    <div class="label-col"><div class="bar-name">Italie</div></div>
+                    <div class="label-col"><div class="bar-name">Pays-<br>Bas</div></div>
+                    <div class="label-col"><div class="bar-name">États-<br>Unis</div></div>
+                    <div class="label-col"><div class="bar-name">Allemagne</div></div>
+                    <div class="label-col"><div class="bar-name">Royaume-<br>Uni</div></div>
+                    <div class="label-col"><div class="bar-name">Espagne</div></div>
+                    <div class="label-col"><div class="bar-name">Japon</div></div>
+                    <div class="label-col"><div class="bar-name highlight">France</div></div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Sources : <span>OCDE Pensions at a Glance · 2025</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

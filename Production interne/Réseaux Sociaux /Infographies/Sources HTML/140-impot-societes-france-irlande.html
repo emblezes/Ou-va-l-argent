@@ -3,150 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WTF #28 – 25% vs 12,5%</title>
+    <title>Impôt sur les sociétés : France vs Irlande</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-deep: #06080c;
-            --bg-mid: #0a1628;
-            --accent: #ffd700;
-            --accent-electric: #00d4ff;
-        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             font-family: 'Syne', sans-serif;
             background: #1a1a2e;
-            padding: 0;
+            padding: 2rem;
             display: flex;
             justify-content: center;
         }
+
         .infographic {
             width: 1080px;
             height: 1080px;
             position: relative;
             overflow: hidden;
         }
+
+        /* === FOND : fusion progressive France (bleu-rouge) → Irlande (vert-orange) === */
         .bg-base {
-            position: absolute; inset: 0;
-            background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%);
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                #0a1028 0%,
+                #14103a 20%,
+                #1a1535 35%,
+                #151a2a 50%,
+                #0f2218 65%,
+                #0a2818 80%,
+                #122a10 100%
+            );
+            z-index: 0;
         }
+
         .bg-grid {
-            position: absolute; inset: 0;
+            position: absolute;
+            inset: 0;
             background-image:
-                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
             background-size: 40px 40px;
+            z-index: 1;
         }
-        .bg-glow-1 {
-            position: absolute; width: 700px; height: 700px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.12) 0%, transparent 70%);
-            top: -250px; right: -150px; pointer-events: none;
+
+        /* Glows */
+        .bg-glow-france {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 85, 164, 0.12) 0%, transparent 65%);
+            top: -100px;
+            left: -100px;
+            pointer-events: none;
+            z-index: 1;
         }
-        .bg-glow-2 {
-            position: absolute; width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.06) 0%, transparent 70%);
-            bottom: -200px; left: -100px; pointer-events: none;
+
+        .bg-glow-rouge {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(239, 65, 53, 0.08) 0%, transparent 65%);
+            top: 200px;
+            left: 200px;
+            pointer-events: none;
+            z-index: 1;
         }
+
+        .bg-glow-ireland {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(22, 155, 98, 0.12) 0%, transparent 65%);
+            bottom: -100px;
+            right: -100px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bg-glow-orange {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 136, 62, 0.08) 0%, transparent 65%);
+            bottom: 200px;
+            right: 200px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
         .content {
-            position: relative; z-index: 1; height: 100%;
-            padding: 40px 55px;
-            display: flex; flex-direction: column; justify-content: space-between;
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            padding: 45px 50px 35px;
+            display: flex;
+            flex-direction: column;
         }
-        .top-row {
-            display: flex; justify-content: space-between; align-items: flex-start;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
         }
-        .logo { display: flex; align-items: center; gap: 12px; }
-        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.5rem; color: var(--accent-electric); line-height: 1; }
-        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
-        .wtf-badge {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.1rem; font-weight: 700;
-            color: var(--accent);
-            background: rgba(255, 215, 0, 0.12);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            padding: 6px 16px;
-            border-radius: 20px;
-            letter-spacing: 0.05em;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        .main-content {
-            flex: 1; display: flex; flex-direction: column; justify-content: center;
-            gap: 20px; padding: 10px 0;
-        }
-        .stat {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 7rem;
-            font-weight: 700;
-            color: var(--accent);
-            line-height: 1;
-            text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
-        }
-        .title {
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #ffffff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
             font-family: 'Instrument Serif', serif;
-            font-size: 3.2rem;
+            font-size: 5.2rem;
+            text-align: center;
+            margin-bottom: 4px;
             color: #f0f4f8;
-            line-height: 1.15;
+            line-height: 1.05;
         }
-        .desc {
-            font-family: 'Syne', sans-serif;
+
+        .chart-title .accent-fr {
+            color: #4a90d9;
+            font-style: italic;
+        }
+
+        .chart-title .accent-ie {
+            color: #169b62;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.15rem;
+            color: #8899a8;
+        }
+
+        /* === ZONE BARRES (style 132/135) === */
+        .chart-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-top: 15px;
+        }
+
+        .bars-wrapper {
+            flex: 1;
+            display: flex;
+            gap: 60px;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 0 140px;
+        }
+
+        .bar-col {
+            flex: 1;
+            max-width: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+        }
+
+        .bar-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            white-space: nowrap;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .bar-up {
+            width: 100%;
+            border-radius: 14px 14px 0 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 10px;
+        }
+
+        .bar-flag {
+            font-size: 7rem;
+            line-height: 1;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+        }
+
+        .labels-row {
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+            padding: 12px 140px 0;
+        }
+
+        .label-col {
+            flex: 1;
+            max-width: 280px;
+            text-align: center;
+        }
+
+        .bar-name {
+            font-family: 'JetBrains Mono', monospace;
             font-size: 1.6rem;
-            color: rgba(240, 244, 248, 0.6);
-            line-height: 1.4;
-            max-width: 850px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
         }
-        .comparison-box {
-            background: rgba(255, 215, 0, 0.08);
-            border-left: 4px solid var(--accent);
-            padding: 16px 22px;
-            border-radius: 0 12px 12px 0;
-        }
-        .comparison-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.35rem;
-            color: var(--accent);
-            font-weight: 500;
-        }
-        .footer {
-            display: flex; justify-content: space-between; align-items: flex-end;
-        }
-        .source {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.3);
-        }
-        .website {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.5rem;
+
+        .bar-name.highlight-fr { color: #4a90d9; }
+        .bar-name.highlight-ie { color: #169b62; }
+
+        .multiplier {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
             font-weight: 600;
-            color: var(--accent-electric);
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            margin-top: 6px;
         }
+
+        .multiplier strong {
+            color: #ef4135;
+            font-size: 2.4rem;
+            font-weight: 800;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .source { font-size: 1rem; color: #4a5a6a; }
+        .source span { color: #8899a8; }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: rgba(255, 255, 255, 0.6); }
     </style>
 </head>
 <body>
     <div class="infographic">
         <div class="bg-base"></div>
         <div class="bg-grid"></div>
-        <div class="bg-glow-1"></div>
-        <div class="bg-glow-2"></div>
+        <div class="bg-glow-france"></div>
+        <div class="bg-glow-rouge"></div>
+        <div class="bg-glow-ireland"></div>
+        <div class="bg-glow-orange"></div>
+
         <div class="content">
-            <div class="top-row">
+            <div class="header">
                 <div class="logo">
                     <span class="logo-icon">€</span>
                     <span class="logo-text">Où Va l'Argent ?</span>
                 </div>
-                <div class="wtf-badge">WTF #28</div>
             </div>
-            <div class="main-content">
-                <div class="stat">25% vs 12,5%</div>
-                <div class="title">Impôt sur les sociétés :<br>25% en France, 12,5% en Irlande</div>
-                <div class="desc">Résultat : Apple, Google et Meta sont en Irlande, pas en France.</div>
-                <div class="comparison-box">
-                    <div class="comparison-text">Irlande : 22 Md€ de recettes IS (France : 70 Md€ pour 14× plus d'hab.)</div>
+
+            <h2 class="chart-title">Impôt sur les sociétés :<br><span class="accent-fr">France</span> vs <span class="accent-ie">Irlande</span></h2>
+            <div class="chart-subtitle">Taux normal d'imposition des bénéfices (2025)</div>
+
+            <div class="chart-area">
+                <div class="bars-wrapper">
+                    <!-- France: 25% → height 95% (max) -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="font-size: 5rem; color: #4a90d9;">25 %</div>
+                        <div class="bar-up" style="height: 95%; background: #0055a4; box-shadow: 0 -6px 40px rgba(0, 85, 164, 0.5);">
+                            <div class="bar-flag">🇫🇷</div>
+                        </div>
+                    </div>
+
+                    <!-- Irlande: 12,5% → height 47.5% -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="font-size: 5rem; color: #169b62;">12,5 %</div>
+                        <div class="bar-up" style="height: 47.5%; background: #169b62; box-shadow: 0 -6px 40px rgba(22, 155, 98, 0.5);">
+                            <div class="bar-flag">🇮🇪</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="labels-row">
+                    <div class="label-col"><div class="bar-name highlight-fr">France</div></div>
+                    <div class="label-col"><div class="bar-name highlight-ie">Irlande</div></div>
                 </div>
             </div>
+
             <div class="footer">
-                <div class="source">Eurostat · 2024</div>
+                <div class="source">Sources : <span>OCDE / Tax Foundation · 2025</span></div>
                 <div class="website">ouvalargent.com</div>
             </div>
         </div>

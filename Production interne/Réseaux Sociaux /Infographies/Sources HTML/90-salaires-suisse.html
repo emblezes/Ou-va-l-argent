@@ -10,26 +10,13 @@
     <style>
         :root {
             --bg-deep: #06080c;
-            --bg-surface: #0a0e14;
-            --bg-elevated: #111820;
             --text-primary: #f0f4f8;
             --text-secondary: #8899a8;
             --text-muted: #4a5a6a;
-            --accent-electric: #00d4ff;
-            --accent-gold: #ffd700;
-            --accent-red: #ff4757;
-            --accent-green: #00ff88;
-            --accent-purple: #a855f7;
-            --accent-orange: #ff9f43;
-            --glass: rgba(17, 24, 32, 0.85);
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Syne', sans-serif;
@@ -56,8 +43,8 @@
             position: absolute;
             inset: 0;
             background-image:
-                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
         }
 
@@ -67,7 +54,7 @@
             height: 600px;
             background: radial-gradient(circle, rgba(255, 215, 0, 0.12) 0%, transparent 70%);
             top: -200px;
-            right: -200px;
+            right: -100px;
             pointer-events: none;
         }
 
@@ -75,7 +62,7 @@
             position: absolute;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
             bottom: -150px;
             left: -150px;
             pointer-events: none;
@@ -85,7 +72,7 @@
             position: relative;
             z-index: 1;
             height: 100%;
-            padding: 60px;
+            padding: 50px 40px 40px;
             display: flex;
             flex-direction: column;
         }
@@ -94,7 +81,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 30px;
+            margin-bottom: 6px;
         }
 
         .logo {
@@ -103,102 +90,84 @@
             gap: 12px;
         }
 
-        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
-
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #ffd700; line-height: 1; }
         .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
 
-        .chart-container {
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5.5rem;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .chart-title .accent {
+            color: #ffd700;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .chart-area {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            gap: 0;
+            padding: 0 40px;
         }
 
-        .chart-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: 4.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--text-primary);
-        }
-
-        .chart-title .accent {
-            color: var(--accent-gold);
-            font-style: italic;
-        }
-
-        .bar-chart {
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-        }
-
-        .bar-item {
+        .rank-row {
             display: flex;
             align-items: center;
             gap: 20px;
+            padding: 28px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .bar-label {
-            width: 260px;
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            text-align: right;
+        .rank-row:last-child {
+            border-bottom: none;
+        }
+
+        .rank-emoji {
+            font-size: 4rem;
+            line-height: 1;
             flex-shrink: 0;
         }
 
-        .bar-label .flag {
-            margin-right: 10px;
-        }
-
-        .bar-track {
+        .rank-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #fff;
             flex: 1;
-            height: 70px;
-            background: var(--bg-elevated);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
         }
 
-        .bar-fill {
-            height: 100%;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 20px;
+        .rank-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--bg-deep);
-        }
-
-        .bar-fill.gold {
-            background: linear-gradient(90deg, var(--accent-gold), #e5b800);
-        }
-
-        .bar-fill.electric {
-            background: linear-gradient(90deg, var(--accent-electric), #0099cc);
-        }
-
-        .bar-fill.purple {
-            background: linear-gradient(90deg, var(--accent-purple), #7c3aed);
-        }
-
-        .bar-fill.green {
-            background: linear-gradient(90deg, var(--accent-green), #00cc6a);
+            font-size: 3.6rem;
+            font-weight: 800;
+            color: #ffd700;
+            white-space: nowrap;
         }
 
         .footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 30px;
+            padding-top: 12px;
+            margin-top: 12px;
             border-top: 1px solid var(--glass-border);
         }
 
         .source {
-            font-size: 1.15rem;
+            font-size: 1rem;
             color: var(--text-muted);
         }
 
@@ -208,9 +177,9 @@
 
         .website {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 600;
-            color: var(--accent-electric);
+            color: #ffd700;
         }
     </style>
 </head>
@@ -229,38 +198,18 @@
                 </div>
             </div>
 
-            <div class="chart-container">
-                <h2 class="chart-title">Les salaires en <span class="accent">Suisse</span></h2>
-                <div class="bar-chart">
-                    <div class="bar-item">
-                        <div class="bar-label"><span class="flag">🇨🇭</span> Médecin</div>
-                        <div class="bar-track">
-                            <div class="bar-fill gold" style="width: 95%;">7 500 €</div>
-                        </div>
-                    </div>
-                    <div class="bar-item">
-                        <div class="bar-label"><span class="flag">🇨🇭</span> Employé banque</div>
-                        <div class="bar-track">
-                            <div class="bar-fill electric" style="width: 55%;">4 200 €</div>
-                        </div>
-                    </div>
-                    <div class="bar-item">
-                        <div class="bar-label"><span class="flag">🇨🇭</span> Chauffeur bus</div>
-                        <div class="bar-track">
-                            <div class="bar-fill purple" style="width: 52%;">4 000 €</div>
-                        </div>
-                    </div>
-                    <div class="bar-item">
-                        <div class="bar-label"><span class="flag">🇨🇭</span> Ouvrier BTP</div>
-                        <div class="bar-track">
-                            <div class="bar-fill green" style="width: 45%;">3 500 €</div>
-                        </div>
-                    </div>
-                </div>
+            <h2 class="chart-title">💰 Les salaires en <span class="accent">Suisse</span> 🇨🇭</h2>
+            <div class="chart-subtitle">Salaire médian net mensuel (Office fédéral de la statistique · 2024)</div>
+
+            <div class="chart-area">
+                <div class="rank-row"><div class="rank-emoji">🩺</div><div class="rank-name">Médecin</div><div class="rank-value">7 500 €</div></div>
+                <div class="rank-row"><div class="rank-emoji">🏦</div><div class="rank-name">Employé banque</div><div class="rank-value">4 200 €</div></div>
+                <div class="rank-row"><div class="rank-emoji">🚌</div><div class="rank-name">Chauffeur bus</div><div class="rank-value">4 000 €</div></div>
+                <div class="rank-row"><div class="rank-emoji">👷</div><div class="rank-name">Ouvrier BTP</div><div class="rank-value">3 500 €</div></div>
             </div>
 
             <div class="footer">
-                <div class="source">Source : <span>Office fédéral de la statistique, 2024</span></div>
+                <div class="source">Source : <span>Office fédéral de la statistique · 2024</span></div>
                 <div class="website">ouvalargent.com</div>
             </div>
         </div>
