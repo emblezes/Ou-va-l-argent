@@ -104,7 +104,7 @@ export default function ComingSoonPage() {
   }
 
   return (
-    <div data-coming-soon className="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 overflow-hidden bg-[var(--bg-deep)]">
+    <div data-coming-soon className="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 overflow-hidden bg-[var(--bg-deep)]" style={{ zoom: 1 }}>
       {/* Mosaic Background */}
       <div className="absolute inset-0 z-0">
         <div className="mosaic-scroll grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-7 gap-1.5 p-1.5 opacity-40">
