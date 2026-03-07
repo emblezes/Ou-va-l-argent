@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   description: 'Tout ce que l\'État fait de nos impôts. Dépenses publiques, dette, gaspillage : on décrypte.',
   icons: {
-    icon: '/icon.svg',
+    icon: '/favicon.png',
   },
   keywords: ['finances publiques', 'budget France', 'dépenses publiques', 'dette publique', 'impôts France'],
   authors: [{ name: 'Où va l\'argent' }],
