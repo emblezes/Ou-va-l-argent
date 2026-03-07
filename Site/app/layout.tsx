@@ -28,10 +28,13 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Où va l\'argent ?',
+    default: 'Où va l\'argent ? Tout ce que l\'État fait de nos impôts',
     template: '%s | Où va l\'argent ?',
   },
-  description: 'Explorez les finances publiques françaises avec une transparence totale. Chaque euro, chaque ministère, chaque décision budgétaire.',
+  description: 'Tout ce que l\'État fait de nos impôts. Dépenses publiques, dette, gaspillage : on décrypte.',
+  icons: {
+    icon: '/icon.svg',
+  },
   keywords: ['finances publiques', 'budget France', 'dépenses publiques', 'dette publique', 'impôts France'],
   authors: [{ name: 'Où va l\'argent' }],
   openGraph: {
