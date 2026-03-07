@@ -128,7 +128,7 @@ export function ComingSoon() {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center w-full max-w-4xl px-6">
         {/* Titre */}
-        <h1 className="font-serif text-[clamp(4rem,12vw,9rem)] font-normal text-center mb-12 leading-[1.1]">
+        <h1 className="font-serif text-[clamp(3rem,10vw,8rem)] font-normal text-center mb-12 leading-[1.1] whitespace-nowrap">
           O&ugrave; Va <span className="italic text-[#00d4ff]">l&apos;Argent</span> ?
         </h1>
 
