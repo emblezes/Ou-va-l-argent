@@ -120,18 +120,18 @@ export default function ComingSoonPage() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center max-w-2xl">
+      <div className="relative z-10 flex flex-col items-center w-full max-w-4xl px-6">
         {/* Titre */}
-        <h1 className="font-serif text-6xl sm:text-7xl md:text-8xl font-normal text-center mb-10">
+        <h1 className="font-serif text-[clamp(4rem,12vw,9rem)] font-normal text-center mb-12 leading-[1.1]">
           Ou Va <span className="italic text-[#00d4ff]">l&apos;Argent</span> ?
         </h1>
 
         {/* Tags thematiques */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-14">
           {TOPICS.map((topic) => (
             <span
               key={topic}
-              className="px-4 py-2 text-sm sm:text-base font-medium text-white/90 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm"
+              className="px-5 py-2.5 text-base sm:text-lg font-medium text-white/90 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm"
             >
               {topic}
             </span>
@@ -139,7 +139,7 @@ export default function ComingSoonPage() {
         </div>
 
         {/* Formulaire email */}
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md mb-8">
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 w-full max-w-2xl mb-10">
           <input
             type="email"
             value={email}
@@ -147,33 +147,33 @@ export default function ComingSoonPage() {
             placeholder="votre@email.com"
             required
             disabled={status === 'loading' || status === 'success'}
-            className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-[#5a6270] focus:outline-none focus:border-[#00d4ff]/50 disabled:opacity-50 backdrop-blur-sm"
+            className="flex-1 px-6 py-4 text-lg bg-white/5 border border-white/10 rounded-xl text-white placeholder-[#5a6270] focus:outline-none focus:border-[#00d4ff]/50 disabled:opacity-50 backdrop-blur-sm"
           />
           <button
             type="submit"
             disabled={status === 'loading' || status === 'success'}
-            className="px-6 py-3 bg-[#00d4ff] text-[#0a0e14] font-semibold rounded-lg hover:bg-[#00b8e0] transition-colors disabled:opacity-50"
+            className="px-8 py-4 text-lg bg-[#00d4ff] text-[#0a0e14] font-semibold rounded-xl hover:bg-[#00b8e0] transition-colors disabled:opacity-50 whitespace-nowrap"
           >
-            {status === 'loading' ? '...' : status === 'success' ? 'Inscrit !' : 'M'abonner au contenu exclusif'}
+            {status === 'loading' ? '...' : status === 'success' ? 'Inscrit !' : "M\u2019abonner au contenu exclusif"}
           </button>
         </form>
 
         {status === 'success' && (
-          <p className="text-green-400 text-sm mb-6">Vous serez informe du lancement.</p>
+          <p className="text-green-400 text-base mb-8">Vous serez informe du lancement.</p>
         )}
         {status === 'error' && (
-          <p className="text-red-400 text-sm mb-6">Erreur. Reessayez.</p>
+          <p className="text-red-400 text-base mb-8">Erreur. Reessayez.</p>
         )}
 
         {/* Reseaux sociaux */}
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-5 mb-5">
           {SOCIALS.map((social) => (
             <a
               key={social.name}
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-[#00d4ff] hover:border-[#00d4ff]/50 transition-all"
+              className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-[#00d4ff] hover:border-[#00d4ff]/50 transition-all"
               title={social.name}
             >
               {social.icon}
@@ -184,7 +184,7 @@ export default function ComingSoonPage() {
         {/* Email contact */}
         <a
           href="mailto:contact@ouvalargent.com"
-          className="text-sm text-white/50 hover:text-[#00d4ff] transition-colors"
+          className="text-base text-white/50 hover:text-[#00d4ff] transition-colors"
         >
           contact@ouvalargent.com
         </a>
