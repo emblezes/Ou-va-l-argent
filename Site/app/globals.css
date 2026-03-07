@@ -60,8 +60,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
-  font-synthesis: none;
   -webkit-text-size-adjust: 100%;
+  font-kerning: normal;
   min-height: 100vh;
 }
 

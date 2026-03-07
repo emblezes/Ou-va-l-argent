@@ -126,9 +126,9 @@ export default function ComingSoonPage() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center w-full max-w-6xl px-4 sm:px-6">
+      <div className="relative z-10 flex flex-col items-center w-full max-w-6xl px-4 sm:px-6 font-sans">
         {/* Titre */}
-        <h1 className="font-serif text-[clamp(2.5rem,12vw,12rem)] font-normal text-center mb-8 sm:mb-16 leading-[1.1]">
+        <h1 className="font-serif text-[clamp(2.5rem,11vw,12rem)] font-normal text-center mb-8 sm:mb-16 leading-[1.1] sm:whitespace-nowrap">
           O&ugrave; Va <span className="italic text-[#00d4ff]">l&apos;Argent</span>&nbsp;?
         </h1>
 
@@ -137,7 +137,7 @@ export default function ComingSoonPage() {
           {TOPICS.map((topic) => (
             <span
               key={topic}
-              className="px-4 py-2 sm:px-8 sm:py-4 text-sm sm:text-3xl font-medium text-white/90 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm"
+              className="font-sans px-4 py-2 sm:px-8 sm:py-4 text-sm sm:text-3xl font-medium text-white/90 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm"
             >
               {topic}
             </span>
@@ -153,22 +153,22 @@ export default function ComingSoonPage() {
             placeholder="votre@email.com"
             required
             disabled={status === 'loading' || status === 'success'}
-            className="flex-1 px-5 py-4 sm:px-10 sm:py-7 text-base sm:text-3xl bg-white/5 border-2 border-white/15 rounded-xl sm:rounded-2xl text-white placeholder-[#5a6270] focus:outline-none focus:border-[#00d4ff]/50 disabled:opacity-50 backdrop-blur-sm"
+            className="font-sans flex-1 px-5 py-4 sm:px-10 sm:py-7 text-base sm:text-3xl bg-white/5 border-2 border-white/15 rounded-xl sm:rounded-2xl text-white placeholder-[#5a6270] focus:outline-none focus:border-[#00d4ff]/50 disabled:opacity-50 backdrop-blur-sm"
           />
           <button
             type="submit"
             disabled={status === 'loading' || status === 'success'}
-            className="px-8 py-4 sm:px-14 sm:py-7 text-base sm:text-3xl bg-[#00d4ff] text-[#0a0e14] font-bold rounded-xl sm:rounded-2xl hover:bg-[#00b8e0] hover:scale-105 transition-all disabled:opacity-50 whitespace-nowrap"
+            className="font-sans px-8 py-4 sm:px-14 sm:py-7 text-base sm:text-3xl bg-[#00d4ff] text-[#0a0e14] font-bold rounded-xl sm:rounded-2xl hover:bg-[#00b8e0] hover:scale-105 transition-all disabled:opacity-50 whitespace-nowrap"
           >
             {status === 'loading' ? '...' : status === 'success' ? 'Inscrit !' : "M\u2019abonner"}
           </button>
         </form>
 
         {status === 'success' && (
-          <p className="text-green-400 text-base sm:text-2xl mb-6 sm:mb-10">Vous serez informe du lancement.</p>
+          <p className="font-sans text-green-400 text-base sm:text-2xl mb-6 sm:mb-10">Vous serez informe du lancement.</p>
         )}
         {status === 'error' && (
-          <p className="text-red-400 text-base sm:text-2xl mb-6 sm:mb-10">Erreur. Reessayez.</p>
+          <p className="font-sans text-red-400 text-base sm:text-2xl mb-6 sm:mb-10">Erreur. Reessayez.</p>
         )}
 
         {/* Reseaux sociaux */}
@@ -190,7 +190,7 @@ export default function ComingSoonPage() {
         {/* Email contact */}
         <a
           href="mailto:contact@ouvalargent.com"
-          className="text-sm sm:text-2xl text-white/50 hover:text-[#00d4ff] transition-colors"
+          className="font-mono text-sm sm:text-2xl text-white/50 hover:text-[#00d4ff] transition-colors"
         >
           contact@ouvalargent.com
         </a>
