@@ -144,7 +144,7 @@ export default function ComingSoonPage() {
         </div>
 
         {/* Formulaire email */}
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 w-full max-w-2xl mb-10">
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-5 w-full max-w-3xl mb-12">
           <input
             type="email"
             value={email}
@@ -152,33 +152,33 @@ export default function ComingSoonPage() {
             placeholder="votre@email.com"
             required
             disabled={status === 'loading' || status === 'success'}
-            className="flex-1 px-6 py-4 text-lg bg-white/5 border border-white/10 rounded-xl text-white placeholder-[#5a6270] focus:outline-none focus:border-[#00d4ff]/50 disabled:opacity-50 backdrop-blur-sm"
+            className="flex-1 px-8 py-5 text-xl sm:text-2xl bg-white/5 border-2 border-white/15 rounded-2xl text-white placeholder-[#5a6270] focus:outline-none focus:border-[#00d4ff]/50 disabled:opacity-50 backdrop-blur-sm"
           />
           <button
             type="submit"
             disabled={status === 'loading' || status === 'success'}
-            className="px-8 py-4 text-lg bg-[#00d4ff] text-[#0a0e14] font-semibold rounded-xl hover:bg-[#00b8e0] transition-colors disabled:opacity-50 whitespace-nowrap"
+            className="px-10 py-5 text-xl sm:text-2xl bg-[#00d4ff] text-[#0a0e14] font-bold rounded-2xl hover:bg-[#00b8e0] hover:scale-105 transition-all disabled:opacity-50 whitespace-nowrap"
           >
             {status === 'loading' ? '...' : status === 'success' ? 'Inscrit !' : "M\u2019abonner"}
           </button>
         </form>
 
         {status === 'success' && (
-          <p className="text-green-400 text-base mb-8">Vous serez informe du lancement.</p>
+          <p className="text-green-400 text-lg mb-8">Vous serez informe du lancement.</p>
         )}
         {status === 'error' && (
-          <p className="text-red-400 text-base mb-8">Erreur. Reessayez.</p>
+          <p className="text-red-400 text-lg mb-8">Erreur. Reessayez.</p>
         )}
 
         {/* Reseaux sociaux */}
-        <div className="flex items-center gap-5 mb-5">
+        <div className="flex items-center gap-6 mb-6">
           {SOCIALS.map((social) => (
             <a
               key={social.name}
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-[#00d4ff] hover:border-[#00d4ff]/50 transition-all"
+              className="w-16 h-16 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-[#00d4ff] hover:border-[#00d4ff]/50 hover:scale-110 transition-all [&_svg]:w-7 [&_svg]:h-7"
               title={social.name}
             >
               {social.icon}
@@ -189,7 +189,7 @@ export default function ComingSoonPage() {
         {/* Email contact */}
         <a
           href="mailto:contact@ouvalargent.com"
-          className="text-base text-white/50 hover:text-[#00d4ff] transition-colors"
+          className="text-lg text-white/50 hover:text-[#00d4ff] transition-colors"
         >
           contact@ouvalargent.com
         </a>
