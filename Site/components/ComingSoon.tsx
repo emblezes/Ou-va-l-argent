@@ -173,7 +173,7 @@ export function ComingSoon() {
         )}
 
         {/* Reseaux sociaux */}
-        <div className="flex items-center gap-4 sm:gap-8 mb-4 sm:mb-8">
+        <div className="flex items-center gap-6 sm:gap-8 mb-10 sm:mb-8">
           {SOCIALS.map((social) => (
             <a
               key={social.name}
