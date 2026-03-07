@@ -66,12 +66,18 @@ export function ComingSoon() {
   useEffect(() => {
     const navbar = document.querySelector('nav')
     const footer = document.querySelector('footer')
-    if (navbar) navbar.style.display = 'none'
-    if (footer) footer.style.display = 'none'
+    // Cacher tout le layout (nav, footer, newsletter bar/popup)
+    const elementsToHide = [
+      navbar,
+      footer,
+      ...Array.from(document.querySelectorAll('.fixed.bottom-0')),
+      ...Array.from(document.querySelectorAll('[class*="newsletter"]')),
+    ].filter(Boolean) as HTMLElement[]
+
+    elementsToHide.forEach(el => el.style.display = 'none')
 
     return () => {
-      if (navbar) navbar.style.display = ''
-      if (footer) footer.style.display = ''
+      elementsToHide.forEach(el => el.style.display = '')
     }
   }, [])
 
@@ -131,7 +137,7 @@ export function ComingSoon() {
           {TOPICS.map((topic) => (
             <span
               key={topic}
-              className="px-5 py-2.5 text-base sm:text-lg font-medium text-white/90 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm"
+              className="px-6 py-3 text-lg sm:text-2xl font-medium text-white/90 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm"
             >
               {topic}
             </span>
