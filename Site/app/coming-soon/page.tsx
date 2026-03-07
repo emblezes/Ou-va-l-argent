@@ -154,7 +154,7 @@ export default function ComingSoonPage() {
             disabled={status === 'loading' || status === 'success'}
             className="px-6 py-3 bg-[#00d4ff] text-[#0a0e14] font-semibold rounded-lg hover:bg-[#00b8e0] transition-colors disabled:opacity-50"
           >
-            {status === 'loading' ? '...' : status === 'success' ? 'Inscrit !' : 'Me prevenir'}
+            {status === 'loading' ? '...' : status === 'success' ? 'Inscrit !' : 'M'abonner au contenu exclusif'}
           </button>
         </form>
 
