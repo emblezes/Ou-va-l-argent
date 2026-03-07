@@ -13,8 +13,8 @@ const MOSAIC_IMAGES = [
 ]
 
 const TOPICS = [
-  'Depenses publiques',
-  'Impots',
+  'D\u00e9penses publiques',
+  'Imp\u00f4ts',
   'Comparaisons internationales',
   'Gaspillage d\'argent public',
   'Pourquoi la France s\'endette ?',
