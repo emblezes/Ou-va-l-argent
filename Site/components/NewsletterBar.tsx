@@ -8,6 +8,8 @@ export function NewsletterBar() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle')
 
   useEffect(() => {
+    // Ne pas afficher sur la landing page coming-soon
+    if (document.querySelector('[data-coming-soon]')) return
     // Ne pas afficher si déjà inscrit
     if (localStorage.getItem('newsletter-subscribed')) return
 

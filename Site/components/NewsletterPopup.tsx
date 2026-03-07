@@ -8,6 +8,8 @@ export function NewsletterPopup() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
 
   useEffect(() => {
+    // Ne pas afficher sur la landing page coming-soon
+    if (document.querySelector('[data-coming-soon]')) return
     // Ne pas afficher si déjà fermé ou inscrit dans cette session
     const dismissed = localStorage.getItem('newsletter-dismissed')
     if (dismissed) return
