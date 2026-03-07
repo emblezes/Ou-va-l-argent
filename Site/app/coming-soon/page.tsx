@@ -71,6 +71,7 @@ export default function ComingSoonPage() {
       footer,
       ...Array.from(document.querySelectorAll('.fixed.bottom-0')),
       ...Array.from(document.querySelectorAll('[class*="newsletter"]')),
+      ...Array.from(document.querySelectorAll('.bg-atmosphere, .bg-grid')),
     ].filter(Boolean) as HTMLElement[]
 
     elementsToHide.forEach(el => el.style.display = 'none')
