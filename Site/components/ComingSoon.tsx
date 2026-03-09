@@ -68,7 +68,6 @@ export function ComingSoon() {
   useEffect(() => {
     const navbar = document.querySelector('nav')
     const footer = document.querySelector('footer')
-    // Cacher tout le layout (nav, footer, newsletter bar/popup)
     const elementsToHide = [
       navbar,
       footer,
@@ -107,7 +106,7 @@ export function ComingSoon() {
   }
 
   return (
-    <div data-coming-soon className="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 overflow-hidden bg-[var(--bg-deep)]" style={{ zoom: 1 }}>
+    <div suppressHydrationWarning data-coming-soon className="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 overflow-hidden bg-[var(--bg-deep)]" style={{ zoom: 1 }}>
       {/* Mosaic Background */}
       <div className="absolute inset-0 z-0">
         <div className="mosaic-scroll grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-7 gap-1.5 p-1.5 opacity-40">
@@ -131,40 +130,53 @@ export function ComingSoon() {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center w-full max-w-6xl px-4 sm:px-6 font-sans">
         {/* Titre */}
-        <h1 className="font-serif text-[clamp(2.5rem,11vw,12rem)] font-normal text-center mb-8 sm:mb-16 leading-[1.1] sm:whitespace-nowrap">
+        <h1 className="font-serif text-[clamp(2.5rem,11vw,12rem)] font-normal text-center mb-6 sm:mb-10 leading-[1.1] sm:whitespace-nowrap">
           O&ugrave; Va <span className="italic text-[#00d4ff]">l&apos;Argent</span>&nbsp;?
         </h1>
 
         {/* Compteur de dette */}
-        <div className="relative bg-gradient-to-br from-[#ff4757]/20 to-[#ff9f43]/10 border border-[#ff4757]/40 rounded-2xl p-6 sm:p-10 mb-8 sm:mb-14 w-full max-w-3xl overflow-hidden backdrop-blur-md">
+        <div suppressHydrationWarning className="relative bg-gradient-to-br from-[#ff4757]/20 to-[#ff9f43]/10 border border-[#ff4757]/40 rounded-2xl p-6 sm:p-10 mb-8 sm:mb-12 w-full max-w-3xl overflow-hidden backdrop-blur-md text-center">
           {/* Loading bar */}
           <div className="absolute top-0 left-0 right-0 h-1 overflow-hidden">
             <div className="h-full w-full bg-gradient-to-r from-[#ff4757] via-[#ff9f43] to-[#ff6b81] animate-loading" />
           </div>
 
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#ff4757] rounded-full text-xs sm:text-sm font-semibold uppercase mb-3">
-            <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#ff4757] rounded-full text-sm sm:text-base font-semibold uppercase mb-4">
+            <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
             En direct
           </div>
 
-          <p className="font-sans text-white/80 text-base sm:text-2xl mb-2">
-            Depuis votre arrivée, la dette française a augmenté de
+          <p className="font-sans text-white/80 text-lg sm:text-3xl mb-3">
+            Depuis votre arrivée, la dette publique française a augmenté de
           </p>
 
           <div
-            className="font-mono text-[clamp(2.5rem,10vw,5rem)] font-medium text-[#ff4757] leading-none"
+            suppressHydrationWarning
+            className="font-mono text-[clamp(3rem,12vw,7rem)] font-medium text-[#ff4757] leading-none"
             style={{ textShadow: '0 0 30px rgba(255, 71, 87, 0.5)' }}
           >
             {formatCurrency(debtCounter)}
           </div>
 
-          <p className="font-sans text-white/60 text-sm sm:text-lg mt-3">
-            soit <span className="text-[#ff4757] font-mono font-medium">5 390 €</span>/seconde &middot; Temps écoulé : <span className="font-mono text-[#ff9f43] font-medium">{formatTime(elapsedSeconds)}</span>
+          <p suppressHydrationWarning className="font-sans text-white/60 text-base sm:text-xl mt-4">
+            soit <span className="text-[#ff4757] font-mono font-medium">5 390 €</span>/seconde · Temps écoulé : <span className="font-mono text-[#ff9f43] font-medium">{formatTime(elapsedSeconds)}</span>
           </p>
         </div>
 
+        {/* Tags thématiques */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12">
+          {['Dépenses publiques', 'Impôts', 'Dette', 'Comparaisons internationales', 'Gaspillage d\'argent public', 'Où va donc l\'argent de nos impôts ?'].map((topic) => (
+            <span
+              key={topic}
+              className="font-sans px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-2xl font-medium text-white/90 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm"
+            >
+              {topic}
+            </span>
+          ))}
+        </div>
+
         {/* Formulaire email */}
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 sm:gap-6 w-full max-w-4xl mb-8 sm:mb-14">
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 sm:gap-6 w-full max-w-4xl mb-8 sm:mb-12">
           <input
             type="email"
             value={email}
@@ -191,7 +203,7 @@ export function ComingSoon() {
         )}
 
         {/* Reseaux sociaux */}
-        <div className="flex items-center gap-6 sm:gap-8 mb-10 sm:mb-8">
+        <div className="flex items-center gap-6 sm:gap-8 mb-8 sm:mb-6">
           {SOCIALS.map((social) => (
             <a
               key={social.name}
