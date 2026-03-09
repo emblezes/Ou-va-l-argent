@@ -3,6 +3,21 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
+function formatCurrency(num: number): string {
+  return new Intl.NumberFormat('fr-FR', {
+    style: 'currency',
+    currency: 'EUR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(num)
+}
+
+function formatTime(seconds: number): string {
+  const mins = Math.floor(seconds / 60)
+  const secs = seconds % 60
+  return `${mins}:${secs.toString().padStart(2, '0')}`
+}
+
 const MOSAIC_IMAGES = [
   '01-explosion-dette-france-instagram.png',
   '03-deficit-zone-euro-instagram.png',
@@ -12,33 +27,7 @@ const MOSAIC_IMAGES = [
   '93-ue-dependance-terres-rares-instagram.png',
 ]
 
-const TOPICS = [
-  'D\u00e9penses publiques',
-  'Imp\u00f4ts',
-  'Comparaisons internationales',
-  'Gaspillage d\'argent public',
-  'Pourquoi la France s\'endette ?',
-]
-
 const SOCIALS = [
-  {
-    name: 'X',
-    href: 'https://x.com/ouvalargent',
-    icon: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Facebook',
-    href: 'https://www.facebook.com/profile.php?id=61586175562373',
-    icon: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-      </svg>
-    ),
-  },
   {
     name: 'Instagram',
     href: 'https://www.instagram.com/ouvalargent',
@@ -62,6 +51,19 @@ const SOCIALS = [
 export function ComingSoon() {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [debtCounter, setDebtCounter] = useState(0)
+  const [elapsedSeconds, setElapsedSeconds] = useState(0)
+  const debtPerSecond = 5390 // € par seconde (déficit 170 Md€/an, Source: INSEE 2024)
+
+  useEffect(() => {
+    let elapsed = 0
+    const interval = setInterval(() => {
+      elapsed += 0.1
+      setDebtCounter(Math.floor(elapsed * debtPerSecond))
+      setElapsedSeconds(Math.floor(elapsed))
+    }, 100)
+    return () => clearInterval(interval)
+  }, [])
 
   useEffect(() => {
     const navbar = document.querySelector('nav')
@@ -133,16 +135,32 @@ export function ComingSoon() {
           O&ugrave; Va <span className="italic text-[#00d4ff]">l&apos;Argent</span>&nbsp;?
         </h1>
 
-        {/* Tags thematiques */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-6 mb-8 sm:mb-16">
-          {TOPICS.map((topic) => (
-            <span
-              key={topic}
-              className="font-sans px-4 py-2 sm:px-8 sm:py-4 text-sm sm:text-3xl font-medium text-white/90 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm"
-            >
-              {topic}
-            </span>
-          ))}
+        {/* Compteur de dette */}
+        <div className="relative bg-gradient-to-br from-[#ff4757]/20 to-[#ff9f43]/10 border border-[#ff4757]/40 rounded-2xl p-6 sm:p-10 mb-8 sm:mb-14 w-full max-w-3xl overflow-hidden backdrop-blur-md">
+          {/* Loading bar */}
+          <div className="absolute top-0 left-0 right-0 h-1 overflow-hidden">
+            <div className="h-full w-full bg-gradient-to-r from-[#ff4757] via-[#ff9f43] to-[#ff6b81] animate-loading" />
+          </div>
+
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#ff4757] rounded-full text-xs sm:text-sm font-semibold uppercase mb-3">
+            <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+            En direct
+          </div>
+
+          <p className="font-sans text-white/80 text-base sm:text-2xl mb-2">
+            Depuis votre arrivée, la dette française a augmenté de
+          </p>
+
+          <div
+            className="font-mono text-[clamp(2.5rem,10vw,5rem)] font-medium text-[#ff4757] leading-none"
+            style={{ textShadow: '0 0 30px rgba(255, 71, 87, 0.5)' }}
+          >
+            {formatCurrency(debtCounter)}
+          </div>
+
+          <p className="font-sans text-white/60 text-sm sm:text-lg mt-3">
+            soit <span className="text-[#ff4757] font-mono font-medium">5 390 €</span>/seconde &middot; Temps écoulé : <span className="font-mono text-[#ff9f43] font-medium">{formatTime(elapsedSeconds)}</span>
+          </p>
         </div>
 
         {/* Formulaire email */}

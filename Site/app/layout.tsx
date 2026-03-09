@@ -112,7 +112,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

@@ -3,6 +3,21 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
+function formatCurrency(num: number): string {
+  return new Intl.NumberFormat('fr-FR', {
+    style: 'currency',
+    currency: 'EUR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(num)
+}
+
+function formatTime(seconds: number): string {
+  const mins = Math.floor(seconds / 60)
+  const secs = seconds % 60
+  return `${mins}:${secs.toString().padStart(2, '0')}`
+}
+
 const MOSAIC_IMAGES = [
   '01-explosion-dette-france-instagram.png',
   '03-deficit-zone-euro-instagram.png',
@@ -12,33 +27,7 @@ const MOSAIC_IMAGES = [
   '93-ue-dependance-terres-rares-instagram.png',
 ]
 
-const TOPICS = [
-  'D\u00e9penses publiques',
-  'Imp\u00f4ts',
-  'Comparaisons internationales',
-  'Gaspillage d\'argent public',
-  'Pourquoi la France s\'endette ?',
-]
-
 const SOCIALS = [
-  {
-    name: 'X',
-    href: 'https://x.com/ouvalargent',
-    icon: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Facebook',
-    href: 'https://www.facebook.com/profile.php?id=61586175562373',
-    icon: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-      </svg>
-    ),
-  },
   {
     name: 'Instagram',
     href: 'https://www.instagram.com/ouvalargent',
@@ -62,6 +51,19 @@ const SOCIALS = [
 export default function ComingSoonPage() {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [debtCounter, setDebtCounter] = useState(0)
+  const [elapsedSeconds, setElapsedSeconds] = useState(0)
+  const debtPerSecond = 5390 // € par seconde (déficit 170 Md€/an, Source: INSEE 2024)
+
+  useEffect(() => {
+    let elapsed = 0
+    const interval = setInterval(() => {
+      elapsed += 0.1
+      setDebtCounter(Math.floor(elapsed * debtPerSecond))
+      setElapsedSeconds(Math.floor(elapsed))
+    }, 100)
+    return () => clearInterval(interval)
+  }, [])
 
   useEffect(() => {
     const navbar = document.querySelector('nav')
@@ -104,7 +106,7 @@ export default function ComingSoonPage() {
   }
 
   return (
-    <div data-coming-soon className="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 overflow-hidden bg-[var(--bg-deep)]" style={{ zoom: 1 }}>
+    <div suppressHydrationWarning data-coming-soon className="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 overflow-hidden bg-[var(--bg-deep)]" style={{ zoom: 1 }}>
       {/* Mosaic Background */}
       <div className="absolute inset-0 z-0">
         <div className="mosaic-scroll grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-7 gap-1.5 p-1.5 opacity-40">
@@ -128,16 +130,45 @@ export default function ComingSoonPage() {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center w-full max-w-6xl px-4 sm:px-6 font-sans">
         {/* Titre */}
-        <h1 className="font-serif text-[clamp(2.5rem,11vw,12rem)] font-normal text-center mb-8 sm:mb-16 leading-[1.1] sm:whitespace-nowrap">
+        <h1 className="font-serif text-[clamp(2.5rem,11vw,12rem)] font-normal text-center mb-6 sm:mb-10 leading-[1.1] sm:whitespace-nowrap">
           O&ugrave; Va <span className="italic text-[#00d4ff]">l&apos;Argent</span>&nbsp;?
         </h1>
 
-        {/* Tags thematiques */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-6 mb-8 sm:mb-16">
-          {TOPICS.map((topic) => (
+        {/* Compteur de dette */}
+        <div suppressHydrationWarning className="relative bg-gradient-to-br from-[#ff4757]/20 to-[#ff9f43]/10 border border-[#ff4757]/40 rounded-2xl p-6 sm:p-10 mb-8 sm:mb-12 w-full max-w-3xl overflow-hidden backdrop-blur-md text-center">
+          {/* Loading bar */}
+          <div className="absolute top-0 left-0 right-0 h-1 overflow-hidden">
+            <div className="h-full w-full bg-gradient-to-r from-[#ff4757] via-[#ff9f43] to-[#ff6b81] animate-loading" />
+          </div>
+
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#ff4757] rounded-full text-sm sm:text-base font-semibold uppercase mb-4">
+            <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
+            En direct
+          </div>
+
+          <p className="font-sans text-white/80 text-lg sm:text-3xl mb-3">
+            Depuis votre arrivée, la dette publique française a augmenté de
+          </p>
+
+          <div
+            suppressHydrationWarning
+            className="font-mono text-[clamp(3rem,12vw,7rem)] font-medium text-[#ff4757] leading-none"
+            style={{ textShadow: '0 0 30px rgba(255, 71, 87, 0.5)' }}
+          >
+            {formatCurrency(debtCounter)}
+          </div>
+
+          <p suppressHydrationWarning className="font-sans text-white/60 text-base sm:text-xl mt-4">
+            soit <span className="text-[#ff4757] font-mono font-medium">5 390 €</span>/seconde · Temps écoulé : <span className="font-mono text-[#ff9f43] font-medium">{formatTime(elapsedSeconds)}</span>
+          </p>
+        </div>
+
+        {/* Tags thématiques */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12">
+          {['Dépenses publiques', 'Impôts', 'Dette', 'Comparaisons internationales', 'Gaspillage d\'argent public', 'Où va donc l\'argent de nos impôts ?'].map((topic) => (
             <span
               key={topic}
-              className="font-sans px-4 py-2 sm:px-8 sm:py-4 text-sm sm:text-3xl font-medium text-white/90 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm"
+              className="font-sans px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-2xl font-medium text-white/90 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm"
             >
               {topic}
             </span>
@@ -145,7 +176,7 @@ export default function ComingSoonPage() {
         </div>
 
         {/* Formulaire email */}
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 sm:gap-6 w-full max-w-4xl mb-8 sm:mb-14">
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 sm:gap-6 w-full max-w-4xl mb-8 sm:mb-12">
           <input
             type="email"
             value={email}
@@ -172,7 +203,7 @@ export default function ComingSoonPage() {
         )}
 
         {/* Reseaux sociaux */}
-        <div className="flex items-center gap-6 sm:gap-8 mb-10 sm:mb-8">
+        <div className="flex items-center gap-6 sm:gap-8 mb-8 sm:mb-6">
           {SOCIALS.map((social) => (
             <a
               key={social.name}
