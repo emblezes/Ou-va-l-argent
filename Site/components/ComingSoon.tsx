@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 
 function formatCurrency(num: number): string {
   return new Intl.NumberFormat('fr-FR', {
@@ -235,14 +234,6 @@ export function ComingSoon() {
         >
           contact@ouvalargent.com
         </a>
-
-        {/* Mentions légales */}
-        <Link
-          href="/mentions-legales"
-          className="font-sans text-xs sm:text-base text-white/30 hover:text-white/60 transition-colors mt-4"
-        >
-          Mentions légales &amp; Confidentialité
-        </Link>
       </div>
     </div>
   )
