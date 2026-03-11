@@ -19,6 +19,9 @@ export function Footer() {
           <a href="https://www.linkedin.com/company/ouvalargent" target="_blank" rel="noopener noreferrer" className="hover:text-accent-electric transition-colors">
             LinkedIn
           </a>
+          <a href="https://x.com/ouvalargentfr" target="_blank" rel="noopener noreferrer" className="hover:text-accent-electric transition-colors">
+            X
+          </a>
         </div>
         <div className="flex flex-wrap justify-center gap-x-[24px] gap-y-[8px] text-text-primary text-[18px]">
           <Link href="/mentions-legales" className="hover:text-accent-electric transition-colors">
