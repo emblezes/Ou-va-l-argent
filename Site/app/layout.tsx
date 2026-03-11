@@ -81,7 +81,7 @@ export default function RootLayout({
           height: 630,
         },
         sameAs: [
-          'https://www.instagram.com/ouvalargent',
+          'https://www.instagram.com/ouvalargentfr',
           'https://www.tiktok.com/@ouvalargentfr',
           'https://www.linkedin.com/company/ouvalargent',
         ],
@@ -104,7 +104,7 @@ export default function RootLayout({
         url: 'https://ouvalargent.com',
         sameAs: [
           'https://www.linkedin.com/in/emmanuelblezes',
-          'https://www.instagram.com/ouvalargent',
+          'https://www.instagram.com/ouvalargentfr',
           'https://www.tiktok.com/@ouvalargentfr',
         ],
       },

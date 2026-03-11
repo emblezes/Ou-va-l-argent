@@ -280,7 +280,7 @@ export default function NewsContent() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a
-              href="https://instagram.com/ouvalargent"
+              href="https://instagram.com/ouvalargentfr"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] text-white font-semibold rounded-full transition-transform hover:scale-105 text-sm"
