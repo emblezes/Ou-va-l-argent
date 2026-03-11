@@ -34,10 +34,11 @@ export async function POST(request: Request) {
       success: true,
       message: 'Inscription réussie !',
     })
-  } catch (error) {
-    console.error('Newsletter error:', error)
+  } catch (error: unknown) {
+    const err = error as { code?: string; message?: string; body?: string }
+    console.error('Newsletter error:', err.code, err.message, err.body)
     return NextResponse.json(
-      { error: 'Une erreur est survenue' },
+      { error: 'Une erreur est survenue', details: err.message || String(error) },
       { status: 500 }
     )
   }
