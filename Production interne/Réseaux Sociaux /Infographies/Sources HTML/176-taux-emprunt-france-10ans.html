@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taux d'emprunt de la France à 10 ans</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8ab4c8;
+            --text-muted: #4a6a7a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 45px 40px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 4px 12px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5.5rem;
+            text-align: center;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        .chart-title .accent {
+            color: #00d4ff;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">La France emprunte à <span class="accent">3,7 %</span>,<br>plus haut niveau depuis <span class="accent">15 ans</span></h2>
+            <div class="chart-subtitle">Taux de l'OAT 10 ans</div>
+
+            <div class="chart-area">
+                <svg width="920" height="560" viewBox="0 0 920 560">
+                    <!-- Unit label -->
+                    <text x="68" y="18" fill="#8ab4c8" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="600" text-anchor="end">%</text>
+
+                    <!-- Axes -->
+                    <line x1="80" y1="20" x2="80" y2="510" stroke="#4a5a6a" stroke-opacity="0.5" stroke-width="1" />
+                    <line x1="80" y1="510" x2="890" y2="510" stroke="#4a5a6a" stroke-opacity="0.5" stroke-width="1" />
+
+                    <!-- Y-axis: range -0.5% to 4.0% -->
+                    <!-- 0% line (special) -->
+                    <line x1="80" y1="455.6" x2="890" y2="455.6" stroke="#ffffff" stroke-opacity="0.25" stroke-dasharray="6,4" stroke-width="1.5" />
+                    <text x="68" y="459.6" fill="#ffffff" fill-opacity="0.5" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end" font-weight="600">0 %</text>
+
+                    <!-- 1% -->
+                    <line x1="80" y1="346.7" x2="890" y2="346.7" stroke="#4a5a6a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="68" y="350.7" fill="#8ab4c8" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">1 %</text>
+
+                    <!-- 2% -->
+                    <line x1="80" y1="237.8" x2="890" y2="237.8" stroke="#4a5a6a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="68" y="241.8" fill="#8ab4c8" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">2 %</text>
+
+                    <!-- 3% -->
+                    <line x1="80" y1="128.9" x2="890" y2="128.9" stroke="#4a5a6a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="68" y="132.9" fill="#8ab4c8" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">3 %</text>
+
+                    <!-- X-axis labels: 2011 to 2025 (every 2 years) -->
+                    <text x="80" y="540" fill="#8ab4c8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2011</text>
+                    <text x="186" y="540" fill="#8ab4c8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2013</text>
+                    <text x="292" y="540" fill="#8ab4c8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2015</text>
+                    <text x="399" y="540" fill="#8ab4c8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2017</text>
+                    <text x="505" y="540" fill="#8ab4c8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2019</text>
+                    <text x="611" y="540" fill="#8ab4c8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2021</text>
+                    <text x="717" y="540" fill="#8ab4c8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2023</text>
+                    <text x="824" y="540" fill="#8ab4c8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2025</text>
+
+
+                    <!-- Gradient fill under curve -->
+                    <defs>
+                        <linearGradient id="grad-FRA" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.3"/>
+                            <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.02"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Fill path (2011-2026, Y range: -0.5% to 4.0%) -->
+                    <path d="M80.0,90.8 L106.6,118.0 L124.1,58.1 L133.1,112.6 L159.7,205.1 L186.2,237.8 L212.8,194.2 L239.3,199.7 L265.9,275.9 L292.5,384.8 L308.4,419.6 L329.6,335.8 L345.6,363.0 L366.8,412.0 L385.4,445.8 L398.7,381.5 L409.3,335.8 L438.5,373.9 L451.8,370.6 L478.4,368.4 L504.9,379.3 L520.9,417.4 L539.4,499.1 L558.0,450.1 L571.3,466.4 L584.6,471.9 L611.2,492.6 L624.4,466.4 L637.7,444.7 L664.3,433.8 L677.5,324.9 L690.8,237.8 L704.1,183.3 L717.4,128.9 L730.7,150.7 L743.9,128.9 L759.9,70.1 L770.5,176.8 L783.8,139.8 L797.1,112.6 L810.3,128.9 L823.6,107.1 L836.9,118.0 L850.2,107.1 L863.4,85.3 L876.7,69.0 L887.9,54.8 L887.9,510.0 L80.0,510.0 Z" fill="url(#grad-FRA)" />
+
+                    <!-- Line path -->
+                    <path d="M80.0,90.8 L106.6,118.0 L124.1,58.1 L133.1,112.6 L159.7,205.1 L186.2,237.8 L212.8,194.2 L239.3,199.7 L265.9,275.9 L292.5,384.8 L308.4,419.6 L329.6,335.8 L345.6,363.0 L366.8,412.0 L385.4,445.8 L398.7,381.5 L409.3,335.8 L438.5,373.9 L451.8,370.6 L478.4,368.4 L504.9,379.3 L520.9,417.4 L539.4,499.1 L558.0,450.1 L571.3,466.4 L584.6,471.9 L611.2,492.6 L624.4,466.4 L637.7,444.7 L664.3,433.8 L677.5,324.9 L690.8,237.8 L704.1,183.3 L717.4,128.9 L730.7,150.7 L743.9,128.9 L759.9,70.1 L770.5,176.8 L783.8,139.8 L797.1,112.6 L810.3,128.9 L823.6,107.1 L836.9,118.0 L850.2,107.1 L863.4,85.3 L876.7,69.0 L887.9,54.8" fill="none" stroke="#00d4ff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+
+                    <!-- Annotation: Nov 2011 peak (3,65%) — above the point -->
+                    <circle cx="124.1" cy="58.1" r="6" fill="#00d4ff" stroke="#06080c" stroke-width="2.5" />
+                    <text x="124.1" y="33" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="800" text-anchor="middle">3,65 %</text>
+                    <text x="124.1" y="49" fill="#ffffff" fill-opacity="0.6" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="middle" font-weight="500">nov. 2011</text>
+
+                    <!-- Annotation: Near zero Sep 2016 (0,09%) — BELOW the point -->
+                    <circle cx="385.4" cy="445.8" r="5" fill="#00d4ff" stroke="#06080c" stroke-width="2.5" />
+                    <text x="385.4" y="470" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="16" font-weight="800" text-anchor="middle">0,09 %</text>
+                    <text x="385.4" y="486" fill="#ffffff" fill-opacity="0.6" font-family="'JetBrains Mono', monospace" font-size="11" text-anchor="middle" font-weight="500">sept. 2016</text>
+
+                    <!-- Annotation: Negative record Aug 2019 (-0,40%) — LEFT of the point -->
+                    <circle cx="539.4" cy="499.1" r="6" fill="#00d4ff" stroke="#06080c" stroke-width="2.5" />
+                    <text x="525" y="492" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="16" font-weight="800" text-anchor="end">-0,40 %</text>
+                    <text x="525" y="506" fill="#ffffff" fill-opacity="0.6" font-family="'JetBrains Mono', monospace" font-size="11" text-anchor="end" font-weight="500">août 2019</text>
+
+                    <!-- Annotation: Current Mar 2026 (3,68%) — exactly ABOVE the point -->
+                    <circle cx="887.9" cy="54.8" r="8" fill="#00d4ff" stroke="#06080c" stroke-width="3" />
+                    <circle cx="887.9" cy="54.8" r="14" fill="none" stroke="#00d4ff" stroke-opacity="0.3" stroke-width="1.5" />
+                    <text x="887.9" y="20" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="800" text-anchor="middle">3,68 %</text>
+                    <text x="887.9" y="42" fill="#ffffff" fill-opacity="0.6" font-family="'JetBrains Mono', monospace" font-size="15" text-anchor="middle" font-weight="500">mars 2026</text>
+
+                    <!-- Dashed connector between 2011 and 2026 peaks -->
+                    <line x1="140" y1="58.1" x2="870" y2="54.8" stroke="#00d4ff" stroke-opacity="0.15" stroke-width="1" stroke-dasharray="8,6" />
+
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Banque de France · Agence France Trésor · Mars 2026</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1900,6 +1900,7 @@ const INFOGRAPHICS = [
   ['141-normes-france-carousel.html', 3, '141d-normes-france'],
   ['141-normes-france-carousel.html', 4, '141e-normes-france'],
   ['142-deficit-169-milliards-2024.html', 0, '142-deficit-169-milliards-2024'],
+  ['155-520000-elus-locaux-record.html', 0, '155-520000-elus-locaux-record'],
   ['155-elus-locaux-carousel.html', 0, '155a-elus-locaux'],
   ['155-elus-locaux-carousel.html', 1, '155b-elus-locaux'],
   ['155-elus-locaux-carousel.html', 2, '155c-elus-locaux'],
@@ -1924,6 +1925,14 @@ const INFOGRAPHICS = [
   ['164e-france-vs-dubai-tva.html', 0, '164e-france-vs-dubai-tva'],
   ['165-nucleaire-chine-vs-allemagne.html', 0, '165-nucleaire-chine-vs-allemagne'],
   ['166-taux-pauvrete-monde.html', 0, '166-taux-pauvrete-monde'],
+  ['170-3000-abonnes-twitter-green.html', 0, '170-3000-abonnes-twitter-green'],
+  ['172-plein-essence-taxes-vs-cout.html', 0, '172-plein-essence-taxes-vs-cout'],
+  ['173-6000-abonnes.html', 0, '173-6000-abonnes'],
+  ['174-cta-abonne-toi.html', 0, '174-cta-abonne-toi'],
+  ['175-elus-locaux-decompte-national.html', 0, '175-elus-locaux-decompte-national'],
+  ['175b-cta-elus-locaux.html', 0, '175b-cta-elus-locaux'],
+  ['167-salaire-brut-net-impot.html', 0, '167-salaire-brut-net-impot'],
+  ['176-taux-emprunt-france-10ans.html', 0, '176-taux-emprunt-france-10ans'],
 ];
 
 async function exportFormat(browser, htmlPath, items, { css, jsTransform, width, height, outputDir, suffix, label }) {
