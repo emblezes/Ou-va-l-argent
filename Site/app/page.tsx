@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import HomeContent from './HomeContent'
+import { ComingSoon } from '@/components/ComingSoon'
 
 export const metadata: Metadata = {
   title: 'Où Va l\'Argent ? — Comprendre les finances publiques françaises',
@@ -40,5 +41,9 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
+  const isComingSoon = process.env.COMING_SOON === 'true'
+  if (isComingSoon) {
+    return <ComingSoon />
+  }
   return <HomeContent />
 }
