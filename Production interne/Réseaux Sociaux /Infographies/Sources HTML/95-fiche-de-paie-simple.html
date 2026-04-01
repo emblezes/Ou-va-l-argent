@@ -22,7 +22,7 @@
         .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
         .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%); top: -200px; right: -100px; pointer-events: none; }
         .bg-glow-2 { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0, 255, 136, 0.06) 0%, transparent 70%); bottom: -200px; left: -100px; pointer-events: none; }
-        .content { position: relative; z-index: 1; height: 100%; padding: 50px 55px 44px; display: flex; flex-direction: column; justify-content: center; }
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 55px 44px; display: flex; flex-direction: column; }
 
         /* Titre "Où Va l'Argent" en gros */
         .main-title {
@@ -46,19 +46,20 @@
         .subtitle strong { color: var(--accent-gold); font-weight: 700; }
 
         /* Flow rows */
+        .flow-wrapper { flex: 1; display: flex; flex-direction: column; justify-content: center; }
         .flow { display: flex; flex-direction: column; gap: 0; padding: 0 10px; }
 
         .flow-row {
             display: flex;
             align-items: center;
             gap: 24px;
-            padding: 28px 36px;
+            padding: 20px 36px;
             border-radius: 18px;
             position: relative;
         }
 
-        .flow-row .label { font-family: 'Syne', sans-serif; font-size: 2.7rem; font-weight: 700; flex: 1; white-space: nowrap; }
-        .flow-row .amount { font-family: 'JetBrains Mono', monospace; font-size: 3.8rem; font-weight: 700; text-align: right; white-space: nowrap; }
+        .flow-row .label { font-family: 'Syne', sans-serif; font-size: 2.4rem; font-weight: 700; flex: 1; white-space: nowrap; }
+        .flow-row .amount { font-family: 'JetBrains Mono', monospace; font-size: 3.4rem; font-weight: 700; text-align: right; white-space: nowrap; }
 
         .row-employer { background: rgba(255,159,67,0.08); border: 1.5px solid rgba(255,159,67,0.25); }
         .row-employer .label { color: #ffe0b0; }
@@ -73,29 +74,50 @@
         .row-net .amount { color: var(--accent-purple); }
 
         .row-final { background: rgba(0,255,136,0.10); border: 2px solid rgba(0,255,136,0.35); }
-        .row-final .label { color: #b0ffd8; font-size: 2.9rem; }
-        .row-final .amount { color: var(--accent-green); font-size: 4.2rem; }
+        .row-final .label { color: #b0ffd8; font-size: 2.6rem; }
+        .row-final .amount { color: var(--accent-green); font-size: 3.6rem; }
+
+        .etat-line {
+            text-align: center;
+            font-family: 'Syne', sans-serif;
+            font-size: 2.1rem;
+            font-weight: 600;
+            color: var(--accent-red);
+            margin-top: 22px;
+        }
+        .etat-line span {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 2.4rem;
+        }
+        .etat-line small {
+            font-size: 1.4rem;
+            font-weight: 400;
+            opacity: 0.8;
+        }
 
         /* Simple arrow between rows */
         .arrow-down {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 36px;
+            height: 28px;
         }
-        .arrow-down svg { width: 36px; height: 36px; }
+        .arrow-down svg { width: 30px; height: 30px; }
 
         /* Big website */
         .big-website {
             text-align: center;
-            margin-top: 38px;
+            margin-top: auto;
+            padding-top: 10px;
         }
         .big-website span {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 2.8rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-weight: 500;
             color: var(--accent-electric);
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            opacity: 0.7;
         }
     </style>
 </head>
@@ -110,38 +132,42 @@
             <div class="main-title"><span class="euro">€</span> Où Va l'Argent ?</div>
             <div class="subtitle">Exemple : <strong>3 000 € brut / mois</strong> · Célibataire sans enfant</div>
 
-            <div class="flow">
-                <div class="flow-row row-employer">
-                    <div class="label">Ton employeur paye</div>
-                    <div class="amount">4 140 €</div>
+            <div class="flow-wrapper">
+                <div class="flow">
+                    <div class="flow-row row-employer">
+                        <div class="label">Ton employeur paye</div>
+                        <div class="amount">4 007 €</div>
+                    </div>
+
+                    <div class="arrow-down">
+                        <svg viewBox="0 0 36 36" fill="none"><path d="M18 4 L18 28 M10 22 L18 30 L26 22" stroke="rgba(255,255,255,0.25)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+
+                    <div class="flow-row row-brut">
+                        <div class="label">Salaire brut</div>
+                        <div class="amount">3 000 €</div>
+                    </div>
+
+                    <div class="arrow-down">
+                        <svg viewBox="0 0 36 36" fill="none"><path d="M18 4 L18 28 M10 22 L18 30 L26 22" stroke="rgba(255,255,255,0.25)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+
+                    <div class="flow-row row-net">
+                        <div class="label">Salaire net</div>
+                        <div class="amount">2 353 €</div>
+                    </div>
+
+                    <div class="arrow-down">
+                        <svg viewBox="0 0 36 36" fill="none"><path d="M18 4 L18 28 M10 22 L18 30 L26 22" stroke="rgba(255,255,255,0.25)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+
+                    <div class="flow-row row-final">
+                        <div class="label">Ce que tu reçois</div>
+                        <div class="amount">2 223 €</div>
+                    </div>
                 </div>
 
-                <div class="arrow-down">
-                    <svg viewBox="0 0 36 36" fill="none"><path d="M18 4 L18 28 M10 22 L18 30 L26 22" stroke="rgba(255,255,255,0.25)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-
-                <div class="flow-row row-brut">
-                    <div class="label">Salaire brut</div>
-                    <div class="amount">3 000 €</div>
-                </div>
-
-                <div class="arrow-down">
-                    <svg viewBox="0 0 36 36" fill="none"><path d="M18 4 L18 28 M10 22 L18 30 L26 22" stroke="rgba(255,255,255,0.25)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-
-                <div class="flow-row row-net">
-                    <div class="label">Salaire net</div>
-                    <div class="amount">2 340 €</div>
-                </div>
-
-                <div class="arrow-down">
-                    <svg viewBox="0 0 36 36" fill="none"><path d="M18 4 L18 28 M10 22 L18 30 L26 22" stroke="rgba(255,255,255,0.25)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-
-                <div class="flow-row row-final">
-                    <div class="label">Ce que tu reçois</div>
-                    <div class="amount">2 210 €</div>
-                </div>
+                <div class="etat-line">Ce que l'État prend : <span>1 784 €</span><br><small>(44,5 % du coût total)</small></div>
             </div>
 
             <div class="big-website">
