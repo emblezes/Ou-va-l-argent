@@ -21,9 +21,11 @@ const investirLinks = [
 const showInvestir = false
 
 const directLinks = [
+  { href: '/infographies', label: 'Infographies' },
   { href: '/news', label: 'News' },
   { href: '/wtf', label: 'WTF ?!' },
   { href: '/propositions', label: 'Je propose' },
+  { href: '/contact', label: 'Contact' },
 ]
 
 const socialLinks = [
