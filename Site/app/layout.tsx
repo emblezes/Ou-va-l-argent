@@ -66,6 +66,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const isComingSoon = true
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -120,24 +121,25 @@ export default function RootLayout({
         />
       </head>
       <body className={`${syne.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable} font-sans antialiased`}>
-        {/* Background Elements */}
-        <div className="bg-atmosphere" />
-        <div className="bg-grid" />
+        {!isComingSoon && (
+          <>
+            <div className="bg-atmosphere" />
+            <div className="bg-grid" />
+            <Navbar />
+          </>
+        )}
 
-        {/* Navigation */}
-        <Navbar />
-
-        {/* Main Content */}
         <main className="relative z-[1]">
           {children}
         </main>
 
-        {/* Footer */}
-        <Footer />
-
-        {/* Newsletter */}
-        <NewsletterPopup />
-        <NewsletterBar />
+        {!isComingSoon && (
+          <>
+            <Footer />
+            <NewsletterPopup />
+            <NewsletterBar />
+          </>
+        )}
       </body>
     </html>
   )
