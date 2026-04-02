@@ -55,25 +55,25 @@ export default function InfographiesPage() {
           </svg>
           Retour
         </Link>
-        <h1 className="font-serif text-[clamp(2rem,5vw,3.5rem)] font-normal mb-3">
+        <h1 className="font-serif text-[clamp(3rem,10vw,6rem)] font-normal mb-4">
           Nos <span className="italic text-accent-gold">Infographies</span>
         </h1>
-        <p className="text-text-secondary text-lg lg:text-xl max-w-2xl mx-auto">
+        <p className="text-text-secondary text-xl lg:text-2xl max-w-3xl mx-auto">
           Pr{'\u00ea'}tes {'\u00e0'} partager sur les r{'\u00e9'}seaux sociaux
         </p>
       </header>
 
-      <p className="text-text-muted text-xs text-center mb-6">
+      <p className="text-text-muted text-base text-center mb-8">
         Libre de droit pour un usage non commercial avec mention de la source.
       </p>
 
       {/* Category Filter */}
-      <div className="flex flex-wrap justify-center gap-2 mb-10">
+      <div className="flex flex-wrap justify-center gap-3 mb-12">
         {CATEGORIES.map((category) => (
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
-            className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+            className={`px-6 py-3 rounded-xl font-medium text-base lg:text-lg transition-all ${
               selectedCategory === category
                 ? 'bg-accent-gold text-bg-deep'
                 : 'bg-bg-surface border border-glass-border text-text-secondary hover:text-text-primary hover:border-glass-border/50'
@@ -81,7 +81,7 @@ export default function InfographiesPage() {
           >
             {category}
             {category !== 'Tous' && (
-              <span className="ml-1.5 text-xs opacity-70">
+              <span className="ml-1.5 text-sm opacity-70">
                 ({INFOGRAPHICS.filter((i) => i.category === category).length})
               </span>
             )}
@@ -90,34 +90,34 @@ export default function InfographiesPage() {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-6">
         {filteredInfographies.map((infographie) => (
           <div
             key={infographie.id}
             onClick={() => setSelectedInfographie(infographie)}
-            className="bg-bg-surface border border-glass-border rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:border-accent-gold/50 group"
+            className="bg-bg-surface border border-glass-border rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:border-accent-gold/50 group"
           >
             <div className="relative aspect-square">
               <Image
                 src={`/infographies/${infographie.filename}`}
                 alt={infographie.title}
                 fill
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-accent-gold text-bg-deep px-3 py-1.5 rounded-lg font-medium text-sm">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-accent-gold text-bg-deep px-5 py-2.5 rounded-xl font-medium text-base">
                   Voir en grand
                 </span>
               </div>
             </div>
 
-            <div className="p-3">
-              <span className="text-[10px] text-accent-gold uppercase tracking-wider font-medium">
+            <div className="p-4 lg:p-5">
+              <span className="text-sm text-accent-gold uppercase tracking-wider font-medium">
                 {infographie.category}
               </span>
-              <h3 className="text-sm font-medium mt-0.5 leading-tight line-clamp-2">
+              <h3 className="text-lg lg:text-xl font-medium mt-1 leading-snug line-clamp-2">
                 {infographie.title}
               </h3>
             </div>
