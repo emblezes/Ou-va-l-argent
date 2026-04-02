@@ -100,14 +100,14 @@ export function ComingSoon() {
     <div suppressHydrationWarning data-coming-soon className="fixed inset-0 z-10 flex flex-col items-center justify-center px-4 overflow-hidden bg-[var(--bg-deep)]" style={{ zoom: 1 }}>
       {/* Mosaic Background */}
       <div className="absolute inset-0 z-0">
-        <div className="mosaic-scroll grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-7 gap-1.5 p-1.5 opacity-40">
+        <div className="mosaic-scroll grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-3 p-3 opacity-40">
           {[...MOSAIC_IMAGES, ...MOSAIC_IMAGES, ...MOSAIC_IMAGES, ...MOSAIC_IMAGES, ...MOSAIC_IMAGES, ...MOSAIC_IMAGES, ...MOSAIC_IMAGES, ...MOSAIC_IMAGES].map((img, i) => (
             <div key={i} className="relative aspect-square rounded-lg overflow-hidden">
               <Image
                 src={`/infographies/${img}`}
                 alt=""
                 fill
-                sizes="(max-width: 640px) 25vw, (max-width: 1024px) 20vw, 14vw"
+                sizes="(max-width: 640px) 33vw, (max-width: 1024px) 25vw, 20vw"
                 className="object-cover"
                 loading="eager"
               />
@@ -155,21 +155,21 @@ export function ComingSoon() {
         </div>
 
         {/* Boutons Infographies + Contact */}
-        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 mb-8 sm:mb-12 w-full max-w-3xl">
+        <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8 mb-8 sm:mb-12 w-full max-w-4xl">
           <a
             href="/infographies"
-            className="flex items-center justify-center gap-3 px-6 py-4 sm:px-10 sm:py-6 text-base sm:text-2xl font-semibold text-white bg-white/5 border-2 border-white/15 rounded-xl sm:rounded-2xl backdrop-blur-sm hover:border-[#00d4ff]/50 hover:bg-[#00d4ff]/10 transition-all group"
+            className="flex items-center justify-center gap-4 px-8 py-5 sm:px-14 sm:py-8 text-lg sm:text-3xl font-semibold text-white bg-white/5 border-2 border-white/15 rounded-2xl backdrop-blur-sm hover:border-[#00d4ff]/50 hover:bg-[#00d4ff]/10 transition-all group"
           >
-            <svg className="w-5 h-5 sm:w-7 sm:h-7 text-[#00d4ff] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 sm:w-9 sm:h-9 text-[#00d4ff] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
             Infographies
           </a>
           <a
             href="/contact"
-            className="flex items-center justify-center gap-3 px-6 py-4 sm:px-10 sm:py-6 text-base sm:text-2xl font-semibold text-white bg-white/5 border-2 border-white/15 rounded-xl sm:rounded-2xl backdrop-blur-sm hover:border-[#ffd700]/50 hover:bg-[#ffd700]/10 transition-all group"
+            className="flex items-center justify-center gap-4 px-8 py-5 sm:px-14 sm:py-8 text-lg sm:text-3xl font-semibold text-white bg-white/5 border-2 border-white/15 rounded-2xl backdrop-blur-sm hover:border-[#ffd700]/50 hover:bg-[#ffd700]/10 transition-all group"
           >
-            <svg className="w-5 h-5 sm:w-7 sm:h-7 text-[#ffd700] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 sm:w-9 sm:h-9 text-[#ffd700] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
             Contact & Partenariats
