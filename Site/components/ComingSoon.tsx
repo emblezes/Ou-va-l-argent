@@ -74,24 +74,6 @@ export function ComingSoon() {
     return () => clearInterval(interval)
   }, [])
 
-  useEffect(() => {
-    const navbar = document.querySelector('nav')
-    const footer = document.querySelector('footer')
-    const elementsToHide = [
-      navbar,
-      footer,
-      ...Array.from(document.querySelectorAll('.fixed.bottom-0')),
-      ...Array.from(document.querySelectorAll('[class*="newsletter"]')),
-      ...Array.from(document.querySelectorAll('.bg-atmosphere, .bg-grid')),
-    ].filter(Boolean) as HTMLElement[]
-
-    elementsToHide.forEach(el => el.style.display = 'none')
-
-    return () => {
-      elementsToHide.forEach(el => el.style.display = '')
-    }
-  }, [])
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('loading')
@@ -115,7 +97,7 @@ export function ComingSoon() {
   }
 
   return (
-    <div suppressHydrationWarning data-coming-soon className="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 overflow-hidden bg-[var(--bg-deep)]" style={{ zoom: 1 }}>
+    <div suppressHydrationWarning data-coming-soon className="fixed inset-0 z-10 flex flex-col items-center justify-center px-4 overflow-hidden bg-[var(--bg-deep)]" style={{ zoom: 1 }}>
       {/* Mosaic Background */}
       <div className="absolute inset-0 z-0">
         <div className="mosaic-scroll grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-7 gap-1.5 p-1.5 opacity-40">
@@ -172,16 +154,26 @@ export function ComingSoon() {
           </p>
         </div>
 
-        {/* Tags thématiques */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12">
-          {['Dépenses publiques', 'Impôts', 'Dette', 'Comparaisons internationales', 'Gaspillage d\'argent public', 'Où va donc l\'argent de nos impôts ?'].map((topic) => (
-            <span
-              key={topic}
-              className="font-sans px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-2xl font-medium text-white/90 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm"
-            >
-              {topic}
-            </span>
-          ))}
+        {/* Boutons Infographies + Contact */}
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 mb-8 sm:mb-12 w-full max-w-3xl">
+          <a
+            href="/infographies"
+            className="flex items-center justify-center gap-3 px-6 py-4 sm:px-10 sm:py-6 text-base sm:text-2xl font-semibold text-white bg-white/5 border-2 border-white/15 rounded-xl sm:rounded-2xl backdrop-blur-sm hover:border-[#00d4ff]/50 hover:bg-[#00d4ff]/10 transition-all group"
+          >
+            <svg className="w-5 h-5 sm:w-7 sm:h-7 text-[#00d4ff] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Infographies
+          </a>
+          <a
+            href="/contact"
+            className="flex items-center justify-center gap-3 px-6 py-4 sm:px-10 sm:py-6 text-base sm:text-2xl font-semibold text-white bg-white/5 border-2 border-white/15 rounded-xl sm:rounded-2xl backdrop-blur-sm hover:border-[#ffd700]/50 hover:bg-[#ffd700]/10 transition-all group"
+          >
+            <svg className="w-5 h-5 sm:w-7 sm:h-7 text-[#ffd700] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Contact & Partenariats
+          </a>
         </div>
 
         {/* Formulaire email */}
@@ -234,7 +226,16 @@ export function ComingSoon() {
         >
           contact@ouvalargent.com
         </a>
+
       </div>
+
+      {/* Mentions legales - tout en bas */}
+      <a
+        href="/mentions-legales"
+        className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs text-white/20 hover:text-white/40 transition-colors no-underline z-10"
+      >
+        Mentions l{'\u00e9'}gales
+      </a>
     </div>
   )
 }
