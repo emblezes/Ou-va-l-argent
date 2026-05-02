@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La France, mauvais élève des finances publiques</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-gold: #ffd700;
+            --accent-red: #ff4757;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1350px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 71, 87, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 71, 87, 0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 750px; height: 750px; background: radial-gradient(circle, rgba(255, 71, 87, 0.13) 0%, transparent 70%); top: -180px; left: 50%; transform: translateX(-50%); }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 70%); bottom: -150px; right: -100px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 55px 55px 42px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; justify-content: flex-start; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 4.6rem; text-align: center; color: var(--text-primary); line-height: 1.05; margin-top: 28px; letter-spacing: -1px; }
+        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .subtitle { text-align: center; font-size: 1.15rem; color: var(--text-secondary); margin-top: 20px; letter-spacing: 1.8px; text-transform: uppercase; font-weight: 500; }
+
+        .center-area { flex: 1; display: flex; align-items: stretch; justify-content: center; margin-top: 32px; }
+        .columns { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; width: 100%; }
+
+        .column { display: flex; flex-direction: column; background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 22px 14px 14px; }
+        .col-header { text-align: center; border-bottom: 1px solid var(--glass-border); padding-bottom: 18px; margin-bottom: 14px; }
+        .col-category { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 10px; }
+        .col-title { font-family: 'Instrument Serif', serif; font-size: 2.1rem; color: var(--text-primary); line-height: 1.05; font-style: italic; }
+
+        .ranking { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+        .rank-item { display: grid; grid-template-columns: 20px 1fr auto; align-items: center; gap: 5px; padding: 9px 4px; border-radius: 7px; }
+        .rank-item.is-france { background: linear-gradient(135deg, rgba(255, 71, 87, 0.25) 0%, rgba(255, 71, 87, 0.1) 100%); border: 1px solid rgba(255, 71, 87, 0.55); box-shadow: 0 0 22px rgba(255, 71, 87, 0.18); }
+        .rank-pos { font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; font-weight: 600; color: var(--text-muted); text-align: right; }
+        .rank-item.is-france .rank-pos { color: var(--accent-red); font-weight: 700; }
+        .rank-country { font-size: 0.95rem; font-weight: 500; color: var(--text-primary); line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .rank-item.is-france .rank-country { color: #ffffff; font-weight: 700; }
+        .rank-value { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 700; color: #ffffff; white-space: nowrap; }
+        .rank-item.is-france .rank-value { color: var(--accent-red); }
+
+        .col-legend { margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.06); text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.4px; line-height: 1.35; }
+        .col-legend strong { color: var(--text-secondary); font-weight: 500; }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 18px; margin-top: 20px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="france-podium-finances-publiques">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+            </div>
+
+            <h2 class="chart-title">La France, <span class="accent">mauvais&nbsp;élève</span><br>des finances publiques</h2>
+            <div class="subtitle">Classement des 27 pays de l'Union européenne</div>
+
+            <div class="center-area">
+                <div class="columns">
+                    <!-- Colonne 1 : Prélèvements obligatoires 2024 -->
+                    <div class="column">
+                        <div class="col-header">
+                            <div class="col-category">En % du PIB</div>
+                            <div class="col-title">Prélèvements<br>obligatoires</div>
+                        </div>
+                        <div class="ranking">
+                            <div class="rank-item"><div class="rank-pos">1</div><div class="rank-country">Danemark</div><div class="rank-value">45,8%</div></div>
+                            <div class="rank-item is-france"><div class="rank-pos">2</div><div class="rank-country">France</div><div class="rank-value">45,3%</div></div>
+                            <div class="rank-item"><div class="rank-pos">3</div><div class="rank-country">Belgique</div><div class="rank-value">45,1%</div></div>
+                            <div class="rank-item"><div class="rank-pos">4</div><div class="rank-country">Autriche</div><div class="rank-value">43,8%</div></div>
+                            <div class="rank-item"><div class="rank-pos">5</div><div class="rank-country">Luxembg.</div><div class="rank-value">42,7%</div></div>
+                            <div class="rank-item"><div class="rank-pos">6</div><div class="rank-country">Italie</div><div class="rank-value">42,6%</div></div>
+                            <div class="rank-item"><div class="rank-pos">7</div><div class="rank-country">Suède</div><div class="rank-value">42,5%</div></div>
+                            <div class="rank-item"><div class="rank-pos">8</div><div class="rank-country">Finlande</div><div class="rank-value">42,3%</div></div>
+                            <div class="rank-item"><div class="rank-pos">9</div><div class="rank-country">Allemagne</div><div class="rank-value">40,8%</div></div>
+                            <div class="rank-item"><div class="rank-pos">10</div><div class="rank-country">Grèce</div><div class="rank-value">40,0%</div></div>
+                            <div class="rank-item"><div class="rank-pos">11</div><div class="rank-country">Pays-Bas</div><div class="rank-value">39,4%</div></div>
+                            <div class="rank-item"><div class="rank-pos">12</div><div class="rank-country">Slovénie</div><div class="rank-value">38,8%</div></div>
+                            <div class="rank-item"><div class="rank-pos">13</div><div class="rank-country">Croatie</div><div class="rank-value">38,6%</div></div>
+                            <div class="rank-item"><div class="rank-pos">14</div><div class="rank-country">Espagne</div><div class="rank-value">37,5%</div></div>
+                            <div class="rank-item"><div class="rank-pos">15</div><div class="rank-country">Portugal</div><div class="rank-value">37,1%</div></div>
+                        </div>
+                        <div class="col-legend">Eurostat · <strong>2024</strong><br>(dernière donnée annuelle)</div>
+                    </div>
+
+                    <!-- Colonne 2 : Dépense publique 2025 -->
+                    <div class="column">
+                        <div class="col-header">
+                            <div class="col-category">En % du PIB</div>
+                            <div class="col-title">Dépense<br>publique</div>
+                        </div>
+                        <div class="ranking">
+                            <div class="rank-item"><div class="rank-pos">1</div><div class="rank-country">Finlande</div><div class="rank-value">57,5%</div></div>
+                            <div class="rank-item is-france"><div class="rank-pos">2</div><div class="rank-country">France</div><div class="rank-value">57,2%</div></div>
+                            <div class="rank-item"><div class="rank-pos">3</div><div class="rank-country">Autriche</div><div class="rank-value">55,2%</div></div>
+                            <div class="rank-item"><div class="rank-pos">4</div><div class="rank-country">Belgique</div><div class="rank-value">54,2%</div></div>
+                            <div class="rank-item"><div class="rank-pos">5</div><div class="rank-country">Italie</div><div class="rank-value">51,2%</div></div>
+                            <div class="rank-item"><div class="rank-pos">6</div><div class="rank-country">Pologne</div><div class="rank-value">50,9%</div></div>
+                            <div class="rank-item"><div class="rank-pos">7</div><div class="rank-country">Allemagne</div><div class="rank-value">50,5%</div></div>
+                            <div class="rank-item"><div class="rank-pos">8</div><div class="rank-country">Croatie</div><div class="rank-value">50,1%</div></div>
+                            <div class="rank-item"><div class="rank-pos">9</div><div class="rank-country">Suède</div><div class="rank-value">49,9%</div></div>
+                            <div class="rank-item"><div class="rank-pos">10</div><div class="rank-country">Slovénie</div><div class="rank-value">49,6%</div></div>
+                            <div class="rank-item"><div class="rank-pos">11</div><div class="rank-country">Luxembg.</div><div class="rank-value">49,1%</div></div>
+                            <div class="rank-item"><div class="rank-pos">12</div><div class="rank-country">Grèce</div><div class="rank-value">48,3%</div></div>
+                            <div class="rank-item"><div class="rank-pos">13</div><div class="rank-country">Danemark</div><div class="rank-value">48,0%</div></div>
+                            <div class="rank-item"><div class="rank-pos">14</div><div class="rank-country">Slovaquie</div><div class="rank-value">47,9%</div></div>
+                            <div class="rank-item"><div class="rank-pos">15</div><div class="rank-country">Hongrie</div><div class="rank-value">47,3%</div></div>
+                        </div>
+                        <div class="col-legend">Eurostat · <strong>2025</strong><br>(notification avril 2026)</div>
+                    </div>
+
+                    <!-- Colonne 3 : Déficit public 2025 -->
+                    <div class="column">
+                        <div class="col-header">
+                            <div class="col-category">En % du PIB</div>
+                            <div class="col-title">Déficit<br>public</div>
+                        </div>
+                        <div class="ranking">
+                            <div class="rank-item"><div class="rank-pos">1</div><div class="rank-country">Roumanie</div><div class="rank-value">7,9%</div></div>
+                            <div class="rank-item"><div class="rank-pos">2</div><div class="rank-country">Pologne</div><div class="rank-value">7,3%</div></div>
+                            <div class="rank-item"><div class="rank-pos">3</div><div class="rank-country">Belgique</div><div class="rank-value">5,2%</div></div>
+                            <div class="rank-item is-france"><div class="rank-pos">4</div><div class="rank-country">France</div><div class="rank-value">5,1%</div></div>
+                            <div class="rank-item"><div class="rank-pos">5</div><div class="rank-country">Hongrie</div><div class="rank-value">4,7%</div></div>
+                            <div class="rank-item"><div class="rank-pos">6</div><div class="rank-country">Slovaquie</div><div class="rank-value">4,5%</div></div>
+                            <div class="rank-item"><div class="rank-pos">7</div><div class="rank-country">Autriche</div><div class="rank-value">4,2%</div></div>
+                            <div class="rank-item"><div class="rank-pos">8</div><div class="rank-country">Bulgarie</div><div class="rank-value">3,5%</div></div>
+                            <div class="rank-item"><div class="rank-pos">9</div><div class="rank-country">Finlande</div><div class="rank-value">3,4%</div></div>
+                            <div class="rank-item"><div class="rank-pos">10</div><div class="rank-country">Italie</div><div class="rank-value">3,1%</div></div>
+                            <div class="rank-item"><div class="rank-pos">11</div><div class="rank-country">Croatie</div><div class="rank-value">3,0%</div></div>
+                            <div class="rank-item"><div class="rank-pos">12</div><div class="rank-country">Allemagne</div><div class="rank-value">2,7%</div></div>
+                            <div class="rank-item"><div class="rank-pos">13</div><div class="rank-country">Lettonie</div><div class="rank-value">2,5%</div></div>
+                            <div class="rank-item"><div class="rank-pos">14</div><div class="rank-country">Slovénie</div><div class="rank-value">2,5%</div></div>
+                            <div class="rank-item"><div class="rank-pos">15</div><div class="rank-country">Espagne</div><div class="rank-value">2,4%</div></div>
+                        </div>
+                        <div class="col-legend">Eurostat · <strong>2025</strong><br>(notification avril 2026)</div>
+                    </div>
+
+                    <!-- Colonne 4 : Dette publique T4 2025 -->
+                    <div class="column">
+                        <div class="col-header">
+                            <div class="col-category">En % du PIB</div>
+                            <div class="col-title">Dette<br>publique</div>
+                        </div>
+                        <div class="ranking">
+                            <div class="rank-item"><div class="rank-pos">1</div><div class="rank-country">Grèce</div><div class="rank-value">146,1%</div></div>
+                            <div class="rank-item"><div class="rank-pos">2</div><div class="rank-country">Italie</div><div class="rank-value">137,1%</div></div>
+                            <div class="rank-item is-france"><div class="rank-pos">3</div><div class="rank-country">France</div><div class="rank-value">115,6%</div></div>
+                            <div class="rank-item"><div class="rank-pos">4</div><div class="rank-country">Belgique</div><div class="rank-value">107,9%</div></div>
+                            <div class="rank-item"><div class="rank-pos">5</div><div class="rank-country">Espagne</div><div class="rank-value">100,7%</div></div>
+                            <div class="rank-item"><div class="rank-pos">6</div><div class="rank-country">Portugal</div><div class="rank-value">89,7%</div></div>
+                            <div class="rank-item"><div class="rank-pos">7</div><div class="rank-country">Finlande</div><div class="rank-value">88,5%</div></div>
+                            <div class="rank-item"><div class="rank-pos">8</div><div class="rank-country">Autriche</div><div class="rank-value">81,5%</div></div>
+                            <div class="rank-item"><div class="rank-pos">9</div><div class="rank-country">Hongrie</div><div class="rank-value">74,6%</div></div>
+                            <div class="rank-item"><div class="rank-pos">10</div><div class="rank-country">Slovénie</div><div class="rank-value">65,7%</div></div>
+                            <div class="rank-item"><div class="rank-pos">11</div><div class="rank-country">Allemagne</div><div class="rank-value">63,5%</div></div>
+                            <div class="rank-item"><div class="rank-pos">12</div><div class="rank-country">Slovaquie</div><div class="rank-value">61,4%</div></div>
+                            <div class="rank-item"><div class="rank-pos">13</div><div class="rank-country">Pologne</div><div class="rank-value">59,7%</div></div>
+                            <div class="rank-item"><div class="rank-pos">14</div><div class="rank-country">Roumanie</div><div class="rank-value">59,3%</div></div>
+                            <div class="rank-item"><div class="rank-pos">15</div><div class="rank-country">Croatie</div><div class="rank-value">56,3%</div></div>
+                        </div>
+                        <div class="col-legend">Eurostat · <strong>T4 2025</strong><br>(dernière publication)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Sources : <span>Eurostat · dernières publications disponibles</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

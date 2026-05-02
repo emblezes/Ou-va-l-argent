@@ -119,6 +119,38 @@ async function sendTelegramPhoto(photoPath, caption = '') {
   }
 }
 
+async function sendTelegramVideo(videoPath, caption = '') {
+  const { token, chatId } = getTelegramConfig();
+  const url = `https://api.telegram.org/bot${token}/sendVideo`;
+  const boundary = '----FormBoundary' + Math.random().toString(36).slice(2);
+  const videoData = fs.readFileSync(videoPath);
+  const fileName = path.basename(videoPath);
+
+  const parts = [];
+  parts.push(Buffer.from(`--${boundary}\r\nContent-Disposition: form-data; name="chat_id"\r\n\r\n${chatId}\r\n`));
+  if (caption) {
+    parts.push(Buffer.from(`--${boundary}\r\nContent-Disposition: form-data; name="caption"\r\n\r\n${caption}\r\n`));
+    parts.push(Buffer.from(`--${boundary}\r\nContent-Disposition: form-data; name="parse_mode"\r\n\r\nHTML\r\n`));
+  }
+  parts.push(Buffer.from(`--${boundary}\r\nContent-Disposition: form-data; name="supports_streaming"\r\n\r\ntrue\r\n`));
+  parts.push(Buffer.from(`--${boundary}\r\nContent-Disposition: form-data; name="video"; filename="${fileName}"\r\nContent-Type: video/mp4\r\n\r\n`));
+  parts.push(videoData);
+  parts.push(Buffer.from(`\r\n--${boundary}--\r\n`));
+
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': `multipart/form-data; boundary=${boundary}` },
+      body: Buffer.concat(parts)
+    });
+    const data = await res.json();
+    return data;
+  } catch (e) {
+    console.error('  ⚠ Telegram video:', e.message);
+    return { ok: false };
+  }
+}
+
 // ── Cache ───────────────────────────────────────────
 
 function loadCache(cachePath, ttlHours = 72) {
@@ -267,6 +299,7 @@ module.exports = {
   askClaude,
   sendTelegram,
   sendTelegramPhoto,
+  sendTelegramVideo,
   getTelegramConfig,
   loadCache,
   saveCache,

@@ -1,0 +1,427 @@
+{
+  "beats": [
+    {
+      "startFrame": 0,
+      "endFrame": 87,
+      "imagePath": "img-0.png",
+      "source": "flux"
+    },
+    {
+      "startFrame": 87,
+      "endFrame": 204,
+      "imagePath": "img-1.png",
+      "source": "flux"
+    },
+    {
+      "startFrame": 204,
+      "endFrame": 378,
+      "imagePath": "img-2.png",
+      "source": "flux"
+    },
+    {
+      "startFrame": 378,
+      "endFrame": 519,
+      "imagePath": "img-3.png",
+      "source": "flux"
+    },
+    {
+      "startFrame": 519,
+      "endFrame": 629,
+      "imagePath": "img-4.png",
+      "source": "flux"
+    },
+    {
+      "startFrame": 629,
+      "endFrame": 774,
+      "imagePath": "img-5.png",
+      "source": "flux"
+    },
+    {
+      "startFrame": 774,
+      "endFrame": 885,
+      "imagePath": "img-6.png",
+      "source": "flux"
+    },
+    {
+      "startFrame": 885,
+      "endFrame": 988,
+      "imagePath": "img-7.png",
+      "source": "flux"
+    }
+  ],
+  "audioPath": "audio.mp3",
+  "musicPath": "",
+  "musicVolume": 0.08,
+  "words": [
+    {
+      "text": "Quinze",
+      "startFrame": 0,
+      "endFrame": 13
+    },
+    {
+      "text": "juin",
+      "startFrame": 14,
+      "endFrame": 20
+    },
+    {
+      "text": "2026",
+      "startFrame": 23,
+      "endFrame": 50
+    },
+    {
+      "text": "Les",
+      "startFrame": 55,
+      "endFrame": 59
+    },
+    {
+      "text": "frappes",
+      "startFrame": 60,
+      "endFrame": 69
+    },
+    {
+      "text": "sur",
+      "startFrame": 70,
+      "endFrame": 75
+    },
+    {
+      "text": "l'Iran",
+      "startFrame": 76,
+      "endFrame": 85
+    },
+    {
+      "text": "En",
+      "startFrame": 87,
+      "endFrame": 92
+    },
+    {
+      "text": "48",
+      "startFrame": 94,
+      "endFrame": 110
+    },
+    {
+      "text": "heures",
+      "startFrame": 111,
+      "endFrame": 117
+    },
+    {
+      "text": "le",
+      "startFrame": 121,
+      "endFrame": 124
+    },
+    {
+      "text": "baril",
+      "startFrame": 126,
+      "endFrame": 134
+    },
+    {
+      "text": "passe",
+      "startFrame": 136,
+      "endFrame": 143
+    },
+    {
+      "text": "de",
+      "startFrame": 144,
+      "endFrame": 146
+    },
+    {
+      "text": "68",
+      "startFrame": 148,
+      "endFrame": 169
+    },
+    {
+      "text": "à",
+      "startFrame": 171,
+      "endFrame": 173
+    },
+    {
+      "text": "130",
+      "startFrame": 176,
+      "endFrame": 182
+    },
+    {
+      "text": "dollars",
+      "startFrame": 183,
+      "endFrame": 201
+    },
+    {
+      "text": "À",
+      "startFrame": 204,
+      "endFrame": 206
+    },
+    {
+      "text": "la",
+      "startFrame": 208,
+      "endFrame": 210
+    },
+    {
+      "text": "pompe",
+      "startFrame": 212,
+      "endFrame": 219
+    },
+    {
+      "text": "française",
+      "startFrame": 220,
+      "endFrame": 237
+    },
+    {
+      "text": "votre",
+      "startFrame": 240,
+      "endFrame": 250
+    },
+    {
+      "text": "plein",
+      "startFrame": 252,
+      "endFrame": 259
+    },
+    {
+      "text": "de",
+      "startFrame": 261,
+      "endFrame": 263
+    },
+    {
+      "text": "50",
+      "startFrame": 264,
+      "endFrame": 278
+    },
+    {
+      "text": "litres",
+      "startFrame": 278,
+      "endFrame": 287
+    },
+    {
+      "text": "passe",
+      "startFrame": 289,
+      "endFrame": 296
+    },
+    {
+      "text": "de",
+      "startFrame": 297,
+      "endFrame": 300
+    },
+    {
+      "text": "85",
+      "startFrame": 302,
+      "endFrame": 325
+    },
+    {
+      "text": "à",
+      "startFrame": 329,
+      "endFrame": 331
+    },
+    {
+      "text": "96",
+      "startFrame": 334,
+      "endFrame": 359
+    },
+    {
+      "text": "euros",
+      "startFrame": 360,
+      "endFrame": 372
+    },
+    {
+      "text": "Onze",
+      "startFrame": 378,
+      "endFrame": 387
+    },
+    {
+      "text": "euros",
+      "startFrame": 387,
+      "endFrame": 396
+    },
+    {
+      "text": "de",
+      "startFrame": 397,
+      "endFrame": 399
+    },
+    {
+      "text": "plus",
+      "startFrame": 401,
+      "endFrame": 412
+    },
+    {
+      "text": "Par",
+      "startFrame": 438,
+      "endFrame": 452
+    },
+    {
+      "text": "plein",
+      "startFrame": 465,
+      "endFrame": 490
+    },
+    {
+      "text": "Mais",
+      "startFrame": 519,
+      "endFrame": 524
+    },
+    {
+      "text": "regardez",
+      "startFrame": 525,
+      "endFrame": 535
+    },
+    {
+      "text": "votre",
+      "startFrame": 535,
+      "endFrame": 542
+    },
+    {
+      "text": "reçu",
+      "startFrame": 544,
+      "endFrame": 555
+    },
+    {
+      "text": "La",
+      "startFrame": 556,
+      "endFrame": 558
+    },
+    {
+      "text": "moitié",
+      "startFrame": 560,
+      "endFrame": 569
+    },
+    {
+      "text": "c'est",
+      "startFrame": 570,
+      "endFrame": 574
+    },
+    {
+      "text": "du",
+      "startFrame": 575,
+      "endFrame": 578
+    },
+    {
+      "text": "fisc",
+      "startFrame": 581,
+      "endFrame": 593
+    },
+    {
+      "text": "Pas",
+      "startFrame": 596,
+      "endFrame": 602
+    },
+    {
+      "text": "du",
+      "startFrame": 603,
+      "endFrame": 606
+    },
+    {
+      "text": "pétrole",
+      "startFrame": 607,
+      "endFrame": 627
+    },
+    {
+      "text": "TICPE",
+      "startFrame": 629,
+      "endFrame": 686
+    },
+    {
+      "text": "TVA",
+      "startFrame": 693,
+      "endFrame": 727
+    },
+    {
+      "text": "Taxe",
+      "startFrame": 731,
+      "endFrame": 747
+    },
+    {
+      "text": "sur",
+      "startFrame": 750,
+      "endFrame": 757
+    },
+    {
+      "text": "la",
+      "startFrame": 758,
+      "endFrame": 760
+    },
+    {
+      "text": "taxe",
+      "startFrame": 762,
+      "endFrame": 771
+    },
+    {
+      "text": "L'Iran",
+      "startFrame": 774,
+      "endFrame": 783
+    },
+    {
+      "text": "vous",
+      "startFrame": 784,
+      "endFrame": 788
+    },
+    {
+      "text": "prend",
+      "startFrame": 789,
+      "endFrame": 793
+    },
+    {
+      "text": "quelques",
+      "startFrame": 795,
+      "endFrame": 804
+    },
+    {
+      "text": "centimes",
+      "startFrame": 805,
+      "endFrame": 821
+    },
+    {
+      "text": "L'État",
+      "startFrame": 823,
+      "endFrame": 833
+    },
+    {
+      "text": "français",
+      "startFrame": 833,
+      "endFrame": 849
+    },
+    {
+      "text": "la",
+      "startFrame": 852,
+      "endFrame": 856
+    },
+    {
+      "text": "moitié",
+      "startFrame": 858,
+      "endFrame": 871
+    },
+    {
+      "text": "Plus",
+      "startFrame": 885,
+      "endFrame": 892
+    },
+    {
+      "text": "l'essence",
+      "startFrame": 892,
+      "endFrame": 905
+    },
+    {
+      "text": "flambe",
+      "startFrame": 907,
+      "endFrame": 919
+    },
+    {
+      "text": "plus",
+      "startFrame": 922,
+      "endFrame": 928
+    },
+    {
+      "text": "Bercy",
+      "startFrame": 929,
+      "endFrame": 943
+    },
+    {
+      "text": "encaisse",
+      "startFrame": 945,
+      "endFrame": 963
+    },
+    {
+      "text": "Mécaniquement",
+      "startFrame": 965,
+      "endFrame": 988
+    }
+  ],
+  "durationInFrames": 988,
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "accent": "#E84B1F"
+}

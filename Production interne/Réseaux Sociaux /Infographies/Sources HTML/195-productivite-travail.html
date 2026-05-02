@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivite horaire : la France bien placee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #060c08;
+            --text-primary: #f0f4f8;
+            --text-secondary: #88a898;
+            --text-muted: #4a6a5a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #060c08 0%, #0a1e14 50%, #060c08 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.08) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 45px 40px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00ff88; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .chart-title .accent {
+            color: #00ff88;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00ff88; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Productivite horaire : la France bien placee</h2>
+            <div class="chart-subtitle">En $/h · 1990-2023</div>
+
+            
+
+            <div class="chart-area">
+                <svg width="920" height="620" viewBox="0 0 920 620">
+                    <!-- Unit label on Y axis (top-left) -->
+                    <text x="86" y="36" fill="#88a898" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="600">$/h</text>
+                    <!-- Axes -->
+                    <line x1="80" y1="20" x2="80" y2="570" stroke="#4a6a5a" stroke-opacity="0.5" stroke-width="1" />
+                    <line x1="80" y1="570" x2="720" y2="570" stroke="#4a6a5a" stroke-opacity="0.5" stroke-width="1" />
+                    
+        <line x1="80" y1="464.5" x2="720" y2="464.5" stroke="#4a6a5a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="468.5" fill="#88a898" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">40</text>
+
+        <line x1="80" y1="302.6" x2="720" y2="302.6" stroke="#4a6a5a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="306.6" fill="#88a898" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">60</text>
+
+        <line x1="80" y1="140.8" x2="720" y2="140.8" stroke="#4a6a5a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="144.8" fill="#88a898" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">80</text>
+                    
+        <text x="80.0" y="600" fill="#88a898" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">1990</text>
+
+        <text x="273.9" y="600" fill="#88a898" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2000</text>
+
+        <text x="467.9" y="600" fill="#88a898" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2010</text>
+
+        <text x="661.8" y="600" fill="#88a898" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2020</text>
+                    
+        <!-- Belgium -->
+        
+        <path d="M80.0,410.0 L99.4,395.0 L118.8,372.7 L138.2,353.8 L157.6,338.6 L177.0,326.1 L196.4,327.8 L215.8,314.0 L235.2,319.4 L254.5,305.4 L273.9,285.3 L293.3,284.4 L312.7,270.1 L332.1,261.4 L351.5,254.7 L370.9,212.1 L390.3,244.5 L409.7,233.8 L429.1,191.4 L448.5,200.4 L467.9,171.0 L487.3,162.6 L506.7,160.7 L526.1,159.8 L545.5,153.9 L564.8,177.1 L584.2,171.3 L603.6,161.0 L623.0,174.2 L642.4,142.4 L661.8,103.6 L681.2,110.7 L700.6,110.6 L720.0,105.1" fill="none" stroke="#ff4757" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="105.1" r="5" fill="#ff4757" stroke="#060c08" stroke-width="2" />
+
+        <!-- Denmark -->
+        
+        <path d="M80.0,434.2 L99.4,426.4 L118.8,411.3 L138.2,405.0 L157.6,382.4 L177.0,373.9 L196.4,360.4 L215.8,351.0 L235.2,347.1 L254.5,336.0 L273.9,315.7 L293.3,319.4 L312.7,313.2 L332.1,310.7 L351.5,287.5 L370.9,265.7 L390.3,262.4 L409.7,250.5 L429.1,223.4 L448.5,222.2 L467.9,178.5 L487.3,157.3 L506.7,152.1 L526.1,163.5 L545.5,162.3 L564.8,173.6 L584.2,163.2 L603.6,136.9 L623.0,127.6 L642.4,93.8 L661.8,66.0 L681.2,57.9 L700.6,60.2 L720.0,70.2" fill="none" stroke="#ffd700" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="70.2" r="5" fill="#ffd700" stroke="#060c08" stroke-width="2" />
+
+        <!-- France -->
+        
+        <path d="M80.0,420.2 L99.4,416.9 L118.8,406.7 L138.2,399.8 L157.6,392.8 L177.0,381.3 L196.4,374.4 L215.8,354.2 L235.2,337.2 L254.5,329.1 L273.9,305.9 L293.3,290.4 L312.7,273.6 L332.1,295.9 L351.5,292.3 L370.9,270.4 L390.3,261.1 L409.7,247.1 L429.1,245.7 L448.5,246.7 L467.9,233.7 L487.3,217.7 L506.7,212.9 L526.1,216.5 L545.5,211.4 L564.8,203.4 L584.2,198.8 L603.6,186.2 L623.0,187.3 L642.4,138.9 L661.8,126.4 L681.2,149.5 L700.6,160.3 L720.0,159.6" fill="none" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="159.6" r="5" fill="#00d4ff" stroke="#060c08" stroke-width="2" />
+
+        <!-- Germany -->
+        
+        <path d="M80.0,468.6 L99.4,437.2 L118.8,422.5 L138.2,407.6 L157.6,391.3 L177.0,378.0 L196.4,368.8 L215.8,354.4 L235.2,343.4 L254.5,326.9 L273.9,318.2 L293.3,306.0 L312.7,299.8 L332.1,282.1 L351.5,271.1 L370.9,242.1 L390.3,238.6 L409.7,216.4 L429.1,208.2 L448.5,230.7 L467.9,213.6 L487.3,189.0 L506.7,191.3 L526.1,190.2 L545.5,175.8 L564.8,188.5 L584.2,172.9 L603.6,155.4 L623.0,152.1 L642.4,131.7 L661.8,124.2 L681.2,117.2 L700.6,118.5 L720.0,120.5" fill="none" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="120.5" r="5" fill="#00ff88" stroke="#060c08" stroke-width="2" />
+
+        <!-- Japan -->
+        
+        <path d="M80.0,532.1 L99.4,514.5 L118.8,501.1 L138.2,484.4 L157.6,478.9 L177.0,462.9 L196.4,445.9 L215.8,443.1 L235.2,441.0 L254.5,434.5 L273.9,423.9 L293.3,420.6 L312.7,411.4 L332.1,405.3 L351.5,398.7 L370.9,388.2 L390.3,387.4 L409.7,380.0 L429.1,381.7 L448.5,388.8 L467.9,372.4 L487.3,375.4 L506.7,377.7 L526.1,376.4 L545.5,385.8 L564.8,374.7 L584.2,383.4 L603.6,389.6 L623.0,396.6 L642.4,393.2 L661.8,398.0 L681.2,395.3 L700.6,398.1 L720.0,391.7" fill="none" stroke="#ff9f43" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="391.7" r="5" fill="#ff9f43" stroke="#060c08" stroke-width="2" />
+
+        <!-- Netherlands -->
+        
+        <path d="M80.0,399.5 L99.4,392.1 L118.8,393.1 L138.2,378.5 L157.6,371.3 L177.0,362.1 L196.4,357.8 L215.8,337.6 L235.2,331.6 L254.5,311.2 L273.9,269.0 L293.3,264.4 L312.7,253.7 L332.1,253.3 L351.5,245.3 L370.9,185.9 L390.3,181.7 L409.7,153.9 L429.1,136.6 L448.5,175.2 L467.9,174.2 L487.3,160.2 L506.7,140.2 L526.1,107.1 L545.5,140.0 L564.8,150.2 L584.2,162.8 L603.6,146.6 L623.0,152.3 L642.4,140.2 L661.8,118.4 L681.2,100.0 L700.6,93.0 L720.0,101.9" fill="none" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="101.9" r="5" fill="#a855f7" stroke="#060c08" stroke-width="2" />
+
+        <!-- United Kingdom -->
+        
+        <path d="M80.0,465.1 L99.4,456.7 L118.8,443.6 L138.2,425.3 L157.6,416.8 L177.0,380.4 L196.4,361.1 L215.8,341.6 L235.2,331.8 L254.5,315.9 L273.9,286.3 L293.3,274.8 L312.7,277.9 L332.1,280.3 L351.5,272.6 L370.9,252.4 L390.3,251.9 L409.7,261.3 L429.1,258.5 L448.5,277.2 L467.9,284.9 L487.3,279.6 L506.7,277.1 L526.1,272.1 L545.5,283.1 L564.8,272.5 L584.2,274.5 L603.6,255.0 L623.0,265.4 L642.4,252.6 L661.8,219.6 L681.2,234.5 L700.6,234.8 L720.0,237.7" fill="none" stroke="#ff6b9d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="237.7" r="5" fill="#ff6b9d" stroke="#060c08" stroke-width="2" />
+
+        <!-- United States -->
+        
+        <path d="M80.0,397.8 L99.4,393.7 L118.8,378.4 L138.2,375.4 L157.6,371.1 L177.0,367.4 L196.4,357.4 L215.8,348.2 L235.2,336.6 L254.5,322.6 L273.9,309.5 L293.3,300.4 L312.7,287.5 L332.1,271.9 L351.5,258.0 L370.9,247.7 L390.3,243.3 L409.7,236.8 L429.1,230.1 L448.5,213.4 L467.9,197.9 L487.3,197.5 L506.7,193.8 L526.1,188.2 L545.5,184.6 L564.8,181.3 L584.2,178.8 L603.6,172.2 L623.0,166.4 L642.4,159.0 L661.8,132.0 L681.2,122.1 L700.6,125.0 L720.0,112.2" fill="none" stroke="#4ecdc4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="112.2" r="5" fill="#4ecdc4" stroke="#060c08" stroke-width="2" />
+                    
+        <text x="732" y="74.2" fill="#ffd700" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇩🇰 Danemark</text>
+        <text x="732" y="90.2" fill="#ffd700" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">88.7</text>
+
+        <text x="732" y="105.9" fill="#a855f7" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇳🇱 Pays-Bas</text>
+        <text x="732" y="121.9" fill="#a855f7" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">84.8</text>
+<line x1="720" y1="105.1" x2="728" y2="129.9" stroke="#ff4757" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="3,3" />
+        <text x="732" y="133.9" fill="#ff4757" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇧🇪 Belgique</text>
+        <text x="732" y="149.9" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">84.4</text>
+<line x1="720" y1="112.2" x2="728" y2="157.9" stroke="#4ecdc4" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="3,3" />
+        <text x="732" y="161.9" fill="#4ecdc4" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇺🇸 États-Unis</text>
+        <text x="732" y="177.9" fill="#4ecdc4" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">83.5</text>
+<line x1="720" y1="120.5" x2="728" y2="185.9" stroke="#00ff88" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="3,3" />
+        <text x="732" y="189.9" fill="#00ff88" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇩🇪 Allemagne</text>
+        <text x="732" y="205.9" fill="#00ff88" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">82.5</text>
+<line x1="720" y1="159.6" x2="728" y2="213.9" stroke="#00d4ff" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="3,3" />
+        <text x="732" y="217.9" fill="#00d4ff" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇫🇷 France</text>
+        <text x="732" y="233.9" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">77.7</text>
+
+        <text x="732" y="245.9" fill="#ff6b9d" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇬🇧 Roy.-Uni</text>
+        <text x="732" y="261.9" fill="#ff6b9d" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">68.0</text>
+
+        <text x="732" y="395.7" fill="#ff9f43" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇯🇵 Japon</text>
+        <text x="732" y="411.7" fill="#ff9f43" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">49.0</text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Our World in Data · OWID · 1990-2023</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

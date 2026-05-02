@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Évolution du PIB par habitant par pays</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 45px 40px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .chart-title .accent {
+            color: #00d4ff;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Évolution du PIB par habitant par pays</h2>
+            <div class="chart-subtitle">En $ · 1990-2024</div>
+
+            <div class="legend">
+              <span style="display: inline-flex; align-items: center; gap: 8px; margin-right: 30px;">
+              <span style="width: 28px; height: 4px; background: #ff4757; border-radius: 3px; display: inline-block;"></span>
+              <span style="font-size: 2.2rem;">🇫🇷</span>
+              <span style="color: #ff4757; font-weight: 700; font-size: 1.4rem;">France</span>
+            </span>
+              <span style="display: inline-flex; align-items: center; gap: 8px; margin-right: 30px;">
+              <span style="width: 28px; height: 4px; background: #ffd700; border-radius: 3px; display: inline-block;"></span>
+              <span style="font-size: 2.2rem;">🇩🇪</span>
+              <span style="color: #ffd700; font-weight: 700; font-size: 1.4rem;">Allemagne</span>
+            </span>
+              <span style="display: inline-flex; align-items: center; gap: 8px; margin-right: 30px;">
+              <span style="width: 28px; height: 4px; background: #00d4ff; border-radius: 3px; display: inline-block;"></span>
+              <span style="font-size: 2.2rem;">🇮🇪</span>
+              <span style="color: #00d4ff; font-weight: 700; font-size: 1.4rem;">Irlande</span>
+            </span>
+            </div>
+
+            <div class="chart-area">
+                <svg width="920" height="560" viewBox="0 0 920 560">
+                    <!-- Unit label on Y axis (top-left) -->
+                    <text x="86" y="36" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="600">$</text>
+                    <!-- Axes -->
+                    <line x1="80" y1="20" x2="80" y2="510" stroke="#4a5a6a" stroke-opacity="0.5" stroke-width="1" />
+                    <line x1="80" y1="510" x2="890" y2="510" stroke="#4a5a6a" stroke-opacity="0.5" stroke-width="1" />
+                    
+        <line x1="80" y1="384.0" x2="890" y2="384.0" stroke="#4a5a6a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="388" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">50 000$</text>
+
+        <line x1="80" y1="158.5" x2="890" y2="158.5" stroke="#4a5a6a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="162.5" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">100 000$</text>
+                    
+        <text x="80.0" y="540" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">1990</text>
+
+        <text x="318.2" y="540" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2000</text>
+
+        <text x="556.5" y="540" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2010</text>
+
+        <text x="794.7" y="540" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2020</text>
+                    
+        <!-- France -->
+        
+        <defs>
+          <linearGradient id="grad-FRA" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ff4757" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#ff4757" stop-opacity="0.02"/>
+          </linearGradient>
+        </defs>
+        <path d="M80.0,435.2 L103.8,433.9 L127.6,432.1 L151.5,433.5 L175.3,430.0 L199.1,426.5 L222.9,424.6 L246.8,420.6 L270.6,414.8 L294.4,409.3 L318.2,402.4 L342.1,400.0 L365.9,399.3 L389.7,398.7 L413.5,394.3 L437.4,391.9 L461.2,387.5 L485.0,383.3 L508.8,383.7 L532.6,391.2 L556.5,387.9 L580.3,383.6 L604.1,384.3 L627.9,383.7 L651.8,382.5 L675.6,380.9 L699.4,379.6 L723.2,375.5 L747.1,372.5 L770.9,368.5 L794.7,387.1 L818.5,372.7 L842.4,367.4 L866.2,364.6 L890.0,362.4 L890.0,510.0 L80.0,510.0 Z" fill="url(#grad-FRA)" />
+        <path d="M80.0,435.2 L103.8,433.9 L127.6,432.1 L151.5,433.5 L175.3,430.0 L199.1,426.5 L222.9,424.6 L246.8,420.6 L270.6,414.8 L294.4,409.3 L318.2,402.4 L342.1,400.0 L365.9,399.3 L389.7,398.7 L413.5,394.3 L437.4,391.9 L461.2,387.5 L485.0,383.3 L508.8,383.7 L532.6,391.2 L556.5,387.9 L580.3,383.6 L604.1,384.3 L627.9,383.7 L651.8,382.5 L675.6,380.9 L699.4,379.6 L723.2,375.5 L747.1,372.5 L770.9,368.5 L794.7,387.1 L818.5,372.7 L842.4,367.4 L866.2,364.6 L890.0,362.4" fill="none" stroke="#ff4757" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="80.0" cy="435.2" r="5" fill="#ff4757" stroke="#06080c" stroke-width="2.5" />
+        <text x="80.0" y="400.2" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="800" text-anchor="middle">38 656$</text>
+        <circle cx="890.0" cy="362.4" r="7" fill="#ff4757" stroke="#06080c" stroke-width="2.5" />
+        <text x="890.0" y="340.4" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="800" text-anchor="middle">54 799$</text>
+
+        <!-- Germany -->
+        
+        <defs>
+          <linearGradient id="grad-DEU" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffd700" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#ffd700" stop-opacity="0.02"/>
+          </linearGradient>
+        </defs>
+        <path d="M80.0,418.8 L103.8,410.5 L127.6,408.0 L151.5,411.3 L175.3,406.9 L199.1,404.4 L222.9,402.9 L246.8,399.4 L270.6,395.0 L294.4,390.6 L318.2,384.6 L342.1,381.3 L365.9,382.2 L389.7,383.5 L413.5,380.8 L437.4,378.7 L461.2,369.5 L485.0,362.2 L508.8,359.5 L532.6,372.8 L556.5,362.6 L580.3,348.6 L604.1,347.8 L627.9,347.5 L651.8,342.9 L675.6,340.8 L699.4,337.1 L723.2,330.5 L747.1,328.2 L770.9,326.1 L794.7,338.0 L818.5,327.5 L842.4,322.3 L866.2,325.2 L890.0,327.4 L890.0,510.0 L80.0,510.0 Z" fill="url(#grad-DEU)" />
+        <path d="M80.0,418.8 L103.8,410.5 L127.6,408.0 L151.5,411.3 L175.3,406.9 L199.1,404.4 L222.9,402.9 L246.8,399.4 L270.6,395.0 L294.4,390.6 L318.2,384.6 L342.1,381.3 L365.9,382.2 L389.7,383.5 L413.5,380.8 L437.4,378.7 L461.2,369.5 L485.0,362.2 L508.8,359.5 L532.6,372.8 L556.5,362.6 L580.3,348.6 L604.1,347.8 L627.9,347.5 L651.8,342.9 L675.6,340.8 L699.4,337.1 L723.2,330.5 L747.1,328.2 L770.9,326.1 L794.7,338.0 L818.5,327.5 L842.4,322.3 L866.2,325.2 L890.0,327.4" fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="80.0" cy="418.8" r="5" fill="#ffd700" stroke="#06080c" stroke-width="2.5" />
+        <text x="80.0" y="383.8" fill="#ffd700" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="800" text-anchor="middle">42 288$</text>
+        <circle cx="890.0" cy="327.4" r="7" fill="#ffd700" stroke="#06080c" stroke-width="2.5" />
+        <text x="890.0" y="305.4" fill="#ffd700" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="800" text-anchor="middle">62 555$</text>
+
+        <!-- Ireland -->
+        
+        <defs>
+          <linearGradient id="grad-IRL" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.02"/>
+          </linearGradient>
+        </defs>
+        <path d="M80.0,476.2 L103.8,474.4 L127.6,470.8 L151.5,467.8 L175.3,460.3 L199.1,446.7 L222.9,436.1 L246.8,418.9 L270.6,404.3 L294.4,385.3 L318.2,367.4 L342.1,358.6 L365.9,348.3 L389.7,344.7 L413.5,331.9 L437.4,322.3 L461.2,316.0 L485.0,309.2 L508.8,328.4 L532.6,345.5 L556.5,342.5 L580.3,339.4 L604.1,341.6 L627.9,337.2 L651.8,313.8 L675.6,244.4 L699.4,244.7 L723.2,213.2 L747.1,188.8 L770.9,174.9 L794.7,149.6 L818.5,82.3 L842.4,53.8 L866.2,78.0 L890.0,72.7 L890.0,510.0 L80.0,510.0 Z" fill="url(#grad-IRL)" />
+        <path d="M80.0,476.2 L103.8,474.4 L127.6,470.8 L151.5,467.8 L175.3,460.3 L199.1,446.7 L222.9,436.1 L246.8,418.9 L270.6,404.3 L294.4,385.3 L318.2,367.4 L342.1,358.6 L365.9,348.3 L389.7,344.7 L413.5,331.9 L437.4,322.3 L461.2,316.0 L485.0,309.2 L508.8,328.4 L532.6,345.5 L556.5,342.5 L580.3,339.4 L604.1,341.6 L627.9,337.2 L651.8,313.8 L675.6,244.4 L699.4,244.7 L723.2,213.2 L747.1,188.8 L770.9,174.9 L794.7,149.6 L818.5,82.3 L842.4,53.8 L866.2,78.0 L890.0,72.7" fill="none" stroke="#00d4ff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="80.0" cy="476.2" r="5" fill="#00d4ff" stroke="#06080c" stroke-width="2.5" />
+        <text x="80.0" y="441.2" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="800" text-anchor="middle">29 556$</text>
+        <circle cx="890.0" cy="72.7" r="7" fill="#00d4ff" stroke="#06080c" stroke-width="2.5" />
+        <text x="890.0" y="50.7" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="800" text-anchor="middle">119 038$</text>
+                    
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Our World in Data · OWID · 1990-2024</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

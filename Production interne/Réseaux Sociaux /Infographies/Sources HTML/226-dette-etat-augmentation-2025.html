@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>+135 milliards de dette en un an</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --bg-mid: #102035;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-red: #ff4757;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #0a1220 0%, #142b48 50%, #0a1220 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0, 212, 255, 0.12) 0%, transparent 70%); top: -200px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255, 71, 87, 0.08) 0%, transparent 70%); bottom: -150px; left: -150px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 60px 40px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 5.6rem; text-align: center; color: var(--text-primary); line-height: 1; margin-top: 24px; letter-spacing: -2px; }
+        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .subtitle { text-align: center; font-size: 1.1rem; color: var(--text-secondary); margin-top: 18px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; }
+
+        .chart-area { flex: 1; display: flex; align-items: flex-end; justify-content: center; gap: 130px; padding: 20px 60px 0; }
+
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+        .bar-stack { display: flex; flex-direction: column-reverse; width: 200px; }
+        .bar-base { background: linear-gradient(180deg, #4a6580 0%, #2d4060 100%); border-radius: 8px 8px 0 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
+        .bar-extra { background: linear-gradient(180deg, #ff4757 0%, #c0263a 100%); border-radius: 8px 8px 0 0; box-shadow: 0 0 35px rgba(255, 71, 87, 0.5); position: relative; }
+        .bar-extra::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: rgba(255,255,255,0.5); }
+
+        .bar-extra-label { font-family: 'JetBrains Mono', monospace; font-size: 2.2rem; font-weight: 700; color: var(--accent-red); position: absolute; left: 100%; top: 50%; transform: translateY(-50%); white-space: nowrap; padding-left: 32px; }
+        .bar-extra-label::before { content: ''; position: absolute; left: 4px; top: 50%; width: 22px; height: 1.5px; background: var(--accent-red); }
+
+        .bar-label { font-family: 'Syne', sans-serif; font-size: 1.6rem; color: var(--text-primary); font-weight: 600; }
+        .bar-total { font-family: 'JetBrains Mono', monospace; font-size: 2.6rem; font-weight: 700; color: #ffffff; line-height: 1; }
+        .bar-total.highlight { color: var(--accent-red); }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 18px; margin-top: 22px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+            </div>
+
+            <h2 class="chart-title">+135 milliards<br>de <span class="accent">dette</span> en un an</h2>
+            <div class="subtitle">Dette de l'État · 2024 → 2025 · Milliards €</div>
+
+            <div class="chart-area">
+                <div class="bar-group">
+                    <div class="bar-total">2 602</div>
+                    <div class="bar-stack">
+                        <div class="bar-base" style="height: 420px;"></div>
+                    </div>
+                    <div class="bar-label">Fin 2024</div>
+                </div>
+
+                <div class="bar-group">
+                    <div class="bar-total highlight">2 737</div>
+                    <div class="bar-stack" style="position: relative;">
+                        <div class="bar-base" style="height: 420px;"></div>
+                        <div class="bar-extra" style="height: 22px;">
+                            <div class="bar-extra-label">+135 Md€</div>
+                        </div>
+                    </div>
+                    <div class="bar-label">Fin 2025</div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Cour des comptes · Le budget de l'État en 2025 · avril 2026</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La part de l'industrie dans le PIB français</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #050d1a;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-red: #ff4757;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 0; margin: 0; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, var(--bg-deep) 0%, #0a1e3d 50%, var(--bg-deep) 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,71,87,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,71,87,0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,71,87,0.12) 0%, transparent 70%); top: -200px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,71,87,0.06) 0%, transparent 70%); bottom: -150px; left: -150px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 40px 50px 35px; display: flex; flex-direction: column; }
+        .header { display: flex; align-items: center; margin-bottom: 10px; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 5.5rem; text-align: center; color: var(--text-primary); line-height: 1.05; }
+        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .chart-subtitle { text-align: center; font-size: 1rem; color: var(--text-secondary); margin-bottom: 15px; margin-top: 8px; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; }
+
+        .chart-area { flex: 0 0 auto; height: 500px; display: flex; padding: 0 10px; align-items: flex-end; margin-top: 60px; }
+        .bars-container { flex: 1; display: flex; gap: 14px; align-items: flex-end; height: 100%; }
+        .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; position: relative; }
+        .bar-up {
+            width: 75%;
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            background: linear-gradient(180deg, #ff4757 0%, #8a1828 100%);
+        }
+        .bar-up.peak {
+            background: linear-gradient(180deg, #ff5a6a 0%, #a01030 100%);
+            box-shadow: 0 -6px 30px rgba(255, 71, 87, 0.45);
+        }
+        .bar-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.2rem;
+            font-weight: 700;
+            position: absolute;
+            top: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            color: var(--text-primary);
+        }
+        .bar-up.peak .bar-value { color: var(--accent-red); font-size: 2.4rem; }
+
+        .year-labels { display: flex; gap: 14px; margin-top: 18px; padding: 0 10px; }
+        .year-label { flex: 1; text-align: center; }
+        .year-num { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); }
+        .year-label.highlight .year-num { color: var(--accent-red); font-weight: 700; }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; margin-top: auto; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+            </div>
+
+            <h2 class="chart-title">L'industrie pesait <span class="accent">24 %</span><br>du PIB en 1980, 11 % aujourd'hui</h2>
+            <div class="chart-subtitle">Part de l'industrie manufacturière dans la valeur ajoutée · 1980-2024</div>
+
+            <div class="chart-area">
+                <div class="bars-container">
+                    <!-- 1980 : 24% (peak) — h = 24/26 = 92% -->
+                    <div class="bar-col">
+                        <div class="bar-up peak" style="height: 92%;">
+                            <div class="bar-value">24 %</div>
+                        </div>
+                    </div>
+
+                    <!-- 1990 : 20% — h = 20/26 = 77% -->
+                    <div class="bar-col">
+                        <div class="bar-up" style="height: 77%;">
+                            <div class="bar-value">20 %</div>
+                        </div>
+                    </div>
+
+                    <!-- 2000 : 16% — h = 16/26 = 61.5% -->
+                    <div class="bar-col">
+                        <div class="bar-up" style="height: 61.5%;">
+                            <div class="bar-value">16 %</div>
+                        </div>
+                    </div>
+
+                    <!-- 2010 : 13% — h = 13/26 = 50% -->
+                    <div class="bar-col">
+                        <div class="bar-up" style="height: 50%;">
+                            <div class="bar-value">13 %</div>
+                        </div>
+                    </div>
+
+                    <!-- 2024 : 11% — h = 11/26 = 42.3% -->
+                    <div class="bar-col">
+                        <div class="bar-up" style="height: 42.3%;">
+                            <div class="bar-value">11 %</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="year-labels">
+                <div class="year-label highlight"><div class="year-num">1980</div></div>
+                <div class="year-label"><div class="year-num">1990</div></div>
+                <div class="year-label"><div class="year-num">2000</div></div>
+                <div class="year-label"><div class="year-num">2010</div></div>
+                <div class="year-label"><div class="year-num">2024</div></div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>INSEE · Eurostat · Cour des comptes · 2024</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les réformes qui marchent : avant / après</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #06080c 0%, #0a1a12 50%, #06080c 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 50px 45px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00ff88; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.5rem;
+            text-align: center;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .chart-title .accent {
+            color: #00ff88;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        /* === COMPARISON CARDS === */
+        .cards-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        .country-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 22px 28px;
+        }
+
+        .country-flag {
+            font-size: 4.5rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .country-info {
+            flex: 1;
+        }
+
+        .country-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .reform-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .reform-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.3;
+        }
+
+        .metrics {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        .metric-before {
+            text-align: center;
+        }
+
+        .metric-after {
+            text-align: center;
+        }
+
+        .metric-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .metric-before .metric-label { color: #ff4757; }
+        .metric-after .metric-label { color: #00ff88; }
+
+        .metric-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .metric-before .metric-value { color: #ff4757; }
+        .metric-after .metric-value { color: #00ff88; }
+
+        .metric-unit {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .arrow-sep {
+            font-size: 2.2rem;
+            color: rgba(255, 255, 255, 0.25);
+            flex-shrink: 0;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00ff88; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Les réformes <span class="accent">qui marchent</span></h2>
+            <div class="chart-subtitle">3 pays qui ont osé la rupture libérale — et qui s'en portent mieux</div>
+
+            <div class="cards-area">
+                <!-- SUÈDE -->
+                <div class="country-card">
+                    <div class="country-flag">🇸🇪</div>
+                    <div class="country-info">
+                        <div class="country-name">Suède</div>
+                        <div class="reform-year">Réformes 1991-1995</div>
+                        <div class="reform-label">Dépenses publiques<br>(% du PIB)</div>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric-before">
+                            <div class="metric-label">Avant</div>
+                            <div class="metric-value">67%</div>
+                            <div class="metric-unit">du PIB</div>
+                        </div>
+                        <div class="arrow-sep">→</div>
+                        <div class="metric-after">
+                            <div class="metric-label">Après</div>
+                            <div class="metric-value">49%</div>
+                            <div class="metric-unit">du PIB</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IRLANDE -->
+                <div class="country-card">
+                    <div class="country-flag">🇮🇪</div>
+                    <div class="country-info">
+                        <div class="country-name">Irlande</div>
+                        <div class="reform-year">Réformes 1987-2000</div>
+                        <div class="reform-label">Dette publique<br>(% du PIB)</div>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric-before">
+                            <div class="metric-label">Avant</div>
+                            <div class="metric-value">110%</div>
+                            <div class="metric-unit">du PIB</div>
+                        </div>
+                        <div class="arrow-sep">→</div>
+                        <div class="metric-after">
+                            <div class="metric-label">Après</div>
+                            <div class="metric-value">24%</div>
+                            <div class="metric-unit">du PIB</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NOUVELLE-ZÉLANDE -->
+                <div class="country-card">
+                    <div class="country-flag">🇳🇿</div>
+                    <div class="country-info">
+                        <div class="country-name">Nouvelle-Zélande</div>
+                        <div class="reform-year">Réformes 1984-1993</div>
+                        <div class="reform-label">Solde budgétaire<br>(% du PIB)</div>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric-before">
+                            <div class="metric-label">Avant</div>
+                            <div class="metric-value">-7%</div>
+                            <div class="metric-unit">déficit</div>
+                        </div>
+                        <div class="arrow-sep">→</div>
+                        <div class="metric-after">
+                            <div class="metric-label">Après</div>
+                            <div class="metric-value">+3%</div>
+                            <div class="metric-unit">excédent</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>OCDE, FMI, Eurostat · Périodes indiquées</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>167 – Salaire brut vs net après impôt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #111827;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --green: #00ff88;
+            --red: #ff4757;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute; inset: 0;
+            background: linear-gradient(145deg, var(--bg-deep) 0%, #1e2d4a 50%, var(--bg-deep) 100%);
+        }
+        .bg-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 71, 87, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 71, 87, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .bg-glow-1 {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%);
+            top: -200px; right: -100px; pointer-events: none;
+        }
+        .bg-glow-2 {
+            position: absolute; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.06) 0%, transparent 70%);
+            bottom: -150px; left: -150px; pointer-events: none;
+        }
+
+        .content {
+            position: relative; z-index: 1; height: 100%;
+            padding: 45px 40px 35px;
+            display: flex; flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 4px;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: var(--red); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        /* Title — GROS */
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5rem;
+            text-align: center;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+        .chart-title .accent { color: var(--red); font-style: italic; }
+
+        /* Subtitle — plus gros */
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+        }
+
+        /* Chart */
+        .chart-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .bars-wrapper {
+            flex: 1;
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            padding: 0 5px;
+        }
+
+        .bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+        }
+
+        .bar-top-info {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 5px;
+            line-height: 1.3;
+            flex-shrink: 0;
+        }
+        .bar-top-info .val-green { color: #00e676; }
+        .bar-top-info .val-muted { color: var(--text-muted); }
+
+        .bar-stack {
+            width: 90%;
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bar-segment {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: rgba(255,255,255,0.95);
+            overflow: hidden;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+        }
+
+        .seg-patronales {
+            background: linear-gradient(180deg, #b91c1c, #991b1b);
+        }
+        .seg-salariales {
+            background: linear-gradient(180deg, #dc2626, #b91c1c);
+        }
+        .seg-impot {
+            background: linear-gradient(180deg, #ef4444, #dc2626);
+        }
+        .seg-net {
+            background: linear-gradient(180deg, #00e676, #00c853);
+        }
+
+        /* Labels — plus gros */
+        .labels-row {
+            display: flex;
+            gap: 10px;
+            padding: 10px 5px 0;
+            flex-shrink: 0;
+        }
+        .label-col {
+            flex: 1;
+            text-align: center;
+        }
+        .bar-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+        .bar-name span {
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            display: block;
+        }
+
+        /* Legend — positionnée à gauche du graphique */
+        .legend {
+            position: absolute;
+            top: 40px;
+            left: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 2;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+        .legend-dot {
+            width: 20px; height: 20px;
+            border-radius: 5px;
+            flex-shrink: 0;
+        }
+        .dot-net { background: linear-gradient(180deg, #00e676, #00c853); }
+        .dot-impot { background: linear-gradient(180deg, #ef4444, #dc2626); }
+        .dot-salariales { background: linear-gradient(180deg, #dc2626, #b91c1c); }
+        .dot-patronales { background: linear-gradient(180deg, #b91c1c, #991b1b); }
+
+        .legend-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 14px 20px;
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 71, 87, 0.06);
+        }
+        .legend-group-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ff4757;
+            white-space: nowrap;
+        }
+        .legend-group-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .legend-note {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.45;
+            max-width: 320px;
+        }
+        .legend-note-label {
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .legend-note strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: 12px;
+            border-top: 1px solid var(--glass-border);
+        }
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--red);
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Plus vous gagnez,<br><span class="accent">moins vous gardez</span></h2>
+
+            <div class="chart-area">
+                <div class="legend">
+                    <div class="legend-item"><div class="legend-dot dot-net"></div>Net après impôt</div>
+                    <div class="legend-group">
+                        <div class="legend-group-label">Ce que l'État prélève :</div>
+                        <div class="legend-group-items">
+                            <div class="legend-item"><div class="legend-dot dot-impot"></div>Impôt sur le revenu</div>
+                            <div class="legend-item"><div class="legend-dot dot-salariales"></div>Cotis. salariales</div>
+                            <div class="legend-item"><div class="legend-dot dot-patronales"></div>Cotis. patronales</div>
+                        </div>
+                    </div>
+                    <div class="legend-note"><span class="legend-note-label">Lecture graphique :</span> Un salarié à 15 000 € brut/mois ne touche que <strong>40,6 %</strong> de ce qu'il coûte à son employeur. L'État prélève les <strong>59,4 %</strong> restants.</div>
+                </div>
+                <div class="bars-wrapper" id="bars"></div>
+                <div class="labels-row" id="labels"></div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>mon-entreprise.urssaf.fr · Barème 03/2026 (taux neutre PAS)</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    const DATA = [
+        { brut: 2000, superBrut: 2249, net: 1553, impot: 8, cotSal: 439, cotPat: 249, pct: 69.1 },
+        { brut: 3000, superBrut: 4007, net: 2223, impot: 130, cotSal: 647, cotPat: 1007, pct: 55.5 },
+        { brut: 4000, superBrut: 5578, net: 2820, impot: 324, cotSal: 856, cotPat: 1578, pct: 50.6 },
+        { brut: 5000, superBrut: 7065, net: 3375, impot: 566, cotSal: 1059, cotPat: 2065, pct: 47.8 },
+        { brut: 7000, superBrut: 10035, net: 4563, impot: 982, cotSal: 1455, cotPat: 3035, pct: 45.5 },
+        { brut: 10000, superBrut: 14325, net: 6255, impot: 1696, cotSal: 2049, cotPat: 4325, pct: 43.7 },
+        { brut: 15000, superBrut: 21476, net: 8721, impot: 3241, cotSal: 3038, cotPat: 6476, pct: 40.6 },
+    ];
+
+    const maxSuperBrut = Math.max(...DATA.map(d => d.superBrut));
+    const barsContainer = document.getElementById('bars');
+    const labelsContainer = document.getElementById('labels');
+
+    DATA.forEach(d => {
+        const pctNet = d.net / d.superBrut;
+        const pctImpot = d.impot / d.superBrut;
+        const pctSal = d.cotSal / d.superBrut;
+        const pctPat = d.cotPat / d.superBrut;
+
+        // Height relative to max
+        const relHeight = (d.superBrut / maxSuperBrut) * 95;
+
+        const formatK = (v) => {
+            if (v >= 1000) return (v/1000).toFixed(v % 1000 === 0 ? 0 : 1) + 'k';
+            return v + '';
+        };
+
+        // Percentages of super brut
+        const pPat = Math.round(pctPat * 1000) / 10;
+        const pSal = Math.round(pctSal * 1000) / 10;
+        const pImp = Math.round(pctImpot * 1000) / 10;
+        const pNet = Math.round(pctNet * 1000) / 10;
+
+        // Font sizes — plus gros sur les grandes barres (à partir de la 5e)
+        const isBigBar = relHeight > 40;
+        const segFont = (pct, isNet) => {
+            if (pct < 3) return '0';
+            if (isNet) {
+                if (pct < 15) return '1.1rem';
+                if (pct < 30) return '1.5rem';
+                return '1.8rem';
+            }
+            if (isBigBar) {
+                if (pct < 8) return '1rem';
+                if (pct < 15) return '1.3rem';
+                if (pct < 22) return '1.5rem';
+                return '1.7rem';
+            }
+            if (pct < 8) return '0.9rem';
+            if (pct < 18) return '1rem';
+            if (pct < 25) return '1.15rem';
+            return '1.4rem';
+        };
+
+        // Bar column
+        // Pour les petites barres (1ère barre), ne pas afficher les % sur les segments rouges
+        const showRedLabels = relHeight > 15;
+        const formatKe = (v) => {
+            if (v >= 1000) return (v/1000).toFixed(v % 1000 === 0 ? 0 : 1) + 'k€';
+            return v + '€';
+        };
+        const col = document.createElement('div');
+        col.className = 'bar-col';
+        col.innerHTML = `
+            <div class="bar-top-info">
+                <span class="val-muted">Coût ${formatKe(d.superBrut)}</span><br>
+                <span class="val-green">Net ${formatKe(d.net)}</span>
+            </div>
+            <div class="bar-stack" style="height: ${relHeight}%; box-shadow: 0 -4px 25px rgba(255,71,87,0.15);">
+                <div class="seg-patronales bar-segment" style="height: ${pPat}%; font-size: ${segFont(pPat, false)}">
+                    ${showRedLabels && pPat >= 8 ? pPat + '%' : ''}
+                </div>
+                <div class="seg-salariales bar-segment" style="height: ${pSal}%; font-size: ${segFont(pSal, false)}">
+                    ${showRedLabels && pSal >= 8 ? pSal + '%' : ''}
+                </div>
+                <div class="seg-impot bar-segment" style="height: ${pImp}%; font-size: ${segFont(pImp, false)}">
+                    ${showRedLabels && pImp >= 8 ? pImp + '%' : ''}
+                </div>
+                <div class="seg-net bar-segment" style="height: ${pNet}%; font-size: ${segFont(pNet, true)}; color: #003d1a;">
+                    ${pNet >= 10 ? pNet + '%' : ''}
+                </div>
+            </div>
+        `;
+        barsContainer.appendChild(col);
+
+        // Label — plus gros
+        const label = document.createElement('div');
+        label.className = 'label-col';
+        label.innerHTML = `<div class="bar-name">${formatK(d.brut)}\u202F€<span>brut/mois</span></div>`;
+        labelsContainer.appendChild(label);
+    });
+    </script>
+</body>
+</html>

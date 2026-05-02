@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>R5 — Top 10 des associations les plus financées par l'État</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-gold: #ffd700;
+            --accent-red: #ff4757;
+            --accent-green: #00ff88;
+            --accent-purple: #a855f7;
+            --accent-orange: #ff9f43;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1200px; height: 700px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%); top: -200px; right: -150px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%); bottom: -150px; left: -100px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 55px 38px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.4rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .legend { display: flex; gap: 14px; align-items: center; }
+        .legend-item { display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-secondary); letter-spacing: 0.5px; text-transform: uppercase; }
+        .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .ld-soc  { background: #ff4757; }
+        .ld-rec  { background: #00d4ff; }
+        .ld-ens  { background: #ffd700; }
+        .ld-int  { background: #ff9f43; }
+        .ld-evt  { background: #a855f7; }
+        .ld-fpro { background: #66aaff; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 3.2rem; text-align: center; color: var(--text-primary); line-height: 1.05; margin-top: 8px; letter-spacing: -1px; }
+        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .subtitle { text-align: center; font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px; letter-spacing: 1.3px; text-transform: uppercase; font-weight: 500; }
+
+        .ranking { flex: 1; margin-top: 14px; display: flex; flex-direction: column; gap: 4px; }
+        .rank-item {
+            display: grid;
+            grid-template-columns: 32px 220px 1fr 100px;
+            align-items: center; gap: 14px;
+            padding: 5px 12px;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+        }
+        .rank-num { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 700; color: var(--text-muted); text-align: center; }
+        .rank-name { font-family: 'Syne', sans-serif; font-size: 0.98rem; font-weight: 700; color: var(--text-primary); line-height: 1.15; }
+        .rank-name small { display: block; font-size: 0.68rem; color: var(--text-muted); font-weight: 400; margin-top: 1px; letter-spacing: 0.3px; text-transform: uppercase; }
+
+        .bar-zone { display: flex; align-items: center; }
+        .bar { height: 18px; border-radius: 4px; min-width: 6px; }
+
+        .rank-amount { font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; font-weight: 700; text-align: right; }
+
+        /* Couleurs par catégorie */
+        .cat-soc  .bar { background: linear-gradient(90deg, #ff4757, #cc2040); } .cat-soc  .rank-amount { color: #ff4757; }
+        .cat-rec  .bar { background: linear-gradient(90deg, #00d4ff, #0099cc); } .cat-rec  .rank-amount { color: #00d4ff; }
+        .cat-ens  .bar { background: linear-gradient(90deg, #ffd700, #d6b800); } .cat-ens  .rank-amount { color: #ffd700; }
+        .cat-int  .bar { background: linear-gradient(90deg, #ff9f43, #d6731f); } .cat-int  .rank-amount { color: #ff9f43; }
+        .cat-evt  .bar { background: linear-gradient(90deg, #a855f7, #7d2dc7); } .cat-evt  .rank-amount { color: #a855f7; }
+        .cat-fpro .bar { background: linear-gradient(90deg, #66aaff, #3a7dcc); } .cat-fpro .rank-amount { color: #66aaff; }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.85rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.25rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="r5-top-10-beneficiaires">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+                <div class="legend">
+                    <div class="legend-item"><span class="legend-dot ld-soc"></span>Social</div>
+                    <div class="legend-item"><span class="legend-dot ld-rec"></span>Recherche</div>
+                    <div class="legend-item"><span class="legend-dot ld-ens"></span>Enseignement</div>
+                    <div class="legend-item"><span class="legend-dot ld-int"></span>International</div>
+                    <div class="legend-item"><span class="legend-dot ld-evt"></span>Événementiel</div>
+                    <div class="legend-item"><span class="legend-dot ld-fpro"></span>Formation pro</div>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Top 10 des <span class="accent">associations</span> financées par l'État</h2>
+            <div class="subtitle">Versements 2023 · hors AID Banque mondiale (cas spécial)</div>
+
+            <div class="ranking">
+                <div class="rank-item cat-soc">
+                    <div class="rank-num">01</div>
+                    <div class="rank-name">Aurore<small>Hébergement d'urgence (migrants, SDF)</small></div>
+                    <div class="bar-zone"><div class="bar" style="width: 100%;"></div></div>
+                    <div class="rank-amount">115 M€</div>
+                </div>
+                <div class="rank-item cat-ens">
+                    <div class="rank-num">02</div>
+                    <div class="rank-name">Sciences Po (Fondation)<small>Enseignement supérieur</small></div>
+                    <div class="bar-zone"><div class="bar" style="width: 63%;"></div></div>
+                    <div class="rank-amount">73 M€</div>
+                </div>
+                <div class="rank-item cat-evt">
+                    <div class="rank-num">03</div>
+                    <div class="rank-name">Paris 2024 (COJO)<small>Comité d'organisation des JO</small></div>
+                    <div class="bar-zone"><div class="bar" style="width: 60%;"></div></div>
+                    <div class="rank-amount">70 M€</div>
+                </div>
+                <div class="rank-item cat-soc">
+                    <div class="rank-num">04</div>
+                    <div class="rank-name">Emmaüs Solidarité<small>Hébergement d'urgence</small></div>
+                    <div class="bar-zone"><div class="bar" style="width: 58%;"></div></div>
+                    <div class="rank-amount">67 M€</div>
+                </div>
+                <div class="rank-item cat-rec">
+                    <div class="rank-num">05</div>
+                    <div class="rank-name">ANRT<small>Recherche & technologie (CIFRE)</small></div>
+                    <div class="bar-zone"><div class="bar" style="width: 58%;"></div></div>
+                    <div class="rank-amount">67 M€</div>
+                </div>
+                <div class="rank-item cat-rec">
+                    <div class="rank-num">06</div>
+                    <div class="rank-name">Institut Pasteur<small>Recherche médicale</small></div>
+                    <div class="bar-zone"><div class="bar" style="width: 55%;"></div></div>
+                    <div class="rank-amount">63 M€</div>
+                </div>
+                <div class="rank-item cat-soc">
+                    <div class="rank-num">07</div>
+                    <div class="rank-name">CASP<small>Centre d'Action Sociale Protestant</small></div>
+                    <div class="bar-zone"><div class="bar" style="width: 54%;"></div></div>
+                    <div class="rank-amount">62 M€</div>
+                </div>
+                <div class="rank-item cat-fpro">
+                    <div class="rank-num">08</div>
+                    <div class="rank-name">AKTO<small>OPCO formation professionnelle</small></div>
+                    <div class="bar-zone"><div class="bar" style="width: 42%;"></div></div>
+                    <div class="rank-amount">48 M€</div>
+                </div>
+                <div class="rank-item cat-soc">
+                    <div class="rank-num">09</div>
+                    <div class="rank-name">Coallia<small>Insertion par le logement</small></div>
+                    <div class="bar-zone"><div class="bar" style="width: 31%;"></div></div>
+                    <div class="rank-amount">36 M€</div>
+                </div>
+                <div class="rank-item cat-ens">
+                    <div class="rank-num">10</div>
+                    <div class="rank-name">Ligue de l'Enseignement<small>Éducation populaire et périscolaire</small></div>
+                    <div class="bar-zone"><div class="bar" style="width: 21%;"></div></div>
+                    <div class="rank-amount">24 M€</div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>PLF 2025 — Annexe Jaune effort financier de l'État · data.gouv.fr · 112 722 versements analysés</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

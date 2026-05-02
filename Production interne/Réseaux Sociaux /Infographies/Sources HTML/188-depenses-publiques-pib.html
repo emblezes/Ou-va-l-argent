@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depenses publiques : la France championne</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #08060c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #9888a8;
+            --text-muted: #5a4a6a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #08060c 0%, #140a1e 50%, #08060c 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 45px 40px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #a855f7; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .chart-title .accent {
+            color: #a855f7;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #a855f7; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Depenses publiques : la France championne</h2>
+            <div class="chart-subtitle">En % · 1980-2023</div>
+
+            
+
+            <div class="chart-area">
+                <svg width="920" height="620" viewBox="0 0 920 620">
+                    <!-- Unit label on Y axis (top-left) -->
+                    <text x="86" y="36" fill="#9888a8" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="600">%</text>
+                    <!-- Axes -->
+                    <line x1="80" y1="20" x2="80" y2="570" stroke="#5a4a6a" stroke-opacity="0.5" stroke-width="1" />
+                    <line x1="80" y1="570" x2="720" y2="570" stroke="#5a4a6a" stroke-opacity="0.5" stroke-width="1" />
+                    
+        <line x1="80" y1="553.9" x2="720" y2="553.9" stroke="#5a4a6a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="557.9" fill="#9888a8" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">30.0%</text>
+
+        <line x1="80" y1="428.0" x2="720" y2="428.0" stroke="#5a4a6a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="432" fill="#9888a8" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">40.0%</text>
+
+        <line x1="80" y1="302.1" x2="720" y2="302.1" stroke="#5a4a6a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="306.1" fill="#9888a8" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">50.0%</text>
+
+        <line x1="80" y1="176.3" x2="720" y2="176.3" stroke="#5a4a6a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="180.3" fill="#9888a8" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">60.0%</text>
+
+        <line x1="80" y1="50.4" x2="720" y2="50.4" stroke="#5a4a6a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="54.4" fill="#9888a8" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">70.0%</text>
+                    
+        <text x="80.0" y="600" fill="#9888a8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">1980</text>
+
+        <text x="228.8" y="600" fill="#9888a8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">1990</text>
+
+        <text x="377.7" y="600" fill="#9888a8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2000</text>
+
+        <text x="526.5" y="600" fill="#9888a8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2010</text>
+
+        <text x="675.3" y="600" fill="#9888a8" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2020</text>
+                    
+        <!-- Austria -->
+        
+        <path d="M80.0,302.0 L94.9,283.0 L109.8,276.6 L124.7,271.5 L139.5,270.0 L154.4,257.9 L169.3,248.5 L184.2,245.1 L199.1,263.1 L214.0,281.9 L228.8,283.2 L243.7,269.6 L258.6,259.6 L273.5,221.2 L288.4,225.1 L303.3,222.7 L318.1,228.4 L333.0,258.4 L347.9,255.4 L362.8,259.1 L377.7,277.7 L392.6,285.8 L407.4,293.7 L422.3,285.5 L437.2,254.8 L452.1,302.3 L467.0,312.9 L481.9,319.7 L496.7,310.5 L511.6,265.7 L526.5,270.3 L541.4,290.8 L556.3,286.9 L571.2,281.4 L586.0,271.5 L600.9,287.9 L615.8,301.2 L630.7,311.0 L645.6,317.8 L660.5,318.8 L675.3,216.5 L690.2,224.3 L705.1,264.8 L720.0,277.2" fill="none" stroke="#ff4757" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="277.2" r="5" fill="#ff4757" stroke="#08060c" stroke-width="2" />
+
+        <!-- Denmark -->
+        
+        <path d="M80.0,268.6 L94.9,222.6 L109.8,204.7 L124.7,202.5 L139.5,218.6 L154.4,232.6 L169.3,272.9 L184.2,251.9 L199.1,224.9 L214.0,224.0 L228.8,234.0 L243.7,225.7 L258.6,212.4 L273.5,173.6 L288.4,173.9 L303.3,185.3 L318.1,190.0 L333.0,218.0 L347.9,222.4 L362.8,233.0 L377.7,255.9 L392.6,249.4 L407.4,244.7 L422.3,238.4 L437.2,244.8 L452.1,267.0 L467.0,282.2 L481.9,292.0 L496.7,278.2 L511.6,196.2 L526.5,195.6 L541.4,223.0 L556.3,202.6 L571.2,231.9 L586.0,237.9 L600.9,246.5 L615.8,272.5 L630.7,294.6 L645.6,292.6 L660.5,304.6 L675.3,260.1 L690.2,309.3 L705.1,366.4 L720.0,342.0" fill="none" stroke="#ffd700" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="342.0" r="5" fill="#ffd700" stroke="#08060c" stroke-width="2" />
+
+        <!-- France -->
+        
+        <path d="M80.0,353.0 L94.9,320.6 L109.8,303.8 L124.7,299.2 L139.5,286.8 L154.4,278.4 L169.3,286.0 L184.2,293.2 L199.1,301.4 L214.0,315.6 L228.8,307.4 L243.7,293.4 L258.6,277.0 L273.5,238.3 L288.4,251.0 L303.3,246.9 L318.1,245.5 L333.0,249.5 L347.9,267.4 L362.8,269.4 L377.7,280.9 L392.6,281.2 L407.4,266.0 L422.3,259.3 L437.2,261.1 L452.1,257.2 L467.0,264.7 L481.9,269.3 L496.7,260.8 L511.6,217.3 L526.5,218.7 L541.4,213.9 L556.3,202.8 L571.2,194.0 L586.0,196.5 L600.9,206.5 L615.8,209.2 L630.7,205.7 L645.6,222.0 L660.5,234.9 L675.3,154.9 L690.2,183.0 L705.1,196.4 L720.0,214.2" fill="none" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="214.2" r="5" fill="#00d4ff" stroke="#08060c" stroke-width="2" />
+
+        <!-- Germany -->
+        
+        <path d="M80.0,324.5 L94.9,314.4 L109.8,313.2 L124.7,328.3 L139.5,337.9 L154.4,345.4 L169.3,356.6 L184.2,352.7 L199.1,357.8 L214.0,374.0 L228.8,368.5 L243.7,349.3 L258.6,337.7 L273.5,325.5 L288.4,329.6 L303.3,241.0 L318.1,314.0 L333.0,324.5 L347.9,327.3 L362.8,324.5 L377.7,363.9 L392.6,332.2 L407.4,328.0 L422.3,321.5 L437.2,339.0 L452.1,341.0 L467.0,360.7 L481.9,383.8 L496.7,377.1 L511.6,326.1 L526.5,328.9 L541.4,361.6 L556.3,364.0 L571.2,363.2 L586.0,371.4 L600.9,371.3 L615.8,368.6 L630.7,370.5 L645.6,369.0 L660.5,358.0 L675.3,287.9 L690.2,293.2 L705.1,314.7 L720.0,322.5" fill="none" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="322.5" r="5" fill="#00ff88" stroke="#08060c" stroke-width="2" />
+
+        <!-- Sweden -->
+        
+        <path d="M80.0,415.1 L94.9,351.3 L109.8,348.0 L124.7,319.6 L139.5,343.5 L154.4,332.4 L169.3,401.1 L184.2,416.5 L199.1,454.4 L214.0,480.8 L228.8,453.7 L243.7,415.7 L258.6,354.1 L273.5,57.9 L288.4,86.9 L303.3,138.5 L318.1,163.7 L333.0,192.6 L347.9,221.6 L362.8,226.6 L377.7,263.1 L392.6,270.7 L407.4,256.8 L422.3,254.3 L437.2,270.7 L452.1,273.2 L467.0,288.3 L481.9,310.9 L496.7,302.1 L511.6,271.9 L526.5,297.1 L541.4,314.4 L556.3,300.1 L571.2,291.3 L586.0,301.4 L600.9,318.1 L615.8,315.8 L630.7,318.4 L645.6,312.5 L660.5,323.7 L675.3,286.6 L690.2,323.2 L705.1,333.3 L720.0,333.8" fill="none" stroke="#ff9f43" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="333.8" r="5" fill="#ff9f43" stroke="#08060c" stroke-width="2" />
+
+        <!-- United Kingdom -->
+        
+        <path d="M80.0,331.9 L94.9,287.1 L109.8,292.7 L124.7,297.4 L139.5,298.7 L154.4,318.5 L169.3,369.6 L184.2,394.4 L199.1,424.6 L214.0,432.1 L228.8,414.1 L243.7,393.4 L258.6,365.0 L273.5,364.5 L288.4,372.4 L303.3,378.9 L318.1,399.4 L333.0,421.6 L347.9,434.7 L362.8,442.2 L377.7,468.8 L392.6,425.9 L407.4,414.1 L422.3,401.3 L437.2,390.8 L452.1,376.5 L467.0,375.4 L481.9,379.1 L496.7,329.4 L511.6,283.8 L526.5,295.1 L541.4,383.8 L556.3,383.2 L571.2,404.8 L586.0,413.1 L600.9,422.6 L615.8,432.6 L630.7,438.6 L645.6,442.2 L660.5,444.0 L675.3,302.7 L690.2,354.3 L705.1,376.9 L720.0,375.5" fill="none" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="375.5" r="5" fill="#a855f7" stroke="#08060c" stroke-width="2" />
+
+        <!-- United States -->
+        
+        <path d="M80.0,506.7 L94.9,505.0 L109.8,480.8 L124.7,482.7 L139.5,500.1 L154.4,497.9 L169.3,493.1 L184.2,499.8 L199.1,507.5 L214.0,507.0 L228.8,497.3 L243.7,482.6 L258.6,469.0 L273.5,473.6 L288.4,485.2 L303.3,484.9 L318.1,494.4 L333.0,507.7 L347.9,519.3 L362.8,526.5 L377.7,532.1 L392.6,518.6 L407.4,507.3 L422.3,503.1 L437.2,507.1 L452.1,504.5 L467.0,507.4 L481.9,496.5 L496.7,464.0 L511.6,410.4 L526.5,431.0 L541.4,443.2 L556.3,463.0 L571.2,481.1 L586.0,486.9 L600.9,490.6 L615.8,486.8 L630.7,488.5 L645.6,486.6 L660.5,480.8 L675.3,370.5 L690.2,395.3 L705.1,474.5 L720.0,474.9" fill="none" stroke="#ff6b9d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <circle cx="720.0" cy="474.9" r="5" fill="#ff6b9d" stroke="#08060c" stroke-width="2" />
+                    
+        <text x="732" y="218.2" fill="#00d4ff" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇫🇷 France</text>
+        <text x="732" y="234.2" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">57.0%</text>
+
+        <text x="732" y="281.2" fill="#ff4757" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇦🇹 Autriche</text>
+        <text x="732" y="297.2" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">52.0%</text>
+
+        <text x="732" y="326.5" fill="#00ff88" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇩🇪 Allemagne</text>
+        <text x="732" y="342.5" fill="#00ff88" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">48.4%</text>
+<line x1="720" y1="333.8" x2="728" y2="350.5" stroke="#ff9f43" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="3,3" />
+        <text x="732" y="354.5" fill="#ff9f43" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇸🇪 Suède</text>
+        <text x="732" y="370.5" fill="#ff9f43" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">47.5%</text>
+<line x1="720" y1="342.0" x2="728" y2="378.5" stroke="#ffd700" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="3,3" />
+        <text x="732" y="382.5" fill="#ffd700" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇩🇰 Danemark</text>
+        <text x="732" y="398.5" fill="#ffd700" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">46.8%</text>
+<line x1="720" y1="375.5" x2="728" y2="406.5" stroke="#a855f7" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="3,3" />
+        <text x="732" y="410.5" fill="#a855f7" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇬🇧 Roy.-Uni</text>
+        <text x="732" y="426.5" fill="#a855f7" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">44.2%</text>
+
+        <text x="732" y="478.9" fill="#ff6b9d" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">🇺🇸 États-Unis</text>
+        <text x="732" y="494.9" fill="#ff6b9d" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">36.3%</text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Our World in Data · OWID · 1980-2023</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

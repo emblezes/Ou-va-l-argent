@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retraite par capitalisation : réussir la transition — L'essentiel en graphiques — Où Va l'Argent ?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #faf6f0; --paper-warm: #f5efe5; --ink: #1a1a1a; --ink-light: #4a4a4a;
+            --ink-muted: #8a8a8a; --ink-faint: #c5c0b8; --accent: #0e7c86; --accent-dark: #0a5c64;
+            --accent-light: #e8f4f5; --gold: #b8860b; --gold-light: #f5ecd7; --red: #c0392b;
+            --green: #1a7a4c; --rule: #d4cfc6;
+            --ovla-bg: #06080c; --ovla-surface: #0a1628; --ovla-text: #f0f4f8; --ovla-muted: #8899a8;
+            --ovla-cyan: #00d4ff; --ovla-gold: #ffd700; --ovla-red: #ff4757; --ovla-green: #00ff88;
+            --ovla-purple: #a855f7; --ovla-orange: #ff9f43;
+        }
+        @page { size: A4; margin: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Crimson Pro', 'Georgia', serif; background: #e8e4de; color: var(--ink); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        .page { width: 210mm; min-height: 297mm; background: var(--paper); margin: 0 auto 20px; padding: 55px 65px; position: relative; box-shadow: 0 4px 40px rgba(0,0,0,0.12); page-break-after: always; }
+        @media print { body { background: white; } .page { box-shadow: none; margin: 0 auto; padding: 50px 60px; } }
+        .page-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--rule); margin-bottom: 40px; font-family: 'Inter', sans-serif; font-size: 11px; color: var(--ink-muted); letter-spacing: 0.5px; }
+        .page-header .logo-mark { display: flex; align-items: center; gap: 6px; font-weight: 600; color: var(--accent); }
+        .page-header .logo-mark .euro { font-family: 'Instrument Serif', serif; font-size: 18px; color: var(--accent); }
+        .page-footer { position: absolute; bottom: 35px; left: 65px; right: 65px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', sans-serif; font-size: 10px; color: var(--ink-muted); border-top: 1px solid var(--rule); padding-top: 10px; }
+        .page-footer .site { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 10px; }
+        .cover { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: calc(297mm - 110px); text-align: center; }
+        .cover .logo-block { margin-bottom: 50px; }
+        .cover .logo-block .euro-big { font-family: 'Instrument Serif', serif; font-size: 72px; color: var(--accent); line-height: 1; }
+        .cover .logo-block .brand-name { font-family: 'Instrument Serif', serif; font-size: 24px; color: var(--ink); margin-top: 8px; }
+        .cover .badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); background: var(--accent-light); padding: 6px 20px; border-radius: 20px; margin-bottom: 40px; }
+        .cover .divider { width: 80px; height: 2px; background: var(--gold); margin: 30px auto; }
+        .cover h1 { font-family: 'Instrument Serif', serif; font-size: 44px; font-weight: 400; line-height: 1.15; color: var(--ink); max-width: 540px; margin-bottom: 20px; }
+        .cover .subtitle { font-family: 'Crimson Pro', serif; font-size: 22px; font-style: italic; color: var(--accent); margin-bottom: 15px; }
+        .cover .description { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--ink-light); line-height: 1.8; max-width: 450px; }
+        .cover .meta { margin-top: 60px; }
+        .cover .meta .site-url { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--accent); }
+        .cover .meta .date { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--ink-muted); margin-top: 6px; }
+        h1.part-title { font-family: 'Instrument Serif', serif; font-size: 34px; font-weight: 400; color: var(--ink); margin-bottom: 30px; line-height: 1.2; padding-bottom: 15px; border-bottom: 2px solid var(--accent); }
+        h2 { font-family: 'Instrument Serif', serif; font-size: 24px; font-weight: 400; color: var(--accent-dark); margin-top: 35px; margin-bottom: 15px; line-height: 1.3; }
+        h3 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 25px; margin-bottom: 10px; }
+        p { margin-bottom: 14px; text-align: justify; hyphens: auto; }
+        strong { font-weight: 600; } em { font-style: italic; }
+        .lead { font-size: 19px; font-style: italic; color: var(--ink-light); line-height: 1.8; margin-bottom: 25px; }
+        .highlight { color: var(--accent-dark); font-weight: 600; }
+        .highlight-red { color: var(--red); font-weight: 600; }
+        .highlight-green { color: var(--green); font-weight: 600; }
+        .highlight-gold { color: var(--gold); font-weight: 600; }
+        ul, ol { margin: 10px 0 18px 25px; } li { margin-bottom: 6px; }
+        blockquote { border-left: 3px solid var(--gold); background: var(--gold-light); padding: 18px 22px; margin: 20px 0; font-style: italic; color: var(--ink-light); border-radius: 0 6px 6px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 14px; font-family: 'Inter', sans-serif; }
+        thead th { background: var(--accent); color: white; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        tbody td { padding: 9px 14px; border-bottom: 1px solid var(--rule); }
+        tbody tr:nth-child(even) { background: rgba(0,0,0,0.02); }
+        .table-source { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--ink-muted); font-style: italic; margin-top: 4px; margin-bottom: 20px; }
+        .key-figure { display: flex; align-items: baseline; gap: 12px; margin: 12px 0; }
+        .key-figure .number { font-family: 'JetBrains Mono', monospace; font-size: 32px; font-weight: 600; color: var(--accent); line-height: 1; }
+        .key-figure .number.red { color: var(--red); } .key-figure .number.green { color: var(--green); } .key-figure .number.gold { color: var(--gold); }
+        .exec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0; }
+        .exec-card { background: white; border: 1px solid var(--rule); border-radius: 8px; padding: 25px; text-align: center; }
+        .exec-card .big-number { font-family: 'JetBrains Mono', monospace; font-size: 42px; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+        .exec-card .big-number.teal { color: var(--accent); } .exec-card .big-number.red { color: var(--red); }
+        .exec-card .big-number.gold { color: var(--gold); } .exec-card .big-number.green { color: var(--green); }
+        .exec-card .card-label { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .exec-card .card-detail { font-family: 'Crimson Pro', serif; font-size: 15px; color: var(--ink-light); }
+        .callout { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 18px 22px; margin: 20px 0; border-radius: 0 6px 6px 0; }
+        .callout.warning { background: #fdf2f2; border-left-color: var(--red); }
+        .callout.success { background: #f0faf5; border-left-color: var(--green); }
+        .callout .callout-title { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .callout .callout-title.teal { color: var(--accent); } .callout .callout-title.red { color: var(--red); } .callout .callout-title.green { color: var(--green); }
+        .toc { list-style: none; margin: 0; padding: 0; }
+        .toc li { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px dotted var(--ink-faint); font-size: 16px; }
+        .toc li.part { font-family: 'Instrument Serif', serif; font-size: 20px; font-weight: 400; border-bottom: none; padding-top: 22px; padding-bottom: 5px; color: var(--accent-dark); }
+        .toc li .toc-page { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-muted); }
+        .infographic-embed { background: linear-gradient(145deg, #0f1a2e 0%, #1a2d4a 35%, #162848 65%, #0f1a2e 100%); border-radius: 12px; padding: 35px 40px; margin: 28px 0; position: relative; overflow: hidden; color: var(--ovla-text); box-shadow: inset 0 0 100px rgba(0, 212, 255, 0.06), inset 0 -50px 80px rgba(0, 100, 200, 0.08), 0 4px 24px rgba(0,0,0,0.25); }
+        .infographic-embed::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.06) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
+
+        .infographic-embed::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 400px 350px at 10% 15%, rgba(0, 212, 255, 0.14), transparent 70%),
+                radial-gradient(ellipse 350px 400px at 90% 85%, rgba(168, 85, 247, 0.10), transparent 70%),
+                radial-gradient(ellipse 300px 300px at 50% 50%, rgba(0, 150, 255, 0.06), transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .infographic-embed .infog-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; position: relative; z-index: 1; }
+        .infographic-embed .infog-logo { display: flex; align-items: center; gap: 8px; font-family: 'Instrument Serif', serif; font-size: 14px; color: var(--ovla-text); }
+
+
+        .infographic-embed .infog-title { font-family: 'Instrument Serif', serif; font-size: 22px; font-weight: 400; line-height: 1.3; margin-bottom: 6px; position: relative; z-index: 1; }
+        .infographic-embed .infog-subtitle { font-family: 'Syne', sans-serif; font-size: 12px; color: var(--ovla-muted); margin-bottom: 22px; position: relative; z-index: 1; }
+        .infographic-embed .infog-footer { display: flex; justify-content: space-between; margin-top: 18px; font-family: 'Inter', sans-serif; font-size: 10px; color: var(--ovla-muted); position: relative; z-index: 1; }
+        .infographic-embed .infog-footer .site-mark { font-family: 'JetBrains Mono', monospace; color: var(--ovla-cyan); }
+        .bar-chart { position: relative; z-index: 1; }
+        .bar-row { display: flex; align-items: center; margin-bottom: 10px; gap: 12px; }
+        .bar-label { font-family: 'Syne', sans-serif; font-size: 12px; color: var(--ovla-text); width: 140px; text-align: right; flex-shrink: 0; }
+        .bar-label.highlight-bar { color: var(--ovla-cyan); font-weight: 700; }
+        .bar-track { flex: 1; height: 28px; background: rgba(255,255,255,0.05); border-radius: 4px; position: relative; overflow: hidden; }
+        .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: white; }
+        .bar-fill.cyan { background: linear-gradient(90deg, rgba(0,212,255,0.3), var(--ovla-cyan)); }
+        .bar-fill.gold { background: linear-gradient(90deg, rgba(255,215,0,0.3), var(--ovla-gold)); color: #1a1a1a; }
+        .bar-fill.red { background: linear-gradient(90deg, rgba(255,71,87,0.3), var(--ovla-red)); }
+        .bar-fill.green { background: linear-gradient(90deg, rgba(0,255,136,0.3), var(--ovla-green)); color: #1a1a1a; }
+        .bar-fill.purple { background: linear-gradient(90deg, rgba(168,85,247,0.3), var(--ovla-purple)); }
+        .bar-fill.orange { background: linear-gradient(90deg, rgba(255,159,67,0.3), var(--ovla-orange)); color: #1a1a1a; }
+        .dual-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; position: relative; z-index: 1; }
+        .dual-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 22px; text-align: center; }
+        .dual-box .dual-label { font-family: 'Syne', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+        .dual-box .dual-big { font-family: 'JetBrains Mono', monospace; font-size: 40px; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+        .dual-box .dual-detail { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--ovla-muted); }
+        .vbar-chart { display: flex; align-items: flex-end; justify-content: center; gap: 18px; height: 180px; margin: 15px 0; position: relative; z-index: 1; }
+        .vbar-group { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+        .vbar { width: 50px; border-radius: 4px 4px 0 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; }
+        .vbar-year { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ovla-muted); }
+        .curve-chart { position: relative; z-index: 1; margin: 15px 0; }
+        .curve-chart svg { width: 100%; height: auto; }
+        .formula { font-family: 'JetBrains Mono', monospace; font-size: 14px; background: white; border: 1px solid var(--rule); padding: 14px 20px; border-radius: 6px; margin: 14px 0; text-align: center; }
+        .formula .result { font-weight: 700; font-size: 18px; }
+        .formula .result.teal { color: var(--accent); } .formula .result.red { color: var(--red); } .formula .result.green { color: var(--green); }
+        .spacer { height: 30px; } .spacer-lg { height: 50px; }
+        .small-print { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--ink-muted); line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════ PAGE 1 — COUVERTURE ══════════════ -->
+<div class="page">
+    <div class="cover">
+        <div class="logo-block">
+            <div class="euro-big">&euro;</div>
+            <div class="brand-name">O&ugrave; Va l'Argent ?</div>
+        </div>
+        <div class="badge">Research Paper #004</div>
+        <div class="divider"></div>
+        <h1>Retraite par capitalisation : r&eacute;ussir la transition</h1>
+        <div class="subtitle">L'essentiel en graphiques</div>
+        <div class="description">
+            Le m&eacute;canisme d&eacute;taill&eacute; en 18 visualisations<br><br>
+            Par Emmanuel Bl&eacute;z&egrave;s<br>
+            Entrepreneur, fondateur d'O&ugrave; Va L'Argent
+        </div>
+        <div class="divider"></div>
+        <div class="meta">
+            <div class="site-url">ouvalargent.com</div>
+            <div class="date">Mars 2026</div>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 2 — LE MUR DÉMOGRAPHIQUE ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>Le mur d&eacute;mographique : un syst&egrave;me structurellement condamn&eacute;</h2>
+
+    <p>Le syst&egrave;me de retraite par r&eacute;partition repose enti&egrave;rement sur le ratio entre cotisants actifs et retrait&eacute;s. En 1960, au c&oelig;ur du baby-boom et de la croissance des Trente Glorieuses, la France comptait 4 actifs pour financer chaque retrait&eacute; &mdash; un &eacute;quilibre confortable. En 2023, ce ratio est tomb&eacute; &agrave; 1,79 actif par retrait&eacute;, et les projections de l'INSEE l'estiment &agrave; 1,41 en 2070. Concr&egrave;tement, chaque travailleur devra bient&ocirc;t financer presque un retrait&eacute; entier &agrave; lui seul. Les r&eacute;formes param&eacute;triques, comme le report de l'&acirc;ge l&eacute;gal &agrave; 64 ans, ralentissent la d&eacute;gradation mais ne r&egrave;glent pas le probl&egrave;me structurel. Le vieillissement d&eacute;mographique, combin&eacute; &agrave; l'allongement de l'esp&eacute;rance de vie, rend ce d&eacute;s&eacute;quilibre math&eacute;matiquement insoutenable sans r&eacute;forme profonde du mode de financement.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">Le <span style="color: var(--ovla-red);">mur d&eacute;mographique</span> : de 4 &agrave; 1,41 actifs par retrait&eacute;</div>
+        <div class="infog-subtitle">Ratio cotisants / retrait&eacute;s &mdash; France, 1960-2070</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid -->
+                <line x1="60" y1="310" x2="490" y2="310" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+                <!-- Bars with gradient from green to red -->
+                <rect x="75" y="30" width="65" height="280" rx="5" fill="url(#bar-green)"/>
+                <text x="107" y="65" fill="#1a1a1a" font-family="JetBrains Mono, monospace" font-size="22" font-weight="700" text-anchor="middle">4,0</text>
+                <text x="107" y="328" fill="#00ff88" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600" text-anchor="middle">1960</text>
+
+                <rect x="160" y="135" width="65" height="175" rx="5" fill="url(#bar-cyan)"/>
+                <text x="192" y="165" fill="#1a1a1a" font-family="JetBrains Mono, monospace" font-size="20" font-weight="700" text-anchor="middle">2,5</text>
+                <text x="192" y="328" fill="#8899a8" font-family="JetBrains Mono, monospace" font-size="12" text-anchor="middle">1990</text>
+
+                <rect x="245" y="185" width="65" height="125" rx="5" fill="url(#bar-gold)"/>
+                <text x="277" y="215" fill="#1a1a1a" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700" text-anchor="middle">1,79</text>
+                <text x="277" y="328" fill="var(--ovla-gold)" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600" text-anchor="middle">2023</text>
+
+                <rect x="330" y="215" width="65" height="95" rx="5" fill="url(#bar-orange)"/>
+                <text x="362" y="245" fill="#1a1a1a" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700" text-anchor="middle">1,5</text>
+                <text x="362" y="328" fill="#8899a8" font-family="JetBrains Mono, monospace" font-size="12" text-anchor="middle">2040</text>
+
+                <rect x="415" y="237" width="65" height="73" rx="5" fill="url(#bar-red)"/>
+                <text x="447" y="267" fill="white" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700" text-anchor="middle">1,41</text>
+                <text x="447" y="328" fill="var(--ovla-red)" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" text-anchor="middle">2070</text>
+
+                <!-- Trend line -->
+                <path d="M 107 30 Q 192 135 277 185 Q 362 215 447 237" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-dasharray="6 4"/>
+
+                <defs>
+                    <linearGradient id="bar-green" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00ff88" stop-opacity="0.9"/><stop offset="100%" stop-color="#00ff88" stop-opacity="0.6"/></linearGradient>
+                    <linearGradient id="bar-cyan" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d4ff" stop-opacity="0.9"/><stop offset="100%" stop-color="#00d4ff" stop-opacity="0.6"/></linearGradient>
+                    <linearGradient id="bar-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffd700" stop-opacity="0.9"/><stop offset="100%" stop-color="#ffd700" stop-opacity="0.6"/></linearGradient>
+                    <linearGradient id="bar-orange" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff9f43" stop-opacity="0.9"/><stop offset="100%" stop-color="#ff9f43" stop-opacity="0.6"/></linearGradient>
+                    <linearGradient id="bar-red" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff4757" stop-opacity="0.9"/><stop offset="100%" stop-color="#ff4757" stop-opacity="0.6"/></linearGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Source : COR Rapport annuel juin 2025 &middot; INSEE projections d&eacute;mographiques</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 2</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 3 — LE VRAI DÉFICIT ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>Le vrai d&eacute;ficit des retraites : 69 milliards masqu&eacute;s</h2>
+
+    <p>Le d&eacute;bat sur l'&eacute;quilibre du syst&egrave;me de retraite est biais&eacute; par une comptabilit&eacute; trompeuse. Le Conseil d'Orientation des Retraites (COR) affiche un exc&eacute;dent de +8,5 milliards d'euros, laissant croire que le syst&egrave;me est viable. Mais Jean-Pascal Beaufret, ancien directeur g&eacute;n&eacute;ral des imp&ocirc;ts, d&eacute;montre dans son &eacute;tude pour la Fondapol (f&eacute;vrier 2025) que les cotisations ne couvrent en r&eacute;alit&eacute; que 80 % des pensions vers&eacute;es. Les 20 % restants &mdash; soit 69 &agrave; 81 milliards d'euros par an &mdash; sont financ&eacute;s par des subventions de l'&Eacute;tat, c'est-&agrave;-dire par la dette publique. Ce d&eacute;ficit r&eacute;el des retraites repr&eacute;sente &agrave; lui seul 45 % du d&eacute;ficit public total de la France. L'&eacute;cart entre les deux chiffres &mdash; 77,5 milliards &mdash; illustre l'ampleur du d&eacute;ni comptable qui emp&ecirc;che toute r&eacute;forme s&eacute;rieuse.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">Le <span style="color: var(--ovla-red);">vrai d&eacute;ficit</span> : COR vs r&eacute;alit&eacute; budg&eacute;taire</div>
+        <div class="infog-subtitle">&Eacute;valuation officielle (COR / Cour des Comptes) vs analyse Beaufret &mdash; Fondapol 2025</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- Zero line -->
+                <line x1="60" y1="170" x2="480" y2="170" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-dasharray="6 4"/>
+                <text x="55" y="174" fill="#8899a8" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="end">0</text>
+
+                <!-- COR bar (positive, small) -->
+                <rect x="120" y="100" width="130" height="70" rx="5" fill="var(--ovla-green)" opacity="0.85"/>
+                <text x="185" y="130" fill="#1a1a1a" font-family="JetBrains Mono, monospace" font-size="28" font-weight="700" text-anchor="middle">+8,5</text>
+                <text x="185" y="152" fill="#1a1a1a" font-family="JetBrains Mono, monospace" font-size="14" text-anchor="middle">Md&euro;</text>
+                <text x="185" y="85" fill="var(--ovla-text)" font-family="Syne, sans-serif" font-size="14" font-weight="700" text-anchor="middle">COR / Cour des Comptes</text>
+                <text x="185" y="190" fill="var(--ovla-muted)" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">&laquo; Le syst&egrave;me est exc&eacute;dentaire &raquo;</text>
+
+                <!-- Beaufret bar (negative, huge) -->
+                <rect x="290" y="170" width="130" height="130" rx="5" fill="var(--ovla-red)" opacity="0.85"/>
+                <text x="355" y="225" fill="white" font-family="JetBrains Mono, monospace" font-size="32" font-weight="700" text-anchor="middle">&minus;69</text>
+                <text x="355" y="252" fill="rgba(255,255,255,0.8)" font-family="JetBrains Mono, monospace" font-size="14" text-anchor="middle">Md&euro;</text>
+                <text x="355" y="278" fill="rgba(255,255,255,0.6)" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">soit 45% du d&eacute;ficit public total</text>
+                <text x="355" y="155" fill="var(--ovla-red)" font-family="Syne, sans-serif" font-size="14" font-weight="700" text-anchor="middle">Beaufret &mdash; R&eacute;alit&eacute;</text>
+                <text x="355" y="318" fill="var(--ovla-red)" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">&laquo; 20% des pensions financ&eacute;es par la dette &raquo;</text>
+
+                <!-- Arrow showing gap -->
+                <text x="257" y="215" fill="var(--ovla-cyan)" font-family="Syne, sans-serif" font-size="20" text-anchor="middle">&rarr;</text>
+                <text x="257" y="233" fill="var(--ovla-cyan)" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" text-anchor="middle">&minus;77,5 Md&euro;</text>
+                <text x="257" y="244" fill="var(--ovla-muted)" font-family="Inter, sans-serif" font-size="8" text-anchor="middle">d'&eacute;cart</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Source : Beaufret, Fondapol (f&eacute;v. 2025) &middot; COR 2025 &middot; Cour des Comptes</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 3</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 4 — DÉPENSES RETRAITE EUROPE ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>D&eacute;penses retraite en Europe : la France championne du monde</h2>
+
+    <p>La France consacre 13,9 % de son PIB aux d&eacute;penses de retraite, ce qui en fait le deuxi&egrave;me pays au monde derri&egrave;re l'Italie (16,2 %). La corr&eacute;lation avec la capitalisation est frappante : les pays qui ont d&eacute;velopp&eacute; un pilier par capitalisation d&eacute;pensent beaucoup moins en r&eacute;partition. La Su&egrave;de ne consacre que 7,4 % de son PIB aux retraites publiques, les Pays-Bas 5,5 %, et l'Australie seulement 2,3 %. Ces pays obtiennent pourtant des taux de remplacement &eacute;quivalents, voire sup&eacute;rieurs &agrave; celui de la France : les Pays-Bas atteignent 70 &agrave; 80 % de remplacement avec 5,5 % du PIB, l&agrave; o&ugrave; la France plafonne &agrave; ~50 % avec 13,9 %. La capitalisation transf&egrave;re une partie du financement des retraites vers les rendements de march&eacute;, soulageant d'autant les budgets publics et les cotisations obligatoires.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">La France <span style="color: var(--ovla-gold);">d&eacute;pense plus</span> que tous ses voisins</div>
+        <div class="infog-subtitle">D&eacute;penses retraite en % du PIB &mdash; les pays avec capitalisation (vert) d&eacute;pensent moins</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 330" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="g-red2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(255,71,87,0.4)"/><stop offset="100%" stop-color="#ff4757"/></linearGradient>
+                    <linearGradient id="g-gold2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(255,215,0,0.4)"/><stop offset="100%" stop-color="#ffd700"/></linearGradient>
+                    <linearGradient id="g-cyan2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(0,212,255,0.4)"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient>
+                    <linearGradient id="g-green2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(0,255,136,0.4)"/><stop offset="100%" stop-color="#00ff88"/></linearGradient>
+                </defs>
+
+                <!-- Italie -->
+                <text x="120" y="40" fill="#f0f4f8" font-family="Syne, sans-serif" font-size="13" text-anchor="end" font-weight="600">Italie</text>
+                <rect x="125" y="22" width="370" height="34" rx="5" fill="url(#g-red2)"/>
+                <text x="485" y="44" fill="white" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" text-anchor="end">16,2 %</text>
+
+                <!-- France -->
+                <text x="120" y="95" fill="var(--ovla-gold)" font-family="Syne, sans-serif" font-size="13" text-anchor="end" font-weight="700">France</text>
+                <rect x="125" y="77" width="318" height="34" rx="5" fill="url(#g-gold2)"/>
+                <text x="433" y="99" fill="#1a1a1a" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" text-anchor="end">13,9 %</text>
+
+                <!-- Allemagne -->
+                <text x="120" y="150" fill="#f0f4f8" font-family="Syne, sans-serif" font-size="13" text-anchor="end">Allemagne</text>
+                <rect x="125" y="132" width="235" height="34" rx="5" fill="url(#g-cyan2)"/>
+                <text x="352" y="154" fill="#1a1a1a" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" text-anchor="end">10,3 %</text>
+
+                <!-- Su&egrave;de -->
+                <text x="120" y="205" fill="var(--ovla-green)" font-family="Syne, sans-serif" font-size="13" text-anchor="end" font-weight="600">Su&egrave;de</text>
+                <rect x="125" y="187" width="169" height="34" rx="5" fill="url(#g-green2)"/>
+                <text x="300" y="209" fill="#1a1a1a" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700">7,4 %</text>
+
+                <!-- Pays-Bas -->
+                <text x="120" y="260" fill="var(--ovla-green)" font-family="Syne, sans-serif" font-size="13" text-anchor="end" font-weight="600">Pays-Bas</text>
+                <rect x="125" y="242" width="126" height="34" rx="5" fill="url(#g-green2)"/>
+                <text x="258" y="264" fill="#1a1a1a" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700">5,5 %</text>
+
+                <!-- Australie -->
+                <text x="120" y="315" fill="var(--ovla-green)" font-family="Syne, sans-serif" font-size="13" text-anchor="end" font-weight="600">Australie</text>
+                <rect x="125" y="297" width="53" height="34" rx="5" fill="url(#g-green2)"/>
+                <text x="185" y="319" fill="#8899a8" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700">2,3 %</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Source : OCDE &mdash; Pensions at a Glance 2025</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 4</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 5 — RÉPARTITION VS CAPITALISATION ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>R&eacute;partition contre capitalisation : la puissance des int&eacute;r&ecirc;ts compos&eacute;s</h2>
+
+    <p>&Agrave; cotisation &eacute;gale, la diff&eacute;rence de rendement entre r&eacute;partition et capitalisation est consid&eacute;rable sur longue p&eacute;riode. Sur 40 ans, 1 euro cotis&eacute; en r&eacute;partition ne produit que 1,49 euro, car le rendement implicite du syst&egrave;me (~1,5 % par an) est li&eacute; &agrave; la croissance des salaires diminu&eacute;e du d&eacute;clin d&eacute;mographique. Le m&ecirc;me euro investi en capitalisation &agrave; 6 % annuel g&eacute;n&egrave;re 4,80 euros &mdash; soit 3,2 fois plus. Cette diff&eacute;rence repose sur la puissance des int&eacute;r&ecirc;ts compos&eacute;s appliqu&eacute;e aux march&eacute;s financiers mondiaux. L'&eacute;tude de r&eacute;f&eacute;rence de Jord&aacute; et al. (2019), couvrant 16 pays sur la p&eacute;riode 1870-2015, &eacute;tablit un rendement r&eacute;el moyen des actions de 7 % par an. D&egrave;s 1966, l'&eacute;conomiste Aaron d&eacute;montrait que la r&eacute;partition n'est optimale que lorsque la croissance &eacute;conomique d&eacute;passe le rendement du capital &mdash; condition qui n'est plus remplie dans les &eacute;conomies matures comme la France.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">R&eacute;partition vs capitalisation : <span style="color: var(--ovla-cyan);">1&euro;</span> sur <span style="color: var(--ovla-gold);">40 ans</span></div>
+        <div class="infog-subtitle">Valeur d'un euro cotis&eacute; selon le r&eacute;gime &mdash; rendement nominal</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid -->
+                <line x1="60" y1="300" x2="490" y2="300" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <line x1="60" y1="300" x2="60" y2="30" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <line x1="60" y1="200" x2="490" y2="200" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4"/>
+                <line x1="60" y1="100" x2="490" y2="100" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4"/>
+
+                <!-- Y labels -->
+                <text x="50" y="304" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="end">1&euro;</text>
+                <text x="50" y="204" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="end">2&euro;</text>
+                <text x="50" y="104" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="end">4&euro;</text>
+
+                <!-- Area under capitalisation curve -->
+                <path d="M 60 296 Q 170 288 275 240 Q 380 130 490 50 L 490 300 L 60 300 Z" fill="rgba(0,255,136,0.08)"/>
+
+                <!-- R&eacute;partition curve (almost flat) -->
+                <path d="M 60 296 Q 170 290 275 280 Q 380 272 490 265" fill="none" stroke="#ff4757" stroke-width="3" stroke-linecap="round"/>
+
+                <!-- Capitalisation curve (exponential) -->
+                <path d="M 60 296 Q 170 288 275 240 Q 380 130 490 50" fill="none" stroke="#00ff88" stroke-width="3.5" stroke-linecap="round"/>
+                <!-- Glow -->
+                <path d="M 60 296 Q 170 288 275 240 Q 380 130 490 50" fill="none" stroke="#00ff88" stroke-width="10" stroke-linecap="round" opacity="0.1"/>
+
+                <!-- End labels -->
+                <circle cx="490" cy="265" r="5" fill="#ff4757"/>
+                <text x="490" y="258" fill="#ff4757" font-family="JetBrains Mono" font-size="16" font-weight="700" text-anchor="end">1,49&euro;</text>
+
+                <circle cx="490" cy="50" r="6" fill="#00ff88"/>
+                <text x="490" y="42" fill="#00ff88" font-family="JetBrains Mono" font-size="16" font-weight="700" text-anchor="end">4,80&euro;</text>
+
+                <!-- Big multiplier -->
+                <text x="320" y="160" fill="var(--ovla-cyan)" font-family="JetBrains Mono" font-size="48" font-weight="700" text-anchor="middle" opacity="0.9">&times;3,2</text>
+
+                <!-- X axis -->
+                <text x="60" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10">0 ans</text>
+                <text x="275" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">20 ans</text>
+                <text x="490" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="end">40 ans</text>
+
+                <!-- Legend -->
+                <rect x="130" y="20" width="12" height="4" rx="2" fill="#ff4757"/>
+                <text x="147" y="25" fill="#8899a8" font-family="Inter" font-size="10">R&eacute;partition (1,5%/an)</text>
+                <rect x="310" y="20" width="12" height="4" rx="2" fill="#00ff88"/>
+                <text x="327" y="25" fill="#8899a8" font-family="Inter" font-size="10">Capitalisation (6%/an)</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Source : Aaron (1966), Jorda et al. (2019) &mdash; Rate of Return on Everything</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 5</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 6 — FONDS MONDIAUX ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>Les fonds de pension mondiaux : le FRR fran&ccedil;ais dernier de la classe</h2>
+
+    <p>La comparaison des rendements des grands fonds de pension mondiaux r&eacute;v&egrave;le un &eacute;cart saisissant. Le fonds su&eacute;dois AP7, fonds par d&eacute;faut du syst&egrave;me de capitalisation obligatoire, affiche un rendement annualis&eacute; de 13,5 % sur 10 ans, gr&acirc;ce &agrave; une allocation offensive (90 % actions) et des frais de gestion ultra-faibles de 0,05 %. Les grands fonds canadien (CPPIB, 8,3 %), su&eacute;dois (AP1-4, 7,6 %), norv&eacute;gien (GPFG, 7,25 %) et am&eacute;ricain (CalPERS, 7,1 %) s'inscrivent dans une fourchette de 6 &agrave; 9 %. En bas du classement, le Fonds de R&eacute;serve pour les Retraites (FRR) fran&ccedil;ais ne d&eacute;passe pas 3,7 % depuis sa cr&eacute;ation en 2001. La raison : contraint par ses versements obligatoires &agrave; la CADES pour rembourser la dette sociale, le FRR doit maintenir une allocation prudente et liquide qui bride ses performances. Un nouveau fonds de capitalisation fran&ccedil;ais, lib&eacute;r&eacute; de ces contraintes, pourrait viser 6 &agrave; 8 % avec une strat&eacute;gie cycle de vie.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">Les fonds mondiaux : le FRR <span style="color: var(--ovla-red);">dernier de la classe</span></div>
+        <div class="infog-subtitle">Rendement annualis&eacute; nominal sur 10 ans &mdash; principaux fonds de pension</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 370" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="fg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(0,255,136,0.4)"/><stop offset="100%" stop-color="#00ff88"/></linearGradient>
+                    <linearGradient id="fc" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(0,212,255,0.4)"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient>
+                    <linearGradient id="fp" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(168,85,247,0.4)"/><stop offset="100%" stop-color="#a855f7"/></linearGradient>
+                    <linearGradient id="fr" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(255,71,87,0.4)"/><stop offset="100%" stop-color="#ff4757"/></linearGradient>
+                </defs>
+
+                <!-- AP7 Sweden -->
+                <text x="125" y="38" fill="var(--ovla-green)" font-family="Syne, sans-serif" font-size="13" text-anchor="end" font-weight="700">AP7 (Su&egrave;de)</text>
+                <rect x="130" y="20" width="370" height="34" rx="5" fill="url(#fg)"/>
+                <text x="490" y="42" fill="#1a1a1a" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" text-anchor="end">13,5 %</text>
+
+                <!-- CPPIB Canada -->
+                <text x="125" y="90" fill="#f0f4f8" font-family="Syne, sans-serif" font-size="12" text-anchor="end">CPPIB (Canada)</text>
+                <rect x="130" y="72" width="228" height="34" rx="5" fill="url(#fc)"/>
+                <text x="350" y="94" fill="#1a1a1a" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" text-anchor="end">8,3 %</text>
+
+                <!-- AP1-4 Sweden -->
+                <text x="125" y="142" fill="#f0f4f8" font-family="Syne, sans-serif" font-size="12" text-anchor="end">AP1-4 (Su&egrave;de)</text>
+                <rect x="130" y="124" width="208" height="34" rx="5" fill="url(#fc)"/>
+                <text x="330" y="146" fill="#1a1a1a" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" text-anchor="end">7,6 %</text>
+
+                <!-- GPFG Norway -->
+                <text x="125" y="194" fill="#f0f4f8" font-family="Syne, sans-serif" font-size="12" text-anchor="end">GPFG (Norv&egrave;ge)</text>
+                <rect x="130" y="176" width="198" height="34" rx="5" fill="url(#fc)"/>
+                <text x="320" y="198" fill="#1a1a1a" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" text-anchor="end">7,25 %</text>
+
+                <!-- CalPERS USA -->
+                <text x="125" y="246" fill="#f0f4f8" font-family="Syne, sans-serif" font-size="12" text-anchor="end">CalPERS (USA)</text>
+                <rect x="130" y="228" width="195" height="34" rx="5" fill="url(#fp)"/>
+                <text x="317" y="250" fill="white" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" text-anchor="end">7,1 %</text>
+
+                <!-- ABP Netherlands -->
+                <text x="125" y="298" fill="#f0f4f8" font-family="Syne, sans-serif" font-size="12" text-anchor="end">ABP (Pays-Bas)</text>
+                <rect x="130" y="280" width="164" height="34" rx="5" fill="url(#fp)"/>
+                <text x="287" y="302" fill="white" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" text-anchor="end">~6 %</text>
+
+                <!-- FRR France -->
+                <text x="125" y="350" fill="var(--ovla-red)" font-family="Syne, sans-serif" font-size="13" text-anchor="end" font-weight="700">FRR (France)</text>
+                <rect x="130" y="332" width="101" height="34" rx="5" fill="url(#fr)"/>
+                <text x="238" y="354" fill="white" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700">3,7 %</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Source : European Pensions 2024 &middot; CPP Investments &middot; NBIM &middot; CalPERS &middot; FRR</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 6</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 7 — SUÈDE ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>La Su&egrave;de : le mod&egrave;le qui fonctionne depuis 30 ans</h2>
+
+    <p>En 1994, la Su&egrave;de a r&eacute;form&eacute; son syst&egrave;me de retraite par un accord entre cinq partis repr&eacute;sentant plus de 80 % du Parlement. Le nouveau syst&egrave;me r&eacute;partit 18,5 % de cotisation en deux piliers : 16 % en comptes notionnels (NDC, r&eacute;partition modernis&eacute;e) et 2,5 % en capitalisation individuelle (PPM). La transition a &eacute;t&eacute; men&eacute;e par cohorte : les g&eacute;n&eacute;rations n&eacute;es entre 1938 et 1953 ont b&eacute;n&eacute;fici&eacute; d'un m&eacute;lange proportionnel entre ancien et nouveau syst&egrave;me (de 20 % &agrave; 95 %), tandis que les n&eacute;s apr&egrave;s 1954 rel&egrave;vent enti&egrave;rement du nouveau r&eacute;gime. Le co&ucirc;t de transition a &eacute;t&eacute; quasi nul gr&acirc;ce aux fonds tampons AP1-AP4 (~200 milliards de dollars d'actifs pr&eacute;-accumul&eacute;s). Le m&eacute;canisme d'ajustement automatique (ABM), d&eacute;clench&eacute; en 2010 et 2014, a permis au syst&egrave;me de se corriger sans crise politique.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">Su&egrave;de : le <span style="color: var(--ovla-green);">mod&egrave;le qui marche</span> depuis 30 ans</div>
+        <div class="infog-subtitle">Transition progressive sur 16 cohortes (1938&ndash;1954) &mdash; part du nouveau syst&egrave;me par ann&eacute;e de naissance</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- Axis -->
+                <line x1="55" y1="290" x2="490" y2="290" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <text x="15" y="294" fill="#8899a8" font-family="JetBrains Mono" font-size="9">0%</text>
+                <text x="10" y="44" fill="#8899a8" font-family="JetBrains Mono" font-size="9">100%</text>
+
+                <!-- Stacked bars: ancien (red faded) + nouveau (cyan) = 100% height (250px) -->
+                <!-- 1938: 20% nouveau -->
+                <rect x="65" y="40" width="50" height="200" rx="4" fill="#ff4757" opacity="0.4"/>
+                <rect x="65" y="240" width="50" height="50" rx="4" fill="var(--ovla-cyan)" opacity="0.85"/>
+                <text x="90" y="310" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">1938</text>
+                <text x="90" y="272" fill="#1a1a1a" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">20%</text>
+
+                <!-- 1941: 35% -->
+                <rect x="125" y="40" width="50" height="162" rx="4" fill="#ff4757" opacity="0.4"/>
+                <rect x="125" y="202" width="50" height="88" rx="4" fill="var(--ovla-cyan)" opacity="0.85"/>
+                <text x="150" y="310" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">1941</text>
+
+                <!-- 1944: 50% -->
+                <rect x="185" y="40" width="50" height="125" rx="4" fill="#ff4757" opacity="0.4"/>
+                <rect x="185" y="165" width="50" height="125" rx="4" fill="var(--ovla-cyan)" opacity="0.85"/>
+                <text x="210" y="310" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">1944</text>
+                <text x="210" y="235" fill="#1a1a1a" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">50%</text>
+
+                <!-- 1947: 65% -->
+                <rect x="245" y="40" width="50" height="88" rx="4" fill="#ff4757" opacity="0.4"/>
+                <rect x="245" y="128" width="50" height="162" rx="4" fill="var(--ovla-cyan)" opacity="0.85"/>
+                <text x="270" y="310" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">1947</text>
+
+                <!-- 1950: 80% -->
+                <rect x="305" y="40" width="50" height="50" rx="4" fill="#ff4757" opacity="0.4"/>
+                <rect x="305" y="90" width="50" height="200" rx="4" fill="var(--ovla-cyan)" opacity="0.85"/>
+                <text x="330" y="310" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">1950</text>
+                <text x="330" y="200" fill="#1a1a1a" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">80%</text>
+
+                <!-- 1953: 95% -->
+                <rect x="365" y="40" width="50" height="12" rx="4" fill="#ff4757" opacity="0.4"/>
+                <rect x="365" y="52" width="50" height="238" rx="4" fill="var(--ovla-cyan)" opacity="0.85"/>
+                <text x="390" y="310" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">1953</text>
+
+                <!-- 1954+: 100% -->
+                <rect x="425" y="40" width="55" height="250" rx="4" fill="var(--ovla-green)" opacity="0.85"/>
+                <text x="452" y="310" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="10" font-weight="700" text-anchor="middle">1954+</text>
+                <text x="452" y="170" fill="#1a1a1a" font-family="JetBrains Mono" font-size="14" font-weight="700" text-anchor="middle">100%</text>
+
+                <!-- Legend -->
+                <rect x="65" y="325" width="14" height="8" rx="2" fill="var(--ovla-cyan)" opacity="0.85"/>
+                <text x="84" y="333" fill="#8899a8" font-family="Inter" font-size="10">Nouveau syst&egrave;me</text>
+                <rect x="230" y="325" width="14" height="8" rx="2" fill="#ff4757" opacity="0.4"/>
+                <text x="249" y="333" fill="#8899a8" font-family="Inter" font-size="10">Ancien syst&egrave;me</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Source : Palmer (2000) &middot; Swedish Pension Agency &middot; K&ouml;nberg et al. (2006)</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 7</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 8 — AUSTRALIE ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>L'Australie : une mont&eacute;e en charge ultra-progressive</h2>
+
+    <p>L'Australie a lanc&eacute; son syst&egrave;me de capitalisation obligatoire (Superannuation Guarantee) en 1992 sous le gouvernement Keating, avec un taux initial de seulement 3 %. Le taux a progress&eacute; r&eacute;guli&egrave;rement pour atteindre 9 % en 2002, avant un gel politique de 11 ans qui a co&ucirc;t&eacute; des dizaines de milliards en rendements compos&eacute;s perdus. Les hausses ont repris en 2013 pour atteindre 12 % en 2025. Le r&eacute;sultat est spectaculaire : 3 600 milliards de dollars australiens accumul&eacute;s, soit le 4e stock d'actifs de retraite au monde, avec une couverture de 98 % de la population active. La le&ccedil;on principale est double : l'approche ultra-progressive fonctionne, mais il faut graver les hausses automatiques dans la loi organique pour les prot&eacute;ger des al&eacute;as politiques. L'OCDE consid&egrave;re d'ailleurs que 12 % reste insuffisant et recommande 18 % pour assurer des taux de remplacement ad&eacute;quats.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">Australie : de <span style="color: var(--ovla-gold);">3 %</span> &agrave; <span style="color: var(--ovla-green);">12 %</span> en 33 ans</div>
+        <div class="infog-subtitle">Taux de cotisation obligatoire employeur &mdash; 1992 &agrave; 2025 &mdash; Le gel de 11 ans en rouge</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid -->
+                <line x1="55" y1="300" x2="490" y2="300" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <line x1="55" y1="300" x2="55" y2="30" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <line x1="55" y1="210" x2="490" y2="210" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4"/>
+                <line x1="55" y1="120" x2="490" y2="120" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4"/>
+
+                <!-- Y labels -->
+                <text x="18" y="304" fill="#8899a8" font-family="JetBrains Mono" font-size="10">0%</text>
+                <text x="18" y="214" fill="#8899a8" font-family="JetBrains Mono" font-size="10">5%</text>
+                <text x="15" y="124" fill="#8899a8" font-family="JetBrains Mono" font-size="10">9%</text>
+                <text x="12" y="34" fill="#8899a8" font-family="JetBrains Mono" font-size="10">12%</text>
+
+                <!-- Area fill -->
+                <path d="M 65 270 L 95 240 L 125 210 L 155 180 L 185 150 L 215 130 L 245 120 L 310 120 L 345 120 L 375 90 L 405 65 L 435 45 L 465 30 L 465 300 L 65 300 Z" fill="rgba(0,255,136,0.06)"/>
+
+                <!-- Phase 1: Growth 3%→9% (gold) -->
+                <path d="M 65 270 L 95 240 L 125 210 L 155 180 L 185 150 L 215 130 L 245 120" fill="none" stroke="var(--ovla-gold)" stroke-width="3.5" stroke-linecap="round"/>
+
+                <!-- Phase 2: Freeze at 9% (red dashes) -->
+                <path d="M 245 120 L 345 120" fill="none" stroke="var(--ovla-red)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="8 5"/>
+
+                <!-- Phase 3: Growth 9%→12% (green) -->
+                <path d="M 345 120 L 375 90 L 405 65 L 435 45 L 465 30" fill="none" stroke="var(--ovla-green)" stroke-width="3.5" stroke-linecap="round"/>
+
+                <!-- Key points -->
+                <circle cx="65" cy="270" r="6" fill="var(--ovla-gold)"/>
+                <text x="78" y="267" fill="var(--ovla-gold)" font-family="JetBrains Mono" font-size="14" font-weight="700">3%</text>
+                <text x="65" y="318" fill="var(--ovla-gold)" font-family="JetBrains Mono" font-size="10" text-anchor="middle">1992</text>
+
+                <circle cx="245" cy="120" r="5" fill="var(--ovla-red)"/>
+                <text x="245" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">2002</text>
+
+                <!-- Freeze annotation -->
+                <rect x="260" y="95" width="80" height="20" rx="4" fill="rgba(255,71,87,0.15)"/>
+                <text x="300" y="109" fill="var(--ovla-red)" font-family="Syne" font-size="10" font-weight="700" text-anchor="middle">GEL 11 ANS</text>
+                <text x="300" y="137" fill="var(--ovla-red)" font-family="JetBrains Mono" font-size="12" font-weight="700" text-anchor="middle">9%</text>
+
+                <text x="345" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">2013</text>
+
+                <circle cx="465" cy="30" r="7" fill="var(--ovla-green)"/>
+                <text x="465" y="22" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="16" font-weight="700" text-anchor="middle">12%</text>
+                <text x="465" y="318" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="10" font-weight="700" text-anchor="middle">2025</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Source : APRA 2025 &middot; Australian Treasury &middot; 3 600 Md AUD accumul&eacute;s (4e mondial)</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 8</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 9 — CHILI ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>Le Chili : l'anti-mod&egrave;le &agrave; ne surtout pas reproduire</h2>
+
+    <p>La r&eacute;forme chilienne de 1981, men&eacute;e sous Pinochet par Jos&eacute; Pi&ntilde;era, a bascul&eacute; l'int&eacute;gralit&eacute; du syst&egrave;me vers la capitalisation &mdash; 100 % capitalisation, z&eacute;ro contribution employeur, 10 % &agrave; la charge exclusive du salari&eacute;. Les AFP (fonds de pension priv&eacute;s) pr&eacute;l&egrave;vent des frais de 2 &agrave; 3 % par an qui d&eacute;truisent 40 &agrave; 50 % du capital accumul&eacute; sur 40 ans. Le r&eacute;sultat est d&eacute;sastreux : les taux de remplacement n'atteignent que 30 &agrave; 40 % en moyenne, et tombent &agrave; 15-25 % pour le d&eacute;cile le plus modeste. En 2008, la pr&eacute;sidente Bachelet a d&ucirc; ajouter un &laquo; Pilar Solidario &raquo; (pilier public solidaire) pour &eacute;viter une catastrophe sociale. Pendant la crise COVID en 2020-2021, les retraits anticip&eacute;s autoris&eacute;s par le Parlement ont ponctionn&eacute; 49,9 milliards de dollars (14 % des actifs), fra&ccedil;ilisant le syst&egrave;me. La le&ccedil;on est claire : ne JAMAIS basculer int&eacute;gralement vers la capitalisation sans contribution employeur et sans filet de s&eacute;curit&eacute; publique.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">Chili : <span style="color: var(--ovla-red);">l'anti-mod&egrave;le</span> &mdash; taux de remplacement selon le revenu</div>
+        <div class="infog-subtitle">Le syst&egrave;me AFP laisse les plus modestes sans retraite digne &mdash; cible 70 % en pointill&eacute;s</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid -->
+                <line x1="165" y1="300" x2="490" y2="300" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+                <!-- Target 70% dashed line -->
+                <line x1="165" y1="60" x2="490" y2="60" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-dasharray="8 5"/>
+                <text x="492" y="64" fill="#8899a8" font-family="Inter" font-size="11">Cible 70%</text>
+
+                <!-- D&eacute;cile sup&eacute;rieur: 60-70% -->
+                <text x="160" y="105" fill="var(--ovla-green)" font-family="Syne" font-size="13" text-anchor="end" font-weight="700">D&eacute;cile sup&eacute;rieur</text>
+                <rect x="165" y="75" width="315" height="50" rx="5" fill="var(--ovla-green)" opacity="0.85"/>
+                <text x="325" y="107" fill="#1a1a1a" font-family="JetBrains Mono" font-size="18" font-weight="700" text-anchor="middle">60 &ndash; 70 %</text>
+
+                <!-- Quintiles m&eacute;dians: 40-50% -->
+                <text x="160" y="180" fill="var(--ovla-gold)" font-family="Syne" font-size="13" text-anchor="end" font-weight="700">Quintiles m&eacute;dians</text>
+                <rect x="165" y="150" width="220" height="50" rx="5" fill="var(--ovla-gold)" opacity="0.85"/>
+                <text x="275" y="182" fill="#1a1a1a" font-family="JetBrains Mono" font-size="18" font-weight="700" text-anchor="middle">40 &ndash; 50 %</text>
+
+                <!-- D&eacute;cile inf&eacute;rieur: 15-25% -->
+                <text x="160" y="255" fill="var(--ovla-red)" font-family="Syne" font-size="13" text-anchor="end" font-weight="700">D&eacute;cile inf&eacute;rieur</text>
+                <rect x="165" y="225" width="120" height="50" rx="5" fill="var(--ovla-red)" opacity="0.85"/>
+                <text x="225" y="257" fill="white" font-family="JetBrains Mono" font-size="18" font-weight="700" text-anchor="middle">15 &ndash; 25 %</text>
+
+                <!-- X axis -->
+                <text x="165" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">0%</text>
+                <text x="275" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">25%</text>
+                <text x="385" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">50%</text>
+                <text x="490" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">70%</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Source : Superintendencia de Pensiones de Chile &middot; IMF Working Paper 2021</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 9</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 10 — POLOGNE ET HONGRIE ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>Pologne et Hongrie : quand l'&Eacute;tat confisque l'&eacute;pargne retraite</h2>
+
+    <p>La Pologne et la Hongrie illustrent le risque politique majeur de toute r&eacute;forme par capitalisation insuffisamment prot&eacute;g&eacute;e. La Pologne avait cr&eacute;&eacute; en 1999 un syst&egrave;me mixte (ZUS 12,22 % + OFE 7,3 % en capitalisation), mais en 2014, 153 milliards de zlotys d'actifs ont &eacute;t&eacute; nationalis&eacute;s &mdash; 97 % retourn&eacute;s au syst&egrave;me public. La Hongrie a connu un sort identique : apr&egrave;s une r&eacute;forme similaire en 1998, Viktor Orb&aacute;n a nationalis&eacute; l'int&eacute;gralit&eacute; des fonds en 2010, en seulement trois mois, provoquant une d&eacute;gradation par Moody's. Ces exemples montrent qu'un syst&egrave;me de capitalisation peut &ecirc;tre an&eacute;anti en une seule l&eacute;gislature sans verrou constitutionnel et sans pr&eacute;-accumulation significative d'actifs. C'est pourquoi la r&eacute;forme propos&eacute;e pour la France pr&eacute;voit une protection organique, un consensus transpartisan large et des actifs d&eacute;j&agrave; constitu&eacute;s (FRR, AGIRC-ARRCO) qui rendent la r&eacute;versibilit&eacute; politiquement co&ucirc;teuse.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">Pologne et Hongrie : actifs priv&eacute;s <span style="color: var(--ovla-red);">nationalis&eacute;s</span></div>
+        <div class="infog-subtitle">Des milliards d'&eacute;pargne retraite confisqu&eacute;s en quelques mois &mdash; faute de verrou constitutionnel</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid -->
+                <line x1="30" y1="290" x2="490" y2="290" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+                <!-- POLOGNE label -->
+                <text x="155" y="30" fill="var(--ovla-text)" font-family="Syne" font-size="16" font-weight="700" text-anchor="middle">Pologne (OFE)</text>
+
+                <!-- Bar AVANT: 300 Md PLN -->
+                <rect x="70" y="70" width="90" height="220" rx="5" fill="var(--ovla-cyan)" opacity="0.85"/>
+                <text x="115" y="150" fill="#1a1a1a" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="middle">300</text>
+                <text x="115" y="175" fill="#1a1a1a" font-family="JetBrains Mono" font-size="13" text-anchor="middle">Md PLN</text>
+                <text x="115" y="308" fill="#8899a8" font-family="JetBrains Mono" font-size="11" text-anchor="middle">2010</text>
+
+                <!-- Arrow -->
+                <text x="195" y="190" fill="var(--ovla-red)" font-family="Syne" font-size="30" text-anchor="middle">&rarr;</text>
+                <text x="195" y="215" fill="var(--ovla-red)" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">&minus;153 Md PLN</text>
+
+                <!-- Bar APR&Egrave;S: 0 -->
+                <rect x="230" y="275" width="90" height="15" rx="5" fill="var(--ovla-red)" opacity="0.85"/>
+                <text x="275" y="268" fill="var(--ovla-red)" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="middle">0</text>
+                <text x="275" y="308" fill="var(--ovla-red)" font-family="JetBrains Mono" font-size="11" text-anchor="middle">2014</text>
+
+                <!-- HONGRIE label -->
+                <text x="415" y="30" fill="var(--ovla-text)" font-family="Syne" font-size="16" font-weight="700" text-anchor="middle">Hongrie</text>
+
+                <!-- Bar AVANT: 8 Md EUR -->
+                <rect x="355" y="160" width="70" height="130" rx="5" fill="var(--ovla-gold)" opacity="0.85"/>
+                <text x="390" y="220" fill="#1a1a1a" font-family="JetBrains Mono" font-size="18" font-weight="700" text-anchor="middle">8 Md</text>
+                <text x="390" y="240" fill="#1a1a1a" font-family="JetBrains Mono" font-size="11" text-anchor="middle">EUR</text>
+                <text x="390" y="308" fill="#8899a8" font-family="JetBrains Mono" font-size="11" text-anchor="middle">2010</text>
+
+                <!-- Arrow -->
+                <text x="443" y="230" fill="var(--ovla-red)" font-family="Syne" font-size="24" text-anchor="middle">&rarr;</text>
+
+                <!-- Bar APR&Egrave;S: 0 -->
+                <rect x="460" y="275" width="30" height="15" rx="5" fill="var(--ovla-red)" opacity="0.85"/>
+                <text x="475" y="268" fill="var(--ovla-red)" font-family="JetBrains Mono" font-size="18" font-weight="700" text-anchor="middle">0</text>
+                <text x="475" y="308" fill="var(--ovla-red)" font-family="JetBrains Mono" font-size="11" text-anchor="middle">2011</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Source : ZUS &middot; OECD Pension Review Poland &middot; Magyar Nemzeti Bank</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 10</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 11 — LE MÉCANISME ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>Le m&eacute;canisme : une redirection, pas une cotisation suppl&eacute;mentaire</h2>
+
+    <p>Le principe fondamental de la r&eacute;forme est simple : il ne s'agit pas de cr&eacute;er une nouvelle cotisation, mais de rediriger une fraction des cotisations patronales existantes. Aujourd'hui, 16 % du salaire brut sont vers&eacute;s int&eacute;gralement &agrave; la r&eacute;partition. Dans le sc&eacute;nario propos&eacute; (B), 13,5 % resteraient en r&eacute;partition et 2,5 % seraient orient&eacute;s vers un fonds de capitalisation individuel. Rien ne change sur la fiche de paie du salari&eacute; : m&ecirc;me salaire net, m&ecirc;me co&ucirc;t total pour l'employeur, m&ecirc;me taux global de 16 %. La r&egrave;gle de calcul est claire : 1 point de pourcentage sur la masse salariale brute (1 400 milliards d'euros) repr&eacute;sente 14 milliards d'euros par an redirig&eacute;s. C'est exactement le mod&egrave;le su&eacute;dois (18,5 % = 16 % NDC + 2,5 % PPM) appliqu&eacute; au contexte fran&ccedil;ais.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">Le m&eacute;canisme : <span style="color: var(--ovla-cyan);">redirection</span>, pas cr&eacute;ation</div>
+        <div class="infog-subtitle">M&ecirc;me taux total de cotisation (16 %) &mdash; seul le fl&eacute;chage change</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- AUJOURD'HUI -->
+                <text x="145" y="30" fill="var(--ovla-text)" font-family="Syne" font-size="14" font-weight="700" text-anchor="middle">Aujourd'hui</text>
+
+                <!-- Full bar: 16% r&eacute;partition -->
+                <rect x="55" y="45" width="180" height="220" rx="5" fill="var(--ovla-red)" opacity="0.6"/>
+                <text x="145" y="145" fill="white" font-family="JetBrains Mono" font-size="32" font-weight="700" text-anchor="middle">16%</text>
+                <text x="145" y="175" fill="rgba(255,255,255,0.8)" font-family="Syne" font-size="14" text-anchor="middle">R&eacute;partition</text>
+                <text x="145" y="195" fill="rgba(255,255,255,0.5)" font-family="Inter" font-size="11" text-anchor="middle">(cotisation patronale)</text>
+
+                <!-- Arrow -->
+                <text x="280" y="155" fill="var(--ovla-cyan)" font-family="Syne" font-size="36" text-anchor="middle">&rarr;</text>
+
+                <!-- APR&Egrave;S -->
+                <text x="400" y="30" fill="var(--ovla-cyan)" font-family="Syne" font-size="14" font-weight="700" text-anchor="middle">Sc&eacute;nario B</text>
+
+                <!-- R&eacute;partition part: 13.5% -->
+                <rect x="310" y="45" width="180" height="185" rx="5" fill="var(--ovla-red)" opacity="0.6"/>
+                <text x="400" y="130" fill="white" font-family="JetBrains Mono" font-size="28" font-weight="700" text-anchor="middle">13,5%</text>
+                <text x="400" y="155" fill="rgba(255,255,255,0.8)" font-family="Syne" font-size="12" text-anchor="middle">R&eacute;partition</text>
+
+                <!-- Capitalisation part: 2.5% -->
+                <rect x="310" y="235" width="180" height="30" rx="5" fill="var(--ovla-green)" opacity="0.85"/>
+                <text x="400" y="256" fill="#1a1a1a" font-family="JetBrains Mono" font-size="16" font-weight="700" text-anchor="middle">2,5% Capitalisation</text>
+
+                <!-- Total annotation -->
+                <text x="400" y="285" fill="var(--ovla-muted)" font-family="Inter" font-size="11" text-anchor="middle">Total : toujours 16%</text>
+                <text x="400" y="300" fill="var(--ovla-cyan)" font-family="Syne" font-size="11" font-weight="700" text-anchor="middle">= 35 Md&euro;/an vers capitalisation</text>
+                <text x="400" y="315" fill="var(--ovla-muted)" font-family="Inter" font-size="10" text-anchor="middle">(1 pt = 14 Md&euro; sur 1 400 Md&euro; de masse salariale)</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Source : URSSAF/ACOSS &middot; Mod&egrave;le su&eacute;dois (18,5% = 16% NDC + 2,5% PPM)</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 11</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 12 — MONTÉE EN CHARGE ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>La mont&eacute;e en charge : trois sc&eacute;narios compar&eacute;s</h2>
+
+    <p>Trois trajectoires sont mod&eacute;lis&eacute;es pour la mont&eacute;e en charge du pilier capitalisation. Le sc&eacute;nario A (prudent) atteint 1 % en 10 ans et ne g&eacute;n&egrave;re qu'une rente de 135 euros par mois &mdash; trop faible pour changer la donne. Le sc&eacute;nario C (ambitieux) vise 5 % en 10 ans et produit 680 euros de rente mensuelle, mais son co&ucirc;t de transition de 35 milliards d'euros par an le rend irr&eacute;aliste politiquement. Le sc&eacute;nario B (recommand&eacute;) atteint 2,5 % en 10 ans et g&eacute;n&egrave;re une rente de 340 euros par mois pour le salaire m&eacute;dian. C'est exactement le taux adopt&eacute; par la Su&egrave;de il y a 30 ans et prouv&eacute; en conditions r&eacute;elles. Son co&ucirc;t de transition (10 &agrave; 14 milliards d'euros par an) est finan&ccedil;able par les sept sources identifi&eacute;es. Le sc&eacute;nario B constitue l'&eacute;quilibre optimal entre impact pour les retrait&eacute;s et faisabilit&eacute; budg&eacute;taire.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">La mont&eacute;e en charge : trois <span style="color: var(--ovla-cyan);">sc&eacute;narios</span></div>
+        <div class="infog-subtitle">Taux de capitalisation (% du salaire brut) &mdash; Sc&eacute;nario B recommand&eacute; en trait plein</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid -->
+                <line x1="60" y1="300" x2="490" y2="300" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <line x1="60" y1="300" x2="60" y2="40" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <line x1="60" y1="240" x2="490" y2="240" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4"/>
+                <text x="18" y="244" fill="#8899a8" font-family="JetBrains Mono" font-size="10">1%</text>
+                <line x1="60" y1="180" x2="490" y2="180" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4"/>
+                <text x="12" y="184" fill="#8899a8" font-family="JetBrains Mono" font-size="10">2,5%</text>
+                <line x1="60" y1="60" x2="490" y2="60" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4"/>
+                <text x="18" y="64" fill="#8899a8" font-family="JetBrains Mono" font-size="10">5%</text>
+                <text x="18" y="304" fill="#8899a8" font-family="JetBrains Mono" font-size="10">0%</text>
+
+                <!-- X axis -->
+                <text x="60" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10">2028</text>
+                <text x="168" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10">2031</text>
+                <text x="276" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10">2034</text>
+                <text x="384" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10">2037</text>
+                <text x="470" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10">2047</text>
+
+                <!-- Sc&eacute;nario A: Prudent (dashed gray) -->
+                <path d="M 60 284 L 168 260 L 276 244 L 384 240 L 490 240" fill="none" stroke="#8899a8" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 5"/>
+                <text x="492" y="243" fill="#8899a8" font-family="Syne" font-size="12">A : 1%</text>
+
+                <!-- Sc&eacute;nario C: Ambitieux (dashed red) -->
+                <path d="M 60 240 L 168 180 L 276 100 L 384 60 L 490 60" fill="none" stroke="#ff4757" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 5"/>
+                <text x="492" y="63" fill="#ff4757" font-family="Syne" font-size="12">C : 5%</text>
+
+                <!-- Sc&eacute;nario B: Recommand&eacute; (solid cyan, thick) -->
+                <path d="M 60 276 L 120 240 L 168 210 L 276 185 L 310 180 L 384 180 L 490 180" fill="none" stroke="#00d4ff" stroke-width="4" stroke-linecap="round"/>
+                <path d="M 60 276 L 120 240 L 168 210 L 276 185 L 310 180 L 384 180 L 490 180" fill="none" stroke="#00d4ff" stroke-width="12" stroke-linecap="round" opacity="0.12"/>
+                <text x="492" y="177" fill="#00d4ff" font-family="Syne" font-size="13" font-weight="700">B : 2,5%</text>
+
+                <!-- RECOMMAND&Eacute; badge -->
+                <rect x="360" y="155" width="100" height="20" rx="4" fill="rgba(0,212,255,0.15)"/>
+                <text x="410" y="169" fill="#00d4ff" font-family="Syne" font-size="10" font-weight="700" text-anchor="middle">RECOMMAND&Eacute;</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Mont&eacute;e en charge progressive &mdash; taux cible atteint entre 2035 et 2037</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 12</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 13 — LE MANQUE À GAGNER SE RÉSORBE ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>Le manque &agrave; gagner de la transition : un d&eacute;ficit temporaire</h2>
+
+    <p>Rediriger une partie des cotisations vers la capitalisation cr&eacute;e m&eacute;caniquement un manque &agrave; gagner pour le syst&egrave;me par r&eacute;partition, qui doit continuer &agrave; payer les pensions des retrait&eacute;s actuels. Ce d&eacute;ficit de transition d&eacute;marre &agrave; environ 7 milliards d'euros la premi&egrave;re ann&eacute;e, culmine &agrave; 12 milliards d'euros vers l'ann&eacute;e 7, puis d&eacute;cro&icirc;t progressivement. &Agrave; l'ann&eacute;e 20, le syst&egrave;me s'autofinance int&eacute;gralement : les &eacute;conomies g&eacute;n&eacute;r&eacute;es par le recul de l'&acirc;ge de d&eacute;part &agrave; 65 ans, l'alignement des r&eacute;gimes sp&eacute;ciaux et les autres mesures compensatoires d&eacute;passent le co&ucirc;t de la redirection. Sept sources de financement identifi&eacute;es couvrent largement ce d&eacute;ficit transitoire, avec une marge de s&eacute;curit&eacute; sup&eacute;rieure &agrave; 2 fois le besoin. Le graphique montre la convergence entre la courbe rouge (manque net) et la courbe verte (compensation), qui se croisent autour de l'ann&eacute;e 20.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">Le manque &agrave; gagner <span style="color: var(--ovla-green);">se r&eacute;sorbe en 20 ans</span></div>
+        <div class="infog-subtitle">Sc&eacute;nario B &mdash; &eacute;cart entre co&ucirc;t de transition et sources de financement (7 leviers)</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid -->
+                <line x1="60" y1="170" x2="490" y2="170" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-dasharray="6 4"/>
+                <line x1="60" y1="40" x2="60" y2="300" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <line x1="60" y1="300" x2="490" y2="300" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+                <!-- Y labels -->
+                <text x="15" y="80" fill="var(--ovla-red)" font-family="JetBrains Mono" font-size="10">&minus;12 Md</text>
+                <text x="15" y="174" fill="#8899a8" font-family="JetBrains Mono" font-size="10">0 Md&euro;</text>
+
+                <!-- Red deficit area -->
+                <path d="M 60 170 L 60 198 L 100 210 Q 180 248 240 238 Q 300 225 360 205 Q 400 190 440 178 Q 465 172 490 170 L 490 170 Z" fill="rgba(255,71,87,0.2)"/>
+
+                <!-- Red curve (deficit) -->
+                <path d="M 60 198 L 100 210 Q 180 248 240 238 Q 300 225 360 205 Q 400 190 440 178 Q 465 172 490 170" fill="none" stroke="var(--ovla-red)" stroke-width="3" stroke-linecap="round"/>
+
+                <!-- Green curve (compensation rising) -->
+                <path d="M 60 300 L 100 278 Q 180 238 240 210 Q 300 185 360 168 Q 400 158 440 150 L 490 145" fill="none" stroke="var(--ovla-green)" stroke-width="3" stroke-linecap="round"/>
+
+                <!-- Key points -->
+                <circle cx="60" cy="198" r="5" fill="var(--ovla-red)"/>
+                <text x="78" y="202" fill="var(--ovla-red)" font-family="JetBrains Mono" font-size="11" font-weight="700">&minus;5 Md</text>
+
+                <circle cx="200" cy="245" r="5" fill="var(--ovla-red)"/>
+                <text x="180" y="268" fill="var(--ovla-red)" font-family="JetBrains Mono" font-size="11" font-weight="700">&minus;12 Md</text>
+
+                <circle cx="490" cy="170" r="6" fill="var(--ovla-green)"/>
+                <text x="478" y="160" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="14" font-weight="700" text-anchor="end">0</text>
+
+                <!-- X labels -->
+                <text x="60" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">An 1</text>
+                <text x="170" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">An 5</text>
+                <text x="280" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">An 10</text>
+                <text x="390" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">An 15</text>
+                <text x="490" y="318" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="10" font-weight="700" text-anchor="end">An 20</text>
+
+                <!-- Legend -->
+                <rect x="130" y="45" width="14" height="4" rx="2" fill="var(--ovla-red)"/>
+                <text x="149" y="50" fill="#8899a8" font-family="Inter" font-size="10">Manque net r&eacute;partition</text>
+                <rect x="320" y="45" width="14" height="4" rx="2" fill="var(--ovla-green)"/>
+                <text x="339" y="50" fill="#8899a8" font-family="Inter" font-size="10">Compensation (7 sources)</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Sc&eacute;nario B (2,5 %) &mdash; Sources : COR, DGFiP, FRR, AGIRC-ARRCO</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 13</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 14 — LES SEPT SOURCES DE FINANCEMENT ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>Sept sources de financement pour une transition s&eacute;curis&eacute;e</h2>
+
+    <p>Le financement de la transition repose sur sept leviers concrets, totalisant 16 &agrave; 38 milliards d'euros par an, pour un besoin estim&eacute; de 7 &agrave; 14 milliards. La marge de s&eacute;curit&eacute; est donc sup&eacute;rieure &agrave; 2 fois le besoin r&eacute;el. Le levier principal est le recul de l'&acirc;ge de d&eacute;part &agrave; 65 ans (2 &agrave; 18 milliards), suivi de la hausse de 0,2 point de CSG (6 milliards) et de l'alignement des r&eacute;gimes sp&eacute;ciaux (3 &agrave; 5 milliards). S'y ajoutent la mobilisation du FRR (1 &agrave; 3 milliards), la r&eacute;duction de l'abattement de 10 % sur les pensions (2,2 &agrave; 4,5 milliards), les r&eacute;serves AGIRC-ARRCO (0,9 milliard/an) et les cessions d'actifs publics (1,5 &agrave; 2,5 milliards). M&ecirc;me dans le sc&eacute;nario politique le plus d&eacute;favorable, o&ugrave; seul le recul de l'&acirc;ge serait mis en &oelig;uvre, la transition reste finan&ccedil;able d&egrave;s l'ann&eacute;e 7.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">Les <span style="color: var(--ovla-cyan);">sept sources</span> de financement identifi&eacute;es</div>
+        <div class="infog-subtitle">Montants annuels en milliards d'euros &mdash; Sc&eacute;nario B &mdash; Total : 16 &agrave; 38 Md&euro;/an vs besoin 7-14 Md&euro;</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="s-green" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(0,255,136,0.4)"/><stop offset="100%" stop-color="#00ff88"/></linearGradient>
+                    <linearGradient id="s-cyan" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(0,212,255,0.4)"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient>
+                    <linearGradient id="s-purple" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(168,85,247,0.4)"/><stop offset="100%" stop-color="#a855f7"/></linearGradient>
+                    <linearGradient id="s-gold" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(255,215,0,0.4)"/><stop offset="100%" stop-color="#ffd700"/></linearGradient>
+                    <linearGradient id="s-orange" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(255,159,67,0.4)"/><stop offset="100%" stop-color="#ff9f43"/></linearGradient>
+                </defs>
+
+                <!-- 1. Recul &acirc;ge 65 : 2-18 Md -->
+                <text x="185" y="38" fill="var(--ovla-text)" font-family="Syne" font-size="11" text-anchor="end" font-weight="600">Recul &acirc;ge 65 ans</text>
+                <rect x="190" y="22" width="290" height="28" rx="5" fill="url(#s-green)"/>
+                <text x="472" y="41" fill="#1a1a1a" font-family="JetBrains Mono" font-size="12" font-weight="700" text-anchor="end">2 &ndash; 18 Md&euro;</text>
+
+                <!-- 2. FRR : 1-3 Md -->
+                <text x="185" y="83" fill="var(--ovla-text)" font-family="Syne" font-size="11" text-anchor="end">Fonds de R&eacute;serve (FRR)</text>
+                <rect x="190" y="67" width="48" height="28" rx="5" fill="url(#s-cyan)"/>
+                <text x="245" y="86" fill="#8899a8" font-family="JetBrains Mono" font-size="11" font-weight="700">1 &ndash; 3 Md&euro;</text>
+
+                <!-- 3. Abattement 10% : 2.2-4.5 Md -->
+                <text x="185" y="128" fill="var(--ovla-text)" font-family="Syne" font-size="11" text-anchor="end">Abattement 10 % pensions</text>
+                <rect x="190" y="112" width="72" height="28" rx="5" fill="url(#s-purple)"/>
+                <text x="268" y="131" fill="white" font-family="JetBrains Mono" font-size="11" font-weight="700">2,2 &ndash; 4,5 Md&euro;</text>
+
+                <!-- 4. CSG +0.2 pt : 6 Md -->
+                <text x="185" y="173" fill="var(--ovla-text)" font-family="Syne" font-size="11" text-anchor="end">CSG +0,2 point</text>
+                <rect x="190" y="157" width="96" height="28" rx="5" fill="url(#s-gold)"/>
+                <text x="292" y="176" fill="#1a1a1a" font-family="JetBrains Mono" font-size="12" font-weight="700">6 Md&euro;</text>
+
+                <!-- 5. R&eacute;gimes sp&eacute;ciaux : 3-5 Md -->
+                <text x="185" y="218" fill="var(--ovla-text)" font-family="Syne" font-size="11" text-anchor="end">R&eacute;gimes sp&eacute;ciaux</text>
+                <rect x="190" y="202" width="80" height="28" rx="5" fill="url(#s-orange)"/>
+                <text x="276" y="221" fill="#1a1a1a" font-family="JetBrains Mono" font-size="11" font-weight="700">3 &ndash; 5 Md&euro;</text>
+
+                <!-- 6. AGIRC-ARRCO : 0.9 Md/an -->
+                <text x="185" y="263" fill="var(--ovla-text)" font-family="Syne" font-size="11" text-anchor="end">R&eacute;serves AGIRC-ARRCO</text>
+                <rect x="190" y="247" width="14" height="28" rx="5" fill="url(#s-cyan)"/>
+                <text x="212" y="266" fill="#8899a8" font-family="JetBrains Mono" font-size="11" font-weight="700">0,9 Md&euro;/an</text>
+
+                <!-- 7. Actifs publics : 1.5-2.5 Md -->
+                <text x="185" y="308" fill="var(--ovla-text)" font-family="Syne" font-size="11" text-anchor="end">Cessions actifs publics</text>
+                <rect x="190" y="292" width="40" height="28" rx="5" fill="url(#s-purple)"/>
+                <text x="237" y="311" fill="white" font-family="JetBrains Mono" font-size="11" font-weight="700">1,5 &ndash; 2,5 Md&euro;</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Source : COR, DGFiP, FRR, AGIRC-ARRCO, APE, Cour des Comptes</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 14</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 15 — PENSION AVANT ET APRÈS ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>Impact concret : la pension avant et apr&egrave;s la r&eacute;forme</h2>
+
+    <p>Pour un salari&eacute; au salaire m&eacute;dian (2 100 euros brut par mois), la diff&eacute;rence est tangible. Aujourd'hui, le syst&egrave;me par r&eacute;partition seul lui verse environ 1 200 euros par mois de pension, soit un taux de remplacement d'environ 50 %. Avec l'ajout du pilier capitalisation &agrave; 2,5 % et un rendement de 6 % sur 40 ans, il accumule un capital qui g&eacute;n&egrave;re 340 euros par mois de rente compl&eacute;mentaire. Sa pension totale passe ainsi de 1 200 &agrave; 1 540 euros par mois, soit une hausse de 28 %. Le taux de remplacement s'&eacute;l&egrave;ve de ~50 % &agrave; ~67 %, un niveau comparable &agrave; ce qu'obtiennent les retrait&eacute;s su&eacute;dois ou n&eacute;erlandais. Et tout cela sans aucune cotisation suppl&eacute;mentaire pour le salari&eacute; ou l'employeur.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">Pension mensuelle : <span style="color: var(--ovla-red);">avant</span> et <span style="color: var(--ovla-green);">apr&egrave;s</span> capitalisation</div>
+        <div class="infog-subtitle">Salaire m&eacute;dian 2 100&euro; brut/mois &middot; 40 ans de carri&egrave;re &middot; Rendement 6 %</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid -->
+                <line x1="60" y1="290" x2="460" y2="290" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+                <!-- AVANT bar -->
+                <rect x="100" y="120" width="130" height="170" rx="5" fill="var(--ovla-red)" opacity="0.8"/>
+                <text x="165" y="210" fill="white" font-family="JetBrains Mono" font-size="20" font-weight="700" text-anchor="middle">1 200&euro;</text>
+                <text x="165" y="235" fill="rgba(255,255,255,0.6)" font-family="Inter" font-size="12" text-anchor="middle">r&eacute;partition seule</text>
+
+                <!-- AVANT total -->
+                <text x="165" y="100" fill="var(--ovla-text)" font-family="JetBrains Mono" font-size="24" font-weight="700" text-anchor="middle">1 200&euro;/mois</text>
+                <text x="165" y="310" fill="var(--ovla-muted)" font-family="Syne" font-size="14" font-weight="600" text-anchor="middle">AVANT</text>
+
+                <!-- Arrow -->
+                <text x="275" y="215" fill="var(--ovla-cyan)" font-family="Syne" font-size="36" text-anchor="middle">&rarr;</text>
+
+                <!-- APR&Egrave;S bars (stacked) -->
+                <rect x="320" y="120" width="130" height="170" rx="5" fill="var(--ovla-red)" opacity="0.8"/>
+                <text x="385" y="220" fill="white" font-family="JetBrains Mono" font-size="16" font-weight="500" text-anchor="middle">1 200&euro;</text>
+
+                <rect x="320" y="25" width="130" height="95" rx="5" fill="var(--ovla-green)" opacity="0.85"/>
+                <text x="385" y="75" fill="#1a1a1a" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="middle">+340&euro;</text>
+                <text x="385" y="95" fill="rgba(0,0,0,0.5)" font-family="Inter" font-size="11" text-anchor="middle">capitalisation</text>
+
+                <!-- APR&Egrave;S total -->
+                <text x="385" y="16" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="24" font-weight="700" text-anchor="middle">1 540&euro;/mois</text>
+                <text x="385" y="310" fill="var(--ovla-cyan)" font-family="Syne" font-size="14" font-weight="700" text-anchor="middle">APR&Egrave;S</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Salaire m&eacute;dian 2 100&euro; brut &middot; 40 ans &middot; Rendement 6% &middot; Rente 4% du capital</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 15</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 16 — INTÉRÊTS COMPOSÉS ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>La magie des int&eacute;r&ecirc;ts compos&eacute;s : le temps est le meilleur alli&eacute;</h2>
+
+    <p>Avec une cotisation mensuelle de 52,50 euros (2,5 % du salaire m&eacute;dian de 2 100 euros brut) investie &agrave; 6 % de rendement annuel, le capital accumul&eacute; atteint 102 000 euros au bout de 40 ans. La courbe exponentielle r&eacute;v&egrave;le un ph&eacute;nom&egrave;ne cl&eacute; : 70 % du capital est g&eacute;n&eacute;r&eacute; dans les 15 derni&egrave;res ann&eacute;es. Apr&egrave;s 10 ans, le capital n'est que de 9 000 euros ; apr&egrave;s 20 ans, 25 000 euros ; mais il explose ensuite &agrave; 55 000 euros &agrave; 30 ans et 102 000 euros &agrave; 40 ans. C'est la formule des annuit&eacute;s constantes : C &times; ((1+r)^n &minus; 1) / r, o&ugrave; chaque euro cotis&eacute; g&eacute;n&egrave;re des rendements qui eux-m&ecirc;mes g&eacute;n&egrave;rent des rendements. Chaque ann&eacute;e de retard dans le lancement du syst&egrave;me co&ucirc;te cher, car elle prive une g&eacute;n&eacute;ration enti&egrave;re des premi&egrave;res ann&eacute;es de capitalisation. Commencer t&ocirc;t est d&eacute;terminant.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">La magie des <span style="color: var(--ovla-green);">int&eacute;r&ecirc;ts compos&eacute;s</span></div>
+        <div class="infog-subtitle">52,50&euro;/mois (salaire m&eacute;dian &times; 2,5 %) &agrave; 6 % de rendement &rarr; 102 000&euro; en 40 ans</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid -->
+                <line x1="60" y1="300" x2="490" y2="300" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <line x1="60" y1="300" x2="60" y2="30" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <line x1="60" y1="200" x2="490" y2="200" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4"/>
+                <line x1="60" y1="100" x2="490" y2="100" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4"/>
+
+                <!-- Y labels -->
+                <text x="15" y="304" fill="#8899a8" font-family="JetBrains Mono" font-size="10">0&euro;</text>
+                <text x="10" y="204" fill="#8899a8" font-family="JetBrains Mono" font-size="10">40k&euro;</text>
+                <text x="10" y="104" fill="#8899a8" font-family="JetBrains Mono" font-size="10">80k&euro;</text>
+                <text x="5" y="40" fill="#8899a8" font-family="JetBrains Mono" font-size="10">120k&euro;</text>
+
+                <!-- Area fill -->
+                <path d="M 60 300 Q 170 292 275 250 Q 380 140 490 40 L 490 300 Z" fill="rgba(0,255,136,0.08)"/>
+
+                <!-- Exponential curve -->
+                <path d="M 60 300 Q 170 292 275 250 Q 380 140 490 40" fill="none" stroke="var(--ovla-green)" stroke-width="4" stroke-linecap="round"/>
+                <path d="M 60 300 Q 170 292 275 250 Q 380 140 490 40" fill="none" stroke="var(--ovla-green)" stroke-width="12" stroke-linecap="round" opacity="0.1"/>
+
+                <!-- Year 10: ~9,000 -->
+                <circle cx="168" cy="282" r="6" fill="var(--ovla-cyan)"/>
+                <text x="168" y="272" fill="var(--ovla-cyan)" font-family="JetBrains Mono" font-size="13" font-weight="700" text-anchor="middle">9 000&euro;</text>
+
+                <!-- Year 20: ~25,000 -->
+                <circle cx="275" cy="250" r="6" fill="var(--ovla-cyan)"/>
+                <text x="275" y="240" fill="var(--ovla-cyan)" font-family="JetBrains Mono" font-size="13" font-weight="700" text-anchor="middle">25 000&euro;</text>
+
+                <!-- Year 30: ~55,000 -->
+                <circle cx="383" cy="155" r="6" fill="var(--ovla-gold)"/>
+                <text x="383" y="145" fill="var(--ovla-gold)" font-family="JetBrains Mono" font-size="13" font-weight="700" text-anchor="middle">55 000&euro;</text>
+
+                <!-- Year 40: ~102,000 -->
+                <circle cx="490" cy="40" r="8" fill="var(--ovla-green)"/>
+                <text x="475" y="30" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="16" font-weight="700" text-anchor="end">102 000&euro;</text>
+
+                <!-- X axis -->
+                <text x="60" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">0</text>
+                <text x="168" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">10 ans</text>
+                <text x="275" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">20 ans</text>
+                <text x="383" y="318" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">30 ans</text>
+                <text x="490" y="318" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="10" font-weight="700" text-anchor="end">40 ans</text>
+
+                <!-- Annotation -->
+                <rect x="345" y="80" width="135" height="18" rx="4" fill="rgba(0,255,136,0.12)"/>
+                <text x="412" y="93" fill="var(--ovla-green)" font-family="Inter" font-size="9" font-weight="600" text-anchor="middle">70% du capital en 15 derni&egrave;res ann&eacute;es</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>52,50&euro;/mois &middot; Rendement 6 %/an &middot; Formule annuit&eacute; constante</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 16</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 17 — SIMULATIONS SMIC/MÉDIAN/CADRE ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>Simulations pour trois profils de salari&eacute;s</h2>
+
+    <p>Le graphique compare le capital accumul&eacute; sur 40 ans pour trois profils types : un salari&eacute; au SMIC (cotisation de 44 euros/mois), un salari&eacute; m&eacute;dian (52,50 euros/mois) et un cadre (112,50 euros/mois), chacun &agrave; trois niveaux de rendement (4 %, 6 %, 8 %). Un cadre au rendement de 8 % accumule 382 000 euros, soit 1 273 euros de rente mensuelle compl&eacute;mentaire. M&ecirc;me un salari&eacute; au SMIC au rendement le plus prudent (4 %) accumule 51 000 euros, soit 170 euros par mois de compl&eacute;ment &mdash; loin d'&ecirc;tre n&eacute;gligeable pour un retrait&eacute; modeste. Au rendement m&eacute;dian de 6 %, le salari&eacute; m&eacute;dian atteint 102 000 euros (340 euros/mois) et le cadre 219 000 euros (730 euros/mois). La capitalisation obligatoire b&eacute;n&eacute;ficie proportionnellement &agrave; tous les niveaux de revenu, car chacun cotise le m&ecirc;me pourcentage de son salaire. C'est un syst&egrave;me qui profite &agrave; l'ensemble des salari&eacute;s, pas seulement aux hauts revenus.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">Simulations : <span style="color: var(--ovla-cyan);">SMIC</span>, <span style="color: var(--ovla-gold);">m&eacute;dian</span>, <span style="color: var(--ovla-green);">cadre</span></div>
+        <div class="infog-subtitle">Capital accumul&eacute; sur 40 ans &mdash; 3 profils &times; 3 rendements (4 %, 6 %, 8 %)</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid -->
+                <line x1="80" y1="280" x2="470" y2="280" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <line x1="80" y1="280" x2="80" y2="30" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <line x1="80" y1="155" x2="470" y2="155" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4"/>
+                <text x="22" y="284" fill="#8899a8" font-family="JetBrains Mono" font-size="9">0k&euro;</text>
+                <text x="15" y="159" fill="#8899a8" font-family="JetBrains Mono" font-size="9">200k&euro;</text>
+                <text x="15" y="34" fill="#8899a8" font-family="JetBrains Mono" font-size="9">400k&euro;</text>
+
+                <!-- SMIC Group -->
+                <text x="155" y="310" fill="var(--ovla-cyan)" font-family="Syne" font-size="11" font-weight="700" text-anchor="middle">SMIC (44&euro;/mois)</text>
+                <!-- 4% = 51k -->
+                <rect x="100" y="248" width="30" height="32" rx="4" fill="rgba(0,212,255,0.5)"/>
+                <text x="115" y="243" fill="var(--ovla-cyan)" font-family="JetBrains Mono" font-size="9" font-weight="600" text-anchor="middle">51k</text>
+                <!-- 6% = 86k -->
+                <rect x="135" y="226" width="30" height="54" rx="4" fill="rgba(0,212,255,0.7)"/>
+                <text x="150" y="221" fill="var(--ovla-cyan)" font-family="JetBrains Mono" font-size="9" font-weight="600" text-anchor="middle">86k</text>
+                <!-- 8% = 150k -->
+                <rect x="170" y="186" width="30" height="94" rx="4" fill="var(--ovla-cyan)" opacity="0.9"/>
+                <text x="185" y="181" fill="var(--ovla-cyan)" font-family="JetBrains Mono" font-size="9" font-weight="700" text-anchor="middle">150k</text>
+
+                <!-- M&eacute;dian Group -->
+                <text x="280" y="310" fill="var(--ovla-gold)" font-family="Syne" font-size="11" font-weight="700" text-anchor="middle">M&eacute;dian (52,50&euro;)</text>
+                <!-- 4% = 61k -->
+                <rect x="225" y="242" width="30" height="38" rx="4" fill="rgba(255,215,0,0.5)"/>
+                <text x="240" y="237" fill="var(--ovla-gold)" font-family="JetBrains Mono" font-size="9" font-weight="600" text-anchor="middle">61k</text>
+                <!-- 6% = 102k -->
+                <rect x="260" y="216" width="30" height="64" rx="4" fill="rgba(255,215,0,0.7)"/>
+                <text x="275" y="211" fill="var(--ovla-gold)" font-family="JetBrains Mono" font-size="9" font-weight="600" text-anchor="middle">102k</text>
+                <!-- 8% = 178k -->
+                <rect x="295" y="168" width="30" height="112" rx="4" fill="var(--ovla-gold)" opacity="0.9"/>
+                <text x="310" y="163" fill="var(--ovla-gold)" font-family="JetBrains Mono" font-size="9" font-weight="700" text-anchor="middle">178k</text>
+
+                <!-- Cadre Group -->
+                <text x="405" y="310" fill="var(--ovla-green)" font-family="Syne" font-size="11" font-weight="700" text-anchor="middle">Cadre (112,50&euro;)</text>
+                <!-- 4% = 131k -->
+                <rect x="350" y="198" width="30" height="82" rx="4" fill="rgba(0,255,136,0.5)"/>
+                <text x="365" y="193" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="9" font-weight="600" text-anchor="middle">131k</text>
+                <!-- 6% = 219k -->
+                <rect x="385" y="143" width="30" height="137" rx="4" fill="rgba(0,255,136,0.7)"/>
+                <text x="400" y="138" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="9" font-weight="600" text-anchor="middle">219k</text>
+                <!-- 8% = 382k -->
+                <rect x="420" y="40" width="30" height="240" rx="4" fill="var(--ovla-green)" opacity="0.9"/>
+                <text x="435" y="35" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="10" font-weight="700" text-anchor="middle">382k</text>
+
+                <!-- Legend -->
+                <text x="100" y="330" fill="#8899a8" font-family="Inter" font-size="9">Barres : 4% | 6% | 8% de rendement (gauche &agrave; droite)</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Calcul : formule annuit&eacute; constante &middot; Cotisation 2,5 % du brut &middot; 40 ans</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 17</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 18 — ALLOCATION CYCLE DE VIE ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>L'allocation cycle de vie : maximiser le rendement, prot&eacute;ger le capital</h2>
+
+    <p>Le fonds par d&eacute;faut public &laquo; France Retraite &raquo; adopterait une strat&eacute;gie d'allocation dite &laquo; cycle de vie &raquo;, calqu&eacute;e sur le mod&egrave;le AP7 su&eacute;dois. Pour les jeunes travailleurs (25-45 ans), l'allocation est offensive : 90 % en actions mondiales diversifi&eacute;es et 10 % en obligations souveraines. &Agrave; l'approche de la retraite (55-65 ans), l'allocation bascule progressivement vers 30 % d'actions et 70 % d'obligations pour prot&eacute;ger le capital accumul&eacute;. Cette strat&eacute;gie maximise les rendements pour les jeunes, qui disposent de 40 ans pour absorber la volatilit&eacute; des march&eacute;s, tout en s&eacute;curisant le patrimoine des pr&eacute;-retrait&eacute;s. Historiquement, aucun investisseur n'a jamais perdu d'argent en restant investi 40 ans dans des actions mondiales diversifi&eacute;es. Les frais seraient plafonn&eacute;s &agrave; 0,3 % par an &mdash; dix fois moins que les 2 &agrave; 3 % du syst&egrave;me chilien qui ont d&eacute;truit la moiti&eacute; du capital des retrait&eacute;s.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">Fonds France Retraite : allocation <span style="color: var(--ovla-cyan);">cycle de vie</span></div>
+        <div class="infog-subtitle">Plus d'actions quand on est jeune, plus d'obligations &agrave; l'approche de la retraite</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid -->
+                <line x1="60" y1="40" x2="60" y2="280" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <line x1="60" y1="280" x2="475" y2="280" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+                <!-- Y labels -->
+                <text x="15" y="45" fill="#8899a8" font-family="JetBrains Mono" font-size="10">100%</text>
+                <text x="22" y="165" fill="#8899a8" font-family="JetBrains Mono" font-size="10">50%</text>
+                <text x="30" y="284" fill="#8899a8" font-family="JetBrains Mono" font-size="10">0%</text>
+
+                <!-- Stacked areas -->
+                <!-- Obligations (blue, bottom, grows) -->
+                <path d="M 60 280 L 60 256 L 165 256 Q 230 240 270 208 Q 330 168 370 128 Q 420 85 475 60 L 475 280 Z" fill="rgba(0,150,255,0.35)"/>
+
+                <!-- Actions (green, top, shrinks) -->
+                <path d="M 60 40 L 60 256 L 165 256 Q 230 240 270 208 Q 330 168 370 128 Q 420 85 475 60 L 475 40 Z" fill="rgba(0,255,136,0.25)"/>
+
+                <!-- Dividing line -->
+                <path d="M 60 256 L 165 256 Q 230 240 270 208 Q 330 168 370 128 Q 420 85 475 60" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+
+                <!-- Annotations -->
+                <text x="115" y="140" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="18" font-weight="700" text-anchor="middle">90%</text>
+                <text x="115" y="158" fill="var(--ovla-green)" font-family="Inter" font-size="10" text-anchor="middle">Actions</text>
+                <text x="115" y="270" fill="rgba(100,180,255,0.9)" font-family="JetBrains Mono" font-size="12" font-weight="600" text-anchor="middle">10%</text>
+
+                <text x="330" y="115" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="14" font-weight="700" text-anchor="middle">50%</text>
+                <text x="330" y="210" fill="rgba(100,180,255,0.9)" font-family="JetBrains Mono" font-size="14" font-weight="700" text-anchor="middle">50%</text>
+
+                <text x="450" y="54" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="12" font-weight="600" text-anchor="middle">30%</text>
+                <text x="450" y="180" fill="rgba(100,180,255,0.9)" font-family="JetBrains Mono" font-size="16" font-weight="700" text-anchor="middle">70%</text>
+                <text x="450" y="200" fill="rgba(100,180,255,0.9)" font-family="Inter" font-size="10" text-anchor="middle">Obligations</text>
+
+                <!-- X axis -->
+                <text x="60" y="300" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">25 ans</text>
+                <text x="165" y="300" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">35 ans</text>
+                <text x="270" y="300" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">45 ans</text>
+                <text x="370" y="300" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">55 ans</text>
+                <text x="475" y="300" fill="#8899a8" font-family="JetBrains Mono" font-size="10" text-anchor="middle">65 ans</text>
+
+                <!-- Legend -->
+                <rect x="160" y="318" width="14" height="8" rx="2" fill="rgba(0,255,136,0.5)"/>
+                <text x="179" y="326" fill="#8899a8" font-family="Inter" font-size="10">Actions mondiales</text>
+                <rect x="310" y="318" width="14" height="8" rx="2" fill="rgba(0,150,255,0.5)"/>
+                <text x="329" y="326" fill="#8899a8" font-family="Inter" font-size="10">Obligations souveraines</text>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Mod&egrave;le AP7 su&eacute;dois adapt&eacute; &middot; Basculement progressif 25-65 ans &middot; Frais &lt; 0,3 %/an</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 18</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 19 — CALENDRIER ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h2>Calendrier de la r&eacute;forme : 20 ans vers l'autofinancement</h2>
+
+    <p>Le calendrier propos&eacute; s'&eacute;tale sur 20 ans, de la conception &agrave; l'autofinancement complet. Au premier trimestre 2027, le pr&eacute;sident annonce la r&eacute;forme. S'ensuit une convention citoyenne de trois mois (T2 2027) pour construire le consensus, puis un projet de loi organique &laquo; Retraite mixte &raquo; au T4 2027. Le vote parlementaire intervient au T1 2028, et la premi&egrave;re cotisation capitalisation (0,5 %) d&eacute;marre au T3 2028. Le taux augmente progressivement pour atteindre le r&eacute;gime de croisi&egrave;re de 2,5 % en 2034. En 2042, soit 14 ans apr&egrave;s le lancement, le syst&egrave;me s'autofinance int&eacute;gralement : le co&ucirc;t net de transition tombe &agrave; z&eacute;ro. Ce calendrier est r&eacute;aliste car il est directement calqu&eacute; sur l'exp&eacute;rience su&eacute;doise, qui a suivi un rythme comparable entre 1994 et 2010.</p>
+
+    <div class="infographic-embed" style="padding: 30px 35px; margin-top: 10px;">
+        <div class="infog-header">
+            <div class="infog-logo"><span style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--ovla-cyan);">&euro;</span> <span style="font-family:'Instrument Serif',serif;font-style:italic;">O&ugrave; Va l'Argent ?</span></div>
+        </div>
+        <div class="infog-title" style="font-size: 26px;">Le calendrier : <span style="color: var(--ovla-cyan);">2027&ndash;2047</span></div>
+        <div class="infog-subtitle">20 ans de la conception &agrave; l'autofinancement complet</div>
+
+        <div class="curve-chart">
+            <svg viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+                <!-- Vertical timeline line -->
+                <line x1="120" y1="30" x2="120" y2="310" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+
+                <!-- T1 2027 -->
+                <circle cx="120" cy="45" r="8" fill="var(--ovla-cyan)"/>
+                <text x="140" y="42" fill="var(--ovla-cyan)" font-family="JetBrains Mono" font-size="14" font-weight="700">T1 2027</text>
+                <text x="140" y="60" fill="var(--ovla-text)" font-family="Inter" font-size="12">Annonce pr&eacute;sidentielle de la r&eacute;forme</text>
+
+                <!-- T4 2027 -->
+                <circle cx="120" cy="95" r="8" fill="var(--ovla-gold)"/>
+                <text x="140" y="92" fill="var(--ovla-gold)" font-family="JetBrains Mono" font-size="14" font-weight="700">T4 2027</text>
+                <text x="140" y="110" fill="var(--ovla-text)" font-family="Inter" font-size="12">Projet de loi organique &laquo; Retraite mixte &raquo;</text>
+
+                <!-- T3 2028 -->
+                <circle cx="120" cy="155" r="10" fill="var(--ovla-green)"/>
+                <text x="140" y="152" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="14" font-weight="700">T3 2028</text>
+                <text x="140" y="170" fill="var(--ovla-text)" font-family="Inter" font-size="13" font-weight="600">Premi&egrave;re cotisation capitalisation : 0,5 %</text>
+
+                <!-- 2034 -->
+                <circle cx="120" cy="215" r="8" fill="var(--ovla-cyan)"/>
+                <text x="140" y="212" fill="var(--ovla-cyan)" font-family="JetBrains Mono" font-size="14" font-weight="700">2034</text>
+                <text x="140" y="230" fill="var(--ovla-text)" font-family="Inter" font-size="12">R&eacute;gime de croisi&egrave;re : 2,5 % atteint</text>
+
+                <!-- 2042 -->
+                <circle cx="120" cy="270" r="10" fill="var(--ovla-green)"/>
+                <text x="140" y="268" fill="var(--ovla-green)" font-family="JetBrains Mono" font-size="14" font-weight="700">2042</text>
+                <text x="140" y="286" fill="var(--ovla-text)" font-family="Inter" font-size="13" font-weight="600">Autofinancement complet &mdash; co&ucirc;t net = 0</text>
+
+                <!-- Decorative arrow -->
+                <path d="M 120 310 L 115 300 L 125 300 Z" fill="var(--ovla-green)"/>
+            </svg>
+        </div>
+
+        <div class="infog-footer">
+            <span>Proposition OVLA &mdash; Sc&eacute;nario B (2,5% en 10 ans)</span>
+            <span class="site-mark">ouvalargent.com</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 19</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 20 — CONCLUSION ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h1 class="part-title">Conclusion : oser la transition</h1>
+
+    <div class="exec-grid">
+        <div class="exec-card">
+            <div class="card-label">Syst&egrave;me actuel</div>
+            <div class="big-number red">1,79&rarr;1,41</div>
+            <div class="card-detail">Ratio cotisants/retrait&eacute;s condamn&eacute;<br>D&eacute;ficit cumul&eacute; > 1 000 Md&euro;</div>
+        </div>
+        <div class="exec-card">
+            <div class="card-label">Capitalisation vs r&eacute;partition</div>
+            <div class="big-number teal">&times;3,2</div>
+            <div class="card-detail">Plus de rendement sur 40 ans<br>(6% vs 1,5%)</div>
+        </div>
+        <div class="exec-card">
+            <div class="card-label">Transition finan&ccedil;able</div>
+            <div class="big-number green">7 sources</div>
+            <div class="card-detail">16 &agrave; 38 Md&euro;/an disponibles<br>pour un besoin de 7 &agrave; 14 Md</div>
+        </div>
+        <div class="exec-card">
+            <div class="card-label">Mod&egrave;le su&eacute;dois</div>
+            <div class="big-number gold">25 ans</div>
+            <div class="card-detail">De succ&egrave;s avec exactement<br>le m&ecirc;me taux (2,5%)</div>
+        </div>
+    </div>
+
+    <blockquote>
+        Le vrai risque n'est pas de r&eacute;former. Le vrai risque, c'est de <strong>ne rien faire</strong> et de laisser le syst&egrave;me s'effondrer sous son propre poids.
+    </blockquote>
+
+    <div class="spacer-lg"></div>
+
+    <div style="text-align: center; padding-top: 30px; border-top: 2px solid var(--gold);">
+        <div style="font-family: 'Instrument Serif', serif; font-size: 32px; color: var(--accent);">&euro;</div>
+        <div style="font-family: 'Instrument Serif', serif; font-size: 22px; color: var(--ink); margin-top: 5px;">O&ugrave; Va l'Argent ?</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--accent); margin-top: 10px;">ouvalargent.com</div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 20</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 21 — SOURCES ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>Research Paper #004</div>
+    </div>
+
+    <h1 class="part-title">Sources</h1>
+
+    <h3>Institutions fran&ccedil;aises</h3>
+    <ul>
+        <li>Conseil d'Orientation des Retrait&eacute;s (COR) &mdash; Rapport annuel juin 2025</li>
+        <li>Fonds de R&eacute;serve pour les Retrait&eacute;s (FRR) &mdash; Rapport annuel 2024</li>
+        <li>AGIRC-ARRCO &mdash; Rapport financier 2024</li>
+        <li>URSSAF/ACOSS &mdash; Open Data masse salariale</li>
+        <li>DGFiP &mdash; Voies et Moyens Tome II</li>
+        <li>Cour des Comptes &mdash; Rapport S&eacute;curit&eacute; sociale</li>
+        <li>Beaufret, J.-P. &mdash; Fondapol (f&eacute;vrier 2025)</li>
+    </ul>
+
+    <h3>Organisations internationales</h3>
+    <ul>
+        <li>OCDE &mdash; Pensions at a Glance 2025</li>
+        <li>World Bank &mdash; Pension Reform Primer</li>
+        <li>FMI &mdash; Working Paper 2021 (Chili)</li>
+    </ul>
+
+    <h3>Fonds de pension</h3>
+    <ul>
+        <li>AP7 &amp; AP1-4 (Su&egrave;de) &mdash; Swedish Pension Agency, Orange Report 2024</li>
+        <li>CPPIB (Canada) &mdash; CPP Investments Annual Report 2025</li>
+        <li>GPFG (Norv&egrave;ge) &mdash; NBIM Annual Report 2024</li>
+        <li>CalPERS (USA) &mdash; Investment Performance 2024-25</li>
+        <li>ABP (Pays-Bas) &mdash; Financial Dashboard</li>
+        <li>APRA (Australie) &mdash; Annual Fund-level Superannuation Statistics</li>
+    </ul>
+
+    <h3>Recherche acad&eacute;mique</h3>
+    <ul>
+        <li>Aaron, H. (1966) &mdash; &laquo; The Social Insurance Paradox &raquo;</li>
+        <li>Jorda, O. et al. (2019) &mdash; &laquo; The Rate of Return on Everything, 1870-2015 &raquo;</li>
+        <li>K&ouml;nberg, Palmer &amp; Sund&eacute;n (2006) &mdash; &laquo; The NDC Reform in Sweden &raquo;, World Bank</li>
+    </ul>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 21</span>
+    </div>
+</div>
+
+<!-- ══════════════ PAGE 22 — À PROPOS ══════════════ -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo-mark"><span class="euro">&euro;</span> O&ugrave; Va l'Argent ?</div>
+        <div>&Agrave; propos</div>
+    </div>
+
+    <h1 class="part-title">&Agrave; propos</h1>
+
+    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
+        <div style="width: 60px; height: 60px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <span style="font-family: 'Instrument Serif', serif; font-size: 36px; color: white;">&euro;</span>
+        </div>
+        <div>
+            <h2 style="margin-top: 0; margin-bottom: 4px;">O&ugrave; Va l'Argent ?</h2>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent);">ouvalargent.com</div>
+        </div>
+    </div>
+
+    <p><strong>O&ugrave; Va l'Argent ?</strong> est un m&eacute;dia d'information &eacute;conomique et financi&egrave;re ind&eacute;pendant, fond&eacute; en 2024, dont la mission est de vulgariser les grandes questions &eacute;conomiques qui fa&ccedil;onnent le quotidien des Fran&ccedil;ais : finances publiques, fiscalit&eacute;, retraites, dette, inflation, investissement.</p>
+
+    <p>Chaque chiffre publi&eacute; est syst&eacute;matiquement adoss&eacute; &agrave; une source officielle (INSEE, COR, OCDE, Eurostat, Banque de France) et v&eacute;rifi&eacute; par une &eacute;quipe de fact-checking.</p>
+
+    <div style="width: 60px; height: 2px; background: var(--gold); margin: 40px 0;"></div>
+
+    <h2 style="margin-top: 0;">L'auteur</h2>
+
+    <p><strong>Emmanuel Bl&eacute;z&egrave;s</strong> est entrepreneur et fondateur d'<em>O&ugrave; Va l'Argent ?</em>. Passionn&eacute; par l'&eacute;conomie, les finances publiques et les politiques compar&eacute;es, il a cr&eacute;&eacute; ce m&eacute;dia avec une conviction simple : les citoyens ont le droit de comprendre comment leur argent est collect&eacute;, distribu&eacute; et investi par l'&Eacute;tat.</p>
+
+    <p>Ce quatri&egrave;me papier de recherche, version visuelle de l'&eacute;tude sur la transition du syst&egrave;me de retraite fran&ccedil;ais vers un mod&egrave;le mixte, concentre les donn&eacute;es cl&eacute;s en 18 graphiques pour un acc&egrave;s rapide &agrave; l'essentiel.</p>
+
+    <div class="spacer-lg"></div>
+
+    <div style="text-align: center; padding-top: 30px; border-top: 1px solid var(--rule);">
+        <div class="small-print">
+            &copy; 2026 O&ugrave; Va l'Argent ? &mdash; Tous droits r&eacute;serv&eacute;s<br>
+            Ce document est publi&eacute; &agrave; titre informatif et ne constitue pas un conseil en investissement.<br>
+            Les donn&eacute;es sont &agrave; jour au 21 mars 2026.
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span class="site">ouvalargent.com</span>
+        <span>Page 22</span>
+    </div>
+</div>
+
+</body>
+</html>

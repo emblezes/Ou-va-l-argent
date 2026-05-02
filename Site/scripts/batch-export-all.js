@@ -1933,10 +1933,40 @@ const INFOGRAPHICS = [
   ['175b-cta-elus-locaux.html', 0, '175b-cta-elus-locaux'],
   ['167-salaire-brut-net-impot.html', 0, '167-salaire-brut-net-impot'],
   ['176-taux-emprunt-france-10ans.html', 0, '176-taux-emprunt-france-10ans'],
+  ['177-ou-va-argent-livret-a.html', 0, '177-ou-va-argent-livret-a'],
+  ['177-fonctionnaires-paris-vs-europe.html', 0, '177-fonctionnaires-paris-vs-europe'],
+  ['178-dette-paris-30ans.html', 0, '178-dette-paris-30ans'],
+  ['179-population-paris-30ans.html', 0, '179-population-paris-30ans'],
+  ['180-subventions-associations-top10.html', 0, '180-subventions-associations-top10'],
+  ['181-retraites-vs-defense.html', 0, '181-retraites-vs-defense'],
+  ['182-detroit-hormuz-flux-petrole.html', 0, '182-detroit-hormuz-flux-petrole'],
+  ['183-pyramide-salaires-france.html', 0, '183-pyramide-salaires-france'],
+  ['204-7000-abonnes.html', 0, '204-7000-abonnes'],
+  ['205-0pct-is-benefices-reinvestis.html', 0, '205-0pct-is-benefices-reinvestis'],
+  ['206-pression-fiscale-record-mondial.html', 0, '206-pression-fiscale-record-mondial'],
+  ['207-france-decroche-pib-habitant.html', 0, '207-france-decroche-pib-habitant'],
+  ['208-croissance-francaise-panne.html', 0, '208-croissance-francaise-panne'],
+  ['209-reformes-liberales-avant-apres.html', 0, '209-reformes-liberales-avant-apres'],
+  ['210-les-100-jours-couverture.html', 0, '210-les-100-jours-couverture'],
+  ['211-production-nucleaire-france-chine-allemagne.html', 0, '211-production-nucleaire-france-chine-allemagne'],
+  ['212-depenses-sociales-explosion-france.html', 0, '212-depenses-sociales-explosion-france'],
+  ['213-chi-finanzia-stato-italia.html', 0, '213-chi-finanzia-stato-italia'],
+  ['214-france-plus-pauvre-europe-pib-ppa.html', 0, '214-france-plus-pauvre-europe-pib-ppa'],
+  ['167-budget-defense-us-vs-france.html', 0, '167-budget-defense-us-vs-france'],
+  ['167-retraite-reduit-pauvrete.html', 0, '167-retraite-reduit-pauvrete'],
+  ['215-niveau-vie-retraites-vs-actifs.html', 0, '215-niveau-vie-retraites-vs-actifs'],
+  ['216-depense-sociale-vs-regalien.html', 0, '216-depense-sociale-vs-regalien'],
+  ['217-cpf-1800-euros-par-francais.html', 0, '217-cpf-1800-euros-par-francais'],
+  ['221-associations-france-poids-secteur.html', 0, '221-associations-france-poids-secteur'],
+  ['222-qui-finance-associations-53milliards.html', 0, '222-qui-finance-associations-53milliards'],
+  ['223-top-10-associations-subventionnees-etat.html', 0, '223-top-10-associations-subventionnees-etat'],
+  ['224-ou-va-argent-etat-associations-postes.html', 0, '224-ou-va-argent-etat-associations-postes'],
+  ['225-tresor-cache-associations-101-milliards.html', 0, '225-tresor-cache-associations-101-milliards'],
 ];
 
 async function exportFormat(browser, htmlPath, items, { css, jsTransform, width, height, outputDir, suffix, label }) {
   const page = await browser.newPage();
+  await page.setViewport({ width, height, deviceScaleFactor: 2 });
   await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0' });
   await page.evaluateHandle('document.fonts.ready');
 
@@ -1951,9 +1981,6 @@ async function exportFormat(browser, htmlPath, items, { css, jsTransform, width,
     if (idx >= allInfographics.length) continue;
     const element = allInfographics[idx];
 
-    await page.setViewport({ width, height, deviceScaleFactor: 2 });
-    await new Promise(r => setTimeout(r, 200));
-
     const outputPath = path.join(outputDir, `${baseName}-${suffix}.png`);
     await element.screenshot({ path: outputPath, type: 'png' });
     console.log(`  ✓ ${label.padEnd(12)} → ${baseName}-${suffix}.png`);
@@ -1963,9 +1990,9 @@ async function exportFormat(browser, htmlPath, items, { css, jsTransform, width,
 }
 
 async function main() {
-  console.log('\n📐 Export batch — Instagram + TikTok Vertical + TikTok Horizontal\n');
+  console.log('\n📐 Export batch — Instagram uniquement\n');
 
-  [INSTA_DIR, TIKTOK_V_DIR, TIKTOK_H_DIR].forEach(dir => {
+  [INSTA_DIR].forEach(dir => {
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   });
 
@@ -2054,8 +2081,6 @@ async function main() {
 
   const formats = [
     { css: null,           jsTransform: null,            width: 1080, height: 1080, outputDir: INSTA_DIR,    suffix: 'instagram',  label: 'instagram' },
-    { css: TIKTOK_CSS,     jsTransform: tiktokVerticalJS, width: 1080, height: 1920, outputDir: TIKTOK_V_DIR, suffix: 'tiktok-v',   label: 'tiktok vert' },
-    { css: RECTANGLE_CSS,  jsTransform: rectangleJS,      width: 1080, height: 600,  outputDir: TIKTOK_H_DIR, suffix: 'tiktok-h',   label: 'tiktok horiz' },
   ];
 
   for (const [htmlFile, items] of Object.entries(byFile)) {

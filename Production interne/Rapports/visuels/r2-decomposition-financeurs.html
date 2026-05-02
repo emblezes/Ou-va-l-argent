@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>R2 — Les 6 financeurs publics des associations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-gold: #ffd700;
+            --accent-red: #ff4757;
+            --accent-green: #00ff88;
+            --accent-purple: #a855f7;
+            --accent-orange: #ff9f43;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1200px; height: 700px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0, 212, 255, 0.10) 0%, transparent 70%); top: -200px; right: -150px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255, 215, 0, 0.06) 0%, transparent 70%); bottom: -150px; left: -100px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 55px 38px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; justify-content: flex-start; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.4rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 3.8rem; text-align: center; color: var(--text-primary); line-height: 1.05; margin-top: 14px; letter-spacing: -1px; }
+        .chart-title .accent { color: var(--accent-gold); font-style: italic; }
+        .subtitle { text-align: center; font-size: 1rem; color: var(--text-secondary); margin-top: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; }
+
+        .total-bar {
+            margin-top: 32px;
+            display: flex; align-items: center; gap: 14px;
+            padding: 0 4px;
+        }
+        .total-bar .total-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.6rem; font-weight: 700;
+            color: var(--accent-gold);
+            min-width: 110px;
+        }
+        .total-bar .stack {
+            flex: 1; height: 56px;
+            display: flex; border-radius: 8px; overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+        .total-bar .seg {
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem; font-weight: 700;
+            color: #06080c;
+            position: relative;
+        }
+        .seg-dpts   { background: linear-gradient(135deg, #00d4ff 0%, #00b5db 100%); width: 30.3%; }
+        .seg-opcos  { background: linear-gradient(135deg, #66aaff 0%, #4a90d4 100%); width: 23.8%; color: #fff; }
+        .seg-etat   { background: linear-gradient(135deg, #ffd700 0%, #e6b800 100%); width: 19.5%; }
+        .seg-comm   { background: linear-gradient(135deg, #ff9f43 0%, #ff7b3a 100%); width: 13.3%; color: #fff; }
+        .seg-fisc   { background: linear-gradient(135deg, #ff4757 0%, #e03050 100%); width: 8.0%; color: #fff; }
+        .seg-reg    { background: linear-gradient(135deg, #a855f7 0%, #8a3ed4 100%); width: 5.2%; color: #fff; }
+
+        .ranking { margin-top: 28px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+        .rank-row { display: grid; grid-template-columns: 14px 1fr 130px 60px; align-items: center; gap: 16px; padding: 8px 14px; background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 8px; }
+        .rank-color { width: 14px; height: 14px; border-radius: 4px; }
+        .rank-color.dpts  { background: #00d4ff; }
+        .rank-color.opcos { background: #66aaff; }
+        .rank-color.etat  { background: #ffd700; }
+        .rank-color.comm  { background: #ff9f43; }
+        .rank-color.fisc  { background: #ff4757; }
+        .rank-color.reg   { background: #a855f7; }
+
+        .rank-label { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 600; color: var(--text-primary); line-height: 1.2; }
+        .rank-label small { display: block; font-size: 0.75rem; color: var(--text-muted); font-weight: 400; margin-top: 1px; }
+        .rank-amount { font-family: 'JetBrains Mono', monospace; font-size: 1.25rem; font-weight: 700; color: #fff; text-align: right; }
+        .rank-pct { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 600; color: var(--text-muted); text-align: right; }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; margin-top: 16px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.85rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.25rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="r2-decomposition-financeurs">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+            </div>
+
+            <h2 class="chart-title">Qui finance les <span class="accent">associations</span> ?</h2>
+            <div class="subtitle">53,4 Md€ d'argent public · Décomposition par financeur · 2023</div>
+
+            <div class="total-bar">
+                <div class="total-num">53,4 Md€</div>
+                <div class="stack">
+                    <div class="seg seg-dpts">30 %</div>
+                    <div class="seg seg-opcos">24 %</div>
+                    <div class="seg seg-etat">19 %</div>
+                    <div class="seg seg-comm">13 %</div>
+                    <div class="seg seg-fisc">8 %</div>
+                    <div class="seg seg-reg">5 %</div>
+                </div>
+            </div>
+
+            <div class="ranking">
+                <div class="rank-row">
+                    <div class="rank-color dpts"></div>
+                    <div class="rank-label">Conseils départementaux<small>Action sociale, handicap, RSA, protection enfance</small></div>
+                    <div class="rank-amount">16,2 Md€</div>
+                    <div class="rank-pct">30 %</div>
+                </div>
+                <div class="rank-row">
+                    <div class="rank-color opcos"></div>
+                    <div class="rank-label">Opérateurs de l'État<small>Dont OPCO (formation pro) : 10,7 Md€</small></div>
+                    <div class="rank-amount">12,7 Md€</div>
+                    <div class="rank-pct">24 %</div>
+                </div>
+                <div class="rank-row">
+                    <div class="rank-color etat"></div>
+                    <div class="rank-label">État (ministères)<small>Programmes budgétaires PLF · 112 722 versements</small></div>
+                    <div class="rank-amount">10,4 Md€</div>
+                    <div class="rank-pct">19 %</div>
+                </div>
+                <div class="rank-row">
+                    <div class="rank-color comm"></div>
+                    <div class="rank-label">Communes & EPCI<small>Subventions locales, sport, culture</small></div>
+                    <div class="rank-amount">7,1 Md€</div>
+                    <div class="rank-pct">13 %</div>
+                </div>
+                <div class="rank-row">
+                    <div class="rank-color fisc"></div>
+                    <div class="rank-label">Dépenses fiscales<small>Réductions d'impôt · dons et mécénat</small></div>
+                    <div class="rank-amount">4,3 Md€</div>
+                    <div class="rank-pct">8 %</div>
+                </div>
+                <div class="rank-row">
+                    <div class="rank-color reg"></div>
+                    <div class="rank-label">Régions<small>Formation, économie, transport</small></div>
+                    <div class="rank-amount">2,8 Md€</div>
+                    <div class="rank-pct">5 %</div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>IGF / IGÉSR — Revue des dépenses publiques aux associations · mai 2025</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

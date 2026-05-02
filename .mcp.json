@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "lex7": {
+      "type": "http",
+      "url": "https://lex7-mcp.onrender.com/mcp"
+    }
+  }
+}

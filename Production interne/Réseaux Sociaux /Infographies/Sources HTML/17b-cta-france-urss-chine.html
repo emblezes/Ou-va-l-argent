@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTA – Partage et abonne-toi (France vs URSS)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Couleurs EXACTES de 17-france-vs-chine-urss.html */
+        :root {
+            --bg-deep: #0c1018;
+            --bg-mid: #142238;
+            --accent: #ff4757;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+        .bg-base {
+            position: absolute; inset: 0;
+            background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%);
+        }
+        .bg-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 71, 87, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 71, 87, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .bg-glow {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.1) 0%, transparent 70%);
+            bottom: -200px; left: 50%; transform: translateX(-50%);
+            pointer-events: none;
+        }
+        .content {
+            position: relative; z-index: 1; height: 100%;
+            padding: 50px 60px;
+            display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+        }
+        .logo { display: flex; align-items: center; gap: 14px; }
+        .logo-icon {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem; color: var(--accent); line-height: 1;
+        }
+        .logo-text {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1;
+        }
+        .center-block {
+            flex: 1; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 30px;
+        }
+        .bell { font-size: 7rem; line-height: 1; filter: drop-shadow(0 0 30px rgba(255, 71, 87, 0.4)); }
+        .cta-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 6.5rem; color: var(--text-primary);
+            text-align: center; line-height: 1.1; font-style: italic;
+        }
+        .cta-title .accent { color: var(--accent); }
+        .cta-sub {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem; color: var(--text-secondary);
+            text-align: center; line-height: 1.5;
+        }
+        .handle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.8rem; font-weight: 700; color: var(--accent);
+            text-shadow: 0 0 30px rgba(255, 71, 87, 0.3);
+        }
+        .footer {
+            display: flex; justify-content: center; align-items: center;
+            padding-top: 12px; border-top: 1px solid var(--glass-border); width: 100%;
+        }
+        .website {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem; font-weight: 600; color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow"></div>
+        <div class="content">
+            <div class="logo">
+                <span class="logo-icon">€</span>
+                <span class="logo-text">Où Va l'Argent ?</span>
+            </div>
+            <div class="center-block">
+                <div class="bell">🔔</div>
+                <div class="cta-title"><span class="accent">Partage</span><br>et abonne-toi.</div>
+                <div class="cta-sub">Chaque chiffre compte.<br>Fais tourner l'info.</div>
+                <div class="handle">@ouvalargentfr</div>
+            </div>
+            <div class="footer">
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

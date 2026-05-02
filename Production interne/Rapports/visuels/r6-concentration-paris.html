@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>R6 — La concentration parisienne des subventions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-gold: #ffd700;
+            --accent-red: #ff4757;
+            --accent-green: #00ff88;
+            --accent-purple: #a855f7;
+            --accent-orange: #ff9f43;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1200px; height: 700px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%); top: -150px; left: 28%; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%); bottom: -150px; right: -100px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 55px 38px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; justify-content: flex-start; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.4rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 3.4rem; text-align: center; color: var(--text-primary); line-height: 1.05; margin-top: 10px; letter-spacing: -1px; }
+        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .subtitle { text-align: center; font-size: 0.9rem; color: var(--text-secondary); margin-top: 6px; letter-spacing: 1.3px; text-transform: uppercase; font-weight: 500; }
+
+        .layout { flex: 1; display: grid; grid-template-columns: 380px 1fr; gap: 30px; margin-top: 22px; }
+
+        /* Cercles bulles */
+        .bubbles { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+        .bubble {
+            border-radius: 50%; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center;
+            position: relative;
+        }
+        .bubble.paris {
+            width: 270px; height: 270px;
+            background: radial-gradient(circle, rgba(255,71,87,0.55) 0%, rgba(255,71,87,0.10) 100%);
+            border: 2px solid rgba(255,71,87,0.7);
+            box-shadow: 0 0 40px rgba(255,71,87,0.25);
+        }
+        .bubble.paris .bub-name { font-family: 'Instrument Serif', serif; font-size: 2.6rem; color: #fff; font-style: italic; letter-spacing: -1px; }
+        .bubble.paris .bub-amount { font-family: 'JetBrains Mono', monospace; font-size: 2.4rem; font-weight: 800; color: var(--accent-red); margin-top: 4px; line-height: 1; letter-spacing: -1px; }
+        .bubble.paris .bub-pct { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; color: rgba(255,255,255,0.85); margin-top: 6px; letter-spacing: 1px; text-transform: uppercase; }
+
+        .vs-label {
+            font-family: 'Instrument Serif', serif; font-size: 1.4rem;
+            color: var(--text-muted); font-style: italic;
+        }
+
+        .bubble.reste {
+            width: 130px; height: 130px;
+            background: radial-gradient(circle, rgba(0,212,255,0.30) 0%, rgba(0,212,255,0.05) 100%);
+            border: 1.5px solid rgba(0,212,255,0.55);
+        }
+        .bubble.reste .bub-name { font-family: 'Syne', sans-serif; font-size: 0.85rem; color: var(--text-secondary); letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+        .bubble.reste .bub-amount { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; color: var(--accent-electric); margin-top: 4px; line-height: 1; }
+
+        /* Top villes hors Paris */
+        .top-villes { display: flex; flex-direction: column; }
+        .top-villes h3 {
+            font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700;
+            color: var(--text-primary); margin-bottom: 12px;
+            letter-spacing: 1.2px; text-transform: uppercase;
+        }
+        .ville-row { display: grid; grid-template-columns: 30px 110px 1fr 80px; align-items: center; gap: 12px; padding: 6px 4px; }
+        .ville-num { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-muted); }
+        .ville-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 600; color: #fff; }
+        .ville-bar-zone { display: flex; align-items: center; }
+        .ville-bar { height: 14px; border-radius: 3px; background: linear-gradient(90deg, #00d4ff, #0099cc); min-width: 6px; }
+        .ville-amount { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 700; color: var(--accent-electric); text-align: right; }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.85rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.25rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="r6-concentration-paris">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+            </div>
+
+            <h2 class="chart-title">L'argent État part majoritairement de <span class="accent">Paris</span></h2>
+            <div class="subtitle">Versements aux associations par commune de domiciliation du siège · 2023</div>
+
+            <div class="layout">
+                <div class="bubbles">
+                    <div class="bubble paris">
+                        <div class="bub-name">Paris</div>
+                        <div class="bub-amount">≈ 3,0 Md€</div>
+                        <div class="bub-pct">~ 30 % du total État</div>
+                    </div>
+                    <div class="vs-label">vs</div>
+                    <div class="bubble reste">
+                        <div class="bub-name">1<sup>re</sup> ville hors Paris</div>
+                        <div class="bub-amount">184 M€</div>
+                    </div>
+                </div>
+
+                <div class="top-villes">
+                    <h3>Top 10 des villes hors Paris (sièges des associations bénéficiaires)</h3>
+                    <div class="ville-row">
+                        <div class="ville-num">01</div>
+                        <div class="ville-name">Lille</div>
+                        <div class="ville-bar-zone"><div class="ville-bar" style="width: 100%;"></div></div>
+                        <div class="ville-amount">184 M€</div>
+                    </div>
+                    <div class="ville-row">
+                        <div class="ville-num">02</div>
+                        <div class="ville-name">Saint-Denis</div>
+                        <div class="ville-bar-zone"><div class="ville-bar" style="width: 83%;"></div></div>
+                        <div class="ville-amount">152 M€</div>
+                    </div>
+                    <div class="ville-row">
+                        <div class="ville-num">03</div>
+                        <div class="ville-name">Toulouse</div>
+                        <div class="ville-bar-zone"><div class="ville-bar" style="width: 70%;"></div></div>
+                        <div class="ville-amount">129 M€</div>
+                    </div>
+                    <div class="ville-row">
+                        <div class="ville-num">04</div>
+                        <div class="ville-name">Strasbourg</div>
+                        <div class="ville-bar-zone"><div class="ville-bar" style="width: 66%;"></div></div>
+                        <div class="ville-amount">122 M€</div>
+                    </div>
+                    <div class="ville-row">
+                        <div class="ville-num">05</div>
+                        <div class="ville-name">Montpellier</div>
+                        <div class="ville-bar-zone"><div class="ville-bar" style="width: 52%;"></div></div>
+                        <div class="ville-amount">96 M€</div>
+                    </div>
+                    <div class="ville-row">
+                        <div class="ville-num">06</div>
+                        <div class="ville-name">Metz</div>
+                        <div class="ville-bar-zone"><div class="ville-bar" style="width: 52%;"></div></div>
+                        <div class="ville-amount">96 M€</div>
+                    </div>
+                    <div class="ville-row">
+                        <div class="ville-num">07</div>
+                        <div class="ville-name">Bordeaux</div>
+                        <div class="ville-bar-zone"><div class="ville-bar" style="width: 50%;"></div></div>
+                        <div class="ville-amount">93 M€</div>
+                    </div>
+                    <div class="ville-row">
+                        <div class="ville-num">08</div>
+                        <div class="ville-name">Nice</div>
+                        <div class="ville-bar-zone"><div class="ville-bar" style="width: 49%;"></div></div>
+                        <div class="ville-amount">90 M€</div>
+                    </div>
+                    <div class="ville-row">
+                        <div class="ville-num">09</div>
+                        <div class="ville-name">Saint-Étienne</div>
+                        <div class="ville-bar-zone"><div class="ville-bar" style="width: 43%;"></div></div>
+                        <div class="ville-amount">80 M€</div>
+                    </div>
+                    <div class="ville-row">
+                        <div class="ville-num">10</div>
+                        <div class="ville-name">Montreuil</div>
+                        <div class="ville-bar-zone"><div class="ville-bar" style="width: 41%;"></div></div>
+                        <div class="ville-amount">75 M€</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>PLF 2025 — Annexe Jaune effort financier de l'État · data.gouv.fr · agrégation par commune de domiciliation</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

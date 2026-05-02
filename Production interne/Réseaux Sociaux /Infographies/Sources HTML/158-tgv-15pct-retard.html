@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>15 % des TGV arrivent en retard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --bg-mid:  #142b48;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-red: #ff4757;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 0; margin: 0; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 71, 87, 0.14) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%); bottom: -150px; left: -150px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 60px 40px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .hero-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        /* Logo SNCF officiel (image PNG) */
+        .sncf-logo {
+            width: 500px;
+            height: auto;
+            filter: drop-shadow(0 8px 40px rgba(229, 0, 125, 0.4));
+            margin-bottom: 10px;
+        }
+
+        .hero-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14rem;
+            font-weight: 700;
+            color: var(--accent-red);
+            line-height: 0.9;
+            letter-spacing: -7px;
+            text-shadow: 0 0 100px rgba(255, 71, 87, 0.5);
+        }
+
+        .hero-text {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.4rem;
+            color: var(--text-primary);
+            text-align: center;
+            line-height: 1.05;
+            max-width: 1000px;
+            letter-spacing: -1.6px;
+            margin-top: 0;
+        }
+        .hero-text .accent {
+            color: var(--accent-red);
+            font-style: italic;
+        }
+
+        .hero-sub {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.4rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.3;
+            margin-top: 25px;
+        }
+        .hero-sub strong { color: var(--text-primary); font-style: normal; font-weight: 700; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 18px;
+            margin-top: 22px;
+            border-top: 1px solid var(--glass-border);
+        }
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <div class="hero-area">
+                <img class="sncf-logo" src="file:///Users/emmanuelblezes/Documents/08_O%C3%B9%20va%20l%27argent%20/sncf-logo-transparent.png" alt="SNCF">
+                <div class="hero-value">15%</div>
+                <div class="hero-text">des <span class="accent">TGV</span> arrivent<br>en retard</div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>AQST · Autorité de la Qualité de Service des Transports · 2023</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

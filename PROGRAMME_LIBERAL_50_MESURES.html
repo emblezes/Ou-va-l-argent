@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programme Economique Liberal — 50 Mesures Chiffrees</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --bg-deep: #06080c;
+    --bg-card: #0d1117;
+    --bg-card-alt: #111820;
+    --border: #1a2332;
+    --border-accent: #1e3a5f;
+    --cyan: #00d4ff;
+    --gold: #ffd700;
+    --red: #ff4757;
+    --green: #00ff88;
+    --violet: #a855f7;
+    --orange: #ff9f43;
+    --text: #e8edf3;
+    --text-muted: #8899aa;
+    --text-dim: #556677;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 30%, rgba(0,212,255,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(255,215,0,0.05) 0%, transparent 50%),
+                var(--bg-deep);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    border: 1px solid rgba(0,212,255,0.3);
+    padding: 8px 24px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 .accent { color: var(--cyan); }
+  .hero h1 .accent-gold { color: var(--gold); }
+
+  .hero-sub {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--text-muted);
+    max-width: 800px;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-stat .label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── CONTAINER ── */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── DIAGNOSTIC ── */
+  .diagnostic {
+    padding: 100px 0;
+    background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-card) 100%);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .section-subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* ── TABLE DIAGNOSTIC ── */
+  .diag-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    font-size: 0.95rem;
+  }
+
+  .diag-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .diag-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(26,35,50,0.5);
+  }
+
+  .diag-table tr:hover td {
+    background: rgba(0,212,255,0.03);
+  }
+
+  .diag-table .val-fr {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--red);
+  }
+
+  .diag-table .val-ref {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-muted);
+  }
+
+  .diag-table .val-ecart {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .objectif-box {
+    margin-top: 40px;
+    padding: 24px 32px;
+    background: rgba(0,212,255,0.05);
+    border: 1px solid rgba(0,212,255,0.15);
+    border-radius: 8px;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .objectif-box strong { color: var(--cyan); }
+
+  /* ── AXE SECTIONS ── */
+  .axe-section {
+    padding: 100px 0 60px;
+    border-top: 1px solid var(--border);
+  }
+
+  .axe-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .axe-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .axe-number.c1 { color: var(--cyan); }
+  .axe-number.c2 { color: var(--gold); }
+  .axe-number.c3 { color: var(--green); }
+
+  .axe-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 12px;
+  }
+
+  .axe-desc {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+  }
+
+  /* ── CATEGORY ── */
+  .category {
+    margin-bottom: 60px;
+  }
+
+  .cat-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding-bottom: 12px;
+    margin-bottom: 32px;
+    border-bottom: 2px solid var(--border-accent);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cat-title .cat-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .cat-icon.cyan { background: rgba(0,212,255,0.15); color: var(--cyan); }
+  .cat-icon.gold { background: rgba(255,215,0,0.15); color: var(--gold); }
+  .cat-icon.red { background: rgba(255,71,87,0.15); color: var(--red); }
+  .cat-icon.green { background: rgba(0,255,136,0.15); color: var(--green); }
+  .cat-icon.violet { background: rgba(168,85,247,0.15); color: var(--violet); }
+  .cat-icon.orange { background: rgba(255,159,67,0.15); color: var(--orange); }
+
+  /* ── MESURE CARD ── */
+  .mesure {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    transition: border-color 0.2s;
+  }
+
+  .mesure:hover {
+    border-color: var(--border-accent);
+  }
+
+  .mesure-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .mesure-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .mesure-num.c1 { background: rgba(0,212,255,0.15); color: var(--cyan); }
+  .mesure-num.c2 { background: rgba(255,215,0,0.15); color: var(--gold); }
+  .mesure-num.c3 { background: rgba(0,255,136,0.15); color: var(--green); }
+
+  .mesure-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.35rem;
+    line-height: 1.3;
+  }
+
+  .mesure-body {
+    padding-left: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .mesure-body p {
+    margin-bottom: 10px;
+  }
+
+  .mesure-body ul {
+    margin: 8px 0 8px 20px;
+  }
+
+  .mesure-body li {
+    margin-bottom: 4px;
+  }
+
+  .mesure-body strong { color: var(--text); }
+
+  .chiffrage {
+    margin-top: 12px;
+    padding: 14px 18px;
+    background: var(--bg-card-alt);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.9rem;
+  }
+
+  .chiffrage .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .ref {
+    margin-top: 8px;
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+
+  .highlight {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--cyan);
+  }
+
+  .highlight-gold {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .highlight-red {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--red);
+  }
+
+  .highlight-green {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--green);
+  }
+
+  /* ── SYNTHESE FINANCIERE ── */
+  .synthese {
+    padding: 100px 0;
+    background: linear-gradient(180deg, var(--bg-deep) 0%, rgba(0,212,255,0.03) 50%, var(--bg-deep) 100%);
+  }
+
+  .synth-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+    margin-top: 50px;
+  }
+
+  .synth-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .synth-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+  }
+
+  .synth-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(26,35,50,0.5);
+    font-size: 0.9rem;
+  }
+
+  .synth-row:last-child {
+    border-bottom: none;
+  }
+
+  .synth-row .label { color: var(--text-muted); }
+
+  .synth-row .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+  }
+
+  .synth-row .val.positive { color: var(--green); }
+  .synth-row .val.negative { color: var(--red); }
+  .synth-row .val.neutral { color: var(--gold); }
+
+  .synth-total {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 2px solid var(--border-accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .synth-total .label {
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .synth-total .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  /* ── BILAN ── */
+  .bilan-box {
+    margin-top: 50px;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(0,255,136,0.05) 0%, rgba(0,212,255,0.05) 100%);
+    border: 1px solid rgba(0,255,136,0.2);
+    border-radius: 16px;
+    text-align: center;
+  }
+
+  .bilan-box h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2rem;
+    margin-bottom: 24px;
+  }
+
+  .bilan-grid {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  .bilan-item {
+    text-align: center;
+  }
+
+  .bilan-item .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .bilan-item .num.green { color: var(--green); }
+  .bilan-item .num.red { color: var(--red); }
+  .bilan-item .num.gold { color: var(--gold); }
+  .bilan-item .num.cyan { color: var(--cyan); }
+
+  .bilan-item .desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .bilan-result {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  .bilan-result strong { color: var(--green); }
+
+  /* ── CALENDRIER ── */
+  .calendrier {
+    padding: 80px 0 100px;
+  }
+
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 50px;
+  }
+
+  .cal-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+
+  .cal-card.phase1::before { background: var(--red); }
+  .cal-card.phase2::before { background: var(--orange); }
+  .cal-card.phase3::before { background: var(--cyan); }
+  .cal-card.phase4::before { background: var(--green); }
+
+  .cal-phase {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .cal-card.phase1 .cal-phase { color: var(--red); }
+  .cal-card.phase2 .cal-phase { color: var(--orange); }
+  .cal-card.phase3 .cal-phase { color: var(--cyan); }
+  .cal-card.phase4 .cal-phase { color: var(--green); }
+
+  .cal-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .cal-items {
+    list-style: none;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .cal-items li {
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .cal-items li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-dim);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.8;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { padding: 40px 20px; }
+    .hero-stats { gap: 24px; }
+    .hero-stat .num { font-size: 1.8rem; }
+    .mesure { padding: 20px; }
+    .bilan-grid { gap: 30px; }
+    .bilan-item .num { font-size: 1.8rem; }
+    .container { padding: 0 16px; }
+    .axe-number { font-size: 3.5rem; }
+    .synth-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: #fff; color: #111; }
+    .hero { min-height: auto; background: none; }
+    .mesure { border: 1px solid #ccc; page-break-inside: avoid; }
+    .chiffrage { border-left-color: #333; background: #f5f5f5; }
+    .highlight, .highlight-gold, .highlight-green { color: #111; }
+    .val-fr, .val-ecart { color: #111; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero">
+  <div class="hero-badge">Programme economique</div>
+  <h1>50 mesures pour<br><span class="accent">liberer</span> la France</h1>
+  <p class="hero-sub">Un programme radical en 3 axes : liberer l'economie, restaurer la puissance, attirer les talents. Chiffrage macro source (INSEE, OCDE, Cour des Comptes, COR, DREES, Eurostat).</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="num">50</span>
+      <span class="label">Mesures</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">250+</span>
+      <span class="label">Md&euro; d'economies/an</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">47%</span>
+      <span class="label">Depenses / PIB cible</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">10</span>
+      <span class="label">Ans de transition</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DIAGNOSTIC ════════════ -->
+<section class="diagnostic">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Etat des lieux</span>
+      <h2 class="section-title">Pourquoi ce programme</h2>
+      <p class="section-subtitle">La France decroche sur tous les indicateurs de competitivite. Les chiffres parlent d'eux-memes.</p>
+    </div>
+
+    <table class="diag-table">
+      <thead>
+        <tr>
+          <th>Indicateur</th>
+          <th>France</th>
+          <th>Reference UE/OCDE</th>
+          <th>Ecart</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Depenses publiques / PIB</td>
+          <td class="val-fr">57,1%</td>
+          <td class="val-ref">49,2% (UE)</td>
+          <td class="val-ecart">+7,9 pts</td>
+        </tr>
+        <tr>
+          <td>Prelevements obligatoires</td>
+          <td class="val-fr">42,8%</td>
+          <td class="val-ref">34,2% (OCDE)</td>
+          <td class="val-ecart">+8,6 pts</td>
+        </tr>
+        <tr>
+          <td>Dette publique</td>
+          <td class="val-fr">115,6% PIB (3 416 Md&euro;)</td>
+          <td class="val-ref">95% (zone euro)</td>
+          <td class="val-ecart">+20 pts</td>
+        </tr>
+        <tr>
+          <td>Charge d'interets</td>
+          <td class="val-fr">58 Md&euro;/an</td>
+          <td class="val-ref">&mdash;</td>
+          <td class="val-ecart">2e poste budgetaire</td>
+        </tr>
+        <tr>
+          <td>Depenses retraites / PIB</td>
+          <td class="val-fr">14,2%</td>
+          <td class="val-ref">10-11% (comparables)</td>
+          <td class="val-ecart">+3-4 pts</td>
+        </tr>
+        <tr>
+          <td>Agents publics / 1 000 hab.</td>
+          <td class="val-fr">89</td>
+          <td class="val-ref">59 (Allemagne)</td>
+          <td class="val-ecart">+51%</td>
+        </tr>
+        <tr>
+          <td>Code du travail</td>
+          <td class="val-fr">10 000 articles</td>
+          <td class="val-ref">54 (Suisse)</td>
+          <td class="val-ecart">&times;185</td>
+        </tr>
+        <tr>
+          <td>Taux de chomage</td>
+          <td class="val-fr">7,5%</td>
+          <td class="val-ref">2,6% (Danemark)</td>
+          <td class="val-ecart">&times;3</td>
+        </tr>
+        <tr>
+          <td>Part industrie / PIB</td>
+          <td class="val-fr">13,4%</td>
+          <td class="val-ref">19,7% (Allemagne)</td>
+          <td class="val-ecart">-6,3 pts</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="objectif-box">
+      <strong>Objectif a 10 ans</strong> : ramener les depenses publiques de 57% a <strong>47% du PIB</strong> (&minus;10 pts = &minus;290 Md&euro;), les prelevements obligatoires de 43% a <strong>35%</strong>, et la dette sous <strong>90% du PIB</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- AXE 1 — LIBERER L'ECONOMIE                     -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="axe-section" id="axe1">
+  <div class="container">
+    <div class="axe-header">
+      <span class="axe-number c1">01</span>
+      <h2 class="axe-title">Liberer l'economie</h2>
+      <p class="axe-desc">Mesures 1 a 25 &mdash; Retraites, travail, fiscalite, Etat, protection sociale</p>
+    </div>
+
+    <!-- ── A. RETRAITES ── -->
+    <div class="category">
+      <h3 class="cat-title"><span class="cat-icon cyan">A</span> Reforme des retraites &mdash; Transition vers la capitalisation</h3>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#01</span>
+          <h4 class="mesure-title">Systeme mixte repartition/capitalisation (modele suedois)</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Basculer progressivement vers un systeme a 3 piliers :</p>
+          <ul>
+            <li><strong>Pilier 1</strong> : Repartition (comptes notionnels) &mdash; 12% des revenus (vs 28% aujourd'hui)</li>
+            <li><strong>Pilier 2</strong> : Capitalisation obligatoire &mdash; 8% des revenus sur compte individuel</li>
+            <li><strong>Pilier 3</strong> : Epargne volontaire defiscalisee</li>
+          </ul>
+          <p>Transition sur 25 ans. Les actifs de moins de 40 ans basculent integralement. Les 40-55 ans en systeme hybride. Les +55 ans restent en repartition pure.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Cout de transition : <span class="highlight-gold">30-50 Md&euro; sur 15 ans</span> (~3 Md&euro;/an)<br>
+            Economie a terme : <span class="highlight-green">80-120 Md&euro;/an</span> (retraites de 14,2% a 8-9% du PIB)<br>
+            Rendement fonds de pension : <span class="highlight">5-8%/an</span> (vs 1,8% rendement implicite repartition)
+            <div class="ref">Ref. : Pays-Bas &mdash; actifs fonds de pension = 213% du PIB. Suede &mdash; 7% en capitalisation = stabilite financiere totale.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#02</span>
+          <h4 class="mesure-title">Age de depart a 67 ans, indexation automatique sur l'esperance de vie</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Relevement progressif (+4 mois/an) jusqu'a 67 ans en 2035. Puis indexation automatique : +1 an d'esperance de vie = +8 mois de travail.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Economie : <span class="highlight-green">12-15 Md&euro;/an</span> a horizon 2035 (COR). Alignement sur Allemagne, Danemark, Pays-Bas.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#03</span>
+          <h4 class="mesure-title">Suppression de tous les regimes speciaux sans exception</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Un regime unique pour tous. Fin des regimes SNCF (depart ~57 ans), RATP, EDF, Banque de France, Opera de Paris, Comedie-Francaise.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Economie : <span class="highlight-green">5-8 Md&euro;/an</span>. Pension moyenne regimes speciaux : 1 940&euro; vs 1 360&euro; secteur prive (+43%).
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#04</span>
+          <h4 class="mesure-title">Fonds souverain retraite de 500 Md&euro; a horizon 2040</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Constitution progressive d'un fonds souverain dedie aux retraites, alimente par les privatisations (mesure 15), les excedents budgetaires, et une quote-part des cotisations capitalisation.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Objectif 500 Md&euro; en 15 ans. Rendement 5%/an = <span class="highlight-green">25 Md&euro;/an</span> de revenus a terme.
+            <div class="ref">Ref. : Fonds norvegien = 1 400 Md&euro;, rendement moyen 6,3%/an.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── B. MARCHE DU TRAVAIL ── -->
+    <div class="category">
+      <h3 class="cat-title"><span class="cat-icon red">B</span> Deregulation du marche du travail</h3>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#05</span>
+          <h4 class="mesure-title">Code du travail : de 10 000 a 200 articles</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Reecriture integrale du Code du travail. Passage a un code de principes generaux (200 articles max, modele suisse). Le reste releve de la negociation de branche et d'entreprise.</p>
+          <div class="chiffrage">
+            <span class="tag">Impact</span>
+            Cout de la sur-reglementation : <span class="highlight-red">100 Md&euro;/an</span> (IFRAP/Senat). Gain potentiel : <span class="highlight-green">30-50 Md&euro;/an</span> de competitivite retrouvee.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#06</span>
+          <h4 class="mesure-title">Liberte totale d'embauche et de separation pour les entreprises &lt; 50 salaries</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Suppression du motif de licenciement obligatoire. Indemnite forfaitaire : 1 mois de salaire par annee d'anciennete, plafonnee a 12 mois. Pas de procedure judiciaire, pas de prud'hommes pour les PME.</p>
+          <div class="chiffrage">
+            <span class="tag">Impact</span>
+            99,9% des entreprises &lt; 250 salaries. Effet attendu : <span class="highlight-green">+500 000 embauches sur 5 ans</span>.
+            <div class="ref">Ref. : Reformes Hartz en Allemagne : chomage de 11% a 3%.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#07</span>
+          <h4 class="mesure-title">Contrat de travail unique a droits progressifs</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Fin du CDI/CDD. Un seul contrat, droits qui augmentent avec l'anciennete (indemnite, formation, preavis). Embauche immediate, flexibilite totale.</p>
+          <div class="chiffrage">
+            <span class="tag">Impact</span>
+            Fin de la dualite du marche du travail.
+            <div class="ref">Ref. : Modele italien (Jobs Act 2015) : +600 000 CDI en 2 ans.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#08</span>
+          <h4 class="mesure-title">Plafonnement des indemnites prud'homales a 6 mois de salaire</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Bareme obligatoire et non indicatif. Maximum 6 mois quel que soit le cas (hors discrimination). Jugement en 3 mois max.</p>
+          <div class="chiffrage">
+            <span class="tag">Impact</span>
+            Reduction de l'incertitude juridique. Cout moyen prud'hommes pour une PME : <span class="highlight-red">30 000-50 000&euro;</span> aujourd'hui.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#09</span>
+          <h4 class="mesure-title">Suppression des 35h, liberte contractuelle</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Suppression de la duree legale. Chaque contrat fixe ses heures. Seule limite : 48h/semaine (directive europeenne). Les heures supplementaires sont un concept du passe.</p>
+          <div class="chiffrage">
+            <span class="tag">Impact</span>
+            +2h/semaine en moyenne = <span class="highlight-green">+2,5% de PIB</span> (~75 Md&euro;). La France travaille 1 607h/an vs 1 810h en Suisse (+12,6%).
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#10</span>
+          <h4 class="mesure-title">Suppression du SMIC national, plancher par branche</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Le SMIC national (1 766&euro; brut) est remplace par des planchers negocies par branche, avec un minimum absolu de 1 200&euro;. Les branches ou la productivite est faible ne sont plus artificiellement alignees sur les branches productives.</p>
+          <div class="chiffrage">
+            <span class="tag">Impact</span>
+            Reduction du chomage des non-qualifies (<span class="highlight-red">15,3%</span> aujourd'hui).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── C. FISCALITE ── -->
+    <div class="category">
+      <h3 class="cat-title"><span class="cat-icon gold">C</span> Fiscalite &mdash; Choc de simplification</h3>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#11</span>
+          <h4 class="mesure-title">Flat tax a 15% sur tous les revenus du capital</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Taux unique de 15% (vs PFU 30% actuel) sur plus-values, dividendes, interets, loyers. Pas de prelevements sociaux en sus pour les createurs qui restent 5+ ans.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Perte initiale : <span class="highlight-red">5-8 Md&euro;/an</span>. Compensee a 3-5 ans par elargissement de l'assiette (effet Laffer).
+            <div class="ref">Ref. : Flat tax Bulgarie 10% &rarr; recettes fiscales +30% en 5 ans.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#12</span>
+          <h4 class="mesure-title">IS a 15%, zero pour les benefices reinvestis</h4>
+        </div>
+        <div class="mesure-body">
+          <p>IS a 15% sur les benefices distribues. 0% sur les benefices reinvestis pendant 10 ans pour toute entreprise. Au-dela : 15% sur tout.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Recettes IS 2024 = 84 Md&euro;. Perte initiale : <span class="highlight-red">20-25 Md&euro;</span>. Compensee a 5 ans par afflux d'IDE.
+            <div class="ref">Ref. : Irlande IS 12,5% &rarr; excedent budgetaire 10 Md&euro;, 700+ multinationales US.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#13</span>
+          <h4 class="mesure-title">Impot sur le revenu : 2 tranches, maximum 25%</h4>
+        </div>
+        <div class="mesure-body">
+          <p>0% jusqu'a 15 000&euro;. 15% de 15 000&euro; a 75 000&euro;. 25% au-dela. Suppression de toutes les niches fiscales (474 niches = 94 Md&euro; de manque a gagner en 2024).</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Recettes IR = 96 Md&euro;. Baisse des taux compensee par suppression des niches. Effet net : <span class="highlight-green">neutre a +5 Md&euro;</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#14</span>
+          <h4 class="mesure-title">Suppression totale des droits de succession en ligne directe</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Zero impot sur la transmission parents &rarr; enfants, quel que soit le montant. Favoriser la transmission d'entreprises et de patrimoine productif.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Recettes droits de succession = <span class="highlight-red">17 Md&euro;/an</span>. Perte seche compensee par dynamisme economique.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#15</span>
+          <h4 class="mesure-title">Privatisation massive : 100 Md&euro; en 5 ans</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Vente des participations Etat dans EDF (85%), Renault (15%), Orange (13%), ADP, FDJ, La Poste, SNCF fret, France Televisions, Radio France. L'Etat n'a pas vocation a etre actionnaire.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Portefeuille de participations = <span class="highlight">160 Md&euro;</span> (APE 2024). Objectif : <span class="highlight-gold">100 Md&euro;</span> fleches vers desendettement + fonds souverain retraite.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── D. REDUCTION DE L'ETAT ── -->
+    <div class="category">
+      <h3 class="cat-title"><span class="cat-icon violet">D</span> Reduction de l'Etat</h3>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#16</span>
+          <h4 class="mesure-title">Suppression de 1 million de postes de fonctionnaires en 10 ans</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Non-remplacement de 100% des departs en retraite (150 000/an) pendant 7 ans + plan de departs volontaires. Passage de 5,9 millions a 4,9 millions d'agents. Priorite a la numerisation.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Masse salariale FP = 250 Md&euro;. 1M postes &times; 42 000&euro; = <span class="highlight-green">42 Md&euro;/an d'economies</span>.
+            <div class="ref">Ref. : Canada 1995 : &minus;55 000 postes &rarr; equilibre budgetaire en 3 ans, dette de 67% a 29% du PIB.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#17</span>
+          <h4 class="mesure-title">Fusion des communes : de 35 000 a 5 000</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Fusion obligatoire de toutes les communes de moins de 5 000 habitants. La France a 35 000 communes pour 520 000 elus locaux. L'Allemagne en a 11 000, le Royaume-Uni 400.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Economie : <span class="highlight-green">15-20 Md&euro;/an</span>. 520 000 elus &rarr; 80 000.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#18</span>
+          <h4 class="mesure-title">Suppression des departements</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Transfert des competences aux regions et aux intercommunalites. 101 departements = couche administrative inutile.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Budget departements = 85 Md&euro;. Economie de structure : <span class="highlight-green">8-12 Md&euro;/an</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#19</span>
+          <h4 class="mesure-title">Zero papier, 100% numerique d'ici 2030</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Toute demarche administrative en ligne en 5 minutes max. Identite numerique obligatoire. Suppression de tous les guichets physiques sauf exception.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Cout : 5 Md&euro; sur 5 ans. Economie : <span class="highlight-green">10-15 Md&euro;/an</span>.
+            <div class="ref">Ref. : Estonie &mdash; 99% des services publics en ligne, 800 fonctionnaires pour 1,3M habitants.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#20</span>
+          <h4 class="mesure-title">Interdiction constitutionnelle du deficit budgetaire</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Le budget de l'Etat doit etre vote a l'equilibre. Toute depense nouvelle implique une suppression equivalente. Clause de sortie : guerre ou catastrophe naturelle (vote 3/5).</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Le dernier budget equilibre date de <span class="highlight-red">1974</span>. 50 ans de deficits = 3 400 Md&euro; de dette.
+            <div class="ref">Ref. : Suisse &mdash; frein a l'endettement depuis 2003, dette de 50% a 27% du PIB.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── E. PROTECTION SOCIALE ── -->
+    <div class="category">
+      <h3 class="cat-title"><span class="cat-icon orange">E</span> Protection sociale &mdash; Allocation unique</h3>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#21</span>
+          <h4 class="mesure-title">Allocation universelle unique remplacant toutes les aides sociales</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Fusion de toutes les aides (RSA, APL, AAH, ASS, prime d'activite, etc. = <strong>2 200 aides existantes</strong>) en une seule allocation degressive versee automatiquement. Montant de base : 800&euro;/mois pour une personne seule sans revenu.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Depenses actuelles : ~70 Md&euro;. Economie visee : <span class="highlight-green">15-20 Md&euro;/an</span> (doublons, gestion). Fraude sociale : <span class="highlight-red">13 Md&euro;/an</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#22</span>
+          <h4 class="mesure-title">Assurance chomage privee et obligatoire</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Fin du monopole UNEDIC. Les salaries choisissent leur assureur chomage. Cotisation obligatoire (3%), duree max 12 mois (vs 24-36 aujourd'hui), degressivite forte (80% &rarr; 50% en 6 mois).</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Budget UNEDIC = 45 Md&euro;. Economie : <span class="highlight-green">10-15 Md&euro;/an</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#23</span>
+          <h4 class="mesure-title">Sante : franchise 50&euro;/an + deremboursement medicaments de confort</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Franchise annuelle de 50&euro; sur les soins (hors ALD). Deremboursement de tous les medicaments a SMR insuffisant. Mise en concurrence des mutuelles.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Depenses sante = 333 Md&euro; (11,6% PIB). Economie : <span class="highlight-green">5-8 Md&euro;/an</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#24</span>
+          <h4 class="mesure-title">Suppression CMU-C et AME, remplacement par un bon sante</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Les beneficiaires recoivent un "bon sante" annuel (2 000&euro;) utilisable chez n'importe quel assureur prive. Responsabilisation et mise en concurrence.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            CMU-C = 3 Md&euro;. AME = 1,2 Md&euro;. Cout similaire mais meilleure allocation.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c1">#25</span>
+          <h4 class="mesure-title">Logement : suppression de toutes les aides a la pierre, liberation du foncier</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Fin des APL (16 Md&euro;), fin du logement social subventionne (30 Md&euro;/an), suppression de la loi SRU. En echange : liberation totale du foncier constructible, suppression de 80% des normes de construction, permis en 30 jours.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Economie : <span class="highlight-green">30 Md&euro;/an</span>. Effet prix : baisse de 20-30% de l'immobilier par augmentation de l'offre. 2,76 millions de menages en attente &rarr; absorbes par le marche libre.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- AXE 2 — RESTAURER LA PUISSANCE                 -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="axe-section" id="axe2">
+  <div class="container">
+    <div class="axe-header">
+      <span class="axe-number c2">02</span>
+      <h2 class="axe-title">Restaurer la puissance</h2>
+      <p class="axe-desc">Mesures 26 a 38 &mdash; Energie, defense, industrie, technologie</p>
+    </div>
+
+    <!-- ── F. ENERGIE ── -->
+    <div class="category">
+      <h3 class="cat-title"><span class="cat-icon gold">F</span> Souverainete energetique</h3>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c2">#26</span>
+          <h4 class="mesure-title">20 nouveaux reacteurs nucleaires d'ici 2045</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Acceleration massive du programme nucleaire. 20 EPR2 au lieu de 6 confirmes + 8 en etude. Objectif : 100% electricite nucleaire + export massif.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Cout 6 EPR2 = 72,8 Md&euro;. 20 EPR2 = <span class="highlight-gold">~200 Md&euro;</span> sur 20 ans (10 Md&euro;/an).<br>
+            Revenus exports : 89 TWh en 2024 = ~8 Md&euro;/an. Potentiel avec 20 reacteurs : <span class="highlight-green">20-25 Md&euro;/an</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c2">#27</span>
+          <h4 class="mesure-title">Suppression de toutes les subventions aux EnR intermittentes</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Fin des subventions eolien et solaire. Le nucleaire francais produit a 60&euro;/MWh, l'eolien a 60-90&euro;/MWh + couts de reseau et backup. L'argent va au nucleaire et a l'hydrogene.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Subventions EnR = <span class="highlight-green">8-10 Md&euro;/an</span> (CRE). Reallocation vers nucleaire et hydrogene.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c2">#28</span>
+          <h4 class="mesure-title">Permis de construire en 90 jours max pour toute infrastructure energetique</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Data centers, reacteurs, lignes haute tension, stations hydrogene. Silence vaut acceptation. Suppression du droit de recours des associations sur les projets d'interet national.</p>
+          <div class="chiffrage">
+            <span class="tag">Impact</span>
+            Delai actuel : <span class="highlight-red">3-7 ans</span>. Reduction a <span class="highlight-green">90 jours</span> = acceleration massive de l'investissement.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── G. DEFENSE ── -->
+    <div class="category">
+      <h3 class="cat-title"><span class="cat-icon red">G</span> Defense et souverainete militaire</h3>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c2">#29</span>
+          <h4 class="mesure-title">Budget defense a 3,5% du PIB d'ici 2032</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Passage de 50 Md&euro; (2% PIB) a <strong>100 Md&euro;</strong> (3,5% PIB). Priorisation : munitions, drones, cyber, spatial, marine.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            <span class="highlight-gold">+50 Md&euro;/an</span>. Finance par les economies sur la depense sociale. La France est la 1ere puissance militaire UE.
+            <div class="ref">Ref. : OTAN demande desormais 5% a horizon 2035.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c2">#30</span>
+          <h4 class="mesure-title">Service national universel de 6 mois obligatoire</h4>
+        </div>
+        <div class="mesure-body">
+          <p>3 mois de formation militaire de base + 3 mois de service civil ou militaire. Pour tous les 18-25 ans. Constitution d'une reserve de 500 000 citoyens formes.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            ~800 000 jeunes/an &times; 8 000&euro; = <span class="highlight-gold">6-7 Md&euro;/an</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c2">#31</span>
+          <h4 class="mesure-title">Bouclier antimissile europeen sous leadership francais</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Systeme integre de defense antimissile couvrant l'Europe. Contribution francaise de 30%.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Cout total : 50-80 Md&euro; sur 15 ans. Part France : <span class="highlight-gold">15-25 Md&euro;</span> (~1,5 Md&euro;/an).
+            <div class="ref">Ref. : Iron Dome israelien = 1,5 Md&euro; de developpement, efficace a 90%.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c2">#32</span>
+          <h4 class="mesure-title">Industrie de defense : objectif 50 Md&euro; d'exports/an</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Doublement des exports d'armement (21,6 Md&euro; &rarr; 50 Md&euro;). Diplomatie economique agressive, simplification des procedures d'export.</p>
+          <div class="chiffrage">
+            <span class="tag">Impact</span>
+            France = 2e exportateur mondial. Chaque milliard d'export = <span class="highlight-green">10 000 emplois</span> industriels.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── H. INDUSTRIE & TECH ── -->
+    <div class="category">
+      <h3 class="cat-title"><span class="cat-icon violet">H</span> Souverainete industrielle et technologique</h3>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c2">#33</span>
+          <h4 class="mesure-title">Fonds souverain tech de 30 Md&euro;</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Pas du saupoudrage BPI a 500K&euro;. Des tickets de 100M-1Md&euro; pour des projets d'infrastructure : semi-conducteurs, IA souveraine, quantique, biotech, spatial.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            30 Md&euro; sur 10 ans (3 Md&euro;/an). Rendement attendu : <span class="highlight-green">8-12%/an</span>.
+            <div class="ref">Ref. : Temasek (Singapour) = 13%/an sur 50 ans.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c2">#34</span>
+          <h4 class="mesure-title">10 zones franches industrielles a fiscalite zero</h4>
+        </div>
+        <div class="mesure-body">
+          <p>IS 0%, charges sociales reduites de 50%, zero taxe fonciere pendant 15 ans. Dans les bassins desindustrialises (Hauts-de-France, Grand Est, Lorraine...).</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Cout fiscal : <span class="highlight-red">3-5 Md&euro;/an</span>. Creation estimee : <span class="highlight-green">200 000-400 000 emplois</span> en 10 ans.
+            <div class="ref">Ref. : Shenzhen = de village de pecheurs a metropole de 17M hab. en 40 ans.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c2">#35</span>
+          <h4 class="mesure-title">Reindustrialisation : objectif 20% du PIB en 2035</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Part industrie actuelle = 13,4% (vs 24% en 1980, 19,7% Allemagne). Objectif 20% = +190 Md&euro; de valeur ajoutee industrielle et 1,5 million d'emplois.</p>
+          <div class="chiffrage">
+            <span class="tag">Leviers</span>
+            Zones franches (#34), nucleaire bon marche (#26), deregulation (#5), IS reduit (#12).
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c2">#36</span>
+          <h4 class="mesure-title">Remplacement du principe de precaution par le principe d'innovation</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Modification constitutionnelle. Le defaut est "on essaie et on corrige", pas "on bloque et on etudie pendant 10 ans". Acceleration de tous les projets tech (OGM, nucleaire, IA, drones, vehicules autonomes).</p>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c2">#37</span>
+          <h4 class="mesure-title">Statut "projet d'interet technologique majeur" &mdash; fast track total</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Pour tout projet &gt; 100M&euro; d'investissement et &gt; 500 emplois : procedure acceleree. Decision en 6 mois max. L'Etat accompagne au lieu de bloquer.</p>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c2">#38</span>
+          <h4 class="mesure-title">Independance numerique : cloud souverain et IA souveraine</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Obligation pour toutes les administrations d'utiliser un cloud souverain francais d'ici 2028. Investissement de 5 Md&euro; dans un modele d'IA open source francais.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            5 Md&euro; IA + 3 Md&euro; cloud = <span class="highlight-gold">8 Md&euro; sur 5 ans</span>. Actuellement, 80% des donnees publiques hebergees chez AWS, Azure ou Google.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- AXE 3 — ATTIRER LES TALENTS                     -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="axe-section" id="axe3">
+  <div class="container">
+    <div class="axe-header">
+      <span class="axe-number c3">03</span>
+      <h2 class="axe-title">Attirer les talents</h2>
+      <p class="axe-desc">Mesures 39 a 50 &mdash; Immigration choisie, competitivite salariale, education, demographie</p>
+    </div>
+
+    <!-- ── I. IMMIGRATION & VISA ── -->
+    <div class="category">
+      <h3 class="cat-title"><span class="cat-icon green">I</span> Immigration choisie et visa tech</h3>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c3">#39</span>
+          <h4 class="mesure-title">Visa tech de 48h pour ingenieurs et chercheurs</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Tout ingenieur ou chercheur avec une offre d'emploi en France (salaire &gt; 45 000&euro;) obtient un visa en 48h. Famille incluse. Renouvellement automatique.</p>
+          <div class="chiffrage">
+            <span class="tag">Impact</span>
+            Delai actuel : 3-6 mois. La France perd <span class="highlight-red">15 000 jeunes diplomes/an</span> a l'etranger.
+            <div class="ref">Ref. : UK Global Talent Visa : 93% acceptation, +444% demandes en 3 ans.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c3">#40</span>
+          <h4 class="mesure-title">Regime fiscal impatries : flat tax 15% pendant 10 ans</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Tout talent etranger (ou Francais revenant apres 5+ ans) : IR plafonne a 15% pendant 10 ans. Zero ISF/IFI. Pas de droits de succession.</p>
+          <div class="chiffrage">
+            <span class="tag">Impact</span>
+            <div class="ref">Ref. : Portugal NHR (20%) = 90 000 residents fiscaux en 10 ans. Pays-Bas 30% ruling = exoneration 30% du salaire.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c3">#41</span>
+          <h4 class="mesure-title">Exoneration totale de charges sur stock-options et BSPCE</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Les premiers employes de startups qui prennent le risque sont traites comme des entrepreneurs, pas comme des salaries lambda. Zero charge sociale sur les gains a l'exercice.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Cout fiscal : <span class="highlight-red">1-2 Md&euro;/an</span>. Impact : retention des talents tech en France.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c3">#42</span>
+          <h4 class="mesure-title">10 universites dans le top 100 mondial</h4>
+        </div>
+        <div class="mesure-body">
+          <p>10 universites recoivent une autonomie totale (recrutement, salaires, droits d'inscription, programmes). Budget double.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            +<span class="highlight-gold">5 Md&euro;/an</span> d'enseignement superieur.
+            <div class="ref">Ref. : Singapour NUS = budget 2,5 Md&euro; pour 40 000 etudiants, 11e mondiale.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c3">#43</span>
+          <h4 class="mesure-title">R&amp;D : objectif 4% du PIB (vs 2,2% actuellement)</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Doublement du credit impot recherche (CIR). Defiscalisation totale des dons aux laboratoires. Partenariats public-prive systematiques.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            De 2,2% a 4% du PIB = <span class="highlight-gold">+52 Md&euro;/an</span> de depenses R&amp;D. Part publique : +10 Md&euro;/an.
+            <div class="ref">Ref. : Israel 6,3%, Coree du Sud 5,3% &rarr; leadership technologique mondial.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c3">#44</span>
+          <h4 class="mesure-title">5 campus tech integres (recherche + startups + industrie)</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Modele Station F &times; Stanford &times; Tsukuba. 5 campus de 50 hectares, co-localises avec une universite d'excellence, un accelerateur, et des laboratoires industriels.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            2 Md&euro; &times; 5 = <span class="highlight-gold">10 Md&euro;</span> sur 10 ans. 50 000 emplois, 200+ startups/an.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── J. SALAIRES ── -->
+    <div class="category">
+      <h3 class="cat-title"><span class="cat-icon cyan">J</span> Competitivite salariale</h3>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c3">#45</span>
+          <h4 class="mesure-title">Suppression des cotisations salariales, remplacement par TVA sociale</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Le salarie touche 100% de son brut. Les cotisations sont transferees sur la TVA (+5 points, de 20% a 25%) et un prelevement a la source simplifie.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Cotisations salariales = 100 Md&euro;. +5 pts TVA = +40-50 Md&euro;. Hausse du pouvoir d'achat visible de <span class="highlight-green">+15-20%</span> pour chaque salarie.
+            <div class="ref">Ref. : Danemark = pas de cotisations sociales, TVA a 25%, salaire net le plus eleve d'Europe.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c3">#46</span>
+          <h4 class="mesure-title">Interessement et participation obligatoires (&gt; 10 salaries)</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Tout salarie touche une part des benefices. Exoneration totale de charges et d'impots sur ces sommes.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Cout fiscal : <span class="highlight-red">3-5 Md&euro;/an</span>. Alignement interets salaries/entreprise.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── K. EDUCATION ── -->
+    <div class="category">
+      <h3 class="cat-title"><span class="cat-icon orange">K</span> Education &mdash; Excellence et liberte</h3>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c3">#47</span>
+          <h4 class="mesure-title">Cheque education : les parents choisissent l'ecole</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Chaque famille recoit un cheque de 8 000&euro;/an par enfant, utilisable dans n'importe quelle ecole (publique, privee, confessionnelle, Montessori, en ligne). Les ecoles sont en concurrence.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Budget EN = 63 Md&euro;. Depense par eleve = ~9 000&euro;. Budget maintenu, concurrence tirant la qualite vers le haut.
+            <div class="ref">Ref. : Suede &mdash; cheque education depuis 1992, satisfaction parents +30%.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c3">#48</span>
+          <h4 class="mesure-title">Autonomie totale des etablissements scolaires</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Chaque ecole recrute ses professeurs, fixe les salaires (doublement possible des meilleurs), choisit ses methodes pedagogiques. Fin du mammouth centralise de l'Education nationale.</p>
+          <div class="chiffrage">
+            <span class="tag">Impact</span>
+            Resultats PISA France : en chute libre depuis 20 ans. L'autonomie est le facteur n&deg;1 de performance dans tous les classements internationaux.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── L. DEMOGRAPHIE ── -->
+    <div class="category">
+      <h3 class="cat-title"><span class="cat-icon red">L</span> Immigration et demographie</h3>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c3">#49</span>
+          <h4 class="mesure-title">Immigration zero non qualifiee, immigration massive qualifiee</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Systeme a points (modele Canada/Australie). Criteres : diplome, experience, maitrise du francais, offre d'emploi, age. Objectif : 200 000 qualifies/an, 0 non qualifie. Suppression du regroupement familial automatique. Suppression de l'AME.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            Cout estime immigration non qualifiee : <span class="highlight-red">40 Md&euro;/an net</span> (Contribuables Associes, chiffre debattu). Immigration qualifiee : contribution nette positive de <span class="highlight-green">5 000-15 000&euro;/an/personne</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="mesure">
+        <div class="mesure-header">
+          <span class="mesure-num c3">#50</span>
+          <h4 class="mesure-title">Politique nataliste offensive : 5 000&euro;/naissance + conge parental de 2 ans</h4>
+        </div>
+        <div class="mesure-body">
+          <p>Prime de 5 000&euro; a chaque naissance. Conge parental de 2 ans a 80% du salaire. Defiscalisation totale pour les familles de 3+ enfants.</p>
+          <div class="chiffrage">
+            <span class="tag">Chiffrage</span>
+            663 000 naissances &times; 5 000&euro; = <span class="highlight-gold">3,3 Md&euro;/an</span>. Objectif : fecondite de 1,62 a 2,1 enfant/femme. Enjeu existentiel : solde naturel negatif des 2027.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SYNTHESE FINANCIERE                              -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="synthese" id="synthese">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Synthese financiere</span>
+      <h2 class="section-title">Le bilan des 50 mesures</h2>
+      <p class="section-subtitle">Economies, investissements et pertes fiscales a horizon 10 ans.</p>
+    </div>
+
+    <div class="synth-grid">
+      <!-- ECONOMIES -->
+      <div class="synth-card">
+        <h3>Economies annuelles</h3>
+        <div class="synth-row">
+          <span class="label">Retraites (capitalisation + age 67 + regimes speciaux)</span>
+          <span class="val positive">100-140 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Fonction publique (&minus;1M postes)</span>
+          <span class="val positive">42 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Fusion communes + suppression departements</span>
+          <span class="val positive">25-30 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Allocation unique (fusion aides sociales)</span>
+          <span class="val positive">15-20 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Assurance chomage (duree reduite)</span>
+          <span class="val positive">10-15 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Logement (fin APL + aides a la pierre)</span>
+          <span class="val positive">30 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Sante (franchise + deremboursement)</span>
+          <span class="val positive">5-8 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Subventions EnR supprimees</span>
+          <span class="val positive">8-10 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Numerisation administration</span>
+          <span class="val positive">10-15 Md&euro;</span>
+        </div>
+        <div class="synth-total">
+          <span class="label">TOTAL ECONOMIES</span>
+          <span class="val positive">~250-310 Md&euro;/an</span>
+        </div>
+      </div>
+
+      <!-- INVESTISSEMENTS -->
+      <div class="synth-card">
+        <h3>Investissements</h3>
+        <div class="synth-row">
+          <span class="label">Transition retraite capitalisation</span>
+          <span class="val negative">3 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Budget defense &rarr; 3,5% PIB</span>
+          <span class="val negative">+50 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Fonds souverain tech 30 Md&euro;</span>
+          <span class="val negative">3 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">20 EPR2 (sur 20 ans)</span>
+          <span class="val negative">10 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">10 zones franches industrielles</span>
+          <span class="val negative">3-5 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Universites d'excellence + R&amp;D</span>
+          <span class="val negative">15 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Campus tech</span>
+          <span class="val negative">1 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Cloud + IA souveraine</span>
+          <span class="val negative">1,6 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Service national 6 mois</span>
+          <span class="val negative">6-7 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Politique nataliste</span>
+          <span class="val negative">3,3 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Bouclier antimissile (part FR)</span>
+          <span class="val negative">1,5 Md&euro;</span>
+        </div>
+        <div class="synth-total">
+          <span class="label">TOTAL INVESTISSEMENTS</span>
+          <span class="val negative">~100-105 Md&euro;/an</span>
+        </div>
+      </div>
+
+      <!-- PERTES FISCALES -->
+      <div class="synth-card">
+        <h3>Pertes fiscales (baisses d'impots)</h3>
+        <div class="synth-row">
+          <span class="label">IS a 15% + 0% reinvesti</span>
+          <span class="val negative">20-25 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Flat tax capital 15%</span>
+          <span class="val negative">5-8 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Suppression droits succession</span>
+          <span class="val negative">17 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Exoneration charges stock-options</span>
+          <span class="val negative">1-2 Md&euro;</span>
+        </div>
+        <div class="synth-row">
+          <span class="label">Regime impatries</span>
+          <span class="val negative">1-2 Md&euro;</span>
+        </div>
+        <div class="synth-total">
+          <span class="label">TOTAL PERTES FISCALES</span>
+          <span class="val negative">~45-55 Md&euro;/an</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BILAN NET -->
+    <div class="bilan-box">
+      <h3>Bilan net annuel a horizon 10 ans</h3>
+      <div class="bilan-grid">
+        <div class="bilan-item">
+          <span class="num green">+250 a +310</span>
+          <span class="desc">Md&euro; d'economies</span>
+        </div>
+        <div class="bilan-item">
+          <span class="num red">&minus;100 a &minus;105</span>
+          <span class="desc">Md&euro; d'investissements</span>
+        </div>
+        <div class="bilan-item">
+          <span class="num red">&minus;45 a &minus;55</span>
+          <span class="desc">Md&euro; de pertes fiscales</span>
+        </div>
+        <div class="bilan-item">
+          <span class="num cyan">+100 a +150</span>
+          <span class="desc">Md&euro; de solde net</span>
+        </div>
+      </div>
+      <p class="bilan-result">
+        + Privatisations (one-shot) : <strong>+100 Md&euro;</strong> sur 5 ans<br>
+        + Croissance supplementaire (+2-3% PIB) : <strong>+60-90 Md&euro;</strong> de recettes/an<br><br>
+        <strong>Excedent budgetaire possible des l'annee 5. Dette sous 90% du PIB en 10 ans. Depenses publiques a 47% du PIB.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CALENDRIER                                       -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="calendrier" id="calendrier">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Mise en oeuvre</span>
+      <h2 class="section-title">Calendrier de deploiement</h2>
+    </div>
+
+    <div class="cal-grid">
+      <div class="cal-card phase1">
+        <div class="cal-phase">Phase 1 &mdash; Choc</div>
+        <h3 class="cal-title">Annee 1</h3>
+        <ul class="cal-items">
+          <li>Code du travail (mesures 5-10)</li>
+          <li>IS a 15% (mesure 12)</li>
+          <li>Visa tech 48h (mesure 39)</li>
+          <li>Zones franches (mesure 34)</li>
+          <li>Flat tax capital 15% (mesure 11)</li>
+        </ul>
+      </div>
+
+      <div class="cal-card phase2">
+        <div class="cal-phase">Phase 2 &mdash; Transition</div>
+        <h3 class="cal-title">Annees 2-3</h3>
+        <ul class="cal-items">
+          <li>Retraites capitalisation (mesures 1-4)</li>
+          <li>Fonction publique &minus;1M (mesure 16)</li>
+          <li>Fusion communes (mesure 17)</li>
+          <li>Allocation unique (mesure 21)</li>
+          <li>Chomage prive (mesure 22)</li>
+        </ul>
+      </div>
+
+      <div class="cal-card phase3">
+        <div class="cal-phase">Phase 3 &mdash; Consolidation</div>
+        <h3 class="cal-title">Annees 4-5</h3>
+        <ul class="cal-items">
+          <li>Suppression departements (mesure 18)</li>
+          <li>Privatisations 100 Md&euro; (mesure 15)</li>
+          <li>Universites top 100 (mesure 42)</li>
+          <li>Programme EPR2 (mesure 26)</li>
+          <li>Equilibre budgetaire (mesure 20)</li>
+        </ul>
+      </div>
+
+      <div class="cal-card phase4">
+        <div class="cal-phase">Phase 4 &mdash; Puissance</div>
+        <h3 class="cal-title">Annees 6-10</h3>
+        <ul class="cal-items">
+          <li>Defense 3,5% PIB (mesure 29)</li>
+          <li>Reindustrialisation 20% (mesure 35)</li>
+          <li>Fonds souverain retraite (mesure 4)</li>
+          <li>IA et cloud souverains (mesure 38)</li>
+          <li>Dette sous 90% du PIB</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- FOOTER                                           -->
+<!-- ═══════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    Programme chiffre a partir des donnees INSEE, DREES, Cour des Comptes, COR, UNEDIC, OCDE, Eurostat, IFRAP, Institut Montaigne.<br>
+    Mars 2026
+  </div>
+</footer>
+
+</body>
+</html>

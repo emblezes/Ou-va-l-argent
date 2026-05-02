@@ -29,6 +29,24 @@ const path = require('path');
     });
     console.log('Exported: couverture-linkedin.png (3168x792 retina)');
 
+    // Export bannière Twitter/X
+    const twitter = await page.$('.cover-twitter');
+    await twitter.screenshot({
+        path: path.join(outputDir, 'banniere-twitter.png'),
+        type: 'png',
+        omitBackground: false
+    });
+    console.log('Exported: banniere-twitter.png (3000x1000 retina)');
+
+    // Export couverture Facebook
+    const facebook = await page.$('.cover-facebook');
+    await facebook.screenshot({
+        path: path.join(outputDir, 'couverture-facebook.png'),
+        type: 'png',
+        omitBackground: false
+    });
+    console.log('Exported: couverture-facebook.png (1640x624 retina)');
+
     // Export fond d'écran desktop
     const wallpaper = await page.$('.wallpaper');
     await wallpaper.screenshot({

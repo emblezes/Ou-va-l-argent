@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'explosion de la dépense sociale en France</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0c0608;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a88899;
+            --text-muted: #6a4a5a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #0c0608 0%, #1e0a14 50%, #0c0608 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 71, 87, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 71, 87, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.05) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 35px 20px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 4px;
+            padding: 0 10px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #ff4757; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.2rem;
+            text-align: center;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.1;
+            padding: 0 20px;
+        }
+
+        .chart-title .accent {
+            color: #ff4757;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        svg { overflow: hidden; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 10px 0;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #ff4757; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">L'<span class="accent">explosion</span> de la dépense<br>sociale en France</h2>
+            <div class="chart-subtitle">En milliards d'euros courants · 2002-2024 (hors 2020)</div>
+
+            <div class="chart-area">
+                <svg width="1040" height="660" viewBox="0 0 1040 660">
+                    <defs>
+                        <linearGradient id="socialFill" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#ff4757" stop-opacity="0.18"/>
+                            <stop offset="100%" stop-color="#ff4757" stop-opacity="0.01"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Unit label -->
+                    <text x="76" y="36" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="600">Md€</text>
+
+                    <!-- Axes -->
+                    <line x1="70" y1="20" x2="70" y2="590" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1.5" />
+                    <line x1="70" y1="590" x2="780" y2="590" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1.5" />
+
+                    <!-- Gridlines horizontales -->
+                    <line x1="70" y1="476" x2="780" y2="476" stroke="#6a4a5a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="58" y="481" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="end">200</text>
+
+                    <line x1="70" y1="362" x2="780" y2="362" stroke="#6a4a5a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="58" y="367" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="end">400</text>
+
+                    <line x1="70" y1="248" x2="780" y2="248" stroke="#6a4a5a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="58" y="253" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="end">600</text>
+
+                    <line x1="70" y1="134" x2="780" y2="134" stroke="#6a4a5a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="58" y="139" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="end">800</text>
+
+                    <!-- X axis labels -->
+                    <text x="70" y="622" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="19" text-anchor="middle">2002</text>
+                    <text x="205" y="622" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="19" text-anchor="middle">2006</text>
+                    <text x="341" y="622" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="19" text-anchor="middle">2010</text>
+                    <text x="476" y="622" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="19" text-anchor="middle">2014</text>
+                    <text x="611" y="622" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="19" text-anchor="middle">2018</text>
+                    <text x="780" y="622" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="19" text-anchor="middle">2024</text>
+
+                    <!-- ============================================ -->
+                    <!-- REMPLISSAGE sous la courbe protection sociale -->
+                    <!-- ============================================ -->
+                    <path d="M70,328 L104,316 L138,305 L171,294 L205,282 L239,271 L273,257 L307,239 L341,228 L374,217 L408,205 L442,194 L476,185 L510,177 L543,169 L577,161 L611,151 L645,140 L679,117 L712,100 L746,83 L780,58 L780,590 L70,590 Z" fill="url(#socialFill)" />
+
+                    <!-- ============================================ -->
+                    <!-- COURBE : Protection sociale (rouge)          -->
+                    <!-- ============================================ -->
+                    <path d="M70,328 L104,316 L138,305 L171,294 L205,282 L239,271 L273,257 L307,239 L341,228 L374,217 L408,205 L442,194 L476,185 L510,177 L543,169 L577,161 L611,151 L645,140 L679,117 L712,100 L746,83 L780,58" fill="none" stroke="#ff4757" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="780" cy="58" r="9" fill="#ff4757" stroke="#0c0608" stroke-width="3" />
+
+                    <!-- ============================================ -->
+                    <!-- COURBE : Dépenses de l'État (cyan)           -->
+                    <!-- ============================================ -->
+                    <path d="M70,396 L104,391 L138,388 L171,385 L205,379 L239,376 L273,371 L307,354 L341,351 L374,348 L408,345 L442,339 L476,337 L510,334 L543,331 L577,328 L611,322 L645,316 L679,288 L712,271 L746,241 L780,248" fill="none" stroke="#00d4ff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="780" cy="248" r="9" fill="#00d4ff" stroke="#0c0608" stroke-width="3" />
+
+                    <!-- ============================================ -->
+                    <!-- COURBE : Collectivités territoriales (orange) -->
+                    <!-- ============================================ -->
+                    <path d="M70,502 L104,496 L138,489 L171,481 L205,476 L239,470 L273,465 L307,462 L341,458 L374,455 L408,452 L442,446 L476,443 L510,445 L543,445 L577,442 L611,439 L645,435 L679,430 L712,422 L746,407 L780,402" fill="none" stroke="#ff9f43" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="780" cy="402" r="9" fill="#ff9f43" stroke="#0c0608" stroke-width="3" />
+
+                    <!-- ============================================ -->
+                    <!-- LABELS À DROITE (valeurs 2024)               -->
+                    <!-- ============================================ -->
+
+                    <!-- Protection sociale -->
+                    <text x="800" y="48" fill="#ff4757" font-family="'Syne', sans-serif" font-size="20" font-weight="700" text-anchor="start">Protection</text>
+                    <text x="800" y="72" fill="#ff4757" font-family="'Syne', sans-serif" font-size="20" font-weight="700" text-anchor="start">sociale</text>
+                    <text x="800" y="100" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="600" text-anchor="start" opacity="0.9">933 Md€</text>
+
+                    <!-- État -->
+                    <text x="800" y="242" fill="#00d4ff" font-family="'Syne', sans-serif" font-size="20" font-weight="700" text-anchor="start">État</text>
+                    <text x="800" y="270" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="600" text-anchor="start" opacity="0.9">601 Md€</text>
+
+                    <!-- Collectivités territoriales -->
+                    <text x="800" y="390" fill="#ff9f43" font-family="'Syne', sans-serif" font-size="20" font-weight="700" text-anchor="start">Collectivités</text>
+                    <text x="800" y="414" fill="#ff9f43" font-family="'Syne', sans-serif" font-size="20" font-weight="700" text-anchor="start">territoriales</text>
+                    <text x="800" y="442" fill="#ff9f43" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="600" text-anchor="start" opacity="0.9">330 Md€</text>
+
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>INSEE · DREES · FIPECO · 2002-2024</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -169,8 +169,8 @@
                 </div>
             </div>
 
-            <h2 class="chart-title">Les <span class="accent-red">dépenses</span> publiques, très largement<br>supérieures aux <span class="accent-green">recettes</span></h2>
-            <div class="chart-subtitle">Dépenses et recettes publiques en % du PIB (1960–2024)</div>
+            <h2 class="chart-title">Les <span class="accent-red">dépenses</span> publiques dépassent<br>largement les <span class="accent-green">recettes</span></h2>
+            <div class="chart-subtitle">Dépenses et recettes publiques en % du PIB · 1960-2024</div>
 
             <div class="chart-area">
                 <!--
@@ -190,12 +190,12 @@
                     <line x1="40" y1="502.8" x2="940" y2="502.8" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
 
                     <!-- Y axis labels -->
-                    <text x="32" y="25" fill="rgba(255,255,255,0.6)" font-family="JetBrains Mono" font-size="14" font-weight="500" text-anchor="end">63%</text>
-                    <text x="32" y="121" fill="rgba(255,255,255,0.6)" font-family="JetBrains Mono" font-size="14" font-weight="500" text-anchor="end">58%</text>
-                    <text x="32" y="217" fill="rgba(255,255,255,0.6)" font-family="JetBrains Mono" font-size="14" font-weight="500" text-anchor="end">53%</text>
-                    <text x="32" y="314" fill="rgba(255,255,255,0.6)" font-family="JetBrains Mono" font-size="14" font-weight="500" text-anchor="end">48%</text>
-                    <text x="32" y="410" fill="rgba(255,255,255,0.6)" font-family="JetBrains Mono" font-size="14" font-weight="500" text-anchor="end">43%</text>
-                    <text x="32" y="507" fill="rgba(255,255,255,0.6)" font-family="JetBrains Mono" font-size="14" font-weight="500" text-anchor="end">38%</text>
+                    <text x="32" y="28" fill="#f0f4f8" font-family="JetBrains Mono" font-size="20" font-weight="600" text-anchor="end">63%</text>
+                    <text x="32" y="124" fill="#f0f4f8" font-family="JetBrains Mono" font-size="20" font-weight="600" text-anchor="end">58%</text>
+                    <text x="32" y="220" fill="#f0f4f8" font-family="JetBrains Mono" font-size="20" font-weight="600" text-anchor="end">53%</text>
+                    <text x="32" y="317" fill="#f0f4f8" font-family="JetBrains Mono" font-size="20" font-weight="600" text-anchor="end">48%</text>
+                    <text x="32" y="413" fill="#f0f4f8" font-family="JetBrains Mono" font-size="20" font-weight="600" text-anchor="end">43%</text>
+                    <text x="32" y="510" fill="#f0f4f8" font-family="JetBrains Mono" font-size="20" font-weight="600" text-anchor="end">38%</text>
 
                     <!-- Gap fill between curves — computed from real data -->
                     <polygon fill="rgba(255, 71, 87, 0.1)" points="
@@ -238,36 +238,40 @@
                     "/>
 
                     <!-- "Dépenses" label above spending curve -->
-                    <text x="750" y="96" fill="#ff4757" font-family="Instrument Serif, serif" font-size="30" font-style="italic">Dépenses</text>
+                    <text x="730" y="100" fill="#ff4757" font-family="Instrument Serif, serif" font-size="40" font-style="italic" font-weight="500">Dépenses</text>
 
                     <!-- "Recettes" label below revenue curve -->
-                    <text x="750" y="290" fill="#00ff88" font-family="Instrument Serif, serif" font-size="30" font-style="italic">Recettes</text>
+                    <text x="730" y="300" fill="#00ff88" font-family="Instrument Serif, serif" font-size="40" font-style="italic" font-weight="500">Recettes</text>
 
                     <!-- Key data points — Dépenses -->
-                    <circle cx="40" cy="545.3" r="5" fill="#ff4757"/>
-                    <text x="42" y="585" fill="#ff4757" font-family="JetBrains Mono" font-size="15" font-weight="700" text-anchor="middle">35,8%</text>
+                    <!-- 1960 dépenses : label remonté, à droite du point pour respirer -->
+                    <circle cx="40" cy="545.3" r="6" fill="#ff4757"/>
+                    <text x="80" y="568" fill="#ff4757" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="middle">35,8%</text>
 
-                    <circle cx="883.8" cy="45.1" r="5" fill="#ff4757"/>
-                    <text x="855" y="35" fill="#ff4757" font-family="JetBrains Mono" font-size="15" font-weight="700">61,7%</text>
+                    <!-- Peak Covid 2020 : label centré AU-DESSUS du point -->
+                    <circle cx="883.8" cy="45.1" r="6" fill="#ff4757"/>
+                    <text x="884" y="30" fill="#ff4757" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="middle">61,7%</text>
 
-                    <circle cx="940" cy="130.9" r="5" fill="#ff4757"/>
-                    <text x="940" y="100" fill="#ff4757" font-family="JetBrains Mono" font-size="16" font-weight="700" text-anchor="middle">57,3%</text>
+                    <!-- 2024 dépenses : label SOUS le point, aligné à droite -->
+                    <circle cx="940" cy="130.9" r="6" fill="#ff4757"/>
+                    <text x="945" y="170" fill="#ff4757" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="end">57,3%</text>
 
                     <!-- Key data points — Recettes -->
-                    <circle cx="40" cy="522.4" r="5" fill="#00ff88"/>
+                    <circle cx="40" cy="522.4" r="6" fill="#00ff88"/>
 
-                    <circle cx="940" cy="243.1" r="5" fill="#00ff88"/>
-                    <text x="940" y="280" fill="#00ff88" font-family="JetBrains Mono" font-size="16" font-weight="700" text-anchor="middle">51,4%</text>
+                    <!-- 2024 recettes : label EN DESSOUS du point, légèrement décalé à gauche par rapport au 57,3% -->
+                    <circle cx="940" cy="243.1" r="6" fill="#00ff88"/>
+                    <text x="920" y="272" fill="#00ff88" font-family="JetBrains Mono" font-size="22" font-weight="700" text-anchor="end">51,4%</text>
 
                     <!-- X axis year labels -->
-                    <text x="40" y="610" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="15" font-weight="500" text-anchor="middle">1960</text>
-                    <text x="181" y="610" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="15" font-weight="500" text-anchor="middle">1970</text>
-                    <text x="321" y="610" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="15" font-weight="500" text-anchor="middle">1980</text>
-                    <text x="462" y="610" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="15" font-weight="500" text-anchor="middle">1990</text>
-                    <text x="602" y="610" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="15" font-weight="500" text-anchor="middle">2000</text>
-                    <text x="743" y="610" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="15" font-weight="500" text-anchor="middle">2010</text>
-                    <text x="884" y="610" fill="rgba(255,255,255,0.7)" font-family="JetBrains Mono" font-size="15" font-weight="500" text-anchor="middle">2020</text>
-                    <text x="940" y="610" fill="rgba(255,255,255,0.85)" font-family="JetBrains Mono" font-size="15" font-weight="700" text-anchor="middle">2024</text>
+                    <text x="40"  y="612" fill="#f0f4f8" font-family="JetBrains Mono" font-size="20" font-weight="600" text-anchor="middle">1960</text>
+                    <text x="181" y="612" fill="#f0f4f8" font-family="JetBrains Mono" font-size="20" font-weight="600" text-anchor="middle">1970</text>
+                    <text x="321" y="612" fill="#f0f4f8" font-family="JetBrains Mono" font-size="20" font-weight="600" text-anchor="middle">1980</text>
+                    <text x="462" y="612" fill="#f0f4f8" font-family="JetBrains Mono" font-size="20" font-weight="600" text-anchor="middle">1990</text>
+                    <text x="602" y="612" fill="#f0f4f8" font-family="JetBrains Mono" font-size="20" font-weight="600" text-anchor="middle">2000</text>
+                    <text x="743" y="612" fill="#f0f4f8" font-family="JetBrains Mono" font-size="20" font-weight="600" text-anchor="middle">2010</text>
+                    <text x="884" y="612" fill="#f0f4f8" font-family="JetBrains Mono" font-size="20" font-weight="600" text-anchor="middle">2020</text>
+                    <text x="940" y="612" fill="#f0f4f8" font-family="JetBrains Mono" font-size="20" font-weight="700" text-anchor="middle">2024</text>
                 </svg>
             </div>
 

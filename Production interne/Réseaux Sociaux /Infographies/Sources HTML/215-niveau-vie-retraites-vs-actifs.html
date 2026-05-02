@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niveau de vie des retraités vs actifs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --bg-mid: #0a1628;
+            --accent: #00d4ff;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --dot-grey: #6b7b8d;
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute; inset: 0;
+            background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%);
+        }
+
+        .bg-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            top: -200px; right: -100px; pointer-events: none;
+        }
+
+        .content {
+            position: relative; z-index: 1; height: 100%;
+            padding: 45px 50px 35px;
+            display: flex; flex-direction: column;
+        }
+
+        .header {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.5rem; color: var(--accent); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5rem;
+            color: var(--text-primary);
+            line-height: 1.08;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .chart-title .accent { color: var(--accent); font-style: italic; }
+
+        .chart-subtitle {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Axis */
+        .axis-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .axis-labels {
+            display: flex;
+            justify-content: space-between;
+            padding-left: 180px;
+            padding-right: 10px;
+            margin-bottom: 6px;
+        }
+
+        .axis-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            color: var(--text-muted);
+            text-align: center;
+            width: 0;
+            position: relative;
+        }
+
+        .axis-label span {
+            position: absolute;
+            transform: translateX(-50%);
+        }
+
+        .rows {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            height: 52px;
+            position: relative;
+        }
+
+        .row-name {
+            width: 180px;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-align: right;
+            padding-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .row-name.highlight {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .row-track {
+            flex: 1;
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Gridlines */
+        .row-track::before {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; top: 50%;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* Reference line at 100 */
+        .ref-line {
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            /* 100 on scale 60-105: (100-60)/(105-60) = 40/45 = 88.89% */
+            left: 88.89%;
+            z-index: 1;
+        }
+
+        .ref-line-label {
+            position: absolute;
+            left: 88.89%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .ref-label {
+            position: absolute;
+            top: -28px;
+            left: 88.89%;
+            transform: translateX(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.4);
+            white-space: nowrap;
+        }
+
+        /* Dot + line */
+        .dot-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5));
+            left: 0;
+            border-radius: 1px;
+        }
+
+        .dot-line.highlight-line {
+            background: linear-gradient(90deg, transparent, var(--accent));
+            height: 3px;
+        }
+
+        .dot {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #ffffff;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .dot.highlight-dot {
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .dot-value {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            white-space: nowrap;
+        }
+
+        .dot-value.highlight-val {
+            color: var(--accent);
+            font-size: 2.1rem;
+            font-weight: 700;
+        }
+
+        /* Vertical gridlines */
+        .v-gridlines {
+            position: absolute;
+            top: 0; bottom: 0;
+            left: 180px; right: 10px;
+            pointer-events: none;
+        }
+
+        .v-line {
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .footer {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 12px;
+            margin-top: 10px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Les <span class="accent">retraités</span> français gagnent<br>désormais plus que les <span class="accent">actifs</span></h2>
+            <div class="chart-subtitle">Revenu relatif des 65+ ans (moyenne des actifs = 100)</div>
+
+            <div class="axis-area" style="position: relative;">
+
+                <!-- Label along reference line -->
+                <div class="ref-line-label">Revenus des actifs</div>
+
+                <!-- Vertical gridlines -->
+                <div class="v-gridlines">
+                    <!-- 60=0%, 65=11.1%, 70=22.2%, 75=33.3%, 80=44.4%, 85=55.6%, 90=66.7%, 95=77.8%, 100=88.9%, 105=100% -->
+                    <div class="v-line" style="left: 0%;"></div>
+                    <div class="v-line" style="left: 11.11%;"></div>
+                    <div class="v-line" style="left: 22.22%;"></div>
+                    <div class="v-line" style="left: 33.33%;"></div>
+                    <div class="v-line" style="left: 44.44%;"></div>
+                    <div class="v-line" style="left: 55.56%;"></div>
+                    <div class="v-line" style="left: 66.67%;"></div>
+                    <div class="v-line" style="left: 77.78%;"></div>
+                    <div class="v-line" style="left: 88.89%; width: 2px; background: rgba(255,255,255,0.15);"></div>
+                    <div class="v-line" style="left: 100%;"></div>
+                </div>
+
+                <!-- Axis labels -->
+                <div class="axis-labels">
+                    <div class="axis-label"><span>60</span></div>
+                    <div class="axis-label"><span>65</span></div>
+                    <div class="axis-label"><span>70</span></div>
+                    <div class="axis-label"><span>75</span></div>
+                    <div class="axis-label"><span>80</span></div>
+                    <div class="axis-label"><span>85</span></div>
+                    <div class="axis-label"><span>90</span></div>
+                    <div class="axis-label"><span>95</span></div>
+                    <div class="axis-label"><span>100</span></div>
+                    <div class="axis-label"><span>105</span></div>
+                </div>
+
+                <div class="rows">
+                    <!--
+                        Scale: 60 to 105, total range = 45
+                        Position = ((value - 60) / 45) * 100%
+
+                        France:     101 → 91.1%
+                        Italie:      95 → 77.8%
+                        Norvège:     88 → 62.2%
+                        Canada:      87 → 60.0%
+                        Allemagne:   85 → 55.6%
+                        États-Unis:  84 → 53.3%
+                        Royaume-Uni: 79 → 42.2%
+                        Pays-Bas:    77 → 37.8%
+                        Suède:       75 → 33.3%
+                        Danemark:    74 → 31.1%
+                        Japon:       70 → 22.2%
+                        Australie:   65 → 11.1%
+                    -->
+
+                    <!-- France: 101 — HIGHLIGHT -->
+                    <div class="row">
+                        <div class="row-name highlight">France</div>
+                        <div class="row-track">
+                            <div class="ref-line"></div>
+                            <div class="dot-line highlight-line" style="left: 0; width: 91.1%;"></div>
+                            <div class="dot highlight-dot" style="left: 91.1%;"></div>
+                            <div class="dot-value highlight-val" style="left: calc(91.1% + 20px);">101</div>
+                        </div>
+                    </div>
+
+                    <!-- Italie: 95 -->
+                    <div class="row">
+                        <div class="row-name">Italie</div>
+                        <div class="row-track">
+                            <div class="ref-line"></div>
+                            <div class="dot-line" style="left: 0; width: 77.8%;"></div>
+                            <div class="dot" style="left: 77.8%;"></div>
+                            <div class="dot-value" style="left: calc(77.8% + 16px);">95</div>
+                        </div>
+                    </div>
+
+                    <!-- Norvège: 88 -->
+                    <div class="row">
+                        <div class="row-name">Norvège</div>
+                        <div class="row-track">
+                            <div class="ref-line"></div>
+                            <div class="dot-line" style="left: 0; width: 62.2%;"></div>
+                            <div class="dot" style="left: 62.2%;"></div>
+                            <div class="dot-value" style="left: calc(62.2% + 16px);">88</div>
+                        </div>
+                    </div>
+
+                    <!-- Canada: 87 -->
+                    <div class="row">
+                        <div class="row-name">Canada</div>
+                        <div class="row-track">
+                            <div class="ref-line"></div>
+                            <div class="dot-line" style="left: 0; width: 60%;"></div>
+                            <div class="dot" style="left: 60%;"></div>
+                            <div class="dot-value" style="left: calc(60% + 16px);">87</div>
+                        </div>
+                    </div>
+
+                    <!-- Allemagne: 85 -->
+                    <div class="row">
+                        <div class="row-name">Allemagne</div>
+                        <div class="row-track">
+                            <div class="ref-line"></div>
+                            <div class="dot-line" style="left: 0; width: 55.6%;"></div>
+                            <div class="dot" style="left: 55.6%;"></div>
+                            <div class="dot-value" style="left: calc(55.6% + 16px);">85</div>
+                        </div>
+                    </div>
+
+                    <!-- États-Unis: 84 -->
+                    <div class="row">
+                        <div class="row-name">États-Unis</div>
+                        <div class="row-track">
+                            <div class="ref-line"></div>
+                            <div class="dot-line" style="left: 0; width: 53.3%;"></div>
+                            <div class="dot" style="left: 53.3%;"></div>
+                            <div class="dot-value" style="left: calc(53.3% + 16px);">84</div>
+                        </div>
+                    </div>
+
+                    <!-- Royaume-Uni: 79 -->
+                    <div class="row">
+                        <div class="row-name">Royaume-Uni</div>
+                        <div class="row-track">
+                            <div class="ref-line"></div>
+                            <div class="dot-line" style="left: 0; width: 42.2%;"></div>
+                            <div class="dot" style="left: 42.2%;"></div>
+                            <div class="dot-value" style="left: calc(42.2% + 16px);">79</div>
+                        </div>
+                    </div>
+
+                    <!-- Pays-Bas: 77 -->
+                    <div class="row">
+                        <div class="row-name">Pays-Bas</div>
+                        <div class="row-track">
+                            <div class="ref-line"></div>
+                            <div class="dot-line" style="left: 0; width: 37.8%;"></div>
+                            <div class="dot" style="left: 37.8%;"></div>
+                            <div class="dot-value" style="left: calc(37.8% + 16px);">77</div>
+                        </div>
+                    </div>
+
+                    <!-- Suède: 75 -->
+                    <div class="row">
+                        <div class="row-name">Suède</div>
+                        <div class="row-track">
+                            <div class="ref-line"></div>
+                            <div class="dot-line" style="left: 0; width: 33.3%;"></div>
+                            <div class="dot" style="left: 33.3%;"></div>
+                            <div class="dot-value" style="left: calc(33.3% + 16px);">75</div>
+                        </div>
+                    </div>
+
+                    <!-- Danemark: 74 -->
+                    <div class="row">
+                        <div class="row-name">Danemark</div>
+                        <div class="row-track">
+                            <div class="ref-line"></div>
+                            <div class="dot-line" style="left: 0; width: 31.1%;"></div>
+                            <div class="dot" style="left: 31.1%;"></div>
+                            <div class="dot-value" style="left: calc(31.1% + 16px);">74</div>
+                        </div>
+                    </div>
+
+                    <!-- Japon: 70 -->
+                    <div class="row">
+                        <div class="row-name">Japon</div>
+                        <div class="row-track">
+                            <div class="ref-line"></div>
+                            <div class="dot-line" style="left: 0; width: 22.2%;"></div>
+                            <div class="dot" style="left: 22.2%;"></div>
+                            <div class="dot-value" style="left: calc(22.2% + 16px);">70</div>
+                        </div>
+                    </div>
+
+                    <!-- Australie: 65 -->
+                    <div class="row">
+                        <div class="row-name">Australie</div>
+                        <div class="row-track">
+                            <div class="ref-line"></div>
+                            <div class="dot-line" style="left: 0; width: 11.1%;"></div>
+                            <div class="dot" style="left: 11.1%;"></div>
+                            <div class="dot-value" style="left: calc(11.1% + 16px);">65</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Sources : <span>OCDE · FT / Luxembourg Income Study</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

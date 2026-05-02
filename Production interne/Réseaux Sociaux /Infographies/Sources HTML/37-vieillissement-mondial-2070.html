@@ -173,9 +173,11 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.15rem;
             font-weight: 600;
-            color: var(--text-secondary);
+            color: var(--text-primary);
             line-height: 1.2;
         }
+        .bar-name.highlight { color: #ff4757; font-weight: 700; }
+        .bar-name.muted { color: rgba(255, 215, 0, 0.85); font-style: italic; }
 
         .footer {
             display: flex;
@@ -222,66 +224,68 @@
 
             <div class="chart-area">
                 <div class="bars-wrapper">
+                    <!-- UNE SEULE couleur (gris-bleu neutre) sauf France (rouge + glow) et Monde (or pointillé) -->
+
                     <!-- Corée du Sud: 46% -->
                     <div class="bar-col">
-                        <div class="bar-up" style="height: 92%; background: linear-gradient(180deg, #003478, #1a4a8a); box-shadow: 0 -4px 20px rgba(0, 52, 120, 0.4);">
-                            <div class="bar-value" style="color: #5b9bd5;">46%</div>
+                        <div class="bar-up" style="height: 92%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
+                            <div class="bar-value" style="color: #f0f4f8;">46%</div>
                             <div class="bar-flag">🇰🇷</div>
                         </div>
                     </div>
 
                     <!-- Chine: 42% -->
                     <div class="bar-col">
-                        <div class="bar-up" style="height: 84%; background: linear-gradient(180deg, #DE2910, #a31d0b); box-shadow: 0 -4px 20px rgba(222, 41, 16, 0.3);">
-                            <div class="bar-value" style="color: #ff6b5b;">42%</div>
+                        <div class="bar-up" style="height: 84%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
+                            <div class="bar-value" style="color: #f0f4f8;">42%</div>
                             <div class="bar-flag">🇨🇳</div>
                         </div>
                     </div>
 
                     <!-- Japon: 37% -->
                     <div class="bar-col">
-                        <div class="bar-up" style="height: 74%; background: linear-gradient(180deg, #BC002D, #8a0020); box-shadow: 0 -4px 20px rgba(188, 0, 45, 0.3);">
-                            <div class="bar-value" style="color: #e85a70;">37%</div>
+                        <div class="bar-up" style="height: 74%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
+                            <div class="bar-value" style="color: #f0f4f8;">37%</div>
                             <div class="bar-flag">🇯🇵</div>
                         </div>
                     </div>
 
                     <!-- Italie: 37% -->
                     <div class="bar-col">
-                        <div class="bar-up" style="height: 74%; background: linear-gradient(180deg, #009246, #006b33); box-shadow: 0 -4px 20px rgba(0, 146, 70, 0.3);">
-                            <div class="bar-value" style="color: #4ecdc4;">37%</div>
+                        <div class="bar-up" style="height: 74%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
+                            <div class="bar-value" style="color: #f0f4f8;">37%</div>
                             <div class="bar-flag">🇮🇹</div>
                         </div>
                     </div>
 
                     <!-- Espagne: 36% -->
                     <div class="bar-col">
-                        <div class="bar-up" style="height: 72%; background: linear-gradient(180deg, #F1BF00, #c49a00); box-shadow: 0 -4px 20px rgba(241, 191, 0, 0.3);">
-                            <div class="bar-value" style="color: #ffd700;">36%</div>
+                        <div class="bar-up" style="height: 72%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
+                            <div class="bar-value" style="color: #f0f4f8;">36%</div>
                             <div class="bar-flag">🇪🇸</div>
                         </div>
                     </div>
 
                     <!-- Allemagne: 32% -->
                     <div class="bar-col">
-                        <div class="bar-up" style="height: 64%; background: linear-gradient(180deg, #2a2a2a, #1a1a1a); box-shadow: 0 -4px 20px rgba(50, 50, 50, 0.3);">
-                            <div class="bar-value" style="color: #FFCC00;">32%</div>
+                        <div class="bar-up" style="height: 64%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
+                            <div class="bar-value" style="color: #f0f4f8;">32%</div>
                             <div class="bar-flag">🇩🇪</div>
                         </div>
                     </div>
 
-                    <!-- France: 29% -->
+                    <!-- France: 29% — HIGHLIGHT barre rouge + glow, valeur en blanc -->
                     <div class="bar-col">
-                        <div class="bar-up" style="height: 58%; background: linear-gradient(180deg, #002395, #001a6e); box-shadow: 0 -4px 20px rgba(0, 35, 149, 0.3);">
-                            <div class="bar-value" style="color: #6b8bff;">29%</div>
+                        <div class="bar-up" style="height: 58%; background: linear-gradient(180deg, #ff4757, #8a1828); box-shadow: 0 -4px 30px rgba(255, 71, 87, 0.5);">
+                            <div class="bar-value" style="color: #f0f4f8;">29%</div>
                             <div class="bar-flag">🇫🇷</div>
                         </div>
                     </div>
 
-                    <!-- Monde: 21% -->
+                    <!-- Monde: 21% — gris neutre comme les autres -->
                     <div class="bar-col">
-                        <div class="bar-up" style="height: 42%; background: linear-gradient(180deg, #1a8a6a, #126b52); box-shadow: 0 -4px 20px rgba(26, 138, 106, 0.3);">
-                            <div class="bar-value" style="color: #4ecdc4;">21%</div>
+                        <div class="bar-up" style="height: 42%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
+                            <div class="bar-value" style="color: #f0f4f8;">21%</div>
                             <div class="bar-flag">🌍</div>
                         </div>
                     </div>
@@ -295,7 +299,7 @@
                     <div class="label-col"><div class="bar-name">Italie</div></div>
                     <div class="label-col"><div class="bar-name">Espagne</div></div>
                     <div class="label-col"><div class="bar-name">Allemagne</div></div>
-                    <div class="label-col"><div class="bar-name">France</div></div>
+                    <div class="label-col"><div class="bar-name highlight">France</div></div>
                     <div class="label-col"><div class="bar-name">Monde</div></div>
                 </div>
             </div>

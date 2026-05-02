@@ -3,25 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salaire moyen net selon les pays</title>
+    <title>Le salaire moyen selon les pays</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-deep: #06080c;
-            --bg-surface: #0a0e14;
-            --bg-elevated: #111820;
             --text-primary: #f0f4f8;
             --text-secondary: #8899a8;
             --text-muted: #4a5a6a;
             --accent-electric: #00d4ff;
-            --accent-gold: #ffd700;
             --accent-red: #ff4757;
-            --accent-green: #00ff88;
-            --accent-purple: #a855f7;
-            --accent-orange: #ff9f43;
-            --glass: rgba(17, 24, 32, 0.85);
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
@@ -61,9 +54,9 @@
             position: absolute;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.12) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.10) 0%, transparent 70%);
             top: -200px;
-            right: -200px;
+            right: -100px;
             pointer-events: none;
         }
 
@@ -71,7 +64,7 @@
             position: absolute;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.06) 0%, transparent 70%);
             bottom: -150px;
             left: -150px;
             pointer-events: none;
@@ -81,7 +74,7 @@
             position: relative;
             z-index: 1;
             height: 100%;
-            padding: 55px 60px;
+            padding: 50px 60px 40px;
             display: flex;
             flex-direction: column;
         }
@@ -90,7 +83,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 25px;
+            margin-bottom: 6px;
         }
 
         .logo {
@@ -99,24 +92,17 @@
             gap: 12px;
         }
 
-        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
-
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: var(--accent-electric); line-height: 1; }
         .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
-
-        .chart-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
 
         .chart-title {
             font-family: 'Instrument Serif', serif;
-            font-size: 4.5rem;
+            font-size: 5.5rem;
             text-align: center;
-            margin-bottom: 10px;
+            margin-top: 30px;
+            margin-bottom: 4px;
             color: var(--text-primary);
-            line-height: 1.2;
+            line-height: 1.05;
         }
 
         .chart-title .accent {
@@ -126,113 +112,72 @@
 
         .chart-subtitle {
             text-align: center;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
-            margin-bottom: 35px;
         }
 
-        .ranking {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .rank-item {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            padding: 18px 28px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 14px;
-        }
-
-        .rank-item.france {
-            position: relative;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.12) 0%, rgba(0, 153, 204, 0.06) 100%);
-            border-color: rgba(0, 212, 255, 0.3);
-        }
-
-        .rank-item.france::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: var(--accent-electric);
-            border-radius: 14px 0 0 14px;
-        }
-
-        .rank-flag {
-            font-size: 2.4rem;
-        }
-
-        .rank-country {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            min-width: 160px;
-        }
-
-        .rank-bar-container {
+        .chart-area {
             flex: 1;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0;
+            padding: 0 40px;
+        }
+
+        .rank-row {
+            display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 24px;
+            padding: 24px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .rank-bar {
-            height: 26px;
-            border-radius: 6px;
-            min-width: 10px;
+        .rank-row:last-child { border-bottom: none; }
+
+        .rank-row.highlight .rank-name { color: var(--accent-red); }
+        .rank-row.highlight .rank-value { color: var(--accent-red); }
+
+        .rank-flag {
+            font-size: 3.5rem;
+            line-height: 1;
+            flex-shrink: 0;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
         }
 
-        .rank-bar.top {
-            background: linear-gradient(90deg, var(--accent-gold), var(--accent-orange));
-        }
-
-        .rank-bar.high {
-            background: linear-gradient(90deg, var(--accent-purple), #7c3aed);
-        }
-
-        .rank-bar.mid {
-            background: linear-gradient(90deg, var(--accent-electric), #0099cc);
-        }
-
-        .rank-bar.low {
-            background: linear-gradient(90deg, var(--accent-green), #00cc6a);
+        .rank-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #fff;
+            flex: 1;
         }
 
         .rank-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.8rem;
-            font-weight: 600;
-            min-width: 100px;
-            text-align: right;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-electric);
+            white-space: nowrap;
         }
 
-        .rank-value.top { color: var(--accent-gold); }
-        .rank-value.high { color: var(--accent-purple); }
-        .rank-value.mid { color: var(--accent-electric); }
-        .rank-value.low { color: var(--accent-green); }
+        .rank-unit {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
 
         .footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 20px;
+            padding-top: 14px;
+            margin-top: 12px;
             border-top: 1px solid var(--glass-border);
         }
 
-        .source {
-            font-size: 1rem;
-            color: var(--text-muted);
-        }
-
-        .source span {
-            color: var(--text-secondary);
-        }
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
 
         .website {
             font-family: 'JetBrains Mono', monospace;
@@ -257,56 +202,19 @@
                 </div>
             </div>
 
-            <div class="chart-container">
-                <h2 class="chart-title">Le <span class="accent">salaire moyen</span><br>selon les pays</h2>
-                <div class="chart-subtitle">Salaire net mensuel moyen en euros (2024)</div>
+            <h2 class="chart-title">Le <span class="accent">salaire moyen</span><br>selon les pays</h2>
+            <div class="chart-subtitle">Salaire net mensuel moyen · 2024</div>
 
-                <div class="ranking">
-                    <div class="rank-item">
-                        <div class="rank-flag">🇨🇭</div>
-                        <div class="rank-country">Suisse</div>
-                        <div class="rank-bar-container">
-                            <div class="rank-bar top" style="width: 100%;"></div>
-                        </div>
-                        <div class="rank-value top">6 000€</div>
-                    </div>
-                    <div class="rank-item">
-                        <div class="rank-flag">🇱🇺</div>
-                        <div class="rank-country">Luxembourg</div>
-                        <div class="rank-bar-container">
-                            <div class="rank-bar high" style="width: 70%;"></div>
-                        </div>
-                        <div class="rank-value high">4 200€</div>
-                    </div>
-                    <div class="rank-item">
-                        <div class="rank-flag">🇺🇸</div>
-                        <div class="rank-country">États-Unis</div>
-                        <div class="rank-bar-container">
-                            <div class="rank-bar high" style="width: 55%;"></div>
-                        </div>
-                        <div class="rank-value high">3 300€</div>
-                    </div>
-                    <div class="rank-item france">
-                        <div class="rank-flag">🇫🇷</div>
-                        <div class="rank-country">France</div>
-                        <div class="rank-bar-container">
-                            <div class="rank-bar mid" style="width: 45.5%;"></div>
-                        </div>
-                        <div class="rank-value mid">2 730€</div>
-                    </div>
-                    <div class="rank-item">
-                        <div class="rank-flag">🇵🇹</div>
-                        <div class="rank-country">Portugal</div>
-                        <div class="rank-bar-container">
-                            <div class="rank-bar low" style="width: 22%;"></div>
-                        </div>
-                        <div class="rank-value low">1 330€</div>
-                    </div>
-                </div>
+            <div class="chart-area">
+                <div class="rank-row"><div class="rank-flag">🇨🇭</div><div class="rank-name">Suisse</div><div class="rank-value">6 500 € <span class="rank-unit">/mois</span></div></div>
+                <div class="rank-row"><div class="rank-flag">🇱🇺</div><div class="rank-name">Luxembourg</div><div class="rank-value">4 200 € <span class="rank-unit">/mois</span></div></div>
+                <div class="rank-row"><div class="rank-flag">🇺🇸</div><div class="rank-name">États-Unis</div><div class="rank-value">3 500 € <span class="rank-unit">/mois</span></div></div>
+                <div class="rank-row highlight"><div class="rank-flag">🇫🇷</div><div class="rank-name">France</div><div class="rank-value">2 730 € <span class="rank-unit">/mois</span></div></div>
+                <div class="rank-row"><div class="rank-flag">🇵🇹</div><div class="rank-name">Portugal</div><div class="rank-value">1 430 € <span class="rank-unit">/mois</span></div></div>
             </div>
 
             <div class="footer">
-                <div class="source">Sources : <span>OFS, STATEC, Census Bureau, INSEE, INE · 2024</span></div>
+                <div class="source">Sources : <span>OFS · STATEC · Census Bureau · INSEE · INE · 2024</span></div>
                 <div class="website">ouvalargent.com</div>
             </div>
         </div>

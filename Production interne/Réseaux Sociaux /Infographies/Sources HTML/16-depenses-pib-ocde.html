@@ -145,6 +145,7 @@
             white-space: nowrap;
             margin-bottom: 6px;
             flex-shrink: 0;
+            color: var(--text-primary);
         }
 
         .bar-up {
@@ -238,82 +239,84 @@
 
             <div class="chart-area">
                 <div class="bars-wrapper">
-                    <!-- France: 57,0% -->
+                    <!-- UNE SEULE couleur (gris-bleu neutre) sauf France (rouge + glow) et OCDE (or pointillé) -->
+
+                    <!-- France: 57,0% — HIGHLIGHT rouge + glow rouge derrière -->
                     <div class="bar-col">
                         <div class="bar-value" style="color: #ff4757;">57,0%</div>
-                        <div class="bar-up" style="height: 95%; background: linear-gradient(180deg, #002395, #001a6e); box-shadow: 0 -4px 25px rgba(255, 71, 87, 0.4);">
+                        <div class="bar-up" style="height: 95%; background: linear-gradient(180deg, #ff4757, #8a1828); box-shadow: 0 -4px 30px rgba(255, 71, 87, 0.5);">
                             <div class="bar-flag">🇫🇷</div>
                         </div>
                     </div>
 
                     <!-- Italie: 54,9% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #00b856;">54,9%</div>
-                        <div class="bar-up" style="height: 91.6%; background: linear-gradient(180deg, #009246, #006b33); box-shadow: 0 -4px 20px rgba(0, 146, 70, 0.3);">
+                        <div class="bar-value">54,9%</div>
+                        <div class="bar-up" style="height: 91.6%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
                             <div class="bar-flag">🇮🇹</div>
                         </div>
                     </div>
 
                     <!-- Suède: 50,0% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #FECC02;">50,0%</div>
-                        <div class="bar-up" style="height: 83.3%; background: linear-gradient(180deg, #006AA7, #004d7a); box-shadow: 0 -4px 20px rgba(0, 106, 167, 0.3);">
+                        <div class="bar-value">50,0%</div>
+                        <div class="bar-up" style="height: 83.3%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
                             <div class="bar-flag">🇸🇪</div>
                         </div>
                     </div>
 
                     <!-- Allemagne: 48,4% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #FFCC00;">48,4%</div>
-                        <div class="bar-up" style="height: 80.7%; background: linear-gradient(180deg, #2a2a2a, #1a1a1a); box-shadow: 0 -4px 20px rgba(50, 50, 50, 0.3);">
+                        <div class="bar-value">48,4%</div>
+                        <div class="bar-up" style="height: 80.7%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
                             <div class="bar-flag">🇩🇪</div>
                         </div>
                     </div>
 
                     <!-- Royaume-Uni: 44,5% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #C8102E;">44,5%</div>
-                        <div class="bar-up" style="height: 74.2%; background: linear-gradient(180deg, #012169, #001040); box-shadow: 0 -4px 20px rgba(1, 33, 105, 0.3);">
+                        <div class="bar-value">44,5%</div>
+                        <div class="bar-up" style="height: 74.2%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
                             <div class="bar-flag">🇬🇧</div>
                         </div>
                     </div>
 
-                    <!-- Moy. OCDE: 42,6% -->
+                    <!-- Moy. OCDE: 42,6% — repère or pointillé -->
                     <div class="bar-col">
                         <div class="bar-value" style="color: #ffd700;">42,6%</div>
-                        <div class="bar-up" style="height: 71.1%; background: linear-gradient(180deg, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.2)); border: 1px dashed rgba(255, 215, 0, 0.4);">
+                        <div class="bar-up" style="height: 71.1%; background: linear-gradient(180deg, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.2)); border: 1px dashed rgba(255, 215, 0, 0.55);">
                             <div class="bar-flag">📊</div>
                         </div>
                     </div>
 
                     <!-- États-Unis: 36,2% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #B22234;">36,2%</div>
-                        <div class="bar-up" style="height: 60.4%; background: linear-gradient(180deg, #3C3B6E, #2a2a50); box-shadow: 0 -4px 20px rgba(60, 59, 110, 0.3);">
+                        <div class="bar-value">36,2%</div>
+                        <div class="bar-up" style="height: 60.4%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
                             <div class="bar-flag">🇺🇸</div>
                         </div>
                     </div>
 
                     <!-- Japon: 36,0% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #BC002D;">36,0%</div>
-                        <div class="bar-up" style="height: 60.0%; background: linear-gradient(180deg, #BC002D, #8a0020); box-shadow: 0 -4px 20px rgba(188, 0, 45, 0.25);">
+                        <div class="bar-value">36,0%</div>
+                        <div class="bar-up" style="height: 60.0%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
                             <div class="bar-flag">🇯🇵</div>
                         </div>
                     </div>
 
                     <!-- Suisse: 33,2% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #D52B1E;">33,2%</div>
-                        <div class="bar-up" style="height: 55.4%; background: linear-gradient(180deg, #D52B1E, #a02018); box-shadow: 0 -4px 20px rgba(213, 43, 30, 0.25);">
+                        <div class="bar-value">33,2%</div>
+                        <div class="bar-up" style="height: 55.4%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
                             <div class="bar-flag">🇨🇭</div>
                         </div>
                     </div>
 
                     <!-- Mexique: 27,4% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #006847;">27,4%</div>
-                        <div class="bar-up" style="height: 45.7%; background: linear-gradient(180deg, #006847, #004d33); box-shadow: 0 -4px 20px rgba(0, 104, 71, 0.25);">
+                        <div class="bar-value">27,4%</div>
+                        <div class="bar-up" style="height: 45.7%; background: linear-gradient(180deg, #5d7494, #2d3f5c);">
                             <div class="bar-flag">🇲🇽</div>
                         </div>
                     </div>

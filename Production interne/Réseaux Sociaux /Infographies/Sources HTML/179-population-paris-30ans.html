@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Évolution de la population de Paris (1999-2024)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #c8a08a;
+            --text-muted: #7a5a4a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent: #ff9f43;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #06080c 0%, #0f1a0c 50%, #06080c 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 159, 67, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 159, 67, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 159, 67, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 159, 67, 0.06) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 45px 40px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            background: rgba(255, 159, 67, 0.15);
+            border: 1px solid rgba(255, 159, 67, 0.3);
+            padding: 4px 12px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.5rem;
+            text-align: center;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        .chart-title .accent {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+                <div class="tag">Démographie</div>
+            </div>
+
+            <h2 class="chart-title">Paris perd ses habitants :<br><span class="accent">−153 000</span> depuis 2012</h2>
+            <div class="chart-subtitle">Population de Paris intra-muros (en milliers d'habitants)</div>
+
+            <div class="chart-area">
+                <svg width="920" height="560" viewBox="0 0 920 560">
+                    <!-- Unit label -->
+                    <text x="68" y="18" fill="#c8a08a" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="600" text-anchor="end">milliers</text>
+
+                    <!-- Axes -->
+                    <line x1="80" y1="20" x2="80" y2="510" stroke="#5a5a4a" stroke-opacity="0.5" stroke-width="1" />
+                    <line x1="80" y1="510" x2="890" y2="510" stroke="#5a5a4a" stroke-opacity="0.5" stroke-width="1" />
+
+                    <!-- Y grid: 2 050k to 2 250k (range 200k, height 480px) -->
+                    <!-- y = 510 - ((val - 2050) / 200) * 480 -->
+
+                    <!-- 2 050k (bottom) -->
+                    <text x="68" y="514" fill="#c8a08a" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">2 050</text>
+
+                    <!-- 2 100k -->
+                    <line x1="80" y1="390" x2="890" y2="390" stroke="#5a5a4a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="68" y="394" fill="#c8a08a" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">2 100</text>
+
+                    <!-- 2 150k -->
+                    <line x1="80" y1="270" x2="890" y2="270" stroke="#5a5a4a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="68" y="274" fill="#c8a08a" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">2 150</text>
+
+                    <!-- 2 200k -->
+                    <line x1="80" y1="150" x2="890" y2="150" stroke="#5a5a4a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="68" y="154" fill="#c8a08a" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">2 200</text>
+
+                    <!-- 2 250k -->
+                    <line x1="80" y1="30" x2="890" y2="30" stroke="#5a5a4a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="68" y="34" fill="#c8a08a" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="end">2 250</text>
+
+                    <!-- X-axis labels: 1999, 2003, 2007, 2011, 2015, 2019, 2023 -->
+                    <text x="80" y="540" fill="#c8a08a" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">1999</text>
+                    <text x="210" y="540" fill="#c8a08a" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2003</text>
+                    <text x="340" y="540" fill="#c8a08a" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2007</text>
+                    <text x="469" y="540" fill="#c8a08a" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2011</text>
+                    <text x="599" y="540" fill="#c8a08a" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2015</text>
+                    <text x="728" y="540" fill="#c8a08a" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2019</text>
+                    <text x="858" y="540" fill="#c8a08a" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">2023</text>
+
+                    <!-- Gradient fill under curve -->
+                    <defs>
+                        <linearGradient id="grad-pop" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#ff9f43" stop-opacity="0.3"/>
+                            <stop offset="100%" stop-color="#ff9f43" stop-opacity="0.02"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Data points:
+                        1999: 2125k → x=80,  y=510-((75/200)*480)=510-180=330
+                        2003: 2145k → x=210, y=510-((95/200)*480)=510-228=282
+                        2006: 2168k → x=307, y=510-((118/200)*480)=510-283=227
+                        2009: 2195k → x=404, y=510-((145/200)*480)=510-348=162
+                        2011: 2211k → x=469, y=510-((161/200)*480)=510-386=124
+                        2012: 2241k → x=501, y=510-((191/200)*480)=510-458=52
+                        2014: 2220k → x=566, y=510-((170/200)*480)=510-408=102
+                        2016: 2205k → x=631, y=510-((155/200)*480)=510-372=138
+                        2018: 2176k → x=696, y=510-((126/200)*480)=510-302=208
+                        2019: 2165k → x=728, y=510-((115/200)*480)=510-276=234
+                        2021: 2165k → x=793, y=234
+                        2023: 2103k → x=858, y=510-((53/200)*480)=510-127=383
+                        2024: 2088k → x=890, y=510-((38/200)*480)=510-91=419
+                    -->
+
+                    <!-- Fill path -->
+                    <path d="M80,330 L210,282 L307,227 L404,162 L469,124 L501,52 L566,102 L631,138 L696,208 L728,234 L793,234 L858,383 L890,419 L890,510 L80,510 Z" fill="url(#grad-pop)" />
+
+                    <!-- Line path -->
+                    <path d="M80,330 L210,282 L307,227 L404,162 L469,124 L501,52 L566,102 L631,138 L696,208 L728,234 L793,234 L858,383 L890,419" fill="none" stroke="#ff9f43" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+
+                    <!-- Arrow annotation: montée 1999→2012 -->
+                    <line x1="120" y1="320" x2="480" y2="70" stroke="#00ff88" stroke-opacity="0.2" stroke-width="1.5" stroke-dasharray="8,6" />
+                    <text x="280" y="170" fill="#00ff88" fill-opacity="0.7" font-family="'JetBrains Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" transform="rotate(-25, 280, 170)">+116 000</text>
+
+                    <!-- Arrow annotation: déclin 2012→2024 -->
+                    <line x1="520" y1="70" x2="870" y2="400" stroke="#ff4757" stroke-opacity="0.2" stroke-width="1.5" stroke-dasharray="8,6" />
+                    <text x="720" y="200" fill="#ff4757" fill-opacity="0.7" font-family="'JetBrains Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" transform="rotate(28, 720, 200)">−153 000</text>
+
+                    <!-- Annotation: 1999 start (2 125k) -->
+                    <circle cx="80" cy="330" r="5" fill="#ff9f43" stroke="#06080c" stroke-width="2.5" />
+                    <text x="100" y="360" fill="#ff9f43" font-family="'JetBrains Mono', monospace" font-size="18" font-weight="800" text-anchor="start">2,13 M</text>
+                    <text x="100" y="376" fill="#ffffff" fill-opacity="0.5" font-family="'JetBrains Mono', monospace" font-size="11" text-anchor="start" font-weight="500">1999</text>
+
+                    <!-- Annotation: 2012 peak (2 241k) -->
+                    <circle cx="501" cy="52" r="7" fill="#ff9f43" stroke="#06080c" stroke-width="2.5" />
+                    <text x="501" y="30" fill="#00ff88" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="800" text-anchor="middle">2,24 M</text>
+                    <text x="501" y="48" fill="#ffffff" fill-opacity="0.6" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="middle" font-weight="500">pic 2012</text>
+
+                    <!-- Annotation: 2024 current (2 088k) — red -->
+                    <circle cx="890" cy="419" r="8" fill="#ff4757" stroke="#06080c" stroke-width="3" />
+                    <circle cx="890" cy="419" r="14" fill="none" stroke="#ff4757" stroke-opacity="0.3" stroke-width="1.5" />
+                    <text x="870" y="448" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="800" text-anchor="end">2,09 M</text>
+                    <text x="870" y="466" fill="#ffffff" fill-opacity="0.6" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="end" font-weight="500">2024</text>
+
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>INSEE · Recensements 1999-2024</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

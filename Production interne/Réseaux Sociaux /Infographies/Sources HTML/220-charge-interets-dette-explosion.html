@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La bombe à retardement des intérêts de la dette</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-gold: #ffd700;
+            --accent-red: #ff4757;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1350px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 71, 87, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 71, 87, 0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(255, 71, 87, 0.15) 0%, transparent 70%); top: -200px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%); bottom: -150px; left: -150px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 55px 55px 42px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; justify-content: flex-start; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 5.4rem; text-align: center; color: var(--text-primary); line-height: 1.02; margin-top: 32px; letter-spacing: -1.5px; }
+        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .subtitle { text-align: center; font-size: 1.2rem; color: var(--text-secondary); margin-top: 22px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; }
+
+        .chart-container { flex: 1; display: flex; align-items: center; justify-content: center; margin-top: 30px; }
+        .chart-svg { width: 100%; height: auto; }
+
+        .key-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 26px; }
+        .stat-card { background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 16px; text-align: center; }
+        .stat-card.danger { background: linear-gradient(135deg, rgba(255, 71, 87, 0.18) 0%, rgba(255, 71, 87, 0.05) 100%); border: 1px solid rgba(255, 71, 87, 0.4); }
+        .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 2.4rem; font-weight: 700; color: #ffffff; line-height: 1; margin-bottom: 8px; }
+        .stat-card.danger .stat-value { color: var(--accent-red); }
+        .stat-label { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.3; }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 18px; margin-top: 22px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.88rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 600; color: var(--accent-electric); }
+
+        /* SVG styles */
+        .axis-line { stroke: rgba(255,255,255,0.15); stroke-width: 1; }
+        .grid-line { stroke: rgba(255,255,255,0.05); stroke-width: 1; stroke-dasharray: 3 3; }
+        .axis-label { font-family: 'JetBrains Mono', monospace; font-size: 14px; fill: var(--text-muted); }
+        .year-label { font-family: 'JetBrains Mono', monospace; font-size: 15px; fill: var(--text-secondary); }
+        .curve-past { fill: none; stroke: var(--accent-electric); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 8px rgba(0,212,255,0.4)); }
+        .curve-future { fill: none; stroke: var(--accent-red); stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 12px rgba(255,71,87,0.55)); }
+        .area-future { fill: url(#redGradient); opacity: 0.35; }
+        .point { fill: #ffffff; stroke: var(--accent-electric); stroke-width: 3; }
+        .point-red { fill: var(--accent-red); stroke: #ffffff; stroke-width: 2.5; }
+        .point-label { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; fill: #ffffff; }
+        .point-label-red { font-family: 'JetBrains Mono', monospace; font-size: 20px; font-weight: 700; fill: var(--accent-red); }
+        .zone-label { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="charge-interets-dette-explosion">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+            </div>
+
+            <h2 class="chart-title">La <span class="accent">bombe</span> à retardement<br>des intérêts de la dette</h2>
+            <div class="subtitle">Charge annuelle des intérêts · France · Milliards €</div>
+
+            <div class="chart-container">
+                <svg class="chart-svg" viewBox="0 0 960 520" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="redGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ff4757;stop-opacity:0.6"/>
+                            <stop offset="100%" style="stop-color:#ff4757;stop-opacity:0.05"/>
+                        </linearGradient>
+                        <pattern id="hatchPattern" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+                            <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255,71,87,0.15)" stroke-width="2"/>
+                        </pattern>
+                    </defs>
+
+                    <!-- Zone future hachurée -->
+                    <rect x="660" y="40" width="240" height="400" fill="url(#hatchPattern)"/>
+                    <line x1="660" y1="40" x2="660" y2="440" stroke="rgba(255,71,87,0.35)" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+                    <!-- Labels zones -->
+                    <text x="335" y="30" text-anchor="middle" class="zone-label" fill="rgba(0,212,255,0.5)">Réalisé</text>
+                    <text x="780" y="30" text-anchor="middle" class="zone-label" fill="rgba(255,71,87,0.75)">Projection</text>
+
+                    <!-- Axe Y : lignes horizontales -->
+                    <line x1="60" y1="40" x2="900" y2="40" class="grid-line"/>
+                    <line x1="60" y1="120" x2="900" y2="120" class="grid-line"/>
+                    <line x1="60" y1="200" x2="900" y2="200" class="grid-line"/>
+                    <line x1="60" y1="280" x2="900" y2="280" class="grid-line"/>
+                    <line x1="60" y1="360" x2="900" y2="360" class="grid-line"/>
+                    <line x1="60" y1="440" x2="900" y2="440" class="axis-line"/>
+
+                    <!-- Labels Y -->
+                    <text x="50" y="45" text-anchor="end" class="axis-label">100 Md€</text>
+                    <text x="50" y="125" text-anchor="end" class="axis-label">80</text>
+                    <text x="50" y="205" text-anchor="end" class="axis-label">60</text>
+                    <text x="50" y="285" text-anchor="end" class="axis-label">40</text>
+                    <text x="50" y="365" text-anchor="end" class="axis-label">20</text>
+                    <text x="50" y="445" text-anchor="end" class="axis-label">0</text>
+
+                    <!--
+                        Mapping: X de 60 (1995) à 900 (2029) = 840px / 34 années = 24.7 px/an
+                        Y de 440 (0 Md€) à 40 (100 Md€) = 400px / 100 Md€ = 4 px/Md€
+                        Year X : 60 + (year - 1995) * 24.7
+                        Md€ Y : 440 - md * 4
+                    -->
+
+                    <!-- Courbe passée (1995 → 2024) -->
+                    <path class="curve-past" d="
+                        M 60 260
+                        L 184 280
+                        L 308 280
+                        L 432 260
+                        L 519 272
+                        L 643 300
+                        "/>
+                    <!-- points passé (réels) -->
+                    <path class="curve-past" d="
+                        M 643 300
+                        L 692 236
+                        L 717 208
+                        "/>
+
+                    <!-- Courbe future (2024 → 2029) avec aire -->
+                    <path class="area-future" d="
+                        M 717 208
+                        L 742 180
+                        L 766 144
+                        L 791 104
+                        L 816 64
+                        L 816 440
+                        L 717 440
+                        Z
+                        "/>
+                    <path class="curve-future" d="
+                        M 717 208
+                        L 742 180
+                        L 766 144
+                        L 791 104
+                        L 816 64
+                        "/>
+
+                    <!-- Points passé -->
+                    <circle class="point" cx="60" cy="260" r="5"/>
+                    <circle class="point" cx="519" cy="272" r="7"/>
+                    <circle class="point" cx="643" cy="300" r="8"/>
+                    <circle class="point" cx="717" cy="208" r="8"/>
+
+                    <!-- Points futurs -->
+                    <circle class="point-red" cx="742" cy="180" r="7"/>
+                    <circle class="point-red" cx="766" cy="144" r="8"/>
+                    <circle class="point-red" cx="816" cy="64" r="11"/>
+
+                    <!-- Annotations points clés -->
+                    <!-- 1995 : 45 -->
+                    <text x="60" y="248" text-anchor="middle" class="point-label">45</text>
+                    <text x="60" y="475" text-anchor="middle" class="year-label">1995</text>
+
+                    <!-- 2015 : 42 -->
+                    <text x="519" y="475" text-anchor="middle" class="year-label">2015</text>
+
+                    <!-- 2020 : creux -->
+                    <text x="643" y="320" text-anchor="middle" class="point-label">35</text>
+                    <text x="643" y="475" text-anchor="middle" class="year-label">2020</text>
+
+                    <!-- 2024 : 58 -->
+                    <text x="717" y="197" text-anchor="middle" class="point-label">58</text>
+                    <text x="717" y="475" text-anchor="middle" class="year-label">2024</text>
+
+                    <!-- 2026 : 74 -->
+                    <text x="766" y="133" text-anchor="middle" class="point-label-red">74</text>
+                    <text x="766" y="475" text-anchor="middle" class="year-label">2026</text>
+
+                    <!-- 2029 : 100+ -->
+                    <text x="820" y="50" text-anchor="middle" class="point-label-red" style="font-size: 24px;">100+</text>
+                    <text x="816" y="475" text-anchor="middle" class="year-label" style="fill:var(--accent-red);font-weight:700;">2029</text>
+
+                    <!-- Flèche "x2" annotation -->
+                    <g transform="translate(770, 360)">
+                        <text x="0" y="0" class="zone-label" fill="var(--accent-red)" style="font-size:22px;letter-spacing:1px;">×&nbsp;2</text>
+                        <text x="0" y="22" class="axis-label" fill="var(--text-secondary)" style="font-size:13px;">en 5 ans</text>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="key-stats">
+                <div class="stat-card">
+                    <div class="stat-value">58</div>
+                    <div class="stat-label">Md€ en <strong style="color:#fff">2024</strong><br>= 2,0 % du PIB</div>
+                </div>
+                <div class="stat-card danger">
+                    <div class="stat-value">+75 %</div>
+                    <div class="stat-label">de hausse prévue<br>entre 2024 et <strong>2029</strong></div>
+                </div>
+                <div class="stat-card danger">
+                    <div class="stat-value">&gt; Éduc.</div>
+                    <div class="stat-label">les intérêts dépasseront<br>le budget de <strong>l'Éducation nationale</strong></div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Sources : <span>Cour des Comptes (fév. 2026) · Trésor · OCDE · FIPECO</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

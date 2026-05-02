@@ -51,6 +51,19 @@ html {
   zoom: 0.5;
 }
 
+.page-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow-y: auto;
+  background: var(--bg-deep);
+  zoom: 2;
+}
+
+.lightbox-overlay {
+  zoom: 0.5;
+}
+
 body {
   font-family: 'Syne', sans-serif;
   background: var(--bg-deep);

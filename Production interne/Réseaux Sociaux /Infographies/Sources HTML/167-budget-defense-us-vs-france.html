@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget défense : USA vs France</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                #06080c 0%,
+                #0a1628 40%,
+                #0d1a30 60%,
+                #06080c 100%
+            );
+            z-index: 0;
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+
+        .bg-glow-us {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 82, 165, 0.12) 0%, transparent 65%);
+            top: -100px;
+            left: -50px;
+            z-index: 1;
+        }
+
+        .bg-glow-fr {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(239, 65, 53, 0.08) 0%, transparent 65%);
+            bottom: -50px;
+            right: -50px;
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            padding: 35px 50px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0;
+        }
+
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #ffffff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5.5rem;
+            text-align: center;
+            margin-bottom: 0;
+            color: #f0f4f8;
+            line-height: 1.08;
+        }
+
+        .chart-title .accent-us { color: #4a90d9; font-style: italic; }
+        .chart-title .accent-fr { color: #ef4135; font-style: italic; }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.15rem;
+            color: #8899a8;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-top: 25px;
+        }
+
+        .bars-wrapper {
+            flex: 1;
+            display: flex;
+            gap: 120px;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 0 100px;
+        }
+
+        .bar-col {
+            flex: 1;
+            max-width: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+        }
+
+        .bar-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            white-space: nowrap;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .bar-up {
+            width: 100%;
+            border-radius: 14px 14px 0 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 10px;
+        }
+
+        .bar-flag {
+            font-size: 6.5rem;
+            line-height: 1;
+            margin-top: 14px;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+        }
+
+        .labels-row {
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+            padding: 12px 140px 0;
+        }
+
+        .label-col {
+            flex: 1;
+            max-width: 280px;
+            text-align: center;
+        }
+
+        .bar-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .bar-name.highlight-us { color: #4a90d9; }
+        .bar-name.highlight-fr { color: #ef4135; }
+
+        .multiplier {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .multiplier strong {
+            color: #ffd700;
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .source { font-size: 1rem; color: #4a5a6a; }
+        .source span { color: #8899a8; }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: rgba(255, 255, 255, 0.6); }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="167-budget-defense-us-vs-france">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-us"></div>
+        <div class="bg-glow-fr"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Budget défense :<br><span class="accent-us">États-Unis</span> vs <span class="accent-fr">France</span></h2>
+
+            <div class="chart-area">
+                <div class="bars-wrapper">
+                    <!-- USA: 1 500 Md$ -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="font-size: 3.2rem; color: #4a90d9;">1 500 Md$</div>
+                        <div class="bar-up" style="height: 62%; background: linear-gradient(180deg, #0052a5, #003d7a); box-shadow: 0 -6px 40px rgba(0, 82, 165, 0.4);"></div>
+                        <div class="bar-flag">🇺🇸</div>
+                    </div>
+
+                    <!-- France: 57 Md€ -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="font-size: 3.2rem; color: #ef4135;">57 Md€</div>
+                        <div class="bar-up" style="height: 5%; min-height: 55px; background: linear-gradient(180deg, #ef4135, #b8312a); box-shadow: 0 -6px 40px rgba(239, 65, 53, 0.4);"></div>
+                        <div class="bar-flag">🇫🇷</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer">
+                <div class="source">Sources : <span>Pentagone · Min. des Armées · 2027 (est.)</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

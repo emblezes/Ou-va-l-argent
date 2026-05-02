@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La pyramide des salaires en France</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #121a2a;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a0b0c0;
+            --text-muted: #607080;
+            --accent: #ffd700;
+            --glass-border: rgba(255, 255, 255, 0.12);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #0f1520 0%, #182640 50%, #0f1520 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 215, 0, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 215, 0, 0.025) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(255, 215, 0, 0.07) 0%, transparent 70%); top: -100px; left: 50%; transform: translateX(-50%); pointer-events: none; }
+        .bg-glow-2 { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255, 165, 0, 0.05) 0%, transparent 70%); bottom: -200px; right: -100px; pointer-events: none; }
+        .content { position: relative; z-index: 1; height: 100%; padding: 38px 50px 30px; display: flex; flex-direction: column; }
+        .header { display: flex; justify-content: flex-start; align-items: flex-start; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.5rem; color: var(--accent); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.8rem; text-align: center;
+            color: var(--text-primary); line-height: 1.0;
+            margin-top: 8px;
+        }
+        .chart-title .accent { color: var(--accent); font-style: italic; }
+        .chart-subtitle {
+            text-align: center; font-size: 1.05rem;
+            color: var(--text-secondary); margin-top: 6px;
+            line-height: 1.3;
+        }
+        .chart-area { flex: 1; display: flex; flex-direction: column; justify-content: center; margin-top: 6px; }
+        .bar-chart { width: 100%; }
+
+        .bar-item {
+            display: flex; align-items: center;
+            margin-bottom: 4px; position: relative;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 8px; padding: 11px 18px;
+            overflow: hidden;
+        }
+        .bar-item::before {
+            content: ''; position: absolute; left: 0; top: 0; height: 100%;
+            border-radius: 8px; z-index: -1;
+        }
+
+        /* Bar 1: < 1 500 e - 9.3% - rouge fonce */
+        .bar-item:nth-child(1)::before {
+            width: 29.6%;
+            background: linear-gradient(90deg, rgba(220, 50, 50, 0.8), rgba(220, 50, 50, 0.2));
+        }
+        .bar-item:nth-child(1) .bar-value { color: #ff5050; text-shadow: 0 0 15px rgba(255, 80, 80, 0.5); }
+
+        /* Bar 2: 1 500 - 2 000 e - 31.4% - orange rouge */
+        .bar-item:nth-child(2)::before {
+            width: 100%;
+            background: linear-gradient(90deg, rgba(255, 100, 50, 0.8), rgba(255, 100, 50, 0.15));
+        }
+        .bar-item:nth-child(2) .bar-value { color: #ff7040; text-shadow: 0 0 15px rgba(255, 112, 64, 0.5); }
+        .bar-item:nth-child(2) { padding: 13px 18px; }
+        .bar-item:nth-child(2) .bar-label { font-size: 1.85rem; font-weight: 700; }
+        .bar-item:nth-child(2) .bar-value { font-size: 2.4rem; }
+
+        /* Bar 3: 2 000 - 2 500 e - 21.6% - orange */
+        .bar-item:nth-child(3)::before {
+            width: 68.8%;
+            background: linear-gradient(90deg, rgba(255, 150, 50, 0.8), rgba(255, 150, 50, 0.15));
+        }
+        .bar-item:nth-child(3) .bar-value { color: #ffa040; text-shadow: 0 0 15px rgba(255, 160, 64, 0.5); }
+
+        /* Bar 4: 2 500 - 3 000 e - 12.8% - orange dore */
+        .bar-item:nth-child(4)::before {
+            width: 40.8%;
+            background: linear-gradient(90deg, rgba(255, 185, 50, 0.75), rgba(255, 185, 50, 0.15));
+        }
+        .bar-item:nth-child(4) .bar-value { color: #ffc040; text-shadow: 0 0 15px rgba(255, 192, 64, 0.5); }
+
+        /* Bar 5: 3 000 - 4 000 e - 12.7% - dore */
+        .bar-item:nth-child(5)::before {
+            width: 40.4%;
+            background: linear-gradient(90deg, rgba(255, 210, 50, 0.75), rgba(255, 210, 50, 0.15));
+        }
+        .bar-item:nth-child(5) .bar-value { color: #ffd840; text-shadow: 0 0 15px rgba(255, 216, 64, 0.5); }
+
+        /* Bar 6: 4 000 - 6 000 e - 8.0% - jaune */
+        .bar-item:nth-child(6)::before {
+            width: 25.5%;
+            background: linear-gradient(90deg, rgba(255, 235, 60, 0.7), rgba(255, 235, 60, 0.12));
+        }
+        .bar-item:nth-child(6) .bar-value { color: #ffee40; text-shadow: 0 0 15px rgba(255, 238, 64, 0.5); }
+
+        /* Bar 7: 6 000 - 8 000 e - 2.2% - jaune clair */
+        .bar-item:nth-child(7)::before {
+            width: 7.0%;
+            background: linear-gradient(90deg, rgba(245, 245, 90, 0.65), rgba(245, 245, 90, 0.1));
+        }
+        .bar-item:nth-child(7) .bar-value { color: #f5f560; text-shadow: 0 0 15px rgba(245, 245, 96, 0.5); }
+
+        /* Bar 8: + de 8 000 e - 1.9% - jaune pale */
+        .bar-item:nth-child(8)::before {
+            width: 6.0%;
+            background: linear-gradient(90deg, rgba(250, 250, 130, 0.6), rgba(250, 250, 130, 0.1));
+        }
+        .bar-item:nth-child(8) .bar-value { color: #fafa80; text-shadow: 0 0 15px rgba(250, 250, 128, 0.5); }
+
+        .bar-label {
+            flex: 1; font-family: 'Syne', sans-serif;
+            font-size: 1.7rem; font-weight: 600;
+            color: var(--text-primary);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+            min-width: 220px;
+        }
+        .bar-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.9rem; font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .median-box {
+            margin-top: 12px;
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 5px solid var(--accent);
+            padding: 12px 20px;
+            border-radius: 0 8px 8px 0;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .median-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem; color: rgba(240,244,248,0.7);
+        }
+        .median-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem; font-weight: 700;
+            color: var(--accent);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        .footer {
+            display: flex; justify-content: space-between;
+            align-items: center; padding-top: 10px;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 8px;
+        }
+        .source { font-size: 0.9rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="infographic" data-name="pyramide-salaires-france">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+            </div>
+            <h2 class="chart-title">La <span class="accent">pyramide des salaires</span><br>en France</h2>
+            <div class="chart-subtitle">Distribution des salaires mensuels nets en équivalent temps plein · 2023</div>
+            <div class="chart-area">
+                <div class="bar-chart">
+                    <div class="bar-item">
+                        <span class="bar-label">Moins de 1 500 €</span>
+                        <span class="bar-value">9,3 %</span>
+                    </div>
+                    <div class="bar-item">
+                        <span class="bar-label">1 500 – 2 000 €</span>
+                        <span class="bar-value">31,4 %</span>
+                    </div>
+                    <div class="bar-item">
+                        <span class="bar-label">2 000 – 2 500 €</span>
+                        <span class="bar-value">21,6 %</span>
+                    </div>
+                    <div class="bar-item">
+                        <span class="bar-label">2 500 – 3 000 €</span>
+                        <span class="bar-value">12,8 %</span>
+                    </div>
+                    <div class="bar-item">
+                        <span class="bar-label">3 000 – 4 000 €</span>
+                        <span class="bar-value">12,7 %</span>
+                    </div>
+                    <div class="bar-item">
+                        <span class="bar-label">4 000 – 6 000 €</span>
+                        <span class="bar-value">8,0 %</span>
+                    </div>
+                    <div class="bar-item">
+                        <span class="bar-label">6 000 – 8 000 €</span>
+                        <span class="bar-value">2,2 %</span>
+                    </div>
+                    <div class="bar-item">
+                        <span class="bar-label">Plus de 8 000 €</span>
+                        <span class="bar-value">1,9 %</span>
+                    </div>
+                </div>
+                <div class="median-box">
+                    <span class="median-label">Salaire médian net mensuel</span>
+                    <span class="median-value">2 183 €</span>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="source">Source : <span>INSEE · Salaires secteur privé · 2023</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

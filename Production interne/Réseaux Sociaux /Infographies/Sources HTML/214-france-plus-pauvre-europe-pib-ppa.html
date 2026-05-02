@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La France plus pauvre que la moyenne européenne</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0f1a;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent: #ff4757;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, var(--bg-deep) 0%, #1a2540 50%, var(--bg-deep) 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 71, 87, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 71, 87, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 50px 40px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: var(--accent); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            background: rgba(255, 71, 87, 0.12);
+            border: 1px solid rgba(255, 71, 87, 0.25);
+            padding: 6px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5rem;
+            text-align: center;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .chart-title .accent {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        /* ===== BAR CHART ===== */
+        .chart-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .bars-wrapper {
+            flex: 1;
+            display: flex;
+            gap: 6px;
+            align-items: flex-end;
+            padding: 0 5px;
+            position: relative;
+        }
+
+        /* Ligne pointillée moyenne EU = 100 */
+        .eu-avg-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            /* 100/134 * 88% ≈ 65.7% from bottom */
+            bottom: 65.7%;
+            border-top: 2.5px dashed rgba(255, 255, 255, 0.45);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .eu-avg-label {
+            position: absolute;
+            right: 6px;
+            bottom: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.75);
+            background: rgba(10, 15, 26, 0.85);
+            padding: 3px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+        }
+
+        .bar-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.35rem;
+            font-weight: 700;
+            white-space: nowrap;
+            margin-bottom: 5px;
+            flex-shrink: 0;
+        }
+
+        .bar-up {
+            width: 88%;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 6px;
+        }
+
+        .bar-flag {
+            font-size: 3.2rem;
+            line-height: 1;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+        }
+
+        .labels-row {
+            display: flex;
+            gap: 6px;
+            padding: 8px 5px 0;
+            flex-shrink: 0;
+        }
+
+        .label-col {
+            flex: 1;
+            text-align: center;
+        }
+
+        .bar-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .bar-name.highlight {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .bar-name.muted {
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+        }
+
+        /* France bar pulse */
+        .bar-france {
+            animation: nonepulse 2s ease-in-out infinite;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: 12px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .source span {
+            color: var(--text-secondary);
+        }
+
+        .website {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">La France est <span class="accent">plus pauvre</span><br>que la moyenne européenne</h2>
+            <div class="chart-subtitle">PIB par habitant (en parité de pouvoir d'achat, UE 27 = base 100)</div>
+
+            <div class="chart-area">
+                <div class="bars-wrapper">
+                    <!-- Ligne pointillée moyenne UE = 100 -->
+                    <div class="eu-avg-line">
+                        <div class="eu-avg-label">Moyenne UE = 100</div>
+                    </div>
+
+                    <!--
+                        Max affiché = 136 (Pays-Bas) → hauteur 88%
+                        Scale: height = (value / 136) * 88%
+                        EU avg line at: (100 / 136) * 88% = 64.7%
+                    -->
+
+                    <!--
+                        Données 2025 (provisoires) — dataset prc_ppp_ind_1
+                        Max affiché = 134 (Pays-Bas) → hauteur 88%
+                        Scale: height = (value / 134) * 88%
+                        EU avg line at: (100 / 134) * 88% = 65.7%
+                    -->
+
+                    <!-- Pays-Bas: 134 -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #00d4ff;">134</div>
+                        <div class="bar-up" style="height: 88%; background: linear-gradient(180deg, #00d4ff, #0099bb); box-shadow: 0 -4px 20px rgba(0, 212, 255, 0.25);">
+                            <div class="bar-flag">🇳🇱</div>
+                        </div>
+                    </div>
+
+                    <!-- Danemark: 127 -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #00d4ff;">127</div>
+                        <div class="bar-up" style="height: 83.4%; background: linear-gradient(180deg, #00d4ff, #0099bb); box-shadow: 0 -4px 20px rgba(0, 212, 255, 0.25);">
+                            <div class="bar-flag">🇩🇰</div>
+                        </div>
+                    </div>
+
+                    <!-- Autriche: 117 -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #00d4ff;">117</div>
+                        <div class="bar-up" style="height: 76.8%; background: linear-gradient(180deg, #00d4ff, #0099bb); box-shadow: 0 -4px 20px rgba(0, 212, 255, 0.25);">
+                            <div class="bar-flag">🇦🇹</div>
+                        </div>
+                    </div>
+
+                    <!-- Allemagne: 115 -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #00d4ff;">115</div>
+                        <div class="bar-up" style="height: 75.5%; background: linear-gradient(180deg, #00d4ff, #0099bb); box-shadow: 0 -4px 20px rgba(0, 212, 255, 0.25);">
+                            <div class="bar-flag">🇩🇪</div>
+                        </div>
+                    </div>
+
+                    <!-- Finlande: 101 -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #00d4ff;">101</div>
+                        <div class="bar-up" style="height: 66.3%; background: linear-gradient(180deg, #00d4ff, #0099bb); box-shadow: 0 -4px 20px rgba(0, 212, 255, 0.25);">
+                            <div class="bar-flag">🇫🇮</div>
+                        </div>
+                    </div>
+
+                    <!-- FRANCE: 98 — ROUGE, mis en avant -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #ff4757; font-size: 1.7rem; font-weight: 800;">98</div>
+                        <div class="bar-up" style="height: 64.4%; background: linear-gradient(180deg, #ff4757, #cc1a2a); box-shadow: 0 -4px 30px rgba(255, 71, 87, 0.5), 0 0 40px rgba(255, 71, 87, 0.2);">
+                            <div class="bar-flag" style="font-size: 3.8rem;">🇫🇷</div>
+                        </div>
+                    </div>
+
+                    <!-- Italie: 96 -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #00d4ff;">96</div>
+                        <div class="bar-up" style="height: 63.1%; background: linear-gradient(180deg, #00d4ff, #0099bb); box-shadow: 0 -4px 20px rgba(0, 212, 255, 0.25);">
+                            <div class="bar-flag">🇮🇹</div>
+                        </div>
+                    </div>
+
+                    <!-- Espagne: 92 -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #00d4ff;">92</div>
+                        <div class="bar-up" style="height: 60.4%; background: linear-gradient(180deg, #00d4ff, #0099bb); box-shadow: 0 -4px 20px rgba(0, 212, 255, 0.25);">
+                            <div class="bar-flag">🇪🇸</div>
+                        </div>
+                    </div>
+
+                    <!-- Tchéquie: 92 -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #00d4ff;">92</div>
+                        <div class="bar-up" style="height: 60.4%; background: linear-gradient(180deg, #00d4ff, #0099bb); box-shadow: 0 -4px 20px rgba(0, 212, 255, 0.25);">
+                            <div class="bar-flag">🇨🇿</div>
+                        </div>
+                    </div>
+
+                    <!-- Grèce: 68 -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #00d4ff;">68</div>
+                        <div class="bar-up" style="height: 44.7%; background: linear-gradient(180deg, #00d4ff, #0099bb); box-shadow: 0 -4px 20px rgba(0, 212, 255, 0.25);">
+                            <div class="bar-flag">🇬🇷</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="labels-row">
+                    <div class="label-col"><div class="bar-name">Pays-<br>Bas</div></div>
+                    <div class="label-col"><div class="bar-name">Dane-<br>mark</div></div>
+                    <div class="label-col"><div class="bar-name">Autriche</div></div>
+                    <div class="label-col"><div class="bar-name">Alle-<br>magne</div></div>
+                    <div class="label-col"><div class="bar-name">Finlande</div></div>
+                    <div class="label-col"><div class="bar-name highlight">France</div></div>
+                    <div class="label-col"><div class="bar-name">Italie</div></div>
+                    <div class="label-col"><div class="bar-name">Espagne</div></div>
+                    <div class="label-col"><div class="bar-name">Tchéquie</div></div>
+                    <div class="label-col"><div class="bar-name">Grèce</div></div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Eurostat · PPA 2025 (provisoire)</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

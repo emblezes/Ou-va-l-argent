@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inegalites : du Danemark au Mexique</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #08060c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #9888a8;
+            --text-muted: #5a4a6a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #08060c 0%, #140a1e 50%, #08060c 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 50px 40px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #a855f7; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.2rem;
+            text-align: center;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .chart-title .accent {
+            color: #a855f7;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-top: 15px;
+        }
+
+        .bars-wrapper {
+            flex: 1;
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+            padding: 0 5px;
+        }
+
+        .bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+        }
+
+        .bar-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.4rem;
+            font-weight: 700;
+            white-space: nowrap;
+            margin-bottom: 6px;
+            flex-shrink: 0;
+        }
+
+        .bar-up {
+            width: 88%;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 6px;
+        }
+
+        .bar-flag {
+            font-size: 4rem;
+            line-height: 1;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+        }
+
+        .bar-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .bar-name.highlight {
+            color: #a855f7;
+            font-weight: 800;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: 12px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #a855f7; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Inegalites : du Danemark au Mexique</h2>
+            <div class="chart-subtitle">The [Gini coefficient](#dod:gini) measures inequality on a scale from 0 to 1. Hi</div>
+
+            <div class="chart-area">
+                <div class="bars-wrapper">
+
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #9888a8;">0.4</div>
+                        <div class="bar-up" style="height: 85.0%; background: linear-gradient(180deg, #9888a8d9, #9888a866); box-shadow: none;">
+                            <div class="bar-flag">🇲🇽</div>
+                        </div>
+                        <div class="bar-name">Mexique</div>
+                    </div>
+
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #9888a8;">0.4</div>
+                        <div class="bar-up" style="height: 81.8%; background: linear-gradient(180deg, #9888a8c9, #9888a866); box-shadow: none;">
+                            <div class="bar-flag">🇺🇸</div>
+                        </div>
+                        <div class="bar-name">États-Unis</div>
+                    </div>
+
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #9888a8;">0.3</div>
+                        <div class="bar-up" style="height: 63.4%; background: linear-gradient(180deg, #9888a8ba, #9888a866); box-shadow: none;">
+                            <div class="bar-flag">🇩🇪</div>
+                        </div>
+                        <div class="bar-name">Allemagne</div>
+                    </div>
+
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #a855f7;">0.3</div>
+                        <div class="bar-up" style="height: 62.2%; background: linear-gradient(180deg, #a855f7, #a855f799); box-shadow: 0 -4px 25px #a855f740;">
+                            <div class="bar-flag">🇫🇷</div>
+                        </div>
+                        <div class="bar-name highlight">France</div>
+                    </div>
+
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #9888a8;">0.3</div>
+                        <div class="bar-up" style="height: 58.5%; background: linear-gradient(180deg, #9888a89c, #9888a866); box-shadow: none;">
+                            <div class="bar-flag">🇩🇰</div>
+                        </div>
+                        <div class="bar-name">Danemark</div>
+                    </div>
+
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #9888a8;">0.3</div>
+                        <div class="bar-up" style="height: 57.3%; background: linear-gradient(180deg, #9888a88c, #9888a866); box-shadow: none;">
+                            <div class="bar-flag">🇸🇪</div>
+                        </div>
+                        <div class="bar-name">Suède</div>
+                    </div>
+
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #9888a8;">0.3</div>
+                        <div class="bar-up" style="height: 50.4%; background: linear-gradient(180deg, #9888a87d, #9888a866); box-shadow: none;">
+                            <div class="bar-flag">🇳🇱</div>
+                        </div>
+                        <div class="bar-name">Pays-Bas</div>
+                    </div>
+
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #9888a8;">0.3</div>
+                        <div class="bar-up" style="height: 50.3%; background: linear-gradient(180deg, #9888a86e, #9888a866); box-shadow: none;">
+                            <div class="bar-flag">🇨🇿</div>
+                        </div>
+                        <div class="bar-name">Tchéquie</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Our World in Data · OWID · 2022</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

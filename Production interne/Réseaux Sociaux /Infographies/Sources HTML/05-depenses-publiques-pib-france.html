@@ -15,10 +15,7 @@
             --text-secondary: #8899a8;
             --text-muted: #4a5a6a;
             --accent-electric: #00d4ff;
-            --accent-gold: #ffd700;
             --accent-red: #ff4757;
-            --accent-green: #00ff88;
-            --accent-orange: #ff9f43;
             --accent-violet: #a855f7;
             --glass-border: rgba(255, 255, 255, 0.1);
         }
@@ -59,7 +56,7 @@
             position: absolute;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.10) 0%, transparent 70%);
             bottom: -200px;
             right: -100px;
             pointer-events: none;
@@ -110,11 +107,6 @@
         }
 
         .chart-title .accent {
-            color: var(--accent-red);
-            font-style: italic;
-        }
-
-        .chart-title .accent-cyan {
             color: var(--accent-electric);
             font-style: italic;
         }
@@ -127,17 +119,19 @@
         }
 
         /* ===== BAR CHART ===== */
+        /* Graphique descendu : margin-top 50px */
         .chart-area {
             flex: 1;
             display: flex;
             position: relative;
             padding: 0 10px;
+            margin-top: 50px;
         }
 
         .bars-container {
             flex: 1;
             display: flex;
-            gap: 6px;
+            gap: 10px;
             position: relative;
             height: 100%;
         }
@@ -153,53 +147,41 @@
             height: 100%;
         }
 
+        /* UNE SEULE couleur (cyan gradient) pour toutes les barres */
         .bar {
-            width: 75%;
+            width: 78%;
             border-radius: 6px 6px 0 0;
             position: relative;
-            background: linear-gradient(180deg, var(--accent-violet), rgba(168, 85, 247, 0.7));
+            background: linear-gradient(180deg, #00d4ff 0%, #00586e 100%);
         }
 
-        .bar.level-low {
-            background: linear-gradient(180deg, rgba(0, 212, 255, 0.9), rgba(0, 212, 255, 0.5));
-        }
-
-        .bar.level-mid {
-            background: linear-gradient(180deg, rgba(168, 85, 247, 0.9), rgba(168, 85, 247, 0.6));
-        }
-
-        .bar.level-high {
-            background: linear-gradient(180deg, var(--accent-red), rgba(255, 71, 87, 0.7));
-            box-shadow: 0 -4px 20px rgba(255, 71, 87, 0.25);
-        }
-
-        .bar.level-peak {
-            background: linear-gradient(180deg, #ff1a2e, var(--accent-red));
-            box-shadow: 0 -4px 25px rgba(255, 71, 87, 0.4);
+        .bar.peak {
+            background: linear-gradient(180deg, #5ee5ff 0%, #007a99 100%);
+            box-shadow: 0 -6px 30px rgba(0, 212, 255, 0.45);
         }
 
         /* Value labels */
         .bar-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.35rem;
+            font-size: 1.55rem;
             font-weight: 700;
             position: absolute;
-            top: -32px;
+            top: -36px;
             left: 50%;
             transform: translateX(-50%);
             white-space: nowrap;
             color: var(--text-primary);
         }
 
-        .bar.level-low .bar-value { color: var(--accent-electric); }
-        .bar.level-mid .bar-value { color: var(--accent-violet); }
-        .bar.level-high .bar-value { color: var(--accent-red); }
-        .bar.level-peak .bar-value { color: #ff1a2e; font-size: 1.5rem; }
+        .bar.peak .bar-value {
+            color: var(--accent-electric);
+            font-size: 1.7rem;
+        }
 
         /* Year labels below chart */
         .year-labels {
             display: flex;
-            gap: 6px;
+            gap: 10px;
             margin-top: 12px;
             padding: 0 10px;
         }
@@ -211,9 +193,14 @@
 
         .year-num {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            color: var(--text-muted);
+            color: var(--text-primary);
+        }
+
+        .year-label.highlight .year-num {
+            color: var(--accent-electric);
+            font-weight: 700;
         }
 
         .footer {
@@ -257,105 +244,80 @@
                 </div>
             </div>
 
-            <h2 class="chart-title">Dépenses publiques :<br><span class="accent-cyan">de 35%</span> à <span class="accent">57%</span> du PIB</h2>
-            <div class="chart-subtitle">Ratio dépenses publiques / PIB en France (1960–2024)</div>
+            <h2 class="chart-title">Dépenses publiques :<br>de 35 % à <span class="accent">57 %</span> du PIB</h2>
+            <div class="chart-subtitle">Ratio dépenses publiques / PIB en France · 1960-2024</div>
 
             <div class="chart-area">
                 <div class="bars-container">
-                    <!-- 1960: 35.8% → height: (35.8-30)/(65-30) = 5.8/35 = 16.6% -->
+                    <!-- 10 années sélectionnées : 1960, 1970, 1980, 1990, 1995, 2000, 2010, 2015, 2020 (peak COVID), 2024 -->
+                    <!-- Échelle : 30% à 65%, range 35. height = (val-30)/35 * 100 -->
+
+                    <!-- 1960 : 35,8 → 16.6% -->
                     <div class="bar-col">
-                        <div class="bar level-low" style="height: 16.6%;">
+                        <div class="bar" style="height: 16.6%;">
                             <div class="bar-value">35,8</div>
                         </div>
                     </div>
 
-                    <!-- 1965: 40.4% → (40.4-30)/35 = 29.7% -->
+                    <!-- 1970 : 41,5 → 32.9% -->
                     <div class="bar-col">
-                        <div class="bar level-low" style="height: 29.7%;">
-                            <div class="bar-value">40,4</div>
-                        </div>
-                    </div>
-
-                    <!-- 1970: 41.5% → (41.5-30)/35 = 32.9% -->
-                    <div class="bar-col">
-                        <div class="bar level-low" style="height: 32.9%;">
+                        <div class="bar" style="height: 32.9%;">
                             <div class="bar-value">41,5</div>
                         </div>
                     </div>
 
-                    <!-- 1975: 46.2% → (46.2-30)/35 = 46.3% -->
+                    <!-- 1980 : 48,0 → 51.4% -->
                     <div class="bar-col">
-                        <div class="bar level-low" style="height: 46.3%;">
-                            <div class="bar-value">46,2</div>
-                        </div>
-                    </div>
-
-                    <!-- 1980: 48.0% → (48.0-30)/35 = 51.4% -->
-                    <div class="bar-col">
-                        <div class="bar level-mid" style="height: 51.4%;">
+                        <div class="bar" style="height: 51.4%;">
                             <div class="bar-value">48,0</div>
                         </div>
                     </div>
 
-                    <!-- 1985: 54.2% → (54.2-30)/35 = 69.1% -->
+                    <!-- 1990 : 51,6 → 61.7% -->
                     <div class="bar-col">
-                        <div class="bar level-mid" style="height: 69.1%;">
-                            <div class="bar-value">54,2</div>
-                        </div>
-                    </div>
-
-                    <!-- 1990: 51.6% → (51.6-30)/35 = 61.7% -->
-                    <div class="bar-col">
-                        <div class="bar level-mid" style="height: 61.7%;">
+                        <div class="bar" style="height: 61.7%;">
                             <div class="bar-value">51,6</div>
                         </div>
                     </div>
 
-                    <!-- 1995: 56.1% → (56.1-30)/35 = 74.6% -->
+                    <!-- 1995 : 56,1 → 74.6% -->
                     <div class="bar-col">
-                        <div class="bar level-mid" style="height: 74.6%;">
+                        <div class="bar" style="height: 74.6%;">
                             <div class="bar-value">56,1</div>
                         </div>
                     </div>
 
-                    <!-- 2000: 52.6% → (52.6-30)/35 = 64.6% -->
+                    <!-- 2000 : 52,6 → 64.6% -->
                     <div class="bar-col">
-                        <div class="bar level-mid" style="height: 64.6%;">
+                        <div class="bar" style="height: 64.6%;">
                             <div class="bar-value">52,6</div>
                         </div>
                     </div>
 
-                    <!-- 2005: 54.3% → (54.3-30)/35 = 69.4% -->
+                    <!-- 2010 : 57,7 → 79.1% -->
                     <div class="bar-col">
-                        <div class="bar level-high" style="height: 69.4%;">
-                            <div class="bar-value">54,3</div>
-                        </div>
-                    </div>
-
-                    <!-- 2010: 57.7% → (57.7-30)/35 = 79.1% -->
-                    <div class="bar-col">
-                        <div class="bar level-high" style="height: 79.1%;">
+                        <div class="bar" style="height: 79.1%;">
                             <div class="bar-value">57,7</div>
                         </div>
                     </div>
 
-                    <!-- 2015: 57.6% → (57.6-30)/35 = 78.9% -->
+                    <!-- 2015 : 57,6 → 78.9% -->
                     <div class="bar-col">
-                        <div class="bar level-high" style="height: 78.9%;">
+                        <div class="bar" style="height: 78.9%;">
                             <div class="bar-value">57,6</div>
                         </div>
                     </div>
 
-                    <!-- 2020: 61.7% → (61.7-30)/35 = 90.6% -->
+                    <!-- 2020 : 61,7 → 90.6% (PEAK COVID) -->
                     <div class="bar-col">
-                        <div class="bar level-peak" style="height: 90.6%;">
+                        <div class="bar peak" style="height: 90.6%;">
                             <div class="bar-value">61,7</div>
                         </div>
                     </div>
 
-                    <!-- 2024: 57.3% → (57.3-30)/35 = 78.0% -->
+                    <!-- 2024 : 57,3 → 78.0% -->
                     <div class="bar-col">
-                        <div class="bar level-high" style="height: 78.0%;">
+                        <div class="bar" style="height: 78.0%;">
                             <div class="bar-value">57,3</div>
                         </div>
                     </div>
@@ -365,18 +327,14 @@
             <!-- Year labels -->
             <div class="year-labels">
                 <div class="year-label"><div class="year-num">1960</div></div>
-                <div class="year-label"><div class="year-num">1965</div></div>
                 <div class="year-label"><div class="year-num">1970</div></div>
-                <div class="year-label"><div class="year-num">1975</div></div>
                 <div class="year-label"><div class="year-num">1980</div></div>
-                <div class="year-label"><div class="year-num">1985</div></div>
                 <div class="year-label"><div class="year-num">1990</div></div>
                 <div class="year-label"><div class="year-num">1995</div></div>
                 <div class="year-label"><div class="year-num">2000</div></div>
-                <div class="year-label"><div class="year-num">2005</div></div>
                 <div class="year-label"><div class="year-num">2010</div></div>
                 <div class="year-label"><div class="year-num">2015</div></div>
-                <div class="year-label"><div class="year-num">2020</div></div>
+                <div class="year-label highlight"><div class="year-num">2020</div></div>
                 <div class="year-label"><div class="year-num">2024</div></div>
             </div>
 

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détroit d'Hormuz : où va le pétrole ?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent: #d4943a;
+            --accent-light: #e8b86d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, var(--bg-deep) 0%, #0a1628 50%, var(--bg-deep) 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(212, 148, 58, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 148, 58, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 148, 58, 0.08) 0%, transparent 70%);
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 148, 58, 0.05) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 50px 40px 36px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .logo-text {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            color: #ffffff;
+            line-height: 1;
+        }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 0px;
+            margin-top: 2px;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .chart-title .accent {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .total-flow {
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .total-flow .number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--accent-light);
+        }
+
+        .total-flow .unit {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-left: 4px;
+        }
+
+        .sankey-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .col-headers {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 55px;
+            margin-bottom: 2px;
+        }
+
+        .col-header {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        .sankey-diagram {
+            flex: 1;
+            position: relative;
+        }
+
+        .sankey-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .sankey-label {
+            position: absolute;
+            z-index: 2;
+            white-space: nowrap;
+        }
+
+        .sankey-label .country-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.15;
+        }
+
+        .sankey-label .country-pct {
+            display: none;
+        }
+
+        .sankey-label.origin {
+            text-align: right;
+        }
+
+        .sankey-label.destination {
+            text-align: left;
+        }
+
+        .note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-style: italic;
+            line-height: 1.3;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            margin-top: 6px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .source span {
+            color: var(--text-secondary);
+        }
+
+        .website {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Détroit d'Hormuz : où va le <span class="accent">pétrole</span> ?</h2>
+
+            <div class="total-flow">
+                <span class="number">14,22</span>
+                <span class="unit">millions de barils / jour (T1 2025)</span>
+            </div>
+
+            <div class="sankey-wrapper">
+                <div class="col-headers">
+                    <div class="col-header">Origine</div>
+                    <div class="col-header">Destination</div>
+                </div>
+                <div class="sankey-diagram" id="sankeyDiagram">
+                    <svg class="sankey-svg" id="sankeySvg" xmlns="http://www.w3.org/2000/svg"></svg>
+                </div>
+            </div>
+
+            <div class="note">
+                L'Asie absorbe 89 % des flux. Seuls l'Arabie saoudite et les EAU peuvent contourner le détroit via des oléoducs.
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>U.S. EIA / Vortexa · T1 2025</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const originsData = [
+            { name: 'Arabie<br>saoudite', flag: '🇸🇦', value: 5.29, pct: '37,2%' },
+            { name: 'Irak',            flag: '🇮🇶', value: 3.24, pct: '22,8%' },
+            { name: 'EAU',             flag: '🇦🇪', value: 1.83, pct: '12,9%' },
+            { name: 'Iran',            flag: '🇮🇷', value: 1.51, pct: '10,6%' },
+            { name: 'Koweït',          flag: '🇰🇼', value: 1.43, pct: '10,1%' },
+            { name: 'Qatar',           flag: '🇶🇦', value: 0.63, pct: '4,4%' },
+            { name: 'Autres',          flag: '🌍', value: 0.28, pct: '1,9%' },
+        ];
+
+        const destinationsData = [
+            { name: 'Chine',           flag: '🇨🇳', value: 5.35, pct: '37,7%' },
+            { name: 'Inde',            flag: '🇮🇳', value: 2.09, pct: '14,7%' },
+            { name: 'Autres<br>Asie',   flag: '🌏', value: 1.98, pct: '13,9%' },
+            { name: 'Corée<br>du Sud',  flag: '🇰🇷', value: 1.70, pct: '12,0%' },
+            { name: 'Japon',           flag: '🇯🇵', value: 1.55, pct: '10,9%' },
+            { name: 'Autres',          flag: '🌍', value: 0.64, pct: '4,5%' },
+            { name: 'Europe',          flag: '🇪🇺', value: 0.53, pct: '3,8%' },
+            { name: 'États-Unis',      flag: '🇺🇸', value: 0.38, pct: '2,5%' },
+        ];
+
+        const totalFlow = 14.22;
+
+        const flowColors = [
+            '#d4943a', '#c48632', '#b3782a', '#a26a22',
+            '#915c1a', '#7f4e12', '#6e400a', '#5d3202'
+        ];
+
+        function buildSankey() {
+            const diagram = document.getElementById('sankeyDiagram');
+            const svg = document.getElementById('sankeySvg');
+            const W = diagram.offsetWidth;
+            const H = diagram.offsetHeight;
+
+            svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+            // Layout
+            const labelWidth = 175;
+            const straitWidth = W * 0.14;
+            const straitX1 = W / 2 - straitWidth / 2;
+            const straitX2 = W / 2 + straitWidth / 2;
+            const flowStartX = labelWidth;
+            const flowEndX = W - labelWidth;
+            const gap = 3; // small gap between stacked flows
+
+            // Stacked proportional layout: flows are stacked vertically, each proportional to value
+            // With small gaps between them, spread across full height
+            function computeStacked(items, availH) {
+                const totalGaps = (items.length - 1) * gap;
+                const flowableH = availH - totalGaps;
+                let y = 0;
+                return items.map(item => {
+                    const h = (item.value / totalFlow) * flowableH;
+                    const node = { ...item, y, h };
+                    y += h + gap;
+                    return node;
+                });
+            }
+
+            const oNodes = computeStacked(originsData, H);
+            const dNodes = computeStacked(destinationsData, H);
+
+            // Strait slots (same proportional stacking, no gaps — solid block)
+            const straitGap = 0;
+            let sy = 0;
+            const oStraitSlots = originsData.map(o => {
+                const h = (o.value / totalFlow) * H;
+                const slot = { y: sy, h };
+                sy += h;
+                return slot;
+            });
+
+            sy = 0;
+            const dStraitSlots = destinationsData.map(d => {
+                const h = (d.value / totalFlow) * H;
+                const slot = { y: sy, h };
+                sy += h;
+                return slot;
+            });
+
+            // Draw strait column (solid block behind)
+            const straitRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            straitRect.setAttribute('x', straitX1);
+            straitRect.setAttribute('y', 0);
+            straitRect.setAttribute('width', straitWidth);
+            straitRect.setAttribute('height', H);
+            straitRect.setAttribute('rx', '6');
+            straitRect.setAttribute('fill', 'rgba(40, 120, 200, 0.2)');
+            straitRect.setAttribute('stroke', 'rgba(60, 150, 230, 0.35)');
+            straitRect.setAttribute('stroke-width', '1');
+            svg.appendChild(straitRect);
+
+            // Draw each origin flow (stacked, no overlap)
+            oNodes.forEach((node, i) => {
+                const ss = oStraitSlots[i];
+                const color = flowColors[i] || flowColors[flowColors.length - 1];
+                const x0 = flowStartX, x1 = straitX1;
+                const cpx = x0 + (x1 - x0) * 0.5;
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d',
+                    `M ${x0} ${node.y}
+                     C ${cpx} ${node.y}, ${cpx} ${ss.y}, ${x1} ${ss.y}
+                     L ${x1} ${ss.y + ss.h}
+                     C ${cpx} ${ss.y + ss.h}, ${cpx} ${node.y + node.h}, ${x0} ${node.y + node.h}
+                     Z`);
+                path.setAttribute('fill', color);
+                path.setAttribute('opacity', '0.6');
+                svg.appendChild(path);
+            });
+
+            // Draw each destination flow (stacked, no overlap)
+            dNodes.forEach((node, i) => {
+                const ss = dStraitSlots[i];
+                const color = flowColors[i] || flowColors[flowColors.length - 1];
+                const x0 = straitX2, x1 = flowEndX;
+                const cpx = x0 + (x1 - x0) * 0.5;
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d',
+                    `M ${x0} ${ss.y}
+                     C ${cpx} ${ss.y}, ${cpx} ${node.y}, ${x1} ${node.y}
+                     L ${x1} ${node.y + node.h}
+                     C ${cpx} ${node.y + node.h}, ${cpx} ${ss.y + ss.h}, ${x0} ${ss.y + ss.h}
+                     Z`);
+                path.setAttribute('fill', color);
+                path.setAttribute('opacity', '0.6');
+                svg.appendChild(path);
+            });
+
+            // Value labels ON flows (all flows, smaller font for thin ones)
+            function addFlowLabel(midX, node) {
+                const midY = node.y + node.h / 2;
+                // Main value
+                const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                t.setAttribute('x', midX);
+                t.setAttribute('y', midY + (node.h > 50 ? 0 : 2));
+                t.setAttribute('text-anchor', 'middle');
+                t.setAttribute('fill', '#fff');
+                t.setAttribute('font-family', 'JetBrains Mono, monospace');
+                const fontSize = node.h > 50 ? '18' : node.h > 25 ? '13' : '9';
+                t.setAttribute('font-size', fontSize);
+                t.setAttribute('font-weight', '600');
+                t.setAttribute('opacity', '0.9');
+                t.textContent = node.value.toFixed(2) + ' mb/j';
+                svg.appendChild(t);
+                // Percentage below
+                if (node.h > 30) {
+                    const p = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    p.setAttribute('x', midX);
+                    p.setAttribute('y', midY + (node.h > 50 ? 20 : 15));
+                    p.setAttribute('text-anchor', 'middle');
+                    p.setAttribute('fill', 'rgba(255,255,255,0.45)');
+                    p.setAttribute('font-family', 'JetBrains Mono, monospace');
+                    p.setAttribute('font-size', node.h > 50 ? '13' : '10');
+                    p.setAttribute('font-weight', '400');
+                    p.textContent = node.pct;
+                    svg.appendChild(p);
+                }
+            }
+
+            oNodes.forEach((node, i) => {
+                addFlowLabel((flowStartX + straitX1) / 2, node);
+            });
+
+            dNodes.forEach((node, i) => {
+                addFlowLabel((straitX2 + flowEndX) / 2, node);
+            });
+
+            // Strait label (big, italic, centered)
+            const addText = (content, yOffset, size) => {
+                const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                t.setAttribute('x', W / 2);
+                t.setAttribute('y', H / 2 + yOffset);
+                t.setAttribute('text-anchor', 'middle');
+                t.setAttribute('fill', 'rgba(100, 180, 255, 0.8)');
+                t.setAttribute('font-family', 'Instrument Serif, serif');
+                t.setAttribute('font-size', size);
+                t.setAttribute('font-style', 'italic');
+                t.textContent = content;
+                svg.appendChild(t);
+            };
+            addText('Détroit', -14, '28');
+            addText("d'Hormuz", 20, '28');
+
+            // Bar indicators on edges
+            oNodes.forEach((node, i) => {
+                const color = flowColors[i] || flowColors[flowColors.length - 1];
+                const bar = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                bar.setAttribute('x', flowStartX - 4);
+                bar.setAttribute('y', node.y);
+                bar.setAttribute('width', 4);
+                bar.setAttribute('height', node.h);
+                bar.setAttribute('fill', color);
+                svg.appendChild(bar);
+            });
+
+            dNodes.forEach((node, i) => {
+                const color = flowColors[i] || flowColors[flowColors.length - 1];
+                const bar = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                bar.setAttribute('x', flowEndX);
+                bar.setAttribute('y', node.y);
+                bar.setAttribute('width', 4);
+                bar.setAttribute('height', node.h);
+                bar.setAttribute('fill', color);
+                svg.appendChild(bar);
+            });
+
+            // HTML labels (country names, positioned at flow center)
+            oNodes.forEach((node, i) => {
+                const label = document.createElement('div');
+                label.className = 'sankey-label origin';
+                label.style.right = (W - flowStartX + 14) + 'px';
+                label.style.top = (node.y + node.h / 2) + 'px';
+                label.style.transform = 'translateY(-50%)';
+                label.innerHTML = `<span class="country-name">${node.flag} ${node.name}</span><span class="country-pct">${node.pct}</span>`;
+                diagram.appendChild(label);
+            });
+
+            dNodes.forEach((node, i) => {
+                const label = document.createElement('div');
+                label.className = 'sankey-label destination';
+                label.style.left = (flowEndX + 14) + 'px';
+                label.style.top = (node.y + node.h / 2) + 'px';
+                label.style.transform = 'translateY(-50%)';
+                label.innerHTML = `<span class="country-name">${node.name} ${node.flag}</span><span class="country-pct">${node.pct}</span>`;
+                diagram.appendChild(label);
+            });
+        }
+
+        requestAnimationFrame(() => setTimeout(buildSankey, 50));
+    </script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plein d'essence : taxes vs coût réel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #1a1208;
+            --text-primary: #fff8e7;
+            --text-secondary: #c9a84c;
+            --text-muted: #8a7340;
+            --accent: #ffd700;
+            --accent-electric: #ffd700;
+            --red: #ff4757;
+            --green: #00e676;
+            --glass-border: rgba(255, 215, 0, 0.15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+        .bg-base {
+            position: absolute; inset: 0;
+            background: linear-gradient(145deg, #0f0c04 0%, #2a1f0a 40%, #1a1208 100%);
+        }
+        .bg-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 215, 0, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .bg-glow-1 {
+            position: absolute; width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.10) 0%, transparent 70%);
+            top: -250px; right: -150px; pointer-events: none;
+        }
+        .bg-glow-2 {
+            position: absolute; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.06) 0%, transparent 70%);
+            bottom: -200px; left: -100px; pointer-events: none;
+        }
+        .content {
+            position: relative; z-index: 1; height: 100%;
+            padding: 40px 50px;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+
+        /* Logo */
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.5rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        /* Titre */
+        .title-section { text-align: center; }
+        .title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5.5rem;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+        .title .accent-red { color: var(--red); }
+        .subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-top: 10px;
+        }
+
+        /* Zone principale */
+        .main-visual {
+            display: flex;
+            align-items: stretch;
+            gap: 30px;
+            padding: 0 5px;
+            height: 580px;
+        }
+
+        /* Pompe avec barre intégrée */
+        .pump-bar {
+            position: relative;
+            width: 230px;
+            min-width: 230px;
+        }
+        .pump-frame {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Barre data dans la pompe — bien contenue */
+        .pump-inner-bar {
+            position: absolute;
+            top: 78px;
+            left: 28px;
+            right: 28px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .bar-taxes {
+            flex: 54;
+            background: linear-gradient(180deg, #cc3344, var(--red));
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .bar-cost {
+            flex: 46;
+            background: linear-gradient(180deg, var(--green), #1a6b4a);
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .bar-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1;
+        }
+        .bar-cost .bar-amount {
+            font-size: 2.1rem;
+        }
+        .bar-label-inside {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* Détails à droite */
+        .details-col {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        /* Items taxes (rouge) */
+        .detail-item {
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .detail-item.red {
+            background: rgba(255, 71, 87, 0.06);
+            border: 1px solid rgba(255, 71, 87, 0.15);
+        }
+        .detail-item.green {
+            background: rgba(0, 230, 118, 0.06);
+            border: 1px solid rgba(0, 230, 118, 0.15);
+        }
+        .detail-item-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+        .detail-item-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .detail-item-desc {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+        .detail-item-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.3rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .detail-item.red .detail-item-amount { color: var(--red); }
+        .detail-item.green .detail-item-amount { color: var(--green); }
+
+        /* Séparateur visuel entre taxes et coûts */
+        .detail-separator {
+            height: 1px;
+            background: var(--glass-border);
+            margin: 4px 0;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 12px;
+        }
+        .source {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+        .website {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-electric);
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="logo">
+                <span class="logo-icon">€</span>
+                <span class="logo-text">Où Va l'Argent ?</span>
+            </div>
+
+            <div class="title-section">
+                <div class="title">Plein d'essence à 92 € :<br><span class="accent-red">54% de taxes</span></div>
+                <div class="subtitle">(SP95-E10 à 1,85 €/L — 50 litres — mars 2026)</div>
+            </div>
+
+            <div class="main-visual">
+                <div class="pump-bar">
+                    <!-- SVG cadre pompe (sans tuyau) -->
+                    <svg class="pump-frame" viewBox="0 0 230 580" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                        <!-- Chapeau haut -->
+                        <rect x="55" y="20" width="120" height="28" rx="8" fill="#2a2218" stroke="#ffd700" stroke-width="2.5"/>
+                        <!-- Corps principal -->
+                        <rect x="18" y="58" width="194" height="460" rx="18" fill="none" stroke="#ffd700" stroke-width="2.5"/>
+                        <!-- Socle bas -->
+                        <rect x="8" y="525" width="214" height="42" rx="12" fill="#2a2218" stroke="#ffd700" stroke-width="2.5"/>
+                        <!-- Détails socle -->
+                        <circle cx="72" cy="546" r="5" fill="#ffd700" opacity="0.4"/>
+                        <circle cx="158" cy="546" r="5" fill="#ffd700" opacity="0.4"/>
+                    </svg>
+
+                    <!-- Barre data intégrée -->
+                    <div class="pump-inner-bar">
+                        <div class="bar-taxes">
+                            <div class="bar-amount">50 €</div>
+                            <div class="bar-label-inside">Taxes</div>
+                        </div>
+                        <div class="bar-cost">
+                            <div class="bar-amount">42 €</div>
+                            <div class="bar-label-inside">Essence</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details-col">
+                    <!-- 3 taxes en rouge -->
+                    <div class="detail-item red">
+                        <div class="detail-item-left">
+                            <div class="detail-item-label">Accise sur les produits pétroliers</div>
+                            <div class="detail-item-desc">ex-TICPE · 0,69 €/litre</div>
+                        </div>
+                        <div class="detail-item-amount">34,50 €</div>
+                    </div>
+                    <div class="detail-item red">
+                        <div class="detail-item-left">
+                            <div class="detail-item-label">TVA sur accise</div>
+                            <div class="detail-item-desc">Taxe sur la taxe (20%)</div>
+                        </div>
+                        <div class="detail-item-amount">6,90 €</div>
+                    </div>
+                    <div class="detail-item red">
+                        <div class="detail-item-left">
+                            <div class="detail-item-label">TVA produit</div>
+                            <div class="detail-item-desc">TVA classique 20%</div>
+                        </div>
+                        <div class="detail-item-amount">8,50 €</div>
+                    </div>
+
+                    <div class="detail-separator"></div>
+
+                    <!-- 3 coûts en vert -->
+                    <div class="detail-item green">
+                        <div class="detail-item-left">
+                            <div class="detail-item-label">Pétrole brut</div>
+                            <div class="detail-item-desc">Cotation Rotterdam</div>
+                        </div>
+                        <div class="detail-item-amount">25,00 €</div>
+                    </div>
+                    <div class="detail-item green">
+                        <div class="detail-item-left">
+                            <div class="detail-item-label">Raffinage</div>
+                            <div class="detail-item-desc">Marge de raffinage</div>
+                        </div>
+                        <div class="detail-item-amount">3,50 €</div>
+                    </div>
+                    <div class="detail-item green">
+                        <div class="detail-item-left">
+                            <div class="detail-item-label">Distribution</div>
+                            <div class="detail-item-desc">Transport & marge</div>
+                        </div>
+                        <div class="detail-item-amount">13,60 €</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">DGEC / UFIP / impots.gouv.fr · mars 2026</div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

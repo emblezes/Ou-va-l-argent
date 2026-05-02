@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Où va l'argent public versé aux associations ? — Rapport Où Va l'Argent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-paper: #faf7f2;
+            --bg-card: #ffffff;
+            --bg-dark: #06080c;
+            --bg-dark-2: #0a1628;
+            --text-primary: #14181f;
+            --text-body: #2a313d;
+            --text-muted: #6b7280;
+            --text-light: #9ca3af;
+            --accent-cyan: #0096b8;
+            --accent-cyan-bright: #00d4ff;
+            --accent-gold: #b88a00;
+            --accent-gold-bright: #ffd700;
+            --accent-red: #c92a3d;
+            --accent-green: #0a8f5a;
+            --rule: #e5e1d8;
+            --rule-strong: #14181f;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-paper);
+            color: var(--text-body);
+            font-size: 17px;
+            line-height: 1.65;
+            font-weight: 400;
+        }
+
+        /* === LAYOUT === */
+        .doc { max-width: 920px; margin: 0 auto; padding: 0 32px 80px; }
+        .page { padding: 64px 0; border-bottom: 1px solid var(--rule); }
+        .page:last-child { border-bottom: none; }
+
+        /* === COUVERTURE === */
+        .cover {
+            min-height: 100vh;
+            background: linear-gradient(160deg, var(--bg-dark) 0%, var(--bg-dark-2) 60%, var(--bg-dark) 100%);
+            color: #f0f4f8;
+            padding: 80px 32px 60px;
+            margin: 0 -32px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .cover::before {
+            content: ""; position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+        }
+        .cover-inner { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; width: 100%; }
+        .cover-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 80px; }
+        .cover-logo .euro { font-family: 'Instrument Serif', serif; font-size: 3.4rem; color: var(--accent-cyan-bright); line-height: 1; }
+        .cover-logo .label { font-family: 'Instrument Serif', serif; font-size: 1.6rem; font-style: italic; color: #fff; letter-spacing: 0.5px; }
+        .cover-eyebrow {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--accent-cyan-bright); margin-bottom: 32px;
+        }
+        .cover h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(3rem, 7vw, 5.4rem);
+            font-weight: 400;
+            line-height: 1.05;
+            color: #fff;
+            margin-bottom: 28px;
+            letter-spacing: -1px;
+        }
+        .cover h1 em { font-style: italic; color: var(--accent-gold-bright); }
+        .cover-subtitle {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.7rem;
+            color: #cdd6e0;
+            font-style: italic;
+            max-width: 720px;
+            line-height: 1.4;
+            margin-bottom: 60px;
+        }
+        .cover-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; max-width: 860px; }
+        .cover-stat .num { font-family: 'JetBrains Mono', monospace; font-size: 1.85rem; font-weight: 700; color: var(--accent-cyan-bright); line-height: 1; margin-bottom: 6px; }
+        .cover-stat .desc { font-size: 0.72rem; color: #8899a8; line-height: 1.4; text-transform: uppercase; letter-spacing: 1px; }
+        .cover-meta {
+            position: relative; z-index: 1;
+            margin-top: 100px; max-width: 920px; margin-left: auto; margin-right: auto; width: 100%;
+            display: flex; justify-content: space-between; align-items: end;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+            color: var(--text-light); padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .cover-meta .ed { color: #fff; font-weight: 600; }
+
+        /* === TYPOGRAPHIE COMMUNE === */
+        h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem; font-weight: 400; line-height: 1.1;
+            color: var(--text-primary); margin-bottom: 12px; letter-spacing: -0.5px;
+        }
+        h2 em { font-style: italic; color: var(--accent-cyan); }
+        h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem; font-weight: 700; line-height: 1.25;
+            color: var(--text-primary); margin: 48px 0 14px; letter-spacing: -0.3px;
+        }
+        h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem; font-weight: 700;
+            color: var(--text-primary); margin: 28px 0 10px;
+        }
+        p { margin-bottom: 1.1em; }
+        p strong { color: var(--text-primary); font-weight: 600; }
+        a { color: var(--accent-cyan); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+        ul, ol { margin-bottom: 1.1em; padding-left: 1.5em; }
+        li { margin-bottom: 0.35em; }
+
+        /* === TOC === */
+        .toc { margin: 32px 0; }
+        .toc-item {
+            display: grid; grid-template-columns: 60px 1fr 80px;
+            align-items: baseline; gap: 16px;
+            padding: 14px 0; border-bottom: 1px solid var(--rule);
+            text-decoration: none; color: var(--text-primary);
+            font-family: 'Syne', sans-serif;
+        }
+        .toc-item:hover { background: rgba(0,150,184,0.03); }
+        .toc-num { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; color: var(--text-muted); font-weight: 500; }
+        .toc-title { font-size: 1.15rem; font-weight: 600; line-height: 1.3; }
+        .toc-title small { display: block; font-weight: 400; font-size: 0.85rem; color: var(--text-muted); margin-top: 3px; }
+        .toc-page { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-light); text-align: right; }
+
+        /* === EYEBROW & PART HEADER === */
+        .part-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem; font-weight: 600;
+            letter-spacing: 3px; text-transform: uppercase;
+            color: var(--accent-cyan); margin-bottom: 18px;
+        }
+        .part-eyebrow .dot { display: inline-block; width: 6px; height: 6px; background: var(--accent-cyan); border-radius: 50%; margin-right: 10px; vertical-align: middle; }
+        .part-chapeau {
+            font-family: 'Instrument Serif', serif; font-size: 1.45rem;
+            line-height: 1.5; color: var(--text-body);
+            margin: 24px 0 36px; padding-left: 18px;
+            border-left: 3px solid var(--accent-cyan); font-style: italic;
+        }
+
+        /* === KEY FIGURES BLOCK === */
+        .key-figures {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+            margin: 36px 0; background: var(--bg-card);
+            border: 1px solid var(--rule); border-radius: 6px; overflow: hidden;
+        }
+        .kf {
+            padding: 28px 24px; border-right: 1px solid var(--rule);
+        }
+        .kf:last-child { border-right: none; }
+        .kf .num { font-family: 'JetBrains Mono', monospace; font-size: 2.4rem; font-weight: 700; color: var(--text-primary); line-height: 1; margin-bottom: 8px; letter-spacing: -1px; }
+        .kf .num .accent-c { color: var(--accent-cyan); }
+        .kf .num .accent-g { color: var(--accent-gold); }
+        .kf .num .accent-r { color: var(--accent-red); }
+        .kf .label { font-size: 0.92rem; color: var(--text-muted); line-height: 1.4; }
+
+        /* === BIG STAT === */
+        .big-stat {
+            margin: 36px 0; padding: 36px 32px;
+            background: var(--bg-dark); color: #fff;
+            border-radius: 8px; position: relative; overflow: hidden;
+        }
+        .big-stat::before {
+            content: ""; position: absolute; top: -100px; right: -50px;
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 70%);
+            pointer-events: none;
+        }
+        .big-stat-num { font-family: 'JetBrains Mono', monospace; font-size: 4.6rem; font-weight: 800; color: var(--accent-gold-bright); letter-spacing: -2px; line-height: 1; margin-bottom: 12px; position: relative; }
+        .big-stat-label { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 600; color: #fff; margin-bottom: 14px; }
+        .big-stat-desc { font-size: 1rem; color: #cdd6e0; line-height: 1.5; max-width: 640px; }
+
+        /* === VIZ-BLOCK : visuels embarqués dans le rapport === */
+        figure.viz {
+            margin: 40px -24px;
+        }
+        figure.viz figcaption {
+            margin: 14px 24px 0; font-size: 0.88rem; color: var(--text-muted);
+            font-style: italic; line-height: 1.5;
+        }
+        figure.viz figcaption strong { color: var(--text-primary); font-weight: 600; font-style: normal; }
+
+        .viz-block {
+            background: linear-gradient(145deg, var(--bg-dark) 0%, var(--bg-dark-2) 50%, var(--bg-dark) 100%);
+            color: #f0f4f8;
+            border-radius: 10px;
+            padding: 36px 40px;
+            position: relative; overflow: hidden;
+            box-shadow: 0 8px 32px rgba(20, 24, 31, 0.18);
+        }
+        .viz-block::before {
+            content: ""; position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+        .viz-inner { position: relative; z-index: 1; }
+
+        /* Glow optionnel par visuel */
+        .viz-block .glow {
+            position: absolute; pointer-events: none;
+            border-radius: 50%;
+            filter: blur(30px);
+        }
+
+        .viz-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.4rem; line-height: 1.1;
+            color: #fff; letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+        .viz-title em { font-style: italic; color: var(--accent-gold-bright); }
+        .viz-title .red { font-style: italic; color: #ff4757; }
+        .viz-title .cyan { font-style: italic; color: var(--accent-cyan-bright); }
+        .viz-title .purple { font-style: italic; color: #c084fc; }
+
+        .viz-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 22px;
+        }
+
+        /* Variables couleurs (palette OVLA dans contexte sombre) */
+        .viz-block .col-electric { color: var(--accent-cyan-bright); }
+        .viz-block .col-gold { color: var(--accent-gold-bright); }
+        .viz-block .col-red { color: #ff4757; }
+        .viz-block .col-green { color: #00ff88; }
+        .viz-block .col-purple { color: #c084fc; }
+        .viz-block .col-orange { color: #ff9f43; }
+
+        .viz-block .num {
+            font-family: 'JetBrains Mono', monospace; font-weight: 800;
+            letter-spacing: -1px; line-height: 1;
+        }
+        .viz-block .mono { font-family: 'JetBrains Mono', monospace; }
+        .viz-block .syne { font-family: 'Syne', sans-serif; }
+
+        /* === R1 : 5 chiffres-choc en bandeau === */
+        .viz-r1 .stats-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+        .viz-r1 .stat {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 12px;
+            padding: 22px 16px;
+            text-align: center;
+        }
+        .viz-r1 .stat.primary { background: linear-gradient(135deg, rgba(255,215,0,0.18), rgba(255,215,0,0.04)); border-color: rgba(255,215,0,0.45); }
+        .viz-r1 .stat .num { font-size: 2rem; color: #fff; margin-bottom: 8px; }
+        .viz-r1 .stat.primary .num { color: var(--accent-gold-bright); }
+        .viz-r1 .stat.cyan .num { color: var(--accent-cyan-bright); }
+        .viz-r1 .stat.red .num { color: #ff4757; }
+        .viz-r1 .stat.purple .num { color: #c084fc; }
+        .viz-r1 .stat.green .num { color: #00ff88; }
+        .viz-r1 .stat .lbl { font-family: 'Syne', sans-serif; font-size: 0.82rem; color: rgba(240,244,248,0.85); line-height: 1.3; }
+
+        /* === R2 : barre empilée + ranking === */
+        .viz-r2 .stack-bar { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+        .viz-r2 .stack-total { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 800; color: var(--accent-gold-bright); min-width: 110px; }
+        .viz-r2 .stack { flex: 1; height: 52px; display: flex; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+        .viz-r2 .seg { display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; font-weight: 700; color: #06080c; }
+        .viz-r2 .seg-1 { background: linear-gradient(135deg, #00d4ff, #00b5db); width: 30.3%; }
+        .viz-r2 .seg-2 { background: linear-gradient(135deg, #66aaff, #4a90d4); width: 23.8%; color: #fff; }
+        .viz-r2 .seg-3 { background: linear-gradient(135deg, #ffd700, #e6b800); width: 19.5%; }
+        .viz-r2 .seg-4 { background: linear-gradient(135deg, #ff9f43, #ff7b3a); width: 13.3%; color: #fff; }
+        .viz-r2 .seg-5 { background: linear-gradient(135deg, #ff4757, #e03050); width: 8.0%; color: #fff; }
+        .viz-r2 .seg-6 { background: linear-gradient(135deg, #c084fc, #8a3ed4); width: 5.2%; color: #fff; }
+        .viz-r2 .ranking { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; }
+        .viz-r2 .row { display: grid; grid-template-columns: 14px 1fr 110px; align-items: center; gap: 14px; padding: 8px 12px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; }
+        .viz-r2 .swatch { width: 14px; height: 14px; border-radius: 4px; }
+        .viz-r2 .row-name { font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 600; color: #fff; line-height: 1.2; }
+        .viz-r2 .row-name small { display: block; font-size: 0.7rem; color: rgba(255,255,255,0.5); font-weight: 400; margin-top: 1px; }
+        .viz-r2 .row-amt { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 700; color: #fff; text-align: right; }
+        .viz-r2 .row-amt small { font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-left: 6px; font-weight: 500; }
+
+        /* === R3 : explosion opérateurs === */
+        .viz-r3 .lead {
+            display: flex; align-items: center; gap: 32px; margin-bottom: 24px;
+            padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .viz-r3 .lead-num { font-family: 'JetBrains Mono', monospace; font-size: 6rem; font-weight: 900; color: #ff4757; line-height: 0.95; letter-spacing: -3px; flex-shrink: 0; }
+        .viz-r3 .lead-text { font-family: 'Syne', sans-serif; font-size: 1.15rem; color: #fff; line-height: 1.4; }
+        .viz-r3 .lead-text strong { color: var(--accent-gold-bright); font-weight: 700; }
+        .viz-r3 .others { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+        .viz-r3 .other {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px; padding: 14px 14px;
+        }
+        .viz-r3 .other .o-name { font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 8px; }
+        .viz-r3 .other .o-evol { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: rgba(255,255,255,0.55); }
+        .viz-r3 .other .o-mult { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 800; color: #ff4757; margin-top: 6px; }
+
+        /* === R4 : treemap usages État === */
+        .viz-r4 .treemap {
+            display: grid; grid-template-columns: repeat(100, 1fr);
+            grid-template-rows: 180px 110px 70px;
+            gap: 6px;
+        }
+        .viz-r4 .tile {
+            border-radius: 10px; padding: 14px 16px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            border: 1px solid rgba(255,255,255,0.10);
+            color: #fff;
+        }
+        .viz-r4 .tile .t-lbl { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; line-height: 1.2; }
+        .viz-r4 .tile .t-lbl small { display: block; font-size: 0.7rem; font-weight: 400; opacity: 0.75; margin-top: 2px; }
+        .viz-r4 .tile .t-amt { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 800; line-height: 1; }
+        .viz-r4 .tile .t-pct { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: 700; opacity: 0.85; margin-top: 2px; }
+        .viz-r4 .tile.s .t-lbl { font-size: 0.82rem; } .viz-r4 .tile.s .t-lbl small { display: none; } .viz-r4 .tile.s .t-amt { font-size: 1.15rem; }
+        .viz-r4 .tile.xs { padding: 10px 12px; } .viz-r4 .tile.xs .t-lbl { font-size: 0.74rem; } .viz-r4 .tile.xs .t-lbl small { display: none; } .viz-r4 .tile.xs .t-amt { font-size: 1rem; } .viz-r4 .tile.xs .t-pct { font-size: 0.7rem; }
+        .viz-r4 .c-asile  { background: linear-gradient(135deg, #ff4757, #cc2040); }
+        .viz-r4 .c-autres { background: linear-gradient(135deg, #c084fc, #7d2dc7); }
+        .viz-r4 .c-aide   { background: linear-gradient(135deg, #ff9f43, #d6731f); }
+        .viz-r4 .c-ens    { background: linear-gradient(135deg, #ffd700, #d6b800); color: #14181f; }
+        .viz-r4 .c-soc    { background: linear-gradient(135deg, #ff7b3a, #d65b1a); }
+        .viz-r4 .c-just   { background: linear-gradient(135deg, #00ff88, #00b15e); color: #14181f; }
+        .viz-r4 .c-jeune  { background: linear-gradient(135deg, #00d4ff, #0099cc); color: #14181f; }
+        .viz-r4 .c-ville  { background: linear-gradient(135deg, #66aaff, #3a7dcc); }
+
+        /* === R5 : podium top 10 === */
+        .viz-r5 .podium { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
+        .viz-r5 .podium-card {
+            border-radius: 12px; padding: 18px 18px;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10);
+            text-align: center; position: relative;
+        }
+        .viz-r5 .podium-card.gold { background: linear-gradient(135deg, rgba(255,215,0,0.20), rgba(255,215,0,0.04)); border-color: rgba(255,215,0,0.5); }
+        .viz-r5 .podium-card.silver { background: linear-gradient(135deg, rgba(200,200,200,0.15), rgba(200,200,200,0.03)); border-color: rgba(200,200,200,0.35); }
+        .viz-r5 .podium-card.bronze { background: linear-gradient(135deg, rgba(205,127,50,0.18), rgba(205,127,50,0.04)); border-color: rgba(205,127,50,0.4); }
+        .viz-r5 .podium-rank { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 800; opacity: 0.5; }
+        .viz-r5 .podium-name { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; color: #fff; margin: 6px 0 4px; line-height: 1.2; }
+        .viz-r5 .podium-cat { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 10px; }
+        .viz-r5 .podium-amt { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 800; }
+        .viz-r5 .podium-card.gold .podium-amt { color: var(--accent-gold-bright); }
+        .viz-r5 .podium-card.silver .podium-amt { color: #d4d4d4; }
+        .viz-r5 .podium-card.bronze .podium-amt { color: #cd7f32; }
+        .viz-r5 .rest { display: flex; flex-direction: column; gap: 5px; }
+        .viz-r5 .rest-row { display: grid; grid-template-columns: 30px 1fr 90px; align-items: center; gap: 14px; padding: 6px 14px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; }
+        .viz-r5 .rest-num { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: rgba(255,255,255,0.45); }
+        .viz-r5 .rest-name { font-family: 'Syne', sans-serif; font-size: 0.92rem; color: #fff; font-weight: 600; }
+        .viz-r5 .rest-name small { color: rgba(255,255,255,0.5); font-weight: 400; font-size: 0.75rem; margin-left: 8px; }
+        .viz-r5 .rest-amt { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 700; text-align: right; }
+        .viz-r5 .cat-soc  { color: #ff4757; } .viz-r5 .cat-soc.bg { background: rgba(255,71,87,0.10); border-color: rgba(255,71,87,0.25); }
+        .viz-r5 .cat-rec  { color: #00d4ff; } .viz-r5 .cat-rec.bg { background: rgba(0,212,255,0.08); border-color: rgba(0,212,255,0.20); }
+        .viz-r5 .cat-ens  { color: #ffd700; } .viz-r5 .cat-ens.bg { background: rgba(255,215,0,0.08); border-color: rgba(255,215,0,0.20); }
+        .viz-r5 .cat-int  { color: #ff9f43; }
+        .viz-r5 .cat-evt  { color: #c084fc; } .viz-r5 .cat-evt.bg { background: rgba(192,132,252,0.10); border-color: rgba(192,132,252,0.25); }
+        .viz-r5 .cat-fpro { color: #66aaff; }
+
+        /* === R6 : concentration parisienne === */
+        .viz-r6 .layout { display: grid; grid-template-columns: 320px 1fr; gap: 36px; align-items: center; }
+        .viz-r6 .bubbles { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .viz-r6 .b-paris {
+            width: 240px; height: 240px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,71,87,0.55) 0%, rgba(255,71,87,0.10) 100%);
+            border: 2px solid rgba(255,71,87,0.7);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center;
+        }
+        .viz-r6 .b-paris .nm { font-family: 'Instrument Serif', serif; font-size: 2.4rem; color: #fff; font-style: italic; }
+        .viz-r6 .b-paris .am { font-family: 'JetBrains Mono', monospace; font-size: 2.2rem; font-weight: 800; color: #ff4757; margin-top: 4px; }
+        .viz-r6 .b-paris .pc { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: rgba(255,255,255,0.85); margin-top: 6px; letter-spacing: 1px; text-transform: uppercase; }
+        .viz-r6 .vs { font-family: 'Instrument Serif', serif; font-size: 1.2rem; color: rgba(255,255,255,0.45); font-style: italic; }
+        .viz-r6 .b-other { width: 110px; height: 110px; border-radius: 50%; background: radial-gradient(circle, rgba(0,212,255,0.30), rgba(0,212,255,0.05)); border: 1.5px solid rgba(0,212,255,0.55); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .viz-r6 .b-other .nm { font-family: 'Syne', sans-serif; font-size: 0.7rem; color: rgba(255,255,255,0.7); letter-spacing: 1px; text-transform: uppercase; padding: 0 6px; }
+        .viz-r6 .b-other .am { font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; font-weight: 700; color: var(--accent-cyan-bright); margin-top: 4px; }
+        .viz-r6 .villes h4 { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 12px; }
+        .viz-r6 .v-row { display: grid; grid-template-columns: 26px 110px 1fr 70px; align-items: center; gap: 12px; padding: 5px 4px; }
+        .viz-r6 .v-num { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+        .viz-r6 .v-nm { font-family: 'Syne', sans-serif; font-size: 0.92rem; color: #fff; font-weight: 600; }
+        .viz-r6 .v-bar { height: 12px; border-radius: 3px; background: linear-gradient(90deg, #00d4ff, #0099cc); }
+        .viz-r6 .v-am { font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; font-weight: 700; color: var(--accent-cyan-bright); text-align: right; }
+
+        /* === R7 : courbe trésorerie === */
+        .viz-r7 .lead-stat { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-bottom: 24px; }
+        .viz-r7 .lead-num-box .nm { font-family: 'JetBrains Mono', monospace; font-size: 4.4rem; font-weight: 900; color: var(--accent-gold-bright); line-height: 1; letter-spacing: -2px; }
+        .viz-r7 .lead-num-box .lb { font-family: 'Syne', sans-serif; font-size: 0.95rem; color: rgba(255,255,255,0.75); margin-top: 6px; line-height: 1.4; }
+        .viz-r7 .lead-num-box .lb strong { color: var(--accent-gold-bright); }
+        .viz-r7 .compares { display: flex; flex-direction: column; gap: 10px; min-width: 280px; }
+        .viz-r7 .compare-row { display: flex; align-items: center; gap: 14px; padding: 12px 18px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.10); border-radius: 8px; }
+        .viz-r7 .compare-row .lab { flex: 1; font-family: 'Syne', sans-serif; font-size: 0.92rem; color: #fff; line-height: 1.3; }
+        .viz-r7 .compare-row .lab small { display: block; font-size: 0.72rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+        .viz-r7 .compare-row .x { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 800; }
+        .viz-r7 .compare-row.cyan .x { color: var(--accent-cyan-bright); }
+        .viz-r7 .compare-row.purple .x { color: #c084fc; }
+        .viz-r7 .compare-row.red .x { color: #ff4757; }
+
+        /* === R8 : niches fiscales === */
+        .viz-r8 .layout { display: grid; grid-template-columns: 1fr 280px; gap: 30px; }
+        .viz-r8 .metrics { display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+        .viz-r8 .m { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.10); border-radius: 12px; padding: 16px 18px; }
+        .viz-r8 .m.purple { background: linear-gradient(135deg, rgba(192,132,252,0.18), rgba(192,132,252,0.04)); border-color: rgba(192,132,252,0.4); }
+        .viz-r8 .m.orange { background: linear-gradient(135deg, rgba(255,159,67,0.15), rgba(255,159,67,0.04)); border-color: rgba(255,159,67,0.35); }
+        .viz-r8 .m.cyan   { background: linear-gradient(135deg, rgba(0,212,255,0.13), rgba(0,212,255,0.04)); border-color: rgba(0,212,255,0.32); }
+        .viz-r8 .m .n { font-family: 'JetBrains Mono', monospace; font-size: 1.9rem; font-weight: 800; line-height: 1; letter-spacing: -1px; }
+        .viz-r8 .m.purple .n { color: #c084fc; }
+        .viz-r8 .m.orange .n { color: #ff9f43; }
+        .viz-r8 .m.cyan .n { color: var(--accent-cyan-bright); }
+        .viz-r8 .m .l { font-family: 'Syne', sans-serif; font-size: 0.82rem; color: rgba(255,255,255,0.85); margin-top: 6px; line-height: 1.3; }
+        .viz-r8 .m .l small { display: block; font-size: 0.7rem; color: rgba(255,255,255,0.5); font-weight: 400; margin-top: 3px; }
+
+        /* === PULL QUOTE === */
+        .pullquote {
+            margin: 36px 0; padding: 28px 32px;
+            background: #fff7e6; border-left: 4px solid var(--accent-gold);
+            border-radius: 4px;
+        }
+        .pullquote p {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.4rem; font-style: italic;
+            line-height: 1.5; color: var(--text-primary); margin-bottom: 12px;
+        }
+        .pullquote .source {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+            color: var(--text-muted); letter-spacing: 0.5px;
+        }
+
+        /* === DATA TABLE === */
+        table.data {
+            width: 100%; margin: 32px 0; border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        table.data th {
+            text-align: left; padding: 14px 12px;
+            font-family: 'Syne', sans-serif; font-weight: 600;
+            font-size: 0.82rem; letter-spacing: 0.5px; text-transform: uppercase;
+            color: var(--text-muted);
+            border-bottom: 2px solid var(--rule-strong);
+        }
+        table.data td {
+            padding: 14px 12px; border-bottom: 1px solid var(--rule);
+            vertical-align: top;
+        }
+        table.data td.num { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--text-primary); text-align: right; white-space: nowrap; }
+        table.data tr:hover td { background: rgba(0,150,184,0.02); }
+        table.data caption { caption-side: top; text-align: left; padding-bottom: 12px; font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+
+        /* === CALLOUT === */
+        .callout {
+            margin: 32px 0; padding: 24px 28px;
+            background: var(--bg-card); border: 1px solid var(--rule);
+            border-left: 4px solid var(--accent-cyan); border-radius: 4px;
+        }
+        .callout .label { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-cyan); font-weight: 700; margin-bottom: 10px; }
+        .callout p:last-child { margin-bottom: 0; }
+        .callout.warn { border-left-color: var(--accent-red); background: #fef4f5; }
+        .callout.warn .label { color: var(--accent-red); }
+        .callout.editor { border-left-color: var(--accent-gold); background: #fff7e6; }
+        .callout.editor .label { color: var(--accent-gold); }
+
+        /* === SOURCES PAGE === */
+        .sources ol {
+            list-style: none; padding-left: 0; counter-reset: src;
+        }
+        .sources li {
+            counter-increment: src; padding-left: 38px; position: relative;
+            padding-bottom: 14px; margin-bottom: 14px;
+            border-bottom: 1px solid var(--rule); font-size: 0.92rem;
+        }
+        .sources li::before {
+            content: counter(src, decimal-leading-zero);
+            position: absolute; left: 0; top: 0;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+            color: var(--accent-cyan); font-weight: 600;
+        }
+        .sources li strong { color: var(--text-primary); display: block; margin-bottom: 3px; }
+        .sources li a { font-size: 0.85rem; word-break: break-all; }
+
+        /* === FOOTER REPORT === */
+        .report-footer {
+            margin-top: 80px; padding: 40px 0 20px;
+            border-top: 2px solid var(--rule-strong);
+            display: flex; justify-content: space-between; align-items: end;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .report-footer .brand { color: var(--accent-cyan); font-weight: 600; }
+
+        /* === PLACEHOLDER pendant phase squelette === */
+        .draft-placeholder {
+            margin: 18px 0; padding: 18px 22px;
+            background: #fff8e1; border: 1px dashed #d6a800; border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;
+            color: #6b5400; line-height: 1.5;
+        }
+        .draft-placeholder::before {
+            content: "À RÉDIGER · "; font-weight: 700; color: #b88a00;
+        }
+
+        /* === FICHE D'ASSOCIATION (mini-dossier dans les enquêtes) === */
+        .org-card {
+            margin: 28px 0;
+            padding: 24px 28px;
+            background: var(--bg-card);
+            border: 1px solid var(--rule);
+            border-left: 4px solid var(--accent-cyan);
+            border-radius: 4px;
+        }
+        .org-card.warn { border-left-color: var(--accent-red); }
+        .org-card.editor { border-left-color: var(--accent-gold); }
+        .org-card .org-head {
+            display: flex; align-items: baseline; justify-content: space-between;
+            gap: 18px; margin-bottom: 14px;
+            padding-bottom: 12px; border-bottom: 1px solid var(--rule);
+        }
+        .org-card .org-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.35rem; font-weight: 700;
+            color: var(--text-primary); line-height: 1.2;
+        }
+        .org-card .org-name small {
+            display: block; font-size: 0.8rem; color: var(--text-muted);
+            font-weight: 400; margin-top: 2px; letter-spacing: 0.3px;
+        }
+        .org-card .org-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem; font-weight: 800;
+            color: var(--accent-cyan); white-space: nowrap;
+        }
+        .org-card.warn .org-amount { color: var(--accent-red); }
+        .org-card.editor .org-amount { color: var(--accent-gold); }
+        .org-card .org-amount small {
+            display: block; font-size: 0.7rem; color: var(--text-muted);
+            font-weight: 500; text-align: right; margin-top: 1px;
+            letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .org-card dl {
+            display: grid; grid-template-columns: 130px 1fr;
+            gap: 4px 18px; font-size: 0.94rem;
+        }
+        .org-card dt {
+            font-family: 'Syne', sans-serif; font-weight: 600;
+            color: var(--text-muted); text-transform: uppercase;
+            font-size: 0.74rem; letter-spacing: 0.8px;
+            padding: 6px 0;
+        }
+        .org-card dd {
+            color: var(--text-body); line-height: 1.55;
+            padding: 4px 0 8px; border-bottom: 1px solid var(--rule);
+        }
+        .org-card dd:last-of-type { border-bottom: none; padding-bottom: 0; }
+        .org-card dd strong { color: var(--text-primary); font-weight: 600; }
+        .org-card .org-source {
+            margin-top: 14px; padding-top: 12px;
+            border-top: 1px dashed var(--rule);
+            font-size: 0.78rem; color: var(--text-muted);
+            font-style: italic;
+        }
+        .org-card .org-source strong {
+            font-style: normal; color: var(--text-body);
+        }
+
+        @media print {
+            body { background: white; }
+            .doc { max-width: none; padding: 0; }
+            .page { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="doc">
+
+<!-- ========== COUVERTURE ========== -->
+<section class="cover">
+    <div class="cover-inner">
+        <div class="cover-logo">
+            <span class="euro">€</span>
+            <span class="label">Où Va l'Argent ?</span>
+        </div>
+        <div class="cover-eyebrow">Rapport · Avril 2026</div>
+        <h1>Où va l'argent <em>public</em><br>versé aux associations ?</h1>
+        <p class="cover-subtitle">Anatomie des 53 milliards d'euros qui financent 1,27 million de structures — qui paie, qui touche, pour quels usages, et ce que disent vraiment les chiffres.</p>
+
+        <div class="cover-stats">
+            <div class="cover-stat"><div class="num">53,4 Md€</div><div class="desc">argent public 2023</div></div>
+            <div class="cover-stat"><div class="num">49 %</div><div class="desc">vient des collectivités</div></div>
+            <div class="cover-stat"><div class="num">26 %</div><div class="desc">État → asile</div></div>
+            <div class="cover-stat"><div class="num">101 Md€</div><div class="desc">de trésorerie</div></div>
+            <div class="cover-stat"><div class="num">4,3 Md€</div><div class="desc">niches fiscales</div></div>
+        </div>
+    </div>
+    <div class="cover-meta">
+        <span><span class="ed">ouvalargent.com</span> · Rédaction</span>
+        <span>Édition n° 1 · 28 avril 2026</span>
+    </div>
+</section>
+
+<!-- ========== RÉSUMÉ EXÉCUTIF ========== -->
+<section class="page" id="executive-summary">
+    <div class="part-eyebrow"><span class="dot"></span>Résumé exécutif</div>
+    <h2>Cinq chiffres pour cadrer le débat</h2>
+
+    <p style="font-size: 1.1rem; color: var(--text-body); margin-bottom: 28px; padding-left: 18px; border-left: 3px solid var(--accent-cyan); font-style: italic; font-family: 'Instrument Serif', serif; line-height: 1.5;">
+        Le secteur associatif emploie 1,81 million de salariés (9 % du privé), mobilise 15 millions de bénévoles et pèse 113 Md€ — soit 3,4 % du PIB. Sur ces ≈ 113 milliards de budget cumulé, <strong>53,4 milliards proviennent de l'argent public</strong>. Ce rapport examine d'où vient cet argent, qui le touche, pour quels montants et pour quels usages.
+    </p>
+
+    <div class="draft-placeholder">
+    Résumé en 6 paragraphes courts, axés finances publiques :
+    (1) Un chiffre nouveau qui change le débat : 53,4 Md€ recensés pour la 1<sup>re</sup> fois par l'IGF en 2025, contre 23-30 Md€ couramment cités auparavant.
+    (2) La moitié vient des collectivités (départements, communes, régions) — autant que l'État + ses opérateurs.
+    (3) L'État verse 10,4 Md€ via 112 722 versements ; le social capte la moitié, dont 26 % pour le seul hébergement des migrants.
+    (4) Le top des bénéficiaires est concentré : 10 structures captent 600 M€, plusieurs ne sont pas des « vraies » associations (OPCO, Banque mondiale, CARPA, Paris 2024…).
+    (5) 101 Md€ dorment dans la trésorerie cumulée — autant que le rendement annuel de l'IR — alors que 20 % des assos employeuses ont moins de 3 mois de trésorerie.
+    (6) Les niches fiscales (mécénat, dons) coûtent 4,3 Md€ supplémentaires à l'État, en hausse de 39 % en quatre ans.
+    Ton : data-journalism factuel, sourcé. Pas de recommandations.
+    </div>
+
+    <figure class="viz">
+        <div class="viz-block viz-r1">
+            <div class="viz-inner">
+                <div class="viz-eyebrow">R1 · Cinq chiffres pour cadrer le débat</div>
+                <h3 class="viz-title">L'argent public versé aux <em>associations</em></h3>
+                <div style="font-family: 'Syne', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.55); letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 24px;">Données 2023 · périmètre IGF</div>
+                <div class="stats-row">
+                    <div class="stat primary"><div class="num">53,4 Md€</div><div class="lbl">d'argent public versés en 2023</div></div>
+                    <div class="stat cyan"><div class="num">49 %</div><div class="lbl">vient des collectivités locales</div></div>
+                    <div class="stat red"><div class="num">26 %</div><div class="lbl">de l'argent État finance l'asile</div></div>
+                    <div class="stat purple"><div class="num">101 Md€</div><div class="lbl">de trésorerie cumulée (T3 2024)</div></div>
+                    <div class="stat green"><div class="num">4,3 Md€</div><div class="lbl">de niches fiscales (dons & mécénat)</div></div>
+                </div>
+            </div>
+        </div>
+        <figcaption><strong>Visuel R1.</strong> Cinq chiffres pour cadrer le débat — sources : IGF mai 2025, PLF 2025 Jaune, Voies & moyens (PLF 2025), Admical 2024.</figcaption>
+    </figure>
+</section>
+
+<!-- ========== SOMMAIRE ========== -->
+<section class="page" id="toc">
+    <div class="part-eyebrow"><span class="dot"></span>Sommaire</div>
+    <h2>Plan du rapport</h2>
+    <div class="toc">
+        <a href="#partie-1" class="toc-item">
+            <span class="toc-num">01</span>
+            <span class="toc-title">Le panorama des 53,4 milliards<small>D'où vient l'argent et où va-t-il, en deux pages : qui paie, à quoi ça sert, qui touche</small></span>
+            <span class="toc-page">p. 04</span>
+        </a>
+        <a href="#enquete-1" class="toc-item">
+            <span class="toc-num">02</span>
+            <span class="toc-title">Enquête · Hébergement & asile (2,7 Md€)<small>Croix-Rouge · Coallia · Aurore · Armée du Salut · Emmaüs · France Terre d'Asile · CASP</small></span>
+            <span class="toc-page">p. 07</span>
+        </a>
+        <a href="#enquete-2" class="toc-item">
+            <span class="toc-num">03</span>
+            <span class="toc-title">Enquête · L'enseignement privé sous contrat (1,1 Md€)<small>FORMIRIS · OGEC · Apprentis d'Auteuil · « carence des contrôles » selon la Cour des comptes</small></span>
+            <span class="toc-page">p. 12</span>
+        </a>
+        <a href="#enquete-3" class="toc-item">
+            <span class="toc-num">04</span>
+            <span class="toc-title">Enquête · La justice à crédit : 597 M€ pour les avocats<small>CARPA · 70 000 avocats commis d'office · les coulisses de l'aide juridictionnelle</small></span>
+            <span class="toc-page">p. 15</span>
+        </a>
+        <a href="#enquete-4" class="toc-item">
+            <span class="toc-num">05</span>
+            <span class="toc-title">Enquête · Les fausses associations (12 Md€+)<small>OPCO · Banque mondiale · Sciences Po · Paris 2024 + Estanguet · partis politiques</small></span>
+            <span class="toc-page">p. 17</span>
+        </a>
+        <a href="#enquete-5" class="toc-item">
+            <span class="toc-num">06</span>
+            <span class="toc-title">Enquête · La solidarité internationale (1,3 Md€)<small>Solidarités Intl · ACTED · ACF · Médecins du Monde · La Chaîne de l'Espoir · CICR · Handicap Intl</small></span>
+            <span class="toc-page">p. 22</span>
+        </a>
+        <a href="#enquete-6" class="toc-item">
+            <span class="toc-num">07</span>
+            <span class="toc-title">Enquête · Les stars de la solidarité française<small>Restos du Cœur · Banques alimentaires (audit critique CdC mai 2025) · Secours populaire · UDAF</small></span>
+            <span class="toc-page">p. 25</span>
+        </a>
+        <a href="#enquete-7" class="toc-item">
+            <span class="toc-num">08</span>
+            <span class="toc-title">Enquête · Le trésor caché : 101 milliards d'euros<small>Patrimoine financier des fondations · explosion post-Covid · paradoxe avec une base en tension</small></span>
+            <span class="toc-page">p. 28</span>
+        </a>
+        <a href="#conclusion" class="toc-item">
+            <span class="toc-num">09</span>
+            <span class="toc-title">Conclusion · La grille de lecture Où Va l'Argent<small>Ce que ces enquêtes révèlent ensemble — angles morts du débat budgétaire</small></span>
+            <span class="toc-page">p. 31</span>
+        </a>
+        <a href="#sources" class="toc-item">
+            <span class="toc-num">—</span>
+            <span class="toc-title">Sources et méthode</span>
+            <span class="toc-page">p. 33</span>
+        </a>
+    </div>
+</section>
+
+<!-- ========== PARTIE 1 — Panorama ========== -->
+<section class="page" id="partie-1">
+    <div class="part-eyebrow"><span class="dot"></span>Partie 01 · Le panorama</div>
+    <h2>Le panorama des <em>53,4 milliards</em></h2>
+    <p class="part-chapeau">D'où vient l'argent versé aux associations, et où va-t-il ? Cette première partie pose le décor en deux pages avant les sept enquêtes qui composent le cœur du rapport.</p>
+
+    <h3>1.1 — Quatre rapports, un même ordre de grandeur</h3>
+    <p>Plusieurs travaux publics récents convergent sur l'idée que les associations françaises bénéficient d'un volume considérable d'argent public, mais leurs chiffres divergent selon le périmètre retenu. <strong>L'IFRAP</strong> évoque <strong>23 Md€</strong> de subventions publiques tous niveaux confondus dans son analyse 2024. <strong>Le CESE</strong>, dans son rapport <em>Renforcer le financement des associations : une urgence démocratique</em> (mai 2024), retient un budget cumulé de 113 Md€ pour le secteur, dont une part publique majeure, et constate la baisse historique du poids des subventions dans la ressource des associations (34 % en 2005, 20 % en 2024). <strong>La Cour des comptes</strong>, dans son rapport sur les associations dans la politique d'immigration et d'intégration (février 2025), chiffre à 8,5 Md€ les seules subventions ministérielles en 2023.</p>
+    <p>Le périmètre le plus large jamais publié vient de la mission <strong>IGF/IGÉSR</strong> de mai 2025 : <strong>53,43 milliards d'euros</strong>, qui agrège État, opérateurs publics, collectivités territoriales et dépenses fiscales. C'est ce chiffre qui sert de référence à ce rapport, complété par l'analyse ligne à ligne du <strong>Jaune budgétaire 2025</strong> (10,4 Md€ État, 112 722 versements détaillés) que la base data.gouv.fr met à disposition.</p>
+
+    <div class="callout warn">
+        <div class="label">Précaution méthodologique</div>
+        <p>Le chiffre de 53,4 Md€ est <strong>un minorant</strong> selon la mission IGF elle-même. Il exclut les mises à disposition de personnel et de locaux par les administrations, ainsi que la valorisation du bénévolat (15 millions de Français). Les extractions Chorus suggèrent que le Jaune budgétaire sous-estime les transferts directs de l'État de plusieurs centaines de millions. La réalité est donc <em>au moins</em> à ce niveau-là.</p>
+    </div>
+
+    <h3>1.2 — Une carte à six financeurs</h3>
+    <p>Sur ces 53,4 milliards, les <strong>collectivités territoriales</strong> assument près de la moitié — soit autant que l'État et ses opérateurs réunis. Les <strong>conseils départementaux</strong> sont le premier financeur (16,2 Md€), parce que l'action sociale leur incombe et qu'ils délèguent une grande partie aux associations gestionnaires. Les <strong>opérateurs de l'État</strong> (12,7 Md€) constituent un deuxième pilier, dominé à 84 % par les OPCO, opérateurs de la formation professionnelle. <strong>L'État</strong> lui-même verse 10,4 Md€ via 112 722 transferts ministériels — c'est la seule fraction connue à l'euro près.</p>
+
+    <figure class="viz">
+        <div class="viz-block viz-r2">
+            <div class="viz-inner">
+                <div class="viz-eyebrow">R2 · Décomposition par financeur</div>
+                <h3 class="viz-title">Qui finance les <em>associations</em> ?</h3>
+                <div style="font-family: 'Syne', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.55); letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 24px;">53,4 Md€ d'argent public · 2023</div>
+
+                <div class="stack-bar">
+                    <div class="stack-total">53,4 Md€</div>
+                    <div class="stack">
+                        <div class="seg seg-1">30 %</div>
+                        <div class="seg seg-2">24 %</div>
+                        <div class="seg seg-3">19 %</div>
+                        <div class="seg seg-4">13 %</div>
+                        <div class="seg seg-5">8 %</div>
+                        <div class="seg seg-6">5 %</div>
+                    </div>
+                </div>
+
+                <div class="ranking">
+                    <div class="row"><div class="swatch" style="background:#00d4ff;"></div><div class="row-name">Conseils départementaux<small>Action sociale, handicap, RSA, protection enfance</small></div><div class="row-amt">16,2 Md€<small>30 %</small></div></div>
+                    <div class="row"><div class="swatch" style="background:#66aaff;"></div><div class="row-name">Opérateurs de l'État<small>Dont OPCO (formation pro) : 10,7 Md€</small></div><div class="row-amt">12,7 Md€<small>24 %</small></div></div>
+                    <div class="row"><div class="swatch" style="background:#ffd700;"></div><div class="row-name">État (ministères)<small>Programmes budgétaires · 112 722 versements</small></div><div class="row-amt">10,4 Md€<small>19 %</small></div></div>
+                    <div class="row"><div class="swatch" style="background:#ff9f43;"></div><div class="row-name">Communes & EPCI<small>Subventions locales, sport, culture</small></div><div class="row-amt">7,1 Md€<small>13 %</small></div></div>
+                    <div class="row"><div class="swatch" style="background:#ff4757;"></div><div class="row-name">Dépenses fiscales<small>Réductions d'impôt sur dons et mécénat</small></div><div class="row-amt">4,3 Md€<small>8 %</small></div></div>
+                    <div class="row"><div class="swatch" style="background:#c084fc;"></div><div class="row-name">Régions<small>Formation, économie, transport</small></div><div class="row-amt">2,8 Md€<small>5 %</small></div></div>
+                </div>
+            </div>
+        </div>
+        <figcaption><strong>Visuel R2.</strong> Les six financeurs publics des associations et leur poids relatif en 2023 (source : IGF / IGÉSR, <em>Revue des dépenses publiques aux associations</em>, mai 2025).</figcaption>
+    </figure>
+
+    <h3>1.3 — À quoi sert l'argent de l'État (10,4 Md€) ?</h3>
+    <p>Le périmètre État est le seul transparent ligne à ligne. Il révèle une concentration massive sur le <strong>social et l'asile</strong> : l'hébergement des migrants et demandeurs d'asile capte à lui seul <strong>2,7 Md€</strong> (26 %), devant l'enseignement privé sous contrat (1,1 Md€) et l'action sociale hors asile (1 Md€). À côté, des secteurs hétérogènes : aide internationale (1,3 Md€, dont la Banque mondiale pour 1 Md€), justice (0,7 Md€ dont 597 M€ pour la seule UNCA des CARPA), et un agrégat « culture, sport, recherche, autres » qui pèse encore 2,9 Md€.</p>
+
+    <figure class="viz">
+        <div class="viz-block viz-r4">
+            <div class="viz-inner">
+                <div class="viz-eyebrow">R4 · Treemap des 10,4 Md€ État · 2023</div>
+                <h3 class="viz-title">À quoi sert l'<span class="red">argent de l'État</span> ?</h3>
+                <div style="font-family: 'Syne', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.55); letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 24px;">Décomposition par usage · 112 722 versements analysés</div>
+
+                <div class="treemap" style="grid-template-rows: 200px 130px 80px;">
+                    <div class="tile c-asile" style="grid-column: 1 / 51; grid-row: 1;">
+                        <div class="t-lbl">Hébergement migrants & asile<small>3 modalités cumulées · 2 384 versements</small></div>
+                        <div><div class="t-amt">2,7 Md€</div><div class="t-pct">26 %</div></div>
+                    </div>
+                    <div class="tile c-autres" style="grid-column: 51 / 101; grid-row: 1;">
+                        <div class="t-lbl">Culture, sport, recherche & autres<small>Pasteur, ANRT, scènes nationales, clubs, JO 2024…</small></div>
+                        <div><div class="t-amt">2,9 Md€</div><div class="t-pct">28 %</div></div>
+                    </div>
+
+                    <div class="tile c-aide s" style="grid-column: 1 / 37; grid-row: 2;">
+                        <div class="t-lbl">Aide internationale</div>
+                        <div><div class="t-amt">1,3 Md€</div><div class="t-pct">12 %</div></div>
+                    </div>
+                    <div class="tile c-ens s" style="grid-column: 37 / 70; grid-row: 2;">
+                        <div class="t-lbl">Enseignement privé sous contrat</div>
+                        <div><div class="t-amt">1,1 Md€</div><div class="t-pct">11 %</div></div>
+                    </div>
+                    <div class="tile c-soc s" style="grid-column: 70 / 101; grid-row: 2;">
+                        <div class="t-lbl">Action sociale (hors asile)</div>
+                        <div><div class="t-amt">1,0 Md€</div><div class="t-pct">10 %</div></div>
+                    </div>
+
+                    <div class="tile c-just s" style="grid-column: 1 / 51; grid-row: 3;">
+                        <div class="t-lbl">Justice — Aide juridictionnelle (CARPA)</div>
+                        <div><div class="t-amt">0,7 Md€</div><div class="t-pct">7 %</div></div>
+                    </div>
+                    <div class="tile c-jeune s" style="grid-column: 51 / 87; grid-row: 3;">
+                        <div class="t-lbl">Missions locales · jeunes 16-25 ans</div>
+                        <div><div class="t-amt">0,5 Md€</div><div class="t-pct">5 %</div></div>
+                    </div>
+                    <div class="tile c-ville xs" style="grid-column: 87 / 101; grid-row: 3;">
+                        <div class="t-lbl">Pol. ville</div>
+                        <div><div class="t-amt">0,2</div><div class="t-pct">2 %</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <figcaption><strong>Visuel R4.</strong> Décomposition des 10,4 Md€ versés par l'État aux associations en 2023, par usage (source : PLF 2025 — Annexe Jaune effort financier de l'État, data.gouv.fr ; agrégation Où Va l'Argent).</figcaption>
+    </figure>
+
+    <p>Ces masses sont l'objet des sept enquêtes qui suivent. <strong>Chacune entre dans le détail des associations bénéficiaires</strong> — qui les dirige, ce qu'elles font, comment elles sont contrôlées, ce qu'on découvre quand on regarde de près.</p>
+</section>
+
+<!-- ========== ENQUÊTE 1 — Hébergement & asile ========== -->
+<section class="page" id="enquete-1">
+    <div class="part-eyebrow"><span class="dot"></span>Enquête 01 · Hébergement & asile</div>
+    <h2>Quand l'État loge les <em>plus précaires</em></h2>
+    <p class="part-chapeau">2,7 milliards d'euros transitent chaque année par une dizaine de grandes associations qui hébergent migrants, demandeurs d'asile et sans-abri. Premier poste budgétaire de l'État aux associations, ce secteur a fait l'objet d'un rapport spécifique de la Cour des comptes en février 2025.</p>
+
+    <h3>1.1 — Le contexte : la France a délégué son hébergement d'urgence</h3>
+    <p>Sur les 10,4 Md€ versés par l'État aux associations en 2023, l'<strong>hébergement des migrants et demandeurs d'asile</strong> capte à lui seul <strong>2,7 Md€</strong> (26 %). C'est le résultat de trois décennies de délégation : la France n'a quasiment plus de centres d'hébergement d'urgence en gestion directe ; elle confie cette mission à des opérateurs associatifs nationaux ou régionaux, souvent issus du protestantisme social, du catholicisme ou de la tradition laïque (Aurore). Le réseau combine trois dispositifs : <strong>Hébergement d'urgence des demandeurs d'asile</strong> (HUDA, 1 394 M€), <strong>Hébergement des demandeurs d'asile</strong> (CADA et apparentés, 775 M€), et l'<strong>action sociale sans hébergement</strong> destinée à ce même public (554 M€).</p>
+    <p>La <strong>Cour des comptes</strong> a publié en <strong>février 2025</strong> un rapport spécifique : <em>Missions, financement et contrôle de l'État aux associations dans la politique d'immigration et d'intégration</em> [<a href="https://www.ccomptes.fr/sites/default/files/2025-02/20250211-Missions-financement-controle-Etat-associations-dans-politique-dimmigration-et-d-integration.pdf">PDF</a>]. Verdict : « défaillances de l'État » plus que des opérateurs, mais coût en hausse de + 45,5 % depuis 2019, et un <strong>coût moyen de 3 000 à 4 000 € par place et par an</strong> dans le dispositif national d'accueil (DNA).</p>
+
+    <h3>1.2 — Le top des opérateurs : sept structures captent l'essentiel</h3>
+    <p>L'analyse ligne à ligne du PLF 2025 Jaune révèle une concentration. Sur les 945 lignes de versements pour l'hébergement d'urgence des demandeurs d'asile, sept opérateurs absorbent plus de la moitié des crédits. Voilà qui ils sont, qui les dirige, et ce qu'on sait de leur fonctionnement.</p>
+
+    <div class="org-card">
+        <div class="org-head">
+            <div class="org-name">Croix-Rouge française<small>Association reconnue d'utilité publique · « Don en confiance »</small></div>
+            <div class="org-amount">114 M€<small>Hébergement</small></div>
+        </div>
+        <dl>
+            <dt>Activité</dt><dd>Premier opérateur français d'hébergement d'urgence (programme 177). 108 délégations territoriales, 1 043 unités d'intervention, 637 établissements sanitaires, sociaux et médico-sociaux. <strong>Budget total 2023 : 583,9 M€</strong>.</dd>
+            <dt>Effectifs</dt><dd><strong>17 200 salariés</strong> (2024), <strong>75 000 bénévoles</strong> — l'une des plus grandes structures employeuses associatives de France.</dd>
+            <dt>Direction</dt><dd>Président <strong>Alain Valon</strong>. Direction générale par intérim signalée fin 2024. Salaires non publiés.</dd>
+            <dt>Contrôle</dt><dd>Audit annuel, label « Don en confiance » (75 % des fonds vers la mission, 11,3 % gestion, 13,7 % collecte). Pas de polémique majeure dans le rapport CdC fév. 2025.</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · croix-rouge.fr (rapport d'activité 2023) · Cour des comptes 02/2025 · PLF 2025 Jaune.</div>
+    </div>
+
+    <div class="org-card">
+        <div class="org-head">
+            <div class="org-name">Coallia<small>Association loi 1901 RUP · agrément ESUS</small></div>
+            <div class="org-amount">206 M€<small>Asile + hébergement</small></div>
+        </div>
+        <dl>
+            <dt>Activité</dt><dd>Plus grand opérateur français de l'asile : <strong>124 M€ programme 303 + 82 M€ programme 177</strong>. CADA, HUDA, hébergement social. Environ <strong>25 000 personnes accueillies par an</strong>. Implantation nationale, sièges Paris et Montpellier.</dd>
+            <dt>Effectifs</dt><dd>~ <strong>3 800 salariés</strong> (2023). Bénévoles non publiés.</dd>
+            <dt>Direction</dt><dd>Président <strong>Jean-François Carenco</strong> (ancien membre du cabinet de Jean-Louis Borloo). Directeur général <strong>Arnaud Richard</strong> (depuis 2018, ex-collaborateur Borloo). Salaires conformes à l'agrément ESUS : moyenne des 5 plus élevés ≤ 7× SMIC, plafond ≤ 10× SMIC, validé par la Cour des comptes.</dd>
+            <dt>Contrôle</dt><dd>Observations définitives Cour des comptes janvier 2024, reprises dans le rapport global de février 2025. Verdict : conformité confirmée, défaillances de pilotage attribuées à l'État.</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · coallia.org · Cour des comptes 01/2024 et 02/2025 · PLF 2025 Jaune.</div>
+    </div>
+
+    <div class="org-card">
+        <div class="org-head">
+            <div class="org-name">Association Aurore<small>Association loi 1901 RUP depuis 1967</small></div>
+            <div class="org-amount">105 M€<small>Hébergement + asile</small></div>
+        </div>
+        <dl>
+            <dt>Activité</dt><dd>Hébergement d'urgence et insertion : <strong>30 000 personnes accueillies par an</strong>, dont 6 664 réfugiés et 596 mineurs non accompagnés (chiffres 2020). Implantation principale Île-de-France ; opère notamment <em>Les Cinq Toits</em> (Paris 16<sup>e</sup>, 250 places). <strong>Budget total estimé : ~ 100 M€</strong>, trésorerie 31,4 M€ fin 2023, bénéfices 2023 : 1,64 M€.</dd>
+            <dt>Effectifs</dt><dd>1 200 à 1 400 salariés.</dd>
+            <dt>Direction</dt><dd>Président <strong>Pierre Coppey</strong> depuis 2000 (par ailleurs cadre dirigeant Vinci). Directeur général <strong>Florian Guyot</strong> (mai 2020), succession <strong>Marie Degrand-Guillaud</strong> annoncée pour février 2026. Salaires non publiés.</dd>
+            <dt>Contrôle</dt><dd>Audit IGAS 2016 (commande de la Ville de Paris). Pas de critique dans le rapport CdC 02/2025.</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · aurore.asso.fr · Pappers (chiffres financiers) · Cour des comptes 02/2025 · PLF 2025 Jaune.</div>
+    </div>
+
+    <div class="org-card">
+        <div class="org-head">
+            <div class="org-name">Fondation de l'Armée du Salut<small>Fondation reconnue d'utilité publique (décret 11/04/2000)</small></div>
+            <div class="org-amount">79 M€<small>Hébergement</small></div>
+        </div>
+        <dl>
+            <dt>Activité</dt><dd><strong>2,7 millions de nuitées d'hébergement</strong> en 2022, ~ 25 000 personnes accueillies par an, <strong>225 structures et services</strong> dans 32 départements. Hébergement d'urgence, réinsertion, services pour personnes âgées, handicapées, enfants et familles.</dd>
+            <dt>Effectifs</dt><dd><strong>2 700 salariés</strong>. Levée annuelle complémentaire (dons, legs) : ~ 20 M€.</dd>
+            <dt>Direction</dt><dd>Président <strong>Colonel Jacques Donzé</strong> (depuis mai 2022). Directeur général <strong>Guillaume Latil</strong> (depuis octobre 2022). Salaires non publiés.</dd>
+            <dt>Contrôle</dt><dd>Référé de la Cour des comptes en 2019 sur la Fondation de l'Armée du Salut (contenu détaillé non public, mais l'organisation a depuis renforcé sa transparence).</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · armeedusalut.fr · ccomptes.fr · PLF 2025 Jaune.</div>
+    </div>
+
+    <div class="org-card">
+        <div class="org-head">
+            <div class="org-name">Emmaüs Solidarité<small>Association loi 1901 RUP — réseau Emmaüs France</small></div>
+            <div class="org-amount">73 M€<small>Hébergement</small></div>
+        </div>
+        <dl>
+            <dt>Activité</dt><dd>4 645 personnes en hébergement d'urgence en 2024, plus de 9 200 en accompagnement global. <strong>58 centres d'hébergement</strong> et de réinsertion sociale, 29 logements accompagnés, 8 accueils de jour. Siège Paris.</dd>
+            <dt>Effectifs</dt><dd>~ 1 200 salariés.</dd>
+            <dt>Direction</dt><dd>Présidente <strong>Marie-France Eprinchard</strong> (2024). Directeur général <strong>Lotfi Ouanezar</strong> (depuis novembre 2022). Salaires non publiés en JOAFE.</dd>
+            <dt>Contrôle</dt><dd>Pas de signalement critique dans le rapport CdC 02/2025.</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · emmaus-solidarite.org (rapport d'activité 2024) · Cour des comptes 02/2025.</div>
+    </div>
+
+    <div class="org-card">
+        <div class="org-head">
+            <div class="org-name">France Terre d'Asile<small>Association loi 1901 RUP — spécialisée asile</small></div>
+            <div class="org-amount">54 M€<small>Asile</small></div>
+        </div>
+        <dl>
+            <dt>Activité</dt><dd>Plus grand opérateur public dédié exclusivement à l'asile. <strong>13 385 personnes hébergées</strong> en CADA/HUDA en 2024. ~ 50 CADA/HUDA, 18 établissements pour mineurs non accompagnés, 12 centres provisoires d'hébergement. <strong>Budget total 2024 : 69 M€</strong>, dont 70 % du ministère de l'Intérieur.</dd>
+            <dt>Effectifs</dt><dd><strong>902 salariés</strong>.</dd>
+            <dt>Direction</dt><dd>Présidente <strong>Najat Vallaud-Belkacem</strong> (ancienne ministre de l'Éducation 2014-2017). Directeur général <strong>Vincent Beaugrand</strong> (2024, ex-FSEF). Salaire DG estimé à ~ 100 000 €/an brut (chiffre cité publiquement, non confirmé en JOAFE).</dd>
+            <dt>Contrôle</dt><dd>Rapport Cour des comptes 02/2025 : coûts asile + 45,5 % depuis 2019 ; coût/place situé entre 3 000 et 4 000 €.</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · france-terre-asile.org · Cour des comptes 02/2025 · PLF 2025 Jaune.</div>
+    </div>
+
+    <div class="org-card">
+        <div class="org-head">
+            <div class="org-name">CASP — Centre d'action sociale protestant<small>Association loi 1901 RUP, laïque, issue du protestantisme</small></div>
+            <div class="org-amount">50 M€<small>Hébergement</small></div>
+        </div>
+        <dl>
+            <dt>Activité</dt><dd>Spécialiste de l'Île-de-France : <strong>5 960 personnes</strong> en hébergement et logement, plus de 450 000 nuitées par an. Action sociale ouverte (sans hébergement) auprès de plusieurs milliers de personnes supplémentaires. 120 ans d'ancrage parisien.</dd>
+            <dt>Effectifs</dt><dd><strong>607 salariés</strong> (2024), 280 bénévoles.</dd>
+            <dt>Direction</dt><dd>Gouvernance peu publicisée sur les pages accessibles ; pas de nom de président·e ou DG sur les pages de gouvernance consultées en avril 2026. Salaires non publiés.</dd>
+            <dt>Contrôle</dt><dd>Pas de critique dans le rapport CdC 02/2025.</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · casp.asso.fr · PLF 2025 Jaune.</div>
+    </div>
+
+    <h3>1.3 — Ce que dit la Cour des comptes (février 2025)</h3>
+    <p>Le rapport spécial de février 2025 sur les associations dans la politique d'immigration et d'intégration tire <strong>quatre constats principaux</strong> :</p>
+    <ul>
+        <li>Les <strong>coûts d'hébergement ont augmenté de 45,5 % entre 2019 et 2023</strong>, sans évolution équivalente du nombre de places.</li>
+        <li>Le <strong>contrôle financier de l'État sur ces opérateurs est jugé « insuffisant »</strong>, notamment dans le suivi des places offertes par rapport aux places financées.</li>
+        <li>La structure du marché est <strong>oligopolistique</strong> : sept à dix associations captent l'essentiel des crédits, avec peu de mise en concurrence effective.</li>
+        <li>Les défaillances pointées sont attribuées <strong>à l'État (donneur d'ordre) plus qu'aux opérateurs</strong> eux-mêmes, qui restent globalement dans les clous de leurs missions.</li>
+    </ul>
+
+    <h3>1.4 — Le coût pour le contribuable</h3>
+    <p>2,7 milliards d'euros répartis sur 67 millions de Français représentent <strong>~ 40 € par habitant et par an</strong> consacrés à héberger des personnes en situation de précarité ou en demande d'asile. À l'échelle d'une nuitée individuelle dans un hébergement d'urgence des demandeurs d'asile, les chiffres de la Cour des comptes situent le coût entre <strong>9 € et 11 € par personne et par nuit</strong>, soit une fourchette de 3 000 à 4 000 € par place et par an. Ce coût ne couvre pas que l'hébergement physique : il intègre l'accompagnement administratif (procédure asile), médical, social et l'aide à la sortie.</p>
+
+    <div class="callout editor">
+        <div class="label">Notre lecture</div>
+        <p>Ce poste de 2,7 Md€ est <strong>politiquement sensible</strong> mais structurellement irréductible : si l'État coupait demain ces crédits, il devrait soit ré-internaliser l'hébergement (à un coût probablement supérieur), soit assumer une crise humanitaire et juridique (la France est tenue par la directive européenne « accueil » de 2013). Le vrai débat n'est pas <em>combien</em>, mais <strong>comment mieux contrôler</strong> — ce que la Cour des comptes appelle de ses vœux depuis dix ans.</p>
+    </div>
+</section>
+
+<!-- ========== ENQUÊTE 2 — Enseignement privé ========== -->
+<section class="page" id="enquete-2">
+    <div class="part-eyebrow"><span class="dot"></span>Enquête 02 · Enseignement privé sous contrat</div>
+    <h2>1,1 milliard pour le <em>privé sous contrat</em></h2>
+    <p class="part-chapeau">L'enseignement privé sous contrat, principalement catholique, capte 1,1 milliard d'euros via le PLF Jaune 2025. Une enveloppe que la Cour des comptes a qualifiée en juin 2023 de financée avec une « carence des contrôles ».</p>
+
+    <h3>2.1 — Loi Debré : pourquoi des associations privées touchent l'argent de l'école</h3>
+    <p>L'enseignement privé sous contrat est issu de la <strong>loi Debré du 31 décembre 1959</strong> : l'État rémunère les enseignants des écoles privées qui acceptent un contrat d'association (programmes scolaires nationaux, contrôle pédagogique). Les <strong>OGEC</strong> (Organismes de Gestion de l'Enseignement Catholique) — associations loi 1901 propriétaires des bâtiments et employeurs des personnels non-enseignants — perçoivent en complément des <strong>subventions de fonctionnement</strong> versées par l'État (le « forfait d'externat »). En 2023, ces subventions de fonctionnement représentent <strong>712 M€</strong>, auxquelles s'ajoutent les subventions au réseau (formation des maîtres, têtes de réseau, organismes diocésains).</p>
+    <p>Au total, <strong>1,1 Md€</strong> de l'État abonde le réseau associatif de l'enseignement privé en 2023, via deux programmes principaux : 139 (1<sup>er</sup> et 2<sup>nd</sup> degrés, 785 M€) et 143 (enseignement technique agricole privé, 410 M€). Cela ne compte pas la rémunération directe des enseignants par l'État, qui pèse plusieurs milliards supplémentaires — celle-ci ne transite pas par les associations.</p>
+
+    <h3>2.2 — Trois bénéficiaires principaux</h3>
+
+    <div class="org-card">
+        <div class="org-head">
+            <div class="org-name">FORMIRIS<small>Association loi 1901 fédérative · réseau de 14 entités territoriales</small></div>
+            <div class="org-amount">38 M€<small>Plus gros versement individuel</small></div>
+        </div>
+        <dl>
+            <dt>Activité</dt><dd>Mandataire pédagogique et financier de l'État pour la <strong>formation initiale et continue des enseignants du privé sous contrat</strong>. Ne forme pas directement : agrège, organise, et contracte avec 500+ prestataires Qualiopi. Bénéficiaires : ~ 180 000 enseignants privés (titulaires et contractuels).</dd>
+            <dt>Statut</dt><dd>Fédération créée en 1972, présidée par les diocèses. Identité institutionnelle peu publicisée publiquement.</dd>
+            <dt>Contrôle</dt><dd>Audit Cour des comptes <strong>en cours, conclusions prévues novembre 2025</strong>. Le ministère de l'Éducation nationale a demandé en 2024-2025 une révision du cahier des charges (transparence des frais de fonctionnement, alignement sur les priorités nationales — laïcité, EvaRS).</dd>
+            <dt>Polémique</dt><dd>Le rapport Cour des comptes <em>Enseignement privé sous contrat</em> (juin 2023) qualifie le contrôle financier de l'État sur ce circuit de <strong>« largement inappliqué »</strong> et le contrôle pédagogique de <strong>« minimaliste »</strong>.</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · formiris.org · Cour des comptes 06/2023 · AEF Info 2024.</div>
+    </div>
+
+    <div class="org-card">
+        <div class="org-head">
+            <div class="org-name">Réseau OGEC + Direction Enseignement Catholique<small>~ 8 500 OGEC répartis sur le territoire</small></div>
+            <div class="org-amount">≈ 70 M€<small>Subventions cumulées</small></div>
+        </div>
+        <dl>
+            <dt>Activité</dt><dd>Le PLF Jaune 2023 recense de nombreuses associations « OGEC » individuelles ou par réseau : Organisme de Gestion de l'Enseignement Catholique (12 M€ ligne principale), Direction de l'Enseignement Catholique (10 M€), OGEC Notre-Dame (5,7 M€), OGEC Sacré-Cœur (3,9 M€), OGEC St Joseph (3,3 M€), etc. Chaque OGEC gère un ou plusieurs établissements scolaires.</dd>
+            <dt>Statut</dt><dd>Associations loi 1901 propriétaires des locaux scolaires et employeurs des personnels non-enseignants. Lien organique avec les diocèses ou congrégations.</dd>
+            <dt>Coût pour le contribuable</dt><dd>Le réseau scolarise ~ 17 % des élèves français. Les subventions État + collectivités totalisent près de <strong>30 %</strong> des transferts publics au secteur éducatif (source : Cour des comptes 06/2023).</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · Cour des comptes <em>Enseignement privé sous contrat</em> 06/2023 · PLF 2025 Jaune.</div>
+    </div>
+
+    <div class="org-card">
+        <div class="org-head">
+            <div class="org-name">Fondation Apprentis d'Auteuil<small>Fondation reconnue d'utilité publique · catholique</small></div>
+            <div class="org-amount">3,6 M€<small>Versement État 139</small></div>
+        </div>
+        <dl>
+            <dt>Activité</dt><dd>Plus de 200 établissements scolaires, foyers d'accueil, structures d'insertion en France. <strong>~ 30 000 jeunes accompagnés/an</strong>. La part de subventions État dans le PLF Jaune (3,6 M€) est faible vs son budget total — l'essentiel de ses ressources publiques transite via les rémunérations directes des enseignants.</dd>
+            <dt>Direction</dt><dd>Président <strong>Brice Lalonde</strong> (depuis 2022, ancien ministre Environnement). Directrice générale <strong>Marie Reverdy-Bouchet</strong>.</dd>
+            <dt>Effectifs</dt><dd>~ 6 700 salariés, plus de 4 000 bénévoles.</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · apprentis-auteuil.org · PLF 2025 Jaune.</div>
+    </div>
+
+    <h3>2.3 — Le verdict de la Cour des comptes</h3>
+    <p>Le rapport <em>Enseignement privé sous contrat</em> de la Cour des comptes (juin 2023, [<a href="https://www.ccomptes.fr/sites/default/files/2023-10/20230601-enseignement-prive-sous-contrat.pdf">PDF</a>]) constitue à ce jour la pièce la plus solide pour comprendre le financement public de ce circuit. Trois conclusions principales :</p>
+    <ul>
+        <li><strong>« Carence des contrôles »</strong> : le contrôle financier de l'État sur l'utilisation des fonds est jugé « largement inappliqué », et le contrôle pédagogique « minimaliste ».</li>
+        <li><strong>Les subventions de fonctionnement (forfait d'externat) sont mal justifiées</strong> : leur calcul, censé compenser les charges qui pèseraient sur l'État s'il finançait des écoles publiques équivalentes, ne fait pas l'objet d'audits récents.</li>
+        <li>La Cour appelle à une <strong>« rénovation en profondeur des liens entre l'État et l'enseignement privé »</strong>, avec un cahier des charges plus exigeant en matière de transparence, de diversité sociale (mixité scolaire) et de respect des priorités nationales.</li>
+    </ul>
+
+    <div class="callout editor">
+        <div class="label">Notre lecture</div>
+        <p>L'enseignement privé sous contrat représente <strong>11 % de l'argent État aux associations</strong>, mais il est presque toujours absent du débat public sur les « subventions aux associations ». La raison est politique : toucher au financement du privé sous contrat — historiquement catholique — soulève des résistances majeures (mémoire de la « guerre scolaire »). Il n'en reste pas moins que ces 1,1 milliard sont, juridiquement, des subventions à des <em>associations</em>. Et que la Cour des comptes pointe depuis dix ans un problème de contrôle.</p>
+    </div>
+</section>
+
+<!-- ========== ENQUÊTE 3 — Justice à crédit / CARPA ========== -->
+<section class="page" id="enquete-3">
+    <div class="part-eyebrow"><span class="dot"></span>Enquête 03 · La justice à crédit</div>
+    <h2>597 millions d'euros pour les <em>avocats commis d'office</em></h2>
+    <p class="part-chapeau">Le deuxième plus gros versement de l'État à une « association » en 2023 — derrière la Banque mondiale — n'est pas une œuvre humanitaire. C'est l'Union nationale des CARPA, l'organe qui rétribue les 70 000 avocats commis d'office au titre de l'aide juridictionnelle.</p>
+
+    <h3>3.1 — Une seule ligne de 597 millions</h3>
+    <p>Sur les 112 722 versements analysés dans le PLF Jaune 2025, l'un des plus surprenants est une <strong>ligne unique de 596 908 638 €</strong> au profit de l'<strong>Union nationale des CARPA</strong> (UNCA), au titre du programme 101 « Accès au droit et à la justice ». Cette ligne représente à elle seule <strong>5,7 % des 10,4 milliards versés par l'État aux associations</strong>. Elle finance la rétribution des avocats qui assurent l'<strong>aide juridictionnelle</strong> — la défense gratuite ou semi-gratuite des justiciables aux revenus modestes (en dessous d'environ 1 000 € de revenu fiscal de référence par mois en 2024).</p>
+
+    <h3>3.2 — Comment fonctionne le circuit ?</h3>
+    <p>Les <strong>CARPA</strong> (Caisses des Règlements Pécuniaires des Avocats) sont des associations loi 1901 rattachées à chaque barreau. Leur rôle premier est de gérer les fonds des clients (chèques, virements) en détention temporaire chez l'avocat — un mécanisme de tiers de confiance instauré dans les années 1970. Mais elles servent aussi de <strong>guichet de redistribution</strong> : l'État verse à l'UNCA, qui répartit aux 95 CARPA régionales, qui rétribuent les ~70 000 avocats inscrits sur les listes d'aide juridictionnelle.</p>
+    <p>Le tarif horaire effectif est faible : <strong>environ 20 à 30 € de l'heure</strong>, soit l'un des plus bas d'Europe occidentale, ce qui explique la crise chronique des vocations sur ces missions et les grèves répétées du barreau (2018, 2022). Les barèmes sont fixés par décret et font l'objet de négociations régulières entre la Chancellerie et le Conseil national des barreaux (CNB).</p>
+
+    <h3>3.3 — Une structure peu publicisée mais sous le regard de la Cour des comptes</h3>
+
+    <div class="org-card">
+        <div class="org-head">
+            <div class="org-name">Union Nationale des CARPA<small>Association loi 1901 fédérative — 95 CARPA régionales</small></div>
+            <div class="org-amount">597 M€<small>1 versement unique en 2023</small></div>
+        </div>
+        <dl>
+            <dt>Mission</dt><dd>Centraliser les fonds État pour la rétribution des avocats commis d'office, redistribuer aux 95 CARPA régionales, qui rémunèrent ~ 70 000 avocats. Réglementation : articles 236 et suivants du Code de l'organisation judiciaire.</dd>
+            <dt>Coût pour le contribuable</dt><dd>~ <strong>9 € par habitant et par an</strong> dédiés à garantir le droit constitutionnel à l'accès à la justice des plus modestes.</dd>
+            <dt>Contrôle</dt><dd>Rapport <strong>Cour des comptes 2023</strong> sur l'aide juridictionnelle [<a href="https://www.ccomptes.fr/sites/default/files/2023-10/20231013-S2023-0939-Aide-juridictionnelle.pdf">PDF</a>] : la Cour pointe des questions de <strong>traçabilité financière</strong> et un <strong>ajustement opaque des honoraires via les fonds propres des CARPA</strong> (revenus financiers générés sur les fonds clients en détention).</dd>
+            <dt>Polémique</dt><dd>Tension chronique sur les barèmes : avocats demandent une revalorisation, État cherche à contenir la dépense. Plusieurs grèves nationales depuis 2018 sur ce sujet.</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · Légifrance (articles CARPA) · Cour des comptes 10/2023 · PLF 2025 Jaune.</div>
+    </div>
+
+    <div class="callout editor">
+        <div class="label">Notre lecture</div>
+        <p>L'inclusion de 597 M€ de rétribution d'avocats commis d'office dans la ligne « subventions aux associations » du PLF Jaune est un héritage du statut juridique des CARPA. Mais cette opération est <strong>fonctionnellement</strong> une rémunération de service public (aide juridictionnelle), pas une subvention au sens politique du terme. Il s'agit d'un cas typique où la lecture du Jaune budgétaire conduit à des <strong>chiffres trompeurs</strong> : un débat sur les « 10 milliards de subventions État » devrait, pour être honnête, isoler ce poste qui n'est pas négociable sans réformer le droit fondamental à la défense.</p>
+    </div>
+</section>
+
+<!-- ========== ENQUÊTE 4 — Fausses associations ========== -->
+<section class="page" id="enquete-4">
+    <div class="part-eyebrow"><span class="dot"></span>Enquête 04 · Les fausses associations</div>
+    <h2>Plus de <em>12 milliards</em> qui ne sont pas vraiment des associations</h2>
+    <p class="part-chapeau">Banque mondiale, opérateurs publics du paritarisme, école d'élite, comité des JO, parti politique… Plusieurs catégories de structures classées « association » dans les statistiques du PLF Jaune ne correspondent pas à l'image courante d'une association de terrain. Les regrouper donne plus de 12 milliards d'euros.</p>
+
+    <h3>4.1 — Le périmètre statistique extensif</h3>
+    <p>« Association » est un <strong>statut juridique</strong>, pas un type d'activité. Le PLF Jaune additionne, sous cette même étiquette, des organisations dont les missions, modes de gouvernance et logiques économiques n'ont pratiquement rien en commun. Cette enquête identifie cinq grandes catégories de « fausses associations » qui pèsent ensemble plus de 12 Md€ — presque autant que les collectivités territoriales — et fausse le débat public sur le « financement des associations ».</p>
+
+    <figure class="viz">
+        <div class="viz-block viz-r5">
+            <div class="viz-inner">
+                <div class="viz-eyebrow">R5 · Top 10 État · 2023 (hors AID Banque mondiale)</div>
+                <h3 class="viz-title">Le <em>top 10</em> des associations financées par l'État</h3>
+                <div style="font-family: 'Syne', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.55); letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 24px;">Versements PLF 2023 · agrégation par dénomination</div>
+
+                <div class="podium">
+                    <div class="podium-card gold">
+                        <div class="podium-rank">N° 01</div>
+                        <div class="podium-name">Aurore</div>
+                        <div class="podium-cat">Hébergement d'urgence</div>
+                        <div class="podium-amt">115 M€</div>
+                    </div>
+                    <div class="podium-card silver">
+                        <div class="podium-rank">N° 02</div>
+                        <div class="podium-name">Sciences Po (Fondation)</div>
+                        <div class="podium-cat">Enseignement supérieur</div>
+                        <div class="podium-amt">73 M€</div>
+                    </div>
+                    <div class="podium-card bronze">
+                        <div class="podium-rank">N° 03</div>
+                        <div class="podium-name">Paris 2024 (COJO)</div>
+                        <div class="podium-cat">Événementiel · JO</div>
+                        <div class="podium-amt">70 M€</div>
+                    </div>
+                </div>
+
+                <div class="rest">
+                    <div class="rest-row cat-soc bg"><div class="rest-num">04</div><div class="rest-name">Emmaüs Solidarité<small>Hébergement d'urgence</small></div><div class="rest-amt cat-soc">67 M€</div></div>
+                    <div class="rest-row cat-rec bg"><div class="rest-num">05</div><div class="rest-name">ANRT<small>Recherche & technologie · CIFRE</small></div><div class="rest-amt cat-rec">67 M€</div></div>
+                    <div class="rest-row cat-rec bg"><div class="rest-num">06</div><div class="rest-name">Institut Pasteur<small>Recherche médicale</small></div><div class="rest-amt cat-rec">63 M€</div></div>
+                    <div class="rest-row cat-soc bg"><div class="rest-num">07</div><div class="rest-name">CASP<small>Centre d'Action Sociale Protestant</small></div><div class="rest-amt cat-soc">62 M€</div></div>
+                    <div class="rest-row"><div class="rest-num">08</div><div class="rest-name" style="color:#66aaff;">AKTO<small>OPCO formation professionnelle</small></div><div class="rest-amt cat-fpro">48 M€</div></div>
+                    <div class="rest-row cat-soc bg"><div class="rest-num">09</div><div class="rest-name">Coallia<small>Insertion par le logement</small></div><div class="rest-amt cat-soc">36 M€</div></div>
+                    <div class="rest-row cat-ens bg"><div class="rest-num">10</div><div class="rest-name">Ligue de l'Enseignement<small>Éducation populaire et périscolaire</small></div><div class="rest-amt cat-ens">24 M€</div></div>
+                </div>
+            </div>
+        </div>
+        <figcaption><strong>Visuel R5.</strong> Top 10 des associations les plus subventionnées par l'État en 2023, hors Association Internationale de Développement (AID, Banque mondiale, 1 004 M€, cas hors-périmètre). Source : PLF 2025 — Annexe Jaune, data.gouv.fr.</figcaption>
+    </figure>
+
+    <h3>4.2 — Les opérateurs paritaires de la formation pro (10,7 Md€)</h3>
+    <p>Le plus gros « bloc-fausse-asso » est constitué par les <strong>onze OPCO</strong> (opérateurs de compétences) créés par la loi du 5 septembre 2018. Ce sont des associations loi 1901 à gouvernance paritaire (50 % salariés, 50 % employeurs), chargées de canaliser l'argent de la formation professionnelle vers les entreprises de leur branche. Elles reçoivent leurs ressources principalement via <strong>France Compétences</strong> — qui n'est pas une association, mais un <strong>établissement public</strong> créé par la même loi (à corriger dans les analyses qui le confondent avec les OPCO). En 2023, France Compétences a versé <strong>10,73 Md€ aux OPCO</strong>, contre 1,49 Md€ en 2019, soit une <strong>multiplication par 7,7</strong> en quatre ans.</p>
+
+    <figure class="viz">
+        <div class="viz-block viz-r3">
+            <div class="viz-inner">
+                <div class="viz-eyebrow">R3 · L'explosion silencieuse 2019 → 2023</div>
+                <h3 class="viz-title">France Compétences a été <span class="red">multipliée par 7,7</span></h3>
+                <div style="font-family: 'Syne', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.55); letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 24px;">Versements aux associations · 6 opérateurs publics · M€</div>
+
+                <div class="lead">
+                    <div class="lead-num">×7,7</div>
+                    <div class="lead-text">
+                        <strong>France Compétences</strong> est passée de <span class="mono">1 490 M€</span> versés en 2019 à <span class="mono">11 417 M€</span> en 2023 — soit l'essentiel des 12,7 Md€ versés par les opérateurs de l'État aux associations en 2023. Cette explosion correspond au déploiement des OPCO créés par la loi du 5 septembre 2018.
+                    </div>
+                </div>
+
+                <div class="others">
+                    <div class="other"><div class="o-name">France Travail</div><div class="o-evol">263 → 655 M€</div><div class="o-mult">×2,5</div></div>
+                    <div class="other"><div class="o-name">ANS · Sport</div><div class="o-evol">129 → 284 M€</div><div class="o-mult">×2,2</div></div>
+                    <div class="other"><div class="o-name">Agences de l'eau</div><div class="o-evol">67 → 122 M€</div><div class="o-mult">×1,8</div></div>
+                    <div class="other"><div class="o-name">ANR · Recherche</div><div class="o-evol">52 → 80 M€</div><div class="o-mult">×1,5</div></div>
+                    <div class="other"><div class="o-name">ADEME</div><div class="o-evol">60 → 78 M€</div><div class="o-mult">×1,3</div></div>
+                </div>
+            </div>
+        </div>
+        <figcaption><strong>Visuel R3.</strong> Évolution des dépenses des opérateurs de l'État aux associations entre 2019 et 2023 (source : Rapport IGF mai 2025, Tableau 2).</figcaption>
+    </figure>
+
+    <div class="org-card warn">
+        <div class="org-head">
+            <div class="org-name">AKTO<small>OPCO des entreprises de proximité (intérim, propreté, sécurité, HCR…)</small></div>
+            <div class="org-amount">~ 2 Md€<small>via France Compétences + 48 M€ direct</small></div>
+        </div>
+        <dl>
+            <dt>Activité</dt><dd>Couvre <strong>27 branches professionnelles</strong> (services intérim, propreté, sécurité privée, HCR, restauration rapide, services à la personne, déchets…), <strong>364 000 entreprises adhérentes</strong>, environ <strong>6 millions de salariés</strong>.</dd>
+            <dt>Direction</dt><dd>Présidence : <strong>Jean Hedou</strong> (FO). Vice-présidence : <strong>Laurent Barthelemy</strong> (UMIH). Directrice générale : <strong>Valérie Sort</strong> (depuis octobre 2019, ancienne Agefos-PME 13 ans).</dd>
+            <dt>Salaires</dt><dd>Non publiés. Pas d'obligation de transparence salariale pour les dirigeants d'OPCO.</dd>
+            <dt>Contrôle</dt><dd>Rapport <strong>Cour des comptes février 2025</strong> sur AKTO [<a href="https://www.ccomptes.fr/sites/default/files/2025-02/20250218-S2024-1433-Operateur-de-competences-des-entreprises-a-forte-intensite-OPCO-AKTO.pdf">PDF</a>] : audit de régularité.</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · akto.fr · Cour des comptes 02/2025 · francecompetences.fr.</div>
+    </div>
+
+    <h3>4.3 — La Banque mondiale (1 Md€)</h3>
+
+    <div class="org-card warn">
+        <div class="org-head">
+            <div class="org-name">Association Internationale de Développement (AID/IDA)<small>Filiale du Groupe Banque mondiale, basée à Washington</small></div>
+            <div class="org-amount">1 004 M€<small>Top 1 du PLF 2023</small></div>
+        </div>
+        <dl>
+            <dt>Statut réel</dt><dd>L'AID — créée en 1960 par les Nations Unies — est <strong>une institution multilatérale</strong>, pas une association française classique. Elle est rattachée au Groupe Banque mondiale (Washington). Son classement « association » dans le PLF Jaune relève d'une convention budgétaire pour la lisibilité de la contribution française aux fonds multilatéraux.</dd>
+            <dt>Mécanisme</dt><dd>L'AID fonctionne par <strong>« reconstitutions des ressources »</strong> tous les trois ans. Les pays membres (173) abondent un fonds qui finance des prêts (80 %) et dons (20 %) aux pays les plus pauvres. La France était le 4<sup>e</sup>-5<sup>e</sup> contributeur d'AID-20 (2021-2023). Pour AID-21 (2025-2028), la France a annoncé une réduction de ~ 14 % de sa contribution.</dd>
+            <dt>Allocation</dt><dd>~ 40 % Afrique subsaharienne, ~ 35 % Asie du Sud, ~ 20 % autres pays pauvres. Domaines : santé, éducation, infrastructures, climat.</dd>
+            <dt>Coût pour le contribuable</dt><dd>~ <strong>15 € par habitant et par an</strong>, soit le poste le plus important de l'aide multilatérale française au développement.</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · ida.banquemondiale.org · tresor.economie.gouv.fr · focus2030.org.</div>
+    </div>
+
+    <h3>4.4 — Une école d'élite, des Jeux olympiques et un parti politique</h3>
+
+    <div class="org-card">
+        <div class="org-head">
+            <div class="org-name">Fondation Sciences Po (FNSP)<small>Fondation reconnue d'utilité publique · structure duale avec l'IEP Paris</small></div>
+            <div class="org-amount">73 M€<small>Subvention État 2023</small></div>
+        </div>
+        <dl>
+            <dt>Activité</dt><dd>Fondation Nationale des Sciences Politiques (FNSP), bras opérationnel privé qui co-administre Sciences Po avec l'<strong>Institut d'Études Politiques de Paris</strong> (établissement public). Budget total institution 2026 : 244,7 M€ ; ressources publiques : ~ 30 % ; ressources propres (frais de scolarité, mécénat, formation continue) : ~ 70 %. Effectifs : 122 enseignants, 89 chercheurs CNRS, 10 500 étudiants.</dd>
+            <dt>Direction</dt><dd>Président FNSP : <strong>Claude Virot</strong> (depuis 2021). Directeur IEP : <strong>Luis Vassy</strong> (depuis 1<sup>er</sup> octobre 2024, succession après la démission de Mathias Vicherat le 13 mars 2024).</dd>
+            <dt>Polémiques</dt><dd>2021 : démission de Frédéric Mion (affaire Duhamel). 2024 : démission de Mathias Vicherat (mise en cause pour violences conjugales). Cycle de crises de gouvernance qui a conduit à des protestations étudiantes répétées. Rapport Cour des comptes <strong>avril 2025</strong> sur la situation financière [<a href="https://www.ccomptes.fr/sites/default/files/2025-04/20250411_NARamelioree-Situation-financiere-de-SciencesPo_Vdef.pdf">PDF</a>].</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · sciencespo.fr · Cour des comptes 04/2025 · newsroom.sciencespo.fr.</div>
+    </div>
+
+    <div class="org-card warn">
+        <div class="org-head">
+            <div class="org-name">Paris 2024 — COJO<small>Comité d'Organisation des Jeux Olympiques · association loi 1901 temporaire (2017-2025)</small></div>
+            <div class="org-amount">70 M€<small>+ 6,5 Md€ public hors COJO</small></div>
+        </div>
+        <dl>
+            <dt>Activité</dt><dd>Comité d'organisation des Jeux Olympiques et Paralympiques 2024. Budget total COJO : 4,494 Md€, dont public ~ 4-5 % seulement. À côté du COJO : <strong>SOLIDEO (4,5 Md€ infrastructure, dont 3 Md€ public)</strong> et sécurité publique (~ 1,5 Md€). La Cour des comptes réestime le coût total public à <strong>6,6 Md€</strong>, vs 1,5 Md€ initial annoncé en 2019.</dd>
+            <dt>Direction</dt><dd>Président : <strong>Tony Estanguet</strong> (triple champion olympique). Vice-président exécutif : Étienne Thobois.</dd>
+            <dt>Salaire Tony Estanguet</dt><dd><strong>Polémique majeure</strong>. Salaire fixe 270 K€/an + part variable + prime de rétention. <strong>Cumul estimé 2018-2024 : ~ 2 millions d'euros bruts</strong>. Montage : rémunération via société personnelle d'Estanguet, qui facture le COJO. Enquête du Parquet National Financier en 2024 ; rescrit social validé par Bercy. Bilan financier final du COJO (clôture 2025) : excédent de 76 M€ (3 fois plus que prévu).</dd>
+            <dt>Verdict Cour des comptes</dt><dd>Rapport JOP 2024 [<a href="https://www.ccomptes.fr/sites/default/files/2025-09/20240929-rapport-JOP-2024_0.pdf">PDF</a>] : dépenses « maîtrisées » mais <strong>impact économique « modeste »</strong> (croissance VAT non significative).</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · ccomptes.fr (rapport 2024) · europe1.fr (enquête salaire Estanguet) · franceinfo.fr (bilan financier).</div>
+    </div>
+
+    <div class="org-card warn">
+        <div class="org-head">
+            <div class="org-name">Ensemble pour la majorité présidentielle<small>Association loi 1901 — financement public des partis politiques</small></div>
+            <div class="org-amount">19,5 M€<small>Versement État 2023</small></div>
+        </div>
+        <dl>
+            <dt>Mécanisme</dt><dd>En France, les partis politiques sont juridiquement des associations loi 1901, et reçoivent un <strong>financement public légal</strong> proportionnel à leurs résultats électoraux et au nombre de parlementaires affiliés. Le programme 232 « Vie politique » du PLF abonde ce financement. La structure « Ensemble pour la majorité présidentielle » (créée 03/05/2022) regroupe les formations qui soutiennent Emmanuel Macron à l'Assemblée.</dd>
+            <dt>Note</dt><dd>D'autres partis perçoivent également des sommes via ce circuit : Rassemblement National, La France Insoumise, Les Républicains, etc. — cette ligne « Ensemble » n'est qu'une fraction des ~ 65 M€ de financement public annuel des partis.</dd>
+            <dt>Pour le contribuable</dt><dd>Le financement public des partis pèse environ <strong>1 € par Français et par an</strong>, en application des lois de 1988 sur la transparence financière de la vie politique.</dd>
+        </dl>
+        <div class="org-source"><strong>Sources</strong> · CNCCFP (Commission nationale des comptes de campagne) · PLF 2025 Jaune.</div>
+    </div>
+
+    <h3>4.5 — Récapitulatif : la « vraie » assiette associative</h3>
+    <p>Si l'on retire ces structures atypiques du périmètre du PLF Jaune (10,4 Md€ État), il reste environ <strong>7 à 8 milliards d'euros</strong> de subventions à des associations « au sens commun » — humanitaires, sociales, culturelles, sportives. C'est encore considérable, mais cela représente <strong>1,5 fois moins</strong> que le chiffre brut souvent évoqué dans le débat public sur les « subventions aux associations ».</p>
+
+    <div class="callout editor">
+        <div class="label">Notre lecture</div>
+        <p>Cette enquête est sans doute la plus politiquement explosive du rapport. Quand un parlementaire propose de « couper les subventions aux associations », il ignore que <strong>plus de la moitié</strong> de ces crédits relèvent en réalité de la formation professionnelle, de l'aide multilatérale, de l'enseignement supérieur ou du financement légal de la démocratie. Ces postes ne peuvent pas être coupés sans réformer en profondeur les dispositifs sous-jacents — ce qui transforme la conversation budgétaire de cosmétique (« faire des économies sur les assos militantes ») en politique de fond.</p>
+    </div>
+</section>
+
+<!-- ========== PARTIE 5 ========== -->
+<section class="page" id="partie-5">
+    <div class="part-eyebrow"><span class="dot"></span>Partie 05 · La face cachée</div>
+    <h2>101 milliards de <em>trésorerie</em></h2>
+    <p class="part-chapeau">Donnée la plus surprenante du rapport IGF mai 2025 : le patrimoine financier des associations a explosé depuis le Covid. 101 milliards d'euros dorment dans leurs caisses au troisième trimestre 2024 — autant que le rendement annuel de l'impôt sur le revenu.</p>
+
+    <h3>5.1 — La donnée brute (T3 2024)</h3>
+    <div class="draft-placeholder">
+    Source : rapport IGF mai 2025, p. 19. Périmètre : ISBLSM (Institutions Sans But Lucratif au Service des Ménages, catégorie INSEE qui couvre la majorité des associations). Encours patrimoine financier au T3 2024 : 101 Md€. Évolution 2013-2019 : +2,4 Md€ seulement. Évolution Q1 2020 → T3 2024 : +26 Md€. Rythme 11× plus rapide en 4,5 ans qu'en 6 ans précédents.
+    </div>
+
+    <figure class="viz">
+        <div class="viz-block viz-r7">
+            <div class="viz-inner">
+                <div class="viz-eyebrow">R7 · Patrimoine financier ISBLSM · 2013 → T3 2024</div>
+                <h3 class="viz-title">Le <em>trésor caché</em> des associations</h3>
+                <div style="font-family: 'Syne', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.55); letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 24px;">Encours du patrimoine financier · Md€</div>
+
+                <div class="lead-stat">
+                    <div class="lead-num-box">
+                        <div class="nm">101 Md€</div>
+                        <div class="lb">de trésorerie cumulée au 3<sup>e</sup> trim. 2024<br><strong>+ 26 Md€</strong> depuis le début Covid (vs +2,4 Md€ entre 2013 et 2019)</div>
+                    </div>
+                    <div class="compares">
+                        <div class="compare-row cyan"><div class="lab">Rendement annuel de l'IR<small>2024 · IR encaissé</small></div><div class="x">×1,0</div></div>
+                        <div class="compare-row purple"><div class="lab">Budget annuel de la Défense<small>Mission Défense 2024 · 49 Md€</small></div><div class="x">×2,0</div></div>
+                        <div class="compare-row red"><div class="lab">Budget de la Justice<small>Mission Justice 2024 · 10,1 Md€</small></div><div class="x">×10</div></div>
+                    </div>
+                </div>
+
+                <svg viewBox="0 0 1100 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+                    <defs>
+                        <linearGradient id="goldArea" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.5"/>
+                            <stop offset="100%" style="stop-color:#ffd700;stop-opacity:0.05"/>
+                        </linearGradient>
+                        <pattern id="hatchGold" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+                            <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255,215,0,0.10)" stroke-width="2"/>
+                        </pattern>
+                    </defs>
+
+                    <rect x="683" y="20" width="357" height="220" fill="url(#hatchGold)"/>
+                    <line x1="683" y1="20" x2="683" y2="240" stroke="rgba(255,215,0,0.40)" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+                    <text x="370" y="14" text-anchor="middle" font-family="Syne" font-size="11" font-weight="600" fill="rgba(0,212,255,0.55)" letter-spacing="1" text-transform="uppercase">Avant Covid · +2,4 Md€ en 6 ans</text>
+                    <text x="860" y="14" text-anchor="middle" font-family="Syne" font-size="11" font-weight="600" fill="rgba(255,215,0,0.85)" letter-spacing="1" text-transform="uppercase">Post Covid · + 26 Md€ en 4,5 ans</text>
+
+                    <line x1="60" y1="20" x2="1040" y2="20" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3 3"/>
+                    <line x1="60" y1="80" x2="1040" y2="80" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3 3"/>
+                    <line x1="60" y1="140" x2="1040" y2="140" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3 3"/>
+                    <line x1="60" y1="200" x2="1040" y2="200" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3 3"/>
+                    <line x1="60" y1="240" x2="1040" y2="240" stroke="rgba(255,255,255,0.18)"/>
+
+                    <text x="50" y="25" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.4)">105 Md€</text>
+                    <text x="50" y="85" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.4)">95</text>
+                    <text x="50" y="145" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.4)">85</text>
+                    <text x="50" y="205" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.4)">75</text>
+
+                    <path fill="none" stroke="#00d4ff" stroke-width="3" stroke-linecap="round" opacity="0.7" d="M 60 220 L 149 215 L 238 213 L 327 211 L 416 207 L 505 204 L 594 200"/>
+                    <path fill="url(#goldArea)" d="M 594 200 L 683 200 L 772 168 L 861 105 L 950 50 L 1006 12 L 1006 240 L 594 240 Z"/>
+                    <path fill="none" stroke="#ffd700" stroke-width="4" stroke-linecap="round" d="M 594 200 L 683 200 L 772 168 L 861 105 L 950 50 L 1006 12"/>
+
+                    <circle cx="60" cy="220" r="4" fill="#fff" stroke="#00d4ff" stroke-width="2"/>
+                    <circle cx="594" cy="200" r="5" fill="#fff" stroke="#00d4ff" stroke-width="2"/>
+                    <circle cx="683" cy="200" r="6" fill="#ffd700" stroke="#fff" stroke-width="2"/>
+                    <circle cx="861" cy="105" r="6" fill="#ffd700" stroke="#fff" stroke-width="2"/>
+                    <circle cx="1006" cy="12" r="9" fill="#ffd700" stroke="#fff" stroke-width="2.5"/>
+
+                    <text x="60" y="212" text-anchor="middle" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="#fff">73</text>
+                    <text x="60" y="262" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.55)">2013</text>
+                    <text x="594" y="192" text-anchor="middle" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="#fff">75</text>
+                    <text x="594" y="262" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.55)">2019</text>
+                    <text x="683" y="262" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#ffd700" font-weight="700">2020</text>
+                    <text x="861" y="95" text-anchor="middle" font-family="JetBrains Mono" font-size="14" font-weight="700" fill="#ffd700">90</text>
+                    <text x="861" y="262" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.55)">2022</text>
+                    <text x="1006" y="0" text-anchor="middle" font-family="JetBrains Mono" font-size="20" font-weight="800" fill="#ffd700">101</text>
+                    <text x="1006" y="262" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#ffd700" font-weight="700">T3 2024</text>
+                </svg>
+            </div>
+        </div>
+        <figcaption><strong>Visuel R7.</strong> Évolution du patrimoine financier des Institutions Sans But Lucratif au Service des Ménages (ISBLSM, catégorie INSEE qui couvre la majorité des associations). Le rapport IGF qualifie cette progression de « comportement de thésaurisation » comparable à celui des entreprises non financières (source : Rapport IGF mai 2025, p. 19 ; INSEE comptes nationaux trimestriels).</figcaption>
+    </figure>
+
+    <h3>5.2 — Quatre explications avancées par l'IGF</h3>
+    <div class="draft-placeholder">
+    L'IGF identifie quatre causes : (1) thésaurisation : comportement de prudence semblable à celui des ménages et des entreprises depuis le Covid ; (2) explosion des fondations et fonds de dotation (+22 % entre 2019 et 2023) ; (3) hausse des financements publics et de la générosité (cf. parties 2 et 6) ; (4) baisse d'activité des petites associations post-Covid. Les flux de patrimoine des sociétés non financières ont aussi crû de 98,3 Md€ entre 2019 et 2023 — donc l'effet n'est pas associatif spécifiquement.
+    </div>
+
+    <div class="pullquote">
+        <p>« Le patrimoine financier de ces structures a augmenté de 26 Md€ entre le début de la crise sanitaire et le 3<sup>e</sup> trimestre 2024 pour atteindre un encours de 101 Md€, tandis qu'il avait crû de manière plus modérée entre 2013 et 2019 (+2,4 Md€). »</p>
+        <div class="source">— Rapport IGF/IGÉSR, Revue des dépenses publiques aux associations, mai 2025, p. 19</div>
+    </div>
+
+    <h3>5.3 — La ligne de fracture : peu d'assos riches, beaucoup en tension</h3>
+    <div class="draft-placeholder">
+    Les 101 Md€ sont un agrégat. Concentration probable dans un nombre réduit de structures (fondations universitaires, Croix-Rouge française avec 17 226 salariés fin 2023, Fondation de France avec 2,3 Md€ de patrimoine financier propre…).
+    Pendant que la base est en tension. <strong>L'enquête « Santé financière des associations » du Mouvement associatif (avril 2025, 5 557 dirigeants interrogés)</strong> documente : 54 % des assos signalent des problèmes de trésorerie (23 % récurrents, 31 % ponctuels), 31 % des employeuses ont moins de 3 mois de trésorerie, 50 % attendent un renouvellement de subvention, 45 % de celles renouvelées le sont à la baisse. Estimation : 90 000 emplois en péril dans le secteur. Le <strong>CESE (mai 2024)</strong> chiffre de son côté à 62 % la part des associations qui manquent de financement pour réaliser leur objet social. Décrochage net entre top et longue traîne.
+    </div>
+</section>
+
+<!-- ========== PARTIE 6 ========== -->
+<section class="page" id="partie-6">
+    <div class="part-eyebrow"><span class="dot"></span>Partie 06 · Mécénat & dons</div>
+    <h2>Le <em>mécénat</em> et les niches fiscales</h2>
+    <p class="part-chapeau">Le citoyen et l'entreprise contribuent aussi — et l'État rembourse une part importante de leurs dons. 4,3 milliards d'euros de niches fiscales en 2023, en hausse de 39 % en quatre ans.</p>
+
+    <h3>6.1 — Les dons des particuliers (3,6 Md€, 5,5 millions de foyers)</h3>
+    <div class="draft-placeholder">
+    Article 200 CGI : 66 % de réduction d'impôt sur le revenu, plafonnée à 20 % du revenu imposable. Taux majoré 75 % (plafond 1 000 €) pour aide alimentaire/logement. Croissance dons IR 2019-2023 : +18 % (3,07 Md€ → 3,63 Md€). 5,53 M de foyers donateurs en 2022 (+12 % vs 2019). Concentration : les 10 % les plus aisés représentent une part disproportionnée des dons.
+    </div>
+
+    <h3>6.2 — Le mécénat d'entreprise (1,5 Md€)</h3>
+    <div class="draft-placeholder">
+    Article 238 bis CGI : 60 % de réduction d'IS jusqu'à 2 M€ de dons, 40 % au-delà. Croissance 2019-2023 : +18 %. Données Admical 2024 : 170 000 entreprises mécènes (+55 %), 3 Md€ déclarés (3,8 Md€ avec sous-déclaration). 97 % sont des TPE/PME, 88 % agissent en local.
+    </div>
+
+    <h3>6.3 — Le boom JO 2024 et la place du sport</h3>
+    <div class="draft-placeholder">
+    Effet JO : sport devient pour la 1<sup>re</sup> fois la 1<sup>re</sup> destination du mécénat (40 % du budget en 2023), au détriment de la culture et de l'action sociale. Mécénat lié au sport boosté par l'organisation des JO 2024. Question : effet durable ou éphémère ?
+    </div>
+
+    <figure class="viz">
+        <div class="viz-block viz-r8">
+            <div class="viz-inner">
+                <div class="viz-eyebrow">R8 · Dépenses fiscales 2019 → 2023</div>
+                <h3 class="viz-title">Les <span class="purple">niches fiscales</span> qui financent les associations</h3>
+                <div style="font-family: 'Syne', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.55); letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 24px;">Article 200 (particuliers) + Article 238 bis (entreprises) · Md€</div>
+
+                <div class="layout">
+                    <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+                        <defs>
+                            <linearGradient id="parGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#c084fc;stop-opacity:0.85"/>
+                                <stop offset="100%" style="stop-color:#c084fc;stop-opacity:0.50"/>
+                            </linearGradient>
+                            <linearGradient id="entGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff9f43;stop-opacity:0.95"/>
+                                <stop offset="100%" style="stop-color:#ff9f43;stop-opacity:0.65"/>
+                            </linearGradient>
+                        </defs>
+
+                        <line x1="60" y1="20" x2="660" y2="20" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3 3"/>
+                        <line x1="60" y1="80" x2="660" y2="80" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3 3"/>
+                        <line x1="60" y1="140" x2="660" y2="140" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3 3"/>
+                        <line x1="60" y1="200" x2="660" y2="200" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3 3"/>
+                        <line x1="60" y1="260" x2="660" y2="260" stroke="rgba(255,255,255,0.05)" stroke-dasharray="3 3"/>
+                        <line x1="60" y1="280" x2="660" y2="280" stroke="rgba(255,255,255,0.18)"/>
+
+                        <text x="50" y="25" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.4)">5 Md€</text>
+                        <text x="50" y="85" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.4)">4</text>
+                        <text x="50" y="145" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.4)">3</text>
+                        <text x="50" y="205" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.4)">2</text>
+                        <text x="50" y="265" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.4)">1</text>
+
+                        <!-- Aire entreprises (bas) - 0.9, 1.0, 1.1, 1.2, 1.5 Md€ -->
+                        <path fill="url(#entGrad)" stroke="#ff9f43" stroke-width="2" d="M 60 226 L 210 220 L 360 214 L 510 208 L 660 190 L 660 280 L 60 280 Z"/>
+
+                        <!-- Aire particuliers (au-dessus) - 2.2, 2.3, 2.5, 2.7, 2.8 Md€ -->
+                        <path fill="url(#parGrad)" stroke="#c084fc" stroke-width="2" d="M 60 94 L 210 70 L 360 64 L 510 40 L 660 22 L 660 190 L 510 208 L 360 214 L 210 220 L 60 226 Z"/>
+
+                        <!-- Ligne totale -->
+                        <path fill="none" stroke="#fff" stroke-width="2.5" d="M 60 94 L 210 70 L 360 64 L 510 40 L 660 22"/>
+
+                        <circle cx="60" cy="94" r="5" fill="#fff" stroke="#c084fc" stroke-width="2"/>
+                        <text x="60" y="86" text-anchor="middle" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="#fff">3,1</text>
+                        <circle cx="660" cy="22" r="6" fill="#c084fc" stroke="#fff" stroke-width="2"/>
+                        <text x="650" y="14" text-anchor="end" font-family="JetBrains Mono" font-size="15" font-weight="700" fill="#c084fc">4,3 Md€</text>
+
+                        <text x="60" y="305" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.55)">2019</text>
+                        <text x="210" y="305" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.55)">2020</text>
+                        <text x="360" y="305" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.55)">2021</text>
+                        <text x="510" y="305" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="rgba(255,255,255,0.55)">2022</text>
+                        <text x="660" y="305" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#c084fc" font-weight="700">2023</text>
+
+                        <text x="100" y="265" font-family="Syne" font-size="11" font-weight="600" fill="#ff9f43" letter-spacing="1">MÉCÉNAT ENTREPRISES (art. 238 bis)</text>
+                        <text x="100" y="155" font-family="Syne" font-size="11" font-weight="600" fill="#c084fc" letter-spacing="1">DONS PARTICULIERS (art. 200 CGI)</text>
+
+                        <g transform="translate(560, 80)">
+                            <text x="0" y="0" font-family="JetBrains Mono" font-size="22" font-weight="800" fill="#c084fc" letter-spacing="-0.5">+ 39 %</text>
+                            <text x="0" y="18" font-family="Syne" font-size="11" fill="rgba(255,255,255,0.65)" letter-spacing="0.5">en 4 ans</text>
+                        </g>
+                    </svg>
+
+                    <div class="metrics">
+                        <div class="m purple"><div class="n">5,5 M</div><div class="l">foyers donateurs en 2022<small>+ 12 % depuis 2019</small></div></div>
+                        <div class="m orange"><div class="n">170 000</div><div class="l">entreprises mécènes en 2023<small>+ 55 % depuis 2018 (Admical)</small></div></div>
+                        <div class="m cyan"><div class="n">66 / 60 %</div><div class="l">taux de réduction d'impôt<small>IR particuliers / IS entreprises ≤ 2 M€</small></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <figcaption><strong>Visuel R8.</strong> Évolution des deux grandes niches fiscales pour les associations 2019-2023 (+ 39 % en quatre ans). Sources : Voies et Moyens (PLF 2025, tomes I-II) ; Rapport IGF mai 2025 ; Baromètre Admical du mécénat 2024 ; estimations Où Va l'Argent.</figcaption>
+    </figure>
+</section>
+
+<!-- ========== PARTIE 7 — Conclusion éditoriale OVLA ========== -->
+<section class="page" id="partie-7">
+    <div class="part-eyebrow"><span class="dot"></span>Partie 07 · Conclusion</div>
+    <h2>Ce que les chiffres <em>disent vraiment</em></h2>
+    <p class="part-chapeau">Au terme de cet examen, plusieurs lignes de force se dégagent — qui ne recoupent pas exactement le débat budgétaire actuel sur les associations.</p>
+
+    <h3>7.1 — Le débat budgétaire se trompe (souvent) de cible</h3>
+    <div class="draft-placeholder">
+    Quand un parlementaire propose de couper « les subventions aux associations idéologiques », il s'attaque en réalité à une fraction marginale du total. Les vrais postes de masse :
+    (a) Les ESSMS gérés par des associations (action sociale, handicap, ASE…) — irréductibles politiquement car ils remplacent l'État ;
+    (b) L'hébergement des migrants et demandeurs d'asile — sujet politique, mais coupes = ré-internalisation forcée par l'État ;
+    (c) L'enseignement privé sous contrat — sujet rarement abordé dans le débat « subventions assos ».
+    Les coupes médiatiques (subventions de quelques centaines de milliers d'euros aux assos jugées idéologiques) ne représentent que des miettes des 53,4 Md€.
+    </div>
+
+    <h3>7.2 — La concentration et l'opacité du système</h3>
+    <div class="draft-placeholder">
+    Quelques constats forts :
+    (a) Le top 10 des bénéficiaires État capte 600 M€ (~ 6 % de l'État) — concentration extrême au sommet ;
+    (b) 1 € État sur 5 va à des « fausses » associations (OPCO, AID, CARPA, COJO) — débat sur le périmètre statistique ;
+    (c) Paris concentre ~ 30 % des transferts État ;
+    (d) 314 000 associations financées sur 1,27 M : 1 sur 4. Le reste vit sans argent public ;
+    (e) Le contrôle est admis insuffisant par l'IGF elle-même (proposition n° 2 du rapport : durcir les contrôles fiscaux).
+    </div>
+
+    <h3>7.3 — Le paradoxe trésorerie / tension</h3>
+    <div class="draft-placeholder">
+    Donnée la plus dérangeante : 101 Md€ de trésorerie cumulée alors que 20 % des assos employeuses ont moins de 3 mois de trésorerie. Concentration manifeste mais non publiée — la mission IGF appelle à mieux la suivre, sans la documenter en détail. Question politique évidente : faut-il décaler les versements aux structures excédentaires (proposition n° 1 IGF, 189 M€ d'économies) ? Mais surtout : pourquoi des structures bénéficiaires d'argent public continuent-elles d'engranger sans dépenser ?
+    </div>
+
+    <h3>7.4 — Un débat plurivocal mal posé</h3>
+    <div class="draft-placeholder">
+    Sur ce sujet, les positions documentées sont multiples et n'arrivent pas à se parler :
+    (a) <strong>L'IFRAP</strong> dénonce 23 Md€ de subventions « quasi sans contrôle » et chiffre 1,6 Md€ d'économies possibles par meilleure sélection ;
+    (b) <strong>L'IGF</strong> documente trois scénarios d'économies (1, 2, 3 Md€) techniquement faisables, dont 70 % via la fiscalité et les opérateurs ;
+    (c) <strong>Le CESE</strong> alerte sur l'« urgence démocratique » : 62 % des assos en sous-financement, baisse historique des subventions ;
+    (d) <strong>Le Sénat</strong> a émis un avis défavorable sur le PLF 2026 « Jeunesse et vie associative » (rapporteur Yan Chantrel, novembre 2025), notant +37 % de refus FDVA en deux ans et plus d'une asso demandeuse sur trois non soutenue ;
+    (e) <strong>Le Mouvement associatif</strong> chiffre 90 000 emplois en péril ;
+    (f) <strong>Le HCVA</strong> alerte sur la concurrence croissante État/associations.
+    Au-delà des chiffrages, les vraies questions structurelles :
+    (1) Que doit-on appeler une « association » dans les statistiques publiques ? OPCO, Banque mondiale, Sciences Po, partis politiques méritent-ils d'y figurer ?
+    (2) La transparence : seuls les versements État sont accessibles ligne à ligne sur data.gouv. Les 26 Md€ des collectivités restent largement opaques.
+    (3) Le contrôle : 4,3 Md€ de niches fiscales sans contrôle systématique des reçus est probablement une exception française.
+    (4) Le pilotage : « Dites-le nous une fois » réduirait la charge administrative à coût zéro.
+    Le débat sérieux n'est pas combien couper, mais <em>où</em>, <em>comment</em>, et <em>avec quel pilotage</em>.
+    </div>
+
+    <div class="callout editor">
+        <div class="label">Notre lecture</div>
+        <p>Le sujet n'est pas <strong>« faut-il couper les subventions aux associations »</strong>. Il est triple : <strong>quel est le bon périmètre statistique</strong> (qu'est-ce qu'une association ?), <strong>quel est le bon niveau de transparence</strong> (113 Md€ d'argent public sans cartographie publique ligne à ligne), et <strong>quelles structures concentrent les ressources sans les dépenser</strong> (101 Md€ de trésorerie). Tant que ces trois questions ne sont pas tranchées, parler d'économies revient à débattre du contour du gâteau plutôt que du gâteau.</p>
+    </div>
+</section>
+
+<!-- ========== SOURCES ========== -->
+<section class="page sources" id="sources">
+    <div class="part-eyebrow"><span class="dot"></span>Sources & méthode</div>
+    <h2>Sources</h2>
+
+    <h3>Rapports institutionnels et inspections</h3>
+    <ol>
+        <li><strong>IGF / IGÉSR — Revue des dépenses publiques en direction des associations</strong>, mai 2025 (rapport public, ~ 230 pages). Chiffrage de référence : 53,4 Md€ d'argent public, 101 Md€ trésorerie, scénarios d'économies 1-3 Md€.<br><a href="https://www.igf.finances.gouv.fr/files/live/sites/igf/files/contributed/Rapports%20de%20mission/2024/2025-E-002-04%20Rapport%20subventions%20associations%20WEB.pdf">Lien direct PDF</a></li>
+        <li><strong>Cour des comptes — Missions, financement et contrôle de l'État aux associations dans la politique d'immigration et d'intégration</strong>, février 2025. 8,5 Md€ subventions État (répertoire ministériel 2023), examen détaillé du contrôle.<br><a href="https://www.ccomptes.fr/sites/default/files/2025-02/20250211-Missions-financement-controle-Etat-associations-dans-politique-dimmigration-et-d-integration.pdf">ccomptes.fr — PDF</a></li>
+        <li><strong>CESE — Renforcer le financement des associations : une urgence démocratique</strong>, mai 2024. Consultation 6 525 associations / 13 000 contributions. 62 % des assos sous-financées, baisse subventions 34 % → 20 % en 15 ans.<br><a href="https://www.lecese.fr/travaux-publies/renforcer-le-financement-des-associations-une-urgence-democratique">lecese.fr</a></li>
+        <li><strong>Sénat — Avis sur le PLF 2026, mission « Sport, jeunesse et vie associative »</strong>, rapporteur Yan Chantrel, novembre 2025. Avis défavorable. +37,2 % de refus FDVA entre 2023 et 2025 ; budget vie associative figé à 55,6 M€ en pouvoir nominal.<br><a href="https://www.senat.fr/rap/a25-144-62/a25-144-626.html">senat.fr</a></li>
+        <li><strong>HCVA — Propositions pour l'intérêt général</strong>, juin 2025. 19 propositions sur la concurrence État/associations.<br><a href="https://www.associatheque.fr/fr/fichiers/actualite/HCVA-rapp-adopte-le-6-juin-2025.pdf">PDF</a></li>
+        <li><strong>Cour des comptes — Association SOS Éducation</strong>, contrôle 2013-2018. Cas d'usage non conforme des dons et subventions, exemple-type des limites du contrôle.<br><a href="https://www.ccomptes.fr/fr/publications/association-sos-education">ccomptes.fr</a></li>
+        <li><strong>IFRAP — Réduire les subventions aux associations pour 1,6 Md€ d'économies</strong>, analyse 2024. 23 Md€ tous niveaux confondus, angle critique sur le contrôle.<br><a href="https://www.ifrap.org/budget-et-fiscalite/reduire-les-subventions-aux-associations-pour-1-6-milliard-deuros-deconomies">ifrap.org</a></li>
+    </ol>
+
+    <h3>Données quantitatives et statistiques</h3>
+    <ol>
+        <li><strong>PLF 2025 — Annexe Jaune « Effort financier de l'État en faveur des associations »</strong>, données 2023, 112 722 versements analysés ligne à ligne.<br><a href="https://www.data.gouv.fr/datasets/plf-2025-donnees-de-lannexe-jaune-effort-financier-de-letat-en-faveur-des-associations-1">data.gouv.fr (CSV/JSON)</a></li>
+        <li><strong>Voies et Moyens, tomes I et II du PLF 2025</strong> — chiffrage des dépenses fiscales (art. 200, art. 238 bis CGI).<br><a href="https://www.budget.gouv.fr/">budget.gouv.fr</a></li>
+        <li><strong>Recherches & Solidarités — La France associative en mouvement, 2025</strong>, statistiques de référence : 1,9 M salariés, 51 Md€ masse salariale, 13 M bénévoles, 74 000 créations 2024-2025.<br><a href="https://associations.gouv.fr/la-france-associative-en-mouvement-2025">associations.gouv.fr</a></li>
+        <li><strong>INJEP — Les Chiffres clés de la vie associative 2023</strong>, panorama statistique de référence (ressources, emploi, bénévolat).<br><a href="https://injep.fr/tableau_bord/les-chiffres-cles-de-la-vie-associative-2023-budget/">injep.fr</a></li>
+        <li><strong>Mouvement associatif — Enquête « Santé financière des associations »</strong>, avril 2025 (5 557 dirigeants interrogés). 31 % des employeuses < 3 mois de trésorerie, 90 000 emplois en péril.<br><a href="https://lemouvementassociatif.org/la-sante-financiere-des-associations-un-constat-alarmant/">lemouvementassociatif.org</a></li>
+        <li><strong>Tchernonog V., Prouteau L. — Le paysage associatif français, 4<sup>e</sup> édition</strong>, Dalloz/Lefebvre, août 2023. Référence académique : ressources, emploi, ventilation par activité.<br><a href="https://www.lgdj.fr/le-paysage-associatif-francais-9782247221325.html">LGDJ</a></li>
+        <li><strong>Admical — Baromètre du mécénat d'entreprise, édition 2024</strong>. 170 000 entreprises mécènes, 3 Md€ déclarés.<br><a href="https://admical.org/contenu/barometre-du-mecenat-dentreprise-2024">admical.org</a></li>
+        <li><strong>INSEE — Comptes nationaux ISBLSM</strong> (patrimoine financier des Institutions Sans But Lucratif au Service des Ménages, séries trimestrielles 2013-2024).<br><a href="https://www.insee.fr/">insee.fr</a></li>
+    </ol>
+
+    <h3>Sources parlementaires (via Lex7)</h3>
+    <ol>
+        <li><strong>Amendements PLF 2026 (Assemblée nationale)</strong> — propositions de coupes citant le rapport IGF/IGÉSR mai 2025. Référence Lex7 : PRJLANR5L17B1906, B2247.</li>
+    </ol>
+
+    <h3>Méthode</h3>
+    <p><strong>Périmètre temporel.</strong> Les chiffres principaux portent sur l'année 2023 (dernière année consolidée disponible dans le rapport IGF mai 2025 et le PLF Jaune 2025). Quand des chiffres 2024 sont disponibles (trésorerie ISBLSM, emploi), c'est explicité.</p>
+    <p><strong>Périmètre du financement public.</strong> Nous retenons la définition IGF : 53,4 Md€ = État + opérateurs (dont OPCO) + collectivités territoriales (départements, communes, régions) + dépenses fiscales. Ce périmètre exclut les mises à disposition de personnel et de locaux (non chiffrées par la mission).</p>
+    <p><strong>Top des bénéficiaires.</strong> L'analyse ligne à ligne du PLF 2025 Jaune (112 722 versements) a été conduite via l'API Tabular d'Opendatasoft (data.gouv.fr) le 28 avril 2026. Méthode : agrégation par <code>denomination</code> avec <code>sum(montant)</code>. Les variantes orthographiques (espaces multiples, retours à la ligne dans les noms) peuvent fragmenter certains totaux — pour Aurore par exemple, 86 lignes cumulées.</p>
+    <p><strong>Cas particuliers.</strong> Sont signalées dans le texte les structures qui, juridiquement « associations », ne correspondent pas à l'image courante d'une association de terrain : OPCO (paritaires de la formation pro), AID (Banque mondiale), CARPA (caisses des avocats), COJO (Paris 2024), Fondation Sciences Po (enseignement supérieur), partis politiques.</p>
+    <p><strong>Diversité des sources.</strong> Le chiffrage du financement public des associations fait l'objet de plusieurs estimations divergentes (IFRAP : 23 Md€ ; Cour des comptes : 8,5 Md€ État seul ; IGF : 53,4 Md€ tous périmètres). Ces écarts reflètent des périmètres différents, pas une contradiction. Ce rapport mobilise l'ensemble (IGF, Cour des comptes, CESE, Sénat, HCVA, IFRAP, Mouvement associatif, R&S, INJEP) pour donner une lecture plurivocale, sans s'aligner sur les recommandations d'un rapport en particulier.</p>
+    <p><strong>Position éditoriale.</strong> La conclusion (Partie 7) porte une lecture spécifique de Où Va l'Argent, fondée sur les chiffres présentés. Elle n'a pas vocation à reproduire les conclusions d'un rapport institutionnel particulier mais à proposer une grille de lecture du débat public.</p>
+
+    <h3>Crédits</h3>
+    <p>Rapport rédigé par <strong>Où Va l'Argent</strong> (avril 2026). Visualisations OVLA. Toute reproduction libre avec mention de la source.</p>
+
+    <div class="report-footer">
+        <span class="brand">ouvalargent.com</span>
+        <span>Édition n° 1 · 28 avril 2026 · ≈ 28 pages</span>
+    </div>
+</section>
+
+</div>
+
+</body>
+</html>

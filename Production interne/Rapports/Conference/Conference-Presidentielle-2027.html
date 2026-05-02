@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>État économique de la France et perspectives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FFFFFF;
+  --bg-soft: #F6F4EE;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --ink-mute: #888888;
+  --rule: #D9D6CD;
+  --rule-soft: #ECE9E0;
+  --navy: #1F3A5F;
+  --navy-soft: #E6EBF1;
+  --accent: #A4242C;
+  --accent-soft: #F2E1E1;
+  --green: #2E7D5B;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  background: #2A2A2A;
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  font-feature-settings: "tnum", "ss01";
+}
+
+.stage {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 1920px;
+  height: 1080px;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+  background: var(--bg);
+  box-shadow: 0 0 60px rgba(0,0,0,0.3);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+.slide.active { opacity: 1; pointer-events: auto; }
+
+.slide-inner {
+  height: 100%;
+  width: 100%;
+  padding: 60px 80px 60px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* === Header === */
+.slide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink-mute);
+  letter-spacing: 0.03em;
+  margin-bottom: 32px;
+}
+.slide-header .breadcrumb {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+.slide-header .breadcrumb strong { color: var(--navy); font-weight: 600; }
+.slide-header .page {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+/* === Action title === */
+.action-title {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 600;
+  font-size: 2.6rem;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+  max-width: 1700px;
+}
+.action-title em { color: var(--accent); font-style: normal; font-weight: 700; }
+.action-title b { color: var(--navy); font-weight: 700; }
+.action-rule {
+  width: 100%;
+  height: 2px;
+  background: var(--ink);
+  margin-bottom: 36px;
+}
+
+/* === Footer === */
+.slide-footer {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: var(--ink-mute);
+}
+.slide-footer .source { font-style: italic; }
+.slide-footer .brand {
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.78rem;
+}
+
+/* === COVER === */
+.cover {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 0;
+}
+.cover-band {
+  height: 14px;
+  background: var(--navy);
+}
+.cover-body {
+  padding: 100px 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cover-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--accent);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 60px;
+}
+.cover-title {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 700;
+  font-size: 6.2rem;
+  line-height: 1.05;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  max-width: 1500px;
+  margin-bottom: 36px;
+}
+.cover-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 1300px;
+  margin-bottom: 70px;
+}
+.cover-meta {
+  display: flex;
+  gap: 80px;
+  align-items: baseline;
+  border-top: 1px solid var(--rule);
+  padding-top: 30px;
+}
+.cover-meta .field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cover-meta .field-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--ink-mute);
+  font-weight: 500;
+}
+.cover-meta .field-value {
+  font-family: 'Source Serif Pro', serif;
+  font-size: 1.5rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+.cover-foot {
+  height: 40px;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  padding: 0 100px;
+  color: #fff;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* === PLAN === */
+.toc {
+  display: grid;
+  grid-template-columns: 80px 1fr 100px 220px;
+  gap: 0;
+}
+.toc-row {
+  display: contents;
+}
+.toc-row > * {
+  padding: 26px 12px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'Inter', sans-serif;
+}
+.toc-row.head > * {
+  border-bottom: 2px solid var(--ink);
+  font-size: 0.78rem;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  padding-top: 8px;
+  padding-bottom: 14px;
+}
+.toc-row .num {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+.toc-row .ttl {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 600;
+  font-size: 1.7rem;
+  color: var(--ink);
+}
+.toc-row .ttl .desc {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+.toc-row .duration {
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.toc-row .focus {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* === Content layout 2 cols === */
+.content-2col {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 60px;
+  flex: 1;
+  align-items: stretch;
+}
+
+/* === Bar chart === */
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.bar-chart .chart-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.bar-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 110px;
+  align-items: center;
+  gap: 20px;
+}
+.bar-country {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+.bar-row.fr .bar-country { color: var(--accent); font-weight: 600; }
+.bar-row.avg .bar-country { color: var(--navy); font-weight: 600; font-style: italic; }
+.bar-track {
+  height: 28px;
+  background: var(--rule-soft);
+  position: relative;
+}
+.bar-fill {
+  height: 100%;
+  background: var(--navy);
+}
+.bar-row.fr .bar-fill { background: var(--accent); }
+.bar-row.avg .bar-fill { background: var(--ink-soft); }
+.bar-value {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.bar-row.fr .bar-value { color: var(--accent); font-weight: 600; }
+
+/* === Takeaways panel === */
+.takeaways {
+  background: var(--bg-soft);
+  border-left: 4px solid var(--navy);
+  padding: 30px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.takeaways h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: var(--navy);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.takeaways ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
+.takeaways li {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.45;
+  color: var(--ink);
+  padding-left: 20px;
+  position: relative;
+}
+.takeaways li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 10px;
+  height: 1px;
+  background: var(--navy);
+}
+.takeaways li strong { color: var(--accent); font-weight: 600; }
+.takeaways li b { color: var(--navy); font-weight: 600; }
+.takeaways .stat {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.takeaways .stat.accent { color: var(--accent); }
+.takeaways .stat-cap {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+/* === Synthèse table === */
+.synth-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Inter', sans-serif;
+  flex: 1;
+}
+.synth-table th, .synth-table td {
+  padding: 18px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+.synth-table thead th {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  border-bottom: 2px solid var(--ink);
+  font-weight: 600;
+}
+.synth-table .indicator {
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--ink);
+  width: 30%;
+}
+.synth-table .indicator small {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+.synth-table .fr-value {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.synth-table .ref-value {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.synth-table .gap {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.synth-table .source-cell {
+  font-size: 0.9rem;
+  color: var(--ink-mute);
+  font-style: italic;
+}
+
+/* === Line chart === */
+.line-chart-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.line-chart-wrap .chart-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.line-chart {
+  width: 100%;
+  flex: 1;
+  min-height: 460px;
+}
+.line-chart .grid line { stroke: var(--rule-soft); stroke-dasharray: 0; stroke-width: 1; }
+.line-chart .axis text {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  fill: var(--ink-mute);
+}
+.line-chart .data-line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+}
+.line-chart .data-line.navy { stroke: var(--navy); }
+.line-chart .ref-line {
+  stroke: var(--navy);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+.line-chart .marker text {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  fill: var(--ink);
+  font-weight: 500;
+}
+.line-chart .marker .dot { fill: var(--accent); }
+.line-chart .annot {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  fill: var(--ink-mute);
+  font-style: italic;
+}
+
+/* === Comparison table (duel) === */
+.comp-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+}
+.comp-table th, .comp-table td {
+  padding: 22px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+}
+.comp-table thead th {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  border-bottom: 2px solid var(--ink);
+  font-weight: 600;
+}
+.comp-table .row-label {
+  font-weight: 500;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+.comp-table .fr-cell {
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.comp-table .ref-cell {
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.comp-table .delta-cell {
+  font-weight: 600;
+  font-size: 1.15rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.comp-table .delta-cell.green { color: var(--green); }
+
+/* === Navigation HUD === */
+.hud {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.hud button {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.15s;
+}
+.hud button:hover { border-color: var(--navy); color: var(--navy); }
+.hud .counter { min-width: 56px; text-align: center; color: var(--ink); font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <!-- 01 — COVER -->
+  <div class="slide active">
+    <div class="cover">
+      <div class="cover-band"></div>
+      <div class="cover-body">
+        <div class="cover-eyebrow">Conférence — Avril 2026</div>
+        <h1 class="cover-title">État économique<br>de la France et perspectives</h1>
+        <p class="cover-subtitle">Analyse des grands équilibres budgétaires français, mise en perspective européenne, et évaluation des leviers de réforme à un an de l'élection présidentielle.</p>
+        <div class="cover-meta">
+          <div class="field">
+            <span class="field-label">Auteur</span>
+            <span class="field-value">Emmanuel Blézès</span>
+          </div>
+          <div class="field">
+            <span class="field-label">Format</span>
+            <span class="field-value">Conférence — 90 min</span>
+          </div>
+          <div class="field">
+            <span class="field-label">Périmètre</span>
+            <span class="field-value">France · UE · OCDE</span>
+          </div>
+        </div>
+      </div>
+      <div class="cover-foot">Où va l'argent ? &nbsp;·&nbsp; ouvalargent.com</div>
+    </div>
+  </div>
+
+  <!-- 02 — PLAN -->
+  <div class="slide">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <span class="breadcrumb"><strong>Sommaire</strong> · Conférence en six chapitres</span>
+        <span class="page">02 / 14</span>
+      </div>
+      <h2 class="action-title">Du diagnostic budgétaire aux <em>leviers de réforme</em> : une heure et demie pour relier la situation française aux solutions éprouvées ailleurs.</h2>
+      <div class="action-rule"></div>
+
+      <div class="toc">
+        <div class="toc-row head">
+          <div>Chap.</div><div>Titre</div><div>Durée</div><div>Angle d'analyse</div>
+        </div>
+        <div class="toc-row">
+          <div class="num">01</div>
+          <div class="ttl">État des lieux<span class="desc">Dépense, dette, déficit, prélèvements, productivité.</span></div>
+          <div class="duration">15 min</div>
+          <div class="focus">Comparaison européenne</div>
+        </div>
+        <div class="toc-row">
+          <div class="num">02</div>
+          <div class="ttl">Disséquer la dépense publique<span class="desc">Décomposition COFOG, place du social, millefeuille administratif.</span></div>
+          <div class="duration">12 min</div>
+          <div class="focus">Structure et composition</div>
+        </div>
+        <div class="toc-row">
+          <div class="num">03</div>
+          <div class="ttl">Les bombes à retardement<span class="desc">Retraites, santé, logement.</span></div>
+          <div class="duration">15 min</div>
+          <div class="focus">Trajectoires de moyen terme</div>
+        </div>
+        <div class="toc-row">
+          <div class="num">04</div>
+          <div class="ttl">Pourquoi en sommes-nous là ?<span class="desc">Cinquante ans de tendance longue et de choix politiques.</span></div>
+          <div class="duration">10 min</div>
+          <div class="focus">Lecture historique</div>
+        </div>
+        <div class="toc-row">
+          <div class="num">05</div>
+          <div class="ttl">Ce qui a fonctionné ailleurs<span class="desc">Suède, Canada, Allemagne, Portugal, Argentine.</span></div>
+          <div class="duration">15 min</div>
+          <div class="focus">Études de cas comparées</div>
+        </div>
+        <div class="toc-row">
+          <div class="num">06</div>
+          <div class="ttl">Feuille de route française<span class="desc">Six chantiers : retraites, travail, fiscalité, État, social, énergie.</span></div>
+          <div class="duration">18 min</div>
+          <div class="focus">Recommandations</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 — SYNTHÈSE EXEC : LE TABLEAU CHOC -->
+  <div class="slide">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <span class="breadcrumb"><strong>Chapitre 01</strong> · 1.1 Synthèse exécutive</span>
+        <span class="page">03 / 14</span>
+      </div>
+      <h2 class="action-title">Sur les <em>cinq indicateurs critiques</em> des finances publiques, la France affiche le plus mauvais résultat de la zone euro &mdash; ou en occupe systématiquement les deux dernières positions.</h2>
+      <div class="action-rule"></div>
+
+      <table class="synth-table">
+        <thead>
+          <tr>
+            <th>Indicateur (2024)</th>
+            <th>France</th>
+            <th>Référence européenne</th>
+            <th>Écart</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="indicator">Dépenses publiques<small>en % du PIB</small></td>
+            <td class="fr-value">57,1 %</td>
+            <td class="ref-value">49,2 % <span style="color:var(--ink-mute); font-weight:400; font-size:0.95rem;">moyenne zone euro</span></td>
+            <td class="gap">+ 7,9 pts</td>
+            <td class="source-cell">Eurostat</td>
+          </tr>
+          <tr>
+            <td class="indicator">Déficit public<small>solde budgétaire en % du PIB</small></td>
+            <td class="fr-value">−5,8 %</td>
+            <td class="ref-value">−3,1 % <span style="color:var(--ink-mute); font-weight:400; font-size:0.95rem;">moyenne zone euro</span></td>
+            <td class="gap">−2,7 pts</td>
+            <td class="source-cell">Eurostat</td>
+          </tr>
+          <tr>
+            <td class="indicator">Dette publique<small>au sens de Maastricht</small></td>
+            <td class="fr-value">115 %</td>
+            <td class="ref-value">88 % <span style="color:var(--ink-mute); font-weight:400; font-size:0.95rem;">moyenne zone euro</span></td>
+            <td class="gap">+ 27 pts</td>
+            <td class="source-cell">INSEE / Eurostat</td>
+          </tr>
+          <tr>
+            <td class="indicator">Prélèvements obligatoires<small>en % du PIB</small></td>
+            <td class="fr-value">42,8 %</td>
+            <td class="ref-value">34,2 % <span style="color:var(--ink-mute); font-weight:400; font-size:0.95rem;">moyenne OCDE</span></td>
+            <td class="gap">+ 8,6 pts</td>
+            <td class="source-cell">OCDE</td>
+          </tr>
+          <tr>
+            <td class="indicator">Charge des intérêts<small>service de la dette annuel</small></td>
+            <td class="fr-value">58 Md€</td>
+            <td class="ref-value">2<sup>e</sup> poste <span style="color:var(--ink-mute); font-weight:400; font-size:0.95rem;">du budget de l'État</span></td>
+            <td class="gap">+ 75 % depuis 2020</td>
+            <td class="source-cell">Cour des comptes</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="slide-footer">
+        <span class="source">Données Eurostat, INSEE, OCDE et Cour des comptes (2024). Lecture : la France se situe au-dessus de la moyenne sur l'ensemble des indicateurs de gestion budgétaire.</span>
+        <span class="brand">Où va l'argent ?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 — DÉPENSE PUBLIQUE EUROPE -->
+  <div class="slide">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <span class="breadcrumb"><strong>Chapitre 01</strong> · 1.2 Comparaison européenne</span>
+        <span class="page">04 / 14</span>
+      </div>
+      <h2 class="action-title">À <em>57,1 % du PIB</em>, la France est le pays de l'Union européenne qui dépense le plus &mdash; un écart de près de 8 points avec la moyenne de la zone euro.</h2>
+      <div class="action-rule"></div>
+
+      <div class="content-2col">
+        <div class="bar-chart">
+          <div class="chart-title">Dépenses publiques en % du PIB &mdash; UE, 2024</div>
+          <div class="bar-row fr"><div class="bar-country">France</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-value">57,1 %</div></div>
+          <div class="bar-row"><div class="bar-country">Italie</div><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div><div class="bar-value">51,4 %</div></div>
+          <div class="bar-row"><div class="bar-country">Belgique</div><div class="bar-track"><div class="bar-fill" style="width:89%"></div></div><div class="bar-value">50,9 %</div></div>
+          <div class="bar-row avg"><div class="bar-country">Zone euro</div><div class="bar-track"><div class="bar-fill" style="width:86%"></div></div><div class="bar-value">49,2 %</div></div>
+          <div class="bar-row"><div class="bar-country">Allemagne</div><div class="bar-track"><div class="bar-fill" style="width:86%"></div></div><div class="bar-value">49,1 %</div></div>
+          <div class="bar-row"><div class="bar-country">Pays-Bas</div><div class="bar-track"><div class="bar-fill" style="width:79%"></div></div><div class="bar-value">45,2 %</div></div>
+          <div class="bar-row"><div class="bar-country">Suisse</div><div class="bar-track"><div class="bar-fill" style="width:58%"></div></div><div class="bar-value">33,1 %</div></div>
+          <div class="bar-row"><div class="bar-country">Irlande</div><div class="bar-track"><div class="bar-fill" style="width:46%"></div></div><div class="bar-value">26,4 %</div></div>
+        </div>
+
+        <div class="takeaways">
+          <h3>Trois lectures clés</h3>
+          <div>
+            <div class="stat accent">+ 8 pts</div>
+            <div class="stat-cap">de PIB au-dessus de la moyenne zone euro, soit ~ <b>230 Md€/an</b> de dépense additionnelle à PIB comparable</div>
+          </div>
+          <ul>
+            <li>L'écart est <b>structurel</b> : la France figure dans les trois premiers depuis le début des années 1990.</li>
+            <li>L'Allemagne, à dépense publique inférieure de 8 points, finance pourtant un État social comparable et une industrie deux fois plus dense.</li>
+            <li>L'Irlande et la Suisse démontrent que des dépenses inférieures à 35 % du PIB sont compatibles avec des services publics de qualité, à condition que le périmètre soit redéfini.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span class="source">Source : Eurostat, General Government Expenditure 2024. Données provisoires pour 2024, consolidées pour 2023.</span>
+        <span class="brand">Où va l'argent ?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 — 50 ANS DE DÉFICIT -->
+  <div class="slide">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <span class="breadcrumb"><strong>Chapitre 01</strong> · 1.3 Déficit chronique</span>
+        <span class="page">05 / 14</span>
+      </div>
+      <h2 class="action-title">La France n'a pas connu de budget équilibré <em>depuis 1974</em> &mdash; ce qui en fait, en zone euro, l'État qui présente le plus long historique ininterrompu de déficit.</h2>
+      <div class="action-rule"></div>
+
+      <div class="content-2col">
+        <div class="line-chart-wrap">
+          <div class="chart-title">Solde budgétaire de la France en % du PIB &mdash; 1974-2024</div>
+          <svg class="line-chart" viewBox="0 0 1200 460" preserveAspectRatio="none">
+            <g class="grid">
+              <line x1="80" y1="40"  x2="1180" y2="40"/>
+              <line x1="80" y1="120" x2="1180" y2="120"/>
+              <line x1="80" y1="200" x2="1180" y2="200"/>
+              <line x1="80" y1="280" x2="1180" y2="280"/>
+              <line x1="80" y1="360" x2="1180" y2="360"/>
+            </g>
+            <g class="axis">
+              <text x="70" y="46"  text-anchor="end">0 %</text>
+              <text x="70" y="126" text-anchor="end">−2 %</text>
+              <text x="70" y="206" text-anchor="end">−4 %</text>
+              <text x="70" y="286" text-anchor="end">−6 %</text>
+              <text x="70" y="366" text-anchor="end">−8 %</text>
+            </g>
+            <line x1="80" y1="40" x2="1180" y2="40" class="ref-line"/>
+
+            <path class="data-line" d="
+              M 80,40 L 102,55 L 124,90 L 146,125 L 168,115 L 190,80 L 212,75
+              L 234,90 L 256,135 L 278,140 L 300,110 L 322,115 L 344,135 L 366,100
+              L 388,80 L 410,90 L 432,95 L 454,140 L 476,170 L 498,230 L 520,265
+              L 542,225 L 564,180 L 586,160 L 608,115 L 630,75 L 652,55 L 674,80
+              L 696,160 L 718,200 L 740,170 L 762,145 L 784,125 L 806,150
+              L 828,170 L 850,165 L 872,165 L 894,145 L 916,165 L 938,150
+              L 960,145 L 982,150 L 1004,140 L 1026,135 L 1048,125
+              L 1070,355 L 1092,295 L 1114,240 L 1136,275 L 1158,280"/>
+
+            <g class="marker">
+              <circle class="dot" cx="80" cy="40" r="5"/>
+              <text x="92" y="32">1974 — dernier équilibre</text>
+
+              <circle class="dot" cx="498" cy="230" r="5"/>
+              <text x="498" y="218" text-anchor="middle">1993 — récession</text>
+
+              <circle class="dot" cx="828" cy="170" r="5"/>
+              <text x="828" y="158" text-anchor="middle">2009 — crise financière</text>
+
+              <circle class="dot" cx="1070" cy="355" r="5"/>
+              <text x="1070" y="380" text-anchor="middle">2020 — Covid : −9 %</text>
+
+              <circle class="dot" cx="1158" cy="280" r="5"/>
+              <text x="1180" y="278" text-anchor="end">2024 — −5,8 %</text>
+            </g>
+
+            <g class="axis">
+              <text x="80"   y="420" text-anchor="middle">1974</text>
+              <text x="300"  y="420" text-anchor="middle">1985</text>
+              <text x="520"  y="420" text-anchor="middle">1995</text>
+              <text x="740"  y="420" text-anchor="middle">2005</text>
+              <text x="960"  y="420" text-anchor="middle">2015</text>
+              <text x="1180" y="420" text-anchor="middle">2024</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="takeaways">
+          <h3>Ce que dit la courbe</h3>
+          <div>
+            <div class="stat accent">52 ans</div>
+            <div class="stat-cap">de déficit public sans interruption, soit <b>plus de deux générations</b> de financement par l'emprunt</div>
+          </div>
+          <ul>
+            <li><b>Effet de cliquet</b> : chaque crise (1993, 2009, 2020) ajoute durablement 2 à 3 points de PIB de dépense que l'on ne récupère jamais.</li>
+            <li>La France n'a jamais utilisé les phases d'expansion (2000-2007, 2017-2019) pour rééquilibrer.</li>
+            <li>Le programme de stabilité 2025-2028 ne projette aucun retour sous −3 % avant 2029.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span class="source">Source : INSEE, comptes nationaux annuels. Solde budgétaire des administrations publiques (APU) en % du PIB, 1974-2024.</span>
+        <span class="brand">Où va l'argent ?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 — DÉFICIT ZONE EURO 2024 -->
+  <div class="slide">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <span class="breadcrumb"><strong>Chapitre 01</strong> · 1.4 Position relative</span>
+        <span class="page">06 / 14</span>
+      </div>
+      <h2 class="action-title">En 2024, la France affiche le <em>déficit public le plus élevé</em> de la zone euro &mdash; presque le double du seuil de Maastricht et 2,7 points au-dessus de la moyenne de ses partenaires.</h2>
+      <div class="action-rule"></div>
+
+      <div class="content-2col">
+        <div class="bar-chart">
+          <div class="chart-title">Solde budgétaire en % du PIB &mdash; zone euro, 2024</div>
+          <div class="bar-row" style="--neg: -1"><div class="bar-country">Irlande</div><div class="bar-track"><div class="bar-fill" style="width:30%; background: var(--green);"></div></div><div class="bar-value" style="color:var(--green); font-weight:600;">+ 4,3 %</div></div>
+          <div class="bar-row"><div class="bar-country">Pays-Bas</div><div class="bar-track"><div class="bar-fill" style="width:7%"></div></div><div class="bar-value">−0,4 %</div></div>
+          <div class="bar-row"><div class="bar-country">Allemagne</div><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><div class="bar-value">−1,7 %</div></div>
+          <div class="bar-row"><div class="bar-country">Espagne</div><div class="bar-track"><div class="bar-fill" style="width:53%"></div></div><div class="bar-value">−3,0 %</div></div>
+          <div class="bar-row avg"><div class="bar-country">Zone euro</div><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div><div class="bar-value">−3,1 %</div></div>
+          <div class="bar-row"><div class="bar-country">Italie</div><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><div class="bar-value">−3,4 %</div></div>
+          <div class="bar-row"><div class="bar-country">Belgique</div><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div><div class="bar-value">−4,4 %</div></div>
+          <div class="bar-row fr"><div class="bar-country">France</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-value">−5,8 %</div></div>
+        </div>
+
+        <div class="takeaways">
+          <h3>Cinq lectures</h3>
+          <ul>
+            <li>Le seuil de Maastricht à <b>−3 %</b> est dépassé en France de manière structurelle depuis 2002, à l'exception de quelques années isolées.</li>
+            <li>L'Allemagne et les Pays-Bas, malgré la récession énergétique de 2022-2023, restent en deçà du seuil.</li>
+            <li>L'Irlande, qui présentait un déficit de −32 % en 2010, dégage aujourd'hui un excédent.</li>
+            <li>La <b>Commission européenne</b> a placé la France sous procédure de déficit excessif depuis juin 2024.</li>
+            <li>Le programme de stabilité français ne prévoit pas de retour sous −3 % avant <b>2029</b>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span class="source">Source : Eurostat, déficit public 2024 ; Programme de stabilité 2025-2028 ; Commission européenne, procédure de déficit excessif.</span>
+        <span class="brand">Où va l'argent ?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 — DETTE TRAJECTOIRE -->
+  <div class="slide">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <span class="breadcrumb"><strong>Chapitre 01</strong> · 1.5 Trajectoire de la dette</span>
+        <span class="page">07 / 14</span>
+      </div>
+      <h2 class="action-title">La dette publique a <em>triplé en 25 ans</em>, passant de 21 % du PIB en 1980 à 115 % en 2024 &mdash; soit 3 300 Md€ et 48 800 € par habitant.</h2>
+      <div class="action-rule"></div>
+
+      <div class="content-2col">
+        <div class="line-chart-wrap">
+          <div class="chart-title">Dette publique au sens de Maastricht en % du PIB &mdash; 1980-2024</div>
+          <svg class="line-chart" viewBox="0 0 1200 460" preserveAspectRatio="none">
+            <g class="grid">
+              <line x1="80" y1="60"  x2="1180" y2="60"/>
+              <line x1="80" y1="140" x2="1180" y2="140"/>
+              <line x1="80" y1="220" x2="1180" y2="220"/>
+              <line x1="80" y1="300" x2="1180" y2="300"/>
+              <line x1="80" y1="380" x2="1180" y2="380"/>
+            </g>
+            <g class="axis">
+              <text x="70" y="66"  text-anchor="end">120 %</text>
+              <text x="70" y="146" text-anchor="end">100 %</text>
+              <text x="70" y="226" text-anchor="end">80 %</text>
+              <text x="70" y="306" text-anchor="end">60 %</text>
+              <text x="70" y="386" text-anchor="end">40 %</text>
+            </g>
+            <line x1="80" y1="300" x2="1180" y2="300" class="ref-line"/>
+            <text x="1170" y="291" text-anchor="end" class="annot">Plafond Maastricht — 60 %</text>
+
+            <path class="data-line" d="
+              M 80,386 L 200,376 L 320,376 L 440,322 L 560,310
+              L 680,278 L 800,210 L 920,166 L 1040,98 L 1180,90"/>
+
+            <g class="marker">
+              <circle class="dot" cx="440" cy="322" r="5"/>
+              <text x="440" y="312" text-anchor="middle">1995 — 55 %</text>
+              <circle class="dot" cx="680" cy="278" r="5"/>
+              <text x="680" y="268" text-anchor="middle">2005 — 67 %</text>
+              <circle class="dot" cx="920" cy="166" r="5"/>
+              <text x="920" y="156" text-anchor="middle">2015 — 96 %</text>
+              <circle class="dot" cx="1180" cy="90" r="6"/>
+              <text x="1170" y="78" text-anchor="end">2024 — 115 %</text>
+            </g>
+
+            <g class="axis">
+              <text x="80"   y="420" text-anchor="middle">1980</text>
+              <text x="320"  y="420" text-anchor="middle">1990</text>
+              <text x="560"  y="420" text-anchor="middle">2000</text>
+              <text x="800"  y="420" text-anchor="middle">2010</text>
+              <text x="1040" y="420" text-anchor="middle">2020</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="takeaways">
+          <h3>Trois inflexions structurelles</h3>
+          <div>
+            <div class="stat accent">3 300 Md€</div>
+            <div class="stat-cap">de dette publique fin 2024, contre <b>1 500 Md€ en 2010</b></div>
+          </div>
+          <ul>
+            <li><b>1993-1996</b> : franchissement durable du seuil des 60 %, sous l'effet de la récession et du coût de la convergence euro.</li>
+            <li><b>2008-2010</b> : crise financière, +20 points de dette en 3 ans.</li>
+            <li><b>2020-2021</b> : « quoi qu'il en coûte », +18 points en 18 mois.</li>
+            <li>À taux d'intérêt actuel (3 %), une stabilisation suppose un excédent primaire structurel de l'ordre de <b>1 % du PIB</b> &mdash; condition jamais atteinte depuis 2001.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span class="source">Source : INSEE, dette publique au sens de Maastricht ; Eurostat, séries longues 1980-2024.</span>
+        <span class="brand">Où va l'argent ?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 — CHARGE INTÉRÊTS -->
+  <div class="slide">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <span class="breadcrumb"><strong>Chapitre 01</strong> · 1.6 Charge des intérêts</span>
+        <span class="page">08 / 14</span>
+      </div>
+      <h2 class="action-title">La charge des intérêts est devenue le <em>deuxième poste</em> du budget de l'État &mdash; et pourrait dépasser 80 Md€ d'ici 2027, soit l'équivalent du budget total de l'Éducation nationale.</h2>
+      <div class="action-rule"></div>
+
+      <div class="content-2col">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Année</th>
+              <th>Charge nette des intérêts</th>
+              <th>Évolution</th>
+              <th>Comparaison budgétaire</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">2020</td>
+              <td class="ref-cell">31 Md€</td>
+              <td class="delta-cell green">référence</td>
+              <td class="row-label">≈ Justice + Culture</td>
+            </tr>
+            <tr>
+              <td class="row-label">2022</td>
+              <td class="ref-cell">42 Md€</td>
+              <td class="delta-cell">+ 35 %</td>
+              <td class="row-label">≈ Recherche</td>
+            </tr>
+            <tr>
+              <td class="row-label">2024</td>
+              <td class="fr-cell">58 Md€</td>
+              <td class="delta-cell">+ 75 % vs 2020</td>
+              <td class="row-label">2<sup>e</sup> poste, devant la Défense</td>
+            </tr>
+            <tr>
+              <td class="row-label">2027 (proj.)</td>
+              <td class="fr-cell">80 Md€</td>
+              <td class="delta-cell">+ 160 % vs 2020</td>
+              <td class="row-label">≈ Éducation nationale</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="takeaways">
+          <h3>Un effet boule de neige</h3>
+          <ul>
+            <li>Chaque <b>+ 1 point</b> de taux d'intérêt sur la dette ajoute <b>~ 15 Md€/an</b> en cinq ans, soit l'équivalent du budget annuel de la Justice.</li>
+            <li>Cette charge est <b>improductive</b> : elle ne finance ni service public, ni investissement.</li>
+            <li>Elle évince les marges budgétaires sur les politiques régaliennes (défense, sécurité, justice) au moment où le contexte international les rend prioritaires.</li>
+            <li>Le risque de spirale est non nul : la prime de risque française sur les OAT s'est déjà écartée de <b>+ 80 pdb</b> vs le Bund depuis 2023.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span class="source">Source : Cour des comptes, rapport sur l'exécution budgétaire 2024 ; Agence France Trésor ; Programme de stabilité 2025-2028.</span>
+        <span class="brand">Où va l'argent ?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 — PRÉLÈVEMENTS OBLIGATOIRES -->
+  <div class="slide">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <span class="breadcrumb"><strong>Chapitre 01</strong> · 1.7 Prélèvements obligatoires</span>
+        <span class="page">09 / 14</span>
+      </div>
+      <h2 class="action-title">Avec <em>42,8 % du PIB</em> en prélèvements obligatoires, la France co-occupe le premier rang OCDE avec le Danemark &mdash; mais sans en obtenir la qualité de services publics ni la performance économique.</h2>
+      <div class="action-rule"></div>
+
+      <div class="content-2col">
+        <div class="bar-chart">
+          <div class="chart-title">Prélèvements obligatoires en % du PIB &mdash; OCDE, 2024</div>
+          <div class="bar-row fr"><div class="bar-country">France</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-value">42,8 %</div></div>
+          <div class="bar-row"><div class="bar-country">Italie</div><div class="bar-track"><div class="bar-fill" style="width:99%"></div></div><div class="bar-value">42,6 %</div></div>
+          <div class="bar-row"><div class="bar-country">Danemark</div><div class="bar-track"><div class="bar-fill" style="width:99%"></div></div><div class="bar-value">42,4 %</div></div>
+          <div class="bar-row"><div class="bar-country">Belgique</div><div class="bar-track"><div class="bar-fill" style="width:97%"></div></div><div class="bar-value">41,5 %</div></div>
+          <div class="bar-row"><div class="bar-country">Allemagne</div><div class="bar-track"><div class="bar-fill" style="width:91%"></div></div><div class="bar-value">39,3 %</div></div>
+          <div class="bar-row"><div class="bar-country">Royaume-Uni</div><div class="bar-track"><div class="bar-fill" style="width:81%"></div></div><div class="bar-value">35,3 %</div></div>
+          <div class="bar-row avg"><div class="bar-country">OCDE</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="bar-value">34,2 %</div></div>
+          <div class="bar-row"><div class="bar-country">Suisse</div><div class="bar-track"><div class="bar-fill" style="width:65%"></div></div><div class="bar-value">27,9 %</div></div>
+          <div class="bar-row"><div class="bar-country">Irlande</div><div class="bar-track"><div class="bar-fill" style="width:51%"></div></div><div class="bar-value">21,9 %</div></div>
+        </div>
+
+        <div class="takeaways">
+          <h3>Trois constats</h3>
+          <ul>
+            <li><b>+ 8,6 pts</b> de PIB au-dessus de la moyenne OCDE &mdash; tous les facteurs de production sont taxés au-delà du standard international.</li>
+            <li>Le « <b>coin fiscal</b> » sur le travail (47 %) est le 2<sup>e</sup> plus élevé de l'OCDE, juste derrière la Belgique.</li>
+            <li>L'argument du « modèle danois » est trompeur : à PO comparables, le Danemark a une dette publique de <b>30 %</b> du PIB et un excédent budgétaire structurel.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span class="source">Source : OCDE Revenue Statistics 2024 ; INSEE, prélèvements obligatoires y compris cotisations sociales effectives et imputées.</span>
+        <span class="brand">Où va l'argent ?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 — SALAIRE NET -->
+  <div class="slide">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <span class="breadcrumb"><strong>Chapitre 01</strong> · 1.8 Pouvoir d'achat</span>
+        <span class="page">10 / 14</span>
+      </div>
+      <h2 class="action-title">Pour un coût du travail comparable, le salarié médian français touche <em>40 % de moins</em> qu'un salarié allemand &mdash; conséquence directe du niveau record des prélèvements.</h2>
+      <div class="action-rule"></div>
+
+      <div class="content-2col">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Indicateur</th>
+              <th>France</th>
+              <th>Allemagne</th>
+              <th>Écart</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">Coût total employeur (médian)</td>
+              <td class="fr-cell">3 850 €</td>
+              <td class="ref-cell">3 950 €</td>
+              <td class="delta-cell green">≈ équivalent</td>
+            </tr>
+            <tr>
+              <td class="row-label">Cotisations employeur</td>
+              <td class="fr-cell">1 400 €</td>
+              <td class="ref-cell">770 €</td>
+              <td class="delta-cell">+ 82 %</td>
+            </tr>
+            <tr>
+              <td class="row-label">Salaire brut</td>
+              <td class="fr-cell">2 450 €</td>
+              <td class="ref-cell">3 180 €</td>
+              <td class="delta-cell">−23 %</td>
+            </tr>
+            <tr>
+              <td class="row-label">Cotisations salariales</td>
+              <td class="fr-cell">350 €</td>
+              <td class="ref-cell">230 €</td>
+              <td class="delta-cell">+ 52 %</td>
+            </tr>
+            <tr style="background: var(--bg-soft);">
+              <td class="row-label" style="font-weight:600; color:var(--ink);">Salaire net médian</td>
+              <td class="fr-cell">2 100 €</td>
+              <td class="ref-cell">2 950 €</td>
+              <td class="delta-cell">−40 %</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="takeaways">
+          <h3>Lecture économique</h3>
+          <div>
+            <div class="stat accent">47 %</div>
+            <div class="stat-cap">de coin fiscal sur le travail médian français &mdash; soit <b>~ 47 €</b> dans la poche du salarié pour <b>100 €</b> de coût employeur</div>
+          </div>
+          <ul>
+            <li>L'écart provient à <b>80 % des cotisations employeur</b> &mdash; la productivité française par heure travaillée reste comparable à l'allemande.</li>
+            <li>Conséquence directe : <b>l'attractivité salariale française</b> a chuté à compétences égales sur les profils mobiles internationalement.</li>
+            <li>Le SMIC charges incluses est désormais <b>3 % au-dessus</b> du salaire moyen polonais, freinant la relocalisation industrielle.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span class="source">Source : INSEE DADS 2023 ; Destatis 2024 ; OCDE Taxing Wages 2024. Estimations sur médian temps plein, conjoint sans enfant.</span>
+        <span class="brand">Où va l'argent ?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 — INDUSTRIE -->
+  <div class="slide">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <span class="breadcrumb"><strong>Chapitre 01</strong> · 1.9 Décrochage industriel</span>
+        <span class="page">11 / 14</span>
+      </div>
+      <h2 class="action-title">L'industrie a perdu la <em>moitié de son poids</em> dans le PIB français en quarante ans &mdash; un décrochage sans équivalent en Europe continentale et qui explique l'essentiel du déficit commercial chronique.</h2>
+      <div class="action-rule"></div>
+
+      <div class="content-2col">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Pays</th>
+              <th>Industrie / PIB (1980)</th>
+              <th>Industrie / PIB (2024)</th>
+              <th>Variation 1980-2024</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label" style="font-weight:600; color:var(--accent);">France</td>
+              <td class="ref-cell">24,3 %</td>
+              <td class="fr-cell">13,4 %</td>
+              <td class="delta-cell">−45 %</td>
+            </tr>
+            <tr>
+              <td class="row-label">Italie</td>
+              <td class="ref-cell">26,8 %</td>
+              <td class="ref-cell">17,0 %</td>
+              <td class="delta-cell">−37 %</td>
+            </tr>
+            <tr>
+              <td class="row-label">Allemagne</td>
+              <td class="ref-cell">26,4 %</td>
+              <td class="ref-cell">19,7 %</td>
+              <td class="delta-cell">−25 %</td>
+            </tr>
+            <tr>
+              <td class="row-label">Suisse</td>
+              <td class="ref-cell">22,1 %</td>
+              <td class="ref-cell">18,3 %</td>
+              <td class="delta-cell">−17 %</td>
+            </tr>
+            <tr>
+              <td class="row-label">Irlande</td>
+              <td class="ref-cell">20,4 %</td>
+              <td class="ref-cell">35,2 %</td>
+              <td class="delta-cell green">+ 73 %</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="takeaways">
+          <h3>Trois conséquences directes</h3>
+          <ul>
+            <li><b>Déficit commercial</b> chronique : −81 Md€ en 2024, alors que l'Allemagne dégage un excédent de +220 Md€.</li>
+            <li><b>Dépendance énergétique et technologique</b> : quasi-disparition de filières-clés (textile, électroménager, sidérurgie partielle).</li>
+            <li><b>Souveraineté</b> : la base industrielle conditionne la capacité à produire armement, semi-conducteurs, médicaments. Le décrochage est aujourd'hui un risque stratégique.</li>
+          </ul>
+          <div style="margin-top: 8px;">
+            <div class="stat accent">−81 Md€</div>
+            <div class="stat-cap">déficit commercial 2024 &mdash; <b>+220 Md€</b> d'excédent allemand sur la même période</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span class="source">Source : INSEE comptes nationaux ; Eurostat Industry value added ; Direction générale des Douanes (commerce extérieur 2024).</span>
+        <span class="brand">Où va l'argent ?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 — PRODUCTIVITÉ -->
+  <div class="slide">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <span class="breadcrumb"><strong>Chapitre 01</strong> · 1.10 Productivité</span>
+        <span class="page">12 / 14</span>
+      </div>
+      <h2 class="action-title">La productivité horaire française, longtemps première européenne, a <em>décroché de 15 points</em> en 25 ans, sous l'effet conjugué du faible investissement productif et de la dégradation du tissu industriel.</h2>
+      <div class="action-rule"></div>
+
+      <div class="content-2col">
+        <div class="bar-chart">
+          <div class="chart-title">PIB par heure travaillée &mdash; en USD PPA, 2024</div>
+          <div class="bar-row"><div class="bar-country">Irlande</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-value">128 $</div></div>
+          <div class="bar-row"><div class="bar-country">Norvège</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="bar-value">102 $</div></div>
+          <div class="bar-row"><div class="bar-country">Belgique</div><div class="bar-track"><div class="bar-fill" style="width:74%"></div></div><div class="bar-value">95 $</div></div>
+          <div class="bar-row"><div class="bar-country">États-Unis</div><div class="bar-track"><div class="bar-fill" style="width:74%"></div></div><div class="bar-value">94 $</div></div>
+          <div class="bar-row"><div class="bar-country">Allemagne</div><div class="bar-track"><div class="bar-fill" style="width:71%"></div></div><div class="bar-value">91 $</div></div>
+          <div class="bar-row fr"><div class="bar-country">France</div><div class="bar-track"><div class="bar-fill" style="width:69%"></div></div><div class="bar-value">88 $</div></div>
+          <div class="bar-row avg"><div class="bar-country">OCDE</div><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><div class="bar-value">77 $</div></div>
+          <div class="bar-row"><div class="bar-country">Royaume-Uni</div><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><div class="bar-value">77 $</div></div>
+        </div>
+
+        <div class="takeaways">
+          <h3>Un rebond historique cassé</h3>
+          <div>
+            <div class="stat accent">≈ 350 Md€</div>
+            <div class="stat-cap">de PIB perdu, équivalent au décrochage cumulé depuis 2000 face à la frontière allemande</div>
+          </div>
+          <ul>
+            <li>En <b>1990-1995</b>, la productivité horaire française dépassait celle des États-Unis. L'écart est aujourd'hui de <b>−6 %</b> et continue de se creuser.</li>
+            <li>Le sous-investissement français en R&amp;D (<b>2,2 %</b> du PIB vs 3,1 % pour l'Allemagne) explique structurellement une partie du décrochage.</li>
+            <li>Les <b>35 heures</b> ont mécaniquement réduit le volume horaire de 8 %, sans gains de productivité compensateurs documentés.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span class="source">Source : OCDE Productivity Statistics 2024, GDP per hour worked, USD constant 2015 PPP.</span>
+        <span class="brand">Où va l'argent ?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13 — PIB / HABITANT -->
+  <div class="slide">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <span class="breadcrumb"><strong>Chapitre 01</strong> · 1.11 PIB par habitant</span>
+        <span class="page">13 / 14</span>
+      </div>
+      <h2 class="action-title">La France est passée du <em>5<sup>e</sup> au 11<sup>e</sup> rang mondial</em> en PIB par habitant depuis l'an 2000, dépassée par l'ensemble de ses voisins d'Europe du Nord.</h2>
+      <div class="action-rule"></div>
+
+      <div class="content-2col">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Pays</th>
+              <th>PIB/hab. 2024</th>
+              <th>Écart vs France</th>
+              <th>Évolution depuis 2000</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">Suisse</td>
+              <td class="ref-cell">95 200 $</td>
+              <td class="delta-cell green">+ 50 %</td>
+              <td class="row-label">+ 6 places</td>
+            </tr>
+            <tr>
+              <td class="row-label">Irlande</td>
+              <td class="ref-cell">102 400 $</td>
+              <td class="delta-cell green">+ 60 %</td>
+              <td class="row-label">+ 9 places</td>
+            </tr>
+            <tr>
+              <td class="row-label">Pays-Bas</td>
+              <td class="ref-cell">73 800 $</td>
+              <td class="delta-cell green">+ 16 %</td>
+              <td class="row-label">+ 3 places</td>
+            </tr>
+            <tr>
+              <td class="row-label">Allemagne</td>
+              <td class="ref-cell">72 600 $</td>
+              <td class="delta-cell green">+ 14 %</td>
+              <td class="row-label">stable</td>
+            </tr>
+            <tr>
+              <td class="row-label">Royaume-Uni</td>
+              <td class="ref-cell">62 100 $</td>
+              <td class="delta-cell">−2 %</td>
+              <td class="row-label">−2 places</td>
+            </tr>
+            <tr style="background: var(--bg-soft);">
+              <td class="row-label" style="font-weight:600; color:var(--accent);">France</td>
+              <td class="fr-cell">63 300 $</td>
+              <td class="delta-cell green">référence</td>
+              <td class="row-label" style="color:var(--accent); font-weight:600;">−6 places (5<sup>e</sup> → 11<sup>e</sup>)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="takeaways">
+          <h3>Le décrochage relatif</h3>
+          <ul>
+            <li>La France ne s'appauvrit pas en valeur absolue, mais elle <b>s'appauvrit relativement</b>. Le décalage de niveau de vie devient visible dans les flux migratoires intra-européens des cadres.</li>
+            <li>Le décrochage est concentré sur la <b>période 2000-2024</b>, soit deux décennies de croissance moyenne de 0,8 %/an contre 1,8 % pour l'Allemagne.</li>
+            <li>L'écart actuel avec la moyenne du « top 10 » européen est désormais de l'ordre de <b>15 à 20 %</b>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span class="source">Source : FMI, World Economic Outlook 2024 ; PIB par habitant en USD courants à parité de pouvoir d'achat (PPA).</span>
+        <span class="brand">Où va l'argent ?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14 — SYNTHÈSE CHAPITRE 01 -->
+  <div class="slide">
+    <div class="slide-inner">
+      <div class="slide-header">
+        <span class="breadcrumb"><strong>Chapitre 01</strong> · 1.12 Synthèse</span>
+        <span class="page">14 / 14</span>
+      </div>
+      <h2 class="action-title">L'état des lieux français est cohérent avec une <em>économie sur-administrée et sur-fiscalisée</em>, dans laquelle l'État dépense davantage que ses voisins sans en obtenir ni la croissance, ni les services publics, ni le pouvoir d'achat.</h2>
+      <div class="action-rule"></div>
+
+      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 36px; flex:1;">
+        <div style="border-top: 3px solid var(--navy); padding-top: 22px;">
+          <div style="font-size:0.78rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--navy); font-weight:700; margin-bottom:14px;">Constat budgétaire</div>
+          <div style="font-family:'Source Serif Pro',serif; font-weight:600; font-size:1.5rem; line-height:1.3; color:var(--ink); margin-bottom:14px;">La France dépense 8 points de PIB de plus que la moyenne européenne et accumule de la dette depuis cinquante ans.</div>
+          <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:10px; font-size:1rem; color:var(--ink-soft); line-height:1.4;">
+            <li>— 57 % de dépense publique / PIB (record OCDE)</li>
+            <li>— 115 % de dette / PIB (3 300 Md€)</li>
+            <li>— Pas de retour à l'équilibre programmé avant 2029</li>
+          </ul>
+        </div>
+
+        <div style="border-top: 3px solid var(--accent); padding-top: 22px;">
+          <div style="font-size:0.78rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:14px;">Constat fiscal</div>
+          <div style="font-family:'Source Serif Pro',serif; font-weight:600; font-size:1.5rem; line-height:1.3; color:var(--ink); margin-bottom:14px;">Les prélèvements ont atteint un plafond historique sans suffire à financer les dépenses ni soutenir le pouvoir d'achat.</div>
+          <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:10px; font-size:1rem; color:var(--ink-soft); line-height:1.4;">
+            <li>— 43 % de prélèvements obligatoires / PIB</li>
+            <li>— 47 % de coin fiscal sur le travail</li>
+            <li>— Salaire net médian inférieur de 40 % à l'Allemagne</li>
+          </ul>
+        </div>
+
+        <div style="border-top: 3px solid var(--ink); padding-top: 22px;">
+          <div style="font-size:0.78rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink); font-weight:700; margin-bottom:14px;">Constat économique</div>
+          <div style="font-family:'Source Serif Pro',serif; font-weight:600; font-size:1.5rem; line-height:1.3; color:var(--ink); margin-bottom:14px;">Le décrochage économique est désormais relatif et structurel, concentré sur l'industrie et la productivité.</div>
+          <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:10px; font-size:1rem; color:var(--ink-soft); line-height:1.4;">
+            <li>— Industrie : 24 % → 13 % du PIB en 40 ans</li>
+            <li>— Productivité horaire : −15 pts vs États-Unis depuis 2000</li>
+            <li>— PIB par habitant : du 5<sup>e</sup> au 11<sup>e</sup> rang mondial</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span class="source">Synthèse de l'auteur sur la base des données INSEE, Eurostat, OCDE, FMI et Cour des comptes (2024).</span>
+        <span class="brand">Où va l'argent ?</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="hud">
+  <button id="prev" title="Précédente">‹</button>
+  <span class="counter" id="counter">1 / 14</span>
+  <button id="next" title="Suivante">›</button>
+</div>
+
+<script>
+(function () {
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const stage = document.getElementById('stage');
+  const counter = document.getElementById('counter');
+  let current = 0;
+
+  function show(i) {
+    if (i < 0 || i >= slides.length) return;
+    slides[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+    if (history && history.replaceState) {
+      history.replaceState(null, '', '#' + (current + 1));
+    }
+  }
+
+  function fitStage() {
+    const sx = window.innerWidth / 1920;
+    const sy = window.innerHeight / 1080;
+    const s = Math.min(sx, sy);
+    stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(current + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(current - 1); }
+    else if (e.key === 'Home') { show(0); }
+    else if (e.key === 'End') { show(slides.length - 1); }
+  });
+
+  document.getElementById('prev').addEventListener('click', () => show(current - 1));
+  document.getElementById('next').addEventListener('click', () => show(current + 1));
+
+  window.addEventListener('resize', fitStage);
+  fitStage();
+
+  const m = location.hash.match(/^#(\d+)$/);
+  if (m) {
+    const idx = parseInt(m[1], 10) - 1;
+    if (idx >= 0 && idx < slides.length) show(idx);
+  }
+})();
+</script>
+</body>
+</html>

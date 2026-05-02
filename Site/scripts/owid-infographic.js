@@ -652,14 +652,27 @@ async function fetchOWIDEvolution(slug, countryCodes, yearsFilter) {
 }
 
 // ===== GENERATE EVOLUTION HTML (SVG LINE CHART) =====
+// Adaptive rendering:
+//   1-2 countries: 4 milestones, area fill, top legend
+//   3-4 countries: first+last milestones, lighter area, top legend compact
+//   5+  countries: NO milestones, NO area fill, NO top legend — inline end-of-line labels with anti-collision
 function generateEvolutionHTML(owidData, title, colorScheme, countryCodes) {
   const c = ACCENT_COLORS[colorScheme] || ACCENT_COLORS.cyan;
   const series = owidData.series;
   const entities = Object.keys(series);
+  const n = entities.length;
 
-  // Chart dimensions inside SVG
-  const svgW = 920, svgH = 560;
-  const margin = { top: 20, right: 30, bottom: 50, left: 80 };
+  // Adaptive strategy
+  const useInlineLabels = n >= 5;
+  const useAreaFill = n <= 3;
+  const useTopLegend = n <= 4;
+  const lineWidth = n <= 2 ? 4 : n <= 4 ? 3.5 : 2.5;
+  const areaOpacity = n <= 2 ? 0.25 : n <= 3 ? 0.12 : 0;
+
+  // Chart dimensions — wider right margin for inline labels
+  const svgW = 920, svgH = useTopLegend ? 560 : 620;
+  const rightMargin = useInlineLabels ? 200 : 30;
+  const margin = { top: 20, right: rightMargin, bottom: 50, left: 80 };
   const plotW = svgW - margin.left - margin.right;
   const plotH = svgH - margin.top - margin.bottom;
 
@@ -675,7 +688,6 @@ function generateEvolutionHTML(owidData, title, colorScheme, countryCodes) {
   const maxYear = Math.max(...allYears);
   const rawMin = Math.min(...allValues);
   const rawMax = Math.max(...allValues);
-  // Nice padding on Y axis
   const yPadding = (rawMax - rawMin) * 0.08 || 1;
   const minVal = Math.max(0, rawMin - yPadding);
   const maxVal = rawMax + yPadding;
@@ -684,7 +696,7 @@ function generateEvolutionHTML(owidData, title, colorScheme, countryCodes) {
   const xScale = (yr) => margin.left + ((yr - minYear) / (maxYear - minYear || 1)) * plotW;
   const yScale = (val) => margin.top + plotH - ((val - minVal) / (maxVal - minVal || 1)) * plotH;
 
-  // Generate Y-axis ticks (5-6 nice ticks)
+  // Generate Y-axis ticks
   const yRange = maxVal - minVal;
   const rawStep = yRange / 5;
   const magnitude = Math.pow(10, Math.floor(Math.log10(rawStep)));
@@ -697,7 +709,7 @@ function generateEvolutionHTML(owidData, title, colorScheme, countryCodes) {
     tick += step;
   }
 
-  // Generate X-axis ticks (every ~10 years or reasonable interval)
+  // Generate X-axis ticks
   const yearSpan = maxYear - minYear;
   const xStep = yearSpan <= 20 ? 5 : yearSpan <= 50 ? 10 : yearSpan <= 150 ? 25 : 50;
   const xTicks = [];
@@ -713,58 +725,122 @@ function generateEvolutionHTML(owidData, title, colorScheme, countryCodes) {
     entityColors[entity] = LINE_COLORS[i % LINE_COLORS.length];
   });
 
+  // === ANTI-COLLISION for inline end labels ===
+  // Collect final Y positions, then spread labels that are too close
+  let endLabels = [];
+  if (useInlineLabels) {
+    endLabels = entities.map(entity => {
+      const data = series[entity];
+      const lastPoint = data[data.length - 1];
+      const code = Object.entries(ISO_TO_OWID).find(([k, v]) => v === entity)?.[0] || '';
+      const fr = COUNTRY_NAMES_FR[entity] || entity;
+      const flag = FLAGS[code] || '';
+      const val = formatValue(lastPoint.value, owidData.variable);
+      return {
+        entity, code, fr, flag, val,
+        rawY: yScale(lastPoint.value),
+        labelY: yScale(lastPoint.value), // will be adjusted
+        color: entityColors[entity],
+      };
+    });
+    // Sort by rawY (top to bottom)
+    endLabels.sort((a, b) => a.rawY - b.rawY);
+    // Spread labels: minimum 28px apart
+    const minGap = 28;
+    for (let i = 1; i < endLabels.length; i++) {
+      if (endLabels[i].labelY - endLabels[i - 1].labelY < minGap) {
+        endLabels[i].labelY = endLabels[i - 1].labelY + minGap;
+      }
+    }
+    // If bottom labels overflow, push everything up
+    const maxLabelY = margin.top + plotH - 5;
+    if (endLabels.length > 0 && endLabels[endLabels.length - 1].labelY > maxLabelY) {
+      const overflow = endLabels[endLabels.length - 1].labelY - maxLabelY;
+      endLabels.forEach(l => l.labelY -= overflow);
+    }
+  }
+
   // Build SVG paths
   const pathsSVG = entities.map(entity => {
     const data = series[entity];
     const color = entityColors[entity];
     const points = data.map(d => `${xScale(d.year).toFixed(1)},${yScale(d.value).toFixed(1)}`);
     const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p}`).join(' ');
-
-    // Area fill (gradient below the line)
-    const firstX = xScale(data[0].year).toFixed(1);
-    const lastX = xScale(data[data.length - 1].year).toFixed(1);
-    const bottomY = (margin.top + plotH).toFixed(1);
-    const areaD = `${pathD} L${lastX},${bottomY} L${firstX},${bottomY} Z`;
-
     const code = Object.entries(ISO_TO_OWID).find(([k, v]) => v === entity)?.[0] || '';
 
-    // Milestone points: first, ~33%, ~66%, last
-    const milestoneIndices = [
-      0,
-      Math.round(data.length * 0.33),
-      Math.round(data.length * 0.66),
-      data.length - 1
-    ].filter((v, i, a) => a.indexOf(v) === i); // dedupe
-
-    const milestonesSVG = milestoneIndices.map((idx, mi) => {
-      const d = data[idx];
-      const cx = xScale(d.year).toFixed(1);
-      const cy = yScale(d.value).toFixed(1);
-      const val = formatValue(d.value, owidData.variable);
-      const isLast = idx === data.length - 1;
-      const fontSize = 24;
-      const dotR = isLast ? 8 : 6;
-      const fontWeight = '800';
-      // Above the point — last point closer, others higher
-      const labelY = isLast ? parseFloat(cy) - 28 : parseFloat(cy) - 45;
-
-      return `
-        <circle cx="${cx}" cy="${cy}" r="${dotR}" fill="${color}" stroke="${c.bg_deep}" stroke-width="2.5" />
-        <text x="${cx}" y="${labelY}" fill="${color}" font-family="'JetBrains Mono', monospace" font-size="${fontSize}" font-weight="${fontWeight}" text-anchor="middle">${val}</text>`;
-    }).join('');
-
-    return `
-        <!-- ${entity} -->
+    // Area fill (only for few countries)
+    let areaSVG = '';
+    if (useAreaFill) {
+      const firstX = xScale(data[0].year).toFixed(1);
+      const lastX = xScale(data[data.length - 1].year).toFixed(1);
+      const bottomY = (margin.top + plotH).toFixed(1);
+      const areaD = `${pathD} L${lastX},${bottomY} L${firstX},${bottomY} Z`;
+      areaSVG = `
         <defs>
           <linearGradient id="grad-${code}" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="${color}" stop-opacity="0.25"/>
+            <stop offset="0%" stop-color="${color}" stop-opacity="${areaOpacity}"/>
             <stop offset="100%" stop-color="${color}" stop-opacity="0.02"/>
           </linearGradient>
         </defs>
-        <path d="${areaD}" fill="url(#grad-${code})" />
-        <path d="${pathD}" fill="none" stroke="${color}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="${areaD}" fill="url(#grad-${code})" />`;
+    }
+
+    // Milestone points — adaptive
+    let milestonesSVG = '';
+    if (!useInlineLabels) {
+      // For 1-4 countries: show milestone labels
+      let milestoneIndices;
+      if (n <= 2) {
+        milestoneIndices = [0, Math.round(data.length * 0.33), Math.round(data.length * 0.66), data.length - 1];
+      } else {
+        milestoneIndices = [0, data.length - 1]; // first + last only
+      }
+      milestoneIndices = milestoneIndices.filter((v, i, a) => a.indexOf(v) === i);
+
+      milestonesSVG = milestoneIndices.map((idx) => {
+        const d = data[idx];
+        const cx = xScale(d.year).toFixed(1);
+        const cy = yScale(d.value).toFixed(1);
+        const val = formatValue(d.value, owidData.variable);
+        const isLast = idx === data.length - 1;
+        const fontSize = n <= 2 ? 24 : 20;
+        const dotR = isLast ? 7 : 5;
+        const labelY = isLast ? parseFloat(cy) - 22 : parseFloat(cy) - 35;
+        return `
+        <circle cx="${cx}" cy="${cy}" r="${dotR}" fill="${color}" stroke="${c.bg_deep}" stroke-width="2.5" />
+        <text x="${cx}" y="${labelY}" fill="${color}" font-family="'JetBrains Mono', monospace" font-size="${fontSize}" font-weight="800" text-anchor="middle">${val}</text>`;
+      }).join('');
+    } else {
+      // For 5+ countries: only end dot (label is handled separately with anti-collision)
+      const lastD = data[data.length - 1];
+      const cx = xScale(lastD.year).toFixed(1);
+      const cy = yScale(lastD.value).toFixed(1);
+      milestonesSVG = `
+        <circle cx="${cx}" cy="${cy}" r="5" fill="${color}" stroke="${c.bg_deep}" stroke-width="2" />`;
+    }
+
+    return `
+        <!-- ${entity} -->
+        ${areaSVG}
+        <path d="${pathD}" fill="none" stroke="${color}" stroke-width="${lineWidth}" stroke-linecap="round" stroke-linejoin="round" />
         ${milestonesSVG}`;
   }).join('\n');
+
+  // Inline end labels SVG (for 5+ countries, with anti-collision)
+  let inlineLabelsSVG = '';
+  if (useInlineLabels) {
+    const labelX = margin.left + plotW + 12;
+    inlineLabelsSVG = endLabels.map(l => {
+      // Connector line from actual curve end to label position
+      const endX = margin.left + plotW;
+      const connectorSVG = Math.abs(l.labelY - l.rawY) > 5
+        ? `<line x1="${endX}" y1="${l.rawY.toFixed(1)}" x2="${labelX - 4}" y2="${l.labelY.toFixed(1)}" stroke="${l.color}" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="3,3" />`
+        : '';
+      return `${connectorSVG}
+        <text x="${labelX}" y="${(l.labelY + 4).toFixed(1)}" fill="${l.color}" font-family="'Syne', sans-serif" font-size="14" font-weight="700" text-anchor="start">${l.flag} ${l.fr}</text>
+        <text x="${labelX}" y="${(l.labelY + 20).toFixed(1)}" fill="${l.color}" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="start" opacity="0.8">${l.val}</text>`;
+    }).join('\n');
+  }
 
   // Y axis grid + labels
   const yAxisSVG = yTicks.map(t => {
@@ -782,18 +858,21 @@ function generateEvolutionHTML(owidData, title, colorScheme, countryCodes) {
         <text x="${x}" y="${margin.top + plotH + 30}" fill="${c.text_sec}" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle">${yr}</text>`;
   }).join('\n');
 
-  // Legend
-  const legendItems = entities.map((entity, i) => {
-    const fr = COUNTRY_NAMES_FR[entity] || entity;
-    const code = Object.entries(ISO_TO_OWID).find(([k, v]) => v === entity)?.[0] || '';
-    const flag = FLAGS[code] || '';
-    const color = entityColors[entity];
-    return `<span style="display: inline-flex; align-items: center; gap: 10px; margin-right: 40px;">
-              <span style="width: 35px; height: 5px; background: ${color}; border-radius: 3px; display: inline-block;"></span>
-              <span style="font-size: 2.8rem;">${flag}</span>
-              <span style="color: ${color}; font-weight: 700; font-size: 1.8rem;">${fr}</span>
+  // Legend (only for 1-4 countries)
+  let legendItems = '';
+  if (useTopLegend && n > 1) {
+    legendItems = entities.map((entity) => {
+      const fr = COUNTRY_NAMES_FR[entity] || entity;
+      const code = Object.entries(ISO_TO_OWID).find(([k, v]) => v === entity)?.[0] || '';
+      const flag = FLAGS[code] || '';
+      const color = entityColors[entity];
+      return `<span style="display: inline-flex; align-items: center; gap: 8px; margin-right: 30px;">
+              <span style="width: 28px; height: 4px; background: ${color}; border-radius: 3px; display: inline-block;"></span>
+              <span style="font-size: 2.2rem;">${flag}</span>
+              <span style="color: ${color}; font-weight: 700; font-size: 1.4rem;">${fr}</span>
             </span>`;
-  }).join('\n              ');
+    }).join('\n              ');
+  }
 
   // Title sizing
   const titleSize = title.length > 45 ? '3.5rem' : title.length > 30 ? '4rem' : '4.5rem';
@@ -923,8 +1002,8 @@ function generateEvolutionHTML(owidData, title, colorScheme, countryCodes) {
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 8px;
-            margin: 10px 0;
+            gap: 6px;
+            margin: 8px 0;
         }
 
         .chart-area {
@@ -969,7 +1048,7 @@ function generateEvolutionHTML(owidData, title, colorScheme, countryCodes) {
             <h2 class="chart-title">${title}</h2>
             ${owidData.customSubtitle ? `<div class="chart-subtitle">${owidData.customSubtitle}</div>` : owidData.unit ? `<div class="chart-subtitle">En ${owidData.unit} · ${Object.values(series)[0]?.[0]?.year || ''}-${Object.values(series)[0]?.slice(-1)[0]?.year || ''}</div>` : ''}
 
-            ${entities.length > 1 ? `<div class="legend">
+            ${useTopLegend && n > 1 ? `<div class="legend">
               ${legendItems}
             </div>` : ''}
 
@@ -983,6 +1062,7 @@ function generateEvolutionHTML(owidData, title, colorScheme, countryCodes) {
                     ${yAxisSVG}
                     ${xAxisSVG}
                     ${pathsSVG}
+                    ${inlineLabelsSVG}
                 </svg>
             </div>
 

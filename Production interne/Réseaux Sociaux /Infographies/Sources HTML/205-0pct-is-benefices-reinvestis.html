@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0% IS sur les bénéfices réinvestis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --bg-mid: #0a1628;
+            --accent: #00d4ff;
+            --accent-glow: rgba(0, 212, 255, 0.3);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+        .bg-base {
+            position: absolute; inset: 0;
+            background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%);
+        }
+        .bg-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .bg-glow-1 {
+            position: absolute; width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.10) 0%, transparent 70%);
+            top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;
+        }
+        .content {
+            position: relative; z-index: 1; height: 100%;
+            padding: 40px 55px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .logo-icon {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.5rem; color: var(--accent); line-height: 1;
+        }
+        .logo-text {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1;
+        }
+        .center-block {
+            flex: 1;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            gap: 15px;
+        }
+        .big-stat {
+            font-family: 'Instrument Serif', serif;
+            font-size: 34rem;
+            font-weight: 400;
+            color: var(--accent);
+            line-height: 1;
+            text-shadow: 0 0 60px var(--accent-glow), 0 0 120px rgba(0, 212, 255, 0.1);
+            letter-spacing: -0.03em;
+        }
+        .big-stat span {
+            font-size: 24rem;
+        }
+        .subtitle {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            color: #f0f4f8;
+            line-height: 1.1;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+        .desc {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            color: rgba(240, 244, 248, 0.5);
+            text-align: center;
+            margin-top: 10px;
+        }
+        .footer {
+            width: 100%;
+            display: flex; justify-content: center; align-items: flex-end;
+        }
+        .website {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="content">
+            <div class="logo">
+                <span class="logo-icon">€</span>
+                <span class="logo-text">Où Va l'Argent ?</span>
+            </div>
+            <div class="center-block">
+                <div class="big-stat">0 <span>%</span></div>
+                <div class="subtitle">d'Impôt sur les Sociétés</div>
+            </div>
+            <div class="footer">
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

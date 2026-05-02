@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Croissance française : la panne</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #06080c 0%, #1a1a0a 50%, #06080c 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.06) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 50px 40px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #ffd700; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5rem;
+            text-align: center;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .chart-title .accent {
+            color: #ffd700;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .bars-wrapper {
+            flex: 1;
+            display: flex;
+            gap: 14px;
+            align-items: flex-end;
+            padding: 0 30px;
+        }
+
+        .bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+        }
+
+        .bar-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            white-space: nowrap;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .bar-up {
+            width: 85%;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+        }
+
+        .trend-arrow {
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+        .labels-row {
+            display: flex;
+            gap: 14px;
+            padding: 12px 30px 0;
+            flex-shrink: 0;
+        }
+
+        .label-col {
+            flex: 1;
+            text-align: center;
+        }
+
+        .bar-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .bar-name.danger {
+            color: #ff4757;
+            font-weight: 800;
+        }
+
+        .decline-line {
+            position: absolute;
+            top: 180px;
+            left: 100px;
+            right: 100px;
+            height: 2px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: 12px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #ffd700; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Croissance française :<br><span class="accent">la panne</span></h2>
+            <div class="chart-subtitle">Croissance annuelle moyenne du PIB réel par décennie (INSEE, Banque mondiale)</div>
+
+            <div class="chart-area">
+                <div class="bars-wrapper">
+                    <!-- 1960s: 5,5% -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #00ff88;">5,5%</div>
+                        <div class="bar-up" style="height: 92%; background: linear-gradient(180deg, #00ff88, #00cc6a); box-shadow: 0 -4px 25px rgba(0, 255, 136, 0.3);">
+                            <span class="trend-arrow">📈</span>
+                        </div>
+                    </div>
+
+                    <!-- 1970s: 3,7% -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #66ffaa;">3,7%</div>
+                        <div class="bar-up" style="height: 61.7%; background: linear-gradient(180deg, #40e090, #30b870); box-shadow: 0 -4px 20px rgba(64, 224, 144, 0.25);">
+                        </div>
+                    </div>
+
+                    <!-- 1980s: 2,3% -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #ffd700;">2,3%</div>
+                        <div class="bar-up" style="height: 38.3%; background: linear-gradient(180deg, #ffd700, #cc9900); box-shadow: 0 -4px 20px rgba(255, 215, 0, 0.25);">
+                        </div>
+                    </div>
+
+                    <!-- 1990s: 1,8% -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #ff9f43;">1,8%</div>
+                        <div class="bar-up" style="height: 30%; background: linear-gradient(180deg, #ff9f43, #cc7a30); box-shadow: 0 -4px 20px rgba(255, 159, 67, 0.25);">
+                        </div>
+                    </div>
+
+                    <!-- 2000s: 1,5% -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #ff7b5a;">1,5%</div>
+                        <div class="bar-up" style="height: 25%; background: linear-gradient(180deg, #ff7b5a, #cc5a40); box-shadow: 0 -4px 20px rgba(255, 123, 90, 0.25);">
+                        </div>
+                    </div>
+
+                    <!-- 2010s: 1,1% -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #ff5757;">1,1%</div>
+                        <div class="bar-up" style="height: 18.3%; background: linear-gradient(180deg, #ff5757, #cc3030); box-shadow: 0 -4px 20px rgba(255, 87, 87, 0.25);">
+                        </div>
+                    </div>
+
+                    <!-- 2020s: 0,8% -->
+                    <div class="bar-col">
+                        <div class="bar-value" style="color: #ff4757;">0,8%</div>
+                        <div class="bar-up" style="height: 13.3%; background: linear-gradient(180deg, #ff4757, #cc2030); box-shadow: 0 -4px 20px rgba(255, 71, 87, 0.3);">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="labels-row">
+                    <div class="label-col"><div class="bar-name">1960s</div></div>
+                    <div class="label-col"><div class="bar-name">1970s</div></div>
+                    <div class="label-col"><div class="bar-name">1980s</div></div>
+                    <div class="label-col"><div class="bar-name">1990s</div></div>
+                    <div class="label-col"><div class="bar-name">2000s</div></div>
+                    <div class="label-col"><div class="bar-name danger">2010s</div></div>
+                    <div class="label-col"><div class="bar-name danger">2020s</div></div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>INSEE, Banque mondiale · 1960-2025</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

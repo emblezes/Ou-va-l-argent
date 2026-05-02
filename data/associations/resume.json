@@ -1,0 +1,397 @@
+{
+  "source": "Jaune budgétaire PLF 2022 (données 2020) — Bercy / data.economie.gouv.fr",
+  "total_eur": 8994601274.01,
+  "n_lignes": 95821,
+  "n_assos_uniques": 46354,
+  "n_programmes": 105,
+  "top_assos": [
+    {
+      "nom": "ASS  INTERNATIONALE DE DEVELOPPEMEN",
+      "montant": 409300000.0,
+      "lignes": 1
+    },
+    {
+      "nom": "CROIX ROUGE FRANCAISE",
+      "montant": 191856712.21,
+      "lignes": 618
+    },
+    {
+      "nom": "COALLIA",
+      "montant": 177213325.13,
+      "lignes": 157
+    },
+    {
+      "nom": "FONGECFA TRANSPORT",
+      "montant": 111545363.0,
+      "lignes": 1
+    },
+    {
+      "nom": "ASSOCIATION AURORE",
+      "montant": 91779130.44,
+      "lignes": 54
+    },
+    {
+      "nom": "FONDATION NATIONALE SCIENCES POLITI",
+      "montant": 72885912.33,
+      "lignes": 42
+    },
+    {
+      "nom": "AKTO",
+      "montant": 72581614.14,
+      "lignes": 29
+    },
+    {
+      "nom": "FONDATION DE L ARMEE DU SALUT",
+      "montant": 68594607.81,
+      "lignes": 63
+    },
+    {
+      "nom": "INSTITUT PASTEUR",
+      "montant": 67212421.22,
+      "lignes": 49
+    },
+    {
+      "nom": "ASSOCIATION NATIONALE DE LA RECHERC",
+      "montant": 64673944.94,
+      "lignes": 8
+    },
+    {
+      "nom": "GROUPE SOS SOLIDARITES",
+      "montant": 62649846.1,
+      "lignes": 110
+    },
+    {
+      "nom": "EMMAUS SOLIDARITE",
+      "montant": 58771972.74,
+      "lignes": 12
+    },
+    {
+      "nom": "FRANCE TERRE D ASILE",
+      "montant": 56779724.81,
+      "lignes": 54
+    },
+    {
+      "nom": "OPERATEUR DE COMPETENCES INTERINDUS",
+      "montant": 56418608.95,
+      "lignes": 18
+    },
+    {
+      "nom": "ATLAS SOUTENIR LES COMPETENCES",
+      "montant": 50131082.8,
+      "lignes": 16
+    },
+    {
+      "nom": "FRANCE HORIZON",
+      "montant": 49853837.85,
+      "lignes": 67
+    },
+    {
+      "nom": "FORMIRIS",
+      "montant": 44505684.53,
+      "lignes": 2
+    },
+    {
+      "nom": "CITES CARITAS",
+      "montant": 43946410.9,
+      "lignes": 38
+    },
+    {
+      "nom": "CAISSE REGLEMENTS PECUNIAIRES",
+      "montant": 41889911.64,
+      "lignes": 56
+    },
+    {
+      "nom": "CAISSE REGLEMENTS PECUNIAIRES AVOCA",
+      "montant": 40703028.6,
+      "lignes": 53
+    }
+  ],
+  "top_programmes": [
+    {
+      "code": "177",
+      "libelle": "Solidarité — Hébergement parcours vers logement",
+      "montant": 1863960170.3700001,
+      "lignes": 3199,
+      "pct": 20.723099485865298
+    },
+    {
+      "code": "304",
+      "libelle": "Solidarité — Inclusion sociale et protection personnes",
+      "montant": 782079014.39,
+      "lignes": 2903,
+      "pct": 8.694982585273968
+    },
+    {
+      "code": "139",
+      "libelle": "Programme 139",
+      "montant": 769422665.27,
+      "lignes": 6004,
+      "pct": 8.554272077554513
+    },
+    {
+      "code": "303",
+      "libelle": "Intérieur — Immigration et asile",
+      "montant": 557064673.57,
+      "lignes": 615,
+      "pct": 6.193322600965588
+    },
+    {
+      "code": "101",
+      "libelle": "Justice — Accès au droit",
+      "montant": 435184799.64,
+      "lignes": 872,
+      "pct": 4.838288951145297
+    },
+    {
+      "code": "110",
+      "libelle": "Programme 110",
+      "montant": 409358757.0,
+      "lignes": 3,
+      "pct": 4.5511606854974955
+    },
+    {
+      "code": "143",
+      "libelle": "Agriculture — Enseignement technique agricole",
+      "montant": 400848405.77,
+      "lignes": 1409,
+      "pct": 4.456544471051273
+    },
+    {
+      "code": "102",
+      "libelle": "Travail — Accès et retour à l'emploi",
+      "montant": 384190619.63,
+      "lignes": 932,
+      "pct": 4.271346866037553
+    },
+    {
+      "code": "103",
+      "libelle": "Travail — Accompagnement mutations économiques",
+      "montant": 367509974.48,
+      "lignes": 1041,
+      "pct": 4.08589511957494
+    },
+    {
+      "code": "131",
+      "libelle": "Culture — Création",
+      "montant": 340596266.62,
+      "lignes": 3184,
+      "pct": 3.7866744310740788
+    },
+    {
+      "code": "147",
+      "libelle": "Cohésion territoires — Politique de la ville",
+      "montant": 241585750.71,
+      "lignes": 11514,
+      "pct": 2.68589727715963
+    },
+    {
+      "code": "182",
+      "libelle": "Justice — Protection judiciaire de la jeunesse",
+      "montant": 231021394.31,
+      "lignes": 2140,
+      "pct": 2.568445084692513
+    },
+    {
+      "code": "150",
+      "libelle": "Éducation — Formations supérieures et recherche universitaire",
+      "montant": 171776495.11,
+      "lignes": 144,
+      "pct": 1.9097733170935558
+    },
+    {
+      "code": "172",
+      "libelle": "Recherche — Recherches scientifiques pluridisciplinaires",
+      "montant": 166850667.91,
+      "lignes": 250,
+      "pct": 1.8550090529539853
+    },
+    {
+      "code": "104",
+      "libelle": "Intérieur — Intégration et accès à la nationalité",
+      "montant": 152950943.95,
+      "lignes": 1714,
+      "pct": 1.7004749770504384
+    },
+    {
+      "code": "209",
+      "libelle": "Affaires étrangères — Solidarité avec pays en développement",
+      "montant": 148474808.14,
+      "lignes": 273,
+      "pct": 1.650710282945166
+    },
+    {
+      "code": "163",
+      "libelle": "Sport, Jeunesse, Vie associative",
+      "montant": 127135703.44,
+      "lignes": 16505,
+      "pct": 1.4134668071097272
+    },
+    {
+      "code": "224",
+      "libelle": "Culture — Transmission savoirs démocratisation culture",
+      "montant": 127014325.4,
+      "lignes": 6089,
+      "pct": 1.4121173527392403
+    },
+    {
+      "code": "198",
+      "libelle": "Programme 198",
+      "montant": 122952515.0,
+      "lignes": 2,
+      "pct": 1.3669590374758762
+    },
+    {
+      "code": "216",
+      "libelle": "Intérieur — Conduite et pilotage politiques de l'intérieur",
+      "montant": 67680593.57000001,
+      "lignes": 2971,
+      "pct": 0.7524579634848721
+    }
+  ],
+  "top_villes": [
+    {
+      "ville": "Etats-Unis",
+      "montant": 409341500.0,
+      "lignes": 3
+    },
+    {
+      "ville": "Paris 12e Arrondissement",
+      "montant": 304092802.02,
+      "lignes": 647
+    },
+    {
+      "ville": "Paris 17e Arrondissement",
+      "montant": 266033556.08,
+      "lignes": 411
+    },
+    {
+      "ville": "Paris 15e Arrondissement",
+      "montant": 194495419.11,
+      "lignes": 512
+    },
+    {
+      "ville": "Lille",
+      "montant": 154789605.45,
+      "lignes": 1122
+    },
+    {
+      "ville": "Paris 7e Arrondissement",
+      "montant": 140436235.41,
+      "lignes": 582
+    },
+    {
+      "ville": "Paris 19e Arrondissement",
+      "montant": 139086439.9,
+      "lignes": 808
+    },
+    {
+      "ville": "Paris 8e Arrondissement",
+      "montant": 131663579.02,
+      "lignes": 575
+    },
+    {
+      "ville": "Paris 9e Arrondissement",
+      "montant": 123986486.33,
+      "lignes": 563
+    },
+    {
+      "ville": "Toulouse",
+      "montant": 120489837.48,
+      "lignes": 1370
+    },
+    {
+      "ville": "Paris 20e Arrondissement",
+      "montant": 110900361.01,
+      "lignes": 512
+    },
+    {
+      "ville": "Paris 1er Arrondissement",
+      "montant": 109585583.71000001,
+      "lignes": 270
+    },
+    {
+      "ville": "Paris 4e Arrondissement",
+      "montant": 103065440.1,
+      "lignes": 240
+    },
+    {
+      "ville": "Paris 11e Arrondissement",
+      "montant": 92307004.71,
+      "lignes": 788
+    },
+    {
+      "ville": "Paris 18e Arrondissement",
+      "montant": 87355367.55,
+      "lignes": 578
+    },
+    {
+      "ville": "Bordeaux",
+      "montant": 86656724.8,
+      "lignes": 1022
+    },
+    {
+      "ville": "Strasbourg",
+      "montant": 86097475.91,
+      "lignes": 1017
+    },
+    {
+      "ville": "Montpellier",
+      "montant": 80309211.74,
+      "lignes": 1032
+    },
+    {
+      "ville": "Metz",
+      "montant": 78514988.82,
+      "lignes": 459
+    },
+    {
+      "ville": "Paris 13e Arrondissement",
+      "montant": 78222433.0,
+      "lignes": 526
+    }
+  ],
+  "concentration": [
+    {
+      "pct_assos": 0.1,
+      "n_assos": 0,
+      "cum_montant": 409300000.0,
+      "pct_total": 4.550507438085965
+    },
+    {
+      "pct_assos": 0.5,
+      "n_assos": 0,
+      "cum_montant": 409300000.0,
+      "pct_total": 4.550507438085965
+    },
+    {
+      "pct_assos": 1.0,
+      "n_assos": 0,
+      "cum_montant": 409300000.0,
+      "pct_total": 4.550507438085965
+    },
+    {
+      "pct_assos": 5.0,
+      "n_assos": 2,
+      "cum_montant": 601156712.21,
+      "pct_total": 6.683528195374809
+    },
+    {
+      "pct_assos": 10.0,
+      "n_assos": 5,
+      "cum_montant": 981694530.78,
+      "pct_total": 10.914264022093091
+    },
+    {
+      "pct_assos": 20.0,
+      "n_assos": 11,
+      "cum_montant": 1390292877.32,
+      "pct_total": 15.45697063123039
+    },
+    {
+      "pct_assos": 50.0,
+      "n_assos": 29,
+      "cum_montant": 2097881999.9599998,
+      "pct_total": 23.32379097250095
+    }
+  ]
+}

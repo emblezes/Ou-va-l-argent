@@ -16,11 +16,7 @@
             --text-secondary: #8899a8;
             --text-muted: #4a5a6a;
             --accent-electric: #00d4ff;
-            --accent-gold: #ffd700;
             --accent-red: #ff4757;
-            --accent-green: #00ff88;
-            --accent-purple: #a855f7;
-            --accent-orange: #ff9f43;
             --glass: rgba(17, 24, 32, 0.85);
             --glass-border: rgba(255, 255, 255, 0.1);
         }
@@ -71,7 +67,7 @@
             position: absolute;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.06) 0%, transparent 70%);
             bottom: -150px;
             left: -150px;
             pointer-events: none;
@@ -125,6 +121,7 @@
         }
 
         /* ===== VERTICAL BAR CHART (all positive) ===== */
+        /* Graphique descendu : margin-top 60px (au lieu de 0 implicite) */
         .chart-area {
             flex: 0 0 auto;
             height: 500px;
@@ -132,6 +129,7 @@
             position: relative;
             padding: 0 10px;
             align-items: flex-end;
+            margin-top: 60px;
         }
 
         .bars-container {
@@ -153,37 +151,21 @@
             position: relative;
         }
 
+        /* UNE SEULE couleur (rouge gradient) pour toutes les barres */
         .bar-up {
             width: 75%;
             border-radius: 8px 8px 0 0;
             position: relative;
-            transition: height 0.3s;
+            background: linear-gradient(180deg, #ff4757 0%, #8a1828 100%);
         }
 
-        /* Color progression: green → gold → orange → red */
-        .bar-up.level-low {
-            background: linear-gradient(180deg, var(--accent-green), rgba(0, 255, 136, 0.6));
+        /* La dernière barre (2025, peak) reçoit un glow plus fort */
+        .bar-up.peak {
+            background: linear-gradient(180deg, #ff5a6a 0%, #a01030 100%);
+            box-shadow: 0 -6px 30px rgba(255, 71, 87, 0.45);
         }
 
-        .bar-up.level-mid {
-            background: linear-gradient(180deg, var(--accent-gold), rgba(255, 215, 0, 0.6));
-        }
-
-        .bar-up.level-high {
-            background: linear-gradient(180deg, var(--accent-orange), rgba(255, 159, 67, 0.6));
-        }
-
-        .bar-up.level-danger {
-            background: linear-gradient(180deg, var(--accent-red), rgba(255, 71, 87, 0.7));
-            box-shadow: 0 -4px 20px rgba(255, 71, 87, 0.25);
-        }
-
-        .bar-up.level-peak {
-            background: linear-gradient(180deg, #ff1a2e, var(--accent-red));
-            box-shadow: 0 -6px 25px rgba(255, 71, 87, 0.4);
-        }
-
-        /* Value label on top */
+        /* Value label on top — toutes en blanc, peak en rouge plus gros */
         .bar-value {
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.7rem;
@@ -193,13 +175,13 @@
             left: 50%;
             transform: translateX(-50%);
             white-space: nowrap;
+            color: var(--text-primary);
         }
 
-        .level-low .bar-value { color: var(--accent-green); }
-        .level-mid .bar-value { color: var(--accent-gold); }
-        .level-high .bar-value { color: var(--accent-orange); }
-        .level-danger .bar-value { color: var(--accent-red); }
-        .level-peak .bar-value { color: #ff1a2e; font-size: 1.6rem; }
+        .bar-up.peak .bar-value {
+            color: var(--accent-red);
+            font-size: 1.85rem;
+        }
 
         /* Year labels */
         .year-labels {
@@ -222,7 +204,7 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.15rem;
             font-weight: 600;
-            color: var(--text-secondary);
+            color: var(--text-primary);
         }
 
         .year-label.highlight .year-num {
@@ -278,49 +260,49 @@
                 <div class="bars-container">
                     <!-- 1974: 20% → height = 20/120 = 16.7% -->
                     <div class="bar-col">
-                        <div class="bar-up level-low" style="height: 16.7%;">
+                        <div class="bar-up" style="height: 16.7%;">
                             <div class="bar-value">20%</div>
                         </div>
                     </div>
 
                     <!-- 1992: 40% → height = 40/120 = 33.3% -->
                     <div class="bar-col">
-                        <div class="bar-up level-low" style="height: 33.3%;">
+                        <div class="bar-up" style="height: 33.3%;">
                             <div class="bar-value">40%</div>
                         </div>
                     </div>
 
                     <!-- 2007: 64% → height = 64/120 = 53.3% -->
                     <div class="bar-col">
-                        <div class="bar-up level-mid" style="height: 53.3%;">
+                        <div class="bar-up" style="height: 53.3%;">
                             <div class="bar-value">64%</div>
                         </div>
                     </div>
 
                     <!-- 2010: 83% → height = 83/120 = 69.2% -->
                     <div class="bar-col">
-                        <div class="bar-up level-high" style="height: 69.2%;">
+                        <div class="bar-up" style="height: 69.2%;">
                             <div class="bar-value">83%</div>
                         </div>
                     </div>
 
                     <!-- 2019: 98% → height = 98/120 = 81.7% -->
                     <div class="bar-col">
-                        <div class="bar-up level-danger" style="height: 81.7%;">
+                        <div class="bar-up" style="height: 81.7%;">
                             <div class="bar-value">98%</div>
                         </div>
                     </div>
 
                     <!-- 2020: 115% → height = 115/120 = 95.8% -->
                     <div class="bar-col">
-                        <div class="bar-up level-danger" style="height: 95.8%;">
+                        <div class="bar-up" style="height: 95.8%;">
                             <div class="bar-value">115%</div>
                         </div>
                     </div>
 
-                    <!-- 2025: 117% → height = 117/120 = 97.5% -->
+                    <!-- 2025: 117% → height = 117/120 = 97.5% (PEAK) -->
                     <div class="bar-col">
-                        <div class="bar-up level-peak" style="height: 97.5%;">
+                        <div class="bar-up peak" style="height: 97.5%;">
                             <div class="bar-value">117%</div>
                         </div>
                     </div>
@@ -343,7 +325,7 @@
                 <div class="year-label">
                     <div class="year-num">2019</div>
                 </div>
-                <div class="year-label highlight">
+                <div class="year-label">
                     <div class="year-num">2020</div>
                 </div>
                 <div class="year-label highlight">

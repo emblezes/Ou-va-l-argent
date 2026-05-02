@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Les intérêts de la dette coûtent plus cher que la défense</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-red: #ff4757;
+            --accent-gold: #ffd700;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #0a1220 0%, #142b48 50%, #0a1220 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0, 212, 255, 0.12) 0%, transparent 70%); top: -200px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255, 71, 87, 0.08) 0%, transparent 70%); bottom: -150px; left: -150px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 60px 40px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 4.4rem; text-align: center; color: var(--text-primary); line-height: 1.05; margin-top: 28px; letter-spacing: -1.5px; }
+        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .subtitle { text-align: center; font-size: 1.15rem; color: var(--text-secondary); margin-top: 18px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; }
+
+        .chart-area { flex: 1; display: flex; align-items: flex-end; justify-content: center; gap: 70px; padding: 30px 40px 0; }
+
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+        .bar-value { font-family: 'JetBrains Mono', monospace; font-size: 2.4rem; font-weight: 700; color: #ffffff; line-height: 1; }
+        .bar-value.highlight { color: var(--accent-red); font-size: 2.8rem; }
+        .bar-fill { width: 200px; border-radius: 10px 10px 0 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
+        .bar-fill.neutral { background: linear-gradient(180deg, #4a6580 0%, #2d4060 100%); }
+        .bar-fill.highlight { background: linear-gradient(180deg, #ff4757 0%, #c0263a 100%); box-shadow: 0 0 40px rgba(255, 71, 87, 0.55); }
+        .bar-label { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); text-align: center; min-height: 3.6rem; line-height: 1.2; }
+        .bar-label.highlight { color: var(--accent-red); }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 18px; margin-top: 22px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+            </div>
+
+            <h2 class="chart-title">Les intérêts de la dette coûtent<br>plus cher que <span class="accent">la défense</span></h2>
+            <div class="subtitle">Budget 2025 · Hors pensions · Milliards €</div>
+
+            <div class="chart-area">
+                <div class="bar-group">
+                    <div class="bar-value">64,5</div>
+                    <div class="bar-fill neutral" style="height: 470px;"></div>
+                    <div class="bar-label">Éducation<br>nationale</div>
+                </div>
+
+                <div class="bar-group">
+                    <div class="bar-value highlight">51,6</div>
+                    <div class="bar-fill highlight" style="height: 376px;"></div>
+                    <div class="bar-label highlight">Intérêts<br>de la dette</div>
+                </div>
+
+                <div class="bar-group">
+                    <div class="bar-value">50,5</div>
+                    <div class="bar-fill neutral" style="height: 368px;"></div>
+                    <div class="bar-label">Défense</div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Cour des comptes 2026 · LFI 2025 · Sénat</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -157,6 +157,7 @@ Tous dans `Site/scripts/` :
 | `weekly-content-machine.js` | **Machine hebdomadaire** : veille profonde → 21 infographies/semaine → Notion + Telegram |
 | `article-journalist.js` | **Pipeline journaliste** : RSS → articles (Sonnet) → fact-check → hero + carousel Instagram → Telegram + Notion |
 | `owid-infographic.js` | **Infographie OWID** : URL Our World in Data → CSV → HTML style OVLA → 3 PNG → Notion |
+| `video-journalist.js` | **Pipeline vidéo** : sujet → script (Sonnet) → voix off ElevenLabs → Pexels + Kling (fal.ai) → Remotion MP4 1080×1920 + miniature Flux → Telegram + Notion |
 
 ---
 
@@ -288,6 +289,108 @@ Chaque article génère automatiquement un **carousel Instagram de 5 slides** (1
 - **Liste** : `/news` — Filtres type/catégorie, cards avec hero image
 - **Article** : `/news/[slug]` — SEO dynamique, JSON-LD NewsArticle, partage social
 - **API** : `/api/articles` (GET, filtres) et `/api/articles/[slug]` (GET)
+
+---
+
+## Pipeline Vidéo (video-journalist)
+
+Le projet dispose d'un **pipeline vidéo** qui produit des vidéos courtes (30-60s) pour Instagram Reels / TikTok à partir d'une simple demande en langage naturel. Orchestré par l'agent `.claude/agents/video-creator.md`.
+
+### Principe
+
+```
+"fais-moi une vidéo de 60s sur X"
+  → video-creator (agent)
+     ├─ search-specialist : sources récentes
+     ├─ fact-checker       : valide les chiffres
+     ├─ Claude Sonnet     : script narratif + plan visuel JSON
+     └─ node scripts/video-journalist.js
+          1. ElevenLabs       → voix clonée + timestamps mot-par-mot
+          2. Pexels / Google Images / Kling → dispatch selon beat.source
+                - stock-video : Pexels (métaphore, ambiance)
+                - real-image  : Google Images (noms propres, lieux, actu)
+                - kling       : fal.ai pour scènes IA cinématiques
+          3. Flux 1.1 pro     → miniature Instagram (1080×1080)
+          4. Remotion         → MP4 9:16 1080×1920
+                - Sous-titres karaoké 2-3 mots jaune outline noir
+                - Ken Burns (zoom/pan) sur les images réelles
+                - Image plein écran, zéro logo pendant la vidéo
+          5. Telegram + Notion → validation humaine
+  → MP4 prêt à poster, miniature, caption, script sources
+```
+
+### Règle éditoriale (CRITIQUE)
+
+Les scripts vidéo sont **simples et engagés**, pas bourrés de chiffres (contrairement aux infographies) :
+- **Max 1-2 chiffres par vidéo**
+- **Structure narrative en 3 temps** : croyance → révélation → punchline
+- **Langage parlé** ("ton essence", "la moitié")
+- Phrases courtes, pauses respirables pour ElevenLabs
+
+Détails complets dans `.claude/agents/video-creator.md`.
+
+### Script principal
+
+```bash
+cd "/Users/emmanuelblezes/Documents/08_Où va l'argent /Site"
+
+# Vidéo à partir d'un sujet (défaut 45s)
+node scripts/video-journalist.js --topic="impact guerre Iran sur prix essence"
+
+# Durée explicite
+node scripts/video-journalist.js --topic="..." --duration=60
+
+# Script déjà rédigé (bypass Claude)
+node scripts/video-journalist.js --script="..." --duration=30
+
+# Dev rapide (Pexels seul, pas d'IA)
+node scripts/video-journalist.js --topic="..." --no-ia
+
+# Test sans envoi
+node scripts/video-journalist.js --topic="..." --dry-run
+```
+
+### Secrets requis (~/.zshrc)
+
+| Variable | Usage |
+|----------|-------|
+| `ELEVENLABS_API_KEY` | Voix clonée |
+| `PEXELS_API_KEY` | B-roll stock (gratuit) |
+| `FAL_API_KEY` | fal.ai — Kling 2.5 (vidéo) + Flux 1.1 pro (images) |
+| `ELEVENLABS_VOICE_ID` | ID de la voix clonée (ou dans `video-config.json`) |
+
+### Modules
+
+```
+Site/scripts/video-modules/
+  script-writer.js          ← Claude Sonnet → script + plan visuel (détection auto real-image)
+  voice-generator.js        ← ElevenLabs + timestamps mot-par-mot + post-slow ffmpeg
+  visual-fetcher.js         ← Dispatch Pexels / Google Images / Kling selon beat.source
+  real-image-fetcher.js     ← Wrap download-google-image.js avec cache par hash
+  video-assembler.js        ← Wrapper npx remotion render, chaîne les Sequences sans trou
+  cover-generator.js        ← Puppeteer → miniature 1080×1080 charte OVLA
+  publisher.js              ← Telegram vidéo + upload Notion
+  remotion/
+    Root.tsx                ← Composition Remotion 1080×1920 30fps
+    Video.tsx               ← Dispatch OffthreadVideo / KenBurnsImage + audio + sous-titres
+    KenBurnsImage.tsx       ← Image plein écran avec zoom/pan lent alterné
+    Subtitles.tsx           ← Karaoké 2-3 mots jaune outline noir position bas-milieu
+    index.ts                ← registerRoot
+```
+
+### Ce que produit le pipeline (par exécution)
+
+Dans `Production interne/Réseaux Sociaux /Articles/YYYY-MM-DD/{slug}/` :
+- `video.mp4` — MP4 final 1080×1920 H.264
+- `cover.png` — Miniature 1080×1080 (pour feed Instagram)
+- `caption.txt` — Caption Instagram + hashtags
+- `script.md` — Script + beats + sources
+- `audio.mp3` — Voix ElevenLabs brute
+
+### Coût par vidéo
+
+- Mode défaut (avec IA) : ~1 $ (ElevenLabs 0,10 + Flux 0,04 + Kling 2 clips 0,50 + Claude 0,02)
+- Mode `--no-ia` (Pexels seul) : ~0,12 $
 
 ---
 
@@ -431,20 +534,57 @@ Sur TikTok, tout doit être **énorme, impactant et lisible en 0.5 seconde**. C'
 
 ### Méthode de création (infographies permanentes)
 
-1. Créer un fichier HTML dans `Infographies/Sources HTML/`
-2. L'ajouter au tableau `INFOGRAPHICS` de `batch-export-all.js`
-3. Lancer `node scripts/batch-export-all.js`
+1. **S'inspirer des références validées** : `node scripts/inspect-references.js <pattern>` — liste les 5 dernières infographies du même type (bar-chart, line-chart, hero, ranking, dot-plot, grouped-bars, comparison) avec leurs paramètres CSS clés (font-size titre, bar width, bar-value, padding, subtitle/legend...). **Étape obligatoire** : reprendre les valeurs les plus fréquentes plutôt que d'inventer.
+2. **Partir du template éditorial** : `Templates/Réseaux sociaux/template-editorial.html` — référence par défaut validée sur 215-229
+3. Créer un fichier HTML dans `Infographies/Sources HTML/` en copiant un des 6 patterns du template + en ajustant aux paramètres remontés par `inspect-references.js`
+4. **Valider automatiquement** : `node scripts/validate-infographic.js <fichier.html>` — refuse l'infographie si chevauchements, espace vide trop grand, ticks foncés, ou annotation rectangulaire dans le graphique
+5. L'ajouter au tableau `INFOGRAPHICS` de `batch-export-all.js`
+6. Lancer `node scripts/batch-export-all.js`
+
+**Étape 1 — Inspection des références** (`inspect-references.js`) :
+- Évite de réinventer les tailles à chaque fois
+- Patterns reconnus : `bar-chart`, `grouped-bars`, `line-chart`, `hero`, `ranking`, `dot-plot`, `comparison`
+- Sortie : 5 références récentes + synthèse "valeur la plus fréquente par champ"
+- Mode `all` pour cataloguer tous les patterns par fichier
+
+**Étape 4 — Validation automatique** (`validate-infographic.js`, Puppeteer) :
+- Zone graphique remplit bien tout l'espace dispo (gap haut/bas ≤ 60px)
+- Aucun chevauchement entre labels SVG et courbes/segments (≥ 8px de marge)
+- Aucun chevauchement entre labels SVG entre eux
+- Ticks d'axes en couleur claire (RGB sum ≥ 350) — règle "axes en blanc"
+- Pas de `<rect>` d'annotation flottante > 80×30px dans la zone graphique
 
 Le pipeline `telegram-hourly-carousels.js` génère automatiquement les carrousels actu (format Instagram uniquement). Les 3 formats TikTok V/H sont réservés aux infographies permanentes via `batch-export-all.js`.
 
-### Charte graphique
+L'ancien `template-multiformat.html` est conservé comme bibliothèque historique de 19 types — **ne pas l'utiliser pour de nouvelles infographies**.
 
-- **Fond** : Gradient sombre (#06080c à #0a1628)
-- **Grille** : Subtile, couleur de l'accent
-- **Couleurs** : Cyan `#00d4ff`, Or `#ffd700`, Rouge `#ff4757`, Vert `#00ff88`, Violet `#a855f7`, Orange `#ff9f43`
-- **Typographie** : Instrument Serif (titres), Syne (corps), JetBrains Mono (données)
-- **Logo** : Carré cyan avec "€" + texte "Où Va l'Argent"
-- **Footer** : Source à gauche, "ouvalargent.com" à droite
+### Charte graphique éditoriale (validée sur 215-229)
+
+**Principes fondamentaux** — à respecter pour éviter les aller-retours :
+
+- **PAS de tag thématique** en haut-droite (pas de badge "DETTE", "FRANCE"...)
+- **PAS de boîte/badge/encart d'annotation À L'INTÉRIEUR du graphique** (pas de rectangle "−24 % en 15 ans" flottant dans la zone, pas de stat-card surimposée). Seuls sont autorisés les **labels textuels collés aux points/barres** (ex : "645 k" à côté du point final, "+135 Md€" au-dessus d'une barre)
+- **Header = logo seul en haut-gauche** : € en `Instrument Serif 3.6rem` cyan + "Où Va l'Argent ?" en `Instrument Serif 1.7rem italic` blanc
+- **Titre éditorial XXL** : `Instrument Serif 5.4rem`, `letter-spacing -1.8px`, `line-height 1.02`, centré, **un mot-clé en `italic` + couleur accent** (rouge le plus souvent). Le titre doit être l'élément textuel dominant.
+- **Sous-titre kicker** : UPPERCASE, `letter-spacing 1.5px`, `1.15rem`, gris secondaire (style "Le budget de l'État · 2025 · Milliards €")
+- **Zone graphique ÉNORME** : `flex: 1` → le graphique prend **tout l'espace restant** et doit être l'élément visuel dominant (cf. infographies 216, 220, 228 où la courbe/les barres remplissent ~55-60% de la slide)
+- **Footer compact** : source à gauche `0.95rem`, `ouvalargent.com` en `JetBrains Mono 1.5rem` cyan, `padding-top 18px`, `border-top` subtile
+
+**Style visuel** :
+- **Fond** : Gradient `#0a1220 → #142b48 → #0a1220` (bleu profond, plus bleu que l'ancien `#06080c`)
+- **Grille** : `linear-gradient` cyan opacity `0.04`, mailles `40px`
+- **2 glows colorés selon le sujet** : 700px haut-droite + 500px bas-gauche. Rouge (`rgba(255,71,87,...)`) pour dette/déficit, cyan pour neutre, vert pour positif
+- **Couleurs accent** : Rouge `#ff4757` (défaut alertes), Cyan `#00d4ff`, Or `#ffd700`, Vert `#00ff88`, Violet `#a855f7`, Orange `#ff9f43`
+- **Typographie** : Instrument Serif (titres + logo), Syne (corps), JetBrains Mono (chiffres + URL)
+- **Padding content** : `50px 60px 40px`
+
+**6 patterns disponibles dans le template** :
+1. **HERO** — gros chiffre central (ex : 224, 226)
+2. **BAR-CHART vertical comparaison temporelle** — dernière barre en highlight (ex : 228)
+3. **BARRES OPPOSÉES** — autour d'un axe 0, vert vs rouge (ex : 229)
+4. **COURBE TEMPORELLE** — SVG inline avec axes + label final (ex : 216, 220)
+5. **RANKING multi-colonnes** — 4 colonnes avec ligne France en highlight (ex : 219)
+6. **DOT-PLOT horizontal** — ranking pays avec point + valeur (ex : 215)
 
 ---
 

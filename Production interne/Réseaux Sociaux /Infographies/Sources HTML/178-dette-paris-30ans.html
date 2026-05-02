@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Évolution de la dette de Paris (1997-2025)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8ab8c8;
+            --text-muted: #4a7a8a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent: #00d4ff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 45px 40px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 4px 12px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.8rem;
+            text-align: center;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        .chart-title .accent {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">La dette de Paris a été<br>multipliée par <span class="accent">9</span> en 25 ans</h2>
+            <div class="chart-subtitle">Encours de dette de la Ville de Paris, en milliards d'euros</div>
+
+            <div class="chart-area">
+                <svg width="920" height="560" viewBox="0 0 920 560">
+                    <!-- Unit label -->
+                    <text x="68" y="18" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" font-weight="600" text-anchor="end">Md€</text>
+
+                    <!-- Axes -->
+                    <line x1="80" y1="20" x2="80" y2="510" stroke="#4a6a7a" stroke-opacity="0.5" stroke-width="1" />
+                    <line x1="80" y1="510" x2="890" y2="510" stroke="#4a6a7a" stroke-opacity="0.5" stroke-width="1" />
+
+                    <!-- Y grid: 0 to 10 Md€ -->
+                    <!-- 0 line -->
+                    <text x="68" y="514" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="end">0</text>
+
+                    <!-- 2 Md€ -->
+                    <line x1="80" y1="414" x2="890" y2="414" stroke="#4a6a7a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="68" y="418" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="end">2</text>
+
+                    <!-- 4 Md€ -->
+                    <line x1="80" y1="318" x2="890" y2="318" stroke="#4a6a7a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="68" y="322" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="end">4</text>
+
+                    <!-- 6 Md€ -->
+                    <line x1="80" y1="222" x2="890" y2="222" stroke="#4a6a7a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="68" y="226" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="end">6</text>
+
+                    <!-- 8 Md€ -->
+                    <line x1="80" y1="126" x2="890" y2="126" stroke="#4a6a7a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="68" y="130" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="end">8</text>
+
+                    <!-- 10 Md€ -->
+                    <line x1="80" y1="30" x2="890" y2="30" stroke="#4a6a7a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+                    <text x="68" y="34" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="end">10</text>
+
+                    <!-- X-axis labels: 1997, 2001, 2005, 2009, 2013, 2017, 2021, 2025 -->
+                    <text x="80" y="540" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="middle">1997</text>
+                    <text x="196" y="540" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="middle">2001</text>
+                    <text x="311" y="540" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="middle">2005</text>
+                    <text x="427" y="540" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="middle">2009</text>
+                    <text x="543" y="540" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="middle">2013</text>
+                    <text x="659" y="540" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="middle">2017</text>
+                    <text x="774" y="540" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="middle">2021</text>
+                    <text x="890" y="540" fill="#8ab8c8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="middle">2025</text>
+
+                    <!-- Gradient fill under curve -->
+                    <defs>
+                        <linearGradient id="grad-debt" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.35"/>
+                            <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.02"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Fill path -->
+                    <!-- Data: 1997=2.0, 2000=1.4, 2001=1.1, 2004=1.3, 2007=1.8, 2010=2.5, 2011=2.8, 2013=3.7, 2014=4.2, 2016=4.8, 2019=5.8, 2020=7.7, 2022=7.7, 2024=9.3, 2025=9.3 -->
+                    <path d="M80,414 L167,443 L196,457 L283,448 L369,424 L456,390 L485,376 L543,332 L572,308 L630,280 L717,232 L746,140 L803,140 L861,64 L890,64 L890,510 L80,510 Z" fill="url(#grad-debt)" />
+
+                    <!-- Line path -->
+                    <path d="M80,414 L167,443 L196,457 L283,448 L369,424 L456,390 L485,376 L543,332 L572,308 L630,280 L717,232 L746,140 L803,140 L861,64 L890,64" fill="none" stroke="#00d4ff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+
+
+                    <!-- Annotation: 2001 low (1,1 Md€) — Delanoë -->
+                    <circle cx="196" cy="457" r="7" fill="#00d4ff" stroke="#06080c" stroke-width="2.5" />
+                    <text x="196" y="410" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="800" text-anchor="middle">1,1 Md€</text>
+                    <text x="196" y="428" fill="#ffffff" fill-opacity="0.7" font-family="'Syne', sans-serif" font-size="16" font-weight="600" text-anchor="middle">Delanoë</text>
+
+                    <!-- Annotation: 2014 (4,2 Md€) — Hidalgo -->
+                    <circle cx="572" cy="308" r="7" fill="#00d4ff" stroke="#06080c" stroke-width="2.5" />
+                    <text x="572" y="255" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="800" text-anchor="middle">4,2 Md€</text>
+                    <text x="572" y="273" fill="#ffffff" fill-opacity="0.7" font-family="'Syne', sans-serif" font-size="16" font-weight="600" text-anchor="middle">Hidalgo</text>
+
+                    <!-- Point: 2020 COVID (pas de chiffre) -->
+                    <circle cx="746" cy="140" r="5" fill="#00d4ff" stroke="#06080c" stroke-width="2" />
+
+                    <!-- Annotation: 2025 current (9,3 Md€) — BIG -->
+                    <circle cx="890" cy="64" r="9" fill="#00d4ff" stroke="#06080c" stroke-width="3" />
+                    <circle cx="890" cy="64" r="16" fill="none" stroke="#00d4ff" stroke-opacity="0.3" stroke-width="1.5" />
+                    <text x="865" y="34" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="36" font-weight="800" text-anchor="end">9,3 Md€</text>
+                    <text x="865" y="54" fill="#ffffff" fill-opacity="0.7" font-family="'Syne', sans-serif" font-size="16" text-anchor="end" font-weight="600">2025</text>
+
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Cour des comptes · IFRAP · Mars 2026</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

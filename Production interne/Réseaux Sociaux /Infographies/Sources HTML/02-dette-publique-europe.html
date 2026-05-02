@@ -13,6 +13,8 @@
             --text-primary: #f0f4f8;
             --text-secondary: #8899a8;
             --text-muted: #4a5a6a;
+            --accent-red: #ff4757;
+            --accent-electric: #00d4ff;
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
@@ -43,8 +45,8 @@
             position: absolute;
             inset: 0;
             background-image:
-                linear-gradient(rgba(255, 159, 67, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 159, 67, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(255, 71, 87, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 71, 87, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
         }
 
@@ -52,7 +54,7 @@
             position: absolute;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(255, 159, 67, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%);
             top: -200px;
             right: -100px;
             pointer-events: none;
@@ -62,7 +64,7 @@
             position: absolute;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
             bottom: -150px;
             left: -150px;
             pointer-events: none;
@@ -90,7 +92,7 @@
             gap: 12px;
         }
 
-        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #ff9f43; line-height: 1; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: var(--accent-electric); line-height: 1; }
         .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
 
         .chart-title {
@@ -103,7 +105,7 @@
         }
 
         .chart-title .accent {
-            color: #ff9f43;
+            color: var(--accent-red);
             font-style: italic;
         }
 
@@ -146,9 +148,15 @@
             white-space: nowrap;
             margin-bottom: 6px;
             flex-shrink: 0;
+            color: var(--text-primary);
         }
 
-        /* Bar with flag at bottom */
+        .bar-value.highlight {
+            color: var(--accent-red);
+            font-size: 1.65rem;
+        }
+
+        /* Bar with flag at bottom — UNE SEULE couleur (gris-bleu neutre) sauf France (rouge) */
         .bar-up {
             width: 88%;
             border-radius: 10px 10px 0 0;
@@ -156,6 +164,16 @@
             align-items: flex-end;
             justify-content: center;
             padding-bottom: 6px;
+            background: linear-gradient(180deg, #5d7494, #2d3f5c);
+        }
+
+        .bar-up.muted {
+            opacity: 0.55;
+        }
+
+        .bar-up.highlight {
+            background: linear-gradient(180deg, #ff4757, #8a1828);
+            box-shadow: 0 -6px 30px rgba(255, 71, 87, 0.45);
         }
 
         .bar-flag {
@@ -181,17 +199,17 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 1rem;
             font-weight: 600;
-            color: #ffffff;
+            color: var(--text-primary);
             line-height: 1.2;
         }
 
         .bar-name.highlight {
-            color: #6b8bff;
+            color: var(--accent-red);
             font-weight: 700;
         }
 
         .bar-name.muted {
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--text-secondary);
             font-style: italic;
         }
 
@@ -217,7 +235,7 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.5rem;
             font-weight: 600;
-            color: #ff9f43;
+            color: var(--accent-electric);
         }
     </style>
 </head>
@@ -236,84 +254,81 @@
                 </div>
             </div>
 
-            <h2 class="chart-title">La France a l'une des <span class="accent">dettes</span><br>les plus élevées d'Europe</h2>
+            <h2 class="chart-title">La <span class="accent">France</span>, parmi les plus<br>endettées d'Europe</h2>
             <div class="chart-subtitle">Dette publique en % du PIB (Q3 2025, Eurostat)</div>
 
             <div class="chart-area">
                 <div class="bars-wrapper">
-                    <!--
-                        Max = 149.7% (Grèce) → bar height 95%
-                        Scale: height = (value / 149.7) * 95%
-                    -->
+                    <!-- Max = 149,7% (Grèce) → bar height 95%. Scale: height = (value / 149.7) * 95% -->
 
-                    <!-- Grèce: 149,7% — bleu #0D5EAF -->
+                    <!-- Grèce: 149,7% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #0D5EAF;">149,7%</div>
-                        <div class="bar-up" style="height: 95%; background: linear-gradient(180deg, #0D5EAF, #094a8a); box-shadow: 0 -4px 20px rgba(13, 94, 175, 0.35);">
+                        <div class="bar-value">149,7%</div>
+                        <div class="bar-up" style="height: 95%;">
                             <div class="bar-flag">🇬🇷</div>
                         </div>
                     </div>
 
-                    <!-- Italie: 137,8% — vert #009246 -->
+                    <!-- Italie: 137,8% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #00b856;">137,8%</div>
-                        <div class="bar-up" style="height: 87.4%; background: linear-gradient(180deg, #009246, #006b33); box-shadow: 0 -4px 20px rgba(0, 146, 70, 0.3);">
+                        <div class="bar-value">137,8%</div>
+                        <div class="bar-up" style="height: 87.4%;">
                             <div class="bar-flag">🇮🇹</div>
                         </div>
                     </div>
 
-                    <!-- France: 117,7% — bleu marine #002395 -->
+                    <!-- France: 117,7% — HIGHLIGHT -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #3355cc;">117,7%</div>
-                        <div class="bar-up" style="height: 74.7%; background: linear-gradient(180deg, #002395, #001a6e); box-shadow: 0 -4px 25px rgba(0, 35, 149, 0.4);">
+                        <div class="bar-value highlight">117,7%</div>
+                        <div class="bar-up highlight" style="height: 74.7%;">
                             <div class="bar-flag">🇫🇷</div>
                         </div>
                     </div>
 
-                    <!-- Belgique: 107,1% — jaune #FDDA24 -->
+                    <!-- Belgique: 107,1% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #FDDA24;">107,1%</div>
-                        <div class="bar-up" style="height: 68%; background: linear-gradient(180deg, #FDDA24, #c4a800); box-shadow: 0 -4px 20px rgba(253, 218, 36, 0.25);">
+                        <div class="bar-value">107,1%</div>
+                        <div class="bar-up" style="height: 68%;">
                             <div class="bar-flag">🇧🇪</div>
                         </div>
                     </div>
 
-                    <!-- Espagne: 103,2% — rouge #AA151B -->
+                    <!-- Espagne: 103,2% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #cc1a22;">103,2%</div>
-                        <div class="bar-up" style="height: 65.5%; background: linear-gradient(180deg, #AA151B, #801015); box-shadow: 0 -4px 20px rgba(170, 21, 27, 0.3);">
+                        <div class="bar-value">103,2%</div>
+                        <div class="bar-up" style="height: 65.5%;">
                             <div class="bar-flag">🇪🇸</div>
                         </div>
                     </div>
 
-                    <!-- Zone Euro: 88,5% — bleu UE #003399 -->
+                    <!-- Zone Euro: 88,5% (muted, agrégat) -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #003399;">88,5%</div>
-                        <div class="bar-up" style="height: 56.2%; background: linear-gradient(180deg, #003399, #002266); box-shadow: 0 -4px 20px rgba(0, 51, 153, 0.25);">
+                        <div class="bar-value">88,5%</div>
+                        <div class="bar-up muted" style="height: 56.2%;">
                             <div class="bar-flag">🇪🇺</div>
                         </div>
                     </div>
 
-                    <!-- Allemagne: 62,9% — noir → or pour lisibilité -->
+                    <!-- Allemagne: 62,9% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #FFCC00;">62,9%</div>
-                        <div class="bar-up" style="height: 39.9%; background: linear-gradient(180deg, #2a2a2a, #1a1a1a); box-shadow: 0 -4px 20px rgba(50, 50, 50, 0.3);">
+                        <div class="bar-value">62,9%</div>
+                        <div class="bar-up" style="height: 39.9%;">
                             <div class="bar-flag">🇩🇪</div>
                         </div>
                     </div>
 
-                    <!-- Pays-Bas: 44,3% — orange #FF6600 -->
+                    <!-- Pays-Bas: 44,3% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #FF6600;">44,3%</div>
-                        <div class="bar-up" style="height: 28.1%; background: linear-gradient(180deg, #FF6600, #cc5200); box-shadow: 0 -4px 20px rgba(255, 102, 0, 0.25);">
+                        <div class="bar-value">44,3%</div>
+                        <div class="bar-up" style="height: 28.1%;">
                             <div class="bar-flag">🇳🇱</div>
                         </div>
                     </div>
 
-                    <!-- Estonie: 22,9% — bleu #4891D9 -->
+                    <!-- Estonie: 22,9% -->
                     <div class="bar-col">
-                        <div class="bar-value" style="color: #4891D9;">22,9%</div>
-                        <div class="bar-up" style="height: 14.5%; background: linear-gradient(180deg, #4891D9, #3670aa); box-shadow: 0 -4px 20px rgba(72, 145, 217, 0.25);">
+                        <div class="bar-value">22,9%</div>
+                        <div class="bar-up" style="height: 14.5%;">
                             <div class="bar-flag">🇪🇪</div>
                         </div>
                     </div>
