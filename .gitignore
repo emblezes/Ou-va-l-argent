@@ -42,7 +42,9 @@ Thumbs.db
 # Test files
 *.test.mjs
 test-*.mjs
-Production interne/Réseaux Sociaux /Articles/Inspi video.mov
+
+# Brouillons / inspiration (non publiés)
+Production interne/Réseaux Sociaux /Articles/_inspiration/
 
 # Renumérotation infographies (work files)
 Site/scripts/.renumber-audit.json
