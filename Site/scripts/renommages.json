@@ -1,0 +1,7334 @@
+{
+  "generated_at": "2026-05-03T10:02:04.513Z",
+  "stats": {
+    "actives": 207,
+    "archives": 9,
+    "conflicts": 3,
+    "notion_updates_mapped": 86,
+    "notion_updates_unchanged": 1,
+    "notion_updates_unmapped": 55,
+    "next_free_number": 208
+  },
+  "rules": {
+    "sort": "createdAt ASC (git log --diff-filter=A --follow)",
+    "bis_ter_quater": "numéro plein, slug identique (résolu cas par cas review JSON)",
+    "lang_suffix": "slug enrichi -fr/-en/-de/-it",
+    "carousel": "HTML conserve -carousel, PNG dérivés gardent suffixe a/b/c/d/e",
+    "orphans": "HTML sans aucun PNG → _archives/"
+  },
+  "renames": [
+    {
+      "type": "rename",
+      "n_old": 10,
+      "n_new": 1,
+      "old_html": "10a-detenteurs-dette-france.html",
+      "new_html": "1-detenteurs-dette-france.html",
+      "slug": "detenteurs-dette-france",
+      "variant": null,
+      "subletter": "a",
+      "lang": null,
+      "created_at": "2026-01-27T22:46:18+01:00",
+      "base_renames": [
+        {
+          "oldBase": "10a-detenteurs-dette-france",
+          "newBase": "1-detenteurs-dette-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 11,
+      "n_new": 2,
+      "old_html": "11-triple-degradation-notes.html",
+      "new_html": "2-triple-degradation-notes.html",
+      "slug": "triple-degradation-notes",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-01-27T22:46:18+01:00",
+      "base_renames": [
+        {
+          "oldBase": "11-triple-degradation-notes",
+          "newBase": "2-triple-degradation-notes"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 135,
+      "n_new": 3,
+      "old_html": "135-france-2eme-plus-taxe-comparaison.html",
+      "new_html": "3-france-2eme-plus-taxe-comparaison.html",
+      "slug": "france-2eme-plus-taxe-comparaison",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-01-27T22:46:18+01:00",
+      "base_renames": [
+        {
+          "oldBase": "135-france-2eme-plus-taxe-comparaison",
+          "newBase": "3-france-2eme-plus-taxe-comparaison"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 206,
+      "n_new": 4,
+      "old_html": "206-pression-fiscale-record-mondial.html",
+      "new_html": "4-pression-fiscale-record-mondial.html",
+      "slug": "pression-fiscale-record-mondial",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-01-27T22:46:18+01:00",
+      "base_renames": [
+        {
+          "oldBase": "206-pression-fiscale-record-mondial",
+          "newBase": "4-pression-fiscale-record-mondial"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 38,
+      "n_new": 5,
+      "old_html": "38-actifs-fonds-pension-monde.html",
+      "new_html": "5-actifs-fonds-pension-monde.html",
+      "slug": "actifs-fonds-pension-monde",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-01-27T22:46:18+01:00",
+      "base_renames": [
+        {
+          "oldBase": "38-actifs-fonds-pension-monde",
+          "newBase": "5-actifs-fonds-pension-monde"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 65,
+      "n_new": 6,
+      "old_html": "65-salaire-moyen-par-pays.html",
+      "new_html": "6-salaire-moyen-par-pays.html",
+      "slug": "salaire-moyen-par-pays",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-01-27T22:46:18+01:00",
+      "base_renames": [
+        {
+          "oldBase": "65-salaire-moyen-par-pays",
+          "newBase": "6-salaire-moyen-par-pays"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 80,
+      "n_new": 7,
+      "old_html": "80-prix-cigarette-france.html",
+      "new_html": "7-prix-cigarette-france.html",
+      "slug": "prix-cigarette-france",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-01-27T22:46:18+01:00",
+      "base_renames": [
+        {
+          "oldBase": "80-prix-cigarette-france",
+          "newBase": "7-prix-cigarette-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 81,
+      "n_new": 8,
+      "old_html": "81-indice-big-mac.html",
+      "new_html": "8-indice-big-mac.html",
+      "slug": "indice-big-mac",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-01-27T22:46:18+01:00",
+      "base_renames": [
+        {
+          "oldBase": "81-indice-big-mac",
+          "newBase": "8-indice-big-mac"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 90,
+      "n_new": 9,
+      "old_html": "90-salaires-suisse.html",
+      "new_html": "9-salaires-suisse.html",
+      "slug": "salaires-suisse",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-01-27T22:46:18+01:00",
+      "base_renames": [
+        {
+          "oldBase": "90-salaires-suisse",
+          "newBase": "9-salaires-suisse"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 91,
+      "n_new": 10,
+      "old_html": "91-top5-pays-peuples.html",
+      "new_html": "10-top5-pays-peuples.html",
+      "slug": "top5-pays-peuples",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-01-27T22:46:18+01:00",
+      "base_renames": [
+        {
+          "oldBase": "91-top5-pays-peuples",
+          "newBase": "10-top5-pays-peuples"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 92,
+      "n_new": 11,
+      "old_html": "92-hotels-plus-chers-paris.html",
+      "new_html": "11-hotels-plus-chers-paris.html",
+      "slug": "hotels-plus-chers-paris",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-01-27T22:46:18+01:00",
+      "base_renames": [
+        {
+          "oldBase": "92-hotels-plus-chers-paris",
+          "newBase": "11-hotels-plus-chers-paris"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 93,
+      "n_new": 12,
+      "old_html": "93-ue-dependance-terres-rares.html",
+      "new_html": "12-ue-dependance-terres-rares.html",
+      "slug": "ue-dependance-terres-rares",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-01-27T22:46:18+01:00",
+      "base_renames": [
+        {
+          "oldBase": "93-ue-dependance-terres-rares",
+          "newBase": "12-ue-dependance-terres-rares"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 1,
+      "n_new": 13,
+      "old_html": "01-explosion-dette-france.html",
+      "new_html": "13-explosion-dette-france.html",
+      "slug": "explosion-dette-france",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-06T15:41:19+01:00",
+      "base_renames": [
+        {
+          "oldBase": "01-explosion-dette-france",
+          "newBase": "13-explosion-dette-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 2,
+      "n_new": 14,
+      "old_html": "02-dette-publique-europe.html",
+      "new_html": "14-dette-publique-europe.html",
+      "slug": "dette-publique-europe",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-06T15:41:19+01:00",
+      "base_renames": [
+        {
+          "oldBase": "02-dette-publique-europe",
+          "newBase": "14-dette-publique-europe"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 3,
+      "n_new": 15,
+      "old_html": "03-deficit-zone-euro.html",
+      "new_html": "15-deficit-zone-euro.html",
+      "slug": "deficit-zone-euro",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-06T15:41:19+01:00",
+      "base_renames": [
+        {
+          "oldBase": "03-deficit-zone-euro",
+          "newBase": "15-deficit-zone-euro"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 4,
+      "n_new": 16,
+      "old_html": "04-deficit-historique-france.html",
+      "new_html": "16-deficit-historique-france.html",
+      "slug": "deficit-historique-france",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-06T15:41:19+01:00",
+      "base_renames": [
+        {
+          "oldBase": "04-deficit-historique-france",
+          "newBase": "16-deficit-historique-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 8,
+      "n_new": 17,
+      "old_html": "08a-charge-interets-dette.html",
+      "new_html": "17-charge-interets-dette.html",
+      "slug": "charge-interets-dette",
+      "variant": null,
+      "subletter": "a",
+      "lang": null,
+      "created_at": "2026-02-06T15:41:19+01:00",
+      "base_renames": [
+        {
+          "oldBase": "08a-charge-interets-dette",
+          "newBase": "17-charge-interets-dette"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 28,
+      "n_new": 18,
+      "old_html": "28-retraites-explosion-2070.html",
+      "new_html": "18-retraites-explosion-2070.html",
+      "slug": "retraites-explosion-2070",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-06T15:41:19+01:00",
+      "base_renames": [
+        {
+          "oldBase": "28-retraites-explosion-2070",
+          "newBase": "18-retraites-explosion-2070"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 33,
+      "n_new": 19,
+      "old_html": "33-capitalisation-vs-repartition.html",
+      "new_html": "19-capitalisation-vs-repartition.html",
+      "slug": "capitalisation-vs-repartition",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-06T15:41:19+01:00",
+      "base_renames": [
+        {
+          "oldBase": "33-capitalisation-vs-repartition",
+          "newBase": "19-capitalisation-vs-repartition"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 37,
+      "n_new": 20,
+      "old_html": "37-vieillissement-mondial-2070.html",
+      "new_html": "20-vieillissement-mondial-2070.html",
+      "slug": "vieillissement-mondial-2070",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-06T15:41:19+01:00",
+      "base_renames": [
+        {
+          "oldBase": "37-vieillissement-mondial-2070",
+          "newBase": "20-vieillissement-mondial-2070"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 27,
+      "n_new": 21,
+      "old_html": "27-qui-nourrit-etat.html",
+      "new_html": "21-qui-nourrit-etat.html",
+      "slug": "qui-nourrit-etat",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-19T11:45:55+01:00",
+      "base_renames": [
+        {
+          "oldBase": "27-qui-nourrit-etat",
+          "newBase": "21-qui-nourrit-etat"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 51,
+      "n_new": 22,
+      "old_html": "51-fiche-de-paie-decomposition.html",
+      "new_html": "22-fiche-de-paie-decomposition.html",
+      "slug": "fiche-de-paie-decomposition",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-19T11:45:55+01:00",
+      "base_renames": [
+        {
+          "oldBase": "51-fiche-de-paie-decomposition",
+          "newBase": "22-fiche-de-paie-decomposition"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 94,
+      "n_new": 23,
+      "old_html": "94-guyana-pib-62pct.html",
+      "new_html": "23-guyana-pib-62pct.html",
+      "slug": "guyana-pib-62pct",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-19T11:45:55+01:00",
+      "base_renames": [
+        {
+          "oldBase": "94-guyana-pib-62pct",
+          "newBase": "23-guyana-pib-62pct"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 7,
+      "n_new": 24,
+      "old_html": "07-dette-48800-par-habitant.html",
+      "new_html": "24-dette-48800-par-habitant.html",
+      "slug": "dette-48800-par-habitant",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-21T10:56:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "07-dette-48800-par-habitant",
+          "newBase": "24-dette-48800-par-habitant"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 9,
+      "n_new": 25,
+      "old_html": "09-dette-58md-interets.html",
+      "new_html": "25-dette-58md-interets.html",
+      "slug": "dette-58md-interets",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-21T10:56:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "09-dette-58md-interets",
+          "newBase": "25-dette-58md-interets"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 10,
+      "n_new": 26,
+      "old_html": "10b-dette-53pct-etrangers.html",
+      "new_html": "26-dette-53pct-etrangers.html",
+      "slug": "dette-53pct-etrangers",
+      "variant": null,
+      "subletter": "b",
+      "lang": null,
+      "created_at": "2026-02-21T10:56:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "10b-dette-53pct-etrangers",
+          "newBase": "26-dette-53pct-etrangers"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 97,
+      "n_new": 27,
+      "old_html": "97-dette-titre-couverture.html",
+      "new_html": "27-dette-titre-couverture.html",
+      "slug": "dette-titre-couverture",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-21T10:56:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "97-dette-titre-couverture",
+          "newBase": "27-dette-titre-couverture"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 98,
+      "n_new": 28,
+      "old_html": "98-dette-3305-milliards.html",
+      "new_html": "28-dette-3305-milliards.html",
+      "slug": "dette-3305-milliards",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-21T10:56:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "98-dette-3305-milliards",
+          "newBase": "28-dette-3305-milliards"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 99,
+      "n_new": 29,
+      "old_html": "99-dette-us-interets-vs-pentagone.html",
+      "new_html": "29-dette-us-interets-vs-pentagone.html",
+      "slug": "dette-us-interets-vs-pentagone",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-21T10:56:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "99-dette-us-interets-vs-pentagone",
+          "newBase": "29-dette-us-interets-vs-pentagone"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 96,
+      "n_new": 30,
+      "old_html": "96-cout-total-salarie-europe.html",
+      "new_html": "30-cout-total-salarie-europe.html",
+      "slug": "cout-total-salarie-europe",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-21T15:40:25+01:00",
+      "base_renames": [
+        {
+          "oldBase": "96-cout-total-salarie-europe",
+          "newBase": "30-cout-total-salarie-europe"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 8,
+      "n_new": 31,
+      "old_html": "08b-dette-france-interets-croissants.html",
+      "new_html": "31-dette-france-interets-croissants.html",
+      "slug": "dette-france-interets-croissants",
+      "variant": null,
+      "subletter": "b",
+      "lang": null,
+      "created_at": "2026-02-23T10:42:31+01:00",
+      "base_renames": [
+        {
+          "oldBase": "08b-dette-france-interets-croissants",
+          "newBase": "31-dette-france-interets-croissants"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 100,
+      "n_new": 32,
+      "old_html": "100-classement-depenses-sociales-europe-top5.html",
+      "new_html": "32-classement-depenses-sociales-europe-top5.html",
+      "slug": "classement-depenses-sociales-europe-top5",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-23T10:42:31+01:00",
+      "base_renames": [
+        {
+          "oldBase": "100-classement-depenses-sociales-europe-top5",
+          "newBase": "32-classement-depenses-sociales-europe-top5"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 19,
+      "n_new": 33,
+      "old_html": "19-france-championne-depenses-sociales-europe.html",
+      "new_html": "33-france-championne-depenses-sociales-europe.html",
+      "slug": "france-championne-depenses-sociales-europe",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-23T10:42:31+01:00",
+      "base_renames": [
+        {
+          "oldBase": "19-france-championne-depenses-sociales-europe",
+          "newBase": "33-france-championne-depenses-sociales-europe"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 55,
+      "n_new": 34,
+      "old_html": "55-simulation-375k-brut-net.html",
+      "new_html": "34-simulation-375k-brut-net.html",
+      "slug": "simulation-375k-brut-net",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-23T10:42:31+01:00",
+      "base_renames": [
+        {
+          "oldBase": "55-simulation-375k-brut-net",
+          "newBase": "34-simulation-375k-brut-net"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 61,
+      "n_new": 35,
+      "old_html": "61-mix-energetique-france-2030.html",
+      "new_html": "35-mix-energetique-france-2030.html",
+      "slug": "mix-energetique-france-2030",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-23T10:42:31+01:00",
+      "base_renames": [
+        {
+          "oldBase": "61-mix-energetique-france-2030",
+          "newBase": "35-mix-energetique-france-2030"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 95,
+      "n_new": 36,
+      "old_html": "95-fiche-de-paie-simple.html",
+      "new_html": "36-fiche-de-paie-simple.html",
+      "slug": "fiche-de-paie-simple",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-24T14:51:36+01:00",
+      "base_renames": [
+        {
+          "oldBase": "95-fiche-de-paie-simple",
+          "newBase": "36-fiche-de-paie-simple"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 95,
+      "n_new": 37,
+      "old_html": "95-paystub-15000-EN.html",
+      "new_html": "37-paystub-15000-en.html",
+      "slug": "paystub-15000-en",
+      "variant": null,
+      "subletter": null,
+      "lang": "en",
+      "created_at": "2026-02-24T14:51:36+01:00",
+      "base_renames": [
+        {
+          "oldBase": "95-paystub-15000-EN",
+          "newBase": "37-paystub-15000-en"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 95,
+      "n_new": 38,
+      "old_html": "95-paystub-3000-EN.html",
+      "new_html": "38-paystub-3000-en.html",
+      "slug": "paystub-3000-en",
+      "variant": null,
+      "subletter": null,
+      "lang": "en",
+      "created_at": "2026-02-24T14:51:36+01:00",
+      "base_renames": [
+        {
+          "oldBase": "95-paystub-3000-EN",
+          "newBase": "38-paystub-3000-en"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 5,
+      "n_new": 39,
+      "old_html": "05-depenses-publiques-pib-france.html",
+      "new_html": "39-depenses-publiques-pib-france.html",
+      "slug": "depenses-publiques-pib-france",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "05-depenses-publiques-pib-france",
+          "newBase": "39-depenses-publiques-pib-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 6,
+      "n_new": 40,
+      "old_html": "06-depenses-vs-recettes-france.html",
+      "new_html": "40-depenses-vs-recettes-france.html",
+      "slug": "depenses-vs-recettes-france",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "06-depenses-vs-recettes-france",
+          "newBase": "40-depenses-vs-recettes-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 101,
+      "n_new": 41,
+      "old_html": "101-etat-gaspille-votre-argent.html",
+      "new_html": "41-etat-gaspille-votre-argent.html",
+      "slug": "etat-gaspille-votre-argent",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "101-etat-gaspille-votre-argent",
+          "newBase": "41-etat-gaspille-votre-argent"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 102,
+      "n_new": 42,
+      "old_html": "102-sortir-france-enfer-fiscal.html",
+      "new_html": "42-sortir-france-enfer-fiscal.html",
+      "slug": "sortir-france-enfer-fiscal",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "102-sortir-france-enfer-fiscal",
+          "newBase": "42-sortir-france-enfer-fiscal"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 103,
+      "n_new": 43,
+      "old_html": "103-france-enfer-fiscal-question.html",
+      "new_html": "43-france-enfer-fiscal-question.html",
+      "slug": "france-enfer-fiscal-question",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "103-france-enfer-fiscal-question",
+          "newBase": "43-france-enfer-fiscal-question"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 104,
+      "n_new": 44,
+      "old_html": "104-pas-de-retraite.html",
+      "new_html": "44-pas-de-retraite.html",
+      "slug": "pas-de-retraite",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "104-pas-de-retraite",
+          "newBase": "44-pas-de-retraite"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 105,
+      "n_new": 45,
+      "old_html": "105-etat-francais-faillite.html",
+      "new_html": "45-etat-francais-faillite.html",
+      "slug": "etat-francais-faillite",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "105-etat-francais-faillite",
+          "newBase": "45-etat-francais-faillite"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 106,
+      "n_new": 46,
+      "old_html": "106-ou-va-largent.html",
+      "new_html": "46-ou-va-largent.html",
+      "slug": "ou-va-largent",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "106-ou-va-largent",
+          "newBase": "46-ou-va-largent"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 107,
+      "n_new": 47,
+      "old_html": "107-ouvalargent-com.html",
+      "new_html": "47-ouvalargent-com.html",
+      "slug": "ouvalargent-com",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "107-ouvalargent-com",
+          "newBase": "47-ouvalargent-com"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 108,
+      "n_new": 48,
+      "old_html": "108-logo-euro.html",
+      "new_html": "48-logo-euro.html",
+      "slug": "logo-euro",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "108-logo-euro",
+          "newBase": "48-logo-euro"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 109,
+      "n_new": 49,
+      "old_html": "109-abonne-toi.html",
+      "new_html": "49-abonne-toi.html",
+      "slug": "abonne-toi",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "109-abonne-toi",
+          "newBase": "49-abonne-toi"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 110,
+      "n_new": 50,
+      "old_html": "110-partage-ami-socialiste.html",
+      "new_html": "50-partage-ami-socialiste.html",
+      "slug": "partage-ami-socialiste",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "110-partage-ami-socialiste",
+          "newBase": "50-partage-ami-socialiste"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 111,
+      "n_new": 51,
+      "old_html": "111-partage-ami-chiffres.html",
+      "new_html": "51-partage-ami-chiffres.html",
+      "slug": "partage-ami-chiffres",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "111-partage-ami-chiffres",
+          "newBase": "51-partage-ami-chiffres"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 112,
+      "n_new": 52,
+      "old_html": "112-article-15-ddhc.html",
+      "new_html": "52-article-15-ddhc.html",
+      "slug": "article-15-ddhc",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "112-article-15-ddhc",
+          "newBase": "52-article-15-ddhc"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 113,
+      "n_new": 53,
+      "old_html": "113-dette-naissance-bebe.html",
+      "new_html": "53-dette-naissance-bebe.html",
+      "slug": "dette-naissance-bebe",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "113-dette-naissance-bebe",
+          "newBase": "53-dette-naissance-bebe"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 113,
+      "n_new": 54,
+      "old_html": "113bis-dette-naissance-bebe.html",
+      "new_html": "54-dette-naissance-bebe.html",
+      "slug": "dette-naissance-bebe",
+      "variant": "bis",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "113bis-dette-naissance-bebe",
+          "newBase": "54-dette-naissance-bebe"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 113,
+      "n_new": 55,
+      "old_html": "113quater-dette-naissance-bebe.html",
+      "new_html": "55-dette-naissance-bebe.html",
+      "slug": "dette-naissance-bebe",
+      "variant": "quater",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "113quater-dette-naissance-bebe",
+          "newBase": "55-dette-naissance-bebe"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 113,
+      "n_new": 56,
+      "old_html": "113ter-dette-naissance-bebe.html",
+      "new_html": "56-dette-naissance-bebe.html",
+      "slug": "dette-naissance-bebe",
+      "variant": "ter",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "113ter-dette-naissance-bebe",
+          "newBase": "56-dette-naissance-bebe"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 114,
+      "n_new": 57,
+      "old_html": "114-dette-5350-par-seconde.html",
+      "new_html": "57-dette-5350-par-seconde.html",
+      "slug": "dette-5350-par-seconde",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "114-dette-5350-par-seconde",
+          "newBase": "57-dette-5350-par-seconde"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 114,
+      "n_new": 58,
+      "old_html": "114bis-dette-5350-par-seconde.html",
+      "new_html": "58-dette-5350-par-seconde.html",
+      "slug": "dette-5350-par-seconde",
+      "variant": "bis",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "114bis-dette-5350-par-seconde",
+          "newBase": "58-dette-5350-par-seconde"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 114,
+      "n_new": 59,
+      "old_html": "114quater-dette-5350-par-seconde.html",
+      "new_html": "59-dette-5350-par-seconde.html",
+      "slug": "dette-5350-par-seconde",
+      "variant": "quater",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "114quater-dette-5350-par-seconde",
+          "newBase": "59-dette-5350-par-seconde"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 114,
+      "n_new": 60,
+      "old_html": "114ter-dette-5350-par-seconde.html",
+      "new_html": "60-dette-5350-par-seconde.html",
+      "slug": "dette-5350-par-seconde",
+      "variant": "ter",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "114ter-dette-5350-par-seconde",
+          "newBase": "60-dette-5350-par-seconde"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 115,
+      "n_new": 61,
+      "old_html": "115-dette-pile-billets-terre.html",
+      "new_html": "61-dette-pile-billets-terre.html",
+      "slug": "dette-pile-billets-terre",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "115-dette-pile-billets-terre",
+          "newBase": "61-dette-pile-billets-terre"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 115,
+      "n_new": 62,
+      "old_html": "115bis-dette-pile-billets-terre.html",
+      "new_html": "62-dette-pile-billets-terre.html",
+      "slug": "dette-pile-billets-terre",
+      "variant": "bis",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "115bis-dette-pile-billets-terre",
+          "newBase": "62-dette-pile-billets-terre"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 115,
+      "n_new": 63,
+      "old_html": "115quater-dette-pile-billets-terre.html",
+      "new_html": "63-dette-pile-billets-terre.html",
+      "slug": "dette-pile-billets-terre",
+      "variant": "quater",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "115quater-dette-pile-billets-terre",
+          "newBase": "63-dette-pile-billets-terre"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 115,
+      "n_new": 64,
+      "old_html": "115ter-dette-pile-billets-terre.html",
+      "new_html": "64-dette-pile-billets-terre.html",
+      "slug": "dette-pile-billets-terre",
+      "variant": "ter",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "115ter-dette-pile-billets-terre",
+          "newBase": "64-dette-pile-billets-terre"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 116,
+      "n_new": 65,
+      "old_html": "116-cout-eleve-recul-maths.html",
+      "new_html": "65-cout-eleve-recul-maths.html",
+      "slug": "cout-eleve-recul-maths",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "116-cout-eleve-recul-maths",
+          "newBase": "65-cout-eleve-recul-maths"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 116,
+      "n_new": 66,
+      "old_html": "116quater-cout-eleve-recul-maths.html",
+      "new_html": "66-cout-eleve-recul-maths.html",
+      "slug": "cout-eleve-recul-maths",
+      "variant": "quater",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "116quater-cout-eleve-recul-maths",
+          "newBase": "66-cout-eleve-recul-maths"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 116,
+      "n_new": 67,
+      "old_html": "116ter-cout-eleve-recul-maths.html",
+      "new_html": "67-cout-eleve-recul-maths.html",
+      "slug": "cout-eleve-recul-maths",
+      "variant": "ter",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "116ter-cout-eleve-recul-maths",
+          "newBase": "67-cout-eleve-recul-maths"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 117,
+      "n_new": 68,
+      "old_html": "117-medicaments-36-milliards.html",
+      "new_html": "68-medicaments-36-milliards.html",
+      "slug": "medicaments-36-milliards",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "117-medicaments-36-milliards",
+          "newBase": "68-medicaments-36-milliards"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 118,
+      "n_new": 69,
+      "old_html": "118-subvention-sncf-310-euros.html",
+      "new_html": "69-subvention-sncf-310-euros.html",
+      "slug": "subvention-sncf-310-euros",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "118-subvention-sncf-310-euros",
+          "newBase": "69-subvention-sncf-310-euros"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 118,
+      "n_new": 70,
+      "old_html": "118bis-subvention-sncf-310-euros.html",
+      "new_html": "70-subvention-sncf-310-euros.html",
+      "slug": "subvention-sncf-310-euros",
+      "variant": "bis",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "118bis-subvention-sncf-310-euros",
+          "newBase": "70-subvention-sncf-310-euros"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 118,
+      "n_new": 71,
+      "old_html": "118quater-subvention-sncf-310-euros.html",
+      "new_html": "71-subvention-sncf-310-euros.html",
+      "slug": "subvention-sncf-310-euros",
+      "variant": "quater",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "118quater-subvention-sncf-310-euros",
+          "newBase": "71-subvention-sncf-310-euros"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 118,
+      "n_new": 72,
+      "old_html": "118ter-subvention-sncf-310-euros.html",
+      "new_html": "72-subvention-sncf-310-euros.html",
+      "slug": "subvention-sncf-310-euros",
+      "variant": "ter",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "118ter-subvention-sncf-310-euros",
+          "newBase": "72-subvention-sncf-310-euros"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 119,
+      "n_new": 73,
+      "old_html": "119-audiovisuel-public-4-milliards.html",
+      "new_html": "73-audiovisuel-public-4-milliards.html",
+      "slug": "audiovisuel-public-4-milliards",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "119-audiovisuel-public-4-milliards",
+          "newBase": "73-audiovisuel-public-4-milliards"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 119,
+      "n_new": 74,
+      "old_html": "119bis-audiovisuel-public-4-milliards.html",
+      "new_html": "74-audiovisuel-public-4-milliards.html",
+      "slug": "audiovisuel-public-4-milliards",
+      "variant": "bis",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "119bis-audiovisuel-public-4-milliards",
+          "newBase": "74-audiovisuel-public-4-milliards"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 119,
+      "n_new": 75,
+      "old_html": "119quater-audiovisuel-public-4-milliards.html",
+      "new_html": "75-audiovisuel-public-4-milliards.html",
+      "slug": "audiovisuel-public-4-milliards",
+      "variant": "quater",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "119quater-audiovisuel-public-4-milliards",
+          "newBase": "75-audiovisuel-public-4-milliards"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 119,
+      "n_new": 76,
+      "old_html": "119ter-audiovisuel-public-4-milliards.html",
+      "new_html": "76-audiovisuel-public-4-milliards.html",
+      "slug": "audiovisuel-public-4-milliards",
+      "variant": "ter",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "119ter-audiovisuel-public-4-milliards",
+          "newBase": "76-audiovisuel-public-4-milliards"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 120,
+      "n_new": 77,
+      "old_html": "120-communes-france-34874.html",
+      "new_html": "77-communes-france-34874.html",
+      "slug": "communes-france-34874",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "120-communes-france-34874",
+          "newBase": "77-communes-france-34874"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 120,
+      "n_new": 78,
+      "old_html": "120bis-communes-france-34874.html",
+      "new_html": "78-communes-france-34874.html",
+      "slug": "communes-france-34874",
+      "variant": "bis",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "120bis-communes-france-34874",
+          "newBase": "78-communes-france-34874"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 120,
+      "n_new": 79,
+      "old_html": "120quater-communes-france-34874.html",
+      "new_html": "79-communes-france-34874.html",
+      "slug": "communes-france-34874",
+      "variant": "quater",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "120quater-communes-france-34874",
+          "newBase": "79-communes-france-34874"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 120,
+      "n_new": 80,
+      "old_html": "120ter-communes-france-34874.html",
+      "new_html": "80-communes-france-34874.html",
+      "slug": "communes-france-34874",
+      "variant": "ter",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "120ter-communes-france-34874",
+          "newBase": "80-communes-france-34874"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 121,
+      "n_new": 81,
+      "old_html": "121-82-jours-travail-impots.html",
+      "new_html": "81-82-jours-travail-impots.html",
+      "slug": "82-jours-travail-impots",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "121-82-jours-travail-impots",
+          "newBase": "81-82-jours-travail-impots"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 122,
+      "n_new": 82,
+      "old_html": "122-salaire-suisse-double.html",
+      "new_html": "82-salaire-suisse-double.html",
+      "slug": "salaire-suisse-double",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "122-salaire-suisse-double",
+          "newBase": "82-salaire-suisse-double"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 123,
+      "n_new": 83,
+      "old_html": "123-ratio-actifs-retraites.html",
+      "new_html": "83-ratio-actifs-retraites.html",
+      "slug": "ratio-actifs-retraites",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "123-ratio-actifs-retraites",
+          "newBase": "83-ratio-actifs-retraites"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 124,
+      "n_new": 84,
+      "old_html": "124-taxe-fonciere-paris-52.html",
+      "new_html": "84-taxe-fonciere-paris-52.html",
+      "slug": "taxe-fonciere-paris-52",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "124-taxe-fonciere-paris-52",
+          "newBase": "84-taxe-fonciere-paris-52"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 125,
+      "n_new": 85,
+      "old_html": "125-48-boites-medicaments.html",
+      "new_html": "85-48-boites-medicaments.html",
+      "slug": "48-boites-medicaments",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "125-48-boites-medicaments",
+          "newBase": "85-48-boites-medicaments"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 126,
+      "n_new": 86,
+      "old_html": "126ter-code-travail-france-vs-suisse.html",
+      "new_html": "86-code-travail-france-vs-suisse.html",
+      "slug": "code-travail-france-vs-suisse",
+      "variant": "ter",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "126ter-code-travail-france-vs-suisse",
+          "newBase": "86-code-travail-france-vs-suisse"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 127,
+      "n_new": 87,
+      "old_html": "127-intermittents-2-milliards.html",
+      "new_html": "87-intermittents-2-milliards.html",
+      "slug": "intermittents-2-milliards",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "127-intermittents-2-milliards",
+          "newBase": "87-intermittents-2-milliards"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 128,
+      "n_new": 88,
+      "old_html": "128-2200-aides-sociales.html",
+      "new_html": "88-2200-aides-sociales.html",
+      "slug": "2200-aides-sociales",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "128-2200-aides-sociales",
+          "newBase": "88-2200-aides-sociales"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 130,
+      "n_new": 89,
+      "old_html": "130-interets-58-milliards.html",
+      "new_html": "89-interets-58-milliards.html",
+      "slug": "interets-58-milliards",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "130-interets-58-milliards",
+          "newBase": "89-interets-58-milliards"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 131,
+      "n_new": 90,
+      "old_html": "131-taxes-essence-60-centimes.html",
+      "new_html": "90-taxes-essence-60-centimes.html",
+      "slug": "taxes-essence-60-centimes",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "131-taxes-essence-60-centimes",
+          "newBase": "90-taxes-essence-60-centimes"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 139,
+      "n_new": 91,
+      "old_html": "139-lits-hopitaux-supprimes.html",
+      "new_html": "91-lits-hopitaux-supprimes.html",
+      "slug": "lits-hopitaux-supprimes",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "139-lits-hopitaux-supprimes",
+          "newBase": "91-lits-hopitaux-supprimes"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 14,
+      "n_new": 92,
+      "old_html": "14-evolution-depense-sociale.html",
+      "new_html": "92-evolution-depense-sociale.html",
+      "slug": "evolution-depense-sociale",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "14-evolution-depense-sociale",
+          "newBase": "92-evolution-depense-sociale"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 140,
+      "n_new": 93,
+      "old_html": "140-impot-societes-france-irlande.html",
+      "new_html": "93-impot-societes-france-irlande.html",
+      "slug": "impot-societes-france-irlande",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "140-impot-societes-france-irlande",
+          "newBase": "93-impot-societes-france-irlande"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 142,
+      "n_new": 94,
+      "old_html": "142-deficit-169-milliards-2024.html",
+      "new_html": "94-deficit-169-milliards-2024.html",
+      "slug": "deficit-169-milliards-2024",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "142-deficit-169-milliards-2024",
+          "newBase": "94-deficit-169-milliards-2024"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 155,
+      "n_new": 95,
+      "old_html": "155-520000-elus-locaux-record.html",
+      "new_html": "95-520000-elus-locaux-record.html",
+      "slug": "520000-elus-locaux-record",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "155-520000-elus-locaux-record",
+          "newBase": "95-520000-elus-locaux-record"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 158,
+      "n_new": 96,
+      "old_html": "158-tgv-retard-subventions.html",
+      "new_html": "96-tgv-retard-subventions.html",
+      "slug": "tgv-retard-subventions",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "158-tgv-retard-subventions",
+          "newBase": "96-tgv-retard-subventions"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 160,
+      "n_new": 97,
+      "old_html": "160-depenses-sante-3700-par-habitant.html",
+      "new_html": "97-depenses-sante-3700-par-habitant.html",
+      "slug": "depenses-sante-3700-par-habitant",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "160-depenses-sante-3700-par-habitant",
+          "newBase": "97-depenses-sante-3700-par-habitant"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 161,
+      "n_new": 98,
+      "old_html": "161-tva-cercueil-20-pourcent.html",
+      "new_html": "98-tva-cercueil-20-pourcent.html",
+      "slug": "tva-cercueil-20-pourcent",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "161-tva-cercueil-20-pourcent",
+          "newBase": "98-tva-cercueil-20-pourcent"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 167,
+      "n_new": 99,
+      "old_html": "167-budget-defense-us-vs-france.html",
+      "new_html": "99-budget-defense-us-vs-france.html",
+      "slug": "budget-defense-us-vs-france",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "167-budget-defense-us-vs-france",
+          "newBase": "99-budget-defense-us-vs-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 170,
+      "n_new": 100,
+      "old_html": "170-3000-abonnes-twitter-green.html",
+      "new_html": "100-3000-abonnes-twitter-green.html",
+      "slug": "3000-abonnes-twitter-green",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "170-3000-abonnes-twitter-green",
+          "newBase": "100-3000-abonnes-twitter-green"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 174,
+      "n_new": 101,
+      "old_html": "174-cta-abonne-toi.html",
+      "new_html": "101-cta-abonne-toi.html",
+      "slug": "cta-abonne-toi",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "174-cta-abonne-toi",
+          "newBase": "101-cta-abonne-toi"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 177,
+      "n_new": 102,
+      "old_html": "177-fonctionnaires-paris-vs-europe.html",
+      "new_html": "102-fonctionnaires-paris-vs-europe.html",
+      "slug": "fonctionnaires-paris-vs-europe",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "177-fonctionnaires-paris-vs-europe",
+          "newBase": "102-fonctionnaires-paris-vs-europe"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 204,
+      "n_new": 103,
+      "old_html": "204-7000-abonnes.html",
+      "new_html": "103-7000-abonnes.html",
+      "slug": "7000-abonnes",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "204-7000-abonnes",
+          "newBase": "103-7000-abonnes"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 205,
+      "n_new": 104,
+      "old_html": "205-0pct-is-benefices-reinvestis.html",
+      "new_html": "104-0pct-is-benefices-reinvestis.html",
+      "slug": "0pct-is-benefices-reinvestis",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "205-0pct-is-benefices-reinvestis",
+          "newBase": "104-0pct-is-benefices-reinvestis"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 210,
+      "n_new": 105,
+      "old_html": "210-les-100-jours-couverture.html",
+      "new_html": "105-les-100-jours-couverture.html",
+      "slug": "les-100-jours-couverture",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T00:05:59+01:00",
+      "base_renames": [
+        {
+          "oldBase": "210-les-100-jours-couverture",
+          "newBase": "105-les-100-jours-couverture"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 116,
+      "n_new": 106,
+      "old_html": "116bis-cout-eleve-recul-maths.html",
+      "new_html": "106-cout-eleve-recul-maths.html",
+      "slug": "cout-eleve-recul-maths",
+      "variant": "bis",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T21:28:46+01:00",
+      "base_renames": [
+        {
+          "oldBase": "116bis-cout-eleve-recul-maths",
+          "newBase": "106-cout-eleve-recul-maths"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 126,
+      "n_new": 107,
+      "old_html": "126-code-travail-france-vs-suisse.html",
+      "new_html": "107-code-travail-france-vs-suisse.html",
+      "slug": "code-travail-france-vs-suisse",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T21:28:46+01:00",
+      "base_renames": [
+        {
+          "oldBase": "126-code-travail-france-vs-suisse",
+          "newBase": "107-code-travail-france-vs-suisse"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 126,
+      "n_new": 108,
+      "old_html": "126bis-code-travail-france-vs-suisse.html",
+      "new_html": "108-code-travail-france-vs-suisse.html",
+      "slug": "code-travail-france-vs-suisse",
+      "variant": "bis",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T21:28:46+01:00",
+      "base_renames": [
+        {
+          "oldBase": "126bis-code-travail-france-vs-suisse",
+          "newBase": "108-code-travail-france-vs-suisse"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 163,
+      "n_new": 109,
+      "old_html": "163-classement-pisa-maths.html",
+      "new_html": "109-classement-pisa-maths.html",
+      "slug": "classement-pisa-maths",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-02-26T21:28:46+01:00",
+      "base_renames": [
+        {
+          "oldBase": "163-classement-pisa-maths",
+          "newBase": "109-classement-pisa-maths"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 55,
+      "n_new": 110,
+      "old_html": "55-simulation-375k-brut-net-EN.html",
+      "new_html": "110-simulation-375k-brut-net-en.html",
+      "slug": "simulation-375k-brut-net-en",
+      "variant": null,
+      "subletter": null,
+      "lang": "en",
+      "created_at": "2026-02-28T14:29:11+01:00",
+      "base_renames": [
+        {
+          "oldBase": "55-simulation-375k-brut-net-EN",
+          "newBase": "110-simulation-375k-brut-net-en"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 164,
+      "n_new": 111,
+      "old_html": "164a-france-vs-dubai-fiscal-couverture.html",
+      "new_html": "111-france-vs-dubai-fiscal-couverture.html",
+      "slug": "france-vs-dubai-fiscal-couverture",
+      "variant": null,
+      "subletter": "a",
+      "lang": null,
+      "created_at": "2026-03-01T13:03:41+01:00",
+      "base_renames": [
+        {
+          "oldBase": "164a-france-vs-dubai-fiscal-couverture",
+          "newBase": "111-france-vs-dubai-fiscal-couverture"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 164,
+      "n_new": 112,
+      "old_html": "164b-france-vs-dubai-impot-revenu.html",
+      "new_html": "112-france-vs-dubai-impot-revenu.html",
+      "slug": "france-vs-dubai-impot-revenu",
+      "variant": null,
+      "subletter": "b",
+      "lang": null,
+      "created_at": "2026-03-01T13:03:41+01:00",
+      "base_renames": [
+        {
+          "oldBase": "164b-france-vs-dubai-impot-revenu",
+          "newBase": "112-france-vs-dubai-impot-revenu"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 164,
+      "n_new": 113,
+      "old_html": "164c-france-vs-dubai-impot-societes.html",
+      "new_html": "113-france-vs-dubai-impot-societes.html",
+      "slug": "france-vs-dubai-impot-societes",
+      "variant": null,
+      "subletter": "c",
+      "lang": null,
+      "created_at": "2026-03-01T13:03:41+01:00",
+      "base_renames": [
+        {
+          "oldBase": "164c-france-vs-dubai-impot-societes",
+          "newBase": "113-france-vs-dubai-impot-societes"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 164,
+      "n_new": 114,
+      "old_html": "164d-france-vs-dubai-impot-capital.html",
+      "new_html": "114-france-vs-dubai-impot-capital.html",
+      "slug": "france-vs-dubai-impot-capital",
+      "variant": null,
+      "subletter": "d",
+      "lang": null,
+      "created_at": "2026-03-01T13:03:41+01:00",
+      "base_renames": [
+        {
+          "oldBase": "164d-france-vs-dubai-impot-capital",
+          "newBase": "114-france-vs-dubai-impot-capital"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 164,
+      "n_new": 115,
+      "old_html": "164e-france-vs-dubai-tva.html",
+      "new_html": "115-france-vs-dubai-tva.html",
+      "slug": "france-vs-dubai-tva",
+      "variant": null,
+      "subletter": "e",
+      "lang": null,
+      "created_at": "2026-03-01T13:03:41+01:00",
+      "base_renames": [
+        {
+          "oldBase": "164e-france-vs-dubai-tva",
+          "newBase": "115-france-vs-dubai-tva"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 29,
+      "n_new": 116,
+      "old_html": "29-esperance-vie-france.html",
+      "new_html": "116-esperance-vie-france.html",
+      "slug": "esperance-vie-france",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T13:03:41+01:00",
+      "base_renames": [
+        {
+          "oldBase": "29-esperance-vie-france",
+          "newBase": "116-esperance-vie-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 59,
+      "n_new": 117,
+      "old_html": "59-croissance-france.html",
+      "new_html": "117-croissance-france.html",
+      "slug": "croissance-france",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T13:03:41+01:00",
+      "base_renames": [
+        {
+          "oldBase": "59-croissance-france",
+          "newBase": "117-croissance-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 12,
+      "n_new": 118,
+      "old_html": "12-depenses-sociales-vs-regalien.html",
+      "new_html": "118-depenses-sociales-vs-regalien.html",
+      "slug": "depenses-sociales-vs-regalien",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "12-depenses-sociales-vs-regalien",
+          "newBase": "118-depenses-sociales-vs-regalien"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 13,
+      "n_new": 119,
+      "old_html": "13-1000-euros-depenses-publiques.html",
+      "new_html": "119-1000-euros-depenses-publiques.html",
+      "slug": "1000-euros-depenses-publiques",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "13-1000-euros-depenses-publiques",
+          "newBase": "119-1000-euros-depenses-publiques"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 132,
+      "n_new": 120,
+      "old_html": "132-droits-succession-comparaison.html",
+      "new_html": "120-droits-succession-comparaison.html",
+      "slug": "droits-succession-comparaison",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "132-droits-succession-comparaison",
+          "newBase": "120-droits-succession-comparaison"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 136,
+      "n_new": 121,
+      "old_html": "136-age-retraite-comparaison.html",
+      "new_html": "121-age-retraite-comparaison.html",
+      "slug": "age-retraite-comparaison",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "136-age-retraite-comparaison",
+          "newBase": "121-age-retraite-comparaison"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 16,
+      "n_new": 122,
+      "old_html": "16-depenses-pib-ocde.html",
+      "new_html": "122-depenses-pib-ocde.html",
+      "slug": "depenses-pib-ocde",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "16-depenses-pib-ocde",
+          "newBase": "122-depenses-pib-ocde"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 17,
+      "n_new": 123,
+      "old_html": "17-france-vs-chine-urss.html",
+      "new_html": "123-france-vs-chine-urss.html",
+      "slug": "france-vs-chine-urss",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "17-france-vs-chine-urss",
+          "newBase": "123-france-vs-chine-urss"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 18,
+      "n_new": 124,
+      "old_html": "18-depense-publique-vs-croissance.html",
+      "new_html": "124-depense-publique-vs-croissance.html",
+      "slug": "depense-publique-vs-croissance",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "18-depense-publique-vs-croissance",
+          "newBase": "124-depense-publique-vs-croissance"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 184,
+      "n_new": 125,
+      "old_html": "184-pib-par-habitant-ppa.html",
+      "new_html": "125-pib-par-habitant-ppa.html",
+      "slug": "pib-par-habitant-ppa",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "184-pib-par-habitant-ppa",
+          "newBase": "125-pib-par-habitant-ppa"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 187,
+      "n_new": 126,
+      "old_html": "187-taux-chomage-europe.html",
+      "new_html": "126-taux-chomage-europe.html",
+      "slug": "taux-chomage-europe",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "187-taux-chomage-europe",
+          "newBase": "126-taux-chomage-europe"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 189,
+      "n_new": 127,
+      "old_html": "189-recettes-fiscales-pib.html",
+      "new_html": "127-recettes-fiscales-pib.html",
+      "slug": "recettes-fiscales-pib",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "189-recettes-fiscales-pib",
+          "newBase": "127-recettes-fiscales-pib"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 190,
+      "n_new": 128,
+      "old_html": "190-depenses-militaires-pib.html",
+      "new_html": "128-depenses-militaires-pib.html",
+      "slug": "depenses-militaires-pib",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "190-depenses-militaires-pib",
+          "newBase": "128-depenses-militaires-pib"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 191,
+      "n_new": 129,
+      "old_html": "191-depenses-sante-pib.html",
+      "new_html": "129-depenses-sante-pib.html",
+      "slug": "depenses-sante-pib",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "191-depenses-sante-pib",
+          "newBase": "129-depenses-sante-pib"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 192,
+      "n_new": 130,
+      "old_html": "192-depenses-education-pib.html",
+      "new_html": "130-depenses-education-pib.html",
+      "slug": "depenses-education-pib",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "192-depenses-education-pib",
+          "newBase": "130-depenses-education-pib"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 193,
+      "n_new": 131,
+      "old_html": "193-inegalites-gini.html",
+      "new_html": "131-inegalites-gini.html",
+      "slug": "inegalites-gini",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "193-inegalites-gini",
+          "newBase": "131-inegalites-gini"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 194,
+      "n_new": 132,
+      "old_html": "194-pauvrete-relative.html",
+      "new_html": "132-pauvrete-relative.html",
+      "slug": "pauvrete-relative",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "194-pauvrete-relative",
+          "newBase": "132-pauvrete-relative"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 197,
+      "n_new": 133,
+      "old_html": "197-ide-entrants-pib.html",
+      "new_html": "133-ide-entrants-pib.html",
+      "slug": "ide-entrants-pib",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "197-ide-entrants-pib",
+          "newBase": "133-ide-entrants-pib"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 198,
+      "n_new": 134,
+      "old_html": "198-depenses-rd-pib.html",
+      "new_html": "134-depenses-rd-pib.html",
+      "slug": "depenses-rd-pib",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "198-depenses-rd-pib",
+          "newBase": "134-depenses-rd-pib"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 203,
+      "n_new": 135,
+      "old_html": "203-commerce-exterieur-pib.html",
+      "new_html": "135-commerce-exterieur-pib.html",
+      "slug": "commerce-exterieur-pib",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "203-commerce-exterieur-pib",
+          "newBase": "135-commerce-exterieur-pib"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 207,
+      "n_new": 136,
+      "old_html": "207-france-decroche-pib-habitant.html",
+      "new_html": "136-france-decroche-pib-habitant.html",
+      "slug": "france-decroche-pib-habitant",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "207-france-decroche-pib-habitant",
+          "newBase": "136-france-decroche-pib-habitant"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 208,
+      "n_new": 137,
+      "old_html": "208-croissance-francaise-panne.html",
+      "new_html": "137-croissance-francaise-panne.html",
+      "slug": "croissance-francaise-panne",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "208-croissance-francaise-panne",
+          "newBase": "137-croissance-francaise-panne"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 212,
+      "n_new": 138,
+      "old_html": "212-depenses-sociales-explosion-france.html",
+      "new_html": "138-depenses-sociales-explosion-france.html",
+      "slug": "depenses-sociales-explosion-france",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "212-depenses-sociales-explosion-france",
+          "newBase": "138-depenses-sociales-explosion-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 214,
+      "n_new": 139,
+      "old_html": "214-france-plus-pauvre-europe-pib-ppa.html",
+      "new_html": "139-france-plus-pauvre-europe-pib-ppa.html",
+      "slug": "france-plus-pauvre-europe-pib-ppa",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-01T21:55:44+01:00",
+      "base_renames": [
+        {
+          "oldBase": "214-france-plus-pauvre-europe-pib-ppa",
+          "newBase": "139-france-plus-pauvre-europe-pib-ppa"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 15,
+      "n_new": 140,
+      "old_html": "15-budget-justice-vs-retraites.html",
+      "new_html": "140-budget-justice-vs-retraites.html",
+      "slug": "budget-justice-vs-retraites",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T00:49:15+01:00",
+      "base_renames": [
+        {
+          "oldBase": "15-budget-justice-vs-retraites",
+          "newBase": "140-budget-justice-vs-retraites"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 165,
+      "n_new": 141,
+      "old_html": "165-nucleaire-chine-vs-allemagne.html",
+      "new_html": "141-nucleaire-chine-vs-allemagne.html",
+      "slug": "nucleaire-chine-vs-allemagne",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T00:49:15+01:00",
+      "base_renames": [
+        {
+          "oldBase": "165-nucleaire-chine-vs-allemagne",
+          "newBase": "141-nucleaire-chine-vs-allemagne"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 166,
+      "n_new": 142,
+      "old_html": "166-taux-pauvrete-monde.html",
+      "new_html": "142-taux-pauvrete-monde.html",
+      "slug": "taux-pauvrete-monde",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T00:49:15+01:00",
+      "base_renames": [
+        {
+          "oldBase": "166-taux-pauvrete-monde",
+          "newBase": "142-taux-pauvrete-monde"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 211,
+      "n_new": 143,
+      "old_html": "211-production-nucleaire-france-chine-allemagne.html",
+      "new_html": "143-production-nucleaire-france-chine-allemagne.html",
+      "slug": "production-nucleaire-france-chine-allemagne",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T00:49:15+01:00",
+      "base_renames": [
+        {
+          "oldBase": "211-production-nucleaire-france-chine-allemagne",
+          "newBase": "143-production-nucleaire-france-chine-allemagne"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 82,
+      "n_new": 144,
+      "old_html": "82-evolution-prix-m2-paris.html",
+      "new_html": "144-evolution-prix-m2-paris.html",
+      "slug": "evolution-prix-m2-paris",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T00:49:15+01:00",
+      "base_renames": [
+        {
+          "oldBase": "82-evolution-prix-m2-paris",
+          "newBase": "144-evolution-prix-m2-paris"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 83,
+      "n_new": 145,
+      "old_html": "83-prix-65m2-paris.html",
+      "new_html": "145-prix-65m2-paris.html",
+      "slug": "prix-65m2-paris",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T00:49:15+01:00",
+      "base_renames": [
+        {
+          "oldBase": "83-prix-65m2-paris",
+          "newBase": "145-prix-65m2-paris"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 127,
+      "n_new": 146,
+      "old_html": "127-intermittents-carousel.html",
+      "new_html": "146-intermittents-carousel.html",
+      "slug": "intermittents-carousel",
+      "variant": "carousel",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T18:46:20+01:00",
+      "base_renames": [
+        {
+          "oldBase": "127a-intermittents-titre",
+          "newBase": "146a-intermittents-titre"
+        },
+        {
+          "oldBase": "127b-intermittents-154600",
+          "newBase": "146b-intermittents-154600"
+        },
+        {
+          "oldBase": "127c-intermittents-10h-semaine",
+          "newBase": "146c-intermittents-10h-semaine"
+        },
+        {
+          "oldBase": "127d-intermittents-deficit",
+          "newBase": "146d-intermittents-deficit"
+        },
+        {
+          "oldBase": "127e-intermittents-cta",
+          "newBase": "146e-intermittents-cta"
+        }
+      ],
+      "png_counts": {
+        "insta": 5,
+        "tiktokV": 5,
+        "tiktokH": 5,
+        "publicSite": 5
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 128,
+      "n_new": 147,
+      "old_html": "128-aides-sociales-carousel.html",
+      "new_html": "147-aides-sociales-carousel.html",
+      "slug": "aides-sociales-carousel",
+      "variant": "carousel",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T18:46:20+01:00",
+      "base_renames": [
+        {
+          "oldBase": "128a-aides-sociales-titre",
+          "newBase": "147a-aides-sociales-titre"
+        },
+        {
+          "oldBase": "128b-aides-sociales-non-recours",
+          "newBase": "147b-aides-sociales-non-recours"
+        },
+        {
+          "oldBase": "128c-aides-sociales-850md",
+          "newBase": "147c-aides-sociales-850md"
+        },
+        {
+          "oldBase": "128d-aides-sociales-organismes",
+          "newBase": "147d-aides-sociales-organismes"
+        },
+        {
+          "oldBase": "128e-aides-sociales-cta",
+          "newBase": "147e-aides-sociales-cta"
+        }
+      ],
+      "png_counts": {
+        "insta": 5,
+        "tiktokV": 5,
+        "tiktokH": 5,
+        "publicSite": 5
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 129,
+      "n_new": 148,
+      "old_html": "129-singapour-pib-habitant.html",
+      "new_html": "148-singapour-pib-habitant.html",
+      "slug": "singapour-pib-habitant",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T18:46:20+01:00",
+      "base_renames": [
+        {
+          "oldBase": "129-singapour-pib-habitant",
+          "newBase": "148-singapour-pib-habitant"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 130,
+      "n_new": 149,
+      "old_html": "130-interets-dette-carousel.html",
+      "new_html": "149-interets-dette-carousel.html",
+      "slug": "interets-dette-carousel",
+      "variant": "carousel",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T18:46:20+01:00",
+      "base_renames": [
+        {
+          "oldBase": "130a-interets-dette-titre",
+          "newBase": "149a-interets-dette-titre"
+        },
+        {
+          "oldBase": "130b-interets-dette-sans-rembourser",
+          "newBase": "149b-interets-dette-sans-rembourser"
+        },
+        {
+          "oldBase": "130c-interets-dette-comparaison",
+          "newBase": "149c-interets-dette-comparaison"
+        },
+        {
+          "oldBase": "130d-interets-dette-par-seconde",
+          "newBase": "149d-interets-dette-par-seconde"
+        },
+        {
+          "oldBase": "130e-interets-dette-cta",
+          "newBase": "149e-interets-dette-cta"
+        }
+      ],
+      "png_counts": {
+        "insta": 3,
+        "tiktokV": 5,
+        "tiktokH": 5,
+        "publicSite": 5
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 131,
+      "n_new": 150,
+      "old_html": "131-taxes-essence-carousel.html",
+      "new_html": "150-taxes-essence-carousel.html",
+      "slug": "taxes-essence-carousel",
+      "variant": "carousel",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T18:46:20+01:00",
+      "base_renames": [
+        {
+          "oldBase": "131a-taxes-essence-titre",
+          "newBase": "150a-taxes-essence-titre"
+        },
+        {
+          "oldBase": "131b-taxes-essence-decomposition",
+          "newBase": "150b-taxes-essence-decomposition"
+        },
+        {
+          "oldBase": "131c-taxes-essence-plein",
+          "newBase": "150c-taxes-essence-plein"
+        },
+        {
+          "oldBase": "131d-taxes-essence-recettes",
+          "newBase": "150d-taxes-essence-recettes"
+        },
+        {
+          "oldBase": "131e-taxes-essence-cta",
+          "newBase": "150e-taxes-essence-cta"
+        }
+      ],
+      "png_counts": {
+        "insta": 5,
+        "tiktokV": 5,
+        "tiktokH": 5,
+        "publicSite": 5
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 141,
+      "n_new": 151,
+      "old_html": "141-normes-france-carousel.html",
+      "new_html": "151-normes-france-carousel.html",
+      "slug": "normes-france-carousel",
+      "variant": "carousel",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T18:46:20+01:00",
+      "base_renames": [
+        {
+          "oldBase": "141a-normes-france",
+          "newBase": "151a-normes-france"
+        },
+        {
+          "oldBase": "141b-normes-france",
+          "newBase": "151b-normes-france"
+        },
+        {
+          "oldBase": "141c-normes-france",
+          "newBase": "151c-normes-france"
+        },
+        {
+          "oldBase": "141d-normes-france",
+          "newBase": "151d-normes-france"
+        },
+        {
+          "oldBase": "141e-normes-france",
+          "newBase": "151e-normes-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 5,
+        "tiktokV": 5,
+        "tiktokH": 5,
+        "publicSite": 5
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 155,
+      "n_new": 152,
+      "old_html": "155-elus-locaux-carousel.html",
+      "new_html": "152-elus-locaux-carousel.html",
+      "slug": "elus-locaux-carousel",
+      "variant": "carousel",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T18:46:20+01:00",
+      "base_renames": [
+        {
+          "oldBase": "155a-elus-locaux",
+          "newBase": "152a-elus-locaux"
+        },
+        {
+          "oldBase": "155b-elus-locaux",
+          "newBase": "152b-elus-locaux"
+        },
+        {
+          "oldBase": "155c-elus-locaux",
+          "newBase": "152c-elus-locaux"
+        },
+        {
+          "oldBase": "155d-elus-locaux",
+          "newBase": "152d-elus-locaux"
+        },
+        {
+          "oldBase": "155e-elus-locaux",
+          "newBase": "152e-elus-locaux"
+        }
+      ],
+      "png_counts": {
+        "insta": 5,
+        "tiktokV": 5,
+        "tiktokH": 5,
+        "publicSite": 5
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 158,
+      "n_new": 153,
+      "old_html": "158-tgv-shinkansen-carousel.html",
+      "new_html": "153-tgv-shinkansen-carousel.html",
+      "slug": "tgv-shinkansen-carousel",
+      "variant": "carousel",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T18:46:20+01:00",
+      "base_renames": [
+        {
+          "oldBase": "158a-tgv-shinkansen",
+          "newBase": "153a-tgv-shinkansen"
+        },
+        {
+          "oldBase": "158b-tgv-shinkansen",
+          "newBase": "153b-tgv-shinkansen"
+        },
+        {
+          "oldBase": "158c-tgv-shinkansen",
+          "newBase": "153c-tgv-shinkansen"
+        },
+        {
+          "oldBase": "158d-tgv-shinkansen",
+          "newBase": "153d-tgv-shinkansen"
+        },
+        {
+          "oldBase": "158e-tgv-shinkansen",
+          "newBase": "153e-tgv-shinkansen"
+        }
+      ],
+      "png_counts": {
+        "insta": 5,
+        "tiktokV": 5,
+        "tiktokH": 5,
+        "publicSite": 5
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 161,
+      "n_new": 154,
+      "old_html": "161-tva-cercueil-carousel.html",
+      "new_html": "154-tva-cercueil-carousel.html",
+      "slug": "tva-cercueil-carousel",
+      "variant": "carousel",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T18:46:20+01:00",
+      "base_renames": [
+        {
+          "oldBase": "161a-tva-cercueil",
+          "newBase": "154a-tva-cercueil"
+        },
+        {
+          "oldBase": "161b-tva-cercueil",
+          "newBase": "154b-tva-cercueil"
+        },
+        {
+          "oldBase": "161c-tva-cercueil",
+          "newBase": "154c-tva-cercueil"
+        },
+        {
+          "oldBase": "161d-tva-cercueil",
+          "newBase": "154d-tva-cercueil"
+        },
+        {
+          "oldBase": "161e-tva-cercueil",
+          "newBase": "154e-tva-cercueil"
+        }
+      ],
+      "png_counts": {
+        "insta": 5,
+        "tiktokV": 5,
+        "tiktokH": 5,
+        "publicSite": 5
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 207,
+      "n_new": 155,
+      "old_html": "207b-evolution-pib-fr-de-ie.html",
+      "new_html": "155-evolution-pib-fr-de-ie.html",
+      "slug": "evolution-pib-fr-de-ie",
+      "variant": null,
+      "subletter": "b",
+      "lang": null,
+      "created_at": "2026-03-02T18:46:20+01:00",
+      "base_renames": [
+        {
+          "oldBase": "207b-evolution-pib-fr-de-ie",
+          "newBase": "155-evolution-pib-fr-de-ie"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 73,
+      "n_new": 156,
+      "old_html": "73-mercure-guyane-carousel.html",
+      "new_html": "156-mercure-guyane-carousel.html",
+      "slug": "mercure-guyane-carousel",
+      "variant": "carousel",
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-02T18:46:20+01:00",
+      "base_renames": [
+        {
+          "oldBase": "73a-mercure-guyane",
+          "newBase": "156a-mercure-guyane"
+        },
+        {
+          "oldBase": "73b-mercure-guyane",
+          "newBase": "156b-mercure-guyane"
+        },
+        {
+          "oldBase": "73c-mercure-guyane",
+          "newBase": "156c-mercure-guyane"
+        },
+        {
+          "oldBase": "73d-mercure-guyane",
+          "newBase": "156d-mercure-guyane"
+        },
+        {
+          "oldBase": "73e-mercure-guyane",
+          "newBase": "156e-mercure-guyane"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 5,
+        "tiktokH": 5,
+        "publicSite": 5
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 176,
+      "n_new": 157,
+      "old_html": "176-taux-emprunt-france-10ans.html",
+      "new_html": "157-taux-emprunt-france-10ans.html",
+      "slug": "taux-emprunt-france-10ans",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-03-17T10:18:38+01:00",
+      "base_renames": [
+        {
+          "oldBase": "176-taux-emprunt-france-10ans",
+          "newBase": "157-taux-emprunt-france-10ans"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 129,
+      "n_new": 158,
+      "old_html": "129b-cta-singapour.html",
+      "new_html": "158-cta-singapour.html",
+      "slug": "cta-singapour",
+      "variant": null,
+      "subletter": "b",
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "129b-cta-singapour",
+          "newBase": "158-cta-singapour"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 138,
+      "n_new": 159,
+      "old_html": "138-44pct-foyers-non-imposes.html",
+      "new_html": "159-44pct-foyers-non-imposes.html",
+      "slug": "44pct-foyers-non-imposes",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "138-44pct-foyers-non-imposes",
+          "newBase": "159-44pct-foyers-non-imposes"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 141,
+      "n_new": 160,
+      "old_html": "141-droit-58-bibles.html",
+      "new_html": "160-droit-58-bibles.html",
+      "slug": "droit-58-bibles",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "141-droit-58-bibles",
+          "newBase": "160-droit-58-bibles"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 144,
+      "n_new": 161,
+      "old_html": "144-dette-x6-depuis-1980.html",
+      "new_html": "161-dette-x6-depuis-1980.html",
+      "slug": "dette-x6-depuis-1980",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "144-dette-x6-depuis-1980",
+          "newBase": "161-dette-x6-depuis-1980"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 147,
+      "n_new": 162,
+      "old_html": "147-echec-licence-64pct.html",
+      "new_html": "162-echec-licence-64pct.html",
+      "slug": "echec-licence-64pct",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "147-echec-licence-64pct",
+          "newBase": "162-echec-licence-64pct"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 149,
+      "n_new": 163,
+      "old_html": "149-sans-medecin-traitant.html",
+      "new_html": "163-sans-medecin-traitant.html",
+      "slug": "sans-medecin-traitant",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "149-sans-medecin-traitant",
+          "newBase": "163-sans-medecin-traitant"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 153,
+      "n_new": 164,
+      "old_html": "153a-emploi-industriel-pays.html",
+      "new_html": "164-emploi-industriel-pays.html",
+      "slug": "emploi-industriel-pays",
+      "variant": null,
+      "subletter": "a",
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "153a-emploi-industriel-pays",
+          "newBase": "164-emploi-industriel-pays"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 153,
+      "n_new": 165,
+      "old_html": "153b-evolution-emploi-industriel-france.html",
+      "new_html": "165-evolution-emploi-industriel-france.html",
+      "slug": "evolution-emploi-industriel-france",
+      "variant": null,
+      "subletter": "b",
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "153b-evolution-emploi-industriel-france",
+          "newBase": "165-evolution-emploi-industriel-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 153,
+      "n_new": 166,
+      "old_html": "153c-evolution-part-pib-industrie-france.html",
+      "new_html": "166-evolution-part-pib-industrie-france.html",
+      "slug": "evolution-part-pib-industrie-france",
+      "variant": null,
+      "subletter": "c",
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "153c-evolution-part-pib-industrie-france",
+          "newBase": "166-evolution-part-pib-industrie-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 153,
+      "n_new": 167,
+      "old_html": "153d-part-pib-industrie-pays.html",
+      "new_html": "167-part-pib-industrie-pays.html",
+      "slug": "part-pib-industrie-pays",
+      "variant": null,
+      "subletter": "d",
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "153d-part-pib-industrie-pays",
+          "newBase": "167-part-pib-industrie-pays"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 154,
+      "n_new": 168,
+      "old_html": "154-463m-dette-par-jour.html",
+      "new_html": "168-463m-dette-par-jour.html",
+      "slug": "463m-dette-par-jour",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "154-463m-dette-par-jour",
+          "newBase": "168-463m-dette-par-jour"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 158,
+      "n_new": 169,
+      "old_html": "158-tgv-15pct-retard.html",
+      "new_html": "169-tgv-15pct-retard.html",
+      "slug": "tgv-15pct-retard",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "158-tgv-15pct-retard",
+          "newBase": "169-tgv-15pct-retard"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 167,
+      "n_new": 170,
+      "old_html": "167-retraite-reduit-pauvrete.html",
+      "new_html": "170-retraite-reduit-pauvrete.html",
+      "slug": "retraite-reduit-pauvrete",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "167-retraite-reduit-pauvrete",
+          "newBase": "170-retraite-reduit-pauvrete"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 167,
+      "n_new": 171,
+      "old_html": "167-salaire-brut-net-impot.html",
+      "new_html": "171-salaire-brut-net-impot.html",
+      "slug": "salaire-brut-net-impot",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "167-salaire-brut-net-impot",
+          "newBase": "171-salaire-brut-net-impot"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 172,
+      "n_new": 172,
+      "old_html": "172-plein-essence-taxes-vs-cout.html",
+      "new_html": "172-plein-essence-taxes-vs-cout.html",
+      "slug": "plein-essence-taxes-vs-cout",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "172-plein-essence-taxes-vs-cout",
+          "newBase": "172-plein-essence-taxes-vs-cout"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 172,
+      "n_new": 173,
+      "old_html": "172b-cta-taxes-essence.html",
+      "new_html": "173-cta-taxes-essence.html",
+      "slug": "cta-taxes-essence",
+      "variant": null,
+      "subletter": "b",
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "172b-cta-taxes-essence",
+          "newBase": "173-cta-taxes-essence"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 173,
+      "n_new": 174,
+      "old_html": "173-6000-abonnes.html",
+      "new_html": "174-6000-abonnes.html",
+      "slug": "6000-abonnes",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "173-6000-abonnes",
+          "newBase": "174-6000-abonnes"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 175,
+      "n_new": 175,
+      "old_html": "175-elus-locaux-decompte-national.html",
+      "new_html": "175-elus-locaux-decompte-national.html",
+      "slug": "elus-locaux-decompte-national",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "175-elus-locaux-decompte-national",
+          "newBase": "175-elus-locaux-decompte-national"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 175,
+      "n_new": 176,
+      "old_html": "175b-cta-elus-locaux.html",
+      "new_html": "176-cta-elus-locaux.html",
+      "slug": "cta-elus-locaux",
+      "variant": null,
+      "subletter": "b",
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "175b-cta-elus-locaux",
+          "newBase": "176-cta-elus-locaux"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 177,
+      "n_new": 177,
+      "old_html": "177-ou-va-argent-livret-a.html",
+      "new_html": "177-ou-va-argent-livret-a.html",
+      "slug": "ou-va-argent-livret-a",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "177-ou-va-argent-livret-a",
+          "newBase": "177-ou-va-argent-livret-a"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 178,
+      "n_new": 178,
+      "old_html": "178-dette-paris-30ans.html",
+      "new_html": "178-dette-paris-30ans.html",
+      "slug": "dette-paris-30ans",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "178-dette-paris-30ans",
+          "newBase": "178-dette-paris-30ans"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 179,
+      "n_new": 179,
+      "old_html": "179-population-paris-30ans.html",
+      "new_html": "179-population-paris-30ans.html",
+      "slug": "population-paris-30ans",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "179-population-paris-30ans",
+          "newBase": "179-population-paris-30ans"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 17,
+      "n_new": 180,
+      "old_html": "17b-cta-france-urss-chine.html",
+      "new_html": "180-cta-france-urss-chine.html",
+      "slug": "cta-france-urss-chine",
+      "variant": null,
+      "subletter": "b",
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "17b-cta-france-urss-chine",
+          "newBase": "180-cta-france-urss-chine"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 180,
+      "n_new": 181,
+      "old_html": "180-subventions-associations-top10.html",
+      "new_html": "181-subventions-associations-top10.html",
+      "slug": "subventions-associations-top10",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "180-subventions-associations-top10",
+          "newBase": "181-subventions-associations-top10"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 181,
+      "n_new": 182,
+      "old_html": "181-retraites-vs-defense.html",
+      "new_html": "182-retraites-vs-defense.html",
+      "slug": "retraites-vs-defense",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "181-retraites-vs-defense",
+          "newBase": "182-retraites-vs-defense"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 182,
+      "n_new": 183,
+      "old_html": "182-detroit-hormuz-flux-petrole.html",
+      "new_html": "183-detroit-hormuz-flux-petrole.html",
+      "slug": "detroit-hormuz-flux-petrole",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "182-detroit-hormuz-flux-petrole",
+          "newBase": "183-detroit-hormuz-flux-petrole"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 183,
+      "n_new": 184,
+      "old_html": "183-pyramide-salaires-france.html",
+      "new_html": "184-pyramide-salaires-france.html",
+      "slug": "pyramide-salaires-france",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "183-pyramide-salaires-france",
+          "newBase": "184-pyramide-salaires-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 185,
+      "n_new": 185,
+      "old_html": "185-dette-publique-evolution.html",
+      "new_html": "185-dette-publique-evolution.html",
+      "slug": "dette-publique-evolution",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "185-dette-publique-evolution",
+          "newBase": "185-dette-publique-evolution"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 186,
+      "n_new": 186,
+      "old_html": "186-inflation-prix-conso.html",
+      "new_html": "186-inflation-prix-conso.html",
+      "slug": "inflation-prix-conso",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "186-inflation-prix-conso",
+          "newBase": "186-inflation-prix-conso"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 188,
+      "n_new": 187,
+      "old_html": "188-depenses-publiques-pib.html",
+      "new_html": "187-depenses-publiques-pib.html",
+      "slug": "depenses-publiques-pib",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "188-depenses-publiques-pib",
+          "newBase": "187-depenses-publiques-pib"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 195,
+      "n_new": 188,
+      "old_html": "195-productivite-travail.html",
+      "new_html": "188-productivite-travail.html",
+      "slug": "productivite-travail",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "195-productivite-travail",
+          "newBase": "188-productivite-travail"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 196,
+      "n_new": 189,
+      "old_html": "196-ouverture-commerciale.html",
+      "new_html": "189-ouverture-commerciale.html",
+      "slug": "ouverture-commerciale",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "196-ouverture-commerciale",
+          "newBase": "189-ouverture-commerciale"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 199,
+      "n_new": 190,
+      "old_html": "199-co2-par-habitant.html",
+      "new_html": "190-co2-par-habitant.html",
+      "slug": "co2-par-habitant",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "199-co2-par-habitant",
+          "newBase": "190-co2-par-habitant"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 200,
+      "n_new": 191,
+      "old_html": "200-part-renouvelables.html",
+      "new_html": "191-part-renouvelables.html",
+      "slug": "part-renouvelables",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "200-part-renouvelables",
+          "newBase": "191-part-renouvelables"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 201,
+      "n_new": 192,
+      "old_html": "201-croissance-demographique.html",
+      "new_html": "192-croissance-demographique.html",
+      "slug": "croissance-demographique",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "201-croissance-demographique",
+          "newBase": "192-croissance-demographique"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 202,
+      "n_new": 193,
+      "old_html": "202-urbanisation-monde.html",
+      "new_html": "193-urbanisation-monde.html",
+      "slug": "urbanisation-monde",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "202-urbanisation-monde",
+          "newBase": "193-urbanisation-monde"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 1
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 209,
+      "n_new": 194,
+      "old_html": "209-reformes-liberales-avant-apres.html",
+      "new_html": "194-reformes-liberales-avant-apres.html",
+      "slug": "reformes-liberales-avant-apres",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "209-reformes-liberales-avant-apres",
+          "newBase": "194-reformes-liberales-avant-apres"
+        }
+      ],
+      "png_counts": {
+        "insta": 0,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 213,
+      "n_new": 195,
+      "old_html": "213-chi-finanzia-stato-italia.html",
+      "new_html": "195-chi-finanzia-stato-italia-it.html",
+      "slug": "chi-finanzia-stato-italia-it",
+      "variant": null,
+      "subletter": null,
+      "lang": "it",
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "213-chi-finanzia-stato-italia",
+          "newBase": "195-chi-finanzia-stato-italia-it"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 1,
+        "tiktokH": 1,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 215,
+      "n_new": 196,
+      "old_html": "215-niveau-vie-retraites-vs-actifs.html",
+      "new_html": "196-niveau-vie-retraites-vs-actifs.html",
+      "slug": "niveau-vie-retraites-vs-actifs",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "215-niveau-vie-retraites-vs-actifs",
+          "newBase": "196-niveau-vie-retraites-vs-actifs"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 217,
+      "n_new": 197,
+      "old_html": "217-cpf-1800-euros-par-francais.html",
+      "new_html": "197-cpf-1800-euros-par-francais.html",
+      "slug": "cpf-1800-euros-par-francais",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "217-cpf-1800-euros-par-francais",
+          "newBase": "197-cpf-1800-euros-par-francais"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 218,
+      "n_new": 198,
+      "old_html": "218-taux-recuperation-retraite-generations.html",
+      "new_html": "198-taux-recuperation-retraite-generations.html",
+      "slug": "taux-recuperation-retraite-generations",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "218-taux-recuperation-retraite-generations",
+          "newBase": "198-taux-recuperation-retraite-generations"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 219,
+      "n_new": 199,
+      "old_html": "219-france-podium-finances-publiques.html",
+      "new_html": "199-france-podium-finances-publiques.html",
+      "slug": "france-podium-finances-publiques",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "219-france-podium-finances-publiques",
+          "newBase": "199-france-podium-finances-publiques"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 223,
+      "n_new": 200,
+      "old_html": "223-top-10-associations-subventionnees-etat.html",
+      "new_html": "200-top-10-associations-subventionnees-etat.html",
+      "slug": "top-10-associations-subventionnees-etat",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "223-top-10-associations-subventionnees-etat",
+          "newBase": "200-top-10-associations-subventionnees-etat"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 224,
+      "n_new": 201,
+      "old_html": "224-ou-va-argent-etat-associations-postes.html",
+      "new_html": "201-ou-va-argent-etat-associations-postes.html",
+      "slug": "ou-va-argent-etat-associations-postes",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "224-ou-va-argent-etat-associations-postes",
+          "newBase": "201-ou-va-argent-etat-associations-postes"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 226,
+      "n_new": 202,
+      "old_html": "226-dette-etat-augmentation-2025.html",
+      "new_html": "202-dette-etat-augmentation-2025.html",
+      "slug": "dette-etat-augmentation-2025",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "226-dette-etat-augmentation-2025",
+          "newBase": "202-dette-etat-augmentation-2025"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 227,
+      "n_new": 203,
+      "old_html": "227-charge-interets-vs-defense-education.html",
+      "new_html": "203-charge-interets-vs-defense-education.html",
+      "slug": "charge-interets-vs-defense-education",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "227-charge-interets-vs-defense-education",
+          "newBase": "203-charge-interets-vs-defense-education"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 228,
+      "n_new": 204,
+      "old_html": "228-charge-interets-doublee-2020-2025.html",
+      "new_html": "204-charge-interets-doublee-2020-2025.html",
+      "slug": "charge-interets-doublee-2020-2025",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "228-charge-interets-doublee-2020-2025",
+          "newBase": "204-charge-interets-doublee-2020-2025"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 229,
+      "n_new": 205,
+      "old_html": "229-economies-vs-impots-cdc-2025.html",
+      "new_html": "205-economies-vs-impots-cdc-2025.html",
+      "slug": "economies-vs-impots-cdc-2025",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "229-economies-vs-impots-cdc-2025",
+          "newBase": "205-economies-vs-impots-cdc-2025"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 230,
+      "n_new": 206,
+      "old_html": "230-effondrement-naissances-france.html",
+      "new_html": "206-effondrement-naissances-france.html",
+      "slug": "effondrement-naissances-france",
+      "variant": null,
+      "subletter": null,
+      "lang": null,
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "230-effondrement-naissances-france",
+          "newBase": "206-effondrement-naissances-france"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    },
+    {
+      "type": "rename",
+      "n_old": 96,
+      "n_new": 207,
+      "old_html": "96-employee-cost-europe-EN.html",
+      "new_html": "207-employee-cost-europe-en.html",
+      "slug": "employee-cost-europe-en",
+      "variant": null,
+      "subletter": null,
+      "lang": "en",
+      "created_at": "2026-05-02T21:40:14+02:00",
+      "base_renames": [
+        {
+          "oldBase": "96-employee-cost-europe-EN",
+          "newBase": "207-employee-cost-europe-en"
+        }
+      ],
+      "png_counts": {
+        "insta": 1,
+        "tiktokV": 0,
+        "tiktokH": 0,
+        "publicSite": 0
+      }
+    }
+  ],
+  "archives": [
+    {
+      "type": "archive",
+      "old_html": "15-evolution-depenses-justice.html",
+      "reason": "no_png",
+      "png_orphans": {
+        "insta": [],
+        "tiktokV": [],
+        "tiktokH": [],
+        "publicSite": []
+      }
+    },
+    {
+      "type": "archive",
+      "old_html": "210-les-100-jours-banniere-linkedin.html",
+      "reason": "no_png",
+      "png_orphans": {
+        "insta": [],
+        "tiktokV": [],
+        "tiktokH": [],
+        "publicSite": []
+      }
+    },
+    {
+      "type": "archive",
+      "old_html": "210b-les-100-jours-banniere-article.html",
+      "reason": "no_png",
+      "png_orphans": {
+        "insta": [],
+        "tiktokV": [],
+        "tiktokH": [],
+        "publicSite": []
+      }
+    },
+    {
+      "type": "archive",
+      "old_html": "216-depense-sociale-vs-regalien.html",
+      "reason": "no_png",
+      "png_orphans": {
+        "insta": [],
+        "tiktokV": [],
+        "tiktokH": [],
+        "publicSite": []
+      }
+    },
+    {
+      "type": "archive",
+      "old_html": "220-charge-interets-dette-explosion.html",
+      "reason": "no_png",
+      "png_orphans": {
+        "insta": [],
+        "tiktokV": [],
+        "tiktokH": [],
+        "publicSite": []
+      }
+    },
+    {
+      "type": "archive",
+      "old_html": "221-associations-france-poids-secteur.html",
+      "reason": "no_png",
+      "png_orphans": {
+        "insta": [],
+        "tiktokV": [],
+        "tiktokH": [],
+        "publicSite": []
+      }
+    },
+    {
+      "type": "archive",
+      "old_html": "222-qui-finance-associations-53milliards.html",
+      "reason": "no_png",
+      "png_orphans": {
+        "insta": [],
+        "tiktokV": [],
+        "tiktokH": [],
+        "publicSite": []
+      }
+    },
+    {
+      "type": "archive",
+      "old_html": "225-tresor-cache-associations-101-milliards.html",
+      "reason": "no_png",
+      "png_orphans": {
+        "insta": [],
+        "tiktokV": [],
+        "tiktokH": [],
+        "publicSite": []
+      }
+    },
+    {
+      "type": "archive",
+      "old_html": "abonne-toi-cta.html",
+      "reason": "no_number",
+      "png_orphans": {}
+    }
+  ],
+  "conflicts": [
+    {
+      "kind": "duplicate_principal",
+      "n_old": 167,
+      "winner_file": "167-budget-defense-us-vs-france.html",
+      "winner_n_new": 99,
+      "loser_file": "167-retraite-reduit-pauvrete.html",
+      "loser_n_new": 170,
+      "note": "Plusieurs fichiers FR principaux pour ce N°. Notion pointera vers le plus ancien. Édite le JSON pour changer."
+    },
+    {
+      "kind": "duplicate_principal",
+      "n_old": 167,
+      "winner_file": "167-budget-defense-us-vs-france.html",
+      "winner_n_new": 99,
+      "loser_file": "167-salaire-brut-net-impot.html",
+      "loser_n_new": 171,
+      "note": "Plusieurs fichiers FR principaux pour ce N°. Notion pointera vers le plus ancien. Édite le JSON pour changer."
+    },
+    {
+      "kind": "duplicate_principal",
+      "n_old": 177,
+      "winner_file": "177-fonctionnaires-paris-vs-europe.html",
+      "winner_n_new": 102,
+      "loser_file": "177-ou-va-argent-livret-a.html",
+      "loser_n_new": 177,
+      "note": "Plusieurs fichiers FR principaux pour ce N°. Notion pointera vers le plus ancien. Édite le JSON pour changer."
+    }
+  ],
+  "notion_mapping_choices": [
+    {
+      "n_old": 1,
+      "n_new": 13,
+      "winner_file": "01-explosion-dette-france.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 2,
+      "n_new": 14,
+      "winner_file": "02-dette-publique-europe.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 3,
+      "n_new": 15,
+      "winner_file": "03-deficit-zone-euro.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 4,
+      "n_new": 16,
+      "winner_file": "04-deficit-historique-france.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 5,
+      "n_new": 39,
+      "winner_file": "05-depenses-publiques-pib-france.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 6,
+      "n_new": 40,
+      "winner_file": "06-depenses-vs-recettes-france.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 7,
+      "n_new": 24,
+      "winner_file": "07-dette-48800-par-habitant.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 8,
+      "n_new": 17,
+      "winner_file": "08a-charge-interets-dette.html",
+      "candidates_count": 2,
+      "reason": "subletter_a"
+    },
+    {
+      "n_old": 9,
+      "n_new": 25,
+      "winner_file": "09-dette-58md-interets.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 10,
+      "n_new": 1,
+      "winner_file": "10a-detenteurs-dette-france.html",
+      "candidates_count": 2,
+      "reason": "subletter_a"
+    },
+    {
+      "n_old": 11,
+      "n_new": 2,
+      "winner_file": "11-triple-degradation-notes.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 12,
+      "n_new": 118,
+      "winner_file": "12-depenses-sociales-vs-regalien.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 13,
+      "n_new": 119,
+      "winner_file": "13-1000-euros-depenses-publiques.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 14,
+      "n_new": 92,
+      "winner_file": "14-evolution-depense-sociale.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 15,
+      "n_new": 140,
+      "winner_file": "15-budget-justice-vs-retraites.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 16,
+      "n_new": 122,
+      "winner_file": "16-depenses-pib-ocde.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 17,
+      "n_new": 123,
+      "winner_file": "17-france-vs-chine-urss.html",
+      "candidates_count": 2,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 18,
+      "n_new": 124,
+      "winner_file": "18-depense-publique-vs-croissance.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 19,
+      "n_new": 33,
+      "winner_file": "19-france-championne-depenses-sociales-europe.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 27,
+      "n_new": 21,
+      "winner_file": "27-qui-nourrit-etat.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 28,
+      "n_new": 18,
+      "winner_file": "28-retraites-explosion-2070.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 29,
+      "n_new": 116,
+      "winner_file": "29-esperance-vie-france.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 33,
+      "n_new": 19,
+      "winner_file": "33-capitalisation-vs-repartition.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 37,
+      "n_new": 20,
+      "winner_file": "37-vieillissement-mondial-2070.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 38,
+      "n_new": 5,
+      "winner_file": "38-actifs-fonds-pension-monde.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 51,
+      "n_new": 22,
+      "winner_file": "51-fiche-de-paie-decomposition.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 55,
+      "n_new": 34,
+      "winner_file": "55-simulation-375k-brut-net.html",
+      "candidates_count": 2,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 59,
+      "n_new": 117,
+      "winner_file": "59-croissance-france.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 61,
+      "n_new": 35,
+      "winner_file": "61-mix-energetique-france-2030.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 65,
+      "n_new": 6,
+      "winner_file": "65-salaire-moyen-par-pays.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 73,
+      "n_new": 156,
+      "winner_file": "73-mercure-guyane-carousel.html",
+      "candidates_count": 1,
+      "reason": "carousel"
+    },
+    {
+      "n_old": 80,
+      "n_new": 7,
+      "winner_file": "80-prix-cigarette-france.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 81,
+      "n_new": 8,
+      "winner_file": "81-indice-big-mac.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 82,
+      "n_new": 144,
+      "winner_file": "82-evolution-prix-m2-paris.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 83,
+      "n_new": 145,
+      "winner_file": "83-prix-65m2-paris.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 90,
+      "n_new": 9,
+      "winner_file": "90-salaires-suisse.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 91,
+      "n_new": 10,
+      "winner_file": "91-top5-pays-peuples.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 92,
+      "n_new": 11,
+      "winner_file": "92-hotels-plus-chers-paris.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 93,
+      "n_new": 12,
+      "winner_file": "93-ue-dependance-terres-rares.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 94,
+      "n_new": 23,
+      "winner_file": "94-guyana-pib-62pct.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 95,
+      "n_new": 36,
+      "winner_file": "95-fiche-de-paie-simple.html",
+      "candidates_count": 3,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 96,
+      "n_new": 30,
+      "winner_file": "96-cout-total-salarie-europe.html",
+      "candidates_count": 2,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 97,
+      "n_new": 27,
+      "winner_file": "97-dette-titre-couverture.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 98,
+      "n_new": 28,
+      "winner_file": "98-dette-3305-milliards.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 99,
+      "n_new": 29,
+      "winner_file": "99-dette-us-interets-vs-pentagone.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 100,
+      "n_new": 32,
+      "winner_file": "100-classement-depenses-sociales-europe-top5.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 101,
+      "n_new": 41,
+      "winner_file": "101-etat-gaspille-votre-argent.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 102,
+      "n_new": 42,
+      "winner_file": "102-sortir-france-enfer-fiscal.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 103,
+      "n_new": 43,
+      "winner_file": "103-france-enfer-fiscal-question.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 104,
+      "n_new": 44,
+      "winner_file": "104-pas-de-retraite.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 105,
+      "n_new": 45,
+      "winner_file": "105-etat-francais-faillite.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 106,
+      "n_new": 46,
+      "winner_file": "106-ou-va-largent.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 107,
+      "n_new": 47,
+      "winner_file": "107-ouvalargent-com.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 108,
+      "n_new": 48,
+      "winner_file": "108-logo-euro.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 109,
+      "n_new": 49,
+      "winner_file": "109-abonne-toi.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 110,
+      "n_new": 50,
+      "winner_file": "110-partage-ami-socialiste.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 111,
+      "n_new": 51,
+      "winner_file": "111-partage-ami-chiffres.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 112,
+      "n_new": 52,
+      "winner_file": "112-article-15-ddhc.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 113,
+      "n_new": 53,
+      "winner_file": "113-dette-naissance-bebe.html",
+      "candidates_count": 4,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 114,
+      "n_new": 57,
+      "winner_file": "114-dette-5350-par-seconde.html",
+      "candidates_count": 4,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 115,
+      "n_new": 61,
+      "winner_file": "115-dette-pile-billets-terre.html",
+      "candidates_count": 4,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 116,
+      "n_new": 65,
+      "winner_file": "116-cout-eleve-recul-maths.html",
+      "candidates_count": 4,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 117,
+      "n_new": 68,
+      "winner_file": "117-medicaments-36-milliards.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 118,
+      "n_new": 69,
+      "winner_file": "118-subvention-sncf-310-euros.html",
+      "candidates_count": 4,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 119,
+      "n_new": 73,
+      "winner_file": "119-audiovisuel-public-4-milliards.html",
+      "candidates_count": 4,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 120,
+      "n_new": 77,
+      "winner_file": "120-communes-france-34874.html",
+      "candidates_count": 4,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 121,
+      "n_new": 81,
+      "winner_file": "121-82-jours-travail-impots.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 122,
+      "n_new": 82,
+      "winner_file": "122-salaire-suisse-double.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 123,
+      "n_new": 83,
+      "winner_file": "123-ratio-actifs-retraites.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 124,
+      "n_new": 84,
+      "winner_file": "124-taxe-fonciere-paris-52.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 125,
+      "n_new": 85,
+      "winner_file": "125-48-boites-medicaments.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 126,
+      "n_new": 107,
+      "winner_file": "126-code-travail-france-vs-suisse.html",
+      "candidates_count": 3,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 127,
+      "n_new": 146,
+      "winner_file": "127-intermittents-carousel.html",
+      "candidates_count": 2,
+      "reason": "carousel"
+    },
+    {
+      "n_old": 128,
+      "n_new": 147,
+      "winner_file": "128-aides-sociales-carousel.html",
+      "candidates_count": 2,
+      "reason": "carousel"
+    },
+    {
+      "n_old": 129,
+      "n_new": 148,
+      "winner_file": "129-singapour-pib-habitant.html",
+      "candidates_count": 2,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 130,
+      "n_new": 149,
+      "winner_file": "130-interets-dette-carousel.html",
+      "candidates_count": 2,
+      "reason": "carousel"
+    },
+    {
+      "n_old": 131,
+      "n_new": 150,
+      "winner_file": "131-taxes-essence-carousel.html",
+      "candidates_count": 2,
+      "reason": "carousel"
+    },
+    {
+      "n_old": 132,
+      "n_new": 120,
+      "winner_file": "132-droits-succession-comparaison.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 135,
+      "n_new": 3,
+      "winner_file": "135-france-2eme-plus-taxe-comparaison.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 136,
+      "n_new": 121,
+      "winner_file": "136-age-retraite-comparaison.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 138,
+      "n_new": 159,
+      "winner_file": "138-44pct-foyers-non-imposes.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 139,
+      "n_new": 91,
+      "winner_file": "139-lits-hopitaux-supprimes.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 140,
+      "n_new": 93,
+      "winner_file": "140-impot-societes-france-irlande.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 141,
+      "n_new": 151,
+      "winner_file": "141-normes-france-carousel.html",
+      "candidates_count": 2,
+      "reason": "carousel"
+    },
+    {
+      "n_old": 142,
+      "n_new": 94,
+      "winner_file": "142-deficit-169-milliards-2024.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 144,
+      "n_new": 161,
+      "winner_file": "144-dette-x6-depuis-1980.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 147,
+      "n_new": 162,
+      "winner_file": "147-echec-licence-64pct.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 149,
+      "n_new": 163,
+      "winner_file": "149-sans-medecin-traitant.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 153,
+      "n_new": 164,
+      "winner_file": "153a-emploi-industriel-pays.html",
+      "candidates_count": 4,
+      "reason": "subletter_a"
+    },
+    {
+      "n_old": 154,
+      "n_new": 168,
+      "winner_file": "154-463m-dette-par-jour.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 155,
+      "n_new": 152,
+      "winner_file": "155-elus-locaux-carousel.html",
+      "candidates_count": 2,
+      "reason": "carousel"
+    },
+    {
+      "n_old": 158,
+      "n_new": 153,
+      "winner_file": "158-tgv-shinkansen-carousel.html",
+      "candidates_count": 3,
+      "reason": "carousel"
+    },
+    {
+      "n_old": 160,
+      "n_new": 97,
+      "winner_file": "160-depenses-sante-3700-par-habitant.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 161,
+      "n_new": 154,
+      "winner_file": "161-tva-cercueil-carousel.html",
+      "candidates_count": 2,
+      "reason": "carousel"
+    },
+    {
+      "n_old": 163,
+      "n_new": 109,
+      "winner_file": "163-classement-pisa-maths.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 164,
+      "n_new": 111,
+      "winner_file": "164a-france-vs-dubai-fiscal-couverture.html",
+      "candidates_count": 5,
+      "reason": "subletter_a"
+    },
+    {
+      "n_old": 165,
+      "n_new": 141,
+      "winner_file": "165-nucleaire-chine-vs-allemagne.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 166,
+      "n_new": 142,
+      "winner_file": "166-taux-pauvrete-monde.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 167,
+      "n_new": 99,
+      "winner_file": "167-budget-defense-us-vs-france.html",
+      "candidates_count": 3,
+      "reason": "principal_oldest"
+    },
+    {
+      "n_old": 170,
+      "n_new": 100,
+      "winner_file": "170-3000-abonnes-twitter-green.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 172,
+      "n_new": 172,
+      "winner_file": "172-plein-essence-taxes-vs-cout.html",
+      "candidates_count": 2,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 173,
+      "n_new": 174,
+      "winner_file": "173-6000-abonnes.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 174,
+      "n_new": 101,
+      "winner_file": "174-cta-abonne-toi.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 175,
+      "n_new": 175,
+      "winner_file": "175-elus-locaux-decompte-national.html",
+      "candidates_count": 2,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 176,
+      "n_new": 157,
+      "winner_file": "176-taux-emprunt-france-10ans.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 177,
+      "n_new": 102,
+      "winner_file": "177-fonctionnaires-paris-vs-europe.html",
+      "candidates_count": 2,
+      "reason": "principal_oldest"
+    },
+    {
+      "n_old": 178,
+      "n_new": 178,
+      "winner_file": "178-dette-paris-30ans.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 179,
+      "n_new": 179,
+      "winner_file": "179-population-paris-30ans.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 180,
+      "n_new": 181,
+      "winner_file": "180-subventions-associations-top10.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 181,
+      "n_new": 182,
+      "winner_file": "181-retraites-vs-defense.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 182,
+      "n_new": 183,
+      "winner_file": "182-detroit-hormuz-flux-petrole.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 183,
+      "n_new": 184,
+      "winner_file": "183-pyramide-salaires-france.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 184,
+      "n_new": 125,
+      "winner_file": "184-pib-par-habitant-ppa.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 185,
+      "n_new": 185,
+      "winner_file": "185-dette-publique-evolution.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 186,
+      "n_new": 186,
+      "winner_file": "186-inflation-prix-conso.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 187,
+      "n_new": 126,
+      "winner_file": "187-taux-chomage-europe.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 188,
+      "n_new": 187,
+      "winner_file": "188-depenses-publiques-pib.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 189,
+      "n_new": 127,
+      "winner_file": "189-recettes-fiscales-pib.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 190,
+      "n_new": 128,
+      "winner_file": "190-depenses-militaires-pib.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 191,
+      "n_new": 129,
+      "winner_file": "191-depenses-sante-pib.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 192,
+      "n_new": 130,
+      "winner_file": "192-depenses-education-pib.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 193,
+      "n_new": 131,
+      "winner_file": "193-inegalites-gini.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 194,
+      "n_new": 132,
+      "winner_file": "194-pauvrete-relative.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 195,
+      "n_new": 188,
+      "winner_file": "195-productivite-travail.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 196,
+      "n_new": 189,
+      "winner_file": "196-ouverture-commerciale.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 197,
+      "n_new": 133,
+      "winner_file": "197-ide-entrants-pib.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 198,
+      "n_new": 134,
+      "winner_file": "198-depenses-rd-pib.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 199,
+      "n_new": 190,
+      "winner_file": "199-co2-par-habitant.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 200,
+      "n_new": 191,
+      "winner_file": "200-part-renouvelables.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 201,
+      "n_new": 192,
+      "winner_file": "201-croissance-demographique.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 202,
+      "n_new": 193,
+      "winner_file": "202-urbanisation-monde.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 203,
+      "n_new": 135,
+      "winner_file": "203-commerce-exterieur-pib.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 204,
+      "n_new": 103,
+      "winner_file": "204-7000-abonnes.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 205,
+      "n_new": 104,
+      "winner_file": "205-0pct-is-benefices-reinvestis.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 206,
+      "n_new": 4,
+      "winner_file": "206-pression-fiscale-record-mondial.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 207,
+      "n_new": 136,
+      "winner_file": "207-france-decroche-pib-habitant.html",
+      "candidates_count": 2,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 208,
+      "n_new": 137,
+      "winner_file": "208-croissance-francaise-panne.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 209,
+      "n_new": 194,
+      "winner_file": "209-reformes-liberales-avant-apres.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 210,
+      "n_new": 105,
+      "winner_file": "210-les-100-jours-couverture.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 211,
+      "n_new": 143,
+      "winner_file": "211-production-nucleaire-france-chine-allemagne.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 212,
+      "n_new": 138,
+      "winner_file": "212-depenses-sociales-explosion-france.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 213,
+      "n_new": 195,
+      "winner_file": "213-chi-finanzia-stato-italia.html",
+      "candidates_count": 1,
+      "reason": "oldest_only"
+    },
+    {
+      "n_old": 214,
+      "n_new": 139,
+      "winner_file": "214-france-plus-pauvre-europe-pib-ppa.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 215,
+      "n_new": 196,
+      "winner_file": "215-niveau-vie-retraites-vs-actifs.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 217,
+      "n_new": 197,
+      "winner_file": "217-cpf-1800-euros-par-francais.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 218,
+      "n_new": 198,
+      "winner_file": "218-taux-recuperation-retraite-generations.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 219,
+      "n_new": 199,
+      "winner_file": "219-france-podium-finances-publiques.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 223,
+      "n_new": 200,
+      "winner_file": "223-top-10-associations-subventionnees-etat.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 224,
+      "n_new": 201,
+      "winner_file": "224-ou-va-argent-etat-associations-postes.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 226,
+      "n_new": 202,
+      "winner_file": "226-dette-etat-augmentation-2025.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 227,
+      "n_new": 203,
+      "winner_file": "227-charge-interets-vs-defense-education.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 228,
+      "n_new": 204,
+      "winner_file": "228-charge-interets-doublee-2020-2025.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 229,
+      "n_new": 205,
+      "winner_file": "229-economies-vs-impots-cdc-2025.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    },
+    {
+      "n_old": 230,
+      "n_new": 206,
+      "winner_file": "230-effondrement-naissances-france.html",
+      "candidates_count": 1,
+      "reason": "principal_unique"
+    }
+  ],
+  "notion_updates": [
+    {
+      "page_id": "31594e12-0e7a-8130-a798-d2ba9c59c6d3",
+      "title": "Augmentation de la dette sur 70 ans",
+      "n_old": 1,
+      "n_new": 13,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-819a-8008-cd72626a6927",
+      "title": "Comparaison dette FR / UE",
+      "n_old": 2,
+      "n_new": 14,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81f5-865b-e695550ec71c",
+      "title": "Déficit FR vs Zone €",
+      "n_old": 3,
+      "n_new": 15,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8142-ae19-da897fa6eac7",
+      "title": "Historique des déficits FR depuis 1970",
+      "n_old": 4,
+      "n_new": 16,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-815c-8a0d-d20799cd9f3b",
+      "title": "Hausse du ratio dépenses publiques / PIB",
+      "n_old": 5,
+      "n_new": 39,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8165-9d6b-f7a556962f57",
+      "title": "Écart dépenses / recettes",
+      "n_old": 6,
+      "n_new": 40,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81d2-8ee2-ef28a809bdc8",
+      "title": "Dette par habitant",
+      "n_old": 7,
+      "n_new": 24,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-811e-8a8d-fd497b8e7e76",
+      "title": "Évolution charge d'intérêts",
+      "n_old": 8,
+      "n_new": 17,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81ba-80ef-efdb779a9268",
+      "title": "Charge d'intérêts vs autres budgets",
+      "n_old": 9,
+      "n_new": 25,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81d7-89f8-d752aa08820b",
+      "title": "Qui détient la dette FR ?",
+      "n_old": 10,
+      "n_new": 1,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8118-b39f-d984633843df",
+      "title": "Évolution de la note S&P / Moody's / Fitch",
+      "n_old": 11,
+      "n_new": 2,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-814a-a8ed-e212cf32e395",
+      "title": "Comparaison dépenses sociales vs régalien",
+      "n_old": 12,
+      "n_new": 118,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-818a-813f-f597bba286db",
+      "title": "Répartition blocs de dépenses publiques (pour 1 000 €)",
+      "n_old": 13,
+      "n_new": 119,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-810d-931a-d4d314cceb53",
+      "title": "Évolution de la dépense sociale",
+      "n_old": 14,
+      "n_new": 92,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81be-bf68-f8a08a1b3e24",
+      "title": "Évolution des dépenses de justice",
+      "n_old": 15,
+      "n_new": 140,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8110-b9f3-f4c66844c168",
+      "title": "Comparaison ratio dépense / PIB OCDE",
+      "n_old": 16,
+      "n_new": 122,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8198-9de8-d5a60e41530e",
+      "title": "Comparaison dép/PIB France vs Chine / URSS",
+      "n_old": 17,
+      "n_new": 123,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-817b-99dd-dea3d9acf24b",
+      "title": "Dépense publique vs croissance",
+      "n_old": 18,
+      "n_new": 124,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-818e-866e-e99388f46df2",
+      "title": "Répartition de la dépense sociale",
+      "n_old": 19,
+      "n_new": 33,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81bd-9a12-d07563901877",
+      "title": "Évolution des dépenses d'assurance maladie",
+      "n_old": 20,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81a6-8ad8-c6e6bab8940b",
+      "title": "Évolution des dépenses sociales prises en charge par l'État",
+      "n_old": 21,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81fa-ab36-ca479683fe53",
+      "title": "Mille-feuille sociale État / CT / SS",
+      "n_old": 22,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8158-94fd-c12193cfefde",
+      "title": "Administratif vs médecins à l'hôpital",
+      "n_old": 23,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8161-bebb-cd762cc8d742",
+      "title": "Administratif vs médecins à l'hôpital",
+      "n_old": 23,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8129-81af-c4e4a55112cd",
+      "title": "Nombre d'allocations en France (liste)",
+      "n_old": 24,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-819c-88e2-fd341c493bb4",
+      "title": "Intérêts dette vs nombre d'hôpitaux",
+      "n_old": 25,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8143-ac0d-c99fcf60bd11",
+      "title": "Où va l'argent de la Sécurité sociale",
+      "n_old": 26,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-817e-8d99-fa149561257e",
+      "title": "Qui finance la protection sociale",
+      "n_old": 27,
+      "n_new": 21,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-810f-b842-ed2cdfce4cdd",
+      "title": "Évolution ratio actifs / retraités",
+      "n_old": 28,
+      "n_new": 18,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-813a-8167-fa019bb3c5cd",
+      "title": "Allongement espérance de vie",
+      "n_old": 29,
+      "n_new": 116,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8106-9ec3-df603c358673",
+      "title": "Niveau de vie des retraités vs actifs",
+      "n_old": 30,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8187-9cde-c9a2e6fe3969",
+      "title": "Part des retraites PIB FR vs autres pays",
+      "n_old": 31,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81dd-8098-c276ebd611a8",
+      "title": "Taille des fonds de pension vs PIB FR",
+      "n_old": 32,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8148-9a23-dcf28839208d",
+      "title": "Pays répartition vs capitalisation",
+      "n_old": 33,
+      "n_new": 19,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81da-8d02-d95c853dacba",
+      "title": "Courbe cotisant répartition vs capitalisation",
+      "n_old": 34,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-814e-bbc3-f7f2a915c06d",
+      "title": "Pays favorables à la retraite par capitalisation",
+      "n_old": 35,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8161-be59-fe39d343fcc6",
+      "title": "Évolution espérance de vie monde",
+      "n_old": 36,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8135-974a-f8d00444ca04",
+      "title": "Part des + 65 ans population / pays",
+      "n_old": 37,
+      "n_new": 20,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8160-ac18-fb6fb9f26720",
+      "title": "Actifs des fonds de pension en % PIB",
+      "n_old": 38,
+      "n_new": 5,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81ac-acd0-c755a0180ba8",
+      "title": "Classement PISA France",
+      "n_old": 39,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-814d-9b2a-e69b0b14eb53",
+      "title": "Classement Masters France",
+      "n_old": 40,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81e4-a4e5-d6fbba247d6a",
+      "title": "Évolution nombre de fonctionnaires",
+      "n_old": 41,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-812e-9ef0-e91bfaba154c",
+      "title": "Nombre de mairies en France vs Suisse",
+      "n_old": 42,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81b8-859c-d7cf69192ca9",
+      "title": "Taux de satisfaction services publics",
+      "n_old": 43,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8130-8801-fce1289136f3",
+      "title": "Temps d'attente à l'hôpital",
+      "n_old": 44,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-812f-a1a6-c6314d8e5679",
+      "title": "Dettes de la ville de Paris",
+      "n_old": 45,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8180-8f97-cd9ce782a25f",
+      "title": "Classement dette / habitant des villes",
+      "n_old": 46,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81e9-89e5-c3afd1835a9e",
+      "title": "Budget commune : actions de la collectivité",
+      "n_old": 47,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8116-bcf5-da168f1e63dd",
+      "title": "Intérêts annuels dette Paris",
+      "n_old": 48,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-811e-89f6-d18f96e9c7f7",
+      "title": "Prélèvements obligatoires FR vs monde",
+      "n_old": 49,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81a4-9272-ddbc343cde21",
+      "title": "Les impôts sur les particuliers",
+      "n_old": 50,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8113-9f9f-f9046bd00fee",
+      "title": "Flux salaire superbrut → supernet",
+      "n_old": 51,
+      "n_new": 22,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8172-b7f1-ed50ebed9c9c",
+      "title": "Structure impôt FR vs autres",
+      "n_old": 52,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8174-a239-db319b81132d",
+      "title": "Imposition du capital FR : liste",
+      "n_old": 53,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-815e-a87f-e3a5d15cd541",
+      "title": "IS France vs centres offshore (FR vs Dubaï)",
+      "n_old": 54,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8149-9505-f3cd8803aea9",
+      "title": "3 000 € brut vs net",
+      "n_old": 55,
+      "n_new": 34,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81d9-940e-e6ca34d9b93f",
+      "title": "La redistribution (flux interdéciles)",
+      "n_old": 56,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-813f-b934-cf0d74c2e382",
+      "title": "Part industrie PIB FR (évolution)",
+      "n_old": 57,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81ff-9907-ef7bef24a117",
+      "title": "Évolution part industrie vs dette VS OCDE",
+      "n_old": 58,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8179-b472-f6460409a6bb",
+      "title": "Évolution croissance FR",
+      "n_old": 59,
+      "n_new": 117,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8125-baf2-fc8ce863e220",
+      "title": "Croissance FR vs autres pays",
+      "n_old": 60,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-810c-9e65-ccd8af9cf946",
+      "title": "Part du nucléaire FR évolution",
+      "n_old": 61,
+      "n_new": 35,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81eb-8b2a-f3dd03ce8fba",
+      "title": "Part du nucléaire Allemagne / Chine évolution",
+      "n_old": 62,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8114-a979-fea66e5803ee",
+      "title": "Nombre de panneaux solaires par pays",
+      "n_old": 63,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81a2-8bdd-eb485552964d",
+      "title": "Fondations FR de startups vs US",
+      "n_old": 64,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8156-98d5-f38bf64429be",
+      "title": "Salaire moyen par pays",
+      "n_old": 65,
+      "n_new": 6,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8180-86d0-d6ee269e6096",
+      "title": "Revenu moyen France vs États-Unis",
+      "n_old": 66,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8110-8a9b-ffafaa91f245",
+      "title": "Évolution nb Français à Dubaï / Londres",
+      "n_old": 67,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81fa-99a7-eb7d904df1fb",
+      "title": "Évolution des émissions CO2",
+      "n_old": 68,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81cb-9d89-c26af506133e",
+      "title": "Capitalisation CAC 40 vs entreprises US",
+      "n_old": 69,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-816c-9b76-e3defbaee164",
+      "title": "Où va l'argent des ETF ?",
+      "n_old": 70,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81b1-9828-f37ffb582482",
+      "title": "Évolution fécondité FR",
+      "n_old": 71,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8109-902c-d16ad8db0c9e",
+      "title": "Fécondité FR vs autres pays",
+      "n_old": 72,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8199-bc9f-cd566ea5d34d",
+      "title": "Ressources minières en Guyane",
+      "n_old": 73,
+      "n_new": 156,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81a8-ad1a-ccf37efe82d1",
+      "title": "PIB des pays × superficie",
+      "n_old": 74,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-812f-a71d-d90cde5a537b",
+      "title": "(supprimée)",
+      "n_old": 75,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-815d-917b-ca231b293320",
+      "title": "Singapour - Argentine",
+      "n_old": 76,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81d1-97f8-f75e86ecab8b",
+      "title": "Nombre d'utilisateurs ChatGPT",
+      "n_old": 77,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81aa-a583-c37e5a25ad2e",
+      "title": "Évolution demande en cuivre",
+      "n_old": 78,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81b2-bd21-f1441ecabab0",
+      "title": "Fertilité par pays",
+      "n_old": 79,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-814e-bd4e-d4033d33a352",
+      "title": "Prix cigarettes",
+      "n_old": 80,
+      "n_new": 7,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-812e-a5af-de98d4c2c372",
+      "title": "Indice Big Mac",
+      "n_old": 81,
+      "n_new": 8,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8188-8171-fbe25f13a6ec",
+      "title": "Évolution des prix / m² à Paris",
+      "n_old": 82,
+      "n_new": 144,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8131-9197-f02084ee78ad",
+      "title": "Prix d'un 65 m² à Paris",
+      "n_old": 83,
+      "n_new": 145,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8121-a705-e9055d9a7639",
+      "title": "Évolution de la construction",
+      "n_old": 84,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8156-a357-d9b7ad963cf9",
+      "title": "Où va l'argent du Livret A ?",
+      "n_old": 85,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8106-8010-e50e5131df06",
+      "title": "Évolution âge 1er achat immobilier",
+      "n_old": 86,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8182-8acc-fc7eb1ce1d61",
+      "title": "Rendement immobilier par ville",
+      "n_old": 87,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81ec-82d7-dfd68dba3aca",
+      "title": "Classement villes où il fait bon vivre",
+      "n_old": 88,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-818a-991d-c950da78a814",
+      "title": "Puissances nucléaires",
+      "n_old": 89,
+      "n_new": null,
+      "status": "unmapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-811b-a5b1-c47ad13cee98",
+      "title": "Salaires en Suisse",
+      "n_old": 90,
+      "n_new": 9,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8168-8b49-cce40793ccd4",
+      "title": "Top 5 pays les plus peuplés",
+      "n_old": 91,
+      "n_new": 10,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-811a-bf02-f70ca01c7c3c",
+      "title": "Hôtels les plus chers à Paris",
+      "n_old": 92,
+      "n_new": 11,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8104-9090-cb4ef1f914b5",
+      "title": "Dépendance UE aux terres rares",
+      "n_old": 93,
+      "n_new": 12,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8133-8318-cdfa4b458b9f",
+      "title": "Guyana PIB +62%",
+      "n_old": 94,
+      "n_new": 23,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8184-977b-c8bc79dd9e60",
+      "title": "Fiche de paie simplifiée",
+      "n_old": 95,
+      "n_new": 36,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8194-a89b-ee644c495a68",
+      "title": "Coût total salarié Europe",
+      "n_old": 96,
+      "n_new": 30,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81fe-bd50-f46e30beef4b",
+      "title": "Couverture série dette",
+      "n_old": 97,
+      "n_new": 27,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81cb-a169-da62e66a91e3",
+      "title": "Dette française 3 305 milliards",
+      "n_old": 98,
+      "n_new": 28,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8157-941f-cb2128ffeecd",
+      "title": "Intérêts dette US vs budget Pentagone",
+      "n_old": 99,
+      "n_new": 29,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81ec-accb-edc139f72630",
+      "title": "Classement dépenses sociales Europe top 5",
+      "n_old": 100,
+      "n_new": 32,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-810f-980f-e7f085784e6c",
+      "title": "L'État gaspille votre argent",
+      "n_old": 101,
+      "n_new": 41,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8194-b567-fba37a49a0e5",
+      "title": "Il faut sortir la France de l'enfer fiscal",
+      "n_old": 102,
+      "n_new": 42,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8143-864e-fe2b5da0c5dd",
+      "title": "La France est-elle un enfer fiscal ?",
+      "n_old": 103,
+      "n_new": 43,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81d6-af56-f57cdcfcb941",
+      "title": "Nous n'aurons pas de retraite",
+      "n_old": 104,
+      "n_new": 44,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8152-a39c-d7770163bbc6",
+      "title": "L'État français est en faillite",
+      "n_old": 105,
+      "n_new": 45,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8168-94a8-d6d22537137d",
+      "title": "Où va l'argent ?",
+      "n_old": 106,
+      "n_new": 46,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8107-91f4-d9fd1d7f71ff",
+      "title": "ouvalargent.com",
+      "n_old": 107,
+      "n_new": 47,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-815c-ae91-fdfcb999782b",
+      "title": "Logo Euro",
+      "n_old": 108,
+      "n_new": 48,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-817b-88b0-e949949f628d",
+      "title": "Abonne-toi",
+      "n_old": 109,
+      "n_new": 49,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81b6-b9a8-ffdf0484ab83",
+      "title": "Partage à un ami socialiste",
+      "n_old": 110,
+      "n_new": 50,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81a9-929f-f7be667f22a0",
+      "title": "Partage à un ami qui aime les chiffres",
+      "n_old": 111,
+      "n_new": 51,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81b8-ac2a-ebfd5892a902",
+      "title": "Article 15 – DDHC",
+      "n_old": 112,
+      "n_new": 52,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81aa-819d-e1893113383c",
+      "title": "50 800 €  de dette par bébé",
+      "n_old": 113,
+      "n_new": 53,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8146-a6ad-cb2c3d872c2f",
+      "title": "5 350 € de dette par seconde",
+      "n_old": 114,
+      "n_new": 57,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8188-8e2f-ce5c9cbf5bda",
+      "title": "Dette : pile de billets de 7 000 km",
+      "n_old": 115,
+      "n_new": 61,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8138-946b-fbbb4119cdc0",
+      "title": "Coût élève / recul maths",
+      "n_old": 116,
+      "n_new": 65,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81c5-bda3-d38ee239c164",
+      "title": "Chaque Français paye 310 €/an pour la SNCF",
+      "n_old": 118,
+      "n_new": 69,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8122-ad45-ebdeabbcff80",
+      "title": "Audiovisuel public : 4 Md€/an de subventions (2,8× Netflix France)",
+      "n_old": 119,
+      "n_new": 73,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8139-8947-fee71e1207a5",
+      "title": "Communes & élus : la France, championne d’Europe du mille-feuille",
+      "n_old": 120,
+      "n_new": 77,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-812a-a14c-e396a44ea69f",
+      "title": "Code du travail France vs Suisse",
+      "n_old": 126,
+      "n_new": 107,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8143-864a-f09c0c6af879",
+      "title": "Intermittents du spectacle : 1,3 Md€/an",
+      "n_old": 127,
+      "n_new": 146,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-815f-88bc-d9378f4c9ab9",
+      "title": "2 200 dispositifs d'aides sociales",
+      "n_old": 128,
+      "n_new": 147,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81ac-b679-e6d0fb6fef61",
+      "title": "Singapour vs France : de 8× plus pauvre à 2× plus riche",
+      "n_old": 129,
+      "n_new": 148,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81b0-a31c-f2f649cca04e",
+      "title": "Intérêts de la dette : 54 Md€ > budget Défense",
+      "n_old": 130,
+      "n_new": 149,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81b6-afa9-c5e07534c7fd",
+      "title": "Taxes essence ~1€/litre",
+      "n_old": 131,
+      "n_new": 150,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81ea-9290-e946284ca5e9",
+      "title": "Droits de succession 45%",
+      "n_old": 132,
+      "n_new": 120,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81c0-9d13-d7de5bcc474e",
+      "title": "France 2ème plus taxée OCDE",
+      "n_old": 135,
+      "n_new": 3,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8155-ae1e-f9eafd83a442",
+      "title": "Retraite 64 vs 66 Allemagne",
+      "n_old": 136,
+      "n_new": 121,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8143-86ca-dcd37da5d713",
+      "title": "150 000 lits hôpitaux supprimés",
+      "n_old": 139,
+      "n_new": 91,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81e9-bc69-e4a17f9a2f49",
+      "title": "IS France 25% vs Irlande 12,5%",
+      "n_old": 140,
+      "n_new": 93,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8133-80bb-c59b1da649ef",
+      "title": "Poids des normes",
+      "n_old": 141,
+      "n_new": 151,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8100-b4ff-e706be954c7e",
+      "title": "Déficit 169 Md€ (2024)",
+      "n_old": 142,
+      "n_new": 94,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81ff-9d8e-ca949f2822ea",
+      "title": "565 000 élus locaux : record européen",
+      "n_old": 155,
+      "n_new": 152,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8196-ba09-f76d1dc16c6f",
+      "title": "TGV 15% retard / 20,8 Md€",
+      "n_old": 158,
+      "n_new": 153,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81a2-85be-f92cb0983983",
+      "title": "Santé 3 723€ par habitant",
+      "n_old": 160,
+      "n_new": 97,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-81e1-9d01-d1753728cd1b",
+      "title": "TVA cercueil 20%",
+      "n_old": 161,
+      "n_new": 154,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-8117-afe2-feb79c243fe9",
+      "title": "375 000 € brut : combien il reste ?",
+      "n_old": 163,
+      "n_new": 109,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31594e12-0e7a-816f-9b8e-dce872fc0dfd",
+      "title": "France vs Dubai : choc fiscal",
+      "n_old": 164,
+      "n_new": 111,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31694e12-0e7a-81b2-b12a-cf4b8d980eff",
+      "title": "Production nucléaire : Chine vs Allemagne",
+      "n_old": 165,
+      "n_new": 141,
+      "status": "mapped"
+    },
+    {
+      "page_id": "31694e12-0e7a-8169-ac89-cc51a7f3c231",
+      "title": "Taux de pauvreté dans le monde",
+      "n_old": 166,
+      "n_new": 142,
+      "status": "mapped"
+    },
+    {
+      "page_id": "32294e12-0e7a-819c-aa86-e13cdd28315f",
+      "title": "520 000 élus locaux : le décompte national",
+      "n_old": 175,
+      "n_new": 175,
+      "status": "unchanged"
+    }
+  ]
+}

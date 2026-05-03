@@ -43,3 +43,7 @@ Thumbs.db
 *.test.mjs
 test-*.mjs
 Production interne/Réseaux Sociaux /Articles/Inspi video.mov
+
+# Renumérotation infographies (work files)
+Site/scripts/.renumber-audit.json
+Site/scripts/.renumber.log
