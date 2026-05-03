@@ -30,7 +30,7 @@ const SOURCES_DIR = path.resolve(
   '../../Production interne/Réseaux Sociaux /Infographies/Sources HTML'
 );
 
-const MIN_ID = 215; // on ne regarde que les références validées >= 215
+const MIN_ID = 165; // on ne regarde que les références validées >= 215
 
 // Heuristiques de détection : pour chaque pattern, regex à matcher dans l'HTML
 const PATTERNS = {
