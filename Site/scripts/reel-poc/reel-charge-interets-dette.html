@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Reel — charge-interets-dette</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a88899;
+            --text-muted: #6a4a5a;
+            --accent: #ff9f43;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 0; display: flex; justify-content: center; }
+        .reel { width: 1080px; height: 1920px; position: relative; overflow: hidden; }
+        .bg-base  { position: absolute; inset: 0; background: linear-gradient(160deg, #0a1220 0%, #1d2540 50%, #0a1220 100%); }
+        .bg-grid  { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 159, 67, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 159, 67, 0.05) 1px, transparent 1px); background-size: 50px 50px; }
+        .bg-glow-1 { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(255, 159, 67, 0.12) 0%, transparent 70%); top: -250px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%); bottom: -200px; left: -200px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 60px 50px 80px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; opacity: 0; }
+        .header.run { animation: fadeIn 500ms 0ms forwards; }
+        .logo { display: flex; align-items: center; gap: 14px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4.4rem; color: var(--accent); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 2rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .title { font-family: 'Instrument Serif', serif; font-size: 6rem; line-height: 1.04; letter-spacing: -2px; color: var(--text-primary); margin-top: 36px; opacity: 0; }
+        .title.run { animation: fadeUp 700ms 200ms forwards; }
+        .title .accent { color: var(--accent); font-style: italic; display: inline-block; opacity: 0; }
+        .title.run .accent { animation: fadeUp 700ms 700ms forwards; }
+        .subtitle { font-family: 'Syne', sans-serif; font-size: 1.4rem; color: var(--text-secondary); margin-top: 22px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0; }
+        .subtitle.run { animation: fadeIn 500ms 1000ms forwards; }
+
+        .chart-wrap { flex: 1; display: flex; align-items: center; justify-content: center; margin-top: 30px; min-height: 0; }
+        .chart-wrap svg { width: 100%; height: auto; max-height: 100%; }
+
+        .axis-elem { opacity: 1; }
+
+        .curve { fill: none; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; stroke: var(--accent);
+                 stroke-dasharray: var(--len, 9999); stroke-dashoffset: var(--len, 9999);
+                 filter: drop-shadow(0 0 14px rgba(255, 159, 67, 0.65)); }
+        .curve.run  { animation: drawCurve 6500ms 0ms cubic-bezier(0.4, 0.05, 0.4, 0.95) forwards; }
+
+        .endpoint { opacity: 0; }
+        .endpoint.run.start { animation: fadeIn 300ms 0ms forwards; }
+        .endpoint.run.end   { animation: popIn 700ms 6500ms forwards; }
+
+        .anchor-start { opacity: 0; }
+        .anchor-start.run { animation: fadeIn 400ms 0ms forwards; }
+
+        .anchor-end { opacity: 0; transform-box: fill-box; transform-origin: center; filter: drop-shadow(0 0 18px rgba(255, 159, 67, 0.7)); }
+        .anchor-end.run { animation: popIn 800ms 6700ms forwards; }
+
+        .stage-dot   { opacity: 0; transform-box: fill-box; transform-origin: center; }
+        .stage-label { opacity: 0; transform-box: fill-box; transform-origin: center; }
+        .stage-dot.s2015.run, .stage-label.s2015.run { animation: popIn 500ms 2167ms forwards; }
+        .stage-dot.s2020.run, .stage-label.s2020.run { animation: popIn 500ms 4333ms forwards; }
+        .stage-dot.s2022.run, .stage-label.s2022.run { animation: popIn 500ms 5200ms forwards; }
+        .stage-dot.s2024.run, .stage-label.s2024.run { animation: popIn 500ms 6067ms forwards; }
+
+        .footer { display: flex; flex-direction: column; align-items: center; gap: 14px; padding-top: 28px; margin-top: 24px; border-top: 1px solid var(--glass-border); opacity: 0; }
+        .footer.run { animation: fadeIn 600ms 800ms forwards; }
+        .cta { display: flex; align-items: baseline; justify-content: center; gap: 18px; }
+        .cta-prefix { font-family: 'Syne', sans-serif; font-size: 1.9rem; color: var(--text-primary); font-weight: 600; }
+        .cta-arrow { color: var(--accent); font-size: 2.6rem; font-weight: 700; line-height: 1; }
+        .cta-url { font-family: 'JetBrains Mono', monospace; font-size: 2.6rem; font-weight: 700; color: var(--accent); }
+        .source { font-size: 0.85rem; color: var(--text-muted); line-height: 1.3; text-align: center; }
+        .source span { color: var(--text-secondary); }
+
+        @keyframes fadeIn   { to { opacity: 1; } }
+        @keyframes fadeUp   { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn    { 0% { opacity: 0; transform: scale(0.85); } 60% { opacity: 1; transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes drawCurve { to { stroke-dashoffset: 0; } }
+    </style>
+</head>
+<body>
+    <div class="reel">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h1 class="title">La charge des intérêts<br><span class="accent">explose</span><br>depuis 2020</h1>
+            <div class="subtitle">France · Md€ / an · 2010 → 2025</div>
+
+            <div class="chart-wrap">
+                <svg viewBox="0 0 960 700" xmlns="http://www.w3.org/2000/svg">
+                    <text class="axis-elem" x="84" y="30" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="500" font-style="italic" text-anchor="end">Md€ / an</text>
+
+                    <line class="axis-elem" x1="90" y1="10" x2="90" y2="620" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1.5"/>
+                    <line class="axis-elem" x1="90" y1="620" x2="830" y2="620" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1.5"/>
+
+                    <line class="axis-elem" x1="90" y1="498.0" x2="830" y2="498.0" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+            <text class="axis-elem" x="80" y="505.0" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">30 Md€</text>
+<line class="axis-elem" x1="90" y1="376.0" x2="830" y2="376.0" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+            <text class="axis-elem" x="80" y="383.0" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">40 Md€</text>
+<line class="axis-elem" x1="90" y1="254.0" x2="830" y2="254.0" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+            <text class="axis-elem" x="80" y="261.0" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">50 Md€</text>
+<line class="axis-elem" x1="90" y1="132.0" x2="830" y2="132.0" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+            <text class="axis-elem" x="80" y="139.0" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">60 Md€</text>
+                    <text class="axis-elem" x="80" y="627.0" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">20 Md€</text>
+
+                    <text class="axis-elem" x="90" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">2010</text>
+<text class="axis-elem" x="337" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">2015</text>
+<text class="axis-elem" x="583" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">2020</text>
+<text class="axis-elem" x="830" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">2025</text>
+
+                    <path id="curve" class="curve" d="M90.0,290.6 L336.7,351.6 L583.3,473.6 L682.0,400.4 L780.7,217.4 L830.0,156.4"/>
+
+                    <circle class="endpoint start" cx="90.0" cy="290.6" r="11" fill="#ffffff" stroke="#ff9f43" stroke-width="4"/>
+                    <text class="anchor-start" x="115.0" y="270.6" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="42" font-weight="700" text-anchor="start">47 Md€</text>
+
+                    <circle class="stage-dot s2015" cx="336.7" cy="351.6" r="10" fill="#ffffff" stroke="#ff9f43" stroke-width="4"/>
+            <text class="stage-label s2015" x="336.7" y="329.6" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="32" font-weight="700" text-anchor="middle">42 Md€</text>
+<circle class="stage-dot s2020" cx="583.3" cy="473.6" r="10" fill="#ffffff" stroke="#ff9f43" stroke-width="4"/>
+            <text class="stage-label s2020" x="583.3" y="451.6" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="32" font-weight="700" text-anchor="middle">32 Md€</text>
+<circle class="stage-dot s2022" cx="682.0" cy="400.4" r="10" fill="#ffffff" stroke="#ff9f43" stroke-width="4"/>
+            <text class="stage-label s2022" x="682.0" y="430.4" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="32" font-weight="700" text-anchor="middle">38 Md€</text>
+<circle class="stage-dot s2024" cx="780.7" cy="217.4" r="10" fill="#ffffff" stroke="#ff9f43" stroke-width="4"/>
+            <text class="stage-label s2024" x="780.7" y="247.4" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="32" font-weight="700" text-anchor="middle">53 Md€</text>
+
+                    <circle class="endpoint end" cx="830.0" cy="156.4" r="16" fill="#ff9f43" stroke="#0a1220" stroke-width="4"/>
+                    <text class="anchor-end" x="822.0" y="134.4" fill="#ff9f43" font-family="'JetBrains Mono', monospace" font-size="56" font-weight="700" text-anchor="end">58 Md€</text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="cta">
+                    <span class="cta-prefix">L'info éco sur</span>
+                    <span class="cta-arrow">→</span>
+                    <span class="cta-url">ouvalargent.com</span>
+                </div>
+                <div class="source">Source : <span>Banque de France · 2024-2025</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.curve').forEach(p => {
+            const len = p.getTotalLength();
+            p.style.setProperty('--len', len);
+        });
+
+        const ANIMATED_SELECTORS = '.header, .title, .subtitle, .axis-elem, .curve, .endpoint, .anchor-start, .anchor-end, .stage-dot, .stage-label, .footer';
+        const elements = Array.from(document.querySelectorAll(ANIMATED_SELECTORS));
+
+        function startAndPauseAll() {
+            elements.forEach(el => el.classList.add('run'));
+            requestAnimationFrame(() => {
+                document.getAnimations().forEach(a => a.pause());
+            });
+        }
+
+        window.__reelReady = false;
+        window.setReelTime = (timeMs) => {
+            document.getAnimations().forEach(a => {
+                try { a.currentTime = timeMs; } catch (e) {}
+            });
+        };
+
+        window.startReel = () => { elements.forEach(el => el.classList.add('run')); };
+
+        if (window.location.search.includes('capture')) {
+            startAndPauseAll();
+            Promise.all([document.fonts.ready]).then(() => { window.__reelReady = true; });
+        } else {
+            document.fonts.ready.then(() => { window.startReel(); });
+        }
+    </script>
+</body>
+</html>

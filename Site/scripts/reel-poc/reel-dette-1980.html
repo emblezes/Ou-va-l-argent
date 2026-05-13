@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Reel — dette-1980</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a88899;
+            --text-muted: #6a4a5a;
+            --accent: #ff4757;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 0; display: flex; justify-content: center; }
+        .reel { width: 1080px; height: 1920px; position: relative; overflow: hidden; }
+        .bg-base  { position: absolute; inset: 0; background: linear-gradient(160deg, #0a1220 0%, #1d2540 50%, #0a1220 100%); }
+        .bg-grid  { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 71, 87, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 71, 87, 0.05) 1px, transparent 1px); background-size: 50px 50px; }
+        .bg-glow-1 { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(255, 71, 87, 0.12) 0%, transparent 70%); top: -250px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%); bottom: -200px; left: -200px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 40px 40px; display: flex; flex-direction: column; }
+
+        /* Titre/header/footer : présents dès t=0 — seul le graphe s'anime */
+        .header { display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 14px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4.4rem; color: var(--accent); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 2rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .title-block { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 24px; }
+        .title { font-family: 'Instrument Serif', serif; font-size: 7.4rem; line-height: 1.02; letter-spacing: -2.2px; color: var(--text-primary); text-align: center; }
+        .title .accent { color: var(--accent); font-style: italic; display: inline-block; }
+        .subtitle { font-family: 'Syne', sans-serif; font-size: 1.9rem; color: var(--text-secondary); margin-top: 20px; letter-spacing: 1.4px; text-transform: uppercase; text-align: center; line-height: 1.4; font-weight: 600; }
+
+        .chart-wrap { flex: 1; display: flex; align-items: stretch; justify-content: center; margin-top: 16px; min-height: 0; }
+        .chart-wrap svg { width: 100%; height: 100%; }
+
+        .axis-elem { opacity: 1; }
+
+        .curve { fill: none; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; stroke: var(--accent);
+                 stroke-dasharray: var(--len, 9999); stroke-dashoffset: var(--len, 9999);
+                 filter: drop-shadow(0 0 14px rgba(255, 71, 87, 0.65)); }
+        .curve.run  { animation: drawCurve 6500ms 0ms cubic-bezier(0.4, 0.05, 0.4, 0.95) forwards; }
+
+        .endpoint { opacity: 0; }
+        .endpoint.run.start { animation: fadeIn 300ms 0ms forwards; }
+        .endpoint.run.end   { animation: popIn 700ms 6500ms forwards; }
+
+        .anchor-start { opacity: 0; }
+        .anchor-start.run { animation: fadeIn 400ms 0ms forwards; }
+
+        .anchor-end { opacity: 0; transform-box: fill-box; transform-origin: center; filter: drop-shadow(0 0 18px rgba(255, 71, 87, 0.7)); }
+        .anchor-end.run { animation: popIn 800ms 6700ms forwards; }
+
+        .stage-dot   { opacity: 0; transform-box: fill-box; transform-origin: center; }
+        .stage-label { opacity: 0; transform-box: fill-box; transform-origin: center; }
+        .stage-dot.s1990.run, .stage-label.s1990.run { animation: popIn 500ms 1477ms forwards; }
+        .stage-dot.s2000.run, .stage-label.s2000.run { animation: popIn 500ms 2955ms forwards; }
+        .stage-dot.s2010.run, .stage-label.s2010.run { animation: popIn 500ms 4432ms forwards; }
+        .stage-dot.s2020.run, .stage-label.s2020.run { animation: popIn 500ms 5909ms forwards; }
+
+        .footer { display: flex; flex-direction: column; align-items: center; gap: 10px; padding-top: 18px; margin-top: 14px; border-top: 1px solid var(--glass-border); }
+        .cta { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .cta-url { font-family: 'JetBrains Mono', monospace; font-size: 2.6rem; font-weight: 700; color: var(--accent); letter-spacing: 0.5px; }
+        .cta-handle { font-family: 'JetBrains Mono', monospace; font-size: 2.2rem; font-weight: 500; color: #ffffff; letter-spacing: 0.5px; }
+        .source { font-size: 0.85rem; color: var(--text-muted); line-height: 1.3; text-align: center; }
+        .source span { color: var(--text-secondary); }
+
+        /* Écran final "Abonne-toi" — overlay fullscreen */
+        .cta-screen {
+            position: absolute; inset: 0; z-index: 10;
+            background: radial-gradient(ellipse at center, #142b48 0%, #0a1220 70%, #06080c 100%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 60px;
+            opacity: 0; pointer-events: none;
+        }
+        .cta-screen.run { animation: ctaFadeIn 400ms 8000ms forwards; }
+        .cta-screen-logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 18rem;
+            color: var(--accent);
+            line-height: 1;
+            text-shadow: 0 0 80px rgba(255, 71, 87, 0.5);
+            opacity: 0;
+        }
+        .cta-screen.run .cta-screen-logo { animation: popIn 500ms 8000ms forwards; }
+        .cta-screen-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 9rem;
+            color: #ffffff;
+            line-height: 1;
+            text-align: center;
+            opacity: 0;
+        }
+        .cta-screen.run .cta-screen-title { animation: fadeUp 400ms 8200ms forwards; }
+        .cta-screen-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.8rem;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0;
+        }
+        .cta-screen.run .cta-screen-tag { animation: fadeUp 300ms 8400ms forwards; }
+        .cta-screen-urls {
+            display: flex; flex-direction: column; align-items: center; gap: 18px;
+            margin-top: 30px;
+            opacity: 0;
+        }
+        .cta-screen.run .cta-screen-urls { animation: fadeUp 400ms 8500ms forwards; }
+        .cta-screen-url {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 4.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+        .cta-screen-handle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3.6rem;
+            font-weight: 500;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeIn    { to { opacity: 1; } }
+        @keyframes ctaFadeIn { to { opacity: 1; } }
+        @keyframes fadeUp    { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn     { 0% { opacity: 0; transform: scale(0.85); } 60% { opacity: 1; transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes drawCurve { to { stroke-dashoffset: 0; } }
+    </style>
+</head>
+<body>
+    <div class="reel">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <div class="title-block">
+                <h1 class="title">L'envolée de la<br><span class="accent">dette publique :</span><br>×6 depuis 1980</h1>
+                <div class="subtitle">France · Dette publique · % du PIB · 1980 → 2024</div>
+            </div>
+
+            <div class="chart-wrap">
+                <svg viewBox="0 0 960 1380" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                    <text class="axis-elem" x="84" y="55" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="500" font-style="italic" text-anchor="end">% PIB</text>
+
+                    <line class="axis-elem" x1="90" y1="30" x2="90" y2="1280" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1.5"/>
+                    <line class="axis-elem" x1="90" y1="1280" x2="920" y2="1280" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1.5"/>
+
+                    <line class="axis-elem" x1="90" y1="1039.6" x2="920" y2="1039.6" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+            <text class="axis-elem" x="80" y="1048.6" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="28" font-weight="500" text-anchor="end">25 %</text>
+<line class="axis-elem" x1="90" y1="799.2" x2="920" y2="799.2" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+            <text class="axis-elem" x="80" y="808.2" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="28" font-weight="500" text-anchor="end">50 %</text>
+<line class="axis-elem" x1="90" y1="558.8" x2="920" y2="558.8" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+            <text class="axis-elem" x="80" y="567.8" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="28" font-weight="500" text-anchor="end">75 %</text>
+<line class="axis-elem" x1="90" y1="318.5" x2="920" y2="318.5" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+            <text class="axis-elem" x="80" y="327.5" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="28" font-weight="500" text-anchor="end">100 %</text>
+<line class="axis-elem" x1="90" y1="78.1" x2="920" y2="78.1" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+            <text class="axis-elem" x="80" y="87.1" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="28" font-weight="500" text-anchor="end">125 %</text>
+                    <text class="axis-elem" x="80" y="1289.0" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="28" font-weight="500" text-anchor="end">0 %</text>
+
+                    <text class="axis-elem" x="90" y="1330" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="600" text-anchor="middle">1980</text>
+<text class="axis-elem" x="279" y="1330" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="600" text-anchor="middle">1990</text>
+<text class="axis-elem" x="467" y="1330" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="600" text-anchor="middle">2000</text>
+<text class="axis-elem" x="656" y="1330" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="600" text-anchor="middle">2010</text>
+<text class="axis-elem" x="845" y="1330" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="600" text-anchor="middle">2020</text>
+<text class="axis-elem" x="920" y="1330" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="600" text-anchor="middle">2024</text>
+
+                    <path id="curve" class="curve" d="M90.0,1078.1 L278.6,943.5 L467.3,712.7 L655.9,462.7 L844.5,174.2 L920.0,155.0"/>
+
+                    <circle class="endpoint start" cx="90.0" cy="1078.1" r="15" fill="#ffffff" stroke="#ff4757" stroke-width="5"/>
+                    <text class="anchor-start" x="122.0" y="1113.1" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="56" font-weight="700" text-anchor="start">21 %</text>
+
+                    <circle class="stage-dot s1990" cx="278.6" cy="943.5" r="14" fill="#ffffff" stroke="#ff4757" stroke-width="5"/>
+            <text class="stage-label s1990" x="278.6" y="888.5" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="44" font-weight="700" text-anchor="middle">35 %</text>
+<circle class="stage-dot s2000" cx="467.3" cy="712.7" r="14" fill="#ffffff" stroke="#ff4757" stroke-width="5"/>
+            <text class="stage-label s2000" x="467.3" y="657.7" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="44" font-weight="700" text-anchor="middle">59 %</text>
+<circle class="stage-dot s2010" cx="655.9" cy="462.7" r="14" fill="#ffffff" stroke="#ff4757" stroke-width="5"/>
+            <text class="stage-label s2010" x="655.9" y="407.7" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="44" font-weight="700" text-anchor="middle">85 %</text>
+<circle class="stage-dot s2020" cx="844.5" cy="174.2" r="14" fill="#ffffff" stroke="#ff4757" stroke-width="5"/>
+            
+
+                    <circle class="endpoint end" cx="920.0" cy="155.0" r="22" fill="#ff4757" stroke="#0a1220" stroke-width="5"/>
+                    <text class="anchor-end" x="908.0" y="100.0" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="74" font-weight="700" text-anchor="end">117 %</text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="cta">
+                    <span class="cta-url">ouvalargent.com</span>
+                    <span class="cta-handle">@ouvalargentfr</span>
+                </div>
+                <div class="source">Source : <span>INSEE · Banque de France · Comptes nationaux · 2024</span></div>
+            </div>
+        </div>
+
+        <div class="cta-screen">
+            <div class="cta-screen-logo">€</div>
+            <div class="cta-screen-title">Abonne-toi.</div>
+            <div class="cta-screen-tag">Partage.</div>
+            <div class="cta-screen-urls">
+                <div class="cta-screen-url">ouvalargent.com</div>
+                <div class="cta-screen-handle">@ouvalargentfr</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.curve').forEach(p => {
+            const len = p.getTotalLength();
+            p.style.setProperty('--len', len);
+        });
+
+        const ANIMATED_SELECTORS = '.axis-elem, .curve, .endpoint, .anchor-start, .anchor-end, .stage-dot, .stage-label, .cta-screen';
+        const elements = Array.from(document.querySelectorAll(ANIMATED_SELECTORS));
+
+        function startAndPauseAll() {
+            elements.forEach(el => el.classList.add('run'));
+            requestAnimationFrame(() => {
+                document.getAnimations().forEach(a => a.pause());
+            });
+        }
+
+        window.__reelReady = false;
+        window.setReelTime = (timeMs) => {
+            document.getAnimations().forEach(a => {
+                try { a.currentTime = timeMs; } catch (e) {}
+            });
+        };
+
+        window.startReel = () => { elements.forEach(el => el.classList.add('run')); };
+
+        if (window.location.search.includes('capture')) {
+            startAndPauseAll();
+            Promise.all([document.fonts.ready]).then(() => { window.__reelReady = true; });
+        } else {
+            document.fonts.ready.then(() => { window.startReel(); });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Reel — Naissances en France au plus bas depuis 1946</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a88899;
+            --text-muted: #6a4a5a;
+            --accent-red: #ff4757;
+            --accent-cyan: #00d4ff;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 0; display: flex; justify-content: center; }
+        .reel { width: 1080px; height: 1920px; position: relative; overflow: hidden; }
+        .bg-base  { position: absolute; inset: 0; background: linear-gradient(160deg, #0a1220 0%, #1d2540 50%, #0a1220 100%); }
+        .bg-grid  { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 71, 87, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 71, 87, 0.05) 1px, transparent 1px); background-size: 50px 50px; }
+        .bg-glow-1 { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(255, 71, 87, 0.12) 0%, transparent 70%); top: -250px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%); bottom: -200px; left: -200px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 60px 50px 80px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; opacity: 0; }
+        .header.run { animation: fadeIn 500ms 0ms forwards; }
+        .logo { display: flex; align-items: center; gap: 14px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4.4rem; color: var(--accent-red); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 2rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .title { font-family: 'Instrument Serif', serif; font-size: 6.4rem; line-height: 1.02; letter-spacing: -2px; color: var(--text-primary); margin-top: 40px; opacity: 0; }
+        .title.run { animation: fadeUp 700ms 200ms forwards; }
+        .title .accent { color: var(--accent-red); font-style: italic; display: inline-block; opacity: 0; }
+        .title.run .accent { animation: fadeUp 700ms 700ms forwards; }
+        .subtitle { font-family: 'Syne', sans-serif; font-size: 1.4rem; color: var(--text-secondary); margin-top: 22px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0; }
+        .subtitle.run { animation: fadeIn 500ms 1000ms forwards; }
+
+        /* Annotations 1980/2024 directement sur la courbe (pas de pills déportées) */
+
+        .chart-wrap { flex: 1; display: flex; align-items: center; justify-content: center; margin-top: 30px; min-height: 0; }
+        .chart-wrap svg { width: 100%; height: auto; max-height: 100%; }
+
+        /* Axes + grille — TOUJOURS visibles (hook : graph présent dès t=0) */
+        .axis-elem { opacity: 1; }
+
+        .curve { fill: none; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round;
+                 stroke-dasharray: var(--len, 9999); stroke-dashoffset: var(--len, 9999); }
+        .curve.red  { stroke: var(--accent-red); filter: drop-shadow(0 0 14px rgba(255, 71, 87, 0.65)); }
+        .curve.run  { animation: drawCurve 6500ms 0ms cubic-bezier(0.4, 0.05, 0.4, 0.95) forwards; }
+
+        .endpoint { opacity: 0; }
+        .endpoint.run.start { animation: fadeIn 300ms 0ms forwards; }
+        .endpoint.run.end   { animation: popIn 700ms 6500ms forwards; }
+
+        .anchor-1980 { opacity: 0; }
+        .anchor-1980.run { animation: fadeIn 400ms 0ms forwards; }
+
+        .anchor-2024 { opacity: 0; transform-box: fill-box; transform-origin: center; filter: drop-shadow(0 0 18px rgba(255, 71, 87, 0.7)); }
+        .anchor-2024.run { animation: popIn 800ms 6700ms forwards; }
+
+        /* Points d'étape — calage linéaire sur le tracé 0..6500 ms
+           1990 → x=258 → 168/740 × 6500 = 1475 ms
+           2000 → x=426 → 336/740 × 6500 = 2950 ms
+           2010 → x=594 → 504/740 × 6500 = 4427 ms
+           2020 → x=762 → 672/740 × 6500 = 5904 ms */
+        .stage-dot   { opacity: 0; transform-box: fill-box; transform-origin: center; }
+        .stage-label { opacity: 0; transform-box: fill-box; transform-origin: center; }
+        .stage-dot.s1990.run, .stage-label.s1990.run { animation: popIn 500ms 1500ms forwards; }
+        .stage-dot.s2000.run, .stage-label.s2000.run { animation: popIn 500ms 3000ms forwards; }
+        .stage-dot.s2010.run, .stage-label.s2010.run { animation: popIn 500ms 4500ms forwards; }
+        .stage-dot.s2020.run, .stage-label.s2020.run { animation: popIn 500ms 6000ms forwards; }
+
+        /* Footer — CTA centré sous le graphe en gros */
+        .footer { display: flex; flex-direction: column; align-items: center; gap: 14px; padding-top: 28px; margin-top: 24px; border-top: 1px solid var(--glass-border); opacity: 0; }
+        .footer.run { animation: fadeIn 600ms 800ms forwards; }
+        .cta { display: flex; align-items: baseline; justify-content: center; gap: 18px; }
+        .cta-prefix { font-family: 'Syne', sans-serif; font-size: 1.9rem; color: var(--text-primary); font-weight: 600; }
+        .cta-arrow { color: var(--accent-red); font-size: 2.6rem; font-weight: 700; line-height: 1; }
+        .cta-url { font-family: 'JetBrains Mono', monospace; font-size: 2.6rem; font-weight: 700; color: var(--accent-red); }
+        .source { font-size: 0.85rem; color: var(--text-muted); line-height: 1.3; text-align: center; }
+        .source span { color: var(--text-secondary); }
+
+        @keyframes fadeIn   { to { opacity: 1; } }
+        @keyframes fadeUp   { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn    { 0% { opacity: 0; transform: scale(0.85); } 60% { opacity: 1; transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes drawCurve { to { stroke-dashoffset: 0; } }
+    </style>
+</head>
+<body>
+    <div class="reel">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h1 class="title">Naissances en France :<br><span class="accent">au plus bas depuis 1946</span></h1>
+            <div class="subtitle">France · Nombre de naissances vivantes / an · 1980 → 2024</div>
+
+            <div class="chart-wrap">
+                <svg viewBox="0 0 960 700" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Y unit caption -->
+                    <text class="axis-elem" x="84" y="30" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="500" font-style="italic" text-anchor="end">milliers / an</text>
+
+                    <!-- Axes -->
+                    <line class="axis-elem" x1="90" y1="10" x2="90" y2="620" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1.5"/>
+                    <line class="axis-elem" x1="90" y1="620" x2="830" y2="620" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1.5"/>
+
+                    <!-- Grille horizontale (échelle 600..900 K → y=620..10, 2,033 px/millier)
+                         650→y=518   700→y=417   750→y=315   800→y=213   850→y=112   900→y=10 -->
+                    <line class="axis-elem" x1="90" y1="518" x2="830" y2="518" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+                    <text class="axis-elem" x="80" y="525" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">650 K</text>
+
+                    <line class="axis-elem" x1="90" y1="417" x2="830" y2="417" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+                    <text class="axis-elem" x="80" y="424" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">700 K</text>
+
+                    <line class="axis-elem" x1="90" y1="315" x2="830" y2="315" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+                    <text class="axis-elem" x="80" y="322" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">750 K</text>
+
+                    <line class="axis-elem" x1="90" y1="213" x2="830" y2="213" stroke="#6a4a5a" stroke-opacity="0.30" stroke-dasharray="4,4"/>
+                    <text class="axis-elem" x="80" y="220" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">800 K</text>
+
+                    <line class="axis-elem" x1="90" y1="112" x2="830" y2="112" stroke="#6a4a5a" stroke-opacity="0.20" stroke-dasharray="4,4"/>
+                    <text class="axis-elem" x="80" y="119" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">850 K</text>
+
+                    <text class="axis-elem" x="80" y="627" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">600 K</text>
+
+                    <!-- Labels X (1980..2024) -->
+                    <text class="axis-elem" x="90"  y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">1980</text>
+                    <text class="axis-elem" x="258" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">1990</text>
+                    <text class="axis-elem" x="426" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">2000</text>
+                    <text class="axis-elem" x="594" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">2010</text>
+                    <text class="axis-elem" x="830" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">2024</text>
+
+                    <!-- Courbe Naissances 1980→2024 (chiffres INSEE, milliers / an)
+                         1980=800 · 1990=762 · 2000=775 · 2010=824 · 2020=736 · 2024=663
+                         Échelle X : 1980→x=90, 2024→x=830 (16,82 px/an)
+                         Échelle Y : 600 K→y=620, 900 K→y=10 (2,033 px/millier) -->
+                    <path id="curve-naissances" class="curve red"
+                          d="M90,213 L258,291 L426,264 L594,165 L762,343 L830,492"/>
+
+                    <!-- Endpoint 1980 + annotation IMMÉDIATE sur la courbe -->
+                    <circle class="endpoint start" cx="90" cy="213" r="11" fill="#ffffff" stroke="#ff4757" stroke-width="4"/>
+                    <text class="anchor-1980" x="115" y="200" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="42" font-weight="700" text-anchor="start">800 K</text>
+
+                    <!-- Points d'étape : 1990 (762 K), 2000 (775 K), 2010 (824 K — pic), 2020 (736 K) -->
+                    <circle class="stage-dot s1990" cx="258" cy="291" r="10" fill="#ffffff" stroke="#ff4757" stroke-width="4"/>
+                    <text class="stage-label s1990" x="258" y="325" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="32" font-weight="700" text-anchor="middle">762 K</text>
+
+                    <circle class="stage-dot s2000" cx="426" cy="264" r="10" fill="#ffffff" stroke="#ff4757" stroke-width="4"/>
+                    <text class="stage-label s2000" x="426" y="240" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="32" font-weight="700" text-anchor="middle">775 K</text>
+
+                    <circle class="stage-dot s2010" cx="594" cy="165" r="10" fill="#ffffff" stroke="#ff4757" stroke-width="4"/>
+                    <text class="stage-label s2010" x="594" y="141" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="32" font-weight="700" text-anchor="middle">824 K</text>
+
+                    <circle class="stage-dot s2020" cx="762" cy="343" r="10" fill="#ffffff" stroke="#ff4757" stroke-width="4"/>
+                    <text class="stage-label s2020" x="762" y="377" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="32" font-weight="700" text-anchor="middle">736 K</text>
+
+                    <!-- Endpoint 2024 (final) — gros point rouge avec annotation MASSIVE -->
+                    <circle class="endpoint end" cx="830" cy="492" r="16" fill="#ff4757" stroke="#0a1220" stroke-width="4"/>
+                    <text class="anchor-2024" x="822" y="552" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="56" font-weight="700" text-anchor="end">663 K</text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="cta">
+                    <span class="cta-prefix">L'info éco sur</span>
+                    <span class="cta-arrow">→</span>
+                    <span class="cta-url">ouvalargent.com</span>
+                </div>
+                <div class="source">Source : <span>INSEE · Statistiques de l'état civil · 2025</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.curve').forEach(p => {
+            const len = p.getTotalLength();
+            p.style.setProperty('--len', len);
+        });
+
+        const ANIMATED_SELECTORS = '.header, .title, .subtitle, .axis-elem, .curve, .endpoint, .anchor-1980, .anchor-2024, .stage-dot, .stage-label, .footer';
+        const elements = Array.from(document.querySelectorAll(ANIMATED_SELECTORS));
+
+        function startAndPauseAll() {
+            elements.forEach(el => el.classList.add('run'));
+            requestAnimationFrame(() => {
+                document.getAnimations().forEach(a => a.pause());
+            });
+        }
+
+        window.__reelReady = false;
+        window.setReelTime = (timeMs) => {
+            document.getAnimations().forEach(a => {
+                try { a.currentTime = timeMs; } catch (e) {}
+            });
+        };
+
+        window.startReel = () => {
+            elements.forEach(el => el.classList.add('run'));
+        };
+
+        if (window.location.search.includes('capture')) {
+            startAndPauseAll();
+            Promise.all([document.fonts.ready]).then(() => {
+                window.__reelReady = true;
+            });
+        } else {
+            document.fonts.ready.then(() => {
+                window.startReel();
+            });
+        }
+    </script>
+</body>
+</html>

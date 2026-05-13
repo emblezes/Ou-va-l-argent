@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Reel 209 — Salaire des profs, grand déclassement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a88899;
+            --text-muted: #6a4a5a;
+            --accent-red: #ff4757;
+            --accent-cyan: #00d4ff;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 0; display: flex; justify-content: center; }
+        .reel { width: 1080px; height: 1920px; position: relative; overflow: hidden; }
+        .bg-base  { position: absolute; inset: 0; background: linear-gradient(160deg, #0a1220 0%, #1d2540 50%, #0a1220 100%); }
+        .bg-grid  { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 71, 87, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 71, 87, 0.05) 1px, transparent 1px); background-size: 50px 50px; }
+        .bg-glow-1 { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%); top: -250px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%); bottom: -200px; left: -200px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 60px 50px 80px; display: flex; flex-direction: column; }
+
+        /* Header */
+        .header { display: flex; align-items: center; opacity: 0; }
+        .header.run { animation: fadeIn 800ms 200ms forwards; }
+        .logo { display: flex; align-items: center; gap: 14px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4.4rem; color: var(--accent-red); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 2rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        /* Titre */
+        .title { font-family: 'Instrument Serif', serif; font-size: 6.4rem; line-height: 1.02; letter-spacing: -2px; color: var(--text-primary); margin-top: 40px; opacity: 0; }
+        .title.run { animation: fadeUp 900ms 600ms forwards; }
+        .title .accent { color: var(--accent-red); font-style: italic; display: inline-block; opacity: 0; }
+        .title.run .accent { animation: fadeUp 900ms 1300ms forwards; }
+        .subtitle { font-family: 'Syne', sans-serif; font-size: 1.4rem; color: var(--text-secondary); margin-top: 22px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0; }
+        .subtitle.run { animation: fadeIn 700ms 1700ms forwards; }
+
+        /* Anchor labels (avant courbes) */
+        .anchor-row { display: flex; justify-content: space-between; gap: 30px; margin-top: 40px; }
+        .anchor { flex: 1; padding: 18px 22px; border-radius: 14px; opacity: 0; }
+        .anchor.left  { background: rgba(255, 71, 87, 0.08);  border: 1px solid rgba(255, 71, 87, 0.30); }
+        .anchor.right { background: rgba(0, 212, 255, 0.06);  border: 1px solid rgba(0, 212, 255, 0.30); }
+        .anchor.run.left  { animation: fadeUp 700ms 2400ms forwards; }
+        .anchor.run.right { animation: fadeUp 700ms 2700ms forwards; }
+        .anchor .label { font-family: 'Syne', sans-serif; font-size: 1.05rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .anchor .value { font-family: 'JetBrains Mono', monospace; font-size: 2.6rem; font-weight: 700; line-height: 1; margin-top: 6px; }
+        .anchor.left .value { color: var(--accent-red); }
+        .anchor.right .value { color: var(--accent-cyan); }
+        .anchor .year { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; color: var(--text-muted); margin-top: 2px; letter-spacing: 0.5px; }
+
+        /* Chart */
+        .chart-wrap { flex: 1; display: flex; align-items: center; justify-content: center; margin-top: 30px; min-height: 0; }
+        .chart-wrap svg { width: 100%; height: auto; max-height: 100%; }
+
+        .axis-elem { opacity: 0; }
+        .axis-elem.run { animation: fadeIn 600ms 2000ms forwards; }
+
+        .curve { fill: none; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round;
+                 stroke-dasharray: var(--len, 9999); stroke-dashoffset: var(--len, 9999); }
+        .curve.red  { stroke: var(--accent-red);  filter: drop-shadow(0 0 12px rgba(255, 71, 87, 0.55)); }
+        .curve.cyan { stroke: var(--accent-cyan); filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.50)); }
+        .curve.run  { animation: drawCurve 7500ms 3500ms cubic-bezier(0.4, 0.05, 0.4, 0.95) forwards; }
+
+        .endpoint { opacity: 0; }
+        .endpoint.run.start { animation: fadeIn 400ms 3500ms forwards; }
+        .endpoint.run.end   { animation: popIn 800ms 11000ms forwards; }
+
+        /* Annotations 2024 (post-courbes) */
+        .annot-2024 { position: absolute; right: 50px; bottom: 220px; display: flex; flex-direction: column; gap: 18px; align-items: flex-end; }
+        .annot-pill { padding: 14px 22px; border-radius: 14px; opacity: 0; transform: scale(0.85); display: flex; align-items: baseline; gap: 14px; }
+        .annot-pill.red  { background: rgba(255, 71, 87, 0.12); border: 2px solid rgba(255, 71, 87, 0.55); box-shadow: 0 0 30px rgba(255, 71, 87, 0.30); }
+        .annot-pill.cyan { background: rgba(0, 212, 255, 0.10); border: 2px solid rgba(0, 212, 255, 0.55); box-shadow: 0 0 30px rgba(0, 212, 255, 0.25); }
+        .annot-pill .lbl { font-family: 'Syne', sans-serif; font-size: 1.1rem; color: var(--text-primary); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .annot-pill .val { font-family: 'JetBrains Mono', monospace; font-size: 2.4rem; font-weight: 700; line-height: 1; }
+        .annot-pill.red  .val { color: var(--accent-red); }
+        .annot-pill.cyan .val { color: var(--accent-cyan); }
+        .annot-pill.run.red  { animation: popIn 700ms 11200ms forwards; }
+        .annot-pill.run.cyan { animation: popIn 700ms 11600ms forwards; }
+
+        /* Footer */
+        .footer { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 24px; margin-top: 30px; border-top: 1px solid var(--glass-border); opacity: 0; }
+        .footer.run { animation: fadeIn 700ms 1900ms forwards; }
+        .source { font-size: 1rem; color: var(--text-muted); max-width: 700px; line-height: 1.3; }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.7rem; font-weight: 700; color: var(--accent-red); }
+
+        /* Animations */
+        @keyframes fadeIn   { to { opacity: 1; } }
+        @keyframes fadeUp   { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn    { 0% { opacity: 0; transform: scale(0.85); } 60% { opacity: 1; transform: scale(1.06); } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes drawCurve { to { stroke-dashoffset: 0; } }
+    </style>
+</head>
+<body>
+    <div class="reel">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h1 class="title">Salaire des profs :<br><span class="accent">le grand déclassement</span></h1>
+            <div class="subtitle">France · Brut hors primes / SMIC · 1980 → 2024</div>
+
+            <div class="anchor-row">
+                <div class="anchor left">
+                    <div class="label">Fin de carrière</div>
+                    <div class="value">4,1× SMIC</div>
+                    <div class="year">EN 1980</div>
+                </div>
+                <div class="anchor right">
+                    <div class="label">Début de carrière</div>
+                    <div class="value">2,1× SMIC</div>
+                    <div class="year">EN 1980</div>
+                </div>
+            </div>
+
+            <div class="chart-wrap">
+                <svg viewBox="0 0 960 700" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Y unit caption -->
+                    <text class="axis-elem" x="84" y="30" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="500" font-style="italic" text-anchor="end">× SMIC</text>
+
+                    <!-- Axes -->
+                    <line class="axis-elem" x1="90" y1="10" x2="90" y2="620" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1.5" />
+                    <line class="axis-elem" x1="90" y1="620" x2="830" y2="620" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1.5" />
+
+                    <!-- Grille horizontale + labels Y -->
+                    <line class="axis-elem" x1="90" y1="532.86" x2="830" y2="532.86" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text class="axis-elem" x="80" y="540" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">1,5×</text>
+
+                    <line class="axis-elem" x1="90" y1="445.71" x2="830" y2="445.71" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text class="axis-elem" x="80" y="453" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">2,0×</text>
+
+                    <line class="axis-elem" x1="90" y1="358.57" x2="830" y2="358.57" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text class="axis-elem" x="80" y="366" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">2,5×</text>
+
+                    <line class="axis-elem" x1="90" y1="271.43" x2="830" y2="271.43" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text class="axis-elem" x="80" y="278" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">3,0×</text>
+
+                    <line class="axis-elem" x1="90" y1="184.29" x2="830" y2="184.29" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text class="axis-elem" x="80" y="191" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">3,5×</text>
+
+                    <line class="axis-elem" x1="90" y1="97.14" x2="830" y2="97.14" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text class="axis-elem" x="80" y="104" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">4,0×</text>
+
+                    <text class="axis-elem" x="80" y="627" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">1,0×</text>
+
+                    <!-- Labels X -->
+                    <text class="axis-elem" x="90"     y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">1980</text>
+                    <text class="axis-elem" x="258.18" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">1990</text>
+                    <text class="axis-elem" x="426.36" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">2000</text>
+                    <text class="axis-elem" x="594.55" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">2010</text>
+                    <text class="axis-elem" x="830"    y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">2024</text>
+
+                    <!-- Courbe Salaire fin de carrière (rouge) -->
+                    <path id="curve-red" class="curve red"
+                          d="M90,79.71 L123.64,88.43 L157.27,184.29 L190.91,236.57 L224.55,254 L258.18,271.43 L291.82,297.57 L325.45,280.14 L359.09,288.86 L392.73,297.57 L426.36,315 L460,341.14 L493.64,376 L527.27,367.29 L560.91,376 L594.55,384.71 L628.18,402.14 L661.82,419.57 L695.45,428.29 L729.09,437 L762.73,445.71 L796.36,454.43 L830,463.14"/>
+
+                    <!-- Courbe Salaire d'entrée (cyan) -->
+                    <path id="curve-cyan" class="curve cyan"
+                          d="M90,428.29 L123.64,445.71 L157.27,471.86 L190.91,498 L224.55,515.43 L258.18,515.43 L291.82,524.14 L325.45,532.86 L359.09,541.57 L392.73,550.29 L426.36,550.29 L460,550.29 L493.64,567.71 L527.27,567.71 L560.91,576.43 L594.55,585.14 L628.18,593.86 L661.82,593.86 L695.45,602.57 L729.09,593.86 L762.73,585.14 L796.36,593.86 L830,602.57"/>
+
+                    <!-- Endpoints (1980, départ) -->
+                    <circle class="endpoint start" cx="90" cy="79.71" r="9" fill="#ff4757" stroke="#0a1220" stroke-width="3"/>
+                    <circle class="endpoint start" cx="90" cy="428.29" r="9" fill="#00d4ff" stroke="#0a1220" stroke-width="3"/>
+
+                    <!-- Endpoints (2024, arrivée) -->
+                    <circle class="endpoint end" cx="830" cy="463.14" r="11" fill="#ff4757" stroke="#0a1220" stroke-width="3"/>
+                    <circle class="endpoint end" cx="830" cy="602.57" r="11" fill="#00d4ff" stroke="#0a1220" stroke-width="3"/>
+                </svg>
+            </div>
+
+            <!-- Pills 2024 (apparaissent à la fin) -->
+            <div class="annot-2024">
+                <div class="annot-pill red"><span class="lbl">2024 fin carrière</span><span class="val">1,9× SMIC</span></div>
+                <div class="annot-pill cyan"><span class="lbl">2024 début carrière</span><span class="val">1,1× SMIC</span></div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Lucas Chancel · lucaschancel.com/enseignants · Sept. 2024 · Professeurs certifiés, hors primes</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Calcule la longueur exacte de chaque courbe et l'expose en variable CSS
+        document.querySelectorAll('.curve').forEach(p => {
+            const len = p.getTotalLength();
+            p.style.setProperty('--len', len);
+        });
+
+        // Web Animations API : on ne lance les animations qu'au signal explicite,
+        // permettant à Puppeteer de contrôler le temps frame par frame.
+        const ANIMATED_SELECTORS = '.header, .title, .subtitle, .anchor, .axis-elem, .curve, .endpoint, .annot-pill, .footer';
+        const elements = Array.from(document.querySelectorAll(ANIMATED_SELECTORS));
+
+        // Active les animations CSS via la classe .run, puis pause immédiatement
+        // pour pouvoir setter currentTime depuis Puppeteer.
+        function startAndPauseAll() {
+            elements.forEach(el => el.classList.add('run'));
+            requestAnimationFrame(() => {
+                document.getAnimations().forEach(a => a.pause());
+            });
+        }
+
+        // Setter exposé pour Puppeteer : positionne TOUTES les animations à un t donné
+        window.__reelReady = false;
+        window.setReelTime = (timeMs) => {
+            document.getAnimations().forEach(a => {
+                try { a.currentTime = timeMs; } catch (e) { /* skip if finished */ }
+            });
+        };
+
+        // Pour le rendu PNG simple (sans Puppeteer), laisser jouer normalement
+        window.startReel = () => {
+            elements.forEach(el => el.classList.add('run'));
+        };
+
+        // Démarrage : si on est en mode capture, on prépare ; sinon on lance
+        if (window.location.search.includes('capture')) {
+            startAndPauseAll();
+            // Attendre que les fonts + animations soient prêtes
+            Promise.all([document.fonts.ready]).then(() => {
+                window.__reelReady = true;
+            });
+        } else {
+            // Mode preview : on attend les fonts puis on lance
+            document.fonts.ready.then(() => {
+                window.startReel();
+            });
+        }
+    </script>
+</body>
+</html>

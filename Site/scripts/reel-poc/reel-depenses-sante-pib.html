@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Reel — depenses-sante-pib</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a88899;
+            --text-muted: #6a4a5a;
+            --accent: #00d4ff;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 0; display: flex; justify-content: center; }
+        .reel { width: 1080px; height: 1920px; position: relative; overflow: hidden; }
+        .bg-base  { position: absolute; inset: 0; background: linear-gradient(160deg, #0a1220 0%, #1d2540 50%, #0a1220 100%); }
+        .bg-grid  { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px); background-size: 50px 50px; }
+        .bg-glow-1 { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%); top: -250px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 215, 0, 0.06) 0%, transparent 70%); bottom: -200px; left: -200px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 60px 50px 80px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; opacity: 0; }
+        .header.run { animation: fadeIn 500ms 0ms forwards; }
+        .logo { display: flex; align-items: center; gap: 14px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4.4rem; color: var(--accent); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 2rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .title { font-family: 'Instrument Serif', serif; font-size: 6rem; line-height: 1.04; letter-spacing: -2px; color: var(--text-primary); margin-top: 36px; opacity: 0; }
+        .title.run { animation: fadeUp 700ms 200ms forwards; }
+        .title .accent { color: var(--accent); font-style: italic; display: inline-block; opacity: 0; }
+        .title.run .accent { animation: fadeUp 700ms 700ms forwards; }
+        .subtitle { font-family: 'Syne', sans-serif; font-size: 1.4rem; color: var(--text-secondary); margin-top: 22px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0; }
+        .subtitle.run { animation: fadeIn 500ms 1000ms forwards; }
+
+        .chart-wrap { flex: 1; display: flex; align-items: center; justify-content: center; margin-top: 30px; min-height: 0; }
+        .chart-wrap svg { width: 100%; height: auto; max-height: 100%; }
+
+        .axis-elem { opacity: 1; }
+
+        .curve { fill: none; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; stroke: var(--accent);
+                 stroke-dasharray: var(--len, 9999); stroke-dashoffset: var(--len, 9999);
+                 filter: drop-shadow(0 0 14px rgba(0, 212, 255, 0.65)); }
+        .curve.run  { animation: drawCurve 6500ms 0ms cubic-bezier(0.4, 0.05, 0.4, 0.95) forwards; }
+
+        .endpoint { opacity: 0; }
+        .endpoint.run.start { animation: fadeIn 300ms 0ms forwards; }
+        .endpoint.run.end   { animation: popIn 700ms 6500ms forwards; }
+
+        .anchor-start { opacity: 0; }
+        .anchor-start.run { animation: fadeIn 400ms 0ms forwards; }
+
+        .anchor-end { opacity: 0; transform-box: fill-box; transform-origin: center; filter: drop-shadow(0 0 18px rgba(0, 212, 255, 0.7)); }
+        .anchor-end.run { animation: popIn 800ms 6700ms forwards; }
+
+        .stage-dot   { opacity: 0; transform-box: fill-box; transform-origin: center; }
+        .stage-label { opacity: 0; transform-box: fill-box; transform-origin: center; }
+        .stage-dot.s1980.run, .stage-label.s1980.run { animation: popIn 500ms 1204ms forwards; }
+        .stage-dot.s1990.run, .stage-label.s1990.run { animation: popIn 500ms 2407ms forwards; }
+        .stage-dot.s2000.run, .stage-label.s2000.run { animation: popIn 500ms 3611ms forwards; }
+        .stage-dot.s2010.run, .stage-label.s2010.run { animation: popIn 500ms 4815ms forwards; }
+
+        .footer { display: flex; flex-direction: column; align-items: center; gap: 14px; padding-top: 28px; margin-top: 24px; border-top: 1px solid var(--glass-border); opacity: 0; }
+        .footer.run { animation: fadeIn 600ms 800ms forwards; }
+        .cta { display: flex; align-items: baseline; justify-content: center; gap: 18px; }
+        .cta-prefix { font-family: 'Syne', sans-serif; font-size: 1.9rem; color: var(--text-primary); font-weight: 600; }
+        .cta-arrow { color: var(--accent); font-size: 2.6rem; font-weight: 700; line-height: 1; }
+        .cta-url { font-family: 'JetBrains Mono', monospace; font-size: 2.6rem; font-weight: 700; color: var(--accent); }
+        .source { font-size: 0.85rem; color: var(--text-muted); line-height: 1.3; text-align: center; }
+        .source span { color: var(--text-secondary); }
+
+        @keyframes fadeIn   { to { opacity: 1; } }
+        @keyframes fadeUp   { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn    { 0% { opacity: 0; transform: scale(0.85); } 60% { opacity: 1; transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes drawCurve { to { stroke-dashoffset: 0; } }
+    </style>
+</head>
+<body>
+    <div class="reel">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h1 class="title">La dépense de santé<br><span class="accent">a doublé</span><br>en 50 ans</h1>
+            <div class="subtitle">France · Dépense courante de santé en % du PIB · 1970 → 2024</div>
+
+            <div class="chart-wrap">
+                <svg viewBox="0 0 960 700" xmlns="http://www.w3.org/2000/svg">
+                    <text class="axis-elem" x="84" y="30" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="500" font-style="italic" text-anchor="end">% PIB</text>
+
+                    <line class="axis-elem" x1="90" y1="10" x2="90" y2="620" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1.5"/>
+                    <line class="axis-elem" x1="90" y1="620" x2="830" y2="620" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1.5"/>
+
+                    <line class="axis-elem" x1="90" y1="498.0" x2="830" y2="498.0" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+            <text class="axis-elem" x="80" y="505.0" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">6 %</text>
+<line class="axis-elem" x1="90" y1="376.0" x2="830" y2="376.0" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+            <text class="axis-elem" x="80" y="383.0" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">8 %</text>
+<line class="axis-elem" x1="90" y1="254.0" x2="830" y2="254.0" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+            <text class="axis-elem" x="80" y="261.0" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">10 %</text>
+<line class="axis-elem" x1="90" y1="132.0" x2="830" y2="132.0" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4"/>
+            <text class="axis-elem" x="80" y="139.0" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">12 %</text>
+                    <text class="axis-elem" x="80" y="627.0" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="500" text-anchor="end">4 %</text>
+
+                    <text class="axis-elem" x="90" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">1970</text>
+<text class="axis-elem" x="227" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">1980</text>
+<text class="axis-elem" x="364" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">1990</text>
+<text class="axis-elem" x="501" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">2000</text>
+<text class="axis-elem" x="638" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">2010</text>
+<text class="axis-elem" x="830" y="660" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" text-anchor="middle">2024</text>
+
+                    <path id="curve" class="curve" d="M90.0,528.5 L227.0,430.9 L364.1,351.6 L501.1,284.5 L638.1,199.1 L830.0,125.9"/>
+
+                    <circle class="endpoint start" cx="90.0" cy="528.5" r="11" fill="#ffffff" stroke="#00d4ff" stroke-width="4"/>
+                    <text class="anchor-start" x="115.0" y="563.5" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="42" font-weight="700" text-anchor="start">5,5 %</text>
+
+                    <circle class="stage-dot s1980" cx="227.0" cy="430.9" r="10" fill="#ffffff" stroke="#00d4ff" stroke-width="4"/>
+            <text class="stage-label s1980" x="227.0" y="460.9" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="32" font-weight="700" text-anchor="middle">7,1 %</text>
+<circle class="stage-dot s1990" cx="364.1" cy="351.6" r="10" fill="#ffffff" stroke="#00d4ff" stroke-width="4"/>
+            <text class="stage-label s1990" x="364.1" y="381.6" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="32" font-weight="700" text-anchor="middle">8,4 %</text>
+<circle class="stage-dot s2000" cx="501.1" cy="284.5" r="10" fill="#ffffff" stroke="#00d4ff" stroke-width="4"/>
+            <text class="stage-label s2000" x="501.1" y="314.5" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="32" font-weight="700" text-anchor="middle">9,5 %</text>
+<circle class="stage-dot s2010" cx="638.1" cy="199.1" r="10" fill="#ffffff" stroke="#00d4ff" stroke-width="4"/>
+            <text class="stage-label s2010" x="638.1" y="229.1" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="32" font-weight="700" text-anchor="middle">10,9 %</text>
+
+                    <circle class="endpoint end" cx="830.0" cy="125.9" r="16" fill="#00d4ff" stroke="#0a1220" stroke-width="4"/>
+                    <text class="anchor-end" x="822.0" y="103.9" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="56" font-weight="700" text-anchor="end">12,1 %</text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="cta">
+                    <span class="cta-prefix">L'info éco sur</span>
+                    <span class="cta-arrow">→</span>
+                    <span class="cta-url">ouvalargent.com</span>
+                </div>
+                <div class="source">Source : <span>DREES · Comptes de la santé · 2024</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.curve').forEach(p => {
+            const len = p.getTotalLength();
+            p.style.setProperty('--len', len);
+        });
+
+        const ANIMATED_SELECTORS = '.header, .title, .subtitle, .axis-elem, .curve, .endpoint, .anchor-start, .anchor-end, .stage-dot, .stage-label, .footer';
+        const elements = Array.from(document.querySelectorAll(ANIMATED_SELECTORS));
+
+        function startAndPauseAll() {
+            elements.forEach(el => el.classList.add('run'));
+            requestAnimationFrame(() => {
+                document.getAnimations().forEach(a => a.pause());
+            });
+        }
+
+        window.__reelReady = false;
+        window.setReelTime = (timeMs) => {
+            document.getAnimations().forEach(a => {
+                try { a.currentTime = timeMs; } catch (e) {}
+            });
+        };
+
+        window.startReel = () => { elements.forEach(el => el.classList.add('run')); };
+
+        if (window.location.search.includes('capture')) {
+            startAndPauseAll();
+            Promise.all([document.fonts.ready]).then(() => { window.__reelReady = true; });
+        } else {
+            document.fonts.ready.then(() => { window.startReel(); });
+        }
+    </script>
+</body>
+</html>

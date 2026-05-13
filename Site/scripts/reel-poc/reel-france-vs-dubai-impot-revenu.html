@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Reel — France 45 % vs Dubaï 0 %</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a89c66;
+            --text-muted: #6a5e3d;
+            --accent: #ffd700;
+            --accent-rgb: 255, 215, 0;
+            --secondary-glow: rgba(255, 71, 87, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 0; display: flex; justify-content: center; }
+        .reel { width: 1080px; height: 1920px; position: relative; overflow: hidden; }
+        .bg-base  { position: absolute; inset: 0; background: linear-gradient(160deg, #0a1220 0%, #1d2540 50%, #0a1220 100%); }
+        .bg-grid  { position: absolute; inset: 0; background-image: linear-gradient(rgba(var(--accent-rgb), 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--accent-rgb), 0.05) 1px, transparent 1px); background-size: 50px 50px; }
+        .bg-glow-1 { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(var(--accent-rgb), 0.14) 0%, transparent 70%); top: -250px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%); bottom: -200px; left: -200px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 40px 40px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 14px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4.4rem; color: var(--accent); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 2rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .title-block { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 30px; }
+        .title { font-family: 'Instrument Serif', serif; font-size: 7.4rem; line-height: 1.04; letter-spacing: -2.5px; color: var(--text-primary); text-align: center; white-space: nowrap; }
+        .title .accent.fr    { color: var(--accent); font-style: italic; display: inline-block; }
+        .title .accent.dubai { color: #00d4ff;       font-style: italic; display: inline-block; }
+        .title-line1 { white-space: nowrap; }
+        .subtitle { font-family: 'Syne', sans-serif; font-size: 1.9rem; color: var(--text-secondary); margin-top: 22px; letter-spacing: 1.4px; text-transform: uppercase; text-align: center; line-height: 1.4; font-weight: 600; }
+
+        .duel {
+            flex: 1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 100px;
+            padding: 50px 30px 30px;
+            min-height: 0;
+        }
+
+        .duel-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            width: 360px;
+        }
+
+        .duel-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.6rem;
+            font-weight: 800;
+            line-height: 0.9;
+            letter-spacing: -3px;
+            opacity: 0;
+        }
+        .duel-value.fr  { color: var(--accent); text-shadow: 0 0 60px rgba(var(--accent-rgb), 0.6); }
+        .duel-value.ae  { color: #00d4ff; text-shadow: 0 0 60px rgba(0, 212, 255, 0.5); }
+
+        .duel-bar {
+            width: 100%;
+            border-radius: 16px 16px 0 0;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+            position: relative;
+            height: 0;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 40px;
+        }
+        .duel-bar.fr {
+            background: linear-gradient(180deg, #ffd700 0%, #b8860b 100%);
+            box-shadow: 0 0 70px rgba(var(--accent-rgb), 0.7);
+        }
+        .duel-bar.ae {
+            background: linear-gradient(180deg, #00d4ff 0%, #006d82 100%);
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
+        }
+
+        .duel-flag {
+            font-size: 6rem;
+            line-height: 1;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+            opacity: 0;
+        }
+
+        .duel-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            opacity: 0;
+        }
+        .duel-label.fr { color: var(--accent); }
+        .duel-label.ae { color: #00d4ff; }
+
+        .duel-bar.fr.run { animation: barGrowFr 1500ms 400ms cubic-bezier(0.34, 0.05, 0.4, 1) forwards; }
+        .duel-bar.ae.run { animation: barGrowAe 700ms 900ms cubic-bezier(0.34, 0.05, 0.4, 1) forwards; }
+        .duel-flag.fr.run { animation: fadeUp 500ms 1900ms forwards; }
+        .duel-flag.ae.run { animation: fadeUp 500ms 1900ms forwards; }
+        .duel-value.fr.run { animation: popIn 600ms 2200ms forwards; }
+        .duel-value.ae.run { animation: popIn 600ms 2400ms forwards; }
+        .duel-label.fr.run { animation: fadeUp 400ms 2700ms forwards; }
+        .duel-label.ae.run { animation: fadeUp 400ms 2900ms forwards; }
+
+        .footer { display: flex; flex-direction: column; align-items: center; gap: 10px; padding-top: 18px; margin-top: 14px; border-top: 1px solid var(--glass-border); }
+        .cta { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .cta-url { font-family: 'JetBrains Mono', monospace; font-size: 2.6rem; font-weight: 700; color: var(--accent); letter-spacing: 0.5px; }
+        .cta-handle { font-family: 'JetBrains Mono', monospace; font-size: 2.2rem; font-weight: 500; color: #ffffff; letter-spacing: 0.5px; }
+        .source { font-size: 0.85rem; color: var(--text-muted); line-height: 1.3; text-align: center; }
+        .source span { color: var(--text-secondary); }
+
+        .cta-screen {
+            position: absolute; inset: 0; z-index: 10;
+            background: radial-gradient(ellipse at center, #142b48 0%, #0a1220 70%, #06080c 100%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 60px;
+            opacity: 0; pointer-events: none;
+        }
+        .cta-screen.run { animation: ctaFadeIn 400ms 6000ms forwards; }
+        .cta-screen-logo { font-family: 'Instrument Serif', serif; font-size: 18rem; color: var(--accent); line-height: 1; text-shadow: 0 0 80px rgba(var(--accent-rgb), 0.5); opacity: 0; }
+        .cta-screen.run .cta-screen-logo { animation: popIn 500ms 6000ms forwards; }
+        .cta-screen-title { font-family: 'Instrument Serif', serif; font-size: 9rem; color: #ffffff; line-height: 1; text-align: center; opacity: 0; }
+        .cta-screen.run .cta-screen-title { animation: fadeUp 400ms 6200ms forwards; }
+        .cta-screen-tag { font-family: 'Syne', sans-serif; font-size: 2.8rem; color: rgba(255,255,255,0.7); letter-spacing: 4px; text-transform: uppercase; opacity: 0; }
+        .cta-screen.run .cta-screen-tag { animation: fadeUp 300ms 6400ms forwards; }
+        .cta-screen-urls { display: flex; flex-direction: column; align-items: center; gap: 18px; margin-top: 30px; opacity: 0; }
+        .cta-screen.run .cta-screen-urls { animation: fadeUp 400ms 6500ms forwards; }
+        .cta-screen-url { font-family: 'JetBrains Mono', monospace; font-size: 4.2rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; }
+        .cta-screen-handle { font-family: 'JetBrains Mono', monospace; font-size: 3.6rem; font-weight: 500; color: #ffffff; letter-spacing: 1px; }
+
+        @keyframes ctaFadeIn { to { opacity: 1; } }
+        @keyframes fadeUp    { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn     { 0% { opacity: 0; transform: scale(0.75); } 60% { opacity: 1; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes barGrowFr { from { height: 0; } to { height: 850px; } }
+        @keyframes barGrowAe { from { height: 0; } to { height: 130px; } }
+    </style>
+</head>
+<body>
+    <div class="reel">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <div class="title-block">
+                <h1 class="title">Impôt sur le revenu<br><span class="accent fr">France</span> vs <span class="accent dubai">Dubaï</span></h1>
+                <div class="subtitle">Taux marginal maximum · 2025</div>
+            </div>
+
+            <div class="duel">
+                <div class="duel-col">
+                    <div class="duel-value fr">45 %</div>
+                    <div class="duel-bar fr">
+                        <span class="duel-flag fr">🇫🇷</span>
+                    </div>
+                    <div class="duel-label fr">France</div>
+                </div>
+
+                <div class="duel-col">
+                    <div class="duel-value ae">0 %</div>
+                    <div class="duel-bar ae">
+                        <span class="duel-flag ae">🇦🇪</span>
+                    </div>
+                    <div class="duel-label ae">Dubaï</div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="cta">
+                    <span class="cta-url">ouvalargent.com</span>
+                    <span class="cta-handle">@ouvalargentfr</span>
+                </div>
+                <div class="source">Source : <span>Service-Public.fr · UAE Gov · 2025</span></div>
+            </div>
+        </div>
+
+        <div class="cta-screen">
+            <div class="cta-screen-logo">€</div>
+            <div class="cta-screen-title">Abonne-toi.</div>
+            <div class="cta-screen-tag">Partage.</div>
+            <div class="cta-screen-urls">
+                <div class="cta-screen-url">ouvalargent.com</div>
+                <div class="cta-screen-handle">@ouvalargentfr</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ANIMATED_SELECTORS = '.duel-value, .duel-bar, .duel-flag, .duel-label, .cta-screen';
+        const elements = Array.from(document.querySelectorAll(ANIMATED_SELECTORS));
+
+        function startAndPauseAll() {
+            elements.forEach(el => el.classList.add('run'));
+            requestAnimationFrame(() => {
+                document.getAnimations().forEach(a => a.pause());
+            });
+        }
+
+        window.__reelReady = false;
+        window.setReelTime = (timeMs) => {
+            document.getAnimations().forEach(a => {
+                try { a.currentTime = timeMs; } catch (e) {}
+            });
+        };
+
+        window.startReel = () => { elements.forEach(el => el.classList.add('run')); };
+
+        if (window.location.search.includes('capture')) {
+            startAndPauseAll();
+            Promise.all([document.fonts.ready]).then(() => { window.__reelReady = true; });
+        } else {
+            document.fonts.ready.then(() => { window.startReel(); });
+        }
+    </script>
+</body>
+</html>
