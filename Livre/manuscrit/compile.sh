@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-echo "BLOQUÉ — restructure DOCX en cours. Voir /Users/emmanuelblezes/.claude/plans/option-b-il-s-agissant-rippling-bear.md" >&2
-exit 1
 # Compile le manuscrit Markdown en DOCX via Pandoc.
-# Usage : ./compile.sh [chapter] [chapter] ...
+# Usage : ./compile.sh [chapter.md] [chapter.md] ...
 #   - Sans argument : compile l'ensemble du manuscrit
 #   - Avec arguments : compile uniquement les fichiers .md spécifiés
 
@@ -14,14 +12,12 @@ OUT_DIR="$(cd "$SCRIPT_DIR/../docx" && pwd)"
 declare -a FILES_ARR
 
 if [ "$#" -eq 0 ]; then
-    # Compilation complète : assemble tous les fichiers numérotés
     while IFS= read -r -d '' file; do
         FILES_ARR+=("$file")
     done < <(find "$SCRIPT_DIR" -maxdepth 1 -name "[0-9][0-9]-*.md" -print0 | sort -z)
     OUTPUT="$OUT_DIR/Capitalisons.docx"
     echo "→ Compilation complète vers : $OUTPUT"
 else
-    # Compilation ciblée
     for arg in "$@"; do
         f="$SCRIPT_DIR/$arg"
         [ ! -f "$f" ] && f="$SCRIPT_DIR/${arg}.md"
@@ -43,7 +39,6 @@ fi
 
 mkdir -p "$OUT_DIR"
 
-# Compilation Pandoc avec footnotes natives
 pandoc \
     --metadata-file="$SCRIPT_DIR/metadata.yaml" \
     --from=markdown+footnotes+smart \

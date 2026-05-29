@@ -48,6 +48,49 @@
 - `manuscrit-v4/compile.sh` : compilation Pandoc → `Livre/docx/Capitalisons-V4.docx` (testé OK, 160 Ko)
 - `_factcheck-v4-journal.md` (à créer) : journal du fact-check phrase par phrase
 
+**Nettoyage versioning — 29 mai 2026 soir** :
+
+Toutes les anciennes versions ont été archivées dans `Livre/_archive/`. La nouvelle structure est plate et claire :
+
+```
+Livre/
+├── Capitalisons - v2.docx          (DOCX source d'Emmanuel, 498 Ko, inchangé)
+├── JOURNAL.md                       (pilotage actif — ce fichier)
+├── _factcheck-journal.md            (suivi fact-check phrase par phrase)
+├── manuscrit/                       (SOURCE DE VÉRITÉ MD — l'unique version active)
+│   ├── 00-avant-propos.md
+│   ├── 01-introduction.md
+│   ├── 02-partie1-capi-repond.md
+│   ├── 03-partie2-fonds-pension.md
+│   ├── 04-partie3-feuille-route.md
+│   ├── 05-conclusion.md
+│   ├── 07-appendice-cinq-mensonges.md
+│   ├── 99-footnotes.md
+│   ├── _MAPPING.md                  (traçabilité V2 → architecture actuelle)
+│   ├── _import-v2/                  (artefacts de conversion DOCX V2, gardés en référence)
+│   ├── compile.sh                   (Pandoc → Capitalisons.docx)
+│   ├── metadata.yaml
+│   └── recherche/                   (74 fichiers de matière sourcée par les agents)
+├── docx/
+│   ├── Capitalisons.docx            (compilation actuelle, 187 Ko)
+│   └── _archive-backups-emmanuel/   (backups antérieurs d'Emmanuel, intacts)
+└── _archive/                        (tout l'ancien, rollback toujours possible)
+    ├── manuscrit-v1/                (ancienne V1 mai 2026)
+    ├── manuscrit-v3/                (ancienne V3 mai 2026)
+    ├── docx-anciens/                (13 DOCX antérieurs)
+    ├── _diagnostic-redites-v2.md
+    ├── _revue-critique-v2.md
+    └── _factcheck-v3-journal.md
+```
+
+**Avant le nettoyage** : 3 manuscrits MD (v1, v3, v4) + 14 DOCX + journaux v3/v4 + fichiers diagnostic épars. **Après** : 1 manuscrit, 1 DOCX, 2 journaux. 2,5 Mo de `_xml-raw` (décompression DOCX) supprimés. Tout le reste archivé sans perte.
+
+**Convention** : « manuscrit/ » est la source de vérité unique. Toute modification du livre passe par les .md de ce dossier. Le DOCX est régénéré via `./compile.sh`.
+
+Commit de référence avant nettoyage : `d03b405`.
+
+---
+
 **Restructuration architecturale V5 — TERMINÉE 29 mai 2026 nuit** :
 
 Architecture finale équilibrée selon dynamique « individu → collectif → action » + RAFP en intro pour désamorcer l'opposition + verrous historiques en conclusion :
