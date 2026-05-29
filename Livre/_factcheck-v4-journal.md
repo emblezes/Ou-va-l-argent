@@ -40,3 +40,21 @@
 - Aucun paragraphe encore fact-checké.
 
 **Prochaine session** : démarrer le fact-check de `02-partie1-capi-repond.md`, paragraphe par paragraphe.
+
+### 2026-05-29 (soir) — Avant-propos §1 « Le paradoxe Doliprane »
+
+**Paragraphe traité** : ouverture sur Sanofi/Opella/CD&R (octobre 2024).
+
+| # | Affirmation | Verdict | Correction appliquée |
+|---|-------------|---------|----------------------|
+| 1 | Date octobre 2024 | ✅ | — |
+| 2 | « majorité des parts » d'Opella | ⚠️ | → « contrôle » (CD&R 50 %, Sanofi 48,2 %, Bpifrance 1,8 %) |
+| 3 | Opella = filiale santé grand public | ✅ | — |
+| 4 | Opella fabrique le Doliprane | ✅ | — |
+| 5 | « médicament préféré des Français » | ⚠️ | → « le médicament le plus consommé en France » |
+| 6 | CD&R = fonds américain à New York | ✅ | — |
+| 7 | **« 8 milliards d'euros »** | 🔴 | → « valorisation environ 16 Md€ ; Sanofi encaisse une dizaine pour les 50 % cédés » |
+| 8 | « passé aux mains des Américains » | ⚠️ | → « passé sous contrôle américain » |
+| 9 | « CD&R s'appuie sur une mécanique différente » | ⚠️ | → reformulation complète : CD&R = PE, lève auprès de LP, dont CalPERS *anchor investor* du fonds XI à 500 M$ |
+
+**Résultat** : 5 corrections appliquées (1 🔴 + 4 ⚠️). Ajout footnote [^372] (CalPERS source CD&R Fund XI). Style préservé, longueur de paragraphe quasi identique.

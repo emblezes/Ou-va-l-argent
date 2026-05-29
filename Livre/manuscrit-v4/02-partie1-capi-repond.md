@@ -14,7 +14,9 @@ Or, de fait, ce rapport s'effondre, dans des proportions qui rendent le système
 
 Le diagnostic converge vers une réalité que trop peu de rapports nomment : la trajectoire actuelle transfère silencieusement une dette colossale aux générations qui n\'ont rien demandé.
 
-##  Le grand vieillissement : quand la pyramide s'inverse
+## Le système actuel est dans une impasse
+
+### Le grand vieillissement : quand la pyramide s’inverse
 
 L'INSEE publie chaque année, à la fin du mois de janvier, le *Bilan démographique* de l'année écoulée. C'est l'un des documents les plus importants pour l'avenir du pays, et il sort dans une indifférence quasi totale. L'édition consacrée à 2025, parue en janvier 2026, contient un chiffre qui aurait dû ouvrir tous les journaux du soir.
 
@@ -52,7 +54,7 @@ Au moins deux d'entre elles, sur les quatre, sont déjà obsolètes en 2025. La 
 
 Le débat part sur de mauvaises bases.
 
-## Le déficit caché
+### Le déficit caché
 
 A combien s'élève le déficit annuel du système de retraites français ? Réponse souvent entendue : quelques milliards d'euros par an. C'est faux. Et c'est probablement le mensonge le plus coûteux qu'aient produit, en trente ans, les conventions budgétaires et comptables françaises.
 
@@ -86,7 +88,7 @@ Le rapport du COR de juin 2025 ajoute une phrase qu'il faut prendre au pied de l
 
 La facture est reportée sur les générations qui n'en sont pas responsables.
 
-## Comment on en est arrivé là
+### Comment on en est arrivé là
 
 On l'oublie souvent : la France n'a pas toujours eu un système de retraite par répartition. Avant 1941, le paysage était fait d'une mosaïque de dispositifs qui aurait probablement étonné les Français d'aujourd'hui. Une caisse capitalisée pour les fonctionnaires civils, gérée par la Caisse des Dépôts depuis sa création par la loi du 28 avril 1816[^38]. Des régimes spéciaux pour les marins, hérités d'une ordonnance de Colbert promulguée en avril 1670 et confirmée tout au long de l'Ancien Régime[^39]. Des mutuelles ouvrières, des caisses patronales d'entreprise, un marché d'assurance-vie qui s'était développé tout au long du XIXe siècle. Et, à partir de 1928-1930, un régime généralisé d'assurances sociales par capitalisation, créé pour couvrir les salariés du commerce et de l'industrie en dessous d'un certain plafond[^40].
 
@@ -104,7 +106,7 @@ Tout cela est connu et documenté de longue date. Le commissaire au Plan Raoul B
 
 C'est dans cet état d'esprit que se succèdent, à partir de 1993, les cinq grandes réformes paramétriques que la section suivante examine en détail. Aucune ne remettra en cause la nature du système. Aucune ne posera la question fondamentale : un instrument conçu pour une France à quatre cotisants par retraité reste-t-il l'instrument adapté à une France qui en aura moins de un et demi en 2070 ?
 
-## Ces réformes qui n'en sont pas
+## Ces réformes paramétriques qui n'en sont pas
 
 Aucun gouvernement, depuis Édouard Balladur, n'a ignoré le problème. Mais tous l'ont traité de la même manière : en ajustant les paramètres du système - l'âge, la durée, le mode de calcul - sans jamais en modifier la nature. Cette séquence de cinq réformes, étalée sur trois décennies, est à elle seule une histoire de la France contemporaine et de sa difficulté à affronter ses problèmes.
 
@@ -158,7 +160,7 @@ Allonger la durée de cotisation, ce n'est pas davantage une issue : la France e
 
 Aucun de ces leviers, pris isolément, ne tient. Aucune combinaison plausible des quatre ne ramène le système à l'équilibre durable. Le COR, dans son scénario central, le reconnaît implicitement : il projette un déficit chronique jusqu'en 2070. Il l'écrit explicitement : « durablement en besoin de financement quel que soit le scénario ». La France a passé trente ans à perfectionner un outil - la réforme paramétrique - qui ne peut, par construction, résoudre le problème qui lui est posé. Et chaque année qui passe ajoute à la facture.
 
-## Comprendre la capitalisation : quand l'argent travaille dans le temps
+## Comprendre la capitalisation
 
 *Le mot tabou*
 
@@ -176,7 +178,7 @@ La capitalisation, elle, est un coffre collectif, géré professionnellement, al
 
 Nous allons, dans ce chapitre, sortir le sujet de l'idéologie pour le ramener à ce qu'il est : un outil. Un outil que nous n'avons pas, que nos voisins ont, et qui - c'est tout le travail des pages qui viennent - ferait, pour la pension d'un actif français de trente ans aujourd'hui, une différence chiffrable en centaines de milliers d'euros.
 
-## Anatomie d'un euro cotisé
+### Anatomie d'un euro cotisé
 
 Pour comprendre ce que sépare vraiment la répartition de la capitalisation, le mieux est de suivre un euro cotisé. 1000 euros, même, par souci de lisibilité.
 
@@ -216,7 +218,7 @@ Aucun système viable ne fonctionne intégralement avec l'un ou l'autre. La Suè
 
 La France, depuis 1945, n'a qu'un tuyau. Et nous arrivons au moment où la démographie cesse de l'alimenter.
 
-## Ce que la capitalisation n'est pas
+### Ce que la capitalisation n'est pas
 
 Une bonne moitié du débat français sur la capitalisation est consacrée à dénoncer des choses qui ne sont pas de la capitalisation. Avant de défendre l'idée, il faut donc lui rendre service en la distinguant de ce avec quoi on la confond. Quatre malentendus, principalement, encombrent la conversation.
 
@@ -230,6 +232,10 @@ Une bonne moitié du débat français sur la capitalisation est consacrée à d�
 
 Capitalisation, donc, ce n'est ni un livret amélioré, ni un produit d'épargne fiscalement boosté, ni un pari personnel sur les marchés. C'est une infrastructure collective d'investissement long terme, qui transforme les cotisations actuelles d'une génération en capital productif, et le capital productif accumulé en revenu pour cette même génération une fois retraitée. Cette infrastructure, soixante-dix ans après les premiers fonds néerlandais, soixante ans après les fonds suédois, trente ans après la *Superannuation* australienne, n'existe toujours pas en France. Pas par manque d'idée. Par refus.
 
+
+### Le RAFP : ce mécanisme à l'œuvre chez nous
+
+Cette mécanique abstraite n'est pas une vue de l'esprit. Elle est, en France, observable depuis vingt ans à un endroit précis du système : le RAFP. L'introduction l'a posé. Il vaut la peine d'y revenir un instant, parce que la pédagogie du chapitre prend, sur ce cas, une consistance concrète. Cotisations de 5 % patronales et 5 % salariales sur les primes des fonctionnaires, capitalisées dans un fonds public à allocation diversifiée — 58 % d'obligations, 20 % d'actions, 10 % de capital-investissement et d'infrastructures, 9 % d'immobilier —, rendement net annualisé de 4,3 % depuis 2005, ratio de couverture des engagements supérieur à 117 %[^318]. Quatre millions et demi de fonctionnaires en bénéficient déjà. Le fonctionnement décrit dans cette section n'est ni théorique, ni étranger, ni futur. Il est français, il est public, il est obligatoire pour une partie de la population active, et il rapporte trois fois ce que rapporte la répartition pure aux générations actuelles. Reste à savoir pourquoi ce qui fonctionne pour quatre millions et demi de personnes est interdit aux vingt autres millions de salariés. Le chapitre suivant — celui qui suit, dans ce livre, la démonstration arithmétique du cas-type — répond à cette question en chiffres précis.
 
 ## Cotiser moins pour gagner plus 
 
@@ -255,7 +261,9 @@ Voilà, en chiffres, ce que coûte à un actif né en 1996 le choix français du
 
 C'est pour le réduire - pas pour le remplacer - qu'il faut maintenant regarder ce que coûte, pour la France et pour ses entreprises, l'absence d'un pilier capitalisé. C'est l'objet du chapitre suivant.
 
-*Les cotisations sociales peuvent baisser*
+## Ce que ça change pour le système
+
+### Les cotisations sociales peuvent baisser
 
 Aujourd'hui, un salarié français et son employeur versent ensemble 28 % du salaire brut au financement des retraites --- cotisation vieillesse de base, retraite complémentaire AGIRC-ARRCO[^108]. Ce chiffre est, parmi les pays comparables, l'un des plus élevés au monde. En Suède, le total tourne autour de 17,2 %. Aux Pays-Bas, autour de 26 %, dont les deux tiers en capitalisation. En Australie, 12 % de cotisation patronale en capitalisation, à quoi s'ajoute une *Age Pension* publique modeste financée par l'impôt général. La France est de loin la plus chère à cotisations pour le seul système de retraite.
 
@@ -264,27 +272,5 @@ Pourquoi ? Parce que dans un système où tout passe par la répartition, ce son
 Une fois le pilier capitalisé arrivé à maturité --- trente à quarante ans après le démarrage ---, la France pourrait raisonnablement réduire son taux de cotisation total de plusieurs points sans que les pensions servies n'en souffrent[^109]. Trois points, par exemple, redonneraient environ 90 milliards d'euros par an de pouvoir d'achat aux salariés ou de capacité d'embauche aux employeurs. C'est l'équivalent du budget de la Défense.
 
 \[GRAPHIQUE --- Taux de cotisation retraite total France : 28 % aujourd'hui, palier transitoire 30 % entre 2032 et 2050, retour à 24-25 % à régime stationnaire en 2060\]
-
-## 1.9 Le RAFP : la capitalisation existe déjà chez nous
-
-Tout ce qu'on vient de démontrer est arithmétique. Cela suppose, dans le débat français, que la capitalisation soit une hypothèse à instituer, à expérimenter, à essuyer les plâtres. Or il existe en France, depuis le 1ᵉʳ janvier 2005, un régime obligatoire de retraite par capitalisation. Il couvre 4,5 millions de cotisants. Il gère 47,8 milliards d'euros. Il rapporte, depuis sa création, 4,3 % nets par an[^318]. Et le législateur a soigneusement évité de l'appeler par son nom.
-
-Ce régime s'appelle le RAFP — Régime additionnel de la fonction publique. Il a été institué par l'article 76 de la loi du 21 août 2003 portant réforme des retraites, dite « loi Fillon »[^319], et opérationnel à compter de la publication du décret d'application du 18 juin 2004[^320]. Il couvre les fonctionnaires titulaires et stagiaires des trois fonctions publiques — État, territoriale, hospitalière —, les militaires et les magistrats. Soit environ 4,5 millions de cotisants au 31 décembre 2024, employés par 42 000 employeurs publics, et plus de 530 000 bénéficiaires retraités[^321]. Sa gestion administrative est confiée à la Caisse des dépôts et consignations, sous l'autorité de l'Établissement de retraite additionnelle de la fonction publique — l'ERAFP, établissement public administratif placé sous la tutelle conjointe des ministres du Budget, de la Fonction publique et de la Sécurité sociale.
-
-La mécanique est exactement celle d'un fonds de pension à cotisations définies. Le fonctionnaire et son employeur cotisent chacun à hauteur de 5 % d'une assiette — soit 10 % au total. L'assiette n'est pas le traitement indiciaire, mais l'ensemble des primes, indemnités et heures supplémentaires versées en sus de ce traitement, plafonnées à 20 % du traitement indiciaire brut annuel[^322]. Les cotisations sont converties en points, et la pension versée au moment de la liquidation correspond au cumul de points multiplié par la valeur de service du point. Cette valeur de service est revalorisée régulièrement par le conseil d'administration de l'ERAFP : elle est passée de 0,04 euro en 2005 à 0,05378 euro en 2024, après une revalorisation de 6,8 % au 1ᵉʳ janvier 2024 et de 4 % au 1ᵉʳ janvier 2025, soit une progression cumulée d'environ 41 % en vingt ans[^323].
-
-Les chiffres financiers du régime parlent d'eux-mêmes. À sa création, en 2005, le RAFP avait zéro encours. Au 31 décembre 2024, soit vingt ans plus tard, il en gère 47,8 milliards d'euros[^324]. La trajectoire est régulière : 9,9 Md€ en 2010, 21,1 Md€ en 2014, 34,9 Md€ en 2019, 43,3 Md€ en 2023, 47,8 Md€ en 2024[^325]. Les cotisations annuelles, environ deux milliards d'euros, alimentent en flux ce qui s'accumule en stock. Et ce stock travaille : il génère, depuis l'origine, un taux de rendement interne annualisé de 4,3 % par an net de frais, calculé en valeur économique[^326]. En 2024 seul, le rendement annuel a atteint 5,9 %. En 2023, exceptionnellement, 8,8 %[^327]. Pour comparaison, selon les hypothèses centrales du Conseil d'orientation des retraites, le taux de rendement interne implicite de la cotisation versée au régime général par répartition oscille pour les cohortes nées entre 1980 et 2000 entre 0,5 % et 1,5 % réels nets[^328]. Un fonctionnaire qui cotise au RAFP voit son euro investi se valoriser à trois fois — parfois plus — du rythme de la répartition.
-
-L'allocation d'actifs du RAFP est celle d'un investisseur institutionnel mature et diversifié. En flux 2024 : 57,8 % en obligations et instruments de crédit, 20,2 % en actions cotées, 9,8 % en *private equity* et infrastructures, 9,3 % en immobilier, le solde en multi-actifs et liquidités[^329]. Plus de 77 % de l'encours bénéficie au financement de l'économie européenne et française[^330]. Le régime se distingue par une politique d'investissement intégralement responsable : il a adopté en mars 2006 une Charte ISR — investissement socialement responsable — qui s'applique à l'ensemble de ses classes d'actifs, ce qui en fait l'un des plus importants investisseurs institutionnels publics européens entièrement gérés selon ces critères[^331]. Le ratio de couverture du régime, c'est-à-dire le rapport entre la valeur de ses actifs et la valeur actualisée de ses engagements envers ses affiliés, atteint 117,3 % en valeur comptable et 135,8 % en valeur économique à fin 2024[^332]. Autrement dit, le RAFP a en réserve plus que ce qu'il doit à terme : c'est la définition même de la solvabilité d'un fonds de pension à cotisations définies, et c'est exactement ce que le régime général par répartition ne sait pas faire, faute de constituer la moindre provision.
-
-Voilà ce qui est. Voilà ce qui fonctionne. Et voilà comment le législateur l'a baptisé : « régime public de retraite additionnel obligatoire, **par répartition provisionnée** et par points[^333] ». Pas « par capitalisation ». Pourquoi cette précaution sémantique ? Parce qu'en 2003, le mot « capitalisation », pourtant techniquement exact, était politiquement intransportable. Le législateur a donc inventé une formule de compromis — « répartition provisionnée » — qui dit, en langue diplomatique, ce qu'elle ne veut pas dire en langue courante. Comme le résumait Philippe François en 2015 dans une étude de la Fondation IFRAP : « une expression alambiquée pour ne pas l'appeler un régime de capitalisation[^334] ». Vingt ans plus tard, la nuance reste sensible. Une fiche du Conseil d'orientation des retraites publiée en juillet 2024 indique que le RAFP « est géré en capitalisation puisque la réglementation prévoit la couverture de la totalité des engagements[^335] ». Les Surligneurs, dans un *fact-check* du 21 novembre 2025, précisent que sur le plan juridique strict le terme « capitalisation » n'est pas exact — c'est bien « répartition provisionnée » qui figure dans la loi — mais que sur le plan fonctionnel, on a affaire à un fonds qui constitue des réserves et couvre des engagements à long terme, exactement comme un fonds de pension à cotisations définies[^336]. La distinction tient en un mot : la France a un fonds de pension obligatoire pour ses fonctionnaires, mais elle refuse d'écrire ce mot dans la loi.
-
-Le détail historique éclaire ce paradoxe. La création du RAFP, en 2003, n'a pas été un projet idéologique mais une concession syndicale. La CFDT, qui avait jusqu'alors refusé de signer la réforme des retraites du gouvernement Raffarin, a accepté de la soutenir le 15 mai 2003 en échange de plusieurs contreparties — dont, en bonne place, l'instauration d'un régime additionnel sur les primes des fonctionnaires[^337]. Le compromis a coûté à la CFDT une grave crise interne et la perte de plusieurs milliers d'adhérents — mais la réforme est passée, avec un pilier capitalisé obligatoire en prime, voté par une majorité de droite et appuyé par une partie de la gauche syndicale. C'est, dans l'histoire récente du débat français sur les retraites, le seul moment où une dose de capitalisation a été instituée. Elle ne s'appelait pas comme ça. Elle ne concernait pas tout le monde. Mais elle existait, et elle existe encore.
-
-L'économiste Bertrand Martinot, ancien délégué général à l'emploi, l'a explicitement appelée en mars 2025 comme modèle d'extension future. Dans une étude pour la Fondation pour l'innovation politique intitulée *Retraites : optimiser les dépenses, introduire une part de capitalisation*, il propose que les futures surcotisations capitalisées soient « versées à une caisse spécifique fonctionnant par capitalisation sur le modèle de l'établissement pour la retraite additionnelle de la fonction publique (ERAFP), qui gère déjà les pensions additionnelles assises sur les primes des fonctionnaires[^338] ». Autrement dit, l'extension de la capitalisation à l'ensemble des salariés n'a pas besoin d'être inventée à partir de rien. L'infrastructure publique existe. La gouvernance existe. Le savoir-faire de gestion existe. La preuve par vingt ans de chiffres existe. Il manque seulement la décision politique de l'élargir.
-
-Cette absence de décision est, du point de vue de la cohérence, plus difficile à défendre qu'on ne l'imagine. Voici l'asymétrie en chiffres clairs : 4,5 millions de fonctionnaires français ont depuis 2005 un régime de retraite obligatoire à cotisations définies dont l'encours dépasse, par cotisant, dix mille euros et qui a rapporté 4,3 % par an depuis vingt ans[^339]. Pendant ce temps, vingt millions de salariés du secteur privé n'ont rien d'équivalent — seulement le plan d'épargne retraite, dispositif volontaire et individuel dont l'encours moyen par titulaire n'atteint pas onze mille euros et qui sert d'abord d'optimisation fiscale aux foyers les plus aisés[^340]. Ce qui est jugé acceptable pour les agents publics est refusé aux salariés du privé. Ce qui marche pour quatre millions de personnes depuis vingt ans est interdit pour vingt millions. Cette asymétrie a un nom : c'est une rupture d'égalité de fait, justifiée par une rupture d'égalité de mot. Le politique français a, en 2003, accepté la chose tant qu'on l'appelait « répartition provisionnée ». Il continue, vingt ans plus tard, à la refuser dès qu'on l'appelle « capitalisation ». La preuve fonctionne sous les yeux du contribuable. La preuve n'est jamais utilisée dans le débat.
-
-Le débat de 2023 sur la réforme Borne a duré près de cent jours, mobilisé toutes les chaînes d'information continue, déclenché les plus vastes manifestations syndicales depuis 1995 — et n'a presque pas mentionné le RAFP. Il a fallu attendre une émission politique de novembre 2025 et un échange entre Gabriel Attal et Sandrine Rousseau pour que le mot soit prononcé en *prime time*[^341]. Et même là, dans la confusion : Attal a affirmé que Rousseau bénéficiait « d'un régime de capitalisation », formulation que Les Surligneurs ont jugée techniquement inexacte au sens strict du droit. Vingt ans après sa création, le RAFP reste l'angle mort du débat français : il existe, il fonctionne, il prouve, mais il ne se dit pas. C'est, en démocratie, une anomalie singulière. La capitalisation a fait, à bas bruit, ce que la politique refuse encore d'assumer à voix haute.
 
 Tout ce qui précède dans ce chapitre concerne les retraites. Plusieurs centaines de milliers d'euros de pension cumulée pour les actifs d'aujourd'hui, une dépense publique de retraite qui se contracte au lieu de gonfler, un choc démographique encaissé plutôt que subi, et la preuve française, par vingt ans de chiffres, que la capitalisation obligatoire pour quatre millions de personnes rapporte plusieurs fois ce que rapporte la répartition pour tous les autres. Quatre bénéfices déjà décisifs. Mais la capitalisation, dans les pays qui l'ont adoptée à grande échelle, fait autre chose en plus. Elle structure leur économie entière. Elle décide qui détient les entreprises cotées, qui reprend les ETI familiales, qui finance les startups, qui rachète les infrastructures. Pendant que la France n'a, hors RAFP, pas de pilier capitalisé d'envergure, les fonds des Néerlandais, des Norvégiens, des Canadiens et des Californiens font ce travail à sa place — sur ses propres entreprises, avec ses propres dividendes. La deuxième partie de ce livre va regarder cette face du sujet en face.

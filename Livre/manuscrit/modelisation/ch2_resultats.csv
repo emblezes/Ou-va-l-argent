@@ -1,0 +1,4 @@
+scenario,part_capitalisation,rendement_reel_brut,rendement_reel_net,cotisation_annuelle_C0,cumul_cotisations_reelles,capital_73ans,rente_mensuelle,rente_annuelle,salaire_net_final,trn_repartition,pension_repartition_annuelle,pension_totale_annuelle,cumul_20ans_retraite,ecart_pension_vs_A,ecart_cumul_vs_A
+A — Répartition pure,0.0,0.04,0.037,0.0,0.0,0.0,0.0,0.0,33230.0,0.744,24723.0,24723.0,494466.0,0.0,0.0
+B — Mixte 80/20 (Suède),0.2,0.04,0.037,1960.0,93766.0,216240.0,1364.0,16363.0,33230.0,0.5952,19779.0,36142.0,722830.0,11418.0,228364.0
+C — Mixte 60/40 (NL),0.4,0.04,0.037,3920.0,187531.0,432480.0,2727.0,32726.0,33230.0,0.4464,14834.0,47560.0,951195.0,22836.0,456729.0

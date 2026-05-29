@@ -3,7 +3,13 @@
 
 Pendant que nous ne capitalisons pas, les autres le font à notre place --- avec notre épargne, sur nos entreprises. Le résultat est un grand transfert silencieux : six mille milliards d'euros qui dorment chez nous, et nos plus belles ETI qui se vendent à des fonds qui n'auront jamais à payer de retraite française. Cette partie le documente.
 
-## Trois familles dans le monde
+## Qu'est-ce qu'un fonds de pension ? À quoi ça sert ? Les trois familles
+
+Avant de regarder pourquoi la France perd son capital, il faut prendre le temps de poser ce qu'est, concrètement, un fonds de pension. Le mot circule beaucoup dans le débat public ; sa réalité technique reste, étrangement, mal connue. Un fonds de pension est un organisme d'investissement collectif dont la mission est de gérer, sur plusieurs décennies, les cotisations retraite versées par une population définie — salariés d'un secteur, fonctionnaires d'un État, travailleurs d'une entreprise, ou cotisants d'un régime national entier. Ces cotisations ne sont pas redistribuées immédiatement comme dans la répartition. Elles sont investies — actions cotées, obligations d'État et d'entreprises, immobilier, infrastructures, capital-investissement — et produisent un rendement qui s'accumule au capital. À l'âge de la retraite, le capital accumulé pour chaque affilié est converti en rente viagère ou versé sous forme de capital, selon les règles du régime.
+
+Un fonds de pension remplit donc, simultanément, quatre fonctions. La première est sociale : assurer un revenu complémentaire ou principal de retraite à ses affiliés, lissé sur trente à quarante ans de vie active. La deuxième est financière : valoriser ce revenu par le rendement composé du capital investi, ce qui démultiplie l'effort de cotisation par un facteur de deux à cinq selon les durées. La troisième est macroéconomique : transformer l'épargne nationale en force productive, en finançant les entreprises, les infrastructures et les projets de long terme dans lesquels il investit. La quatrième est politique : reprendre la maîtrise nationale du capital, en évitant que les meilleures entreprises domestiques basculent par défaut sous le contrôle de fonds étrangers — c'est l'enjeu de souveraineté qui structure toute la suite de cette partie.
+
+La France, on l'a vu en introduction, dispose déjà d'un fonds de pension public obligatoire — le RAFP — qui couvre 4,5 millions de fonctionnaires depuis 2005, gère 47,8 milliards d'euros à fin 2024 et rapporte 4,3 % nets par an depuis l'origine. Il s'agit, mécaniquement, exactement de ce qui est décrit ci-dessus : cotisations capitalisées, allocation diversifiée — 58 % obligations, 20 % actions, 10 % capital-investissement et infrastructures, 9 % immobilier —, gouvernance publique paritaire, horizon long. Le RAFP n'est pas un fonds de pension exotique. C'est l'exemple français du modèle. La seule particularité, dans le débat hexagonal, est qu'il a été soigneusement maintenu en dehors du radar politique pendant vingt ans. Quand on parle de fonds de pension dans la suite de ce livre, on parle donc d'une infrastructure dont la France maîtrise déjà la technique pour une partie de sa population active. La question est de savoir pourquoi elle se l'interdit pour les autres.
 
 Quand on parcourt les pays qui ont adopté un pilier capitalisé, on s'aperçoit qu'ils n'ont pas tous fait la même chose. La capitalisation n'est pas un modèle unique mais une famille de modèles, qui se distinguent par la nature de la cotisation, l'identité de l'opérateur et le degré de contrainte. Trois grandes familles ressortent. Comprendre ces trois familles, c'est se débarrasser d'une autre fausse idée : celle selon laquelle « la capitalisation, c'est anglo-saxon ». Les variantes nordiques, néerlandaises et québécoises ressemblent, sur leurs principes essentiels, à tout sauf à du *Wall Street*.
 
@@ -21,9 +27,15 @@ Ces trois familles ne sont pas concurrentes : elles peuvent se combiner. La Suè
 
 Et c'est là, peut-être, le plus parlant. Aucun pays parmi les trente-huit membres de l'OCDE qui a institué un pilier de capitalisation structurel ne l'a démantelé ensuite, même quand l'alternance politique a renversé la majorité d'origine[^121]. La capitalisation, une fois en place, devient consensuelle. Elle traverse les majorités, comme la Sécurité sociale a traversé les nôtres. Ce qui en dit long sur l'écart entre ce que la France imagine du sujet et ce qui se fait partout ailleurs.
 
-2.  
+## Le capital qui nous échappe
 
-## Six mille milliards qui dorment
+Première observation, brutale dans les chiffres. À fin 2024, la moitié du capital des grandes sociétés-mères françaises du CAC 40 est détenue par des investisseurs non-résidents. Le *Government Pension Fund Global* norvégien, qu'on a évoqué plus haut, détient à lui seul environ 30 milliards d'euros d'actions françaises. ABP, le fonds des fonctionnaires néerlandais, est présent au capital de Schneider Electric, L'Oréal, Sanofi, Saint-Gobain, BNP Paribas, Air Liquide, AXA, Danone, Société Générale, Klepierre. *CPP Investments*, le gestionnaire de la retraite des Canadiens, détient des participations dans Schneider, Air Liquide, Veolia. *AustralianSuper*, *USS*, le fonds des universités britanniques, les *teachers' pensions* du Texas et de l'Ontario, *BlackRock* et *Vanguard* qui répliquent l'indice mondial pour les épargnants retraite américains : tous sont au capital de nos plus grandes entreprises. Les bénéficiaires ultimes de leur rendement sont, par construction, des retraités étrangers.
+
+Le mécanisme est mécaniquement transparent. Les fonds de pension étrangers ont besoin d'investir leurs cotisations dans des actifs cotés performants ; nos grandes entreprises sont des actifs cotés performants ; donc ils investissent chez nous. La France ne dispose pas de fonds de pension d'envergure équivalente — Ardian, premier gestionnaire français de capital-investissement, gère environ 170 milliards de dollars, soit moins d'un dixième du seul fonds norvégien. Il n'y a, par construction, personne du côté français pour faire contrepoids au flux entrant. Le résultat : sur les 73 milliards d'euros de dividendes versés en 2024 par les sociétés du CAC 40, près de 40 milliards sont partis à l'étranger. Chaque année, les bénéfices de nos plus grandes entreprises financent en partie les retraites néerlandaises, les universités californiennes, les pensions de l'Ontario, l'État providence norvégien.
+
+Le paradoxe central de cette partie tient en une phrase. Ce n'est pas que la France n'a pas d'épargne. Au contraire — elle en a six mille milliards d'euros, plus que l'Allemagne. C'est que cette épargne ne va pas là où il faudrait pour qu'elle finance le capital national. Elle est immobilisée, mal canalisée, sous-rémunérée. La section qui suit documente où elle dort, et pourquoi.
+
+### Six mille milliards qui dorment
 
 Les ménages français épargnent beaucoup. Sur 100 euros gagnés chaque mois, près de 20 sont mis de côté[^122]. Et pourtant, quand Sanofi a annoncé la cession d'Opella, en octobre 2024, aucun acheteur français n'a levé la main. Pas un. Pas même au prix demandé, pas même à un prix légèrement moindre. Le pays le plus épargnant d'Europe occidentale n'avait, ce jour-là, personne à mettre en face d'un fonds new-yorkais. C'est le paradoxe central de ce chapitre.
 
@@ -68,7 +80,11 @@ Au bout du compte, ce que tout cela décrit, c'est un comportement de ménage. L
 
 Rapporté à la tête d'habitant, l'écart devient embarrassant. La France détient 1 715 milliards d'actions et OPC actions pour 68 millions d'habitants, soit 25 200 € par tête. La Suède 40 000 € par tête. Plus de 50 % d'écart, alors même que le patrimoine financier brut total français est plus de cinq fois supérieur à celui de la Suède[^138]. C'est ça, le paradoxe : nous épargnons davantage, et nous investissons moins. La fourmi sans champ. Si cette épargne ne va pas vers les entreprises françaises, où va-t-elle ? L'argent va dans les fonds étrangers qui rachètent ces mêmes entreprises françaises. Le capital qui devrait financer nos ETI les finance - en passant par Amsterdam, Toronto, New York, Oslo - mais sous pavillon étranger. Et le contrôle change de main, en silence, milliard après milliard.
 
-## 240 000 entreprises sans repreneur français
+## La vague des cessions silencieuses
+
+Le capital qui nous échappe n'est pas une notion abstraite. Il prend, dans la décennie qui s'ouvre, une forme parfaitement concrète : la vague de cessions des entreprises familiales françaises sans repreneur national. Cette vague a deux faces qui sont, en réalité, le même phénomène. Côté tissu industriel : 240 000 entreprises françaises chercheront un repreneur d'ici 2030 sans en trouver. Côté grandes entreprises cotées : un *hold-up silencieux* qui se déroule depuis vingt ans, transaction par transaction, et qui transfère les sièges, les brevets, les centres de décision et les dividendes vers des opérateurs étrangers.
+
+### 240 000 entreprises sans repreneur français
 
 L'argument n'est plus seulement structurel. Il est temporel. La France entre, à partir de 2025, dans une fenêtre démographique d'une dizaine d'années pendant laquelle un tissu entier d'entreprises familiales et patrimoniales va changer de mains. Cette fenêtre se referme vers 2035. C'est, par taille, le plus grand mouvement de transmission jamais observé dans l'économie française. Et il est presque entièrement non préparé.
 
@@ -108,7 +124,7 @@ La structure de coûts amplifie l'écart. Un fonds de PE facture entre 1,5 et 2,
 
 Ce n'est pas un combat. C'est une partie déséquilibrée par construction. À chaque cession d'une belle ETI française, le fonds de pension étranger arrive avec un chèque plus gros et une promesse de stabilité que le PE français ne peut pas faire. Et il l'emporte. Pas parce qu'il est meilleur. Parce qu'il vient d'un système qui, lui, a construit l'outil. L'asymétrie ne se résoudra pas par un Ardian qui doublerait de taille. Elle se résout par des fonds de pension structurels - un véhicule que la France n'a pas.
 
-## Le hold-up silencieux {#le-hold-up-silencieux-1}
+### Le hold-up silencieux
 
 Dix ans de cessions
 
@@ -217,7 +233,7 @@ Les trois chapitres qui précèdent forment alors une seule démonstration. Le p
 
 C'est exactement l'objet du chapitre suivant : comprendre comment huit pays comparables ont, chacun à sa manière, fait ce que nous n'avons pas fait. Et constater, en passant, à quel point la France n'est plus, sur ce sujet, dans la moyenne occidentale, mais en bout de classement. La suite est dans ce qu'ont fait les autres. Avant nous. Et qu'il nous faut maintenant regarder en face.
 
-## Alléger les dépenses publiques de retraite
+### Alléger les dépenses publiques de retraite
 
 La France consacre aujourd'hui 13,8 % de son produit intérieur brut au financement des pensions[^174]. C'est le quatrième taux de l'OCDE, derrière la Grèce, l'Italie et l'Autriche. La moyenne des pays développés est à 8,1 %. Les Pays-Bas, à 7,2 %. La Suède, à 7,2 % également. Le Danemark, à 8,2 %. Le Canada, à 4,7 %.
 
@@ -227,7 +243,7 @@ L'ordre de grandeur, pour la France, est connu. Si une part --- disons 30 % --- 
 
 C'est exactement ce qu'a fait la Suède en vingt-cinq ans. Sa dépense publique de retraite, après la réforme de 1998, est passée de 11 % à 7 % du PIB[^176]. Personne, en Suède, ne s'est appauvri. Personne n'a vu sa pension baisser. Le capital a simplement pris le relais d'une part de l'effort que l'État portait seul auparavant.
 
-### Les recettes fiscales augmentent
+#### Les recettes fiscales augmentent
 
 Un troisième effet, plus discret mais décisif, prend forme à mesure que les fonds de pension grandissent. Le capital qu'ils accumulent ne dort pas. Il est investi dans l'économie réelle --- entreprises cotées, capital-investissement, infrastructures, immobilier productif ---, et c'est précisément cet investissement qui produit du rendement. Or l'investissement productif génère, pour les pouvoirs publics, des recettes fiscales.
 
@@ -235,7 +251,7 @@ Trois canaux principaux nourrissent l'effet. **L'impôt sur les sociétés** d'a
 
 Une modélisation menée en 2024 et 2025 par l'Institut pour l'Audace Politique chiffre l'effet cumulé. Sur les seules dix premières années de déploiement d'un pilier capitalisé de 30 % à hypothèses prudentes (rendement 5 % réel, multiplicateur d'investissement 0,35, fléchage productif 30 %, propension à consommer 75 %), le supplément de recettes fiscales pour l'État français atteindrait environ 175 milliards d'euros cumulés, soit dix-huit milliards par an en moyenne sur la période[^177]. Vu autrement : pour chaque euro placé en capitalisation, environ vingt centimes reviennent à l'État sous forme de recettes fiscales additionnelles, en l'espace d'une décennie. Cet effet ne s'éteint pas : il se renforce à mesure que les fonds atteignent leur taille de croisière, et il devient un produit permanent du budget public.
 
-### Le PIB croît, l'économie se reconstitue
+#### Le PIB croît, l'économie se reconstitue
 
 Le dernier effet est le plus large. Quand l'épargne nationale, au lieu de dormir dans des fonds en euros au rendement réel proche de zéro, est dirigée vers le capital productif --- actions cotées, capital-risque, infrastructure, immobilier d'entreprise ---, elle alimente directement la croissance. C'est ce que la Suède appelle, depuis trente ans, son « cercle vertueux du capital domestique ». C'est ce que les Pays-Bas, le Canada, l'Australie et le Royaume-Uni voient se produire chez eux depuis aussi longtemps.
 
@@ -243,7 +259,7 @@ La même modélisation IAP, sur les mêmes hypothèses prudentes, projette pour 
 
 \[GRAPHIQUE --- Impact cumulé annuel d'un pilier capitalisé de 30 % en France (modélisation IAP, hypothèses prudentes) : Investissement productif cumulé, Impact PIB cumulé, Recettes fiscales cumulées, Emplois créés. Échelle 10 ans\]
 
-## 2.7 Le cercle vertueux de la capitalisation
+### Le cercle vertueux du capital domestique
 
 On vient de regarder chaque effet séparément — dépenses publiques en baisse, recettes fiscales en hausse, PIB en croissance. Ces effets ne sont pas indépendants. Ils sont les manifestations successives d'une même mécanique. Cette mécanique a un nom dans la littérature économique : le cercle vertueux du capital domestique[^342]. Elle vaut la peine d'être nommée explicitement, parce que sa puissance ne vient pas de chacun de ses effets pris à part, mais de leur circularité.
 

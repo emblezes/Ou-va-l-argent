@@ -48,6 +48,24 @@
 - `manuscrit-v4/compile.sh` : compilation Pandoc → `Livre/docx/Capitalisons-V4.docx` (testé OK, 160 Ko)
 - `_factcheck-v4-journal.md` (à créer) : journal du fact-check phrase par phrase
 
+**Restructuration architecturale V5 — TERMINÉE 29 mai 2026 nuit** :
+
+Architecture finale équilibrée selon dynamique « individu → collectif → action » + RAFP en intro pour désamorcer l'opposition + verrous historiques en conclusion :
+
+- **Introduction (6 sous-sections, 3 007 mots)** : Doliprane / Français prêts / **RAFP** (déplacé depuis P1 §1.9) / Trois chiffres / Grande illusion / Objectif / Plan
+- **P1 — La capitalisation répond aux problèmes du système (6 sous-sections, 9 451 mots)** : Le système actuel est dans une impasse (fusion vieillissement + déficit + comment on en est arrivé là) / Ces réformes paramétriques qui n'en sont pas / C'est Nicolas qui paie / Comprendre la capitalisation (+ rappel RAFP) / Cotiser moins pour gagner plus / Ce que ça change pour le système
+- **P2 — La capitalisation permet d'avoir des fonds de pension (4 sous-sections, 11 644 mots)** : Qu'est-ce qu'un fonds de pension ? À quoi ça sert ? Les trois familles (pédagogie en tête + rappel RAFP) / Le capital qui nous échappe (fusion Norvège/ABP/CPPIB + 6 000 Md€) / La vague des cessions silencieuses (fusion 240 k entreprises + hold-up silencieux) / Si la France avait des fonds de pension (fusion modélisation + alléger dépenses + cercle vertueux)
+- **P3 — Comment on y arrive (4 sous-sections, 15 548 mots)** : Quatre trajectoires Suède/Australie/Singapour/Chili (+ leçons par pays) / Les enjeux à arbitrer / La méthode politique (incluant agenda 2027-2052) / La transition (fonds de transition modèle suédois)
+- **Conclusion enrichie (2 306 mots)** : 4 verrous historiques (extraits de P3) + Pourquoi cette fois c'est différent + 3 bénéfices + Choisir, enfin
+
+**Stats V5** : 46 565 mots corps + 17 736 mots footnotes (371 footnotes au total). **~140 pages avec footnotes en pied de page**. Légèrement sous cible 150 p. — enrichissements possibles en avant-propos (890→1 500) et autres sections sous-dotées.
+
+**Architecture équilibrée** : 6/6/4/4 sous-sections sur Intro/P1/P2/P3. Dynamique narrative : individu (P1) → collectif (P2) → action (P3) → bilan des verrous + choix (conclusion).
+
+Commit git de référence V4 enrichie (avant restructuration) : `acb9dd1`.
+
+---
+
 **Phase 1 (rédaction des sections nouvelles) — TERMINÉE le 29 mai 2026 soirée** :
 
 - ✅ **§1.9 RAFP** rédigé (~1 800 mots, 24 footnotes [^318]-[^341]) — matière `manuscrit/recherche/ch1-rafp-matiere.md`

@@ -1,0 +1,99 @@
+# Appendice — Cinq mensonges qui ont coûté trente ans
+
+Ce qui suit n'est pas un chapitre. C'est un argumentaire prêt à l'emploi, à garder sous le coude pour les fois où vous tomberez sur l'une des cinq objections qui ont, pendant trois décennies, anesthésié le débat français sur la capitalisation. *« La bourse, c'est le casino — souvenez-vous d'Enron. »* *« C'est anti-social, ça profite aux riches. »* *« Le double paiement est insurmontable. »* *« On a déjà essayé, le PER ne marche pas. »* *« La France n'a pas la culture financière. »* Chacune a une part de vérité — assez pour expliquer qu'elle ait tenu — et beaucoup d'inexactitudes — assez pour que sa simple répétition ait fini par interdire toute discussion sérieuse.
+
+Cinq questions, cinq réponses. Si vous avez lu les cinq parties qui précèdent, vous avez déjà l'essentiel. Cet appendice n'est là que pour outiller la conversation suivante — celle qu'il faudra tenir dans un dîner, devant un syndicat, ou face à un éditorialiste.
+
+Trois mandats présidentiels que ces cinq phrases bloquent toute réforme structurelle. Trente ans. Pendant lesquels les Pays-Bas, l'Australie, le Royaume-Uni, le Canada, la Suède, et finalement le Chili lui-même ont tranché. La France, pas encore.
+
+## Q.1 — « La bourse, c'est le casino : et si tout s'effondre comme Enron ? »
+
+La peur est légitime appliquée au petit porteur isolé. Elle est mal calibrée appliquée à un fonds de pension public. Et les trois cas qu'on agite pour la justifier — Enron, Madoff, Detroit — ne sont pas des arguments contre la capitalisation moderne. Ils sont des arguments pour la régulation qui l'encadre.
+
+**Le rendement réel sur cent vingt-cinq ans.** Les données très longues, rappelées en Partie 2, sont sans appel : les actions mondiales produisent 5,2 % par an en termes réels sur la période 1900-2024 — guerres, krachs et stagflation inclus. Les fonds euros français, 0,15 % réel net en 2024. Soixante-dix fois moins. Le risque ne se compare pas au néant ; il se compare à l'alternative. Et l'alternative française d'épargner dans un livret à rendement réel nul est aussi un pari — celui qu'on perd à coup sûr.
+
+**Le glide path neutralise le risque de séquence.** Le risque réel n'est pas le krach. C'est le krach à 64 ans suivi d'une liquidation forcée à 65 ans. C'est précisément ce que désamorce la trajectoire glissée : à 30 ans, 100 % actions ; à 55 ans, 80/20 ; à 65 ans, 50/50 ; à 75 ans, 33/67 en faveur des obligations. AP7 Såfa en Suède, NEST Retirement Date Funds au Royaume-Uni, TSP Lifecycle aux États-Unis appliquent ce mécanisme[^297]. Un cotisant français qui aurait pris sa retraite début 2009 — au pire moment historique récent — aurait subi, dans la dernière année avant la retraite, environ 3 % de baisse de capital total. À comparer aux 56,8 % du S&P 500. Le glide path absorbe l'essentiel du choc.
+
+**Les garanties publiques de dernier recours existent partout.** Aux Pays-Bas, la DNB impose un *funding ratio* minimum de 105 % ; le ratio médian est de 125 %, aucune faillite de grand fonds depuis trente ans[^298]. Au Royaume-Uni, le *Pension Protection Fund* couvre 8,8 millions de personnes dans 5 000 fonds ; garantie 100 % aux retraités, 90 % aux actifs[^299]. En Suède, une *garantipension* assure le plancher. Aucun fonds public moderne respectant les règles OCDE n'a fait défaut depuis trente ans. Pas un.
+
+**Enron, Madoff, Detroit : trois faux contre-exemples.** Enron en 2001, fraude comptable d'une entreprise texane dont les plans 401(k) étaient concentrés en actions employeur. Le *Pension Protection Act* de 2006, voté précisément après Enron, a imposé la diversification dans les 401(k) eux-mêmes. La leçon a été apprise, et la régulation moderne — déjà appliquée aux fonds publics depuis bien avant 2001 — l'interdit explicitement[^301]. Madoff en 2008, schéma de Ponzi de 18 milliards de dollars vendu à une clientèle privée ultra-aisée : audit indépendant, *mark-to-market* quotidien, ségrégation comptable des actifs, supervision prudentielle continue — chacun de ces garde-fous, présent dans tout fonds régulé par ERISA ou IORP II, aurait suffi à arrêter Madoff. Aucun fonds de pension public n'a fait faillite à cause de lui[^302]. Detroit en 2013, faillite municipale liée à l'effondrement démographique d'une ville (de 1,8 million à 700 000 habitants en soixante ans) couplé à l'absence de *funding ratio* minimum légal. Si Detroit avait été un fonds néerlandais, la DNB aurait imposé un plan de redressement vingt ans plus tôt[^303]. Detroit est un échec de gouvernance prudentielle, pas un échec de la capitalisation.
+
+Trois cas, trois pays, soixante-quinze ans cumulés — qu'on agite pour condamner les fonds qui paient les retraites néerlandaises depuis 1922, suédoises depuis 1955, californiennes depuis 1932 et canadiennes depuis 1999. Tous ont traversé 2000, 2008, 2020 et 2022. Tous ont continué à payer.
+
+Et l'inversion à laquelle on échappe rarement : le *Mercer CFA Global Pension Index 2025* classe la France en grade B, score global **70,3**. Mais derrière cette moyenne, deux sous-indices très différents : **adéquation 85,2** (pensions généreuses) et **viabilité 48,6** (le système ne tient pas)[^304]. La France est notée structurellement plus fragile que la Grèce sur la viabilité. Le risque ne vient pas de Wall Street. Il vient de Paris.
+
+## Q.2 — « C'est anti-social : ça profite aux riches »
+
+L'objection a une noblesse — celle d'Henri Sterdyniak, qui la porte depuis trente ans. Elle est cohérente *pour un certain type de capitalisation*: la capitalisation pure, sans cotisation patronale, sans plancher universel, sans paritarisme. Précisément celle du Chili d'avant 2025, et celle du PER français. Mais ce n'est *pas* celle des Pays-Bas, de l'Australie, du Royaume-Uni, de la Suède.
+
+**Premier argument : l'obligation patronale renverse l'objection.** Une capitalisation obligatoire à cotisation patronale couvre 100 % des salariés, du SMIC au cadre dirigeant. C'est statistiquement plus égalitaire que le PER actuel, dont 70 % des versements proviennent des trois déciles de revenu les plus élevés[^305]. La capitalisation universelle n'est pas un produit pour cadres : c'est un produit pour tout le monde, financé en partie par l'employeur. C'est l'inverse du PER.
+
+**Deuxième argument : les femmes y gagnent plus, pas moins.** Le *Mercer Gender Pension Index 2025* mesure l'écart femmes-hommes : 17 % aux Pays-Bas, 25 % en Suède et Australie (en baisse), 28-30 % en France selon la DREES[^306]. Les pays à pilier capitalisé obligatoire permettent à la cotisation patronale de continuer pendant les congés parentaux. En France, la répartition pénalise les carrières interrompues. L'objection « anti-redistributive » se retourne sur sa version la plus visible — la pension des femmes — dès qu'on regarde les chiffres.
+
+**Troisième argument : le rapport P90/P10, plus égalitaire aux Pays-Bas.** Le rapport entre la pension du premier décile et celle du neuvième décile : **France ≈ 4,2 ; Pays-Bas ≈ 3,1**[^307]. Le pilier deux paritaire universel néerlandais couvre 85 % des salariés à un taux de remplacement de 70-80 %, indépendamment du niveau de revenu. Le système français — répartition pure plus PER optionnel — laisse au contraire les hauts revenus accumuler un capital fiscalement subventionné que les bas revenus n'utilisent pas. Le PER français *augmente* les inégalités de pension. La capitalisation obligatoire universelle les *réduit*.
+
+Sterdyniak pose la question de l'égalité de mécanisme. Les Hollandais et les Suédois ont, eux, posé celle du résultat. Et le sondage Odoxa-Groupama de novembre 2025 — 57 % des Français favorables au système mixte, 22 % à la capitalisation seule contre 20 % à la répartition seule[^308] — n'est pas le sondage de la France des privilégiés. C'est celui de la France entière.
+
+## Q.3 — « Le double paiement est insurmontable »
+
+Voici l'objection pivot. Celle qui a tué Thomas 1997, Delevoye 2019, et la version structurelle de Borne 2023.
+
+Reconnaissons d'abord ce qui est vrai. Dans toute transition d'un système de répartition pure vers un système mixte, les actifs financent simultanément les retraités d'aujourd'hui — promesse non renégociable — et une fraction de leur propre retraite future. La charge totale est, par construction, supérieure à la charge initiale. C'est une équation arithmétique. Le débat ne porte pas sur l'existence du double paiement, mais sur **qui** l'absorbe, et **comment**.
+
+**Aucun pays comparable n'a financé la transition par l'impôt général.** C'est le constat empirique le plus dirimant. Australie 1992 : cotisation patronale 3 → 12 %, modération salariale négociée dans l'Accord Hawke-Kelty Mark II, coût pour l'État proche de zéro[^309]. Suède 1998 : recyclage de 2,5 points sur les 18,5 % de cotisation existante vers PPM, total inchangé, pas de double paiement net[^310]. Royaume-Uni 2012-2019 : auto-enrolment 2 → 8 %, mix salarié-employeur-tax relief, environ 1 à 2 Md£/an seulement pour l'État. Canada 2019-2023 : hausse paritaire 9,9 → 11,9 % sur six ans, 50/50, coût pour l'État nul. Pays-Bas 2019-2028 : conversion DB→DC sur les réserves existantes des fonds (1 850 Md€), pas un euro de l'État.
+
+Une seule ligne fait exception : le Chili, qui a financé ses *bonos de reconocimiento* par l'impôt général à hauteur de **30 % du PIB cumulé** sur trente ans[^311]. C'est précisément ce qui en fait le contre-exemple absolu — et la raison pour laquelle le Chili a dû tout réformer en janvier 2025.
+
+**La France dispose de plusieurs leviers complémentaires.** Le détail figure au Chapitre 5.1 de la Partie 5 et ne se résume pas à un tableau. Pour situer les ordres de grandeur : le FRR pèse 20,4 milliards d'euros mobilisables en dotation initiale, un point de cotisation patronale rapporte environ 11 milliards par an de flux pérenne, des eurobonds retraite dédiés peuvent lisser une partie de la bosse de transition à hauteur d'un point de PIB sur cinq ans, et la modération marginale d'indexation des pensions au-dessus du minimum vieillesse libère quelques milliards supplémentaires. Combinaison réaliste : aucun levier seul, plusieurs ensemble. Charge nette pour l'État de l'ordre de **3 à 5 milliards d'euros par an** sur la transition, soit moins de 0,2 % du PIB.
+
+**Le coût de l'inaction est dix fois supérieur.** Le COR projette un déficit du système de **45 Md€/an en 2070**, soit −1,4 % du PIB[^314]. La Commission européenne évalue le passif implicite français à plus de **400 % du PIB**[^315]. Le coût de l'inaction sur le même horizon que la transition, rien qu'en soldes COR projetés linéairement : plusieurs centaines de milliards cumulés. L'argument du double paiement, retourné, devient simple : le double paiement de l'inaction sera, à coup sûr, plusieurs fois plus lourd que celui de la transition.
+
+La Suède l'a accepté en 1994, en pleine crise budgétaire. L'Australie en 1985. Le Royaume-Uni en 2008. Le Canada en 2016. Aucun de ces pays n'avait, à l'époque, l'épaisseur budgétaire que la France a aujourd'hui. L'objection « insurmontable » n'est ni technique ni juridique. Elle est *politique*.
+
+## Q.4 — « On a déjà essayé : le PER, ça ne marche pas »
+
+L'argument utilise un échec partiel pour disqualifier un projet plus large. Comme si l'on disait : *« la voiture électrique, ça ne marche pas — regardez la Citroën C-Zéro »*.
+
+**Le PER n'est pas un fonds de pension.** C'est un compte d'épargne fiscal individuel, à adhésion volontaire pour la majorité des contrats, sans gouvernance paritaire, sans fléchage macroéconomique, sans obligation patronale uniforme. La Partie 2 l'a déjà détaillé : avec un encours moyen de l'ordre de 10 600 euros par titulaire, à comparer à plusieurs dizaines de milliers d'euros pour un compte néerlandais ou australien à mi-carrière, le PER est résiduel à l'échelle d'une vie de cotisation[^316]. Il est l'équivalent du *Roth IRA* américain ou du *SIPP* britannique. Pas du NEST, de l'ABP, d'AustralianSuper.
+
+**Volontaire versus obligatoire, c'est qualitatif.** Un produit volontaire ne touche que les déjà-épargnants, qui sont les déciles supérieurs de revenu. Un produit obligatoire — ou en auto-enrolment avec opt-out — couvre tout le monde : 80 à 92 % de taux de participation observés. Cette différence n'est pas quantitative. Elle est qualitative.
+
+**Gouvernance et frais.** Le PER est distribué par des banques et assureurs commerciaux ; frais cumulés de 1,5 à 3 % par an. Un fonds de pension public est gouverné par un conseil tripartite (État, syndicats, patronat) avec direction des investissements indépendante. Frais cibles : AP7 Suède 0,05 %, NEST UK 0,3 à 0,5 %. Sur quarante ans de carrière, l'écart de frais représente plusieurs dizaines de pour cent du capital final accumulé. C'est l'écart entre un produit financier et une *infrastructure*.
+
+Dire « on a essayé le PER, ça ne marche pas » revient à dire « on a essayé l'eau gazeuse, ça ne désaltère pas » alors qu'on aurait pu boire un litre d'eau plate. Le PER reste utile en pilier 3 volontaire individuel. Mais le pilier 2 — capitalisation obligatoire, paritaire, fléchée, gouvernée — reste intégralement à inventer.
+
+## Q.5 — « La France n'a pas la culture financière »
+
+C'est la plus défaitiste des objections. Elle reconnaît implicitement les vertus du système qu'elle refuse, et se replie sur une excuse sociologique.
+
+**Premier argument : la culture financière française a été *retirée*, pas absente.** Avant 1945, la France était l'un des pays d'investisseurs particuliers les plus actifs d'Europe : actions Suez, Saint-Gobain, Compagnie des Indes, Chemins de fer du Nord, Banque de France, et bien sûr l'emprunt russe. Cette culture a été cassée par deux guerres, deux inflations massives (1920-1928, 1944-1958), les nationalisations, et l'instauration en 1945 d'une Sécurité sociale qui a *remplacé* l'épargne individuelle par la solidarité contributive. Quatre-vingt-un ans plus tard, on s'étonne qu'elle ait moins l'habitude d'investir.
+
+**Deuxième argument : la Suède de 1990 ressemblait à la France de 1990.** Même profil d'épargne, mêmes dépôts bancaires dominants, exposition aux actions inférieure à 10 % du patrimoine financier. En 2024, le ménage suédois détient 35-40 % en actions, contre \~23 % pour le français. La différence ne tient pas à un don suédois mystérieux : elle tient à l'architecture. La mise en place du PPM en 1999 a *fabriqué* une culture financière qui n'existait pas. La culture n'a pas précédé l'instrument ; elle l'a suivi. Et le PEA français suit la même trajectoire : 1,8 million de titulaires en 1995, plus de 7 millions aujourd'hui[^317] — 12,5 % des ménages détiennent désormais des actions en direct, contre 6,9 % en 2020.
+
+**Troisième argument : la capitalisation moderne ne demande aucune culture financière.** Personne, en Suède, n'est savant. Personne, en Australie, ne l'est. Tous bénéficient d'un fonds par défaut bien conçu — AP7 Såfa, MySuper, NEST — qui gère pour eux, avec glide path automatique, frais ultra-bas et transparence radicale. La culture requise est *nulle*. Il suffit de ne pas opt-outer. C'est l'inverse du PER, qui exige de chaque épargnant qu'il choisisse parmi des dizaines de supports et qu'il comprenne la fiscalité. *Ça*, c'est culturellement exigeant. Un fonds par défaut, non.
+
+L'argument se retourne en miroir. *On ne peut pas demander aux Français de gérer leur retraite eux-mêmes.* Exact. C'est précisément pourquoi il faut un fonds par défaut public, transparent et bien géré, qui le fasse à leur place. C'est l'architecture qui fait le travail. Pas la culture.
+
+## Conclusion : la fenêtre est ouverte
+
+Cinq objections, cinq réponses. Et, au-delà des cinq, un livre entier qui tient en quelques phrases.
+
+Le système actuel ne tient pas. La démographie le rattrape, les réformes paramétriques s'épuisent, le déficit projeté dérive de cinq milliards d'euros aujourd'hui à quarante-cinq dans trente ans, et le passif implicite atteint l'équivalent de quatre années entières de PIB national. C'est ce qu'a posé la Partie 1.
+
+La capitalisation est l'outil qui manque. Pas comme substitut, comme complément. Le calcul cas-type est implacable : un actif de trente ans en 2026, qui orienterait un cinquième de sa cotisation vers un pilier capitalisé pendant ses quarante-trois années de carrière, accumulerait 216 000 euros de capital propre et toucherait 228 000 euros de pension supplémentaire sur vingt ans. C'est ce qu'a montré la Partie 2.
+
+Ce n'est pas qu'un sujet de pension. La même infrastructure qui sécurise les retraites finance les entreprises françaises, les sièges sociaux, les ETI, les start-up. Le capital absent — les six mille milliards qui dorment dans les livrets et les fonds en euros — est précisément ce qui manque pour empêcher la vague de transmissions 2025-2035 de partir intégralement aux fonds étrangers. Le même capital, deux problèmes, une réponse unique. C'est l'argument de la Partie 3.
+
+Les autres l'ont fait. Quatre cas — Suède, Australie, Singapour, Chili — quatre architectures différentes, quatre époques, et un même verdict : un pilier capitalisé bien construit est compatible avec la social-démocratie, avec le pragmatisme syndical, avec la continuité asiatique ; et l'absence de l'un des quatre invariants — cotisation patronale, plancher universel, fonds par défaut, pacte transpartisan — produit un échec. C'est ce qu'a posé la Partie 4.
+
+La transition est possible en vingt-cinq ans, comme l'a montré la Partie 5. Trois mouvements — amorçage, déploiement, maturité — pour une trajectoire qui n'invente rien. Elle reprend ce que la Suède a fait en 1994, l'Australie en 1985, le Royaume-Uni en 2008, le Canada en 2016. Et trois bénéfices systémiques qui suivent : moins de dépense publique de retraite, plus de recettes fiscales, plus de croissance et d'emplois. Aucun n'arrive instantanément. Tous se déploient sur vingt à trente ans, à la même cadence que le capital s'accumule. Précisément pour cela qu'il faut commencer maintenant.
+
+Cinq mensonges désamorcés. La bourse n'est pas un casino quand elle est encadrée par un glide path, des garanties publiques et la diversification mondiale d'un fonds public. La capitalisation obligatoire universelle est *plus* sociale, pas moins, que le système actuel — pour les femmes, pour les bas revenus, pour les carrières fragmentées. Le double paiement n'est pas insurmontable : aucun pays comparable ne l'a financé par l'impôt général. Le PER n'est pas un échec de la capitalisation, parce que ce n'est pas un fonds de pension structurel. Et la culture financière française n'est pas une fatalité : c'est ce que l'infrastructure crée, pas ce qu'elle suppose.
+
+Tout le travail théorique du livre est, ici, achevé. La fenêtre ouverte par la présidentielle de 2027 ne se rouvrira pas avant 2032 — et chaque année perdue alourdit le coût de l'inaction de plusieurs milliards d'euros et déplace de plusieurs centaines de milliers la cohorte qui aurait pu basculer dans le nouveau système. La Suède n'a pas attendu d'être en confort budgétaire pour réformer. Elle l'a fait en pleine crise. La France, en 2026, est dans une situation moins critique. Et pourtant plus paralysée.
+
+Trente ans. C'est ce qu'ont coûté les cinq mensonges désamorcés dans ces pages. Trente ans de réformes paramétriques qui s'épuisent, de générations qui paient sans recevoir l'équivalent, de capital français qui finance les retraites des autres pendant qu'il manque aux nôtres, d'entreprises familiales qui se vendent à des fonds étrangers parce qu'aucun acheteur français n'a la taille. Trente ans, c'est le mandat de toute une génération de décideurs qui ont entendu ces cinq phrases sans jamais vouloir les regarder en face.
+
+Reste à savoir si la prochaine en aura le courage.
+
+*La fenêtre, comme on l'a vu, n'est pas grande. Mais elle est ouverte. La refermer serait, cette fois, en pleine conscience.*
