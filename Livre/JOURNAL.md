@@ -48,6 +48,31 @@
 - `manuscrit-v4/compile.sh` : compilation Pandoc → `Livre/docx/Capitalisons-V4.docx` (testé OK, 160 Ko)
 - `_factcheck-v4-journal.md` (à créer) : journal du fact-check phrase par phrase
 
+**Fact-check phrase par phrase — démarré 29 mai 2026 soir** :
+
+- **11 paragraphes traités** sur 15 dans l'avant-propos (§1 Doliprane → §11 chiffres pays par pays)
+- **22 corrections appliquées** au corps : 2 🔴 majeures (chiffre 8 → 16/10 Md€ Doliprane ; « fonds de pension étrangers » → « capitaux étrangers ») + 20 ⚠️ mineures (précisions sources, dates, formulations)
+- **5 footnotes mises à jour** : [^1] Ardian 170→176 Md$ + ABP 552→533 Md€ ; [^3] précisions loi 2002-73 ; [^6] clarification dates Vinci 2021/2025
+- **2 footnotes ajoutées** : [^372] CalPERS *anchor investor* CD&R Fund XI ; [^373] Bercy accord tripartite Sanofi-CD&R-État 21 oct. 2024
+- **Style préservé**, longueur des paragraphes quasi identique. Aucune réécriture stylistique.
+
+**Détail des corrections** : voir `_factcheck-journal.md`.
+
+**Méthode validée** : 1 paragraphe par tour de conversation, tableau verdict ✅/⚠️/🔴 + source primaire + reformulation pour 🔴 et ⚠️ critiques, validation explicite avant passage au suivant. Footnotes associées vérifiées en parallèle (à la demande de l'auteur, 29 mai 2026).
+
+**À reprendre dans une nouvelle session** :
+1. **Avant-propos §12-15** restants : §12 graphique (rien à fact-checker), §13 conclusion §11, §14 « Pendant trente ans… », §15 phrase finale
+2. **Puis introduction** : §0.1 « Les Français sont prêts » (5 sondages d'opinion cités, footnotes [^367]-[^371] à vérifier), §0.2 RAFP (12 footnotes [^318]-[^341] à vérifier en finesse), §0.3 « Trois chiffres », §0.4 « La grande illusion », §0.5 « L'objectif du livre », §0.6 « Plan de l'ouvrage »
+3. **Puis P1 → P2 → P3** dans l'ordre prévu
+4. **Conclusion** (4 verrous + dynamique « cette fois c'est différent »)
+5. **Appendice** (Q.1 à Q.6, à fact-checker fin de parcours)
+
+**Estimation restant** : ~15-20 sessions interactives au rythme actuel (1 paragraphe par tour, validation utilisateur entre chaque).
+
+**Mot d'ordre de reprise nouvelle conv** : « On reprend le fact-check de *Capitalisons*. Lis `Livre/JOURNAL.md` et `Livre/_factcheck-journal.md`. On enchaîne sur §12 de l'avant-propos. »
+
+---
+
 **Nettoyage versioning — 29 mai 2026 soir** :
 
 Toutes les anciennes versions ont été archivées dans `Livre/_archive/`. La nouvelle structure est plate et claire :
