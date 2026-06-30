@@ -1,0 +1,104 @@
+{
+  "_comment": "Banque MICRO-DÉPENSE publique (format hero) : faits granulaires sourcés de rapports (Cour des comptes, IGF, Sénat, France Stratégie, annexes budget). Chaque fait DOIT être fact-checké (chiffre exact + référence précise). Rotation LRU via microdepense-state.json. À enrichir par lecture des nouveaux rapports.",
+  "facts": [
+    {
+      "id": "comites-theodule",
+      "headline": "317 comités consultatifs conseillent l'État.",
+      "figure": "30 M€",
+      "detail": "Coût total par an des 317 commissions et instances consultatives, soit 97 000 € par comité en moyenne.",
+      "source": "Annexe jaune PLF 2025, Gouvernement",
+      "accent": "#ff4757",
+      "caption": "317 comités « Théodule » conseillent l'État pour 30 M€ par an, soit 97 000 € par structure. Leur utilité est rarement évaluée, et la plupart rendent quelques avis non contraignants par an. #DépensePublique #GaspillageÉtat #FinancesPubliques"
+    },
+    {
+      "id": "cese-cout-rapport",
+      "headline": "Le CESE publie 27 rapports par an.",
+      "figure": "1,7 M€",
+      "detail": "Coût moyen par publication : 45 M€ de dotation pour 27 travaux, dont plus de 90 % d'auto-saisines.",
+      "source": "CESE, budget 2024 ; PLF 2025, programme 126",
+      "accent": "#ff4757",
+      "caption": "Le CESE reçoit 45 M€ par an pour publier 27 travaux, soit 1,7 M€ par rapport — des avis consultatifs sans force contraignante, choisis à plus de 90 % par l'institution elle-même. #CESE #GaspillagePublic #RéformeÉtat"
+    },
+    {
+      "id": "primes-apprentissage-diplomes",
+      "headline": "L'argent de l'apprentissage va aux plus diplômés.",
+      "figure": "62 %",
+      "detail": "Part des 4,8 Md€ de primes à l'embauche 2023 captée par des apprentis en licence et master (niveaux 6 et 7).",
+      "source": "IGF-IGAS, revue des dépenses, septembre 2024",
+      "accent": "#ff9f43",
+      "caption": "L'État verse 6 000 € par apprenti, quel que soit le diplôme. En 2023, 62 % de ces 4,8 Md€ ont financé masters et licences, souvent dans de grandes entreprises. L'IGF chiffre 554 M€ d'économies en ciblant mieux l'aide. #Apprentissage #DépensePublique #FormationPro"
+    },
+    {
+      "id": "cout-apprenti",
+      "headline": "Un apprenti est le mieux doté par l'État.",
+      "figure": "19 200 €",
+      "detail": "Soutien public annuel moyen par apprenti, contre 12 680 € pour un lycéen pro et 11 580 € pour un étudiant.",
+      "source": "Cour des comptes, 2025",
+      "accent": "#ff9f43",
+      "caption": "Depuis 2018, un apprenti coûte à la collectivité 52 % de plus qu'un lycéen professionnel, pour un profil souvent favorisé. La dépense de soutien à l'apprentissage a bondi de 51 % depuis 2020, à 16,5 Md€. #Apprentissage #CourDesComptes #FormationProfessionnelle"
+    },
+    {
+      "id": "france-competences-emprunts",
+      "headline": "France compétences vit à crédit.",
+      "figure": "3 Md€",
+      "detail": "Emprunts bancaires autorisés pour 2024-2025, faute de ressources : 1 Md€ de déficit pour 14,7 Md€ de dépenses.",
+      "source": "France compétences, budget rectificatif 2024",
+      "accent": "#ff4757",
+      "caption": "L'opérateur public de la formation professionnelle est en déficit chronique depuis sa création. Pour 2024, il a dû emprunter jusqu'à 3 Md€ aux banques pour payer les organismes de formation. Une bombe à retardement budgétaire. #FormationPro #DéficitPublic #FinancesPubliques"
+    },
+    {
+      "id": "maprimerenov-passoires",
+      "headline": "MaPrimeRénov' : des passoires qui le restent.",
+      "figure": "61 %",
+      "detail": "Part des passoires thermiques aidées qui restent classées E, F ou G après travaux. 73 % de mono-gestes.",
+      "source": "Cour des comptes, 2023",
+      "accent": "#ff4757",
+      "caption": "Premier poste de la transition énergétique dans le budget, MaPrimeRénov' finance massivement des travaux à faible impact : 61 % des passoires aidées restent énergivores après travaux, faute de rénovations globales. #MaPrimeRénov #Rénovation #CourDesComptes"
+    },
+    {
+      "id": "anct-agents-terrain",
+      "headline": "L'ANCT, 407 agents pour les territoires.",
+      "figure": "8",
+      "detail": "Chargés de mission « ingénierie sur mesure » réellement déployés sur le terrain, pour 117 M€ de budget.",
+      "source": "Cour des comptes, février 2024",
+      "accent": "#ff4757",
+      "caption": "Créée en 2020 pour aider les communes rurales, l'Agence nationale de la cohésion des territoires emploie 407 agents et 117 M€ de budget — mais seulement 8 peuvent se déployer concrètement auprès des collectivités. #ANCT #Territoires #CourDesComptes"
+    },
+    {
+      "id": "france-medias-monde",
+      "headline": "France 24 et RFI, payées par le contribuable.",
+      "figure": "276,7 M€",
+      "detail": "Dotation publique 2024 (+5,2 %). Les ressources propres ne pèsent que 3 % du budget.",
+      "source": "France Médias Monde ; Sénat, PLF 2024",
+      "accent": "#ff9f43",
+      "caption": "France Médias Monde (France 24, RFI, Monte Carlo Doualiya) est financée à 97 % par le contribuable pour diffuser à l'international : 276,7 M€ en 2024, en hausse continue, sans évaluation publique régulière de son impact réel. #MédiasPublics #DiplomatiePublique #FinancesPubliques"
+    },
+    {
+      "id": "cerema-masse-salariale",
+      "headline": "Au Cerema, les salaires mangent le budget.",
+      "figure": "80 %",
+      "detail": "Part du budget absorbée par la masse salariale (224 M€, 2 520 agents). Déficit de 47 M€ prévu en 2027.",
+      "source": "Sénat, rapport n°835, 2025",
+      "accent": "#ff4757",
+      "caption": "Le Cerema, opérateur d'expertise technique de l'État, consacre 80 % de son budget aux salaires de ses 2 520 agents — ce qui réduit fortement sa marge pour financer des études réelles, et le pousse vers un déficit structurel. #Cerema #FonctionPublique #DépensePublique"
+    },
+    {
+      "id": "agence-bio",
+      "headline": "L'Agence Bio gère une miette des aides bio.",
+      "figure": "2,9 M€",
+      "detail": "Crédits d'État de l'agence, sur 700 M€ de financements publics au bio en 2025. Sa suppression a été proposée.",
+      "source": "Commission d'enquête Sénat, juillet 2025",
+      "accent": "#ff4757",
+      "caption": "L'Agence Bio ne pilote que 2,9 M€ sur les 700 M€ d'aides publiques au bio, le reste étant géré par les ministères et l'UE. La commission d'enquête du Sénat juge son existence injustifiée et redondante. #AgenceBio #RéformeAdmin #DépensePublique"
+    },
+    {
+      "id": "maprimerenov-fraude",
+      "headline": "MaPrimeRénov', cible des fraudeurs.",
+      "figure": "44 000",
+      "detail": "Dossiers frauduleux détectés en 2024 (229 M€ de pertes évitées), dans un budget en hausse de 66 %.",
+      "source": "ANAH / ministère du Logement, 2024",
+      "accent": "#ff4757",
+      "caption": "Entreprises fictives, artisans sans label : 44 000 dossiers frauduleux ont été détectés sur MaPrimeRénov' en 2024 (229 M€ de pertes évitées). La montée en charge rapide sans contrôle proportionnel expose massivement le dispositif à la fraude. #MaPrimeRénov #FraudeÉtat #RénovationÉnergétique"
+    }
+  ]
+}

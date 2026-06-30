@@ -1,0 +1,68 @@
+{
+  "_comment": "Banque d'angles GRAPHIQUES originaux (line/bars/dot). Chaque angle est fact-checké + absent des 244 infographies publiées. Rotation LRU via graphic-angles-state.json. Données : Eurostat, OCDE, INSEE, Banque de France, UBS, EY.",
+  "angles": [
+    {
+      "id": "impots-production", "type": "bars", "accent": "#ff4757",
+      "title": "Les impôts de production <em>écrasent</em> nos usines.",
+      "metric": "Impôts sur la production, % du PIB", "source": "Eurostat, 2024", "unit": "%",
+      "bars": [{ "label": "France", "value": 4.4, "hi": true }, { "label": "Moyenne UE", "value": 1.8 }, { "label": "Allemagne", "value": 1.0 }],
+      "caption": "La France taxe la production de ses entreprises à 4,4 % du PIB, contre 1,0 % en Allemagne — un handicap de compétitivité unique en Europe, qui frappe avant même qu'un euro de bénéfice soit réalisé. #impôts #industrie #compétitivité"
+    },
+    {
+      "id": "defaillances-entreprises", "type": "line", "accent": "#ff4757",
+      "title": "Les faillites d'entreprises <em>au plus haut</em>.",
+      "metric": "Défaillances d'entreprises par an", "source": "Banque de France, 2025", "unit": "",
+      "points": [{ "x": "2021", "y": 28000 }, { "x": "2023", "y": 56000 }, { "x": "2025", "y": 66000 }],
+      "caption": "Après le creux du « quoi qu'il en coûte », les défaillances d'entreprises ont bondi : 66 000 en 2025, un record sur 35 ans. La facture des aides, c'est maintenant. #entreprises #faillites #économie"
+    },
+    {
+      "id": "chomage-jeunes", "type": "dot", "accent": "#ff9f43",
+      "title": "Le chômage des jeunes, <em>mal français</em>.",
+      "metric": "Taux de chômage des -25 ans", "source": "Eurostat, 2025", "unit": "%",
+      "dots": [{ "label": "France", "value": 18.1, "hi": true }, { "label": "Zone euro", "value": 14.2 }, { "label": "Allemagne", "value": 6.8 }],
+      "caption": "En France, près d'un jeune actif sur cinq est au chômage : 18,1 %, contre 6,8 % en Allemagne. L'un des pires taux d'Europe. #emploi #jeunes #France"
+    },
+    {
+      "id": "patrimoine-median", "type": "bars", "accent": "#ffd700",
+      "title": "Le patrimoine médian bat <em>l'américain</em>.",
+      "metric": "Patrimoine médian par adulte, $", "source": "UBS, 2026", "unit": " $",
+      "bars": [{ "label": "France", "value": 121898, "hi": true }, { "label": "États-Unis", "value": 68998 }],
+      "caption": "Le patrimoine médian d'un adulte français atteint 121 898 dollars, près du double de l'Américain médian (68 998 $). La richesse y est bien moins concentrée qu'aux États-Unis. #patrimoine #France #ÉtatsUnis"
+    },
+    {
+      "id": "emploi-seniors", "type": "dot", "accent": "#ff4757",
+      "title": "Les seniors français travaillent <em>bien moins</em>.",
+      "metric": "Taux d'emploi des 55-64 ans, %", "source": "Eurostat / OCDE, 2023", "unit": "%",
+      "dots": [{ "label": "Belgique", "value": 54.1 }, { "label": "France", "value": 58.4, "hi": true }, { "label": "Moyenne OCDE", "value": 64.0 }, { "label": "Allemagne", "value": 74.0 }, { "label": "Suède", "value": 76.8 }],
+      "caption": "En 2023, seulement 58,4 % des 55-64 ans étaient en emploi en France, contre 74 % en Allemagne et 64 % en moyenne OCDE. Ce retard pèse directement sur l'équilibre des retraites. #seniors #emploi #retraite"
+    },
+    {
+      "id": "ide-attractivite", "type": "bars", "accent": "#00ff88",
+      "title": "La France, <em>championne</em> des investissements étrangers.",
+      "metric": "Projets d'investissements étrangers en Europe (2024)", "source": "EY Baromètre attractivité 2025", "unit": "",
+      "bars": [{ "label": "Allemagne", "value": 608 }, { "label": "Royaume-Uni", "value": 853 }, { "label": "France", "value": 1025, "hi": true }],
+      "caption": "En 2024, la France a accueilli 1 025 projets d'investissements étrangers, devant le Royaume-Uni (853) et l'Allemagne (608) — sixième année consécutive en tête de l'Europe, portée par les implantations industrielles. #attractivité #IDE #investissements"
+    },
+    {
+      "id": "creations-entreprises", "type": "line", "accent": "#00ff88",
+      "title": "La création d'entreprises bat <em>des records</em>.",
+      "metric": "Créations d'entreprises par an", "source": "INSEE, 2024", "unit": "",
+      "points": [{ "x": "2019", "y": 815300 }, { "x": "2022", "y": 1058000 }, { "x": "2024", "y": 1111200 }],
+      "caption": "En 2024, la France établit un record de 1 111 200 créations d'entreprises, soit +36 % par rapport à 2019. La vague de micro-entrepreneurs transforme durablement le tissu économique. #entrepreneuriat #création #économie"
+    },
+    {
+      "id": "heures-travaillees", "type": "bars", "accent": "#ff9f43",
+      "title": "Le Français travaille <em>plus</em> que l'Allemand.",
+      "metric": "Heures travaillées par an et par salarié", "source": "OCDE, 2023", "unit": " h",
+      "bars": [{ "label": "Allemagne", "value": 1340 }, { "label": "France", "value": 1505, "hi": true }, { "label": "États-Unis", "value": 1800 }],
+      "caption": "En 2023, un salarié français travaille 1 505 heures par an, soit 165 de plus qu'un Allemand (1 340 h) — l'équivalent de plus de 4 semaines. Le faible score allemand tient surtout à son fort temps partiel. #travail #heures #OCDE"
+    },
+    {
+      "id": "taux-marge-entreprises", "type": "bars", "accent": "#ff4757",
+      "title": "La marge des entreprises françaises <em>décroche</em>.",
+      "metric": "Taux de marge des sociétés (EBE/VA), %", "source": "Eurostat, 2022", "unit": "%",
+      "bars": [{ "label": "France", "value": 32.0, "hi": true }, { "label": "Allemagne", "value": 39.3 }, { "label": "Zone euro", "value": 40.8 }],
+      "caption": "En 2022, le taux de marge des entreprises françaises s'établit à 32 %, soit 8 points sous la zone euro (40,8 %) — une marge comprimée par les impôts de production, qui limite l'autofinancement et l'investissement. #marge #entreprises #compétitivité"
+    }
+  ]
+}

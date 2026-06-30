@@ -24,8 +24,16 @@ const { pickStats, markUsed } = require('./daily-photostat-modules/ovla-bank');
 const { captionForStat } = require('./daily-photostat-modules/captions');
 const { fetchPhoto } = require('./daily-photostat-modules/photos');
 const { renderCards } = require('./daily-photostat-modules/render');
-const { deliverTelegram } = require('./daily-photostat-modules/deliver');
-const { secret } = require('./daily-photostat-modules/util');
+const { renderGraphics } = require('./daily-photostat-modules/graphic-render');
+const { pick: pickBank, markUsed: markBank } = require('./daily-photostat-modules/rotating-bank');
+const { deliverTelegram, sendTelegram, sendTelegramPhoto } = require('./daily-photostat-modules/deliver');
+const { secret, escapeHtml, cleanMarkdown, stripBig } = require('./daily-photostat-modules/util');
+
+const GRAPHIC_BANK = require('./daily-photostat-modules/graphic-angles.json').angles;
+const MICRO_BANK = require('./daily-photostat-modules/microdepense.json').facts;
+const GA_STATE = path.join(__dirname, 'daily-photostat-modules', 'graphic-angles-state.json');
+const MD_STATE = path.join(__dirname, 'daily-photostat-modules', 'microdepense-state.json');
+const stripEm = s => (s || '').replace(/<\/?em>/g, '');
 
 const ARGS = process.argv.slice(2);
 const DRY = ARGS.includes('--dry-run');
@@ -86,18 +94,47 @@ async function main() {
   const ovlaShare = Math.round(100 * (bankCards.length + actuCards.filter(c => /Impôt|Dette|Dépense|International|Fiscal/i.test(c.theme)).length) / ok.length);
   console.log(`  📊 ~${ovlaShare}% angle OVLA`);
 
-  if (DRY) { console.log('\n  [DRY-RUN] Pas d\'envoi, pas de mise à jour d\'état.\n'); return; }
+  // 5b. Brique graphiques (2) + micro-dépense (1), banques fact-checkées en rotation
+  const gAngles = pickBank(GRAPHIC_BANK, GA_STATE, 2).map(a => ({ ...a, name: a.id }));
+  const mFacts = pickBank(MICRO_BANK, MD_STATE, 1).map(m => ({
+    type: 'hero', name: m.id, title: m.headline, figure: m.figure, detail: m.detail,
+    source: m.source, accent: m.accent || '#ff4757', caption: m.caption
+  }));
+  const graphicSpecs = [...gAngles, ...mFacts];
+  let graphicsOut = [];
+  if (graphicSpecs.length) {
+    console.log(`  📈 ${gAngles.length} graphiques + ${mFacts.length} micro-dépense...`);
+    graphicsOut = await renderGraphics(graphicSpecs, path.join(OUT_DIR, 'graphics'));
+  }
+
+  if (DRY) { console.log(`\n  [DRY-RUN] Pas d'envoi. ${ok.length} cartes + ${graphicsOut.length} graphiques générés.\n`); return; }
 
   // 6. Persistance dédup (avant envoi pour éviter doublon en cas de retry)
   for (const a of fresh) cache[articleKey(a)] = Date.now();
   saveCache(cache);
   markUsed(bankCards.map(b => b.slug));
+  markBank(GA_STATE, gAngles.map(a => a.id));
+  markBank(MD_STATE, mFacts.map(m => m.id));
 
   // 7. Livraison Telegram
-  console.log('  📤 Telegram...');
+  console.log('  📤 Telegram (actu-short)...');
   try { await deliverTelegram(ok, DATE_STR); } catch (e) { console.error('  ⚠ Telegram:', e.message); }
 
-  console.log(`\n✅ ${ok.length} infographies livrées sur Telegram — ${DATE_STR}\n`);
+  if (graphicsOut.length) {
+    console.log('  📤 Telegram (graphiques + micro-dépense)...');
+    await sendTelegram(`📈 <b>Infographies du jour</b>`);
+    for (const g of graphicsOut) {
+      if (!fs.existsSync(g.png)) continue;
+      const meta = (g.metric ? g.metric + ' · ' : '') + (g.source || '');
+      try {
+        await sendTelegramPhoto(g.png, `📊 <b>${escapeHtml(stripBig(stripEm(g.title)))}</b>\n🔖 ${escapeHtml(meta)}`);
+        await new Promise(r => setTimeout(r, 700));
+        if (g.caption) { await sendTelegram(`✏️ ${escapeHtml(cleanMarkdown(g.caption))}`); await new Promise(r => setTimeout(r, 1000)); }
+      } catch (e) { console.error('  ⚠ Telegram graphique:', e.message); }
+    }
+  }
+
+  console.log(`\n✅ ${ok.length} cartes + ${graphicsOut.length} graphiques livrés sur Telegram — ${DATE_STR}\n`);
 }
 
 main().catch(e => { console.error('❌', e.message); process.exit(1); });
