@@ -57,7 +57,7 @@ async function deliverTelegram(cards, dateStr) {
 }
 
 async function deliverEmail(cards, dateStr) {
-  const { sendBriefEmail } = require('../daily-brief-modules/email-sender');
+  const nodemailer = require('nodemailer');
   const attachments = [];
   let body = '';
   cards.forEach((c, i) => {
@@ -76,8 +76,15 @@ async function deliverEmail(cards, dateStr) {
     <p style="font-family:Arial,sans-serif;font-size:13px;color:#555;margin:0 0 24px">Prêtes à publier (image + texte d'accompagnement).</p>
     <table cellpadding="0" cellspacing="0" style="width:100%">${body}</table>
   </div>`;
-  const to = secret('BRIEF_MAIL_TO') || secret('GMAIL_USER');
-  return sendBriefEmail({ to, subject: `☀️ OVLA — ${cards.length} infographies du ${dateStr}`, html, attachments });
+  const user = secret('GMAIL_USER');
+  const pass = secret('GMAIL_APP_PASSWORD');
+  if (!user || !pass) throw new Error('GMAIL_USER / GMAIL_APP_PASSWORD manquant');
+  const to = secret('BRIEF_MAIL_TO') || user;
+  const transporter = nodemailer.createTransport({ service: 'gmail', auth: { user, pass } });
+  return transporter.sendMail({
+    from: `"Où Va l'Argent — Infographies" <${user}>`,
+    to, subject: `☀️ OVLA — ${cards.length} infographies du ${dateStr}`, html, attachments
+  });
 }
 
 module.exports = { deliverTelegram, deliverEmail, sendTelegram, sendTelegramPhoto };
