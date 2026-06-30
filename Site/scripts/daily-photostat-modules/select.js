@@ -1,7 +1,7 @@
 /**
  * select.js — Claude Sonnet sélectionne N actus RSS et rédige les cartes actu-short.
  */
-const { askClaude, fixTypography } = require('./util');
+const { askClaude, fixTypography, ensureFinalPeriod } = require('./util');
 
 async function selectActus(articles, count) {
   if (!articles.length || count <= 0) return [];
@@ -22,7 +22,7 @@ Pour CHAQUE actu retenue, rédige une "carte" au format actu-short FACTUEL (styl
 - "photo": 2-3 mots-clés ANGLAIS pour une photo Pexels d'illustration concrète (usine, bureau, argent, supermarché, port...). PAS de personne nommée, PAS de graphique.
 - "theme": thème court (Impôts, Dette, Dépense publique, Pouvoir d'achat, Emploi, Bourse, International, Entreprises...)
 
-RÈGLES STRICTES : headline et reveal tiennent chacun en 2 lignes max (donc courts). Un seul <big> par carte, dans reveal. Chiffres EXACTS repris de la source. Le ton du visuel reste factuel ; l'angle libéral est seulement dans le CHOIX du sujet.
+RÈGLES STRICTES : headline et reveal tiennent chacun en 2 lignes max (donc courts). headline ET reveal se terminent OBLIGATOIREMENT par un point final. Un seul <big> par carte, dans reveal. Chiffres EXACTS repris de la source. Le ton du visuel reste factuel ; l'angle libéral est seulement dans le CHOIX du sujet.
 Réponds UNIQUEMENT par un tableau JSON de ${count} objets, rien d'autre.
 
 ACTUALITÉS :
@@ -34,8 +34,8 @@ ${list}`;
   let cards = JSON.parse(m[0]).slice(0, count);
   return cards.map(c => ({
     slug: (c.slug || 'actu').replace(/[^a-z0-9-]/gi, '-').toLowerCase().slice(0, 40),
-    headline: fixTypography((c.headline || '').trim()),
-    reveal: fixTypography((c.reveal || '').trim()),
+    headline: ensureFinalPeriod(fixTypography((c.headline || '').trim())),
+    reveal: ensureFinalPeriod(fixTypography((c.reveal || '').trim())),
     source: (c.source || '').trim(),
     caption: (c.caption || '').trim(),
     photo: (c.photo || 'finance money').trim(),

@@ -158,15 +158,15 @@ Tous dans `Site/scripts/` :
 | `article-journalist.js` | **Pipeline journaliste** : RSS → articles (Sonnet) → fact-check → hero + carousel Instagram → Telegram + Notion |
 | `owid-infographic.js` | **Infographie OWID** : URL Our World in Data → CSV → HTML style OVLA → 3 PNG → Notion |
 | `video-journalist.js` | **Pipeline vidéo** : sujet → script (Sonnet) → voix off ElevenLabs → Pexels + Kling (fal.ai) → Remotion MP4 1080×1920 + miniature Flux → Telegram + Notion |
-| `daily-photostat.js` | **Pipeline quotidien actu-short** : RSS 24h + banque stat choc OVLA → 10 infographies photo-stat (Pexels) → Telegram + email (8h, GitHub Actions) |
+| `daily-photostat.js` | **Pipeline quotidien actu-short** : RSS 24h + banque stat choc OVLA → 10 infographies photo-stat (Pexels) → Telegram (8h, GitHub Actions) |
 
 ---
 
 ## Pipeline quotidien d'infographies (daily-photostat)
 
 Pipeline **100 % automatique**, tous les jours à **8h (Paris)** via **GitHub Actions** (tourne même ordi éteint).
-Produit **~10 infographies « actu-short »** (format `photo-stat-card`) et les livre par **Telegram + email**
-(`e.blezes@gmail.com`), chacune avec un **texte d'accompagnement**.
+Produit **~10 infographies « actu-short »** (format `photo-stat-card`) et les livre sur **Telegram**,
+chacune avec un **texte d'accompagnement**. (Email retiré — Telegram suffit.)
 
 - **Source** : 8 flux RSS (dernières 24h) + **banque de stat choc OVLA** (`ovla-bank.json`, rotation LRU).
 - **Mix garanti ~60 %** sur les angles signature (fiscalité, dépense publique, dette, comparaisons internationales).
@@ -181,8 +181,7 @@ node scripts/daily-photostat.js               # run complet (Telegram + email)
 
 - Orchestrateur : `scripts/daily-photostat.js` ; modules : `scripts/daily-photostat-modules/`.
 - Cloud : `.github/workflows/daily-photostat.yml` (cron `0 6 * * *` UTC + `workflow_dispatch`).
-- Secrets GitHub requis : `ANTHROPIC_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `PEXELS_API_KEY`,
-  `GMAIL_USER`, `GMAIL_APP_PASSWORD`.
+- Secrets GitHub requis : `ANTHROPIC_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `PEXELS_API_KEY`.
 - Détails : agent `.claude/agents/daily-photostat.md`. **Remplace** l'ancien `daily-actu-photos.js` (cron 7h à retirer).
 
 ---

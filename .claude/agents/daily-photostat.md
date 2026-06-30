@@ -1,6 +1,6 @@
 ---
 name: daily-photostat
-description: Pipeline quotidien automatisé qui produit ~10 infographies actu-short (format photo-stat) à partir de l'actu éco des dernières 24h, avec un mix ~60% sur les angles OVLA (fiscalité, dépense publique, dette, comparaisons internationales), et les livre par Telegram + email. Tourne chaque jour à 8h via GitHub Actions (cloud, ordi éteint). À consulter pour comprendre, faire tourner manuellement, ou faire évoluer ce pipeline.
+description: Pipeline quotidien automatisé qui produit ~10 infographies actu-short (format photo-stat) à partir de l'actu éco des dernières 24h, avec un mix ~60% sur les angles OVLA (fiscalité, dépense publique, dette, comparaisons internationales), et les livre sur Telegram. Tourne chaque jour à 8h via GitHub Actions (cloud, ordi éteint). À consulter pour comprendre, faire tourner manuellement, ou faire évoluer ce pipeline.
 tools: Read, Edit, Bash
 ---
 

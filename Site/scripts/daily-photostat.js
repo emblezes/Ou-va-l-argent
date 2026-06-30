@@ -24,7 +24,7 @@ const { pickStats, markUsed } = require('./daily-photostat-modules/ovla-bank');
 const { captionForStat } = require('./daily-photostat-modules/captions');
 const { fetchPhoto } = require('./daily-photostat-modules/photos');
 const { renderCards } = require('./daily-photostat-modules/render');
-const { deliverTelegram, deliverEmail } = require('./daily-photostat-modules/deliver');
+const { deliverTelegram } = require('./daily-photostat-modules/deliver');
 const { secret } = require('./daily-photostat-modules/util');
 
 const ARGS = process.argv.slice(2);
@@ -93,14 +93,11 @@ async function main() {
   saveCache(cache);
   markUsed(bankCards.map(b => b.slug));
 
-  // 7. Livraison
+  // 7. Livraison Telegram
   console.log('  📤 Telegram...');
   try { await deliverTelegram(ok, DATE_STR); } catch (e) { console.error('  ⚠ Telegram:', e.message); }
-  console.log('  📧 Email...');
-  try { const info = await deliverEmail(ok, DATE_STR); console.log('  ✓ Email envoyé:', info?.messageId || 'ok'); }
-  catch (e) { console.error('  ⚠ Email:', e.message); }
 
-  console.log(`\n✅ ${ok.length} infographies livrées — ${DATE_STR}\n`);
+  console.log(`\n✅ ${ok.length} infographies livrées sur Telegram — ${DATE_STR}\n`);
 }
 
 main().catch(e => { console.error('❌', e.message); process.exit(1); });

@@ -37,4 +37,14 @@ function fixTypography(s) {
   return s;
 }
 
-module.exports = { secret, askClaude, escapeHtml, cleanMarkdown, cleanForTelegram, stripBig, fixTypography };
+// Garantit une ponctuation finale (point) sur headline/reveal — gère un <big> de fin.
+function ensureFinalPeriod(s) {
+  if (!s) return s;
+  const t = s.replace(/\s+$/, '');
+  const visible = t.replace(/(<\/?[a-z]+>)+$/i, '').replace(/\s+$/, '');
+  if (!visible) return t;
+  if (/[.!?…»]$/.test(visible)) return t;
+  return t + '.';
+}
+
+module.exports = { secret, askClaude, escapeHtml, cleanMarkdown, cleanForTelegram, stripBig, fixTypography, ensureFinalPeriod };

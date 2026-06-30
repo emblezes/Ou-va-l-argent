@@ -5,7 +5,7 @@
  */
 const fs = require('fs');
 const path = require('path');
-const { fixTypography } = require('./util');
+const { fixTypography, ensureFinalPeriod } = require('./util');
 
 const BANK = require('./ovla-bank.json').stats;
 const STATE_PATH = path.join(__dirname, 'ovla-bank-state.json');
@@ -19,8 +19,8 @@ function pickStats(count) {
   const sorted = [...BANK].sort((a, b) => (state[a.id] || 0) - (state[b.id] || 0));
   return sorted.slice(0, count).map(s => ({
     slug: s.id,
-    headline: fixTypography(s.headline),
-    reveal: fixTypography(s.reveal),
+    headline: ensureFinalPeriod(fixTypography(s.headline)),
+    reveal: ensureFinalPeriod(fixTypography(s.reveal)),
     source: s.source,
     caption: '',
     photo: s.photo,
