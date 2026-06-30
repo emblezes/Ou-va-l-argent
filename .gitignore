@@ -49,3 +49,6 @@ Production interne/Réseaux Sociaux /Articles/_inspiration/
 # Renumérotation infographies (work files)
 Site/scripts/.renumber-audit.json
 Site/scripts/.renumber.log
+
+# Pipeline daily-photostat — sortie PNG éphémère (l'état dédup, lui, reste suivi)
+Site/scripts/.daily-output/

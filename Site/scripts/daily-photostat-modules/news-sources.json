@@ -1,0 +1,12 @@
+{
+  "NEWS_SOURCES": [
+    { "name": "La Tribune", "url": "https://www.latribune.fr/feed.xml", "category": "Économie" },
+    { "name": "20 Minutes Économie", "url": "https://www.20minutes.fr/feeds/rss-economie.xml", "category": "Économie" },
+    { "name": "Challenges", "url": "https://www.challenges.fr/rss.xml", "category": "Finance" },
+    { "name": "Le Figaro Économie", "url": "https://www.lefigaro.fr/rss/figaro_economie.xml", "category": "Économie" },
+    { "name": "Le Monde Économie", "url": "https://www.lemonde.fr/economie/rss_full.xml", "category": "Économie" },
+    { "name": "BFM Business", "url": "https://www.bfmtv.com/rss/economie/", "category": "Économie" },
+    { "name": "France Info Économie", "url": "https://www.francetvinfo.fr/economie.rss", "category": "Économie" },
+    { "name": "Google News Éco FR", "url": "https://news.google.com/rss/search?q=%C3%A9conomie+france&hl=fr&gl=FR&ceid=FR:fr", "category": "International" }
+  ]
+}
