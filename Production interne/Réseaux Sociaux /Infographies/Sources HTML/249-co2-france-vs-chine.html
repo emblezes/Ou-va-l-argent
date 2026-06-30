@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Émissions de CO₂ : la France face à la Chine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0c0608;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a88899;
+            --text-muted: #6a4a5a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #081424 0%, #122c4c 50%, #081424 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.10) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 45px 30px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.7rem;
+            text-align: center;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .chart-title .accent {
+            color: #00d4ff;
+            font-style: normal;
+            text-decoration: underline;
+            text-decoration-color: #ffffff;
+            text-decoration-thickness: 4px;
+            text-underline-offset: 8px;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 1.2rem; color: var(--text-muted); white-space: nowrap; }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Émissions de CO2 : la France émet<br><span class="accent">46 fois moins</span> que la Chine</h2>
+
+            <div class="chart-area">
+                <svg width="1010" height="700" viewBox="0 0 1010 700">
+                    <!-- unit inside chart, top -->
+                    <text x="78" y="78" fill="#cfe0ee" font-family="'Syne', sans-serif" font-size="38" font-weight="700">tonnes de CO₂</text>
+                    <!-- Axes -->
+                    <line x1="80" y1="90" x2="80" y2="650" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1" />
+                    <line x1="80" y1="650" x2="890" y2="650" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1" />
+
+        <line x1="80" y1="650.0" x2="890" y2="650.0" stroke="#6a4a5a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="655.0" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="22" text-anchor="end">0</text>
+
+        <line x1="80" y1="438.9" x2="890" y2="438.9" stroke="#6a4a5a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="443.9" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="22" text-anchor="end">5 Md</text>
+
+        <line x1="80" y1="227.8" x2="890" y2="227.8" stroke="#6a4a5a" stroke-opacity="0.3" stroke-dasharray="4,4" />
+        <text x="68" y="232.8" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="22" text-anchor="end">10 Md</text>
+
+        <text x="80.0" y="684" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="24" text-anchor="middle">1950</text>
+
+        <text x="353.6" y="684" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="24" text-anchor="middle">1975</text>
+
+        <text x="627.3" y="684" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="24" text-anchor="middle">2000</text>
+
+        <text x="889.9" y="684" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="24" text-anchor="middle">2024</text>
+
+        <!-- China -->
+        <defs>
+          <linearGradient id="grad-CHN" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ff4757" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#ff4757" stop-opacity="0.02"/>
+          </linearGradient>
+        </defs>
+        <path d="M80.0,646.7 L90.9,645.7 L101.9,644.6 L112.8,644.4 L123.8,643.3 L134.7,642.0 L145.7,640.9 L156.6,639.3 L167.6,627.8 L178.5,619.6 L189.5,616.3 L200.4,625.9 L211.4,630.6 L222.3,630.7 L233.2,630.6 L244.2,628.9 L255.1,626.8 L266.1,630.6 L277.0,629.1 L288.0,624.4 L298.9,615.9 L309.9,611.6 L320.8,609.1 L331.8,607.5 L342.7,606.6 L353.6,600.1 L364.6,598.2 L375.5,593.4 L386.5,587.0 L397.4,585.7 L408.4,586.9 L419.3,587.7 L430.3,582.2 L441.2,578.5 L452.2,572.2 L463.1,565.7 L474.1,561.2 L485.0,554.7 L495.9,547.6 L506.9,546.1 L517.8,545.2 L528.8,539.5 L539.7,534.7 L550.7,527.0 L561.6,519.4 L572.6,508.5 L583.5,502.2 L594.5,501.8 L605.4,508.4 L616.4,500.2 L627.3,496.2 L638.2,492.7 L649.2,477.0 L660.1,445.9 L671.1,430.0 L682.0,401.7 L693.0,376.2 L703.9,355.6 L714.9,333.8 L725.8,317.3 L736.8,286.6 L747.7,248.2 L758.6,237.7 L769.6,230.3 L780.5,228.9 L791.5,233.9 L802.4,238.5 L813.4,227.8 L824.3,213.2 L835.3,197.8 L846.2,190.0 L857.2,173.7 L868.1,155.6 L879.1,136.2 L890.0,131.3 L890.0,650.0 L80.0,650.0 Z" fill="url(#grad-CHN)" />
+        <path d="M80.0,646.7 L90.9,645.7 L101.9,644.6 L112.8,644.4 L123.8,643.3 L134.7,642.0 L145.7,640.9 L156.6,639.3 L167.6,627.8 L178.5,619.6 L189.5,616.3 L200.4,625.9 L211.4,630.6 L222.3,630.7 L233.2,630.6 L244.2,628.9 L255.1,626.8 L266.1,630.6 L277.0,629.1 L288.0,624.4 L298.9,615.9 L309.9,611.6 L320.8,609.1 L331.8,607.5 L342.7,606.6 L353.6,600.1 L364.6,598.2 L375.5,593.4 L386.5,587.0 L397.4,585.7 L408.4,586.9 L419.3,587.7 L430.3,582.2 L441.2,578.5 L452.2,572.2 L463.1,565.7 L474.1,561.2 L485.0,554.7 L495.9,547.6 L506.9,546.1 L517.8,545.2 L528.8,539.5 L539.7,534.7 L550.7,527.0 L561.6,519.4 L572.6,508.5 L583.5,502.2 L594.5,501.8 L605.4,508.4 L616.4,500.2 L627.3,496.2 L638.2,492.7 L649.2,477.0 L660.1,445.9 L671.1,430.0 L682.0,401.7 L693.0,376.2 L703.9,355.6 L714.9,333.8 L725.8,317.3 L736.8,286.6 L747.7,248.2 L758.6,237.7 L769.6,230.3 L780.5,228.9 L791.5,233.9 L802.4,238.5 L813.4,227.8 L824.3,213.2 L835.3,197.8 L846.2,190.0 L857.2,173.7 L868.1,155.6 L879.1,136.2 L890.0,131.3" fill="none" stroke="#ff4757" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="890.0" cy="131.3" r="8" fill="#ff4757" stroke="#0a1626" stroke-width="2.5" />
+        <text x="890.0" y="53.3" fill="#ff4757" font-family="'Instrument Serif', serif" font-size="56" text-anchor="middle">Chine 🇨🇳</text>
+        <text x="890.0" y="107.3" fill="#ff4757" font-family="'Instrument Serif', serif" font-size="52" text-anchor="middle">12,3 Md</text>
+
+        <!-- France -->
+        <defs>
+          <linearGradient id="grad-FRA" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#00ff88" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#00ff88" stop-opacity="0.02"/>
+          </linearGradient>
+        </defs>
+        <path d="M80.0,641.4 L90.9,640.3 L101.9,640.4 L112.8,641.0 L123.8,640.4 L134.7,639.9 L145.7,638.7 L156.6,638.2 L167.6,638.8 L178.5,638.9 L189.5,637.4 L200.4,636.5 L211.4,635.8 L222.3,635.6 L233.2,634.3 L244.2,634.6 L255.1,633.9 L266.1,632.9 L277.0,632.2 L288.0,631.1 L298.9,630.5 L309.9,629.0 L320.8,628.2 L331.8,627.1 L342.7,627.8 L353.6,629.4 L364.6,627.7 L375.5,628.4 L386.5,627.5 L397.4,627.4 L408.4,628.3 L419.3,630.5 L430.3,631.3 L441.2,632.1 L452.2,632.5 L463.1,632.7 L474.1,633.4 L485.0,633.5 L495.9,633.7 L506.9,633.1 L517.8,633.3 L528.8,632.3 L539.7,632.7 L550.7,633.5 L561.6,633.9 L572.6,633.7 L583.5,633.0 L594.5,633.3 L605.4,632.5 L616.4,632.5 L627.3,632.9 L638.2,632.6 L649.2,632.9 L660.1,632.5 L671.1,632.5 L682.0,632.4 L693.0,632.9 L703.9,633.3 L714.9,633.5 L725.8,634.3 L736.8,634.1 L747.7,635.0 L758.6,634.9 L769.6,634.8 L780.5,636.2 L791.5,635.9 L802.4,635.8 L813.4,635.7 L824.3,636.4 L835.3,636.6 L846.2,638.1 L857.2,637.1 L868.1,637.5 L879.1,638.6 L890.0,638.8 L890.0,650.0 L80.0,650.0 Z" fill="url(#grad-FRA)" />
+        <path d="M80.0,641.4 L90.9,640.3 L101.9,640.4 L112.8,641.0 L123.8,640.4 L134.7,639.9 L145.7,638.7 L156.6,638.2 L167.6,638.8 L178.5,638.9 L189.5,637.4 L200.4,636.5 L211.4,635.8 L222.3,635.6 L233.2,634.3 L244.2,634.6 L255.1,633.9 L266.1,632.9 L277.0,632.2 L288.0,631.1 L298.9,630.5 L309.9,629.0 L320.8,628.2 L331.8,627.1 L342.7,627.8 L353.6,629.4 L364.6,627.7 L375.5,628.4 L386.5,627.5 L397.4,627.4 L408.4,628.3 L419.3,630.5 L430.3,631.3 L441.2,632.1 L452.2,632.5 L463.1,632.7 L474.1,633.4 L485.0,633.5 L495.9,633.7 L506.9,633.1 L517.8,633.3 L528.8,632.3 L539.7,632.7 L550.7,633.5 L561.6,633.9 L572.6,633.7 L583.5,633.0 L594.5,633.3 L605.4,632.5 L616.4,632.5 L627.3,632.9 L638.2,632.6 L649.2,632.9 L660.1,632.5 L671.1,632.5 L682.0,632.4 L693.0,632.9 L703.9,633.3 L714.9,633.5 L725.8,634.3 L736.8,634.1 L747.7,635.0 L758.6,634.9 L769.6,634.8 L780.5,636.2 L791.5,635.9 L802.4,635.8 L813.4,635.7 L824.3,636.4 L835.3,636.6 L846.2,638.1 L857.2,637.1 L868.1,637.5 L879.1,638.6 L890.0,638.8" fill="none" stroke="#00ff88" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="890.0" cy="638.8" r="8" fill="#00ff88" stroke="#0a1626" stroke-width="2.5" />
+        <text x="890.0" y="566.8" fill="#00ff88" font-family="'Instrument Serif', serif" font-size="56" text-anchor="middle">France 🇫🇷</text>
+        <text x="890.0" y="618.8" fill="#00ff88" font-family="'Instrument Serif', serif" font-size="52" text-anchor="middle">264 M</text>
+
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Our World in Data · CO₂ en tonnes · 1950-2024 · Où Va l'Argent</span></div>
+                <div class="website">
+                    <span class="website-url">ouvalargent.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
