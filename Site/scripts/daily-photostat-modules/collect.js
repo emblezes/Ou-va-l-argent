@@ -46,10 +46,21 @@ async function fetchAllRSS() {
   return all;
 }
 
-async function collectFresh() {
+const MAX_AGE_H = 48; // fraîcheur : on ne garde que l'actu des dernières 48h
+
+// true si l'article est récent (< MAX_AGE_H). Si pas de date exploitable, on le garde (rare).
+function isRecent(a, maxAgeH = MAX_AGE_H) {
+  if (!a.pubDate) return true;
+  const t = Date.parse(a.pubDate);
+  if (isNaN(t)) return true;
+  return (Date.now() - t) <= maxAgeH * 3600 * 1000;
+}
+
+async function collectFresh(maxAgeH = MAX_AGE_H) {
   const cache = loadCache();
   const all = await fetchAllRSS();
-  const fresh = all.filter(a => a.title && !cache[articleKey(a)]);
+  // Filtre par DATE (code, pas jugement IA) : seuls les articles frais sortent d'ici.
+  const fresh = all.filter(a => a.title && isRecent(a, maxAgeH) && !cache[articleKey(a)]);
   return { all, fresh, cache };
 }
 
