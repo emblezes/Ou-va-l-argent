@@ -1,140 +1,45 @@
 {
-  "actuShort": [
-    {
-      "slug": "espagne-croissance-2026",
-      "photo": "spain flag economy growth",
-      "headline": "La France et l'Allemagne revoient leur croissance à la baisse.",
-      "reveal": "L'Espagne relève la sienne à <big>2,6 %</big> pour 2026.",
-      "source": "Gouvernement espagnol · Commission européenne, prévisions de printemps 2026",
-      "theme": "International",
-      "caption": "L'Espagne rehausse sa prévision de croissance 2026 à 2,6 %, quand la Commission européenne abaisse celles de la France (0,9 %) et de l'Allemagne (1,2 %). La France serait ainsi le 3e pays le moins dynamique de l'UE en 2026, loin sous la moyenne européenne de 1,4 %. Un contraste qui interroge sur la trajectoire des deux plus grandes économies de la zone euro. #croissance #economie #europe"
-    },
-    {
-      "slug": "inflation-france-juin-2026",
-      "photo": "grocery shopping supermarket france",
-      "headline": "L'inflation ralentit nettement en France en juin.",
-      "reveal": "<big>1,8 %</big> sur un an, contre 2,4 % en mai.",
-      "source": "INSEE, estimation flash, juin 2026",
-      "theme": "Macro-économie",
-      "caption": "Selon l'estimation flash de l'INSEE, l'inflation en France retombe à 1,8 % sur un an en juin 2026, après 2,4 % en mai. Une décrue bienvenue pour le pouvoir d'achat, à confirmer par les chiffres définitifs attendus le 10 juillet. Reste à savoir si la tendance se poursuivra cet été. #inflation #pouvoirdachat #insee"
-    },
-    {
-      "slug": "pmi-manufacturier-france-juin-2026",
-      "photo": "factory manufacturing industry france",
-      "headline": "L'industrie française repasse un cap important.",
-      "reveal": "<big>51,2</big> au PMI manufacturier en juin, contre 49,7 en mai.",
-      "source": "S&P Global / HCOB, juillet 2026",
-      "theme": "Actualité éco",
-      "caption": "L'indice PMI manufacturier français franchit à nouveau le seuil des 50 points en juin 2026, signe d'un retour en zone d'expansion pour l'industrie. Une progression plus forte qu'attendu après plusieurs mois de contraction. Un signal encourageant, mais encore fragile. #industrie #pmi #france"
-    },
-    {
-      "slug": "ifi-rendement-2025",
-      "photo": "paris apartment buildings rooftop",
-      "headline": "Le seuil de l'IFI n'a pas bougé depuis 2017.",
-      "reveal": "<big>2,97 Md€</big> collectés en 2025 — +14 %/an depuis 2019.",
-      "source": "Cour des comptes, rapport sur l'IFI, 2024",
-      "theme": "Impôts",
-      "caption": "L'impôt sur la fortune immobilière (IFI), qui a remplacé l'ISF en 2018, rapporte de plus en plus sans qu'aucune réforme n'ait été votée. Le seuil d'assujettissement (1,3 M€) est resté gelé depuis 2017, alors que les prix de l'immobilier ont fortement augmenté. Résultat : 164 000 foyers sont désormais concernés. #impots #immobilier #fiscalite"
-    },
-    {
-      "slug": "ticpe-16-milliards",
-      "photo": "gas station fuel pump",
-      "headline": "La taxe sur les carburants reste un pilier discret du budget.",
-      "reveal": "<big>16,4 Md€</big> de recettes TICPE en 2024.",
-      "source": "DGFiP, statistiques fiscales, 2024",
-      "theme": "Impôts",
-      "caption": "Chaque plein d'essence alimente le budget de l'État : la taxe intérieure sur les produits énergétiques (TICPE) a rapporté 16,4 milliards d'euros nets en 2024, soit environ 4 % des recettes fiscales de l'État. Une recette restée stable malgré la baisse tendancielle de la consommation de carburants fossiles. #fiscalite #carburant #budget"
-    },
-    {
-      "slug": "csg-premier-impot",
-      "photo": "payslip paperwork office desk",
-      "headline": "Un prélèvement méconnu dépasse l'impôt sur le revenu.",
-      "reveal": "<big>154 Md€</big> collectés par la CSG en 2024.",
-      "source": "Sécurité sociale, PLFSS 2026",
-      "theme": "Impôts",
-      "caption": "Créée en 1991, la contribution sociale généralisée (CSG) est devenue le premier prélèvement direct en France, devant l'impôt sur le revenu. Prélevée à la source sur les salaires, les pensions et les revenus du capital, elle finance l'essentiel de la Sécurité sociale. Pourtant, peu de Français savent qu'elle existe sous ce nom. #csg #impots #secusociale"
-    },
-    {
-      "slug": "charge-dette-plus-37-milliards",
-      "photo": "euro banknotes coins currency",
-      "headline": "La facture des intérêts de la dette s'est alourdie.",
-      "reveal": "<big>+37 Md€</big> d'intérêts en plus entre 2020 et 2025.",
-      "source": "FIPECO / Comptes nationaux, 2025",
-      "theme": "Dette",
-      "caption": "La charge d'intérêts de la dette publique française a bondi de 37 milliards d'euros en cinq ans, portée par la remontée des taux et l'augmentation du stock de dette. Elle atteint 64,7 milliards d'euros en 2025, soit 2,2 % du PIB. Un poste de dépense qui grossit chaque année, sans qu'aucune politique publique ne le finance directement. #dette #financespubliques #tauxdinteret"
-    },
-    {
-      "slug": "deficit-2026-inchange",
-      "photo": "french national assembly paris",
-      "headline": "Hausses d'impôts et coupes budgétaires n'ont presque rien changé.",
-      "reveal": "Le déficit reste à <big>5,0 %</big> du PIB en 2026.",
-      "source": "Cour des comptes, février 2026",
-      "theme": "Finances publiques",
-      "caption": "Malgré un effort budgétaire combinant hausses d'impôts et coupes dans la dépense, le déficit public français devrait rester quasiment stable en 2026. En cause : la charge croissante des intérêts de la dette, qui absorbe une bonne partie des économies réalisées ailleurs. La Cour des comptes appelle à un effort plus structurel. #deficit #courdescomptes #budget"
-    },
-    {
-      "slug": "territoires-316-milliards-sans-bilan",
-      "photo": "french countryside village town hall",
-      "headline": "Un maquis d'agences gère l'argent des territoires.",
-      "reveal": "<big>316 Md€</big> dépensés, sans bilan mesurable.",
-      "source": "Cour des comptes, rapport annuel, mars 2026",
-      "theme": "Finances publiques",
-      "caption": "Dans son rapport annuel 2026, la Cour des comptes pointe le morcellement de la politique territoriale française, partagée entre l'État, l'ANCT, l'ADEME, l'ANRU et les collectivités. Résultat : 316 milliards d'euros dépensés, sans qu'aucun bilan d'ensemble ne permette d'en mesurer l'efficacité. La Cour parle de véritable « saupoudrage ». #courdescomptes #depensepublique #territoires"
-    },
-    {
-      "slug": "pfu-flat-tax-31-4-pourcent",
-      "photo": "stock market finance chart",
-      "headline": "Le taux d'imposition sur le capital vient de grimper.",
-      "reveal": "<big>31,4 %</big> — nouveau taux du prélèvement forfaitaire unique.",
-      "source": "Service Public / economie.gouv.fr, 2026",
-      "theme": "Impôts",
-      "caption": "Le prélèvement forfaitaire unique (PFU), ou « flat tax », qui s'applique aux dividendes, intérêts et plus-values, est passé de 30 % à 31,4 % au 1er janvier 2026. Une hausse discrète des prélèvements sociaux qui touche l'épargne et l'investissement des Français. Le débat sur la fiscalité du capital reste vif. #fiscalite #flattax #epargne"
-    }
-  ],
+  "actuShort": [],
   "graphics": [
     {
-      "id": "chomage-france-2025",
+      "id": "allegements-cotisations-explosent",
       "type": "line",
-      "title": "Le chômage <em>grimpe</em> en France depuis un an.",
-      "metric": "Taux de chômage, France entière (BIT)",
-      "source": "INSEE, quatrième trimestre 2025",
-      "accent": "#ff4757",
-      "unit": "%",
+      "title": "Le coût des exonérations de cotisations <em>explose</em>.",
+      "metric": "Allègements généraux de cotisations patronales",
+      "source": "Commission des comptes de la Sécurité sociale, 2024",
+      "accent": "#ff9f43",
+      "unit": " Md€",
       "points": [
-        { "x": "T1 2025", "y": 7.4 },
-        { "x": "T2 2025", "y": 7.5 },
-        { "x": "T3 2025", "y": 7.7 },
-        { "x": "T4 2025", "y": 7.9 }
+        { "x": "2021", "y": 60 },
+        { "x": "2022", "y": 73.6 },
+        { "x": "2023", "y": 88 }
       ],
-      "caption": "Le taux de chômage français a grimpé de 0,5 point en un an, atteignant 7,9 % au quatrième trimestre 2025 — son plus haut niveau depuis 2021. Une tendance qui contredit le discours d'un marché du travail résilient : 2,5 millions de personnes sont concernées. #chomage #emploi #insee"
+      "caption": "Le coût des allègements généraux de cotisations patronales est passé de 60 à 88 milliards d'euros entre 2021 et 2023, selon la Commission des comptes de la Sécurité sociale — une hausse de près de 50 % en deux ans. Un montant colossal, financé par redéploiement d'autres recettes. #cotisations #entreprises #financespubliques"
     },
     {
-      "id": "smic-europe-comparaison",
+      "id": "controle-fiscal-stagne-10-ans",
       "type": "bars",
-      "title": "Le <em>Smic</em> français, loin derrière ses voisins.",
-      "metric": "Salaire minimum brut mensuel",
-      "source": "Eurostat, janvier 2026",
-      "accent": "#00d4ff",
-      "unit": " €",
+      "title": "Le contrôle fiscal <em>stagne</em> depuis dix ans.",
+      "metric": "Sommes redressées par le contrôle fiscal",
+      "source": "Cour des comptes, 2025",
+      "accent": "#ff4757",
+      "unit": " Md€",
       "bars": [
-        { "label": "France", "value": 1823, "hi": true },
-        { "label": "Belgique", "value": 2112, "hi": false },
-        { "label": "Pays-Bas", "value": 2295, "hi": false },
-        { "label": "Irlande", "value": 2391, "hi": false },
-        { "label": "Luxembourg", "value": 2704, "hi": false }
+        { "label": "2015", "value": 21.2, "hi": false },
+        { "label": "2024", "value": 20.1, "hi": true }
       ],
-      "caption": "Avec un Smic brut de 1 823 € par mois, la France se classe 6e des pays européens à salaire minimum légal — loin derrière le Luxembourg (2 704 €) ou l'Irlande (2 391 €). Un écart à nuancer selon les systèmes fiscaux et sociaux propres à chaque pays. #smic #salaire #europe"
+      "caption": "Alors que les recettes fiscales recouvrées par la DGFiP ont progressé de 44 % entre 2015 et 2024 (718 Md€), les résultats du contrôle fiscal, eux, stagnent autour de 20 milliards d'euros par an. La Cour des comptes pointe une efficacité en berne, pendant que la seule fraude à la TVA est estimée entre 20 et 26 Md€ par an selon l'INSEE. #fraudefiscale #courdescomptes #impots"
     }
   ],
   "micro": [
     {
-      "id": "transport-sanitaire-6-milliards",
-      "headline": "Un poste de dépense santé explose sans faire de bruit.",
-      "figure": "6,15 Md€",
-      "detail": "Coût des transports sanitaires non urgents en 2024, +30 % en 5 ans — deux fois plus vite que les dépenses de santé globales.",
-      "source": "Cour des comptes, rapport Sécurité sociale, mai 2026",
+      "id": "ame-budget-deja-depasse",
+      "headline": "Le budget prévu pour l'aide médicale d'État est déjà dépassé.",
+      "figure": "1,39 Md€",
+      "detail": "Coût réel de l'AME en 2024 (+15,5 % en un an, +40 % depuis 2021), pour 465 000 bénéficiaires — alors que le budget 2025 reste gelé à 1,2 Md€.",
+      "source": "Sénat, rapport d'information sur l'AME, 2025",
       "accent": "#ff9f43",
-      "caption": "Le coût des transports sanitaires de patients non urgents a bondi de 30 % entre 2019 et 2024, pour atteindre 6,15 milliards d'euros. La Cour des comptes évalue à 640 millions d'euros la fraude et les erreurs de facturation sur ce seul poste en 2024, et recommande de resserrer les conditions de prise en charge. #courdescomptes #securitesociale #sante"
+      "caption": "Le coût réel de l'aide médicale d'État a atteint 1,39 milliard d'euros en 2024, en hausse de 15,5 % sur un an et de 40 % depuis 2021, porté par la hausse continue du nombre de bénéficiaires (465 000 fin 2024, contre 411 000 fin 2022). Le budget voté pour 2025 reste pourtant gelé à 1,2 milliard d'euros. #ame #budget #senat"
     }
   ]
 }
