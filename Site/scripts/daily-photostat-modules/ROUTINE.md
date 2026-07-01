@@ -25,10 +25,15 @@
 4. **Génère `today-specs.json`** (toi-même, en **fact-checkant CHAQUE chiffre** via WebSearch/WebFetch ;
    sources : OCDE, Eurostat, INSEE, Banque de France, DGFiP, Cour des comptes, IGF, Sénat… ; écarte tout chiffre
    non confirmé ; cite la source exacte) :
-   - `actuShort` (10) : **4** issues de `/tmp/rss.json` + **6** angles OVLA (fiscalité, dépense, dette,
-     comparaisons internationales). Format carte :
+   - `actuShort` (jusqu'à 10) : **UNIQUEMENT de vraies actus des dernières 24-48h** issues de `/tmp/rss.json`
+     (avec `pubDate` récent). **PRIORISE** celles à angle OVLA (fiscalité, impôts, dépense publique, dette,
+     comparaisons internationales), mais garde de l'actu éco variée. **INTERDIT** : mettre un fait
+     **evergreen / structurel** (flat tax 31,4 %, niches fiscales, taux de prélèvements, dette totale…) dans les
+     actu-short — ces stats vont dans `graphics`/`micro`, PAS dans les actus. Si moins de ~8 items RSS frais,
+     **produis-en moins** (6-8) — ne JAMAIS présenter un vieux fait comme une actu.
+     Chaque `reveal` doit porter un chiffre **tiré de l'article du jour**. Format carte :
      `{ "slug","photo"(requête Pexels EN),"headline"(énoncé blanc factuel, point final, SANS le chiffre),
-        "reveal"("<big>chiffre</big> …", point final),"source","theme","caption"(3-5 phrases + 3 hashtags) }`
+        "reveal"("<big>chiffre</big> …", point final),"source"(média + date du jour),"theme","caption"(3-5 phrases + 3 hashtags) }`
      → énoncé et reveal en **2 lignes max**, **un seul chiffre dominant**.
    - `graphics` (2) : angles **GRAPHIQUES ORIGINAUX** (≠ done-topics/sent-log).
      `{ "id","type"(line/bars/dot),"title"(<em>mot</em>, point final),"metric","source",
