@@ -16,8 +16,12 @@
    Sinon : `cd ~/ovla/Site && git pull`.
 2. **Anti-répétition** : lis `scripts/daily-photostat-modules/done-topics.json` (244 sujets déjà faits) et
    `scripts/daily-photostat-modules/sent-log.json` (déjà envoyés). **N'utilise AUCUN de ces sujets.**
-3. **Actu RSS 24h** :
+3. **Actu RSS des dernières 24h** (le réseau doit être « Complet » ou autoriser les 8 hôtes RSS) :
    `node -e "require('./scripts/daily-photostat-modules/collect').collectFresh().then(r=>require('fs').writeFileSync('/tmp/rss.json',JSON.stringify(r.fresh.slice(0,30))))"`
+   Chaque item a un `pubDate` : **ne garde que ceux publiés il y a MOINS DE 48h**. Les 4 actu-short DOIVENT
+   venir de ce flux frais — **JAMAIS** d'une recherche web qui remonterait un article vieux de plusieurs mois.
+   Si `/tmp/rss.json` est vide/échoue, réduis le nombre d'actu-short et complète par des angles OVLA structurels
+   (ne fabrique pas de fausse « actu » avec un fait ancien).
 4. **Génère `today-specs.json`** (toi-même, en **fact-checkant CHAQUE chiffre** via WebSearch/WebFetch ;
    sources : OCDE, Eurostat, INSEE, Banque de France, DGFiP, Cour des comptes, IGF, Sénat… ; écarte tout chiffre
    non confirmé ; cite la source exacte) :
