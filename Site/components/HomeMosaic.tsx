@@ -79,14 +79,14 @@ export function HomeMosaic({ images }: { images: string[] }) {
 
       {/* Overlay centré : titre + email */}
       <div className="pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center px-4">
-        <div className="pointer-events-auto flex w-full max-w-3xl flex-col items-center text-center">
-          <h1 className="font-serif text-[clamp(3.5rem,13vw,11rem)] font-normal leading-[1.05] mb-10 drop-shadow-[0_2px_30px_rgba(0,0,0,0.85)] sm:whitespace-nowrap">
+        <div className="pointer-events-auto flex w-full max-w-3xl flex-col items-center rounded-[2rem] bg-[rgba(6,10,18,0.5)] px-6 py-8 text-center backdrop-blur-md sm:rounded-none sm:bg-transparent sm:px-0 sm:py-0 sm:backdrop-blur-none">
+          <h1 className="font-serif text-[clamp(3.25rem,13vw,11rem)] font-normal leading-[1.05] mb-8 drop-shadow-[0_2px_30px_rgba(0,0,0,0.85)] sm:mb-10 sm:whitespace-nowrap">
             O&ugrave; Va <span className="italic text-[#00d4ff]">l&apos;Argent</span>&nbsp;?
           </h1>
 
           <form
             onSubmit={handleSubmit}
-            className="flex w-full gap-3 rounded-2xl border border-white/15 bg-black/50 p-3 backdrop-blur-md"
+            className="flex w-full flex-col gap-3 rounded-2xl border border-white/15 bg-black/50 p-3 backdrop-blur-md sm:flex-row"
           >
             <input
               type="email"
@@ -95,12 +95,12 @@ export function HomeMosaic({ images }: { images: string[] }) {
               placeholder="votre@email.com"
               required
               disabled={status === 'loading' || status === 'success'}
-              className="font-sans flex-1 rounded-xl bg-white/5 px-6 py-5 text-lg text-white placeholder-[#5a6270] focus:border-[#00d4ff]/50 focus:outline-none disabled:opacity-50 sm:text-2xl"
+              className="font-sans w-full flex-1 rounded-xl bg-white/5 px-6 py-4 text-lg text-white placeholder-[#5a6270] focus:border-[#00d4ff]/50 focus:outline-none disabled:opacity-50 sm:py-5 sm:text-2xl"
             />
             <button
               type="submit"
               disabled={status === 'loading' || status === 'success'}
-              className="font-sans whitespace-nowrap rounded-xl bg-[#00d4ff] px-8 py-5 text-lg font-bold text-[#0a0e14] transition-all hover:bg-[#00b8e0] disabled:opacity-50 sm:text-2xl"
+              className="font-sans w-full whitespace-nowrap rounded-xl bg-[#00d4ff] px-8 py-4 text-lg font-bold text-[#0a0e14] transition-all hover:bg-[#00b8e0] disabled:opacity-50 sm:w-auto sm:py-5 sm:text-2xl"
             >
               {status === 'loading' ? '...' : status === 'success' ? 'Inscrit !' : 'Rester informé'}
             </button>
@@ -148,8 +148,9 @@ export function HomeMosaic({ images }: { images: string[] }) {
             />
           </div>
 
-          {/* Mention de réutilisation — dans la bande noire à droite */}
-          <p className="pointer-events-none absolute right-[2.5%] top-1/2 z-10 max-w-[24vw] -translate-y-1/2 text-right font-sans text-2xl font-semibold leading-snug text-white sm:text-3xl lg:text-4xl">
+          {/* Mention de réutilisation — mobile : en bas pleine largeur ;
+              desktop : grande bande blanche à droite */}
+          <p className="pointer-events-none absolute inset-x-4 bottom-4 z-10 text-center font-sans text-sm font-medium leading-snug text-white/90 sm:inset-x-auto sm:bottom-auto sm:right-[2.5%] sm:top-1/2 sm:max-w-[24vw] sm:-translate-y-1/2 sm:text-right sm:text-3xl sm:font-semibold sm:leading-snug sm:text-white lg:text-4xl">
             Infographie libre de réutilisation pour un usage non commercial,
             avec mention de la source&nbsp;: ouvalargent.com ou de la page «&nbsp;Où va l&apos;argent&nbsp;»
           </p>
