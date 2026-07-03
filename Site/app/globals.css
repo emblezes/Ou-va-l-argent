@@ -278,7 +278,12 @@ body {
 
 /* Mosaic background animation */
 .mosaic-scroll {
-  animation: mosaic-drift 60s linear infinite;
+  animation: mosaic-drift 90s linear infinite;
+  will-change: transform;
+}
+
+.mosaic-scroll:hover {
+  animation-play-state: paused;
 }
 
 @keyframes mosaic-drift {
