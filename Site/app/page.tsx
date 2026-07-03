@@ -1,6 +1,4 @@
 import { Metadata } from 'next'
-import fs from 'fs'
-import path from 'path'
 import { HomeMosaic } from '@/components/HomeMosaic'
 import { PUBLISHED_INFOGRAPHICS } from '@/lib/published-infographics'
 
@@ -43,20 +41,9 @@ export const metadata: Metadata = {
 }
 
 // Affiche uniquement la sélection curée d'infographies réellement publiées
-// (cf. lib/published-infographics.ts), dans l'ordre défini, en ne gardant
-// que les fichiers effectivement présents dans public/infographies.
-function getInfographics(): string[] {
-  const dir = path.join(process.cwd(), 'public', 'infographies')
-  let files: Set<string>
-  try {
-    files = new Set(fs.readdirSync(dir))
-  } catch {
-    return PUBLISHED_INFOGRAPHICS
-  }
-  return PUBLISHED_INFOGRAPHICS.filter((f) => files.has(f))
-}
-
+// (cf. lib/published-infographics.ts). On n'accède PAS au système de fichiers :
+// sinon le traçage Next embarquerait tout public/infographies (~350 Mo) dans la
+// fonction, dépassant la limite Vercel de 250 Mo.
 export default function Page() {
-  const images = getInfographics()
-  return <HomeMosaic images={images} />
+  return <HomeMosaic images={PUBLISHED_INFOGRAPHICS} />
 }
