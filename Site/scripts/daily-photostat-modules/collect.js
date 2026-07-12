@@ -5,6 +5,8 @@ const fs = require('fs');
 const path = require('path');
 const { parseStringPromise } = require('xml2js');
 
+require('./util'); // configure le dispatcher fetch (proxy sandbox) avant tout appel réseau
+
 const SOURCES = require('./news-sources.json').NEWS_SOURCES;
 const CACHE_PATH = path.join(__dirname, '..', '.daily-photostat-cache.json');
 const TTL_DAYS = 7;

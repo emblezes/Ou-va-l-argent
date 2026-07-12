@@ -5,6 +5,15 @@
 const fs = require('fs');
 const path = require('path');
 
+// Node's global fetch (undici) ignores HTTP(S)_PROXY by default; some sandboxed
+// environments only allow egress through that proxy, so route through it when set.
+// No-op in production (GitHub Actions) where no proxy is configured.
+const _proxyUrl = process.env.HTTPS_PROXY || process.env.https_proxy;
+if (_proxyUrl) {
+  const { setGlobalDispatcher, ProxyAgent } = require('undici');
+  setGlobalDispatcher(new ProxyAgent(_proxyUrl));
+}
+
 let _fileCfg = {};
 try { _fileCfg = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'telegram-config.json'), 'utf8')); } catch {}
 
