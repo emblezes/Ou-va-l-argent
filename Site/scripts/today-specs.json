@@ -1,0 +1,139 @@
+{
+  "actuShort": [
+    {
+      "slug": "franchises-medicales-2027",
+      "photo": "hospital pharmacy medicine france",
+      "headline": "Le gouvernement veut faire porter l'effort budgétaire sur les malades chroniques via les franchises médicales.",
+      "reveal": "<big>2,3 Md€</big> d'économies visées en doublant le reste à charge des patients.",
+      "source": "Le Figaro, 22 juillet 2026",
+      "theme": "Dépense publique",
+      "caption": "Bercy cherche 2,3 milliards d'économies sur la Sécu, et regarde du côté des malades chroniques. Au menu : doublement des franchises médicales (jusqu'à 200€/an), extension aux consultations et aux prothèses dentaires. Objectif affiché : réduire le déficit de l'Assurance maladie. Les associations de patients dénoncent une mesure qui pèse d'abord sur les plus fragiles. #Santé #DépensePublique #Budget2027"
+    },
+    {
+      "slug": "fmi-effort-budgetaire-2029",
+      "photo": "european union euro coins economy",
+      "headline": "Le FMI juge trop lent le rythme de redressement des finances publiques françaises.",
+      "reveal": "<big>0,8 point de PIB</big> par an d'effort budgétaire réclamé jusqu'en 2029.",
+      "source": "FMI, rapport article IV, 22 juillet 2026",
+      "theme": "Dette et déficit",
+      "caption": "Le verdict du FMI sur la trajectoire budgétaire française est sans appel : trop lente. L'institution réclame un effort de 0,8 point de PIB chaque année entre 2027 et 2029 pour repasser sous les 3% de déficit. Elle est claire sur la méthode : pas question de monter les impôts, la France affichant déjà le niveau de prélèvements obligatoires le plus élevé de la zone euro. La priorité doit aller à la baisse des dépenses. #FMI #Déficit #FinancesPubliques"
+    },
+    {
+      "slug": "impot-invisible-cloud-140mds",
+      "photo": "data center servers technology blue",
+      "headline": "Une étude chiffre le coût de la dépendance numérique européenne aux géants américains du cloud.",
+      "reveal": "<big>140 Md€</big> par an d'ici 2030, un « impôt invisible » selon ses auteurs.",
+      "source": "Étude Asterès pour le Cigref, La Tribune, 22 juillet 2026",
+      "theme": "International",
+      "caption": "Sans le nommer, l'Europe paie une forme de taxe américaine. Selon une étude Asterès pour le Cigref, la flambée des prix du cloud et des logiciels facturés par les hyperscalers US pourrait coûter 140 milliards d'euros par an à l'Europe d'ici 2030, dont 93 milliards quittant définitivement l'économie européenne. En cause : une dépendance quasi totale et une concurrence insuffisante. #CloudSouverain #Europe #Numérique"
+    },
+    {
+      "slug": "ryanair-belgique-taxe",
+      "photo": "airplane airport runway europe",
+      "headline": "Ryanair réduit son offre en Belgique en réponse à la hausse de la taxe d'embarquement.",
+      "reveal": "<big>2 millions</big> de sièges supprimés et 5 avions retirés de Charleroi.",
+      "source": "Le Figaro / La Libre, 22 juillet 2026",
+      "theme": "Fiscalité",
+      "caption": "Nouvelle salve dans la guerre fiscale entre Ryanair et les États européens. La compagnie irlandaise retire 5 avions de sa base de Charleroi et supprime 2 millions de sièges en Belgique, en réaction au relèvement de la taxe d'embarquement à 7€ prévu au 1er janvier 2027. Ces capacités seront redéployées vers des pays jugés plus compétitifs fiscalement. #Aérien #Fiscalité #Belgique"
+    },
+    {
+      "slug": "livret-a-decollecte-s1-2026",
+      "photo": "piggy bank savings euro coins",
+      "headline": "L'épargne réglementée traverse son pire semestre depuis le début des statistiques.",
+      "reveal": "<big>-5,93 Md€</big> de décollecte nette sur le Livret A au premier semestre.",
+      "source": "Caisse des Dépôts, 22 juillet 2026",
+      "theme": "Finance personnelle",
+      "caption": "Le Livret A n'a jamais aussi mal démarré une année depuis que la Caisse des Dépôts publie ces statistiques. Sur les six premiers mois de 2026, les retraits ont dépassé les dépôts de 5,93 milliards d'euros. En cause : la baisse du taux à 1,5% en février et le retour de l'assurance-vie, plus rémunératrice, qui capte désormais l'épargne des Français. #ÉpargneA #LivretA #FinancePerso"
+    },
+    {
+      "slug": "prix-legumes-hausse-2026",
+      "photo": "vegetables market fresh produce stall",
+      "headline": "Les prix des légumes frais s'envolent depuis dix ans, bien plus vite que l'inflation générale.",
+      "reveal": "<big>+10%</big> en un an et +62% depuis 2015, selon Familles Rurales.",
+      "source": "Familles Rurales, observatoire des prix, 23 juillet 2026",
+      "theme": "Pouvoir d'achat",
+      "caption": "Le panier de légumes pèse de plus en plus lourd. Familles Rurales relève une hausse de 10% en un an pour les légumes conventionnels, et de 62% depuis 2015 — contre 21% pour l'inflation générale sur la même période. Courgettes, tomates et haricots verts affichent les plus fortes progressions. #PouvoirDAchat #Inflation #Alimentation"
+    },
+    {
+      "slug": "totalenergies-plafond-essence",
+      "photo": "gas station fuel pump car",
+      "headline": "TotalEnergies réinstaure un plafond sur le prix de l'essence dans toutes ses stations françaises.",
+      "reveal": "<big>1,99 €/L</big> maximum, face à la flambée du pétrole liée aux tensions au Moyen-Orient.",
+      "source": "TotalEnergies, franceinfo, 22 juillet 2026",
+      "theme": "Énergie",
+      "caption": "Face à la remontée des cours du pétrole liée aux tensions entre l'Iran et les États-Unis, TotalEnergies étend à toutes ses stations de France hexagonale le plafonnement à 1,99€/L pour l'essence et 2,25€/L pour le diesel. Une mesure jusque-là réservée à 1 200 stations rurales depuis le 1er juillet. #Carburants #PouvoirDAchat #Énergie"
+    },
+    {
+      "slug": "nestle-cession-eaux-perrier",
+      "photo": "mineral water bottles factory production",
+      "headline": "Nestlé s'apprête à céder une partie de ses marques d'eau françaises à un fonds américain.",
+      "reveal": "<big>~5 Md€</big> pour 50% de Perrier, Vittel, Hépar et San Pellegrino.",
+      "source": "BFM Business / Financial Times, 22 juillet 2026",
+      "theme": "Entreprises",
+      "caption": "Le géant suisse de l'agroalimentaire poursuit la cession de la moitié de sa division eaux européenne — Perrier, Vittel, Hépar, San Pellegrino, Contrex — valorisée environ 5 milliards d'euros. Plusieurs fonds américains, dont CD&R et Platinum Equity, sont en lice pour cette prise de participation à 50%. #Nestlé #Perrier #Entreprises"
+    },
+    {
+      "slug": "bresil-tarifs-douaniers-25",
+      "photo": "brazil port cargo shipping containers",
+      "headline": "Washington impose de nouveaux droits de douane sur une large gamme de produits brésiliens.",
+      "reveal": "<big>25%</big> de taxe supplémentaire, entrée en vigueur le 22 juillet.",
+      "source": "BFM Business / AFP, 22 juillet 2026",
+      "theme": "International",
+      "caption": "Le Brésil devient la cible de nouveaux droits de douane américains de 25%, décidés par l'USTR sur la base d'une loi commerciale de 1974. Café, bœuf, oranges et certains produits énergétiques sont exemptés. Brasilia dénonce des mesures « illégales » et promet une réciprocité. #Brésil #DroitsDeDouane #CommerceMondial"
+    },
+    {
+      "slug": "loi-anti-fast-fashion-chine",
+      "photo": "fast fashion clothes shopping bags pile",
+      "headline": "La Chine menace de représailles après le vote français contre la mode ultra-jetable.",
+      "reveal": "<big>jusqu'à 20 €</big> de pénalité par vêtement Shein ou Temu d'ici 2030.",
+      "source": "Boursorama / FashionNetwork, 22 juillet 2026",
+      "theme": "Fiscalité",
+      "caption": "Pékin menace la France de contre-mesures après l'adoption de la loi « anti-fast fashion ». À partir du 1er septembre, chaque vêtement de mode ultra-jetable vendu par des plateformes comme Shein, Temu ou AliExpress sera frappé d'une pénalité croissante, plafonnée à 20€ pièce (et 50% du prix hors taxe) d'ici 2030. La publicité pour ces marques sera aussi interdite. #FastFashion #Shein #Fiscalité"
+    }
+  ],
+  "graphics": [
+    {
+      "id": "patrimoine-financier-francais-2025",
+      "type": "bars",
+      "title": "Voici où dorment les <em>6 590 milliards</em> d'épargne des Français.",
+      "metric": "Patrimoine financier des ménages, fin 2025",
+      "source": "Banque de France, La finance pour tous, juillet 2026",
+      "accent": "#00d4ff",
+      "unit": "%",
+      "bars": [
+        { "label": "Dépôts", "value": 32 },
+        { "label": "Ass.-vie", "value": 33, "hi": true },
+        { "label": "Actions", "value": 27 },
+        { "label": "Autres", "value": 8 }
+      ],
+      "caption": "Fin 2025, le patrimoine financier des ménages français atteint 6 590,7 milliards d'euros, en hausse de 2,7% sur un an. L'assurance-vie (33%) devance désormais les dépôts bancaires (32%) et les actions (27%). Une structure restée globalement stable, mais que la décollecte du Livret A et le dynamisme de l'assurance-vie viennent lentement rebattre. #Épargne #AssuranceVie #BanqueDeFrance"
+    },
+    {
+      "id": "secu-repartition-depenses-2026",
+      "type": "bars",
+      "title": "Voici comment se répartissent les <em>688 milliards</em> de dépenses de la Sécu.",
+      "metric": "Dépenses par branche, LFSS 2026",
+      "source": "PLFSS 2026, Sénat",
+      "accent": "#ff4757",
+      "unit": " Md€",
+      "bars": [
+        { "label": "Vieillesse", "value": 310, "hi": true },
+        { "label": "Maladie", "value": 274 },
+        { "label": "Famille", "value": 60 },
+        { "label": "Autonomie", "value": 44 }
+      ],
+      "caption": "La loi de financement de la Sécurité sociale pour 2026 prévoit près de 684 milliards d'euros de dépenses. La branche vieillesse (retraites) en absorbe à elle seule 310 milliards, devant la maladie (274,4 milliards d'Ondam), la famille (60 milliards) et l'autonomie (44 milliards). Le déficit global est projeté à 19,4 milliards d'euros. #SécuritéSociale #Retraites #Budget2026"
+    }
+  ],
+  "micro": [
+    {
+      "id": "repas-1-euro-etudiants-2026",
+      "headline": "Le repas à 1 euro pour tous les étudiants a un coût qui inquiète le Sénat.",
+      "figure": "30 M€",
+      "detail": "chiffrage officiel de l'extension à tous les étudiants depuis mai 2026 ; le Sénat redoute un coût réel plus de deux fois supérieur.",
+      "source": "Commission des finances du Sénat, rapport PLF 2026, juillet 2026",
+      "accent": "#ffd700",
+      "caption": "Depuis mai 2026, le repas à 1€ au Crous est ouvert à tous les étudiants, plus seulement aux boursiers. Coût officiel annoncé : 30 millions d'euros. Mais la commission des finances du Sénat doute de ce chiffrage et redoute un « effet d'aubaine évident », avec un coût réel plus de deux fois supérieur à l'estimation initiale. #Crous #Étudiants #FinancesPubliques"
+    }
+  ]
+}
