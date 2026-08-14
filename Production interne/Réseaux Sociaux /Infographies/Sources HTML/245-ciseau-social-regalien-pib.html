@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depuis 1960, la dépense sociale a doublé au détriment du régalien</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a88899;
+            --text-muted: #6a4a5a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #0a1220 0%, #142b48 50%, #0a1220 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%);
+            top: -250px;
+            right: -150px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.07) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 22px 60px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5.2rem;
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            line-height: 1.04;
+            letter-spacing: -2px;
+            white-space: nowrap;
+        }
+
+        .chart-title .accent {
+            color: #ff4757;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 0.95rem; color: var(--text-muted); max-width: 620px; }
+        .source span { color: var(--text-secondary); }
+        .website { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; }
+        .website-url { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00d4ff; line-height: 1; }
+        .socials { display: flex; align-items: center; gap: 9px; }
+        .socials svg { width: 17px; height: 17px; fill: var(--text-secondary); display: block; }
+        .socials .handle { font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--text-secondary); letter-spacing: 0.2px; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Depuis 1960, la <span class="accent">dépense sociale</span><br>a doublé au détriment du régalien</h2>
+            <div class="chart-subtitle">France · Dépense publique par fonction · En % du PIB · 1960-2024</div>
+
+            <div class="chart-area">
+                <svg width="960" height="700" viewBox="0 0 960 700">
+                    <!-- ===== DOUBLE ORDONNÉE : axe rouge (social) à gauche, axe cyan (régalien) à droite ===== -->
+                    <!-- Captions d'unité par axe -->
+                    <text x="30" y="72" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="500" font-style="italic" text-anchor="start">% PIB · social</text>
+                    <text x="934" y="72" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="500" font-style="italic" text-anchor="end">% PIB · régalien</text>
+
+                    <!-- Axe gauche (social) -->
+                    <line x1="72" y1="90" x2="72" y2="600" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1.5" />
+                    <!-- Axe droit (régalien) -->
+                    <line x1="892" y1="90" x2="892" y2="600" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1.5" />
+                    <!-- Ligne de sol -->
+                    <line x1="72" y1="600" x2="892" y2="600" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1" />
+
+                    <!-- Graduations GAUCHE (social) : 15 / 20 / 25 / 30 -->
+                    <line x1="64" y1="573.4" x2="72" y2="573.4" stroke="#6a4a5a" stroke-opacity="0.6" stroke-width="1.5" />
+                    <text x="56" y="579" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">15</text>
+                    <line x1="64" y1="440.5" x2="72" y2="440.5" stroke="#6a4a5a" stroke-opacity="0.6" stroke-width="1.5" />
+                    <text x="56" y="446" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">20</text>
+                    <line x1="64" y1="307.6" x2="72" y2="307.6" stroke="#6a4a5a" stroke-opacity="0.6" stroke-width="1.5" />
+                    <text x="56" y="313" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">25</text>
+                    <line x1="64" y1="174.7" x2="72" y2="174.7" stroke="#6a4a5a" stroke-opacity="0.6" stroke-width="1.5" />
+                    <text x="56" y="180" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">30</text>
+
+                    <!-- Graduations DROITE (régalien) : 4 / 5 / 6 / 7 -->
+                    <line x1="892" y1="536.9" x2="900" y2="536.9" stroke="#6a4a5a" stroke-opacity="0.6" stroke-width="1.5" />
+                    <text x="908" y="542" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="start">4</text>
+                    <line x1="892" y1="410.6" x2="900" y2="410.6" stroke="#6a4a5a" stroke-opacity="0.6" stroke-width="1.5" />
+                    <text x="908" y="416" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="start">5</text>
+                    <line x1="892" y1="284.4" x2="900" y2="284.4" stroke="#6a4a5a" stroke-opacity="0.6" stroke-width="1.5" />
+                    <text x="908" y="290" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="start">6</text>
+                    <line x1="892" y1="158.1" x2="900" y2="158.1" stroke="#6a4a5a" stroke-opacity="0.6" stroke-width="1.5" />
+                    <text x="908" y="163" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="start">7</text>
+
+                    <!-- X-axis labels -->
+                    <text x="72" y="632" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">1960</text>
+                    <text x="208.67" y="632" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">1970</text>
+                    <text x="345.33" y="632" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">1980</text>
+                    <text x="482" y="632" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">1990</text>
+                    <text x="618.67" y="632" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">2000</text>
+                    <text x="755.33" y="632" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">2010</text>
+                    <text x="892" y="632" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">2024</text>
+
+                    <!-- Protection sociale (rouge, axe gauche) : 15 → 32 % PIB (DREES) -->
+                    <path d="M72,573.4 L208.67,467.1 L345.33,320.9 L482,254.5 L618.67,214.6 L755.33,161.4 L892,121.6"
+                          fill="none" stroke="#ff4757" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="72" cy="573.4" r="6" fill="#ff4757" stroke="#0a1220" stroke-width="2" />
+                    <circle cx="892" cy="121.6" r="6" fill="#ff4757" stroke="#0a1220" stroke-width="2" />
+
+                    <!-- Dépense régalienne (cyan, axe droit) : 6,9 → 3,8 % PIB (SIPRI/Insee) -->
+                    <path d="M72,170.75 L208.67,360.1 L345.33,423.25 L482,461.1 L618.67,524.25 L755.33,562.1 L892,562.1"
+                          fill="none" stroke="#00d4ff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="72" cy="170.75" r="6" fill="#00d4ff" stroke="#0a1220" stroke-width="2" />
+                    <circle cx="892" cy="562.1" r="6" fill="#00d4ff" stroke="#0a1220" stroke-width="2" />
+
+                    <!-- Valeurs de départ (1960) -->
+                    <text x="115" y="594" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="38" font-weight="700" text-anchor="start">15%</text>
+                    <text x="80" y="150" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="38" font-weight="700" text-anchor="start">6,9%</text>
+
+                    <!-- Valeurs d'arrivée (2024) -->
+                    <text x="868" y="120" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="38" font-weight="700" text-anchor="end">32%</text>
+                    <text x="868" y="545" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="38" font-weight="700" text-anchor="end">3,8%</text>
+
+                    <!-- Labels de séries (2 lignes) : Protection sociale AU-DESSUS de la courbe rouge, Dépense régalienne AU-DESSUS de la courbe cyan -->
+                    <text x="415" y="190" fill="#ff4757" font-family="'Syne', sans-serif" font-size="34" font-weight="700" text-anchor="middle">Protection<tspan x="415" dy="40">sociale</tspan></text>
+
+                    <text x="580" y="396" fill="#00d4ff" font-family="'Syne', sans-serif" font-size="34" font-weight="700" text-anchor="middle">Dépense<tspan x="580" dy="40">régalienne</tspan></text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Sources : <span>DREES (comptes de la protection sociale) · SIPRI · Insee (Cofog). Régalien = défense + sécurité + justice.</span></div>
+                <div class="website"><span class="website-url">ouvalargent.com</span>
+                    <span class="socials">
+                        <svg viewBox="0 0 24 24" aria-label="LinkedIn"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-label="Instagram"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.12 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.12.66.66 1.33 1.07 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.7 5.7 0 0 0 2.12-1.38 5.7 5.7 0 0 0 1.38-2.12c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.7 5.7 0 0 0-1.38-2.12A5.7 5.7 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 12 18.16 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
+                        <svg viewBox="0 0 24 24" aria-label="X"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3L17.61 20.65z"/></svg>
+                        <span class="handle">@ouvalargentfr</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

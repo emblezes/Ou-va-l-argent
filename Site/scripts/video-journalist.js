@@ -34,6 +34,7 @@ const { publishVideoToTelegram, publishVideoToNotion } = require('./video-module
 
 const CACHE_PATH = path.join(SCRIPTS_DIR, '.video-cache.json');
 const ARTICLES_DIR = path.join(BASE, 'Production interne/Réseaux Sociaux /Articles');
+const VIDEOS_OUTPUT_DIR = path.join(BASE, 'Production interne/Réseaux Sociaux /Infographies/Insta & Autres');
 
 // ── CLI args ────────────────────────────────────────
 
@@ -161,9 +162,10 @@ async function main() {
   });
   console.log(`  → cover.png`);
 
-  // 7. Assemblage Remotion
+  // 7. Assemblage Remotion — sortie directe dans Infographies/Insta & Autres/{slug}.mp4
   console.log('\n[5/7] 🎬 Montage Remotion…');
-  const videoPath = path.join(outDir, 'video.mp4');
+  if (!fs.existsSync(VIDEOS_OUTPUT_DIR)) fs.mkdirSync(VIDEOS_OUTPUT_DIR, { recursive: true });
+  const videoPath = path.join(VIDEOS_OUTPUT_DIR, `${script.slug}.mp4`);
   const musicPath = resolveMusicPath();
   if (musicPath) {
     console.log(`  → musique de fond : ${path.basename(musicPath)}`);
@@ -179,7 +181,7 @@ async function main() {
     musicPath,
     topic: script.topic || topic,
   });
-  console.log(`  → video.mp4`);
+  console.log(`  → ${script.slug}.mp4 (Infographies/Insta & Autres/)`);
 
   // 8. Caption Instagram (hashtags)
   console.log('\n[6/7] 📝 Caption Instagram…');
@@ -216,12 +218,12 @@ async function main() {
   saveCache(CACHE_PATH, cache);
 
   console.log('\n' + '─'.repeat(50));
-  console.log(`✨ Vidéo prête : ${outDir.replace(BASE, '.')}`);
-  console.log(`   ├─ video.mp4`);
-  console.log(`   ├─ cover.png`);
-  console.log(`   ├─ caption.txt`);
-  console.log(`   ├─ script.md`);
-  console.log(`   └─ audio.mp3`);
+  console.log(`✨ Vidéo prête : ${videoPath.replace(BASE, '.')}`);
+  console.log(`   ─ Fichiers de travail dans : ${outDir.replace(BASE, '.')}`);
+  console.log(`     ├─ cover.png`);
+  console.log(`     ├─ caption.txt`);
+  console.log(`     ├─ script.md`);
+  console.log(`     └─ audio.mp3`);
 }
 
 function buildCaption(script) {

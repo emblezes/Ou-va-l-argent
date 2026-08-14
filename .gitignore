@@ -52,3 +52,12 @@ Site/scripts/.renumber.log
 
 # Pipeline daily-photostat — sortie PNG éphémère (l'état dédup, lui, reste suivi)
 Site/scripts/.daily-output/
+
+# Médias lourds non versionnés (photos brutes d'actu, rendus vidéo)
+Production interne/Réseaux Sociaux /Actus chaudes/
+*.mp4
+**/.remotion-public/
+Site/scripts/.test-stat/
+
+# Fichiers temporaires Word
+~$*

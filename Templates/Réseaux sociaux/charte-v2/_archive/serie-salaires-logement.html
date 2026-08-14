@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>OVLA — Série salaires & logement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-deep:#0a1220; --bg-mid:#142b48;
+  --text-primary:#f2f6fa; --text-secondary:#8fa3b6; --text-muted:#4a5a6a;
+  --red:#ff4757; --cyan:#00d4ff; --gold:#ffd700; --green:#00ff88; --neutral:#93b0c8;
+  --border:rgba(255,255,255,.10);
+  --font-logo:'Instrument Serif',serif; --font-display:'Bricolage Grotesque',sans-serif;
+  --font-body:'Inter',sans-serif; --font-mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b0b12;font-family:var(--font-body);padding:2rem;display:flex;flex-direction:column;align-items:center;gap:2rem}
+.vlabel{color:#6f8296;font-family:var(--font-mono);font-size:.95rem;letter-spacing:2.5px;text-transform:uppercase}
+.slide{width:1080px;height:1080px;position:relative;overflow:hidden;color:var(--text-primary)}
+.bg{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.04) 1px,transparent 1px);background-size:40px 40px}
+.glow{position:absolute;border-radius:50%}
+.glow.a{width:780px;height:780px;top:-250px;right:-230px;background:radial-gradient(circle,rgba(255,71,87,.13) 0%,transparent 70%)}
+.glow.b{width:540px;height:540px;bottom:-180px;left:-170px;background:radial-gradient(circle,rgba(0,212,255,.07) 0%,transparent 70%)}
+.wrap{position:relative;z-index:2;height:100%;padding:40px 46px 26px;display:flex;flex-direction:column}
+.logo{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.logo i{font-family:var(--font-logo);font-size:4.2rem;color:var(--cyan);line-height:.9;font-style:normal}
+.logo b{font-family:var(--font-logo);font-size:2rem;font-style:italic;font-weight:400;color:#fff;line-height:1}
+.title{font-family:var(--font-display);font-weight:800;font-size:5rem;line-height:1.02;letter-spacing:-2.4px;text-align:center;margin-top:16px}
+.title .red{color:var(--red)}
+.kicker{font-family:var(--font-mono);font-size:1.75rem;letter-spacing:1.8px;text-transform:uppercase;color:var(--text-secondary);font-weight:500;text-align:center;margin-top:14px}
+.plot{flex:1;display:flex;align-items:center;justify-content:center;padding:14px 0 4px}
+.plot svg{width:100%;height:100%;overflow:visible}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;padding-top:16px;margin-top:auto;border-top:1px solid var(--border);flex-shrink:0}
+.foot .src{font-size:1.22rem;color:var(--text-muted);max-width:660px;line-height:1.4}
+.foot .src span{color:var(--text-secondary)}
+.foot .url{font-family:var(--font-mono);font-size:1.65rem;font-weight:700;color:var(--cyan)}
+.v      {font-family:'JetBrains Mono',monospace;font-weight:800;font-size:36px;fill:#f2f6fa}
+.v.hi   {font-size:46px;fill:#ff4757}
+.v.dim  {fill:#93b0c8}
+.cat    {font-family:'Inter',sans-serif;font-weight:700;font-size:28px;fill:#c3d2df}
+.cat.hi {fill:#ff4757;font-weight:800}
+.tick   {font-family:'JetBrains Mono',monospace;font-weight:500;font-size:24px;fill:#8fa3b6}
+.ser    {font-family:'Inter',sans-serif;font-weight:800;font-size:30px}
+/* duel */
+.duel{flex:1;display:flex;align-items:center;position:relative}
+.duel .side{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.duel .side+.side{border-left:1px solid var(--border)}
+.duel .yr{font-family:var(--font-mono);font-weight:700;font-size:2.4rem;color:var(--text-secondary)}
+.duel .val{font-family:var(--font-mono);font-weight:800;font-size:9rem;line-height:1;letter-spacing:-6px}
+.duel .side.hot .val{color:var(--red);text-shadow:0 0 70px rgba(255,71,87,.4)}
+.duel .side.cold .val{color:var(--text-secondary)}
+.duel .lg{font-family:var(--font-body);font-weight:700;font-size:1.9rem;color:var(--text-secondary);text-align:center}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const LOGO=`<div class="logo"><i>€</i><b>Où Va l'Argent ?</b></div>`;
+const foot=src=>`<div class="foot"><div class="src">Source : <span>${src}</span></div><div class="url">ouvalargent.com</div></div>`;
+const slide=(name,title,kicker,body,src)=>`
+<div class="vlabel">${name}</div>
+<div class="slide" data-name="${name}">
+  <div class="bg"></div><div class="grid"></div><div class="glow a"></div><div class="glow b"></div>
+  <div class="wrap">${LOGO}
+    <div class="title">${title}</div>
+    ${kicker?`<div class="kicker">${kicker}</div>`:''}
+    ${body}
+    ${foot(src)}
+  </div></div>`;
+const plot=inner=>`<div class="plot">${inner}</div>`;
+const W=1000,H=520;
+const svg=i=>`<svg viewBox="0 0 ${W} ${H}">${i}</svg>`;
+const C={red:'#ff4757',cyan:'#00d4ff',gold:'#ffd700',neutral:'#93b0c8'};
+const fmt=(n,d=1)=>n.toLocaleString('fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const gl=(x1,y,x2)=>`<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="rgba(255,255,255,.07)"/>`;
+
+/* ---------- 265 · PYRAMIDE DES SALAIRES (barres verticales) ---------- */
+function vbars(data,{max,unit=' €',dec=0}={}){
+  const pad={l:30,r:30,t:52,b:110}, step=(W-pad.l-pad.r)/data.length, bw=Math.min(150,step*0.6);
+  const h0=H-pad.b, hMax=h0-pad.t;
+  return svg(data.map((d,i)=>{
+    const x=pad.l+step*i+step/2, bh=d.v/max*hMax, y=h0-bh, c=d.hi?C.red:C.neutral;
+    return `<rect x="${x-bw/2}" y="${y}" width="${bw}" height="${bh}" rx="6" fill="${c}" opacity="${d.hi?1:.72}"/>
+      <text class="v ${d.hi?'hi':''}" x="${x}" y="${y-18}" text-anchor="middle">${fmt(d.v,dec)}${unit}</text>
+      <text class="cat ${d.hi?'hi':''}" x="${x}" y="${h0+40}" text-anchor="middle">${d.l1}</text>
+      <text class="cat ${d.hi?'hi':''}" x="${x}" y="${h0+76}" text-anchor="middle">${d.l2||''}</text>`;
+  }).join('')+`<line x1="${pad.l-10}" y1="${h0}" x2="${W-pad.r+10}" y2="${h0}" stroke="rgba(255,255,255,.18)" stroke-width="2"/>`);
+}
+const S265 = slide('265-pyramide-salaires',
+  'La moitié des salariés<br>gagne moins de <span class="red">2 190 €</span>',
+  'Salaire net mensuel · Secteur privé · 2024',
+  plot(vbars([
+    {v:1492,l1:'Les 10 %',l2:'les moins payés'},
+    {v:2190,l1:'Salaire',l2:'médian',hi:1},
+    {v:2733,l1:'Salaire',l2:'moyen'},
+    {v:4334,l1:'Les 10 %',l2:'les mieux payés'}
+  ],{max:4600})),
+  "INSEE, Les salaires dans le secteur privé en 2024 (net mensuel EQTP)");
+
+/* ---------- 266 · PRIX vs LOYERS rapportés au revenu (deux courbes) ---------- */
+function twoLines(years,a,b,{ymin,ymax,ticks,la,lb,va,vb}={}){
+  const pad={l:90,r:230,t:50,b:70};
+  const X=y=>pad.l+(y-years[0])/(years.at(-1)-years[0])*(W-pad.l-pad.r);
+  const Y=v=>H-pad.b-(v-ymin)/(ymax-ymin)*(H-pad.t-pad.b);
+  const P=arr=>arr.map((v,i)=>`${i?'L':'M'}${X(years[i]).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
+  const grid=ticks.map(t=>gl(pad.l,Y(t),W-pad.r)+`<text class="tick" x="${pad.l-16}" y="${Y(t)+8}" text-anchor="end">${fmt(t,1)}</text>`).join('');
+  const xt=years.map(y=>`<text class="tick" x="${X(y)}" y="${H-pad.b+38}" text-anchor="middle">${y}</text>`).join('');
+  const dots=(arr,c)=>arr.map((v,i)=>`<circle cx="${X(years[i])}" cy="${Y(v)}" r="${i===arr.length-1?10:6}" fill="${c}"/>`).join('');
+  return svg(grid+xt
+   +`<path d="${P(a)}" fill="none" stroke="${C.red}" stroke-width="5" stroke-linejoin="round"/>${dots(a,C.red)}
+     <path d="${P(b)}" fill="none" stroke="${C.cyan}" stroke-width="5" stroke-linejoin="round"/>${dots(b,C.cyan)}
+     <text class="ser" x="${X(years.at(-1))+26}" y="${Y(a.at(-1))-8}" fill="${C.red}">${la}</text>
+     <text class="v" x="${X(years.at(-1))+26}" y="${Y(a.at(-1))+32}" fill="${C.red}">${va}</text>
+     <text class="ser" x="${X(years.at(-1))+26}" y="${Y(b.at(-1))-8}" fill="${C.cyan}">${lb}</text>
+     <text class="v" x="${X(years.at(-1))+26}" y="${Y(b.at(-1))+32}" fill="${C.cyan}">${vb}</text>`);
+}
+const S266 = slide('266-prix-logement-revenu',
+  'Le prix des logements<br>a <span class="red">décroché</span> des revenus',
+  'Rapporté au revenu par ménage · base 2000 = 1',
+  plot(twoLines([1965,1980,2000,2008,2024],
+    [0.98,0.90,1.00,1.70,1.55],
+    [1.30,0.95,1.00,1.00,0.88],
+    {ymin:.8,ymax:1.85,ticks:[1.0,1.4,1.8],la:'Prix',lb:'Loyers',va:'1,55',vb:'0,88'})),
+  "IGEDD, J. Friggit, Loyers, prix des logements et revenu par ménage, février 2025");
+
+/* ---------- 267 · POIDS DU LOYER (duel) ---------- */
+const S267 = slide('267-poids-loyer-locataires',
+  'Le loyer mange<br><span class="red">un quart</span> du revenu',
+  'Loyer en % du revenu des locataires · France',
+  `<div class="duel">
+     <div class="side cold"><div class="yr">1970</div><div class="val">11 %</div><div class="lg">du revenu<br>d'un locataire</div></div>
+     <div class="side hot"><div class="yr">2020</div><div class="val">25 %</div><div class="lg">du revenu<br>d'un locataire</div></div>
+   </div>`,
+  "IGEDD d'après enquêtes Logement, février 2025");
+
+/* ---------- 268 · RENVERSEMENT GÉNÉRATIONNEL (slope) ---------- */
+function slope(series,x1,x2,{ymin,ymax}={}){
+  const pad={l:250,r:250,t:60,b:80};
+  const XA=pad.l, XB=W-pad.r, Y=v=>H-pad.b-(v-ymin)/(ymax-ymin)*(H-pad.t-pad.b);
+  return svg(series.map(s=>`
+    <line x1="${XA}" y1="${Y(s.a)}" x2="${XB}" y2="${Y(s.b)}" stroke="${s.c}" stroke-width="6"/>
+    <circle cx="${XA}" cy="${Y(s.a)}" r="12" fill="${s.c}"/><circle cx="${XB}" cy="${Y(s.b)}" r="14" fill="${s.c}"/>
+    <text class="v" x="${XA-28}" y="${Y(s.a)+13}" text-anchor="end" fill="${s.c}">${s.a} %</text>
+    <text class="v" x="${XB+28}" y="${Y(s.b)+13}" fill="${s.c}">${s.b} %</text>
+    <text class="ser" x="${XB+28}" y="${Y(s.b)-28}" fill="${s.c}">${s.n}</text>`).join('')
+  +`<text class="tick" x="${XA}" y="${H-pad.b+48}" text-anchor="middle" font-size="32">${x1}</text>
+    <text class="tick" x="${XB}" y="${H-pad.b+48}" text-anchor="middle" font-size="32">${x2}</text>
+    <line x1="${pad.l-230}" y1="${Y(100)}" x2="${W-pad.r+230}" y2="${Y(100)}" stroke="${C.gold}" stroke-width="2" stroke-dasharray="10 8" opacity=".7"/>
+    <text class="cat" x="0" y="${Y(100)+40}" fill="${C.gold}" font-size="24">Revenu moyen<br/>des ménages</text>`);
+}
+const S268 = slide('268-revenus-generations',
+  'Les jeunes gagnaient<br>plus que les <span class="red">retraités</span>',
+  'Revenu par ménage, en % du revenu moyen · 1970 → 2013',
+  plot(slope([
+    {n:'20-29 ans',a:102,b:60,c:C.red},
+    {n:'60-69 ans',a:75,b:105,c:C.cyan}
+  ],'1970','2013',{ymin:50,ymax:115})),
+  "IGEDD d'après enquêtes Logement, actualisé à 2013");
+
+/* ---------- 269 · ÉVOLUTION RÉELLE DEPUIS 2000 (barres horizontales) ---------- */
+function hbars(data,{max,labelW=300}={}){
+  const pad={l:labelW,r:170,t:30,b:30}, step=(H-pad.t-pad.b)/data.length, bh=Math.min(86,step*0.6), track=W-pad.l-pad.r;
+  return svg(data.map((d,i)=>{
+    const y=pad.t+step*i+step/2, bw=Math.max(6,d.v/max*track), c=d.hi?C.red:C.neutral;
+    return `<text class="cat ${d.hi?'hi':''}" x="${pad.l-24}" y="${y+10}" text-anchor="end">${d.n}</text>
+      <rect x="${pad.l}" y="${y-bh/2}" width="${bw}" height="${bh}" rx="6" fill="${c}" opacity="${d.hi?1:.68}"/>
+      <text class="v ${d.hi?'hi':''}" x="${pad.l+bw+24}" y="${y+13}">${d.v>0?'+':''}${d.v} %</text>`;
+  }).join(''));
+}
+const S269 = slide('269-prix-reels-depuis-2000',
+  'À Paris, les prix ont<br><span class="red">plus que doublé</span>',
+  'Évolution en euros constants depuis 2000 · France',
+  plot(hbars([
+    {n:'Prix à Paris',v:118,hi:1},
+    {n:'Prix en France',v:70},
+    {n:'Loyers',v:0}
+  ],{max:130})),
+  "IGEDD d'après INSEE et bases notariales, indices Notaires-INSEE, T3 2024");
+
+document.getElementById('root').outerHTML=[S265,S266,S267,S268,S269].join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Où va l'argent de Mathilde — bulletin de paie aide-soignante (URSSAF 03/2026)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0f1a;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-orange: #ff9f43;
+            --accent-red: #ff4757;
+            --accent-green: #00ff88;
+            --accent-purple: #a855f7;
+            --accent-gold: #ffd700;
+            --accent-electric: #00d4ff;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, var(--bg-deep) 0%, #1a2540 50%, var(--bg-deep) 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 159, 67, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 159, 67, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255, 159, 67, 0.10) 0%, transparent 70%); top: -200px; right: -100px; pointer-events: none; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%); bottom: -150px; left: -150px; pointer-events: none; }
+        .content { position: relative; z-index: 1; height: 100%; padding: 40px 50px 32px; display: flex; flex-direction: column; }
+
+        .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #ff9f43; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .title { font-family: 'Instrument Serif', serif; font-size: 5.2rem; text-align: center; color: var(--text-primary); line-height: 1.05; margin-bottom: 4px; }
+        .title .accent { color: var(--accent-orange); font-style: italic; }
+        .subtitle { font-size: 1.1rem; color: var(--text-secondary); text-align: center; margin-bottom: 8px; }
+        .subtitle strong { color: var(--accent-orange); }
+
+        .sankey-wrapper { flex: 1; display: flex; justify-content: center; align-items: center; min-height: 0; }
+        .sankey-wrapper svg { width: 100%; height: 100%; max-width: 100%; max-height: 100%; }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; margin-top: 8px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.9rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-orange); }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <div class="title">Où va l'argent de <span class="accent">Mathilde</span> ?</div>
+            <div class="subtitle">Aide-soignante CDI à Strasbourg, salaire <strong>2 175 € brut / mois</strong> · Simulateur URSSAF mars 2026</div>
+
+            <div class="sankey-wrapper">
+                <svg viewBox="0 0 960 830" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    </defs>
+
+                    <!--
+                        LAYOUT — Mathilde (URSSAF 03/2026, brut 2 175 €) — sankey étendu
+                        Top y=85, bottom y=805, hauteur dispo h=720 px
+
+                        COLONNE 1 — Coût total employeur 2 579 €     : x=0..110,   y=85..805 (h=720)
+                        COLONNE 2 — Patronales 404 €                  : x=273..383, y=85..198 (h=113)
+                                    Salaire brut 2 175 €              : x=273..383, y=203..805 (h=602)
+                        COLONNE 3 — Salariales 475 €                  : x=546..656, y=203..334 (h=131)
+                                    Salaire net avant impôt 1 700 €   : x=546..656, y=339..805 (h=466)
+                        COLONNE 4 — Destinations URSSAF (total 3 128 €) ramené à h=720 :
+                                    Retraite 609 €     : x=819..959, y=85..223  (h=138)
+                                    Santé 368 €        :              y=225..308 (h=83)
+                                    CSG / CRDS 209 €   :              y=310..357 (h=47)
+                                    Famille 114 €      :              y=359..385 (h=26)
+                                    Chômage 92 €       :              y=387..408 (h=21)
+                                    Autres 36 €        :              y=410..418 (h=8)
+                                    Impôt 23 €         :              y=420..425 (h=5)
+                                    Net après IR 1 677 € :            y=427..805 (h=378)
+                    -->
+
+                    <!-- =============================================== -->
+                    <!-- INTER-COLUMN FLOWS (large area ribbons)         -->
+                    <!-- =============================================== -->
+
+                    <!-- Super brut → Patronales (top slice) — VIOLET -->
+                    <path d="M 110,85 C 164,85 219,85 273,85 L 273,198 C 219,198 164,198 110,198 Z" fill="rgba(168,85,247,0.10)"/>
+                    <!-- Super brut → Brut (bottom slice) — BLEU -->
+                    <path d="M 110,203 C 164,203 219,203 273,203 L 273,805 C 219,805 164,805 110,805 Z" fill="rgba(0,212,255,0.07)"/>
+                    <!-- Brut → Salariales (top slice) — VIOLET -->
+                    <path d="M 383,203 C 437,203 492,203 546,203 L 546,334 C 492,334 437,334 383,334 Z" fill="rgba(168,85,247,0.10)"/>
+                    <!-- Brut → Net (bottom slice) — VERT -->
+                    <path d="M 383,339 C 437,339 492,339 546,339 L 546,805 C 492,805 437,805 383,805 Z" fill="rgba(0,255,136,0.07)"/>
+
+                    <!--
+                        PATRONALES → DESTINATIONS — Patronales (h=113) découpée selon les
+                        proportions URSSAF brutes (953 €) :
+                          Retraite pat   363/953 = 38,1 % → 43 px → y=85..128
+                          Santé pat      348/953 = 36,5 % → 41 px → y=128..169
+                          Famille        114/953 = 12,0 % → 14 px → y=169..183
+                          Chômage         92/953 =  9,7 % → 11 px → y=183..194
+                          Autres          36/953 =  3,8 % →  4 px → y=194..198
+
+                        Côté destination Retraite (h=138), part patronale = 363/609 = 59,6 %
+                        de la barre Retraite → 82 px → y=85..167 (la part salariée reprend ensuite).
+                        Côté destination Santé (h=83), part patronale = 348/368 = 94,6 %
+                        → 79 px → y=225..304.
+                    -->
+
+                    <!-- Retraite pat → Retraite top — VIOLET -->
+                    <path d="M 383,85 C 528,85 674,85 819,85 L 819,167 C 674,167 528,128 383,128 Z" fill="rgba(168,85,247,0.18)"/>
+                    <!-- Santé pat → Santé top — ROUGE -->
+                    <path d="M 383,128 C 528,128 674,225 819,225 L 819,304 C 674,304 528,169 383,169 Z" fill="rgba(255,71,87,0.13)"/>
+                    <!-- Famille → Famille — ORANGE -->
+                    <path d="M 383,169 C 528,169 674,359 819,359 L 819,385 C 674,385 528,183 383,183 Z" fill="rgba(255,159,67,0.13)"/>
+                    <!-- Chômage → Chômage — CYAN -->
+                    <path d="M 383,183 C 528,183 674,387 819,387 L 819,408 C 674,408 528,194 383,194 Z" fill="rgba(0,212,255,0.13)"/>
+                    <!-- Autres → Autres — GRIS -->
+                    <path d="M 383,194 C 528,194 674,410 819,410 L 819,418 C 674,418 528,198 383,198 Z" fill="rgba(136,153,168,0.10)"/>
+
+                    <!--
+                        SALARIALES → DESTINATIONS — Salariales (h=131) découpée :
+                          Retraite sal  246/475 = 51,8 % → 68 px → y=203..271
+                          CSG/CRDS      209/475 = 44,0 % → 58 px → y=271..329
+                          Mutuelle sal   20/475 =  4,2 % →  5 px → y=329..334
+                    -->
+
+                    <!-- Retraite sal → Retraite bas (suite de la part patronale) — VIOLET -->
+                    <path d="M 656,203 C 710,203 765,167 819,167 L 819,223 C 765,223 710,271 656,271 Z" fill="rgba(168,85,247,0.20)"/>
+                    <!-- CSG / CRDS → CSG dest — OR -->
+                    <path d="M 656,271 C 710,271 765,310 819,310 L 819,357 C 765,357 710,329 656,329 Z" fill="rgba(255,215,0,0.13)"/>
+                    <!-- Mutuelle santé sal → Santé bas — ROUGE -->
+                    <path d="M 656,329 C 710,329 765,304 819,304 L 819,308 C 765,308 710,334 656,334 Z" fill="rgba(255,71,87,0.10)"/>
+
+                    <!--
+                        NET → IR / NET APRÈS IR — Net (h=466) découpé :
+                          IR             23/1700 =  1,4 % →  6 px → y=339..345
+                          Net après IR 1677/1700 = 98,6 % → 460 px → y=345..805
+                    -->
+
+                    <!-- IR → IR dest — ROUGE -->
+                    <path d="M 656,339 C 710,339 765,420 819,420 L 819,425 C 765,425 710,345 656,345 Z" fill="rgba(255,71,87,0.13)"/>
+                    <!-- Net après IR → Net dest — VERT CLAIR -->
+                    <path d="M 656,345 C 710,345 765,427 819,427 L 819,805 C 765,805 710,805 656,805 Z" fill="rgba(102,255,170,0.08)"/>
+
+                    <!-- =============================================== -->
+                    <!-- GROUP 1 : COÛT TOTAL EMPLOYEUR (x=0..110)        -->
+                    <!-- =============================================== -->
+                    <rect x="0" y="85" width="110" height="720" rx="8" fill="rgba(255,159,67,0.25)" stroke="rgba(255,159,67,0.50)" stroke-width="1.5"/>
+                    <text x="55" y="415" text-anchor="middle" font-family="Syne, sans-serif" font-size="16" font-weight="700" fill="#ffe0b0">Coût total</text>
+                    <text x="55" y="438" text-anchor="middle" font-family="Syne, sans-serif" font-size="16" font-weight="700" fill="#ffe0b0">employeur</text>
+                    <text x="55" y="478" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="700" fill="#ff9f43">2 579 €</text>
+
+                    <!-- =============================================== -->
+                    <!-- GROUP 2 : PATRONALES + BRUT (x=273..383)        -->
+                    <!-- =============================================== -->
+
+                    <!-- Cotisations patronales (h=113) -->
+                    <rect x="273" y="85" width="110" height="113" rx="8" fill="rgba(168,85,247,0.30)" stroke="rgba(168,85,247,0.50)" stroke-width="1.5"/>
+                    <text x="328" y="120" text-anchor="middle" font-family="Syne, sans-serif" font-size="13" font-weight="700" fill="#e0d0ff">Cotisations</text>
+                    <text x="328" y="138" text-anchor="middle" font-family="Syne, sans-serif" font-size="13" font-weight="700" fill="#e0d0ff">patronales</text>
+                    <text x="328" y="172" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="18" font-weight="700" fill="#a855f7">404 €</text>
+
+                    <!-- Salaire brut (h=602) -->
+                    <rect x="273" y="203" width="110" height="602" rx="8" fill="rgba(0,212,255,0.18)" stroke="rgba(0,212,255,0.40)" stroke-width="1.5"/>
+                    <text x="328" y="478" text-anchor="middle" font-family="Syne, sans-serif" font-size="17" font-weight="700" fill="#b0e8ff">Salaire</text>
+                    <text x="328" y="500" text-anchor="middle" font-family="Syne, sans-serif" font-size="17" font-weight="700" fill="#b0e8ff">brut</text>
+                    <text x="328" y="540" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="700" fill="#00d4ff">2 175 €</text>
+
+                    <!-- =============================================== -->
+                    <!-- GROUP 3 : SALARIALES + NET (x=546..656)         -->
+                    <!-- =============================================== -->
+
+                    <!-- Cotisations salariales (h=131) -->
+                    <rect x="546" y="203" width="110" height="131" rx="8" fill="rgba(168,85,247,0.30)" stroke="rgba(168,85,247,0.50)" stroke-width="1.5"/>
+                    <text x="601" y="245" text-anchor="middle" font-family="Syne, sans-serif" font-size="14" font-weight="700" fill="#e0d0ff">Cotisations</text>
+                    <text x="601" y="263" text-anchor="middle" font-family="Syne, sans-serif" font-size="14" font-weight="700" fill="#e0d0ff">salariales</text>
+                    <text x="601" y="298" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="18" font-weight="700" fill="#a855f7">475 €</text>
+
+                    <!-- Salaire net avant impôt (h=466) -->
+                    <rect x="546" y="339" width="110" height="466" rx="8" fill="rgba(0,255,136,0.18)" stroke="rgba(0,255,136,0.40)" stroke-width="1.5"/>
+                    <text x="601" y="540" text-anchor="middle" font-family="Syne, sans-serif" font-size="17" font-weight="700" fill="#b0ffd8">Salaire net</text>
+                    <text x="601" y="563" text-anchor="middle" font-family="Syne, sans-serif" font-size="14" font-weight="600" fill="#7ad9a5">avant impôt</text>
+                    <text x="601" y="605" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="700" fill="#00ff88">1 700 €</text>
+
+                    <!-- =============================================== -->
+                    <!-- GROUP 4 : DESTINATIONS URSSAF (x=819..959)      -->
+                    <!--
+                        Total URSSAF brut 3 128 € ramené visuellement à h=720 px (= même
+                        hauteur que « Coût total employeur »). Ratio destinations = 0,226 px/€
+                        (vs 0,279 px/€ pour les colonnes principales). L'écart absorbe la
+                        part RGDU (−549 € patronales, non visualisée comme bloc séparé).
+                    -->
+
+                    <!-- Retraite 609 € (h=138) -->
+                    <rect x="819" y="85" width="140" height="138" rx="6" fill="rgba(168,85,247,0.16)" stroke="rgba(168,85,247,0.50)" stroke-width="2"/>
+                    <text x="889" y="135" text-anchor="middle" font-family="Syne, sans-serif" font-size="16" font-weight="700" fill="#e0d0ff">Retraite</text>
+                    <text x="889" y="180" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="700" fill="#c084fc">609 €</text>
+
+                    <!-- Santé 368 € (h=83) -->
+                    <rect x="819" y="225" width="140" height="83" rx="5" fill="rgba(255,71,87,0.15)" stroke="rgba(255,71,87,0.40)" stroke-width="1.5"/>
+                    <text x="889" y="257" text-anchor="middle" font-family="Syne, sans-serif" font-size="14" font-weight="700" fill="#ff6b81">Santé</text>
+                    <text x="889" y="290" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="18" font-weight="700" fill="#ff4757">368 €</text>
+
+                    <!-- CSG / CRDS 209 € (h=47) -->
+                    <rect x="819" y="310" width="140" height="47" rx="5" fill="rgba(255,215,0,0.13)" stroke="rgba(255,215,0,0.40)" stroke-width="1"/>
+                    <text x="829" y="328" font-family="Syne, sans-serif" font-size="12" font-weight="600" fill="#ffd700">CSG / CRDS</text>
+                    <text x="949" y="349" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="700" fill="#ffd700">209 €</text>
+
+                    <!-- Famille 114 € (h=26) -->
+                    <rect x="819" y="359" width="140" height="26" rx="4" fill="rgba(255,159,67,0.15)" stroke="rgba(255,159,67,0.35)" stroke-width="1"/>
+                    <text x="829" y="376" font-family="Syne, sans-serif" font-size="11" font-weight="600" fill="#ff9f43">Famille</text>
+                    <text x="949" y="376" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#ff9f43">114 €</text>
+
+                    <!-- Chômage 92 € (h=21) -->
+                    <rect x="819" y="387" width="140" height="21" rx="3" fill="rgba(0,212,255,0.13)" stroke="rgba(0,212,255,0.35)" stroke-width="1"/>
+                    <text x="829" y="402" font-family="Syne, sans-serif" font-size="10" font-weight="600" fill="#00d4ff">Chômage</text>
+                    <text x="949" y="402" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#00d4ff">92 €</text>
+
+                    <!-- Autres 36 € (h=8) -->
+                    <rect x="819" y="410" width="140" height="8" rx="2" fill="rgba(136,153,168,0.13)" stroke="rgba(136,153,168,0.25)" stroke-width="0.8"/>
+                    <text x="829" y="416" font-family="Syne, sans-serif" font-size="9" font-weight="600" fill="#8899a8">Autres</text>
+                    <text x="949" y="416" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="#8899a8">36 €</text>
+
+                    <!-- Impôt sur le revenu 23 € (h=5) -->
+                    <rect x="819" y="420" width="140" height="5" rx="2" fill="rgba(255,71,87,0.13)" stroke="rgba(255,71,87,0.30)" stroke-width="0.8"/>
+                    <text x="829" y="424" font-family="Syne, sans-serif" font-size="8" font-weight="600" fill="#ff6b81">Impôt sur le revenu</text>
+                    <text x="949" y="424" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="700" fill="#ff4757">23 €</text>
+
+                    <!-- NET APRÈS IMPÔT 1 677 € (h=378, aligné en bas y=805) -->
+                    <rect x="819" y="427" width="140" height="378" rx="7" fill="rgba(102,255,170,0.18)" stroke="rgba(102,255,170,0.55)" stroke-width="2"/>
+                    <text x="889" y="580" text-anchor="middle" font-family="Syne, sans-serif" font-size="16" font-weight="700" fill="#c0ffe0">Salaire net</text>
+                    <text x="889" y="601" text-anchor="middle" font-family="Syne, sans-serif" font-size="16" font-weight="700" fill="#c0ffe0">après impôt</text>
+                    <text x="889" y="645" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="700" fill="#66ffaa">1 677 €</text>
+
+                    <!-- Repères pourcentage (sous le sol y=805) -->
+                    <text x="55" y="825" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700" fill="#ff9f43" opacity="0.6">100 %</text>
+                    <text x="889" y="825" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="700" fill="#00ff88" opacity="0.7">65,0 %</text>
+
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>URSSAF · simulateur mon-entreprise.urssaf.fr · CDI non cadre · cotisations URSSAF brutes · réduction patronale RGDU bas salaires : −549 €</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

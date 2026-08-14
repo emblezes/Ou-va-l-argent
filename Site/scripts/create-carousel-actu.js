@@ -76,7 +76,9 @@ function generateActuHTML(opts) {
         .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.15); }
         .source { font-size: 0.95rem; color: rgba(255, 255, 255, 0.5); }
         .source span { color: rgba(255, 255, 255, 0.7); }
-        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; font-weight: 500; color: #00d4ff; }
+        .website { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; line-height: 1.1; }
+                .website-url { font-family: 'JetBrains Mono', monospace; font-size: 1.35rem; font-weight: 600; color: #00d4ff; }
+                .website-handle { font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; font-weight: 500; color: var(--text-secondary, #94a3b8); letter-spacing: 0.3px; }
     </style>
 </head>
 <body>
@@ -94,7 +96,10 @@ function generateActuHTML(opts) {
                 <h1 class="news-title">${title}</h1>
                 <div class="footer">
                     <div class="source">Source : <span>${source}</span></div>
-                    <div class="website">ouvalargent.com</div>
+                    <div class="website">
+                        <span class="website-url">ouvalargent.com</span>
+                        <span class="website-handle">@ouvalargentfr</span>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>VIF Video — Évolution PIB par habitant France vs Suisse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --gold: #d4af37;
+    --gold-bright: #e8c349;
+    --text: #f5f5f5;
+    --text-mute: #888;
+    --border: rgba(212, 175, 55, 0.18);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #1a1a1a; display: flex; justify-content: center; }
+  .reel {
+    width: 1080px; height: 1920px;
+    background: radial-gradient(ellipse at center top, #1f1f1f 0%, #141414 70%);
+    position: relative; overflow: hidden;
+    padding: 90px 80px 80px;
+    display: flex; flex-direction: column;
+  }
+  .reel::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(212, 175, 55, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(212, 175, 55, 0.025) 1px, transparent 1px);
+    background-size: 70px 70px; pointer-events: none;
+  }
+  .glow { position: absolute; width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(circle, rgba(212, 175, 55, 0.10) 0%, transparent 70%); pointer-events: none; }
+  .glow.top { top: -300px; right: -200px; }
+  .glow.bot { bottom: -300px; left: -250px; opacity: 0.6; }
+
+  .header { display: flex; justify-content: space-between; align-items: baseline; position: relative; z-index: 2; opacity: 0; }
+  .header.run { animation: fadeIn 500ms 0ms forwards; }
+  .logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3rem; color: var(--gold); letter-spacing: 12px; }
+
+  .title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 6.6rem; line-height: 1.05; color: var(--text); text-align: center; margin-top: 60px; letter-spacing: -2px; position: relative; z-index: 2; opacity: 0; }
+  .title em { color: var(--gold-bright); font-style: normal; }
+  .title.run { animation: fadeUp 700ms 500ms forwards; }
+
+  .chart-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 30px 0 10px; position: relative; z-index: 2; min-height: 0; opacity: 0; }
+  .chart-wrap.run { animation: fadeIn 600ms 1800ms forwards; }
+  .chart { width: 100%; height: 100%; }
+
+  .legend { display: flex; justify-content: center; gap: 60px; padding: 8px 0 8px; position: relative; z-index: 2; opacity: 0; }
+  .legend.run { animation: fadeUp 500ms 2200ms forwards; }
+  .legend-item { display: flex; align-items: center; gap: 18px; font-family: 'DM Sans', sans-serif; font-size: 1.6rem; font-weight: 500; color: var(--text-mute); letter-spacing: 3px; text-transform: uppercase; }
+  .legend-swatch { width: 50px; height: 5px; border-radius: 3px; }
+  .legend-swatch.fr { background: #888; }
+  .legend-swatch.ch { background: var(--gold-bright); box-shadow: 0 0 14px rgba(212, 175, 55, 0.5); }
+
+  .catch { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 2.8rem; color: var(--text); text-align: center; padding: 32px 0 22px; letter-spacing: 0.5px; position: relative; z-index: 2; border-top: 1px solid var(--border); opacity: 0; line-height: 1.2; }
+  .catch em { color: var(--gold-bright); font-style: italic; }
+  .catch.run { animation: fadeUp 600ms 8500ms forwards; }
+
+  .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 22px; border-top: 1px solid var(--border); font-size: 1.05rem; color: var(--text-mute); letter-spacing: 1.4px; text-transform: uppercase; position: relative; z-index: 2; opacity: 0; }
+  .footer.run { animation: fadeIn 500ms 9200ms forwards; }
+
+  /* SVG */
+  .axis-line { stroke: rgba(255,255,255,0.10); stroke-width: 1.5; }
+  .axis-label { font-family: 'DM Sans', sans-serif; font-size: 30px; fill: var(--text-mute); letter-spacing: 2px; text-transform: uppercase; }
+  .gridline { stroke: rgba(255,255,255,0.05); stroke-width: 1; stroke-dasharray: 3 6; }
+  .curve { fill: none; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1500; stroke-dashoffset: 1500; }
+  .curve.fr { stroke: #888; }
+  .curve.ch { stroke: var(--gold-bright); filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.45)); }
+  .curve.fr.run { animation: drawLine 3000ms 2500ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .curve.ch.run { animation: drawLine 3500ms 3500ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+  .point { stroke-width: 6; opacity: 0; }
+  .point.fr { fill: #0a0a0a; stroke: #888; }
+  .point.ch { fill: #0a0a0a; stroke: var(--gold-bright); }
+  .point.fr.t0.run { animation: popIn 400ms 2700ms forwards; }
+  .point.fr.t1.run { animation: popIn 400ms 3500ms forwards; }
+  .point.fr.t2.run { animation: popIn 400ms 4300ms forwards; }
+  .point.fr.t3.run { animation: popIn 400ms 5100ms forwards; }
+  .point.ch.t0.run { animation: popIn 400ms 3700ms forwards; }
+  .point.ch.t1.run { animation: popIn 400ms 4600ms forwards; }
+  .point.ch.t2.run { animation: popIn 400ms 5500ms forwards; }
+  .point.ch.t3.run { animation: popIn 400ms 6400ms forwards; }
+
+  .point-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 58px; opacity: 0; }
+  .point-label.fr { fill: var(--text); }
+  .point-label.ch { fill: var(--gold-bright); }
+  .point-label.run { animation: fadeIn 500ms 7200ms forwards; }
+
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes popIn  { 0% { opacity: 0; transform: scale(0.5); transform-origin: center; } 60% { opacity: 1; transform: scale(1.4); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes drawLine { to { stroke-dashoffset: 0; } }
+</style>
+</head>
+<body>
+  <div class="reel">
+    <div class="glow top"></div>
+    <div class="glow bot"></div>
+    <div class="header">
+      <div class="logo">VIF</div>
+    </div>
+    <div class="title">L'écart de richesse<br>France / Suisse<br><em>multiplié par 3</em><br>en 50 ans</div>
+
+    <div class="chart-wrap">
+      <svg class="chart" viewBox="-50 0 990 480" preserveAspectRatio="xMidYMid meet">
+        <!-- grille -->
+        <line class="gridline" x1="80" y1="60"  x2="900" y2="60"/>
+        <line class="gridline" x1="80" y1="160" x2="900" y2="160"/>
+        <line class="gridline" x1="80" y1="260" x2="900" y2="260"/>
+        <line class="gridline" x1="80" y1="360" x2="900" y2="360"/>
+        <line class="axis-line" x1="80" y1="440" x2="900" y2="440"/>
+        <text class="axis-label" x="60" y="68"  text-anchor="end">110k $</text>
+        <text class="axis-label" x="60" y="268" text-anchor="end">55k $</text>
+        <text class="axis-label" x="60" y="448" text-anchor="end">0</text>
+        <text class="axis-label" x="100" y="475" text-anchor="middle">1970</text>
+        <text class="axis-label" x="364" y="475" text-anchor="middle">1990</text>
+        <text class="axis-label" x="640" y="475" text-anchor="middle">2010</text>
+        <text class="axis-label" x="880" y="475" text-anchor="middle">2024</text>
+
+        <!-- Courbe France (longueur ~840) -->
+        <path class="curve fr" d="M 100,429 L 364,364 L 640,295 L 880,278"/>
+        <!-- Courbe Suisse (longueur ~900) -->
+        <path class="curve ch" d="M 100,427 L 364,302 L 640,181 L 880,74"/>
+
+        <!-- Points France -->
+        <circle class="point fr t0" cx="100" cy="429" r="9"/>
+        <circle class="point fr t1" cx="364" cy="364" r="9"/>
+        <circle class="point fr t2" cx="640" cy="295" r="9"/>
+        <circle class="point fr t3" cx="880" cy="278" r="9"/>
+        <!-- Points Suisse -->
+        <circle class="point ch t0" cx="100" cy="427" r="9"/>
+        <circle class="point ch t1" cx="364" cy="302" r="9"/>
+        <circle class="point ch t2" cx="640" cy="181" r="9"/>
+        <circle class="point ch t3" cx="880" cy="74"  r="9"/>
+
+        <!-- Labels finaux -->
+        <text class="point-label fr" x="100" y="465" text-anchor="middle">3 k$</text>
+        <text class="point-label fr" x="880" y="308" text-anchor="end">47 k$</text>
+        <text class="point-label ch" x="100" y="408" text-anchor="middle">3,7 k$</text>
+        <text class="point-label ch" x="880" y="56" text-anchor="end">106 k$</text>
+      </svg>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="legend-swatch fr"></span>France</div>
+      <div class="legend-item"><span class="legend-swatch ch"></span>Suisse</div>
+    </div>
+
+    <div class="catch">En 1970, presque <em>à égalité</em>.<br>En 2024, l'écart est <em>de 1 à 2</em>.</div>
+    <div class="footer">
+      <div>Source · Banque Mondiale · PIB / hab · USD courants</div>
+    </div>
+  </div>
+
+<script>
+  const SELECTORS = '.header, .title, .chart-wrap, .legend, .curve, .point, .point-label, .catch, .footer';
+  const els = Array.from(document.querySelectorAll(SELECTORS));
+  function startAndPauseAll() {
+    els.forEach(el => el.classList.add('run'));
+    requestAnimationFrame(() => { document.getAnimations().forEach(a => a.pause()); });
+  }
+  window.__reelReady = false;
+  window.setReelTime = (timeMs) => {
+    document.getAnimations().forEach(a => { try { a.currentTime = timeMs; } catch(e) {} });
+  };
+  window.startReel = () => { els.forEach(el => el.classList.add('run')); };
+  if (window.location.search.includes('capture')) {
+    startAndPauseAll();
+    Promise.all([document.fonts.ready]).then(() => { window.__reelReady = true; });
+  } else {
+    document.fonts.ready.then(() => { window.startReel(); });
+  }
+</script>
+</body>
+</html>

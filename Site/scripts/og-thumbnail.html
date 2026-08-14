@@ -141,12 +141,26 @@
       position: absolute;
       bottom: 30px;
       right: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+      line-height: 1.1;
+      z-index: 2;
+    }
+    .url-value {
       font-family: 'JetBrains Mono', monospace;
       font-size: 16px;
       font-weight: 500;
       color: rgba(0, 212, 255, 0.5);
-      z-index: 2;
       letter-spacing: 0.5px;
+    }
+    .url-handle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 0.3px;
     }
 
     /* Ligne décorative */
@@ -183,7 +197,10 @@
       </div>
     </div>
 
-    <div class="url">ouvalargent.com</div>
+    <div class="url">
+      <span class="url-value">ouvalargent.com</span>
+      <span class="url-handle">@ouvalargentfr</span>
+    </div>
     <div class="accent-line"></div>
   </div>
 </body>

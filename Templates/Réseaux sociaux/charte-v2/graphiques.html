@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Charte OVLA v2 — bibliothèque de graphiques</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-deep:#0a1220; --bg-mid:#142b48;
+  --text-primary:#f2f6fa; --text-secondary:#8fa3b6; --text-muted:#4a5a6a;
+  --red:#ff4757; --cyan:#00d4ff; --gold:#ffd700; --green:#00ff88; --violet:#a855f7; --orange:#ff9f43;
+  --neutral:#93b0c8;
+  --border:rgba(255,255,255,.10);
+  --font-logo:'Instrument Serif',serif;
+  --font-display:'Bricolage Grotesque',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b0b12;font-family:var(--font-body);padding:2rem;display:flex;flex-direction:column;align-items:center;gap:2rem}
+.vlabel{color:#6f8296;font-family:var(--font-mono);font-size:.95rem;letter-spacing:2.5px;text-transform:uppercase}
+
+.slide{width:1080px;height:1080px;position:relative;overflow:hidden;color:var(--text-primary)}
+.bg{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.04) 1px,transparent 1px);background-size:40px 40px}
+.glow{position:absolute;border-radius:50%}
+.glow.a{width:780px;height:780px;top:-250px;right:-230px;background:radial-gradient(circle,rgba(255,71,87,.13) 0%,transparent 70%)}
+.glow.b{width:540px;height:540px;bottom:-180px;left:-170px;background:radial-gradient(circle,rgba(0,212,255,.07) 0%,transparent 70%)}
+.wrap{position:relative;z-index:2;height:100%;padding:40px 46px 26px;display:flex;flex-direction:column}
+.logo{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.logo i{font-family:var(--font-logo);font-size:4.2rem;color:var(--cyan);line-height:.9;font-style:normal}
+.logo b{font-family:var(--font-logo);font-size:2rem;font-style:italic;font-weight:400;color:#fff;line-height:1}
+.title{font-family:var(--font-display);font-weight:800;font-size:5rem;line-height:1.02;letter-spacing:-2.4px;text-align:center;margin-top:16px}
+.title .red{color:var(--red)}
+.kicker{font-family:var(--font-mono);font-size:1.75rem;letter-spacing:1.8px;text-transform:uppercase;color:var(--text-secondary);font-weight:500;text-align:center;margin-top:14px}
+.plot{flex:1;display:flex;align-items:center;justify-content:center;padding:14px 0 4px}
+.plot svg{width:100%;height:100%;overflow:visible}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;padding-top:16px;margin-top:auto;border-top:1px solid var(--border);flex-shrink:0}
+.foot .src{font-size:1.22rem;color:var(--text-muted);max-width:660px;line-height:1.4}
+.foot .src span{color:var(--text-secondary)}
+.foot .url{font-family:var(--font-mono);font-size:1.65rem;font-weight:700;color:var(--cyan)}
+
+/* ===== TYPOGRAPHIE DES GRAPHIQUES (valeurs standardisées, ne pas surcharger au cas par cas) ===== */
+.v      {font-family:'JetBrains Mono',monospace;font-weight:800;font-size:36px;fill:#f2f6fa}   /* valeur de donnée */
+.v.hi   {font-size:46px;fill:#ff4757}                                                          /* valeur mise en avant */
+.v.dim  {fill:#93b0c8}                                                                         /* valeur secondaire */
+.cat    {font-family:'Inter',sans-serif;font-weight:700;font-size:28px;fill:#c3d2df}            /* nom de catégorie */
+.cat.hi {fill:#ff4757;font-weight:800}
+.tick   {font-family:'JetBrains Mono',monospace;font-weight:500;font-size:24px;fill:#8fa3b6}    /* graduation d'axe */
+.ser    {font-family:'Inter',sans-serif;font-weight:800;font-size:30px}                         /* nom de série */
+.unitxt {font-family:'Inter',sans-serif;font-weight:600;font-size:24px;fill:#8fa3b6}            /* unité / mention */
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script>
+/* =====================================================================
+   SOCLE
+   ===================================================================== */
+const LOGO = `<div class="logo"><i>€</i><b>Où Va l'Argent ?</b></div>`;
+const foot = src => `<div class="foot"><div class="src">Source : <span>${src}</span></div><div class="url">ouvalargent.com</div></div>`;
+const slide = (name, title, kicker, plot, src) => `
+<div class="vlabel">${name}</div>
+<div class="slide" data-name="${name}">
+  <div class="bg"></div><div class="grid"></div><div class="glow a"></div><div class="glow b"></div>
+  <div class="wrap">
+    ${LOGO}
+    <div class="title">${title}</div>
+    ${kicker?`<div class="kicker">${kicker}</div>`:''}
+    <div class="plot">${plot}</div>
+    ${foot(src)}
+  </div>
+</div>`;
+
+/* Zone de dessin standard : 1000 × 520 unités = 1000 × 520 px à l'écran */
+const W=1000, H=520;
+const svg = inner => `<svg viewBox="0 0 ${W} ${H}">${inner}</svg>`;
+const C = {red:'#ff4757', cyan:'#00d4ff', gold:'#ffd700', green:'#00ff88', violet:'#a855f7', orange:'#ff9f43', neutral:'#93b0c8'};
+const fmt = (n,d=1) => n.toLocaleString('fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const gridline = (x1,y,x2) => `<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="rgba(255,255,255,.07)" stroke-width="1"/>`;
+
+/* =====================================================================
+   DONNÉES (toutes issues d'infographies OVLA déjà publiées ou vérifiées)
+   ===================================================================== */
+const DEP_PAYS = [ {n:'France',v:57.3,hi:1},{n:'Italie',v:50.4},{n:'Allemagne',v:49.4},{n:'Espagne',v:45.5},{n:'Pays-Bas',v:44.4} ];
+const UE_MOY = 49.1;
+const DETTE  = [ {y:1980,v:21},{y:2000,v:59},{y:2010,v:85},{y:2024,v:113} ];
+const DEP_REC = { years:[2008,2012,2016,2020,2025], dep:[53.3,56.7,56.6,61.4,56.2], rec:[49.9,51.8,52.5,52.3,51.2] };
+const COFOG = [ {n:'Protection sociale',v:42,c:C.red},{n:'Santé',v:14,c:C.orange},{n:'État et dette',v:11,c:C.violet},
+                {n:'Économie',v:10,c:C.gold},{n:'École',v:9,c:C.cyan},{n:'Régalien',v:6,c:C.green},{n:'Le reste',v:8,c:'#5b6b7d'} ];
+const ECART_POSTE = [ {n:'Protection sociale',v:3.6},{n:'Santé',v:1.5},{n:'Économie',v:0.6},{n:'Défense',v:0.6},
+                      {n:'Enseignement',v:0.4},{n:'Loisirs',v:0.3},{n:'Services publics',v:0.2},{n:'Environnement',v:0.2} ];
+const CANADAIR = [ {n:'Italie',v:18},{n:'Grèce',v:18},{n:'Espagne',v:14},{n:'France',v:12,hi:1} ];
+
+const S_OCDE = "OCDE, Études économiques : France 2026";
+const S_EURO = "Eurostat · Fipeco · Dépenses publiques 2024";
+const S_DETTE= "INSEE · Eurostat · Dette au sens de Maastricht";
+
+/* =====================================================================
+   G01 · BARRES VERTICALES — valeur AU-DESSUS de la barre
+   ===================================================================== */
+function vbars(data,{max,color=C.neutral,hiColor=C.red,unit='%',pad={l:40,r:40,t:60,b:70}}={}){
+  const n=data.length, avail=W-pad.l-pad.r, step=avail/n, bw=Math.min(150,step*0.62);
+  const h0=H-pad.b, hMax=h0-pad.t;
+  return svg(data.map((d,i)=>{
+    const x=pad.l+step*i+step/2, bh=d.v/max*hMax, y=h0-bh;
+    const c=d.hi?hiColor:color;
+    return `<rect x="${x-bw/2}" y="${y}" width="${bw}" height="${bh}" rx="6" fill="${c}" opacity="${d.hi?1:.75}"/>
+      <text class="v ${d.hi?'hi':''}" x="${x}" y="${y-18}" text-anchor="middle">${fmt(d.v,Number.isInteger(d.v)?0:1)}${unit}</text>
+      <text class="cat ${d.hi?'hi':''}" x="${x}" y="${h0+40}" text-anchor="middle">${d.n}</text>`;
+  }).join('') + `<line x1="${pad.l-10}" y1="${h0}" x2="${W-pad.r+10}" y2="${h0}" stroke="rgba(255,255,255,.18)" stroke-width="2"/>`);
+}
+const G01 = slide('G01-BARRES-VERTICALES',
+  'La dette publique<br>a <span class="red">quintuplé</span> en 40 ans','Dette publique en % du PIB',
+  vbars(DETTE.map(d=>({n:d.y,v:d.v,hi:d.y===2024})),{max:125,unit:' %'}), S_DETTE);
+
+/* =====================================================================
+   G02 · BARRES VERTICALES + LIGNE DE RÉFÉRENCE
+   ===================================================================== */
+function vbarsRef(data,ref,refLabel,{max,unit=' %'}={}){
+  const pad={l:20,r:210,t:60,b:70}, n=data.length, avail=W-pad.l-pad.r, step=avail/n, bw=Math.min(140,step*0.6);
+  const h0=H-pad.b, hMax=h0-pad.t, yRef=h0-ref/max*hMax;
+  const refLine=`<line x1="${pad.l}" y1="${yRef}" x2="${W-pad.r+16}" y2="${yRef}" stroke="${C.gold}" stroke-width="3" stroke-dasharray="12 8"/>
+     <text class="v" x="${W-pad.r+28}" y="${yRef-16}" fill="${C.gold}" style="font-size:27px">Moyenne UE</text>
+     <text class="v" x="${W-pad.r+28}" y="${yRef+38}" fill="${C.gold}" style="font-size:34px">${fmt(ref)} %</text>`;
+  return svg(refLine+data.map((d,i)=>{
+    const x=pad.l+step*i+step/2, bh=d.v/max*hMax, y=h0-bh, c=d.hi?C.red:C.neutral;
+    /* garde-fou : une valeur ne chevauche jamais la ligne de référence */
+    let yl=y-18; if(Math.abs(yl-yRef)<36) yl=yRef-42;
+    return `<rect x="${x-bw/2}" y="${y}" width="${bw}" height="${bh}" rx="6" fill="${c}" opacity="${d.hi?1:.7}"/>
+      <text class="v ${d.hi?'hi':''}" x="${x}" y="${yl}" text-anchor="middle">${fmt(d.v)}${unit}</text>
+      <text class="cat ${d.hi?'hi':''}" x="${x}" y="${h0+40}" text-anchor="middle">${d.n}</text>`;
+  }).join('')
+  + `<line x1="${pad.l-10}" y1="${h0}" x2="${W-pad.r+10}" y2="${h0}" stroke="rgba(255,255,255,.18)" stroke-width="2"/>`);
+}
+const G02 = slide('G02-BARRES-REFERENCE',
+  'La France dépense<br><span class="red">8 points</span> de plus','Dépense publique en % du PIB · 2024',
+  vbarsRef(DEP_PAYS,UE_MOY,'',{max:66}), S_EURO);
+
+/* =====================================================================
+   G03 · BARRES HORIZONTALES — valeur À DROITE du bout de barre
+   ===================================================================== */
+function hbars(data,{max,unit=' %',labelW=280,color=C.neutral}={}){
+  const pad={l:labelW,r:150,t:20,b:20}, n=data.length, avail=H-pad.t-pad.b, step=avail/n, bh=Math.min(74,step*0.66);
+  const track=W-pad.l-pad.r;
+  return svg(data.map((d,i)=>{
+    const y=pad.t+step*i+step/2, bw=d.v/max*track, c=d.hi?C.red:color;
+    return `<text class="cat ${d.hi?'hi':''}" x="${pad.l-24}" y="${y+10}" text-anchor="end">${d.n}</text>
+      <rect x="${pad.l}" y="${y-bh/2}" width="${bw}" height="${bh}" rx="6" fill="${c}" opacity="${d.hi?1:.68}"/>
+      <text class="v ${d.hi?'hi':''}" x="${pad.l+bw+22}" y="${y+13}">${fmt(d.v)}${unit}</text>`;
+  }).join(''));
+}
+const G03 = slide('G03-BARRES-HORIZONTALES',
+  'La dépense publique<br>la plus élevée d\'<span class="red">Europe</span>','Dépense publique en % du PIB · 2024',
+  hbars(DEP_PAYS,{max:64}), S_EURO);
+
+/* =====================================================================
+   G04 · BARRES NÉGATIVES (axe zéro) — valeur SOUS la barre
+   ===================================================================== */
+function vbarsNeg(data,{min,unit=' pts'}={}){
+  const pad={l:40,r:40,t:80,b:60}, n=data.length, step=(W-pad.l-pad.r)/n, bw=Math.min(140,step*0.55);
+  const y0=pad.t, hMax=H-pad.b-pad.t;
+  return svg(`<line x1="${pad.l-10}" y1="${y0}" x2="${W-pad.r+10}" y2="${y0}" stroke="rgba(255,255,255,.22)" stroke-width="2"/>`
+  + data.map((d,i)=>{
+    const x=pad.l+step*i+step/2, bh=Math.abs(d.v)/Math.abs(min)*hMax, c=d.hi?C.red:'rgba(255,71,87,.55)';
+    return `<rect x="${x-bw/2}" y="${y0}" width="${bw}" height="${bh}" rx="6" fill="${c}"/>
+      <text class="cat" x="${x}" y="${y0-22}" text-anchor="middle">${d.n}</text>
+      <text class="v ${d.hi?'hi':''}" x="${x}" y="${y0+bh+40}" text-anchor="middle">${fmt(d.v)}${unit}</text>`;
+  }).join(''));
+}
+const DEFICIT = DEP_REC.years.map((y,i)=>({n:y,v:-(DEP_REC.dep[i]-DEP_REC.rec[i]),hi:i===DEP_REC.years.length-1}));
+const G04 = slide('G04-BARRES-NEGATIVES',
+  'Dix-huit ans<br>de <span class="red">déficit</span>','Solde public en points de PIB',
+  vbarsNeg(DEFICIT,{min:-9.5,unit:''}), S_OCDE);
+
+/* =====================================================================
+   G05 · BARRES GROUPÉES — valeur au-dessus de chaque barre, série en légende haute
+   ===================================================================== */
+function gbars(cats,series,{max,unit=''}={}){
+  const pad={l:40,r:40,t:80,b:70}, n=cats.length, step=(W-pad.l-pad.r)/n;
+  const bw=Math.min(62,step*0.2), h0=H-pad.b, hMax=h0-pad.t;
+  let out='';
+  cats.forEach((cat,i)=>{
+    const cx=pad.l+step*i+step/2;
+    series.forEach((s,k)=>{
+      const x=cx+(k-(series.length-1)/2)*(bw+46), v=s.values[i], bh=v/max*hMax, y=h0-bh;
+      out+=`<rect x="${x-bw/2}" y="${y}" width="${bw}" height="${bh}" rx="5" fill="${s.color}" opacity=".92"/>
+            <text class="v" x="${x}" y="${y-16}" text-anchor="middle" style="font-size:30px" fill="${s.color}">${fmt(v)}</text>`;
+    });
+    out+=`<text class="cat" x="${cx}" y="${h0+40}" text-anchor="middle">${cat}</text>`;
+  });
+  const leg=series.map((s,k)=>`<g transform="translate(${pad.l+k*300},18)"><rect width="26" height="26" rx="5" fill="${s.color}"/><text class="ser" x="38" y="22" fill="${s.color}">${s.name}</text></g>`).join('');
+  return svg(leg+out+`<line x1="${pad.l-10}" y1="${h0}" x2="${W-pad.r+10}" y2="${h0}" stroke="rgba(255,255,255,.18)" stroke-width="2"/>`);
+}
+const G05 = slide('G05-BARRES-GROUPEES',
+  'Dépenses et recettes :<br>l\'écart ne se <span class="red">ferme pas</span>','En % du PIB',
+  gbars([2008,2016,2025],[{name:'Dépenses',color:C.red,values:[53.3,56.6,56.2]},{name:'Recettes',color:C.cyan,values:[49.9,52.5,51.2]}],{max:70}), S_OCDE);
+
+/* =====================================================================
+   G06 · BARRES EMPILÉES 100 % — valeur DANS le segment si ≥ 9 %, sinon au-dessus
+   ===================================================================== */
+function stack100(data,{unit=' €'}={}){
+  const pad={l:20,r:20,t:150,b:150}, bh=180, y=(H-bh)/2; let x=pad.l; const track=W-pad.l-pad.r;
+  let seg='',lab='';
+  data.forEach(d=>{
+    const w=d.v/100*track;
+    seg+=`<rect x="${x}" y="${y}" width="${w}" height="${bh}" fill="${d.c}"/>`;
+    if(d.v>=9) seg+=`<text class="v" x="${x+w/2}" y="${y+bh/2+14}" text-anchor="middle" fill="#0a1220">${d.v}</text>`;
+    x+=w;
+  });
+  data.forEach((d,i)=>{
+    const col=i%2, row=Math.floor(i/2);
+    lab+=`<g transform="translate(${col*500+20},${y+bh+56+row*52})">
+      <rect width="24" height="24" rx="5" fill="${d.c}"/>
+      <text class="cat" x="36" y="21" style="font-size:25px">${d.n}</text>
+      <text class="v" x="470" y="23" text-anchor="end" style="font-size:30px" fill="${d.c}">${d.v}${unit}</text></g>`;
+  });
+  return svg(seg+lab);
+}
+const G06 = slide('G06-EMPILEES-100',
+  'Où vont <span class="red">100 €</span><br>de dépense publique ?','Répartition par fonction · France',
+  stack100(COFOG), "Eurostat · Classification COFOG, France (arrondis)");
+
+/* =====================================================================
+   G07 · COURBE + AIRE — valeur au premier et au dernier point uniquement
+   ===================================================================== */
+function lineArea(pts,{xmin,xmax,ymin,ymax,color=C.red,unit=' %',ticks=[]}={}){
+  const pad={l:80,r:150,t:50,b:70};
+  const X=x=>pad.l+(x-xmin)/(xmax-xmin)*(W-pad.l-pad.r);
+  const Y=v=>H-pad.b-(v-ymin)/(ymax-ymin)*(H-pad.t-pad.b);
+  const d=pts.map((p,i)=>`${i?'L':'M'}${X(p.y).toFixed(1)},${Y(p.v).toFixed(1)}`).join(' ');
+  const area=`${d} L${X(pts.at(-1).y)},${H-pad.b} L${X(pts[0].y)},${H-pad.b} Z`;
+  const gl=ticks.map(t=>gridline(pad.l,Y(t),W-pad.r)+`<text class="tick" x="${pad.l-16}" y="${Y(t)+8}" text-anchor="end">${t}</text>`).join('');
+  const xt=pts.map(p=>`<text class="tick" x="${X(p.y)}" y="${H-pad.b+38}" text-anchor="middle">${p.y}</text>`).join('');
+  const dots=pts.map((p,i)=>`<circle cx="${X(p.y)}" cy="${Y(p.v)}" r="${i===pts.length-1?11:7}" fill="${color}"/>`).join('');
+  const first=pts[0], last=pts.at(-1);
+  return svg(gl+xt
+   +`<path d="${area}" fill="${color}" opacity=".16"/><path d="${d}" fill="none" stroke="${color}" stroke-width="5" stroke-linejoin="round"/>`
+   +dots
+   +`<text class="v dim" x="${X(first.y)+20}" y="${Y(first.v)-22}">${first.v}${unit}</text>`
+   +`<text class="v hi" x="${X(last.y)+22}" y="${Y(last.v)+14}">${last.v}${unit}</text>`);
+}
+const G07 = slide('G07-COURBE-AIRE',
+  'Quarante ans<br>de dette qui <span class="red">monte</span>','Dette publique en % du PIB',
+  lineArea(DETTE,{xmin:1980,xmax:2024,ymin:0,ymax:125,ticks:[25,50,75,100]}), S_DETTE);
+
+/* =====================================================================
+   G08 · DEUX COURBES + AIRE D'ÉCART — nom de série + valeur au bout, pas de légende
+   ===================================================================== */
+function twoLines(years,a,b,{ymin,ymax,ticks,la,lb,va,vb}={}){
+  const pad={l:80,r:210,t:50,b:70};
+  const X=y=>pad.l+(y-years[0])/(years.at(-1)-years[0])*(W-pad.l-pad.r);
+  const Y=v=>H-pad.b-(v-ymin)/(ymax-ymin)*(H-pad.t-pad.b);
+  const P=arr=>arr.map((v,i)=>`${i?'L':'M'}${X(years[i]).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
+  const area=`${P(a)} L${X(years.at(-1))},${Y(b.at(-1))} ${[...b].reverse().map((v,i)=>`L${X([...years].reverse()[i])},${Y(v)}`).join(' ')} Z`;
+  const gl=ticks.map(t=>gridline(pad.l,Y(t),W-pad.r)+`<text class="tick" x="${pad.l-16}" y="${Y(t)+8}" text-anchor="end">${t}</text>`).join('');
+  const xt=years.map(y=>`<text class="tick" x="${X(y)}" y="${H-pad.b+38}" text-anchor="middle">${y}</text>`).join('');
+  const dots=arr=>arr.map((v,i)=>`<circle cx="${X(years[i])}" cy="${Y(v)}" r="${i===arr.length-1?10:6}" fill="${i===arr.length-1?'#fff':'currentColor'}"/>`).join('');
+  return svg(gl+xt
+    +`<path d="${area}" fill="${C.red}" opacity=".15"/>`
+    +`<g color="${C.red}"><path d="${P(a)}" fill="none" stroke="${C.red}" stroke-width="5" stroke-linejoin="round"/>${dots(a)}</g>`
+    +`<g color="${C.cyan}"><path d="${P(b)}" fill="none" stroke="${C.cyan}" stroke-width="5" stroke-linejoin="round"/>${dots(b)}</g>`
+    +`<text class="ser" x="${X(years.at(-1))+24}" y="${Y(a.at(-1))-8}" fill="${C.red}">${la}</text>
+      <text class="v" x="${X(years.at(-1))+24}" y="${Y(a.at(-1))+32}" fill="${C.red}">${va}</text>
+      <text class="ser" x="${X(years.at(-1))+24}" y="${Y(b.at(-1))-8}" fill="${C.cyan}">${lb}</text>
+      <text class="v" x="${X(years.at(-1))+24}" y="${Y(b.at(-1))+32}" fill="${C.cyan}">${vb}</text>`);
+}
+const G08 = slide('G08-DEUX-COURBES',
+  'Les dépenses filent,<br><span class="red">pas les recettes</span>','France · en % du PIB · 2008-2025',
+  twoLines(DEP_REC.years,DEP_REC.dep,DEP_REC.rec,{ymin:46,ymax:63,ticks:[50,55,60],la:'Dépenses',lb:'Recettes',va:'+2,9',vb:'+1,3'}), S_OCDE);
+
+/* =====================================================================
+   G09 · LOLLIPOP — valeur à droite du point
+   ===================================================================== */
+function lollipop(data,{max,unit=' %',labelW=280}={}){
+  const pad={l:labelW,r:150,t:20,b:20}, step=(H-pad.t-pad.b)/data.length, track=W-pad.l-pad.r;
+  return svg(data.map((d,i)=>{
+    const y=pad.t+step*i+step/2, x=pad.l+d.v/max*track, c=d.hi?C.red:C.neutral;
+    return `<text class="cat ${d.hi?'hi':''}" x="${pad.l-24}" y="${y+10}" text-anchor="end">${d.n}</text>
+      <line x1="${pad.l}" y1="${y}" x2="${x}" y2="${y}" stroke="${c}" stroke-width="4" opacity=".5"/>
+      <circle cx="${x}" cy="${y}" r="${d.hi?20:14}" fill="${c}"/>
+      <text class="v ${d.hi?'hi':''}" x="${x+34}" y="${y+13}">${fmt(d.v)}${unit}</text>`;
+  }).join(''));
+}
+const G09 = slide('G09-LOLLIPOP',
+  'Cinq économies,<br>un seul <span class="red">record</span>','Dépense publique en % du PIB · 2024',
+  lollipop(DEP_PAYS,{max:66}), S_EURO);
+
+/* =====================================================================
+   G10 · SLOPE CHART — valeur aux deux extrémités
+   ===================================================================== */
+function slope(series,x1lab,x2lab,{ymin,ymax}={}){
+  const pad={l:230,r:230,t:60,b:70};
+  const XA=pad.l, XB=W-pad.r;
+  const Y=v=>H-pad.b-(v-ymin)/(ymax-ymin)*(H-pad.t-pad.b);
+  return svg(series.map(s=>`
+     <line x1="${XA}" y1="${Y(s.a)}" x2="${XB}" y2="${Y(s.b)}" stroke="${s.c}" stroke-width="6"/>
+     <circle cx="${XA}" cy="${Y(s.a)}" r="11" fill="${s.c}"/><circle cx="${XB}" cy="${Y(s.b)}" r="13" fill="${s.c}"/>
+     <text class="v" x="${XA-26}" y="${Y(s.a)+13}" text-anchor="end" fill="${s.c}">${fmt(s.a)}</text>
+     <text class="v" x="${XB+26}" y="${Y(s.b)+13}" fill="${s.c}">${fmt(s.b)}</text>
+     <text class="ser" x="${XB+26}" y="${Y(s.b)-28}" fill="${s.c}">${s.n}</text>`).join('')
+   +`<text class="tick" x="${XA}" y="${H-pad.b+44}" text-anchor="middle" style="font-size:30px">${x1lab}</text>
+     <text class="tick" x="${XB}" y="${H-pad.b+44}" text-anchor="middle" style="font-size:30px">${x2lab}</text>`);
+}
+const G10 = slide('G10-SLOPE',
+  'En dix-sept ans,<br>l\'écart s\'est <span class="red">creusé</span>','En % du PIB',
+  slope([{n:'Dépenses',a:53.3,b:56.2,c:C.red},{n:'Recettes',a:49.9,b:51.2,c:C.cyan}],'2008','2025',{ymin:47,ymax:59}), S_OCDE);
+
+/* =====================================================================
+   G11 · DUMBBELL — deux points reliés, valeur à chaque extrémité
+   ===================================================================== */
+function dumbbell(rows,{min,max,labelW=280,unit=''}={}){
+  const pad={l:labelW,r:170,t:40,b:40}, step=(H-pad.t-pad.b)/rows.length, track=W-pad.l-pad.r;
+  const X=v=>pad.l+(v-min)/(max-min)*track;
+  return svg(rows.map((r,i)=>{
+    const y=pad.t+step*i+step/2;
+    return `<text class="cat" x="${pad.l-24}" y="${y+10}" text-anchor="end">${r.n}</text>
+      <line x1="${X(r.a)}" y1="${y}" x2="${X(r.b)}" y2="${y}" stroke="${C.neutral}" stroke-width="5" opacity=".35"/>
+      <circle cx="${X(r.a)}" cy="${y}" r="14" fill="${C.neutral}"/>
+      <circle cx="${X(r.b)}" cy="${y}" r="17" fill="${C.red}"/>
+      <text class="v dim" x="${X(r.a)}" y="${y-30}" text-anchor="middle" style="font-size:30px">${fmt(r.a)}</text>
+      <text class="v hi" x="${X(r.b)+30}" y="${y+14}">${fmt(r.b)}${unit}</text>`;
+  }).join('')
+  +`<g transform="translate(${pad.l},${H-14})"><circle cx="10" cy="-8" r="11" fill="${C.neutral}"/><text class="unitxt" x="30" y="0">2008</text>
+    <circle cx="150" cy="-8" r="11" fill="${C.red}"/><text class="unitxt" x="170" y="0">2025</text></g>`);
+}
+const G11 = slide('G11-DUMBBELL',
+  'Tout augmente,<br>pas au <span class="red">même rythme</span>','En % du PIB · 2008 → 2025',
+  dumbbell([{n:'Dépenses',a:53.3,b:56.2},{n:'Recettes',a:49.9,b:51.2}],{min:47,max:59,unit:' %'}), S_OCDE);
+
+/* =====================================================================
+   G12 · WATERFALL — valeur au-dessus de chaque marche
+   ===================================================================== */
+function waterfall(steps,{max,unit=' pts'}={}){
+  const pad={l:40,r:40,t:70,b:70}, step=(W-pad.l-pad.r)/steps.length, bw=Math.min(150,step*0.6);
+  const h0=H-pad.b, hMax=h0-pad.t; let cum=0;
+  return svg(steps.map((s,i)=>{
+    const x=pad.l+step*i+step/2;
+    const isTotal=s.total;
+    const from=isTotal?0:cum, to=isTotal?s.v:cum+s.v;
+    const yTop=h0-Math.max(from,to)/max*hMax, bh=Math.abs(to-from)/max*hMax;
+    if(!isTotal) cum+=s.v;
+    const c=isTotal?C.red:'rgba(255,71,87,.6)';
+    return `<rect x="${x-bw/2}" y="${yTop}" width="${bw}" height="${bh}" rx="6" fill="${c}"/>
+      <text class="v ${isTotal?'hi':''}" x="${x}" y="${yTop-18}" text-anchor="middle">${(isTotal||i===0)?'':'+'}${fmt(s.v,0)}${unit}</text>
+      <text class="cat ${isTotal?'hi':''}" x="${x}" y="${h0+40}" text-anchor="middle">${s.n}</text>`;
+  }).join('')+`<line x1="${pad.l-10}" y1="${h0}" x2="${W-pad.r+10}" y2="${h0}" stroke="rgba(255,255,255,.18)" stroke-width="2"/>`);
+}
+const G12 = slide('G12-WATERFALL',
+  'De 21 à <span class="red">113 %</span><br>en quarante ans','Contribution de chaque période, en points de PIB',
+  waterfall([{n:'1980',v:21},{n:'1980-2000',v:38},{n:'2000-2010',v:26},{n:'2010-2024',v:28},{n:'2024',v:113,total:1}],{max:130,unit:''}), S_DETTE);
+
+/* =====================================================================
+   G13 · DONUT — valeur AU CENTRE, jamais sur les segments
+   ===================================================================== */
+function donut(data,center){
+  const cx=300, cy=H/2, r=195, sw=68; let a0=-Math.PI/2;
+  const arcs=data.map(d=>{
+    const a1=a0+d.v/100*Math.PI*2;
+    const x0=cx+r*Math.cos(a0), y0=cy+r*Math.sin(a0), x1=cx+r*Math.cos(a1), y1=cy+r*Math.sin(a1);
+    const large=(a1-a0)>Math.PI?1:0; a0=a1;
+    return `<path d="M${x0.toFixed(1)},${y0.toFixed(1)} A${r},${r} 0 ${large} 1 ${x1.toFixed(1)},${y1.toFixed(1)}" fill="none" stroke="${d.c}" stroke-width="${sw}"/>`;
+  }).join('');
+  const leg=data.map((d,i)=>`<g transform="translate(600,${52+i*62})"><rect width="26" height="26" rx="6" fill="${d.c}"/>
+      <text class="cat" x="40" y="23" style="font-size:27px">${d.n}</text>
+      <text class="v" x="400" y="24" text-anchor="end" style="font-size:30px" fill="${d.c}">${d.v} €</text></g>`).join('');
+  return svg(arcs+leg
+   +`<text class="v hi" x="${cx}" y="${cy+4}" text-anchor="middle" style="font-size:86px">${center.v}</text>
+     <text class="cat" x="${cx}" y="${cy+52}" text-anchor="middle" style="font-size:24px">${center.n}</text>`);
+}
+const G13 = slide('G13-DONUT',
+  '4 € sur 10 vont à la<br><span class="red">protection sociale</span>','Dépense publique par fonction · France',
+  donut(COFOG,{v:'42 %',n:'protection sociale'}), "Eurostat · Classification COFOG, France (arrondis)");
+
+/* =====================================================================
+   G14 · TREEMAP — valeur DANS la tuile, taille selon la place
+   ===================================================================== */
+function treemap(data){
+  // découpe simple en 2 colonnes : le plus gros à gauche
+  const total=data.reduce((s,d)=>s+d.v,0);
+  const big=data[0], rest=data.slice(1);
+  const gap=8, leftW=(big.v/total)*W*1.55;
+  let out=`<rect x="0" y="0" width="${leftW-gap}" height="${H}" rx="10" fill="${big.c}"/>
+    <text class="cat" x="24" y="52" style="font-size:30px" fill="#0a1220" font-weight="800">${big.n}</text>
+    <text class="v" x="24" y="${H/2+20}" style="font-size:86px" fill="#0a1220">${big.v} €</text>`;
+  const restTotal=rest.reduce((s,d)=>s+d.v,0); let y=0;
+  rest.forEach(d=>{
+    const h=(d.v/restTotal)*H;
+    out+=`<rect x="${leftW}" y="${y}" width="${W-leftW}" height="${h-gap}" rx="10" fill="${d.c}" opacity=".92"/>
+      <text class="cat" x="${leftW+22}" y="${y+h/2+2}" style="font-size:26px" fill="#0a1220" font-weight="800">${d.n}</text>
+      <text class="v" x="${W-22}" y="${y+h/2+10}" text-anchor="end" style="font-size:34px" fill="#0a1220">${d.v} €</text>`;
+    y+=h;
+  });
+  return svg(out);
+}
+const G14 = slide('G14-TREEMAP',
+  'La dépense publique<br>tient en <span class="red">sept blocs</span>','Sur 100 € dépensés · France',
+  treemap(COFOG), "Eurostat · Classification COFOG, France (arrondis)");
+
+/* =====================================================================
+   G15 · GRILLE 100 — valeur en gros à gauche
+   ===================================================================== */
+function grid100(n,{color=C.red}={}){
+  const cols=10, size=42, gap=8, gx=W-(cols*size+(cols-1)*gap);
+  let cells='';
+  for(let i=0;i<100;i++){
+    const c=i%cols, r=Math.floor(i/cols);
+    cells+=`<rect x="${gx+c*(size+gap)}" y="${10+r*(size+gap)}" width="${size}" height="${size}" rx="6"
+      fill="${i<n?color:'rgba(255,255,255,.08)'}"/>`;
+  }
+  return svg(cells+`<text class="v hi" x="0" y="${H/2-10}" style="font-size:150px">${n}</text>
+    <text class="cat" x="0" y="${H/2+76}" style="font-size:32px">euros sur cent</text>`);
+}
+const G15 = slide('G15-GRILLE-100',
+  'Sur 100 € produits,<br><span class="red">57 € vont à l\'État</span>','Dépense publique en % du PIB · 2024',
+  grid100(57), S_EURO);
+
+/* =====================================================================
+   G16 · ISOTYPE — compteur à droite, manquants en fantôme
+   ===================================================================== */
+const PLANE=`<path d="M50 2 C57 11 60 26 60 43 L60 70 C60 81 56 89 50 89 C44 89 40 81 40 70 L40 43 C40 26 43 11 50 2 Z"/><path d="M1 30 L99 30 L94 44 L6 44 Z"/><path d="M23 21 L35 21 L34 47 L24 47 Z"/><path d="M65 21 L77 21 L76 47 L66 47 Z"/><path d="M5 43 L15 43 L14 57 L7 57 Z"/><path d="M85 43 L95 43 L93 57 L86 57 Z"/><path d="M25 72 L75 72 L71 82 L29 82 Z"/><path d="M46 66 L54 66 L54 91 L46 91 Z"/>`;
+function isotype(rows,total){
+  const step=H/rows.length, iw=38, gap=3, x0=250;
+  return svg(rows.map((r,i)=>{
+    const y=step*i+step/2, c=r.hi?C.red:C.neutral;
+    let ic='';
+    for(let k=0;k<total;k++){
+      ic+=`<g transform="translate(${x0+k*(iw+gap)},${y-20}) scale(${iw/100})" fill="${c}" opacity="${k<r.v?1:.15}">${PLANE}</g>`;
+    }
+    return `<text class="cat ${r.hi?'hi':''}" x="0" y="${y+12}">${r.n}</text>
+      <text class="v ${r.hi?'hi':''}" x="${x0-30}" y="${y+15}" text-anchor="end">${r.v}</text>${ic}`;
+  }).join(''));
+}
+const G16 = slide('G16-ISOTYPE',
+  '12 Canadair en France,<br>18 en <span class="red">Italie</span>','Avions bombardiers d\'eau en service · 2026',
+  isotype(CANADAIR,18), "Sécurité civile · Vigili del Fuoco · 43 Grupo · Armée de l'air grecque");
+
+/* =====================================================================
+   G17 · JAUGE / BULLET — valeur au bout, repère de référence
+   ===================================================================== */
+function bullet(rows,ref,refLab,{max}={}){
+  const pad={l:280,r:170,t:40,b:60}, step=(H-pad.t-pad.b)/rows.length, track=W-pad.l-pad.r, bh=64;
+  const X=v=>pad.l+v/max*track;
+  return svg(rows.map((r,i)=>{
+    const y=pad.t+step*i+step/2, c=r.hi?C.red:C.neutral;
+    return `<text class="cat ${r.hi?'hi':''}" x="${pad.l-24}" y="${y+10}" text-anchor="end">${r.n}</text>
+      <rect x="${pad.l}" y="${y-bh/2}" width="${track}" height="${bh}" rx="6" fill="rgba(255,255,255,.05)"/>
+      <rect x="${pad.l}" y="${y-bh/2}" width="${X(r.v)-pad.l}" height="${bh}" rx="6" fill="${c}" opacity="${r.hi?1:.65}"/>
+      <text class="v ${r.hi?'hi':''}" x="${X(r.v)+22}" y="${y+13}">${fmt(r.v)} %</text>`;
+  }).join('')
+  +`<line x1="${X(ref)}" y1="${pad.t-6}" x2="${X(ref)}" y2="${H-pad.b+6}" stroke="${C.gold}" stroke-width="4"/>
+    <text class="v" x="${X(ref)}" y="${H-pad.b+44}" text-anchor="middle" style="font-size:28px" fill="${C.gold}">${refLab}</text>`);
+}
+const G17 = slide('G17-BULLET',
+  'Huit points de PIB<br>de plus que <span class="red">l\'UE</span>','Dépense publique en % du PIB · 2024',
+  bullet(DEP_PAYS.slice(0,3),UE_MOY,`Moyenne UE ${fmt(UE_MOY)} %`,{max:66}), S_EURO);
+
+/* =====================================================================
+   G18 · TUILES D'ÉCART (heatmap) — valeur en gros dans la tuile
+   ===================================================================== */
+function heatTiles(data,{max}={}){
+  const cols=4, tw=(W-3*14)/cols, th=(H-14)/2;
+  return svg(data.slice(0,8).map((d,i)=>{
+    const c=i%cols, r=Math.floor(i/cols), o=.18+.72*(d.v/max);
+    return `<g transform="translate(${c*(tw+14)},${r*(th+14)})">
+      <rect width="${tw}" height="${th}" rx="12" fill="${C.red}" opacity="${o.toFixed(2)}"/>
+      <text class="v" x="${tw/2}" y="${th/2+6}" text-anchor="middle" style="font-size:54px">+${fmt(d.v)}</text>
+      <text class="cat" x="${tw/2}" y="${th/2+50}" text-anchor="middle" style="font-size:23px">${d.n}</text></g>`;
+  }).join(''));
+}
+const G18 = slide('G18-TUILES-ECART',
+  'La France dépense plus<br>dans <span class="red">chaque poste</span>','Écart France / zone euro, en points de PIB',
+  heatTiles(ECART_POSTE,{max:3.6}), S_OCDE);
+
+/* =====================================================================
+   G19 · COURBE ANNOTÉE — repères d'événements verticaux
+   ===================================================================== */
+function lineEvents(pts,events,{xmin,xmax,ymin,ymax,ticks}={}){
+  const pad={l:80,r:150,t:60,b:70};
+  const X=x=>pad.l+(x-xmin)/(xmax-xmin)*(W-pad.l-pad.r);
+  const Y=v=>H-pad.b-(v-ymin)/(ymax-ymin)*(H-pad.t-pad.b);
+  const d=pts.map((p,i)=>`${i?'L':'M'}${X(p.y).toFixed(1)},${Y(p.v).toFixed(1)}`).join(' ');
+  const gl=ticks.map(t=>gridline(pad.l,Y(t),W-pad.r)+`<text class="tick" x="${pad.l-16}" y="${Y(t)+8}" text-anchor="end">${t}</text>`).join('');
+  const ev=events.map(e=>`<line x1="${X(e.y)}" y1="${pad.t-10}" x2="${X(e.y)}" y2="${H-pad.b}" stroke="rgba(255,255,255,.22)" stroke-width="2" stroke-dasharray="8 8"/>
+     <text class="unitxt" x="${X(e.y)+12}" y="${pad.t+8}" style="font-size:26px" fill="#c3d2df">${e.n}</text>`).join('');
+  const xt=pts.map(p=>`<text class="tick" x="${X(p.y)}" y="${H-pad.b+38}" text-anchor="middle">${p.y}</text>`).join('');
+  return svg(gl+ev+xt
+   +`<path d="${d}" fill="none" stroke="${C.red}" stroke-width="5" stroke-linejoin="round"/>`
+   +pts.map((p,i)=>`<circle cx="${X(p.y)}" cy="${Y(p.v)}" r="${i===pts.length-1?11:7}" fill="${C.red}"/>`).join('')
+   +`<text class="v hi" x="${X(pts.at(-1).y)+22}" y="${Y(pts.at(-1).v)+14}">${pts.at(-1).v} %</text>`);
+}
+const G19 = slide('G19-COURBE-ANNOTEE',
+  'Chaque crise laisse<br>la dette <span class="red">plus haut</span>','Dette publique en % du PIB',
+  lineEvents(DETTE,[{y:2000,n:'Euro'},{y:2010,n:'Crise 2008'}],{xmin:1980,xmax:2024,ymin:0,ymax:125,ticks:[25,50,75,100]}), S_DETTE);
+
+/* =====================================================================
+   G20 · SMALL MULTIPLES — un chiffre clé par mini-graphique
+   ===================================================================== */
+function smallMultiples(cards){
+  const cols=2, cw=(W-24)/cols, ch=(H-24)/2;
+  return svg(cards.map((c,i)=>{
+    const cx=(i%cols)*(cw+24), cy=Math.floor(i/cols)*(ch+24);
+    const pts=c.pts, xmin=0, xmax=pts.length-1, ymin=Math.min(...pts)*.9, ymax=Math.max(...pts)*1.1;
+    const X=k=>28+k/(xmax-xmin)*(cw-56), Y=v=>ch-70-(v-ymin)/(ymax-ymin)*(ch-140);
+    const d=pts.map((v,k)=>`${k?'L':'M'}${X(k).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
+    return `<g transform="translate(${cx},${cy})">
+      <rect width="${cw}" height="${ch}" rx="12" fill="rgba(255,255,255,.04)"/>
+      <text class="cat" x="28" y="46">${c.n}</text>
+      <path d="${d}" fill="none" stroke="${c.c}" stroke-width="4.5"/>
+      <circle cx="${X(xmax)}" cy="${Y(pts.at(-1))}" r="9" fill="${c.c}"/>
+      <text class="v" x="${cw-28}" y="${ch-28}" text-anchor="end" style="font-size:46px" fill="${c.c}">${c.val}</text>
+      <text class="unitxt" x="28" y="${ch-30}">${c.sub}</text></g>`;
+  }).join(''));
+}
+const G20 = slide('G20-SMALL-MULTIPLES',
+  'Quatre courbes,<br>une seule <span class="red">direction</span>','France · dernier point 2024-2025',
+  smallMultiples([
+    {n:'Dette publique',pts:[21,59,85,113],val:'113 %',sub:'1980 → 2024',c:C.red},
+    {n:'Dépense publique',pts:DEP_REC.dep,val:'57,3 %',sub:'2008 → 2025',c:C.orange},
+    {n:'Recettes publiques',pts:DEP_REC.rec,val:'51,2 %',sub:'2008 → 2025',c:C.cyan},
+    {n:'Déficit public',pts:DEP_REC.years.map((y,i)=>DEP_REC.dep[i]-DEP_REC.rec[i]),val:'5,0 pts',sub:'2008 → 2025',c:C.gold}
+  ]), `${S_OCDE} · INSEE`);
+
+document.getElementById('root').outerHTML =
+  [G01,G02,G03,G04,G05,G06,G07,G08,G09,G10,G11,G12,G13,G14,G15,G16,G17,G18,G19,G20].join('');
+</script>
+</body>
+</html>

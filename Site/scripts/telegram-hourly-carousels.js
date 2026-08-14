@@ -640,7 +640,10 @@ function generateInfographicHTML(slide, tagColor, tag, source, slideNum, totalSl
             ${centerContent}
             <div style="display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid ${t.borderColor};">
                 <span style="font-size:1rem;color:${t.footerDim};">Sources : <span style="color:${t.footerLight};">${source}</span></span>
-                <span style="font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:${t.urlColor};">ouvalargent.com</span>
+                <span style="display:inline-flex;flex-direction:column;align-items:flex-end;gap:2px;line-height:1.1;">
+                    <span style="font-family:'JetBrains Mono',monospace;font-size:1.35rem;font-weight:600;color:${t.urlColor};">ouvalargent.com</span>
+                    <span style="font-family:'JetBrains Mono',monospace;font-size:1.15rem;font-weight:500;color:${t.footerLight};letter-spacing:0.3px;">@ouvalargentfr</span>
+                </span>
             </div>
         </div>
     </div>

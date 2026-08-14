@@ -527,7 +527,10 @@ body{font-family:'Syne',sans-serif;background:#1a1a2e;display:flex;justify-conte
 <div class="stat">${fact.stat}</div>
 <div class="context">${fact.context}</div>
 </div>
-<div class="footer"><div class="website">ouvalargent.com</div></div>
+<div class="website">
+    <span class="website-url">ouvalargent.com</span>
+    <span class="website-handle">@ouvalargentfr</span>
+</div>
 </div></div></body></html>`;
 }
 
@@ -563,7 +566,10 @@ body{font-family:'Syne',sans-serif;background:#1a1a2e;display:flex;justify-conte
 <div class="center-block">
 <div class="explain">${text}</div>
 </div>
-<div class="footer"><div class="website">ouvalargent.com</div></div>
+<div class="website">
+    <span class="website-url">ouvalargent.com</span>
+    <span class="website-handle">@ouvalargentfr</span>
+</div>
 </div></div></body></html>`;
 }
 
@@ -599,7 +605,10 @@ body{font-family:'Syne',sans-serif;background:#1a1a2e;display:flex;justify-conte
 <div class="equiv-label">${fact.equivLabel}</div>
 <div class="equiv-value">${fact.equiv}</div>
 </div>
-<div class="footer"><div class="website">ouvalargent.com</div></div>
+<div class="website">
+    <span class="website-url">ouvalargent.com</span>
+    <span class="website-handle">@ouvalargentfr</span>
+</div>
 </div></div></body></html>`;
 }
 

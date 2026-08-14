@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --text-primary: #f0f4f8; --text-secondary: #8899a8; --text-muted: #5a6573;
+    --accent-electric: #00d4ff; --red: #ff4f60; --blue: #5b8cff;
+    --line: rgba(255,255,255,0.12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Syne', sans-serif; background: #0b0907; }
+  .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+  .bg-base { position: absolute; inset: 0; background: linear-gradient(180deg, #3a1620 0%, #221726 46%, #14213c 100%); }
+  .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 46px 46px; }
+  .bg-glow-1 { position: absolute; width: 1200px; height: 760px; background: radial-gradient(ellipse, rgba(255,71,87,0.40) 0%, transparent 68%); top: -320px; left: 50%; transform: translateX(-50%); }
+  .bg-glow-2 { position: absolute; width: 1200px; height: 760px; background: radial-gradient(ellipse, rgba(91,140,255,0.38) 0%, transparent 68%); bottom: -320px; left: 50%; transform: translateX(-50%); }
+
+  .content { position: relative; z-index: 1; height: 100%; padding: 42px 54px 30px; display: flex; flex-direction: column; }
+
+  .pole { text-align: center; line-height: 1; }
+  .pole span {
+    display: inline-block; font-family: 'Syne', sans-serif; font-weight: 800;
+    letter-spacing: 2px; font-size: 2.5rem; color: #fff;
+    padding: 8px 34px; border-radius: 14px;
+  }
+  .pole-top span { background: #ff3b4d; box-shadow: 0 6px 26px rgba(255,59,77,0.55); }
+  .pole-bottom span { background: #3f78ff; box-shadow: 0 6px 26px rgba(63,120,255,0.55); }
+
+  .ladder { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 0; margin: 2px 0; }
+  .pill {
+    width: fit-content; max-width: 98%;
+    padding: 4px 30px; border-radius: 999px;
+    font-weight: 700; font-size: 1.62rem; letter-spacing: -0.3px; color: #fff;
+    text-align: center; white-space: nowrap;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+  }
+  .sep { width: 100%; height: 3px; background: rgba(255,255,255,0.85); border-radius: 2px; margin: 7px 0; }
+
+  .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; margin-top: 6px; border-top: 1px solid var(--line); }
+  .logo { display: flex; align-items: center; gap: 11px; }
+  .logo-icon { font-family: 'Instrument Serif', serif; font-size: 2.6rem; color: var(--accent-electric); line-height: 1; }
+  .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-style: italic; color: #fff; line-height: 1; }
+  .right { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; }
+  .website-url { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 600; color: var(--accent-electric); line-height: 1; }
+  .socials { display: flex; align-items: center; gap: 9px; }
+  .socials svg { width: 16px; height: 16px; fill: var(--text-secondary); display: block; }
+  .socials .handle { font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--text-secondary); letter-spacing: 0.2px; }
+</style>
+</head>
+<body>
+  <div class="infographic">
+    <div class="bg-base"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <div class="content">
+      <div class="pole pole-top"><span>SOCIALISTE</span></div>
+      <div class="ladder" id="ladder"></div>
+      <div class="pole pole-bottom"><span>LIBÉRAL</span></div>
+
+      <div class="footer">
+        <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+        <div class="right"><span class="website-url">ouvalargent.com</span>
+          <span class="socials">
+            <svg viewBox="0 0 24 24" aria-label="LinkedIn"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            <svg viewBox="0 0 24 24" aria-label="Instagram"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.12 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.12.66.66 1.33 1.07 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.7 5.7 0 0 0 2.12-1.38 5.7 5.7 0 0 0 1.38-2.12c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.7 5.7 0 0 0-1.38-2.12A5.7 5.7 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 12 18.16 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
+            <svg viewBox="0 0 24 24" aria-label="X"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3L17.61 20.65z"/></svg>
+            <span class="handle">@ouvalargentfr</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // 9 propositions de gauche (haut) + 9 de droite (bas), de part et d'autre de la barre
+  const ITEMS = [
+    "Taxer les riches",
+    "Revenu universel",
+    "Nationaliser les banques",
+    "Blocage des prix",
+    "Semaine de 32 heures",
+    "Retraite à 60 ans",
+    "SMIC à 1 600 € net",
+    "ISF climatique",
+    "Taxe sur les superprofits",
+    // ── barre de séparation ──
+    "Baisse de la dépense publique",
+    "Dégressivité de l'assurance chômage",
+    "Moins de normes",
+    "Baisse des charges patronales",
+    "Fin des 35 heures",
+    "Moins d'impôts",
+    "Privatisations",
+    "Retraite par capitalisation",
+    "État régalien"
+  ];
+  const HALF = 9; // index où s'insère la barre
+
+  function hexToRgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+  function lerp(a,b,t){return Math.round(a+(b-a)*t);}
+  const RED=hexToRgb('#ef3b54'), VIO=hexToRgb('#9b51e0'), BLUE=hexToRgb('#2f6bff');
+  function colorAt(t){
+    let c1,c2,tt;
+    if(t<0.5){c1=RED;c2=VIO;tt=t/0.5;} else {c1=VIO;c2=BLUE;tt=(t-0.5)/0.5;}
+    return `rgb(${lerp(c1[0],c2[0],tt)},${lerp(c1[1],c2[1],tt)},${lerp(c1[2],c2[2],tt)})`;
+  }
+
+  const ladder = document.getElementById('ladder');
+  const MAXW = 780, MINW = 340; // largeurs (px) : centre large -> extrêmes étroits
+  function widthForLevel(level){
+    return Math.round(MINW + (MAXW - MINW) * (1 - (level - 1) / (HALF - 1)));
+  }
+
+  ITEMS.forEach((txt,i)=>{
+    if (i === HALF) {
+      const s = document.createElement('div');
+      s.className = 'sep';
+      ladder.appendChild(s);
+    }
+    const t = i/(ITEMS.length-1);
+    const level = i < HALF ? (HALF - i) : (i - HALF + 1);
+    const p = document.createElement('div');
+    p.className = 'pill';
+    p.style.minWidth = widthForLevel(level) + 'px';
+    p.style.background = colorAt(t);
+    p.textContent = txt;
+    ladder.appendChild(p);
+  });
+</script>
+</body>
+</html>

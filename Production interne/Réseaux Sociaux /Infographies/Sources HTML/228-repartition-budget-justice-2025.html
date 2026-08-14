@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Les prisons, premier poste du budget de la justice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --bg-mid:  #142b48;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-red: #ff4757;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%); top: -200px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%); bottom: -150px; left: -150px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 60px 40px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 5rem; text-align: center; color: var(--text-primary); line-height: 1.04; margin-top: 18px; letter-spacing: -1.8px; }
+        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .subtitle { text-align: center; font-size: 1.15rem; color: var(--text-secondary); margin-top: 14px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; }
+
+        .chart-area { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px 0 8px; min-height: 0; }
+
+        .hbars { width: 100%; max-width: 940px; display: flex; flex-direction: column; gap: 24px; }
+        .hbar-row { display: grid; grid-template-columns: 340px 1fr; align-items: center; gap: 22px; }
+        .hbar-label { text-align: right; line-height: 1.12; }
+        .hbar-name { font-size: 1.45rem; font-weight: 700; color: var(--text-primary); }
+        .hbar-pct { font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; color: var(--text-muted); margin-top: 4px; }
+        .hbar-track { display: flex; align-items: center; gap: 16px; }
+        .hbar-fill { height: 48px; border-radius: 0 8px 8px 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.12); }
+        .hbar-fill.penit { background: linear-gradient(90deg, #c0263a 0%, #ff4757 100%); box-shadow: 0 0 40px rgba(255, 71, 87, 0.45); }
+        .hbar-fill.judic { background: linear-gradient(90deg, #1f4a78 0%, #3a78b8 100%); }
+        .hbar-fill.neutral { background: linear-gradient(90deg, #2d4060 0%, #4a6580 100%); }
+        .hbar-value { font-family: 'JetBrains Mono', monospace; font-size: 1.9rem; font-weight: 800; color: var(--text-primary); white-space: nowrap; }
+        .hbar-row.penit .hbar-name { color: var(--accent-red); }
+        .hbar-row.penit .hbar-value { color: var(--accent-red); }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 18px; margin-top: 6px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+            </div>
+
+            <h2 class="chart-title">Les <span class="accent">prisons</span>, premier poste<br>du budget de la justice</h2>
+            <div class="subtitle">Mission Justice · 12,5 Md€ · crédits de paiement · PLF 2025</div>
+
+            <div class="chart-area">
+                <div class="hbars">
+                    <div class="hbar-row penit">
+                        <div class="hbar-label"><div class="hbar-name">Administration<br>pénitentiaire</div><div class="hbar-pct">42 % du budget</div></div>
+                        <div class="hbar-track"><div class="hbar-fill penit" style="width: 400px;"></div><div class="hbar-value">5,24 Md€</div></div>
+                    </div>
+                    <div class="hbar-row">
+                        <div class="hbar-label"><div class="hbar-name">Justice judiciaire<br>(tribunaux)</div><div class="hbar-pct">37 % du budget</div></div>
+                        <div class="hbar-track"><div class="hbar-fill judic" style="width: 349px;"></div><div class="hbar-value">4,57 Md€</div></div>
+                    </div>
+                    <div class="hbar-row">
+                        <div class="hbar-label"><div class="hbar-name">Protection judiciaire<br>de la jeunesse</div><div class="hbar-pct">9 % du budget</div></div>
+                        <div class="hbar-track"><div class="hbar-fill neutral" style="width: 87px;"></div><div class="hbar-value">1,14 Md€</div></div>
+                    </div>
+                    <div class="hbar-row">
+                        <div class="hbar-label"><div class="hbar-name">Accès au droit<br>et à la justice</div><div class="hbar-pct">6 % du budget</div></div>
+                        <div class="hbar-track"><div class="hbar-fill neutral" style="width: 61px;"></div><div class="hbar-value">0,80 Md€</div></div>
+                    </div>
+                    <div class="hbar-row">
+                        <div class="hbar-label"><div class="hbar-name">Conduite et<br>pilotage</div><div class="hbar-pct">6 % du budget</div></div>
+                        <div class="hbar-track"><div class="hbar-fill neutral" style="width: 54px;"></div><div class="hbar-value">0,71 Md€</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Sénat · Commission des finances · PLF 2025</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

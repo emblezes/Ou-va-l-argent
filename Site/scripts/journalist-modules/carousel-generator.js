@@ -164,10 +164,24 @@ function baseStyles(accent, bg) {
     margin-top: 10px;
   }
   .url {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    line-height: 1.1;
+  }
+  .url-value {
     font-family: 'JetBrains Mono', monospace;
     color: ${accent};
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.35rem;
+  }
+  .url-handle {
+    font-family: 'JetBrains Mono', monospace;
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+    font-size: 1.15rem;
+    letter-spacing: 0.3px;
   }`;
 }
 
@@ -220,7 +234,7 @@ function generateSlide1HTML(title, tag, accent, bg) {
       <h1 class="title">${escapeHtml(title)}</h1>
     </div>
     <div class="footer">
-      <span class="url">ouvalargent.com</span>
+      <span class="url"><span class="url-value">ouvalargent.com</span><span class="url-handle">@ouvalargentfr</span></span>
     </div>
   </div>
 </body>
@@ -267,7 +281,7 @@ function generateSlideNHTML(slideNum, subtitle, text, accent, bg) {
       <p class="text">${escapeHtml(text)}</p>
     </div>
     <div class="footer">
-      <span class="url">ouvalargent.com</span>
+      <span class="url"><span class="url-value">ouvalargent.com</span><span class="url-handle">@ouvalargentfr</span></span>
     </div>
   </div>
 </body>
@@ -324,7 +338,7 @@ function generateSlideCTAHTML(accent, bg) {
       <div class="cta-handle"><strong>O\u00F9 Va l'Argent ?</strong><br>@ouvalargent</div>
     </div>
     <div class="footer">
-      <span class="url">ouvalargent.com</span>
+      <span class="url"><span class="url-value">ouvalargent.com</span><span class="url-handle">@ouvalargentfr</span></span>
     </div>
   </div>
 </body>

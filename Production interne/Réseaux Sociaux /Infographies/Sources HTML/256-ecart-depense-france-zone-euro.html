@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>La France dépense plus dans chaque poste</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:#0a1220;--bg-mid:#142b48;--text-muted:#4a5a6a;--text-secondary:#8899a8;--accent-electric:#00d4ff;--accent-red:#ff4757;--glass-border:rgba(255,255,255,0.1);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Syne',sans-serif;background:#1a1a2e;padding:2rem;display:flex;justify-content:center;}
+.infographic{width:1080px;height:1080px;position:relative;overflow:hidden;}
+.bg-base{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%);}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.bg-glow-1{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(255,71,87,0.10) 0%,transparent 70%);top:-200px;right:-200px;}
+.bg-glow-2{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(255,71,87,0.07) 0%,transparent 70%);bottom:-150px;left:-150px;}
+.content{position:relative;z-index:1;height:100%;padding:50px 50px 40px;display:flex;flex-direction:column;}
+.header{display:flex;align-items:center;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-icon{font-family:'Instrument Serif',serif;font-size:3.6rem;color:var(--accent-electric);line-height:1;}
+.logo-text{font-family:'Instrument Serif',serif;font-size:1.7rem;font-style:italic;color:#fff;line-height:1;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:1.05rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);text-align:center;margin-top:14px;}
+.chart-title{font-family:'Instrument Serif',serif;font-size:5rem;text-align:center;color:#fff;line-height:1.03;margin-top:6px;letter-spacing:-1.6px;text-wrap:balance;}
+.chart-title .accent{color:var(--accent-red);text-decoration:underline;text-decoration-color:#fff;text-decoration-thickness:5px;text-underline-offset:9px;white-space:nowrap;}
+.chart-area{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;}
+svg{overflow:visible;}
+.footer{display:flex;justify-content:space-between;align-items:center;padding-top:16px;margin-top:6px;border-top:1px solid var(--glass-border);}
+.source{font-size:0.95rem;color:var(--text-muted);max-width:660px;}.source span{color:var(--text-secondary);}
+.website-url{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:var(--accent-electric);}
+</style></head>
+<body><div class="infographic">
+<div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow-1"></div><div class="bg-glow-2"></div>
+<div class="content">
+<div class="header"><div class="logo"><span class="logo-icon">&euro;</span><span class="logo-text">Où Va l'Argent ?</span></div></div>
+<div class="kicker">Écart de dépense publique France vs zone euro · points de PIB · 2023</div>
+<h2 class="chart-title">La France dépense plus dans <span class="accent">chaque poste</span></h2>
+<div class="chart-area"><svg width="980" height="600" viewBox="0 0 980 600">
+<text x="315" y="60" fill="#ffffff" font-family="'Syne',sans-serif" font-size="26" font-weight="700" text-anchor="end">Protection sociale</text>
+<rect x="330" y="36" width="499.4" height="32" rx="6" fill="#ff4757"/>
+<text x="843.4" y="61" fill="#ffffff" font-family="'JetBrains Mono',monospace" font-size="30" font-weight="700" text-anchor="start">+3,6</text>
+<text x="315" y="116" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="26" font-weight="500" text-anchor="end">Santé</text>
+<rect x="330" y="92" width="203.4" height="32" rx="6" fill="rgba(255,71,87,0.5)"/>
+<text x="547.4" y="117" fill="#8899a8" font-family="'JetBrains Mono',monospace" font-size="26" font-weight="600" text-anchor="start">+1,5</text>
+<text x="315" y="172" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="26" font-weight="500" text-anchor="end">Affaires économiques</text>
+<rect x="330" y="148" width="85.6" height="32" rx="6" fill="rgba(255,71,87,0.5)"/>
+<text x="429.6" y="173" fill="#8899a8" font-family="'JetBrains Mono',monospace" font-size="26" font-weight="600" text-anchor="start">+0,6</text>
+<text x="315" y="228" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="26" font-weight="500" text-anchor="end">Défense</text>
+<rect x="330" y="204" width="80.0" height="32" rx="6" fill="rgba(255,71,87,0.5)"/>
+<text x="424.0" y="229" fill="#8899a8" font-family="'JetBrains Mono',monospace" font-size="26" font-weight="600" text-anchor="start">+0,6</text>
+<text x="315" y="284" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="26" font-weight="500" text-anchor="end">Enseignement</text>
+<rect x="330" y="260" width="61.7" height="32" rx="6" fill="rgba(255,71,87,0.5)"/>
+<text x="405.7" y="285" fill="#8899a8" font-family="'JetBrains Mono',monospace" font-size="26" font-weight="600" text-anchor="start">+0,4</text>
+<text x="315" y="340" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="26" font-weight="500" text-anchor="end">Loisirs</text>
+<rect x="330" y="316" width="47.7" height="32" rx="6" fill="rgba(255,71,87,0.5)"/>
+<text x="391.7" y="341" fill="#8899a8" font-family="'JetBrains Mono',monospace" font-size="26" font-weight="600" text-anchor="start">+0,3</text>
+<text x="315" y="396" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="26" font-weight="500" text-anchor="end">Services publics</text>
+<rect x="330" y="372" width="33.7" height="32" rx="6" fill="rgba(255,71,87,0.5)"/>
+<text x="377.7" y="397" fill="#8899a8" font-family="'JetBrains Mono',monospace" font-size="26" font-weight="600" text-anchor="start">+0,2</text>
+<text x="315" y="452" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="26" font-weight="500" text-anchor="end">Environnement</text>
+<rect x="330" y="428" width="23.8" height="32" rx="6" fill="rgba(255,71,87,0.5)"/>
+<text x="367.8" y="453" fill="#8899a8" font-family="'JetBrains Mono',monospace" font-size="26" font-weight="600" text-anchor="start">+0,2</text>
+<text x="315" y="508" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="26" font-weight="500" text-anchor="end">Sécurité</text>
+<rect x="330" y="484" width="9.8" height="32" rx="6" fill="rgba(255,71,87,0.5)"/>
+<text x="353.8" y="509" fill="#8899a8" font-family="'JetBrains Mono',monospace" font-size="26" font-weight="600" text-anchor="start">+0,1</text>
+<text x="315" y="564" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="26" font-weight="500" text-anchor="end">Logement</text>
+<rect x="330" y="540" width="7.0" height="32" rx="6" fill="rgba(255,71,87,0.5)"/>
+<text x="351.0" y="565" fill="#8899a8" font-family="'JetBrains Mono',monospace" font-size="26" font-weight="600" text-anchor="start">+0,1</text>
+</svg></div>
+<div class="footer"><div class="source">Source : <span>Où Va l'Argent · OCDE, Études économiques : France 2026 · Écart de dépense France / zone euro à 16 (graph. 1.9)</span></div><div class="website-url">ouvalargent.com</div></div>
+</div></div></body></html>

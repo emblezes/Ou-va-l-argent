@@ -559,7 +559,8 @@ Sur TikTok, tout doit être **énorme, impactant et lisible en 0.5 seconde**. C'
 
 ### Méthode de création (infographies permanentes)
 
-1. **S'inspirer des références validées** : `node scripts/inspect-references.js <pattern>` — liste les 5 dernières infographies du même type (bar-chart, line-chart, hero, ranking, dot-plot, grouped-bars, comparison) avec leurs paramètres CSS clés (font-size titre, bar width, bar-value, padding, subtitle/legend...). **Étape obligatoire** : reprendre les valeurs les plus fréquentes plutôt que d'inventer.
+0. **Choisir un format dans la charte v2** (`Templates/Réseaux sociaux/charte-v2/CHARTE.md`) avant toute chose : le graphique n'est qu'un format sur dix, et un format inédit adapté à la donnée est préférable à un pattern réutilisé.
+1. **S'inspirer des références validées** (si et seulement si le format retenu est un graphique) : `node scripts/inspect-references.js <pattern>` — liste les 5 dernières infographies du même type (bar-chart, line-chart, hero, ranking, dot-plot, grouped-bars, comparison) avec leurs paramètres CSS clés (font-size titre, bar width, bar-value, padding, subtitle/legend...). **Étape obligatoire** : reprendre les valeurs les plus fréquentes plutôt que d'inventer.
 2. **Partir du template éditorial** : `Templates/Réseaux sociaux/template-editorial.html` — référence par défaut validée sur 215-229
 3. Créer un fichier HTML dans `Infographies/Sources HTML/` en copiant un des 6 patterns du template + en ajustant aux paramètres remontés par `inspect-references.js`
 4. **Valider automatiquement** : `node scripts/validate-infographic.js <fichier.html>` — refuse l'infographie si chevauchements, espace vide trop grand, ticks foncés, ou annotation rectangulaire dans le graphique
@@ -583,9 +584,83 @@ Le pipeline `telegram-hourly-carousels.js` génère automatiquement les carrouse
 
 L'ancien `template-multiformat.html` est conservé comme bibliothèque historique de 19 types — **ne pas l'utiliser pour de nouvelles infographies**.
 
-### Charte graphique éditoriale (validée sur 215-229)
+### Charte v2 — bibliothèque de 10 formats (référence actuelle)
 
-**Principes fondamentaux** — à respecter pour éviter les aller-retours :
+**Documentation complète** : `Templates/Réseaux sociaux/charte-v2/CHARTE.md`
+**Maquettes** : `Templates/Réseaux sociaux/charte-v2/formats.html` → `png/PLANCHE-10-FORMATS.png`
+
+**Principe** : le graphique n'est qu'un format sur dix. On choisit d'abord la forme qui
+sert le fait, pas un pattern de graphique par défaut. Trois règles seulement sont
+non négociables : le logo en haut-gauche, le footer source + `ouvalargent.com`,
+et une source vérifiée par chiffre. Le reste (fond, accent, composition, présence ou
+non d'un graphique) doit varier d'une publication à l'autre.
+
+| # | Format | Quand |
+|---|--------|-------|
+| 01 | MANIFESTE | un fait qui se suffit : texte seul en 7 rem, aucun graphique |
+| 02 | MEGA-CHIFFRE | un chiffre choc plein cadre + mise en perspective |
+| 03 | DUEL | France contre un référent, écart chiffré au centre |
+| 04 | ISOTYPE | des unités dénombrables : pictogrammes comptés, manquants en fantôme |
+| 05 | GRILLE 100 | une part d'un tout : 100 carrés |
+| 06 | CHRONOLOGIE | une dérive dans le temps : jalons datés |
+| 07 | CLASSEMENT | un rang international : barres + drapeaux |
+| 08 | GRAPHIQUE | une évolution à deux séries : courbes + aire d'écart |
+| 09 | FLUX | une répartition : barre empilée + postes |
+| 10 | MOSAÏQUE EUROPE | comparer la France à ses voisins : tuiles géographiques |
+
+**Inventer un 11e format est encouragé** dès lors que la forme est dictée par la donnée
+(carte, calendrier, balance, trombinoscope…). Ne jamais publier deux fois de suite le
+même format sur le fil.
+
+**Typographie v2** (validée) : logo Instrument Serif italique (jamais remplacé) · titres
+Bricolage Grotesque 700-800 · corps Inter · chiffres JetBrains Mono 800.
+Unités collées aux nombres via `<em class="pc">%</em>` / `<em class="eu">€</em>`.
+
+**Lisibilité sans zoom (règle qui prime)** : titre = **5 rem** (deux lignes de 24 caractères
+maximum, on raccourcit le texte plutôt que la police), kicker ≥ 1,75 rem, tout autre
+texte ≥ 2 rem, labels de graphique ≥ 26 px, source du footer 1,22 rem. Si un texte ne peut
+pas être écrit en gros, il ne doit pas être sur la slide. Titres coupés avec des `<br>`
+explicites, jamais de mot orphelin, jamais plus de trois lignes.
+
+**Footer des infographies** : source à gauche, `ouvalargent.com` à droite. Plus de `@ouvalargentfr`.
+
+**Propreté (contrôle automatique, obligatoire avant livraison)** :
+
+```bash
+cd Site && node scripts/validate-charte-v2.js "../Templates/Réseaux sociaux/charte-v2/<fichier>.html"
+```
+
+Cinq règles : zéro texte flottant dans la zone de dessin (pas de « +123 % » ni de
+commentaire posé dans le graphe) · sur une courbe, toutes les valeurs du même côté ·
+aucun chevauchement de textes · un seul niveau d'information par slide · titre
+auto-suffisant. Piège : dans un SVG, `font-size="42"` est écrasé par la classe CSS,
+toujours écrire `style="font-size:42px"`.
+
+### Graphiques : 20 types standardisés
+
+**Documentation** : `Templates/Réseaux sociaux/charte-v2/GRAPHIQUES.md`
+**Maquettes** : `charte-v2/graphiques.html` → `png-graphiques/PLANCHE-20-GRAPHIQUES.png`
+
+La taille et la position des chiffres ne se rediscutent plus au cas par cas : elles sont
+figées dans le CSS de `graphiques.html` (classes `.v`, `.v.hi`, `.cat`, `.ser`, `.tick`).
+Zone de dessin toujours 1000 × 520. Valeur de donnée 36 px, valeur mise en avant 46 px,
+catégorie 28 px, graduation 24 px.
+
+Types disponibles : G01 barres verticales · G02 barres + ligne de référence · G03 barres
+horizontales · G04 barres négatives · G05 barres groupées · G06 empilées 100 % ·
+G07 courbe + aire · G08 deux courbes + aire d'écart · G09 lollipop · G10 slope ·
+G11 dumbbell · G12 waterfall · G13 donut · G14 treemap · G15 grille 100 · G16 isotype ·
+G17 bullet · G18 tuiles d'écart · G19 courbe annotée · G20 small multiples.
+
+Position des valeurs : au-dessus pour les barres verticales, à droite pour les
+horizontales, sous la barre pour les négatives, premier et dernier point seulement pour
+les courbes, au centre seulement pour le donut, jamais posée sur un segment. En cas de
+chevauchement avec une nouvelle série, on réduit le nombre de catégories, **on ne
+rétrécit jamais la police**.
+
+### Charte v1 (historique, infographies 215-229)
+
+**Principes fondamentaux** — conservés pour les infographies de type graphique :
 
 - **PAS de tag thématique** en haut-droite (pas de badge "DETTE", "FRANCE"...)
 - **PAS de boîte/badge/encart d'annotation À L'INTÉRIEUR du graphique** (pas de rectangle "−24 % en 15 ans" flottant dans la zone, pas de stat-card surimposée). Seuls sont autorisés les **labels textuels collés aux points/barres** (ex : "645 k" à côté du point final, "+135 Md€" au-dessus d'une barre)

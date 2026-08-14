@@ -14,6 +14,8 @@ export const RemotionRoot: React.FC = () => {
     width?: number;
     height?: number;
     accent?: string;
+    ctaStartFrame?: number;
+    ctaDurationFrames?: number;
   };
 
   const fps = props.fps ?? 30;
@@ -36,6 +38,8 @@ export const RemotionRoot: React.FC = () => {
         musicVolume: props.musicVolume ?? 0.08,
         words: props.words ?? [],
         accent: props.accent ?? '#00d4ff',
+        ctaStartFrame: props.ctaStartFrame ?? 0,
+        ctaDurationFrames: props.ctaDurationFrames ?? 0,
       }}
     />
   );

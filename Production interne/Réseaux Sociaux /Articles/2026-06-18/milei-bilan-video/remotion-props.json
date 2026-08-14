@@ -1,0 +1,391 @@
+{
+  "beats": [
+    {
+      "startFrame": 0,
+      "endFrame": 73,
+      "imagePath": "img-0.jpg",
+      "source": "real-image"
+    },
+    {
+      "startFrame": 73,
+      "endFrame": 143,
+      "imagePath": "img-1.jpg",
+      "source": "real-image"
+    },
+    {
+      "startFrame": 143,
+      "endFrame": 173,
+      "imagePath": "img-2.jpg",
+      "source": "real-image"
+    },
+    {
+      "startFrame": 173,
+      "endFrame": 267,
+      "imagePath": "img-3.jpg",
+      "source": "real-image"
+    },
+    {
+      "startFrame": 267,
+      "endFrame": 313,
+      "imagePath": "img-4.png",
+      "source": "real-image"
+    },
+    {
+      "startFrame": 313,
+      "endFrame": 389,
+      "imagePath": "img-5.jpg",
+      "source": "real-image"
+    },
+    {
+      "startFrame": 389,
+      "endFrame": 496,
+      "imagePath": "img-6.jpg",
+      "source": "real-image"
+    },
+    {
+      "startFrame": 496,
+      "endFrame": 563,
+      "imagePath": "img-7.jpg",
+      "source": "real-image"
+    },
+    {
+      "startFrame": 563,
+      "endFrame": 596,
+      "imagePath": "img-8.jpg",
+      "source": "real-image"
+    },
+    {
+      "startFrame": 596,
+      "endFrame": 620,
+      "imagePath": "img-9.jpg",
+      "source": "real-image"
+    }
+  ],
+  "audioPath": "audio.mp3",
+  "musicPath": "",
+  "musicVolume": 0.07,
+  "words": [
+    {
+      "text": "On",
+      "startFrame": 0,
+      "endFrame": 6
+    },
+    {
+      "text": "vous",
+      "startFrame": 7,
+      "endFrame": 11
+    },
+    {
+      "text": "promettait",
+      "startFrame": 11,
+      "endFrame": 23
+    },
+    {
+      "text": "que",
+      "startFrame": 24,
+      "endFrame": 27
+    },
+    {
+      "text": "Milei",
+      "startFrame": 28,
+      "endFrame": 36
+    },
+    {
+      "text": "ruinerait",
+      "startFrame": 37,
+      "endFrame": 48
+    },
+    {
+      "text": "l'Argentine",
+      "startFrame": 48,
+      "endFrame": 66
+    },
+    {
+      "text": "L'inflation",
+      "startFrame": 73,
+      "endFrame": 90
+    },
+    {
+      "text": "211",
+      "startFrame": 95,
+      "endFrame": 100
+    },
+    {
+      "text": "%",
+      "startFrame": 101,
+      "endFrame": 106
+    },
+    {
+      "text": "par",
+      "startFrame": 107,
+      "endFrame": 132
+    },
+    {
+      "text": "an",
+      "startFrame": 133,
+      "endFrame": 137
+    },
+    {
+      "text": "Aujourd'hui",
+      "startFrame": 143,
+      "endFrame": 160
+    },
+    {
+      "text": "31",
+      "startFrame": 163,
+      "endFrame": 172
+    },
+    {
+      "text": "%",
+      "startFrame": 173,
+      "endFrame": 191
+    },
+    {
+      "text": "À",
+      "startFrame": 197,
+      "endFrame": 199
+    },
+    {
+      "text": "la",
+      "startFrame": 201,
+      "endFrame": 202
+    },
+    {
+      "text": "tronçonneuse",
+      "startFrame": 204,
+      "endFrame": 222
+    },
+    {
+      "text": "il",
+      "startFrame": 226,
+      "endFrame": 229
+    },
+    {
+      "text": "a",
+      "startFrame": 231,
+      "endFrame": 231
+    },
+    {
+      "text": "équilibré",
+      "startFrame": 234,
+      "endFrame": 247
+    },
+    {
+      "text": "le",
+      "startFrame": 248,
+      "endFrame": 250
+    },
+    {
+      "text": "budget",
+      "startFrame": 251,
+      "endFrame": 262
+    },
+    {
+      "text": "Premier",
+      "startFrame": 267,
+      "endFrame": 277
+    },
+    {
+      "text": "excédent",
+      "startFrame": 279,
+      "endFrame": 289
+    },
+    {
+      "text": "en",
+      "startFrame": 290,
+      "endFrame": 293
+    },
+    {
+      "text": "seize",
+      "startFrame": 295,
+      "endFrame": 302
+    },
+    {
+      "text": "ans",
+      "startFrame": 302,
+      "endFrame": 307
+    },
+    {
+      "text": "La",
+      "startFrame": 313,
+      "endFrame": 316
+    },
+    {
+      "text": "pauvreté",
+      "startFrame": 318,
+      "endFrame": 332
+    },
+    {
+      "text": "de",
+      "startFrame": 339,
+      "endFrame": 341
+    },
+    {
+      "text": "53",
+      "startFrame": 343,
+      "endFrame": 358
+    },
+    {
+      "text": "%",
+      "startFrame": 359,
+      "endFrame": 364
+    },
+    {
+      "text": "à",
+      "startFrame": 365,
+      "endFrame": 377
+    },
+    {
+      "text": "28",
+      "startFrame": 379,
+      "endFrame": 388
+    },
+    {
+      "text": "%",
+      "startFrame": 389,
+      "endFrame": 401
+    },
+    {
+      "text": "Le",
+      "startFrame": 405,
+      "endFrame": 408
+    },
+    {
+      "text": "risque",
+      "startFrame": 409,
+      "endFrame": 416
+    },
+    {
+      "text": "pays",
+      "startFrame": 417,
+      "endFrame": 425
+    },
+    {
+      "text": "s'effondre",
+      "startFrame": 426,
+      "endFrame": 440
+    },
+    {
+      "text": "de",
+      "startFrame": 441,
+      "endFrame": 443
+    },
+    {
+      "text": "2",
+      "startFrame": 444,
+      "endFrame": 448
+    },
+    {
+      "text": "700",
+      "startFrame": 449,
+      "endFrame": 454
+    },
+    {
+      "text": "à",
+      "startFrame": 455,
+      "endFrame": 470
+    },
+    {
+      "text": "500",
+      "startFrame": 472,
+      "endFrame": 483
+    },
+    {
+      "text": "points",
+      "startFrame": 483,
+      "endFrame": 491
+    },
+    {
+      "text": "La",
+      "startFrame": 496,
+      "endFrame": 499
+    },
+    {
+      "text": "méthode",
+      "startFrame": 500,
+      "endFrame": 508
+    },
+    {
+      "text": "libérale",
+      "startFrame": 509,
+      "endFrame": 522
+    },
+    {
+      "text": "a",
+      "startFrame": 524,
+      "endFrame": 525
+    },
+    {
+      "text": "tout",
+      "startFrame": 527,
+      "endFrame": 531
+    },
+    {
+      "text": "fait",
+      "startFrame": 532,
+      "endFrame": 536
+    },
+    {
+      "text": "reculer",
+      "startFrame": 537,
+      "endFrame": 546
+    },
+    {
+      "text": "d'un",
+      "startFrame": 547,
+      "endFrame": 551
+    },
+    {
+      "text": "coup",
+      "startFrame": 552,
+      "endFrame": 558
+    },
+    {
+      "text": "On",
+      "startFrame": 563,
+      "endFrame": 566
+    },
+    {
+      "text": "peut",
+      "startFrame": 567,
+      "endFrame": 571
+    },
+    {
+      "text": "détester",
+      "startFrame": 571,
+      "endFrame": 583
+    },
+    {
+      "text": "l'homme",
+      "startFrame": 584,
+      "endFrame": 592
+    },
+    {
+      "text": "Les",
+      "startFrame": 596,
+      "endFrame": 600
+    },
+    {
+      "text": "chiffres",
+      "startFrame": 601,
+      "endFrame": 610
+    },
+    {
+      "text": "sont",
+      "startFrame": 611,
+      "endFrame": 615
+    },
+    {
+      "text": "là",
+      "startFrame": 616,
+      "endFrame": 620
+    }
+  ],
+  "durationInFrames": 680,
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "accent": "#a855f7",
+  "ctaStartFrame": 620,
+  "ctaDurationFrames": 60
+}

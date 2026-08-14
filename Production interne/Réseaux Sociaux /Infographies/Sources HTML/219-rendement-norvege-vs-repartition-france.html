@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rendement fonds norvégien vs retraite par répartition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-red: #ff4757;
+            --accent-green: #00ff88;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #0a1220 0%, #142b48 50%, #0a1220 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%); top: -200px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%); bottom: -150px; left: -150px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 28px 55px 35px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 3.8rem; text-align: center; color: var(--text-primary); line-height: 1.08; margin-top: 2px; letter-spacing: -1.3px; }
+        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .chart-title .vs { color: var(--text-primary); font-style: normal; font-weight: 500; }
+
+        .chart-wrap { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 0; }
+
+        .bars-row { display: flex; align-items: flex-end; justify-content: center; gap: 70px; }
+        .bars-group { display: flex; align-items: flex-end; gap: 24px; }
+
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+        .bar-value { font-family: 'JetBrains Mono', monospace; font-size: 1.85rem; font-weight: 700; color: #ffffff; line-height: 1; white-space: nowrap; }
+        .bar-value.end { color: var(--accent-red); font-size: 2.15rem; }
+        .bar-fill { width: 130px; border-radius: 10px 10px 0 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
+        .bar-fill.equities { background: linear-gradient(180deg, #00ff88 0%, #00a85a 100%); box-shadow: 0 0 30px rgba(0, 255, 136, 0.35); }
+        .bar-fill.renewable { background: linear-gradient(180deg, #00d4ff 0%, #0288a8 100%); box-shadow: 0 0 30px rgba(0, 212, 255, 0.30); }
+        .bar-fill.bonds { background: linear-gradient(180deg, #5fb3d4 0%, #2d6a85 100%); box-shadow: 0 0 20px rgba(95, 179, 212, 0.20); }
+        .bar-fill.realestate { background: linear-gradient(180deg, #4a8aa8 0%, #20475c 100%); box-shadow: 0 0 20px rgba(74, 138, 168, 0.18); }
+        .bar-fill.repartition { background: linear-gradient(180deg, #ff4757 0%, #8a1828 100%); box-shadow: 0 0 45px rgba(255, 71, 87, 0.65); }
+        .bar-label { font-family: 'Syne', sans-serif; font-size: 1.2rem; color: var(--text-primary); font-weight: 600; text-align: center; line-height: 1.15; max-width: 150px; min-height: 42px; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding-top: 2px; }
+        .bar-label.highlight { color: var(--accent-red); }
+
+        .brackets-row { display: flex; align-items: flex-start; justify-content: center; gap: 70px; margin-top: 6px; }
+        .bracket { display: flex; flex-direction: column; align-items: center; }
+        .bracket-norway { width: 622px; }
+        .bracket-france { width: 130px; }
+        .bracket-line { width: 100%; height: 16px; border-bottom: 2px solid var(--accent-electric); border-left: 2px solid var(--accent-electric); border-right: 2px solid var(--accent-electric); border-radius: 0 0 6px 6px; }
+        .bracket-france .bracket-line { border-color: var(--accent-red); }
+        .bracket-text { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.2px; display: flex; align-items: center; gap: 12px; margin-top: 12px; white-space: nowrap; text-align: center; }
+        .bracket-text .flag { font-size: 1.85rem; line-height: 1; }
+        .bracket-text.fr-text { color: var(--accent-red); font-size: 1.25rem; gap: 9px; }
+        .bracket-text.fr-text .flag { font-size: 1.55rem; }
+        .bracket-sub { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-style: italic; color: var(--text-secondary); font-weight: 400; margin-top: 5px; text-align: center; }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; margin-top: 18px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.88rem; color: var(--text-muted); max-width: 780px; line-height: 1.4; }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+            </div>
+
+            <h2 class="chart-title">Rendement comparé :<br><span class="accent">fonds de pension norvégien</span><br><span class="vs">vs.</span> <span class="accent">retraite par répartition</span></h2>
+
+            <div class="chart-wrap">
+                <div class="bars-row">
+                    <div class="bars-group">
+                        <div class="bar-group">
+                            <div class="bar-value">19,3 %</div>
+                            <div class="bar-fill equities" style="height: 400px;"></div>
+                            <div class="bar-label">Actions</div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar-value">18,1 %</div>
+                            <div class="bar-fill renewable" style="height: 375px;"></div>
+                            <div class="bar-label">Énergies<br>renouvelables</div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar-value">5,4 %</div>
+                            <div class="bar-fill bonds" style="height: 112px;"></div>
+                            <div class="bar-label">Obligations</div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar-value">4,4 %</div>
+                            <div class="bar-fill realestate" style="height: 91px;"></div>
+                            <div class="bar-label">Immobilier</div>
+                        </div>
+                    </div>
+                    <div class="bars-group">
+                        <div class="bar-group">
+                            <div class="bar-value end">0,5 %</div>
+                            <div class="bar-fill repartition" style="height: 11px;"></div>
+                            <div class="bar-label highlight">TRI réel</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="brackets-row">
+                    <div class="bracket bracket-norway">
+                        <div class="bracket-line"></div>
+                        <div class="bracket-text"><span class="flag">🇳🇴</span>Fonds de pension norvégien</div>
+                        <div class="bracket-sub">Rendement 2025 par classe d'actifs</div>
+                    </div>
+                    <div class="bracket bracket-france">
+                        <div class="bracket-line"></div>
+                        <div class="bracket-text fr-text"><span class="flag">🇫🇷</span>Répartition</div>
+                        <div class="bracket-sub">Génération née après 1980</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Sources : <span>NBIM, Government Pension Fund Global · Annual Report 2025 · COR (TRI répartition, génération née après 1980)</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

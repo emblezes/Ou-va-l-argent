@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Depuis 2000, tout pour la retraite et la santé</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:#0a1220;--bg-mid:#142b48;--text-muted:#4a5a6a;--text-secondary:#8899a8;--accent-electric:#00d4ff;--accent-red:#ff4757;--glass-border:rgba(255,255,255,0.1);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Syne',sans-serif;background:#1a1a2e;padding:2rem;display:flex;justify-content:center;}
+.infographic{width:1080px;height:1080px;position:relative;overflow:hidden;}
+.bg-base{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%);}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.bg-glow-1{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(255,71,87,0.10) 0%,transparent 70%);top:-200px;right:-200px;}
+.bg-glow-2{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(46,192,122,0.07) 0%,transparent 70%);bottom:-150px;left:-150px;}
+.content{position:relative;z-index:1;height:100%;padding:50px 50px 40px;display:flex;flex-direction:column;}
+.header{display:flex;align-items:center;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-icon{font-family:'Instrument Serif',serif;font-size:3.6rem;color:var(--accent-electric);line-height:1;}
+.logo-text{font-family:'Instrument Serif',serif;font-size:1.7rem;font-style:italic;color:#fff;line-height:1;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:1.05rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);text-align:center;margin-top:14px;}
+.chart-title{font-family:'Instrument Serif',serif;font-size:5rem;text-align:center;color:#fff;line-height:1.03;margin-top:6px;letter-spacing:-1.6px;text-wrap:balance;}
+.chart-title .accent{color:var(--accent-red);text-decoration:underline;text-decoration-color:#fff;text-decoration-thickness:5px;text-underline-offset:9px;white-space:nowrap;}
+.chart-title .accent-soft{color:var(--accent-red);font-style:italic;white-space:nowrap;}
+.subtitle{font-family:'Syne',sans-serif;font-size:1.55rem;font-weight:600;color:#fff;text-align:center;margin-top:16px;text-decoration:underline;text-decoration-color:rgba(255,255,255,0.55);text-decoration-thickness:2px;text-underline-offset:6px;text-wrap:balance;}
+.chart-area{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;}
+svg{overflow:visible;}
+.footer{display:flex;justify-content:space-between;align-items:center;padding-top:16px;margin-top:6px;border-top:1px solid var(--glass-border);}
+.source{font-size:0.95rem;color:var(--text-muted);max-width:660px;}.source span{color:var(--text-secondary);}
+.website-url{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:var(--accent-electric);}
+</style></head>
+<body><div class="infographic">
+<div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow-1"></div><div class="bg-glow-2"></div>
+<div class="content">
+<div class="header"><div class="logo"><span class="logo-icon">&euro;</span><span class="logo-text">Où Va l'Argent ?</span></div></div>
+<h2 class="chart-title">Depuis 2000, c'est surtout la <span class="accent-soft">dépense sociale</span> qui a augmenté en France</h2>
+<div class="subtitle">Variation de la dépense publique par poste en % du PIB, 2000-2023</div>
+<div class="chart-area"><svg width="980" height="570" viewBox="0 0 980 570">
+<line x1="533.5" y1="20" x2="533.5" y2="554" stroke="#ffffff" stroke-opacity="0.30" stroke-width="1.5"/>
+<rect x="533.5" y="30" width="306.5" height="25" rx="5" fill="#ff4757"/>
+<text x="521.5" y="50" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="23" font-weight="500" text-anchor="end">Vieillesse</text>
+<text x="852.0" y="50" fill="#ff8b95" font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700" text-anchor="start">+2,5</text>
+<rect x="533.5" y="75" width="260.7" height="25" rx="5" fill="#ff4757"/>
+<text x="521.5" y="96" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="23" font-weight="500" text-anchor="end">Santé</text>
+<text x="806.3" y="96" fill="#ff8b95" font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700" text-anchor="start">+2,1</text>
+<rect x="533.5" y="120" width="150.8" height="25" rx="5" fill="#ff4757"/>
+<text x="521.5" y="140" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="23" font-weight="500" text-anchor="end">Affaires économiques</text>
+<text x="696.3" y="140" fill="#ff8b95" font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700" text-anchor="start">+1,2</text>
+<rect x="533.5" y="165" width="50.7" height="25" rx="5" fill="#ff4757"/>
+<text x="521.5" y="186" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="23" font-weight="500" text-anchor="end">Maladie</text>
+<text x="596.2" y="186" fill="#ff8b95" font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700" text-anchor="start">+0,4</text>
+<rect x="533.5" y="210" width="44.5" height="25" rx="5" fill="#ff4757"/>
+<text x="521.5" y="230" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="23" font-weight="500" text-anchor="end">Environnement</text>
+<text x="590.0" y="230" fill="#ff8b95" font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700" text-anchor="start">+0,4</text>
+<rect x="533.5" y="255" width="43.2" height="25" rx="5" fill="#ff4757"/>
+<text x="521.5" y="276" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="23" font-weight="500" text-anchor="end">Sécurité</text>
+<text x="588.8" y="276" fill="#ff8b95" font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700" text-anchor="start">+0,4</text>
+<rect x="533.5" y="300" width="34.6" height="25" rx="5" fill="#ff4757"/>
+<text x="521.5" y="320" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="23" font-weight="500" text-anchor="end">Loisirs</text>
+<text x="580.1" y="320" fill="#ff8b95" font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700" text-anchor="start">+0,3</text>
+<rect x="523.7" y="345" width="9.9" height="25" rx="5" fill="#2ec07a"/>
+<text x="545.5" y="366" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="23" font-weight="500" text-anchor="start">Logement</text>
+<text x="511.7" y="366" fill="#5fd99b" font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700" text-anchor="end">-0,1</text>
+<rect x="515.0" y="390" width="18.5" height="25" rx="5" fill="#2ec07a"/>
+<text x="545.5" y="410" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="23" font-weight="500" text-anchor="start">Chômage</text>
+<text x="503.0" y="410" fill="#5fd99b" font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700" text-anchor="end">-0,2</text>
+<rect x="502.7" y="435" width="30.9" height="25" rx="5" fill="#2ec07a"/>
+<text x="545.5" y="456" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="23" font-weight="500" text-anchor="start">Famille</text>
+<text x="490.7" y="456" fill="#5fd99b" font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700" text-anchor="end">-0,3</text>
+<rect x="464.3" y="480" width="69.2" height="25" rx="5" fill="#2ec07a"/>
+<text x="545.5" y="500" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="23" font-weight="500" text-anchor="start">Enseignement</text>
+<text x="452.3" y="500" fill="#5fd99b" font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700" text-anchor="end">-0,6</text>
+<rect x="300.0" y="525" width="233.5" height="25" rx="5" fill="#2ec07a"/>
+<text x="545.5" y="546" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="23" font-weight="500" text-anchor="start">Services publics</text>
+<text x="288.0" y="546" fill="#5fd99b" font-family="'JetBrains Mono',monospace" font-size="24" font-weight="700" text-anchor="end">-1,9</text>
+</svg></div>
+<div class="footer"><div class="source">Source : <span>Où Va l'Argent · OCDE, Études économiques : France 2026 · Variation de la dépense publique par fonction 2000-2023 (graph. 1.9)</span></div><div class="website-url">ouvalargent.com</div></div>
+</div></div></body></html>

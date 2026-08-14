@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La France dépense 2,5 fois plus que l'UE pour le logement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --bg-mid:  #142b48;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-red: #ff4757;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%); top: -200px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%); bottom: -150px; left: -150px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 60px 40px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 5.2rem; text-align: center; color: var(--text-primary); line-height: 1.02; margin-top: 18px; letter-spacing: -1.8px; }
+        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .subtitle { text-align: center; font-size: 1.15rem; color: var(--text-secondary); margin-top: 14px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; }
+
+        .chart-area { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px 0; min-height: 0; overflow: hidden; }
+
+        /* Bars en CSS pur (les barres SVG > 80×30 sont interdites par le validator) */
+        .bars-row { display: flex; align-items: flex-end; justify-content: center; gap: 110px; position: relative; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+        .bar-value { font-family: 'JetBrains Mono', monospace; font-size: 4.2rem; font-weight: 800; line-height: 1; }
+        .bar-value.france { color: var(--accent-red); }
+        .bar-value.eu     { color: var(--text-secondary); }
+        .bar-fill { width: 200px; border-radius: 10px 10px 0 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
+        .bar-fill.france { background: linear-gradient(180deg, #ff4757 0%, #c0263a 100%); box-shadow: 0 0 50px rgba(255, 71, 87, 0.55); height: 480px; }
+        .bar-fill.eu     { background: linear-gradient(180deg, #4a6580 0%, #2d4060 100%); height: 192px; }
+        .bar-label { font-family: 'JetBrains Mono', monospace; font-size: 1.85rem; color: var(--text-primary); font-weight: 700; text-align: center; }
+        .bar-label.france { color: var(--accent-red); }
+
+        /* Annotation "× 2,5" centrée entre les barres */
+        .ratio-tag {
+            position: absolute;
+            top: 38%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.8rem;
+            font-style: italic;
+            color: var(--accent-red);
+            text-shadow: 0 0 40px rgba(255, 71, 87, 0.5);
+            pointer-events: none;
+        }
+        .ratio-tag-small {
+            display: block;
+            font-family: 'Syne', sans-serif;
+            font-style: normal;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 6px;
+        }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 18px; margin-top: 6px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+            </div>
+
+            <h2 class="chart-title">La France dépense <span class="accent">2,5 fois plus</span><br>que l'UE pour le logement</h2>
+            <div class="subtitle">Part du PIB consacrée à la politique du logement · 2022</div>
+
+            <div class="chart-area">
+                <div class="bars-row">
+                    <div class="bar-group">
+                        <div class="bar-value france">1,50&nbsp;%</div>
+                        <div class="bar-fill france"></div>
+                        <div class="bar-label france">France</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value eu">0,60&nbsp;%</div>
+                        <div class="bar-fill eu"></div>
+                        <div class="bar-label">Moyenne UE</div>
+                    </div>
+
+                    <div class="ratio-tag">× 2,5<span class="ratio-tag-small">d'écart</span></div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Cour des comptes · Politique du logement · 2023</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -168,10 +168,25 @@ function coverHTMLComposite({ titre, categorie, accent, backgroundPath }) {
   .url {
     position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
     z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    line-height: 1.05;
+    text-align: center;
+  }
+  .url-value {
     font-family: 'JetBrains Mono', monospace;
     font-size: 26px; font-weight: 600;
     color: ${accent};
     letter-spacing: 2px;
+    text-shadow: 0 3px 14px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.95);
+  }
+  .url-handle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px; font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 1.5px;
     text-shadow: 0 3px 14px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.95);
   }
 </style>
@@ -185,7 +200,10 @@ function coverHTMLComposite({ titre, categorie, accent, backgroundPath }) {
     <div class="title-wrap">
       <h1 class="title">${titre}</h1>
     </div>
-    <div class="url">ouvalargent.com</div>
+    <div class="url">
+      <span class="url-value">ouvalargent.com</span>
+      <span class="url-handle">@ouvalargentfr</span>
+    </div>
   </div>
 </body>
 </html>`;

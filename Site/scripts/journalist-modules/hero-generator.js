@@ -149,9 +149,22 @@ function generateHeroHTML(title, tag) {
     font-size: 13px;
   }
   .url {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    line-height: 1.1;
+  }
+  .url-value {
     color: ${accent};
     font-weight: 600;
     font-size: 16px;
+  }
+  .url-handle {
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.3px;
   }
 </style>
 </head>
@@ -170,7 +183,7 @@ function generateHeroHTML(title, tag) {
     </div>
     <div class="footer">
       <span class="source"></span>
-      <span class="url">ouvalargent.com</span>
+      <span class="url"><span class="url-value">ouvalargent.com</span><span class="url-handle">@ouvalargentfr</span></span>
     </div>
   </div>
 </body>

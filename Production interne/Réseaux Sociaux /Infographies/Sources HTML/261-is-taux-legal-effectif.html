@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>L'impôt sur les sociétés : record sur le papier</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:#0a1220;--bg-mid:#142b48;--text-muted:#4a5a6a;--text-secondary:#8899a8;--accent-electric:#00d4ff;--accent-red:#ff4757;--glass-border:rgba(255,255,255,0.1);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Syne',sans-serif;background:#1a1a2e;padding:2rem;display:flex;justify-content:center;}
+.infographic{width:1080px;height:1080px;position:relative;overflow:hidden;}
+.bg-base{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%);}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.bg-glow-1{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(255,71,87,0.10) 0%,transparent 70%);top:-200px;right:-200px;}
+.bg-glow-2{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(0,212,255,0.06) 0%,transparent 70%);bottom:-150px;left:-150px;}
+.content{position:relative;z-index:1;height:100%;padding:50px 50px 40px;display:flex;flex-direction:column;}
+.header{display:flex;align-items:center;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-icon{font-family:'Instrument Serif',serif;font-size:3.6rem;color:var(--accent-electric);line-height:1;}
+.logo-text{font-family:'Instrument Serif',serif;font-size:1.7rem;font-style:italic;color:#fff;line-height:1;}
+.chart-title{font-family:'Instrument Serif',serif;font-size:5rem;text-align:center;color:#fff;line-height:1.03;margin-top:14px;letter-spacing:-1.6px;text-wrap:balance;}
+.chart-title .accent-soft{color:var(--accent-red);font-style:italic;white-space:nowrap;}
+.subtitle{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:600;color:#fff;text-align:center;margin-top:16px;text-decoration:underline;text-decoration-color:rgba(255,255,255,0.55);text-decoration-thickness:2px;text-underline-offset:6px;text-wrap:balance;}
+.legend{display:flex;justify-content:center;gap:34px;margin-top:14px;font-family:'Syne',sans-serif;font-size:1.15rem;color:var(--text-secondary);}
+.legend span{display:flex;align-items:center;gap:10px;}
+.dot{width:20px;height:20px;border-radius:5px;}
+.chart-area{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;}
+svg{overflow:visible;}
+.caption{text-align:center;font-family:'Syne',sans-serif;font-size:1.25rem;color:#c9d4de;margin-top:2px;}
+.caption b{color:var(--accent-electric);font-weight:700;}
+.footer{display:flex;justify-content:space-between;align-items:center;padding-top:16px;margin-top:6px;border-top:1px solid var(--glass-border);}
+.source{font-size:0.95rem;color:var(--text-muted);max-width:660px;}.source span{color:var(--text-secondary);}
+.website-url{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:var(--accent-electric);}
+</style></head>
+<body><div class="infographic">
+<div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow-1"></div><div class="bg-glow-2"></div>
+<div class="content">
+<div class="header"><div class="logo"><span class="logo-icon">&euro;</span><span class="logo-text">Où Va l'Argent ?</span></div></div>
+<h2 class="chart-title">L'impôt sur les sociétés, record <span class="accent-soft">sur le papier</span></h2>
+<div class="subtitle">Taux d'imposition des bénéfices des sociétés, France vs OCDE, 2024</div>
+<div class="legend"><span><span class="dot" style="background:#ff4757"></span>France</span><span><span class="dot" style="background:#00d4ff"></span>Moyenne OCDE</span></div>
+<div class="chart-area"><svg width="980" height="560" viewBox="0 0 980 560">
+<line x1="110" y1="500" x2="870" y2="500" stroke="#4a5a6a" stroke-opacity="0.5" stroke-width="2"/>
+<rect x="152" y="95.0" width="140" height="405.0" rx="8" fill="#ff4757"/><text x="222" y="79.0" fill="#ff8b95" font-family="'Instrument Serif',serif" font-size="48" text-anchor="middle">36,1 %</text>
+<rect x="308" y="229.6" width="140" height="270.4" rx="8" fill="#00d4ff"/><text x="378" y="213.6" fill="#7fe3ff" font-family="'Instrument Serif',serif" font-size="48" text-anchor="middle">24,1 %</text>
+<text x="300" y="542" fill="#e5ecf2" font-family="'Syne',sans-serif" font-size="28" font-weight="700" text-anchor="middle">Taux légal</text>
+<rect x="552" y="234.8" width="140" height="265.2" rx="8" fill="#ff4757"/><text x="622" y="218.8" fill="#ff8b95" font-family="'Instrument Serif',serif" font-size="48" text-anchor="middle">23,7 %</text>
+<rect x="708" y="250.1" width="140" height="249.9" rx="8" fill="#00d4ff"/><text x="778" y="234.1" fill="#7fe3ff" font-family="'Instrument Serif',serif" font-size="48" text-anchor="middle">22,3 %</text>
+<text x="700" y="542" fill="#e5ecf2" font-family="'Syne',sans-serif" font-size="28" font-weight="700" text-anchor="middle">Taux effectif moyen</text>
+</svg></div>
+<div class="caption">Et l'IS ne rapporte que <b>2,3 % du PIB</b> en France, contre <b>3,8 %</b> en moyenne dans l'OCDE.</div>
+<div class="footer"><div class="source">Source : <span>Où Va l'Argent · OCDE, Études économiques : France 2026 · Taux d'imposition des sociétés 2024 (graph. 1.13)</span></div><div class="website-url">ouvalargent.com</div></div>
+</div></div></body></html>

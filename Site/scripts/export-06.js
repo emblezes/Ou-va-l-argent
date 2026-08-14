@@ -91,10 +91,9 @@ async function run() {
           line-height: 1.1;
           margin-bottom: 20px;
         }
-        .website {
-          font-family: 'JetBrains Mono', monospace;
-          font-size: 1.8rem; font-weight: 600; color: #00d4ff;
-        }
+        .website { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; line-height: 1.1; }
+                .website-url { font-family: 'JetBrains Mono', monospace; font-size: 1.35rem; font-weight: 600; color: #00d4ff; }
+                .website-handle { font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; font-weight: 500; color: var(--text-secondary, #94a3b8); letter-spacing: 0.3px; }
       </style>
     </head>
     <body>
@@ -108,7 +107,10 @@ async function run() {
             <span class="logo-text">Où Va l'Argent ?</span>
           </div>
           <div class="title">L'État ne sait pas<br>gérer son argent</div>
-          <div class="website">ouvalargent.com</div>
+          <div class="website">
+              <span class="website-url">ouvalargent.com</span>
+              <span class="website-handle">@ouvalargentfr</span>
+          </div>
         </div>
       </div>
     </body>

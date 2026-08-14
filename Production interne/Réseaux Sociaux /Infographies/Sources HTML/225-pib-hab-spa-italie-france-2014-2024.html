@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIB par habitant : l'Italie rattrape la France</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #06080c;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --c-fr: #00d4ff;
+            --c-it: #00ff88;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, #06080c 0%, #0a1628 50%, #06080c 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%); top: -200px; right: -100px; pointer-events: none; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 255, 136, 0.07) 0%, transparent 70%); bottom: -150px; left: -100px; pointer-events: none; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 45px 40px 35px; display: flex; flex-direction: column; }
+
+        .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 5.9rem; text-align: center; margin-bottom: 4px; color: var(--text-primary); line-height: 1.02; letter-spacing: -1px; }
+        .chart-title .it { color: var(--c-it); font-style: italic; }
+        .chart-title .fr { color: var(--c-fr); font-style: italic; }
+        .chart-subtitle { text-align: center; font-size: 1.35rem; color: var(--text-secondary); margin-bottom: 8px; }
+
+        .legend { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+        .legend .item { display: inline-flex; align-items: center; gap: 10px; margin: 0 28px; }
+        .legend .swatch { width: 38px; height: 5px; border-radius: 3px; display: inline-block; }
+        .legend .flag { font-size: 2.8rem; }
+        .legend .name { font-weight: 700; font-size: 1.9rem; }
+
+        .chart-area { flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 10px; }
+        svg { overflow: visible; }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; margin-top: auto; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 1rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">PIB par habitant :<br><span class="it">l'Italie</span> rattrape <span class="fr">la France</span></h2>
+            <div class="chart-subtitle">PIB par habitant en standard de pouvoir d'achat (SPA) · 2014-2024</div>
+
+            <div class="legend">
+                <span class="item"><span class="swatch" style="background:var(--c-fr)"></span><span class="flag">🇫🇷</span><span class="name" style="color:var(--c-fr)">France</span></span>
+                <span class="item"><span class="swatch" style="background:var(--c-it)"></span><span class="flag">🇮🇹</span><span class="name" style="color:var(--c-it)">Italie</span></span>
+            </div>
+
+            <div class="chart-area">
+                <svg width="1000" height="560" viewBox="0 0 1000 560">
+                    <!-- Echelle Y : y(val) = 490 - (val-23000)*0.0244444  (23000 -> 490, 41000 -> 50) -->
+                    <!-- Axes -->
+                    <line x1="80" y1="20" x2="80" y2="490" stroke="#4a5a6a" stroke-opacity="0.5" stroke-width="1"/>
+                    <line x1="80" y1="490" x2="860" y2="490" stroke="#4a5a6a" stroke-opacity="0.5" stroke-width="1"/>
+
+                    <!-- Gridlines + Y labels -->
+                    <line x1="80" y1="441.1" x2="860" y2="441.1" stroke="#4a5a6a" stroke-opacity="0.3" stroke-dasharray="4,4"/>
+                    <text x="68" y="445.1" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="17" text-anchor="end">25 000</text>
+                    <line x1="80" y1="318.9" x2="860" y2="318.9" stroke="#4a5a6a" stroke-opacity="0.3" stroke-dasharray="4,4"/>
+                    <text x="68" y="322.9" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="17" text-anchor="end">30 000</text>
+                    <line x1="80" y1="196.7" x2="860" y2="196.7" stroke="#4a5a6a" stroke-opacity="0.3" stroke-dasharray="4,4"/>
+                    <text x="68" y="200.7" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="17" text-anchor="end">35 000</text>
+                    <line x1="80" y1="74.4" x2="860" y2="74.4" stroke="#4a5a6a" stroke-opacity="0.3" stroke-dasharray="4,4"/>
+                    <text x="68" y="78.4" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="17" text-anchor="end">40 000</text>
+                    <text x="86" y="36" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="600">SPA</text>
+
+                    <!-- X year labels -->
+                    <text x="80"  y="515" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="middle">2014</text>
+                    <text x="236" y="515" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="middle">2016</text>
+                    <text x="392" y="515" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="middle">2018</text>
+                    <text x="548" y="515" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="middle">2020</text>
+                    <text x="704" y="515" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="middle">2022</text>
+                    <text x="860" y="515" fill="#8899a8" font-family="'JetBrains Mono', monospace" font-size="18" text-anchor="middle">2024</text>
+
+                    <!-- Repere 2022 : l'Italie passe devant -->
+                    <line x1="704" y1="188.2" x2="704" y2="490" stroke="var(--c-it)" stroke-opacity="0.22" stroke-width="1.5" stroke-dasharray="5,5"/>
+
+                    <defs>
+                        <linearGradient id="grad-FR" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.28"/>
+                            <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.02"/>
+                        </linearGradient>
+                        <linearGradient id="grad-IT" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#00ff88" stop-opacity="0.30"/>
+                            <stop offset="100%" stop-color="#00ff88" stop-opacity="0.02"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- AIRES : France dessous (rouge), Italie par-dessus (cyan) -> bande rouge = avance francaise -->
+                    <path d="M80,344.5 L158,330.7 L236,322.4 L314,304.6 L392,283.1 L470,239.5 L548,280.9 L626,234.7 L704,193.1 L782,122.0 L860,91.7 L860,490 L80,490 Z" fill="url(#grad-FR)"/>
+                    <path d="M80,409.8 L158,395.2 L236,364.8 L314,344.7 L392,329.8 L470,310.4 L548,358.4 L626,275.3 L704,188.2 L782,130.8 L860,97.2 L860,490 L80,490 Z" fill="url(#grad-IT)"/>
+
+                    <!-- COURBES -->
+                    <path d="M80,344.5 L158,330.7 L236,322.4 L314,304.6 L392,283.1 L470,239.5 L548,280.9 L626,234.7 L704,193.1 L782,122.0 L860,91.7" fill="none" stroke="var(--c-fr)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M80,409.8 L158,395.2 L236,364.8 L314,344.7 L392,329.8 L470,310.4 L548,358.4 L626,275.3 L704,188.2 L782,130.8 L860,97.2" fill="none" stroke="var(--c-it)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+                    <!-- Points + valeurs de DEPART (2014) -->
+                    <circle cx="80" cy="344.5" r="6" fill="var(--c-fr)" stroke="#06080c" stroke-width="2.5"/>
+                    <text x="92" y="318" fill="var(--c-fr)" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="800" text-anchor="start">28 953</text>
+                    <circle cx="80" cy="409.8" r="6" fill="var(--c-it)" stroke="#06080c" stroke-width="2.5"/>
+                    <text x="92" y="432" fill="var(--c-it)" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="800" text-anchor="start">26 280</text>
+
+                    <!-- Points + valeurs d'ARRIVEE (2024) -->
+                    <circle cx="860" cy="91.7" r="8" fill="var(--c-fr)" stroke="#06080c" stroke-width="2.5"/>
+                    <text x="876" y="78" fill="var(--c-fr)" font-family="'JetBrains Mono', monospace" font-size="27" font-weight="800" text-anchor="start">39 294</text>
+                    <circle cx="860" cy="97.2" r="8" fill="var(--c-it)" stroke="#06080c" stroke-width="2.5"/>
+                    <text x="876" y="136" fill="var(--c-it)" font-family="'JetBrains Mono', monospace" font-size="27" font-weight="800" text-anchor="start">39 068</text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Eurostat — PIB/hab en SPA courant (nama_10_pc) · 2014-2024</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

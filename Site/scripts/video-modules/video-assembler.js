@@ -91,11 +91,20 @@ async function assembleVideo({ beats, audioPath, wordTimings, outputPath, accent
   const height = cfg.REMOTION_HEIGHT || 1920;
 
   const outDir = path.dirname(outputPath);
-  const { publicDir, audioRel, beatAssets, musicRel } = preparePublicDir({ outDir, audioPath, beats, musicPath });
+  // Le dossier de travail (audio, public, beats) reste dans Articles/{date}/{slug}/ — pas dans le dossier de sortie final (Infographies/...).
+  // On stocke les assets publics à côté de l'audio source, dans son dossier d'origine.
+  const workDir = path.dirname(audioPath);
+  const { publicDir, audioRel, beatAssets, musicRel } = preparePublicDir({ outDir: workDir, audioPath, beats, musicPath });
 
   // Durée cible = fin de l'audio (source de vérité)
   const audioEnd = wordTimings[wordTimings.length - 1]?.endSec || 45;
-  const totalFrames = secToFrames(audioEnd, fps);
+  const audioFrames = secToFrames(audioEnd, fps);
+
+  // Écran CTA final "Abonne-toi" (2 secondes par défaut, configurable via CTA_DURATION_SEC)
+  const ctaDurationSec = cfg.CTA_DURATION_SEC ?? 2;
+  const ctaDurationFrames = secToFrames(ctaDurationSec, fps);
+  const ctaStartFrame = audioFrames;
+  const totalFrames = audioFrames + ctaDurationFrames;
 
   // Construit les Sequences en les chaînant sans trou noir :
   // chaque beat s'étire jusqu'au début du suivant (ou totalFrames pour le dernier).
@@ -112,7 +121,7 @@ async function assembleVideo({ beats, audioPath, wordTimings, outputPath, accent
     const a = withAsset[i];
     if (!a.clipRel && !a.imageRel) continue;
     const startFrame = framesBeats.length === 0 ? 0 : secToFrames(a.startSec, fps);
-    let endFrame = totalFrames;
+    let endFrame = audioFrames; // le dernier visuel s'arrête avant l'écran CTA
     for (let j = i + 1; j < withAsset.length; j++) {
       if (withAsset[j].clipRel || withAsset[j].imageRel) {
         endFrame = secToFrames(withAsset[j].startSec, fps);
@@ -149,9 +158,11 @@ async function assembleVideo({ beats, audioPath, wordTimings, outputPath, accent
     width,
     height,
     accent: accent || '#00d4ff',
+    ctaStartFrame,
+    ctaDurationFrames,
   };
 
-  const propsPath = path.join(outDir, 'remotion-props.json');
+  const propsPath = path.join(workDir, 'remotion-props.json');
   fs.writeFileSync(propsPath, JSON.stringify(props, null, 2));
 
   const entry = path.join(__dirname, 'remotion', 'index.ts');

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Les prélèvements les plus lourds de l'OCDE</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:#0a1220;--bg-mid:#142b48;--text-muted:#4a5a6a;--text-secondary:#8899a8;--accent-electric:#00d4ff;--accent-red:#ff4757;--glass-border:rgba(255,255,255,0.1);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Syne',sans-serif;background:#1a1a2e;padding:2rem;display:flex;justify-content:center;}
+.infographic{width:1080px;height:1080px;position:relative;overflow:hidden;}
+.bg-base{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%);}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.bg-glow-1{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(255,71,87,0.10) 0%,transparent 70%);top:-200px;right:-200px;}
+.bg-glow-2{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(255,71,87,0.07) 0%,transparent 70%);bottom:-150px;left:-150px;}
+.content{position:relative;z-index:1;height:100%;padding:50px 50px 40px;display:flex;flex-direction:column;}
+.header{display:flex;align-items:center;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-icon{font-family:'Instrument Serif',serif;font-size:3.6rem;color:var(--accent-electric);line-height:1;}
+.logo-text{font-family:'Instrument Serif',serif;font-size:1.7rem;font-style:italic;color:#fff;line-height:1;}
+.chart-title{font-family:'Instrument Serif',serif;font-size:5rem;text-align:center;color:#fff;line-height:1.03;margin-top:14px;letter-spacing:-1.6px;text-wrap:balance;}
+.chart-title .accent-soft{color:var(--accent-red);font-style:italic;white-space:nowrap;}
+.subtitle{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:600;color:#fff;text-align:center;margin-top:16px;text-decoration:underline;text-decoration-color:rgba(255,255,255,0.55);text-decoration-thickness:2px;text-underline-offset:6px;text-wrap:balance;}
+.chart-area{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;}
+svg{overflow:visible;}
+.footer{display:flex;justify-content:space-between;align-items:center;padding-top:16px;margin-top:6px;border-top:1px solid var(--glass-border);}
+.source{font-size:0.95rem;color:var(--text-muted);max-width:660px;}.source span{color:var(--text-secondary);}
+.website-url{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:var(--accent-electric);}
+</style></head>
+<body><div class="infographic">
+<div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow-1"></div><div class="bg-glow-2"></div>
+<div class="content">
+<div class="header"><div class="logo"><span class="logo-icon">&euro;</span><span class="logo-text">Où Va l'Argent ?</span></div></div>
+<h2 class="chart-title">La France prélève <span class="accent-soft">10 points de PIB</span> de plus que l'OCDE</h2>
+<div class="subtitle">Total des recettes fiscales (impôts et cotisations), en % du PIB, 2024</div>
+<div class="chart-area"><svg width="980" height="580" viewBox="0 0 980 580">
+<line x1="80" y1="505" x2="900" y2="505" stroke="#4a5a6a" stroke-opacity="0.5" stroke-width="2"/>
+<rect x="131" y="110.0" width="158" height="395.0" rx="9" fill="#ff4757"/>
+<text x="210" y="92.0" fill="#ff8b95" font-family="'Instrument Serif',serif" font-size="60" text-anchor="middle">43,5 %</text>
+<text x="210" y="551" fill="#e5ecf2" font-family="'Syne',sans-serif" font-size="26" font-weight="700" text-anchor="middle">France</text>
+<rect x="421" y="170.8" width="158" height="334.2" rx="9" fill="#8899a8"/>
+<text x="500" y="152.8" fill="#c9d4de" font-family="'Instrument Serif',serif" font-size="60" text-anchor="middle">36,8 %</text>
+<text x="500" y="551" fill="#e5ecf2" font-family="'Syne',sans-serif" font-size="26" font-weight="700" text-anchor="middle">Union européenne</text>
+<rect x="711" y="200.8" width="158" height="304.2" rx="9" fill="#00d4ff"/>
+<text x="790" y="182.8" fill="#7fe3ff" font-family="'Instrument Serif',serif" font-size="60" text-anchor="middle">33,5 %</text>
+<text x="790" y="551" fill="#e5ecf2" font-family="'Syne',sans-serif" font-size="26" font-weight="700" text-anchor="middle">Moyenne OCDE</text>
+</svg></div>
+<div class="footer"><div class="source">Source : <span>Où Va l'Argent · OCDE, Études économiques : France 2026 · Ventilation des recettes fiscales 2024 (graph. 1.13)</span></div><div class="website-url">ouvalargent.com</div></div>
+</div></div></body></html>

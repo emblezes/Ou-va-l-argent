@@ -562,7 +562,10 @@ ${barsHTML}
 
             <div class="footer">
                 <div class="source">Source : <span>${owidData.source} · OWID · ${yearStr}</span></div>
-                <div class="website">ouvalargent.com</div>
+                <div class="website">
+                    <span class="website-url">ouvalargent.com</span>
+                    <span class="website-handle">@ouvalargentfr</span>
+                </div>
             </div>
         </div>
     </div>
@@ -1068,7 +1071,10 @@ function generateEvolutionHTML(owidData, title, colorScheme, countryCodes) {
 
             <div class="footer">
                 <div class="source">Source : <span>${owidData.source} · OWID · ${minYear}-${maxYear}</span></div>
-                <div class="website">ouvalargent.com</div>
+                <div class="website">
+                    <span class="website-url">ouvalargent.com</span>
+                    <span class="website-handle">@ouvalargentfr</span>
+                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>La France surtaxe le travail, pas les profits</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:#0a1220;--bg-mid:#142b48;--text-muted:#4a5a6a;--text-secondary:#8899a8;--accent-electric:#00d4ff;--accent-red:#ff4757;--glass-border:rgba(255,255,255,0.1);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Syne',sans-serif;background:#1a1a2e;padding:2rem;display:flex;justify-content:center;}
+.infographic{width:1080px;height:1080px;position:relative;overflow:hidden;}
+.bg-base{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%);}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.bg-glow-1{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(255,71,87,0.10) 0%,transparent 70%);top:-200px;right:-200px;}
+.bg-glow-2{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(46,192,122,0.06) 0%,transparent 70%);bottom:-150px;left:-150px;}
+.content{position:relative;z-index:1;height:100%;padding:50px 50px 40px;display:flex;flex-direction:column;}
+.header{display:flex;align-items:center;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-icon{font-family:'Instrument Serif',serif;font-size:3.6rem;color:var(--accent-electric);line-height:1;}
+.logo-text{font-family:'Instrument Serif',serif;font-size:1.7rem;font-style:italic;color:#fff;line-height:1;}
+.chart-title{font-family:'Instrument Serif',serif;font-size:5rem;text-align:center;color:#fff;line-height:1.03;margin-top:14px;letter-spacing:-1.6px;text-wrap:balance;}
+.chart-title .accent-soft{color:var(--accent-red);font-style:italic;white-space:nowrap;}
+.subtitle{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:600;color:#fff;text-align:center;margin-top:16px;text-decoration:underline;text-decoration-color:rgba(255,255,255,0.55);text-decoration-thickness:2px;text-underline-offset:6px;text-wrap:balance;}
+.legend{display:flex;justify-content:center;gap:34px;margin-top:14px;font-family:'Syne',sans-serif;font-size:1.15rem;color:var(--text-secondary);}
+.legend span{display:flex;align-items:center;gap:10px;}
+.dot{width:20px;height:20px;border-radius:5px;}
+.chart-area{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;}
+svg{overflow:visible;}
+.footer{display:flex;justify-content:space-between;align-items:center;padding-top:16px;margin-top:6px;border-top:1px solid var(--glass-border);}
+.source{font-size:0.95rem;color:var(--text-muted);max-width:660px;}.source span{color:var(--text-secondary);}
+.website-url{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:var(--accent-electric);}
+</style></head>
+<body><div class="infographic">
+<div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow-1"></div><div class="bg-glow-2"></div>
+<div class="content">
+<div class="header"><div class="logo"><span class="logo-icon">&euro;</span><span class="logo-text">Où Va l'Argent ?</span></div></div>
+<h2 class="chart-title">La France surtaxe <span class="accent-soft">le travail</span>, pas les profits</h2>
+<div class="subtitle">Écart de recettes fiscales France – OCDE par type d'impôt, en % du PIB, 2024</div>
+<div class="legend"><span><span class="dot" style="background:#ff4757"></span>La France prélève plus</span><span><span class="dot" style="background:#2ec07a"></span>La France prélève moins</span></div>
+<div class="chart-area"><svg width="980" height="500" viewBox="0 0 980 500">
+<line x1="406.4" y1="20" x2="406.4" y2="494" stroke="#ffffff" stroke-opacity="0.30" stroke-width="1.5"/>
+<rect x="406.4" y="34" width="473.6" height="44" rx="7" fill="#ff4757"/>
+<text x="392.4" y="65" fill="#e5ecf2" font-family="'Syne',sans-serif" font-size="27" font-weight="600" text-anchor="end">Cotisations sociales</text>
+<text x="894.0" y="65" fill="#ff8b95" font-family="'JetBrains Mono',monospace" font-size="30" font-weight="700" text-anchor="start">+7,4</text>
+<rect x="406.4" y="116" width="110.5" height="44" rx="7" fill="#ff4757"/>
+<text x="392.4" y="147" fill="#e5ecf2" font-family="'Syne',sans-serif" font-size="27" font-weight="600" text-anchor="end">Patrimoine immobilier</text>
+<text x="530.9" y="147" fill="#ff8b95" font-family="'JetBrains Mono',monospace" font-size="30" font-weight="700" text-anchor="start">+1,7</text>
+<rect x="406.4" y="198" width="68.8" height="44" rx="7" fill="#ff4757"/>
+<text x="392.4" y="229" fill="#e5ecf2" font-family="'Syne',sans-serif" font-size="27" font-weight="600" text-anchor="end">Impôt sur le revenu</text>
+<text x="489.2" y="229" fill="#ff8b95" font-family="'JetBrains Mono',monospace" font-size="30" font-weight="700" text-anchor="start">+1,1</text>
+<rect x="406.4" y="280" width="44.3" height="44" rx="7" fill="#ff4757"/>
+<text x="392.4" y="311" fill="#e5ecf2" font-family="'Syne',sans-serif" font-size="27" font-weight="600" text-anchor="end">Biens & services</text>
+<text x="464.7" y="311" fill="#ff8b95" font-family="'JetBrains Mono',monospace" font-size="30" font-weight="700" text-anchor="start">+0,7</text>
+<rect x="406.4" y="362" width="41.1" height="44" rx="7" fill="#ff4757"/>
+<text x="392.4" y="393" fill="#e5ecf2" font-family="'Syne',sans-serif" font-size="27" font-weight="600" text-anchor="end">Autres impôts</text>
+<text x="461.5" y="393" fill="#ff8b95" font-family="'JetBrains Mono',monospace" font-size="30" font-weight="700" text-anchor="start">+0,6</text>
+<rect x="310.0" y="444" width="96.4" height="44" rx="7" fill="#2ec07a"/>
+<text x="420.4" y="475" fill="#e5ecf2" font-family="'Syne',sans-serif" font-size="27" font-weight="600" text-anchor="start">Bénéfices des sociétés</text>
+<text x="296.0" y="475" fill="#5fd99b" font-family="'JetBrains Mono',monospace" font-size="30" font-weight="700" text-anchor="end">-1,5</text>
+</svg></div>
+<div class="footer"><div class="source">Source : <span>Où Va l'Argent · OCDE, Études économiques : France 2026 · Ventilation des recettes fiscales 2024 (graph. 1.13)</span></div><div class="website-url">ouvalargent.com</div></div>
+</div></div></body></html>

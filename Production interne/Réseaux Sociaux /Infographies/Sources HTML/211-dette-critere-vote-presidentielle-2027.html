@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présidentielle 2027 : 82% attendent un programme sur la dette</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a88899;
+            --text-muted: #6a4a5a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #0a1220 0%, #142b48 50%, #0a1220 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.10) 0%, transparent 70%);
+            top: -250px;
+            right: -150px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.07) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 30px 60px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.0rem;
+            text-align: center;
+            margin-bottom: 18px;
+            color: var(--text-primary);
+            line-height: 1.06;
+            letter-spacing: -1.2px;
+        }
+
+        .chart-title .accent {
+            color: #00ff88;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Présidentielle 2027 :<br><span class="accent">82%</span> des Français préoccupés<br>par la dette</h2>
+
+            <div class="chart-area">
+                <svg width="960" height="650" viewBox="0 0 960 650">
+                    <!-- Donut à gauche : centre (260, 300), R=180, r=120 -->
+
+                    <!-- Slice 1 : Très important 34% — vert foncé -->
+                    <path d="M260,120 A180,180 0 0,1 411.97,396.45 L361.32,364.30 A120,120 0 0,0 260,180 Z"
+                          fill="#00cc66" stroke="#0a1220" stroke-width="2" />
+
+                    <!-- Slice 2 : Assez important 48% — vert clair -->
+                    <path d="M411.97,396.45 A180,180 0 0,1 97.14,223.35 L151.42,248.90 A120,120 0 0,0 361.32,364.30 Z"
+                          fill="#52d68e" stroke="#0a1220" stroke-width="2" />
+
+                    <!-- Slice 3 : Peu important 13% — orange -->
+                    <path d="M97.14,223.35 A180,180 0 0,1 204.38,128.80 L222.92,185.87 A120,120 0 0,0 151.42,248.90 Z"
+                          fill="#ff9f43" stroke="#0a1220" stroke-width="2" />
+
+                    <!-- Slice 4 : Pas important du tout 4% — rouge -->
+                    <path d="M204.38,128.80 A180,180 0 0,1 248.70,120.36 L252.46,180.24 A120,120 0 0,0 222.92,185.87 Z"
+                          fill="#ff4757" stroke="#0a1220" stroke-width="2" />
+
+                    <!-- Slice 5 : NSP 1% — gris -->
+                    <path d="M248.70,120.36 A180,180 0 0,1 260,120 L260,180 A120,120 0 0,0 252.46,180.24 Z"
+                          fill="#6a4a5a" stroke="#0a1220" stroke-width="2" />
+
+                    <!-- Hero text au centre du donut -->
+                    <text x="260" y="310" text-anchor="middle" font-family="'Instrument Serif', serif" font-size="110" font-weight="400" fill="#00ff88" font-style="italic">82%<tspan x="260" dy="42" font-family="'Syne', sans-serif" font-size="22" font-weight="600" fill="#f0f4f8" font-style="normal" letter-spacing="2">IMPORTANT</tspan></text>
+
+                    <!-- Panneau droit : question (italique) + légende -->
+
+                    <!-- Question en italique en haut à droite, blanc plus gros -->
+                    <text x="540" y="50" font-family="'Instrument Serif', serif" font-size="36" font-style="italic" fill="#f0f4f8">« Dans votre vote en 2027,<tspan x="540" dy="46">le programme des candidats</tspan><tspan x="540" dy="46">sur la dette sera-t-il</tspan><tspan x="540" dy="46">un élément… ? »</tspan></text>
+
+                    <!-- Légende verticale à droite, 5 catégories (total = 100%) -->
+                    <!-- Item 1 : Très important -->
+                    <circle cx="555" cy="260" r="12" fill="#00cc66" />
+                    <text x="585" y="254" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Très important<tspan x="585" dy="36" font-family="'JetBrains Mono', monospace" font-size="34" font-weight="700" fill="#00cc66">34%</tspan></text>
+
+                    <!-- Item 2 : Assez important -->
+                    <circle cx="555" cy="340" r="12" fill="#52d68e" />
+                    <text x="585" y="334" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Assez important<tspan x="585" dy="36" font-family="'JetBrains Mono', monospace" font-size="34" font-weight="700" fill="#52d68e">48%</tspan></text>
+
+                    <!-- Item 3 : Peu important -->
+                    <circle cx="555" cy="420" r="12" fill="#ff9f43" />
+                    <text x="585" y="414" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Peu important<tspan x="585" dy="36" font-family="'JetBrains Mono', monospace" font-size="34" font-weight="700" fill="#ff9f43">13%</tspan></text>
+
+                    <!-- Item 4 : Pas important du tout -->
+                    <circle cx="555" cy="500" r="12" fill="#ff4757" />
+                    <text x="585" y="494" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Pas important du tout<tspan x="585" dy="36" font-family="'JetBrains Mono', monospace" font-size="34" font-weight="700" fill="#ff4757">4%</tspan></text>
+
+                    <!-- Item 5 : Sans réponse -->
+                    <circle cx="555" cy="580" r="12" fill="#6a4a5a" />
+                    <text x="585" y="574" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Sans réponse<tspan x="585" dy="36" font-family="'JetBrains Mono', monospace" font-size="34" font-weight="700" fill="#a88899">1%</tspan></text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Sondage Odoxa-Backbone Consulting pour Le Figaro · 30 avril–1er mai 2025 · 1 005 Français</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

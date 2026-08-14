@@ -65,13 +65,16 @@ function buildGroups(words: Word[]): Group[] {
   return groups;
 }
 
-export const Subtitles: React.FC<{ words: Word[] }> = ({ words }) => {
+export const Subtitles: React.FC<{ words: Word[]; endFrame?: number }> = ({ words, endFrame }) => {
   const frame = useCurrentFrame();
   const { height } = useVideoConfig();
 
-  if (!words || words.length === 0) return null;
+  // Tous les hooks AVANT tout return conditionnel (règle des hooks React).
+  const groups = React.useMemo(() => buildGroups(words || []), [words]);
 
-  const groups = React.useMemo(() => buildGroups(words), [words]);
+  if (!words || words.length === 0) return null;
+  if (typeof endFrame === 'number' && frame >= endFrame) return null;
+
   const active = groups.find((g) => frame >= g.startFrame && frame < g.endFrame);
 
   if (!active) return null;
@@ -94,18 +97,21 @@ export const Subtitles: React.FC<{ words: Word[] }> = ({ words }) => {
         style={{
           fontFamily: "'Syne', 'Helvetica Neue', 'Arial Black', sans-serif",
           fontWeight: 900,
-          fontSize: 120,
+          fontSize: 96,
           lineHeight: 1.05,
           color: '#FFD93D',
           textAlign: 'center',
           textTransform: 'uppercase',
           letterSpacing: '-0.015em',
-          WebkitTextStroke: '7px #000',
+          WebkitTextStroke: '6px #000',
           paintOrder: 'stroke fill',
           textShadow:
             '0 0 18px rgba(0,0,0,0.85), 0 4px 0 rgba(0,0,0,0.9), 0 6px 20px rgba(0,0,0,0.55)',
-          maxWidth: 920,
+          maxWidth: 980,
           padding: '0 40px',
+          overflowWrap: 'break-word',
+          wordBreak: 'break-word',
+          hyphens: 'auto',
           transform: `scale(${scale})`,
           opacity,
           transformOrigin: 'center center',

@@ -1,0 +1,15 @@
+{
+  "date": "2026-06-23",
+  "batchSlug": "chu-nantes",
+  "cards": [
+    {
+      "name": "chu-nantes-clim",
+      "photo": "photos/chu-nantes.png",
+      "photoPos": "center 28%",
+      "fontScale": 1.2,
+      "headline": "Le nouveau CHU de Nantes ouvrira en 2028.",
+      "reveal": "Un hôpital à <big>1,25 milliard d'euros</big> — <span style=\"text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px;\">sans climatisation</span> dans les chambres.",
+      "source": "CHU de Nantes · Chambre régionale des comptes Pays de la Loire"
+    }
+  ]
+}

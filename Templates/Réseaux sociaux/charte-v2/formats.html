@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Charte OVLA v2 — bibliothèque de formats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* fonds */
+  --bg-deep:#0a1220; --bg-mid:#142b48; --bg-ink:#05080f; --bg-ink2:#0d1622;
+  /* textes */
+  --text-primary:#f2f6fa; --text-secondary:#8fa3b6; --text-muted:#4a5a6a;
+  /* accents */
+  --red:#ff4757; --cyan:#00d4ff; --gold:#ffd700; --green:#00ff88; --orange:#ff9f43; --violet:#a855f7;
+  --border:rgba(255,255,255,.10);
+  /* typographie (variante F : logo serif historique + titres grotesque) */
+  --font-logo:'Instrument Serif',serif;
+  --font-display:'Bricolage Grotesque',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b0b12;font-family:var(--font-body);padding:2rem;display:flex;flex-direction:column;align-items:center;gap:2rem}
+.vlabel{color:#6f8296;font-family:var(--font-mono);font-size:.95rem;letter-spacing:2.5px;text-transform:uppercase}
+
+/* ===================== SOCLE COMMUN ===================== */
+.slide{width:1080px;height:1080px;position:relative;overflow:hidden;color:var(--text-primary)}
+.bg{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%)}
+.slide.ink .bg{background:linear-gradient(160deg,var(--bg-ink) 0%,var(--bg-ink2) 55%,#050a12 100%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.04) 1px,transparent 1px);background-size:40px 40px}
+.slide.ink .grid{opacity:.5}
+.glow{position:absolute;border-radius:50%}
+.glow.a{width:780px;height:780px;top:-250px;right:-230px;background:radial-gradient(circle,rgba(255,71,87,.13) 0%,transparent 70%)}
+.glow.b{width:540px;height:540px;bottom:-180px;left:-170px;background:radial-gradient(circle,rgba(0,212,255,.07) 0%,transparent 70%)}
+.slide.cyan-mood .glow.a{background:radial-gradient(circle,rgba(0,212,255,.13) 0%,transparent 70%)}
+.slide.gold-mood .glow.a{background:radial-gradient(circle,rgba(255,215,0,.11) 0%,transparent 70%)}
+
+.wrap{position:relative;z-index:2;height:100%;padding:40px 52px 26px;display:flex;flex-direction:column}
+.logo{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.logo i{font-family:var(--font-logo);font-size:4.2rem;color:var(--cyan);line-height:.9;font-style:normal}
+.logo b{font-family:var(--font-logo);font-size:2rem;font-style:italic;font-weight:400;color:#fff;line-height:1}
+
+.foot{display:flex;justify-content:space-between;align-items:flex-end;padding-top:16px;margin-top:auto;border-top:1px solid var(--border);flex-shrink:0}
+.foot .src{font-size:1.22rem;color:var(--text-muted);max-width:640px;line-height:1.4}
+.foot .src span{color:var(--text-secondary)}
+.foot .site{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.foot .url{font-family:var(--font-mono);font-size:1.65rem;font-weight:700;color:var(--cyan)}
+.foot .hdl{font-family:var(--font-mono);font-size:1.1rem;color:var(--text-secondary)}
+
+.kicker{font-family:var(--font-mono);font-size:1.75rem;letter-spacing:1.8px;text-transform:uppercase;color:var(--text-secondary);font-weight:500}
+.red{color:var(--red)} .cy{color:var(--cyan)} .gd{color:var(--gold)} .gr{color:var(--green)}
+/* unité collée au chiffre (évite l'espace large des chiffres mono) */
+.pc{font-size:.5em;font-style:normal;margin-left:.1em;opacity:.7;letter-spacing:0}
+.eu{font-size:.66em;font-style:normal;margin-left:.12em;letter-spacing:0}
+
+/* ===================== F1 · MANIFESTE ===================== */
+.f-manifeste .body{flex:1;display:flex;flex-direction:column;justify-content:center;margin:26px 0 18px}
+.f-manifeste .inner{padding-left:32px;border-left:5px solid var(--red)}
+.f-manifeste .txt{font-family:var(--font-display);font-weight:800;font-size:7.1rem;line-height:.97;letter-spacing:-3.5px}
+.f-manifeste .after{font-family:var(--font-body);font-size:3.1rem;font-weight:700;color:var(--text-secondary);line-height:1.25;margin-top:44px}
+
+/* ===================== F2 · MEGA-CHIFFRE ===================== */
+.f-mega .body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.f-mega .n{font-family:var(--font-mono);font-weight:800;font-size:19rem;line-height:.82;letter-spacing:-14px;color:var(--red);text-shadow:0 0 90px rgba(255,71,87,.45)}
+.f-mega .u{font-family:var(--font-display);font-weight:700;font-size:4.6rem;letter-spacing:-1px;margin-top:-6px}
+.f-mega .what{font-family:var(--font-display);font-weight:700;font-size:3.4rem;text-align:center;line-height:1.15;margin-top:34px;max-width:900px;letter-spacing:-1px}
+.f-mega .cmp{font-family:var(--font-body);font-size:1.45rem;color:var(--text-secondary);margin-top:20px;text-align:center}
+.f-mega .cmp b{color:var(--text-primary);font-weight:700}
+
+/* ===================== F3 · DUEL ===================== */
+.f-duel .title{font-family:var(--font-display);font-weight:800;font-size:5rem;line-height:1.02;letter-spacing:-1.6px;text-align:center;margin-top:22px}
+.f-duel .body{flex:1;display:flex;align-items:stretch;gap:0;margin:10px 0 0;position:relative}
+.f-duel .side{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:20px 30px}
+.f-duel .side + .side{border-left:1px solid var(--border)}
+.f-duel .flag{width:116px;height:78px;border-radius:5px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
+.f-duel .flag svg{width:100%;height:100%;display:block}
+.f-duel .badge{width:116px;height:78px;border-radius:5px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);box-shadow:0 0 0 1px rgba(255,255,255,.15);font-family:var(--font-mono);font-weight:700;font-size:1.35rem;color:var(--text-secondary);letter-spacing:1px}
+.f-duel .who{font-family:var(--font-display);font-weight:700;font-size:2.6rem;letter-spacing:-.4px}
+.f-duel .val{font-family:var(--font-mono);font-weight:800;font-size:8.4rem;line-height:1;letter-spacing:-6px}
+.f-duel .side.hot .val{color:var(--red);text-shadow:0 0 70px rgba(255,71,87,.4)}
+.f-duel .side.cold .val{color:var(--text-secondary)}
+.f-duel .unit{font-family:var(--font-mono);font-size:1.5rem;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:-10px}
+.f-duel .tag{font-family:var(--font-body);font-size:1.3rem;font-weight:600;color:var(--text-secondary);text-align:center;margin-top:10px}
+.f-duel .side.hot .tag{color:var(--red)}
+.f-duel .ecart{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:5px;background:#0e1e33;border:1px solid rgba(255,215,0,.35);border-radius:100px;padding:16px 26px;box-shadow:0 0 50px rgba(0,0,0,.5)}
+.f-duel .ecart .e{font-family:var(--font-mono);font-weight:800;font-size:2.6rem;color:var(--gold);line-height:1}
+.f-duel .ecart .l{font-family:var(--font-mono);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted)}
+
+/* ===================== F4 · ISOTYPE ===================== */
+.f-iso .title{font-family:var(--font-display);font-weight:800;font-size:5rem;line-height:1.02;letter-spacing:-1.6px;text-align:center;margin-top:18px}
+.f-iso .sub{text-align:center;margin-top:13px}
+.f-iso .rows{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;padding:8px 0}
+.f-iso .row{display:flex;flex-direction:column;gap:9px}
+.f-iso .head{display:flex;align-items:center;gap:14px}
+.f-iso .flag{width:48px;height:32px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.18);flex-shrink:0}
+.f-iso .flag svg{width:100%;height:100%;display:block}
+.f-iso .cty{font-family:var(--font-display);font-weight:700;font-size:2.1rem}
+.f-iso .n{margin-left:auto;font-family:var(--font-mono);font-weight:800;font-size:3.3rem;line-height:1}
+.f-iso .row.hl .cty,.f-iso .row.hl .n{color:var(--red)}
+.f-iso .icons{display:flex;gap:3px}
+.f-iso .ic{width:51px;height:47px;flex-shrink:0}
+.f-iso .ic svg{width:100%;height:100%;display:block}
+.f-iso .ic.off{opacity:.15}
+
+/* ===================== F5 · GRILLE 100 ===================== */
+.f-grid100 .title{font-family:var(--font-display);font-weight:800;font-size:5rem;line-height:1.02;letter-spacing:-2.4px;margin-top:20px;max-width:640px}
+.f-grid100 .body{flex:1;display:flex;align-items:center;gap:44px;padding:14px 0}
+.f-grid100 .left{flex:1;display:flex;flex-direction:column;gap:20px}
+.f-grid100 .big{font-family:var(--font-mono);font-weight:800;font-size:10rem;line-height:.9;letter-spacing:-7px;color:var(--red)}
+.f-grid100 .leg{font-family:var(--font-body);font-size:2.1rem;font-weight:700;color:var(--text-secondary);line-height:1.35;max-width:400px}
+.f-grid100 .leg b{color:var(--text-primary)}
+.f-grid100 .sq{display:grid;grid-template-columns:repeat(10,1fr);gap:8px;width:492px;flex-shrink:0}
+.f-grid100 .sq i{display:block;width:100%;aspect-ratio:1;border-radius:5px;background:rgba(255,255,255,.09)}
+.f-grid100 .sq i.on{background:var(--red);box-shadow:0 0 16px rgba(255,71,87,.35)}
+
+/* ===================== F6 · CHRONOLOGIE ===================== */
+.f-time .title{font-family:var(--font-display);font-weight:800;font-size:5rem;line-height:1.02;letter-spacing:-1.6px;text-align:center;margin-top:18px}
+.f-time .sub{text-align:center;margin-top:13px}
+.f-time .body{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:0;padding:6px 0}
+.f-time .step{display:flex;align-items:center;gap:28px;position:relative;min-height:104px}
+.f-time .step:not(:last-child)::after{content:"";position:absolute;left:127px;top:52px;height:100%;width:2px;background:linear-gradient(180deg,rgba(255,71,87,.6),rgba(255,71,87,.15))}
+.f-time .yr{font-family:var(--font-mono);font-weight:700;font-size:2.2rem;color:var(--text-secondary);width:108px;flex-shrink:0;text-align:right}
+.f-time .dot{width:22px;height:22px;border-radius:50%;background:var(--red);flex-shrink:0;box-shadow:0 0 0 7px rgba(255,71,87,.14);z-index:1;margin-left:8px}
+.f-time .step .val{font-family:var(--font-mono);font-weight:800;font-size:5rem;line-height:1;letter-spacing:-2.5px;min-width:190px}
+.f-time .step .cap{font-family:var(--font-body);font-size:1.35rem;color:var(--text-secondary)}
+.f-time .step.last .val{color:var(--red);font-size:6.6rem}
+.f-time .step.last .dot{width:30px;height:30px;margin-left:4px;box-shadow:0 0 0 10px rgba(255,71,87,.18)}
+.f-time .step.last .yr{color:var(--text-primary)}
+
+/* ===================== F7 · CLASSEMENT ===================== */
+.f-rank .title{font-family:var(--font-display);font-weight:800;font-size:5rem;line-height:1.02;letter-spacing:-1.6px;margin-top:18px}
+.f-rank .sub{margin-top:13px}
+.f-rank .body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:52px;padding:16px 0}
+.f-rank .r{display:flex;align-items:center;gap:18px}
+.f-rank .flag{width:64px;height:43px;border-radius:4px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.2);flex-shrink:0}
+.f-rank .flag svg{width:100%;height:100%;display:block}
+.f-rank .nm{font-family:var(--font-display);font-weight:700;font-size:2.4rem;width:245px;flex-shrink:0}
+.f-rank .track{display:block;flex:1;height:92px;position:relative;background:rgba(255,255,255,.04);border-radius:5px}
+.f-rank .fill{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,rgba(143,163,182,.75),rgba(143,163,182,.32))}
+.f-rank .r.hl .fill{background:linear-gradient(90deg,var(--red),rgba(255,71,87,.45));box-shadow:0 0 30px rgba(255,71,87,.3)}
+.f-rank .r.hl .nm{color:var(--red)}
+.f-rank .v{font-family:var(--font-mono);font-weight:800;font-size:3.6rem;width:150px;text-align:right;flex-shrink:0}
+.f-rank .r.hl .v{color:var(--red)}
+
+/* ===================== F8 · GRAPHIQUE (complexe) ===================== */
+.f-chart .title{font-family:var(--font-display);font-weight:800;font-size:5rem;line-height:1.02;letter-spacing:-1.5px;text-align:center;margin-top:18px}
+.f-chart .sub{text-align:center;margin-top:12px}
+.f-chart .body{flex:1;display:flex;padding:16px 0 0}
+.f-chart svg{width:100%;height:100%;overflow:visible}
+.f-chart .ax{font-family:var(--font-mono);font-size:28px;fill:#c3d2df}
+.f-chart .lbl{font-family:var(--font-body);font-size:27px;font-weight:800}
+.f-chart .lblv{font-family:var(--font-mono);font-size:34px;font-weight:800}
+
+/* ===================== F9 · FLUX 100 € ===================== */
+.f-flux .title{font-family:var(--font-display);font-weight:800;font-size:5rem;line-height:1.02;letter-spacing:-1.5px;margin-top:18px}
+.f-flux .sub{margin-top:12px}
+.f-flux .body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:22px;padding:14px 0}
+.f-flux .stack{display:flex;height:76px;border-radius:6px;overflow:hidden;box-shadow:0 0 40px rgba(0,0,0,.4)}
+.f-flux .stack i{display:block;height:100%}
+.f-flux .lines{display:flex;flex-direction:column;gap:23px}
+.f-flux .ln{display:flex;align-items:center;gap:16px}
+.f-flux .sw{width:22px;height:22px;border-radius:5px;flex-shrink:0}
+.f-flux .nm{font-family:var(--font-body);font-size:2.1rem;font-weight:700;flex:1}
+.f-flux .amt{font-family:var(--font-mono);font-weight:800;font-size:2.7rem;width:165px;text-align:right}
+.f-flux .bill{font-family:var(--font-display);font-weight:800;font-size:2.6rem;letter-spacing:-1px;margin-bottom:2px}
+
+
+/* ===================== F10 · MOSAÏQUE EUROPE ===================== */
+.f-map .title{font-family:var(--font-display);font-weight:800;font-size:5rem;line-height:1.02;letter-spacing:-1.8px;text-align:center;margin-top:18px}
+.f-map .sub{text-align:center;margin-top:14px}
+.f-map .body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:8px 0}
+.f-map .band{display:flex;gap:16px;justify-content:center}
+.f-map .tile{width:340px;height:150px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10)}
+.f-map .tile.wide{width:696px;height:186px;background:rgba(255,71,87,.16);border-color:rgba(255,71,87,.5);box-shadow:0 0 60px rgba(255,71,87,.22)}
+.f-map .tile .top{display:flex;align-items:center;gap:12px}
+.f-map .tile .fl{width:46px;height:31px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.22)}
+.f-map .tile .fl svg{width:100%;height:100%;display:block}
+.f-map .tile .nm{font-family:var(--font-display);font-weight:700;font-size:1.9rem}
+.f-map .tile .vl{font-family:var(--font-mono);font-weight:800;font-size:3.2rem;line-height:1;color:var(--text-secondary)}
+.f-map .tile.wide .fl{width:62px;height:42px}
+.f-map .tile.wide .nm{font-size:2.5rem;color:var(--red)}
+.f-map .tile.wide .vl{font-size:5rem;color:var(--red);text-shadow:0 0 60px rgba(255,71,87,.4)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <g id="canadair">
+    <path d="M50 2 C57 11 60 26 60 43 L60 70 C60 81 56 89 50 89 C44 89 40 81 40 70 L40 43 C40 26 43 11 50 2 Z"/>
+    <path d="M1 30 L99 30 L94 44 L6 44 Z"/>
+    <path d="M23 21 L35 21 L34 47 L24 47 Z"/><path d="M65 21 L77 21 L76 47 L66 47 Z"/>
+    <path d="M5 43 L15 43 L14 57 L7 57 Z"/><path d="M85 43 L95 43 L93 57 L86 57 Z"/>
+    <path d="M25 72 L75 72 L71 82 L29 82 Z"/><path d="M46 66 L54 66 L54 91 L46 91 Z"/>
+  </g>
+</defs></svg>
+
+<div id="root"></div>
+
+<script>
+/* ============ BRIQUES COMMUNES ============ */
+const FLAGS = {
+  fr:`<svg viewBox="0 0 30 20"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ed2939"/></svg>`,
+  it:`<svg viewBox="0 0 30 20"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ce2b37"/></svg>`,
+  es:`<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#aa151b"/><rect y="5" width="30" height="10" fill="#f1bf00"/></svg>`,
+  gr:`<svg viewBox="0 0 27 18"><rect width="27" height="18" fill="#0d5eaf"/><g fill="#fff"><rect y="2" width="27" height="2"/><rect y="6" width="27" height="2"/><rect y="10" width="27" height="2"/><rect y="14" width="27" height="2"/></g><rect width="10" height="10" fill="#0d5eaf"/><g fill="#fff"><rect x="4" width="2" height="10"/><rect y="4" width="10" height="2"/></g></svg>`,
+  eu:`<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#003399"/>${Array.from({length:12},(_,i)=>{const a=i*Math.PI/6-Math.PI/2;return `<circle cx="${(15+6*Math.cos(a)).toFixed(2)}" cy="${(10+6*Math.sin(a)).toFixed(2)}" r="1" fill="#ffcc00"/>`}).join('')}</svg>`,
+  us:`<svg viewBox="0 0 30 20">${Array.from({length:13},(_,i)=>`<rect y="${i*20/13}" width="30" height="${20/13}" fill="${i%2?'#fff':'#b22234'}"/>`).join('')}<rect width="13" height="${20*7/13}" fill="#3c3b6e"/></svg>`,
+  nl:`<svg viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#ae1c28"/><rect y="6.67" width="30" height="6.67" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#21468b"/></svg>`,
+  de:`<svg viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#000"/><rect y="6.67" width="30" height="6.67" fill="#dd0000"/><rect y="13.33" width="30" height="6.67" fill="#ffce00"/></svg>`,
+  ocde:`<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#16324f"/><circle cx="15" cy="10" r="6" fill="none" stroke="#8fa3b6" stroke-width="1.4"/><path d="M9 10h12M15 4.2v11.6" stroke="#8fa3b6" stroke-width="1"/></svg>`
+};
+const LOGO = `<div class="logo"><i>€</i><b>Où Va l'Argent ?</b></div>`;
+const SITE = `<div class="site"><span class="url">ouvalargent.com</span></div>`;
+const foot = src => `<div class="foot"><div class="src">Source : <span>${src}</span></div>${SITE}</div>`;
+const glows = extra => `<div class="bg"></div><div class="grid"></div><div class="glow a"></div><div class="glow b"></div>`;
+const slide = (cls,name,inner) => `<div class="vlabel">${name}</div><div class="slide ${cls}" data-name="${name}">${glows()}<div class="wrap">${inner}</div></div>`;
+
+/* ============ F1 · MANIFESTE ============ */
+const F1 = slide('f-manifeste ink','01-MANIFESTE',`
+  ${LOGO}
+  <div class="body"><div class="inner">
+    <div class="txt">57 % du PIB<br>part en <span class="red">dépense<br>publique</span>.</div>
+    <div class="after">Zone euro : 49 %. États-Unis : 38 %.</div>
+  </div></div>
+  ${foot("OCDE, Études économiques : France 2026 · Dépenses publiques en % du PIB")}`);
+
+/* ============ F2 · MEGA-CHIFFRE ============ */
+const F2 = slide('f-mega','02-MEGA-CHIFFRE',`
+  ${LOGO}
+  <div class="body">
+    <div class="kicker">Charge de la dette · 2025</div>
+    <div class="n">54</div>
+    <div class="u">milliards €</div>
+    <div class="what">d'intérêts sur la dette,<br>chaque année</div>
+  </div>
+  ${foot("Sénat · Projet de loi de finances 2025")}`);
+
+/* ============ F3 · DUEL ============ */
+const F3 = slide('f-duel','03-DUEL',`
+  ${LOGO}
+  <div class="title">La France prélève<br><span class="red">10 points de plus</span></div>
+  <div class="kicker" style="text-align:center;margin-top:14px">Recettes fiscales totales, en % du PIB · 2024</div>
+  <div class="body">
+    <div class="side hot">
+      <div class="flag">${FLAGS.fr}</div><div class="who">France</div>
+      <div class="val">43,5<em class="pc">%</em></div>
+    </div>
+    <div class="side cold">
+      <div class="badge">OCDE</div><div class="who">Moyenne OCDE</div>
+      <div class="val">33,5<em class="pc">%</em></div>
+    </div>
+  </div>
+  ${foot("OCDE, Études économiques : France 2026 · Recettes fiscales 2024 (graph. 1.13)")}`);
+
+/* ============ F4 · ISOTYPE ============ */
+const ISO = [
+  {f:'it',n:'Italie',v:18,t:18},{f:'gr',n:'Grèce',v:18,t:18},
+  {f:'es',n:'Espagne',v:14,t:18},{f:'fr',n:'France',v:12,t:18,hl:1}
+];
+const plane = c => `<svg viewBox="0 0 100 93"><use href="#canadair" fill="${c}"/></svg>`;
+const F4 = slide('f-iso','04-ISOTYPE',`
+  ${LOGO}
+  <div class="title">12 Canadair en France,<br>18 en <span class="red">Italie</span></div>
+  <div class="sub kicker">Avions bombardiers d'eau en service · 2026</div>
+  <div class="rows">
+    ${ISO.map(d=>{const c=d.hl?'#ff4757':'#93b0c8';
+      return `<div class="row ${d.hl?'hl':''}">
+        <div class="head"><span class="flag">${FLAGS[d.f]}</span><span class="cty">${d.n}</span><span class="n">${d.v}</span></div>
+        <div class="icons">${Array.from({length:d.v},()=>`<span class="ic">${plane(c)}</span>`).join('')}${Array.from({length:d.t-d.v},()=>`<span class="ic off">${plane(c)}</span>`).join('')}</div>
+      </div>`}).join('')}
+  </div>
+  ${foot("Sécurité civile (FR) · Vigili del Fuoco (IT) · Armée de l'air (GR) · 43 Grupo (ES) · Flottes CL-215 / CL-415, été 2026")}`);
+
+/* ============ F5 · GRILLE 100 ============ */
+const F5 = slide('f-grid100','05-GRILLE-100',`
+  ${LOGO}
+  <div class="title">Sur 100 € produits,<br><span class="red">57 € vont à l'État</span></div>
+  <div class="body">
+    <div class="left">
+      <div class="big">57<em class="eu">€</em></div>
+      <div class="leg">Zone euro : 49 €<br>États-Unis : 38 €</div>
+    </div>
+    <div class="sq">${Array.from({length:100},(_,i)=>`<i class="${i<57?'on':''}"></i>`).join('')}</div>
+  </div>
+  ${foot("OCDE, Études économiques : France 2026 · Dépenses publiques en % du PIB")}`);
+
+/* ============ F6 · CHRONOLOGIE ============ */
+const TIME = [
+  {y:'1980',v:'21<em class="pc">%</em>',c:'Avant les grands déficits'},
+  {y:'2000',v:'59<em class="pc">%</em>',c:'Passage des critères de Maastricht'},
+  {y:'2010',v:'85<em class="pc">%</em>',c:'Après la crise financière'},
+  {y:'2024',v:'113<em class="pc">%</em>',c:'Record absolu en temps de paix',last:1}
+];
+const F6 = slide('f-time','06-CHRONOLOGIE',`
+  ${LOGO}
+  <div class="title">La dette publique<br><span class="red">multipliée par 5</span></div>
+  <div class="sub kicker">Dette publique en % du PIB · France</div>
+  <div class="body">
+    ${TIME.map(t=>`<div class="step ${t.last?'last':''}">
+      <span class="yr">${t.y}</span><span class="dot"></span>
+      <span class="val">${t.v}</span>
+    </div>`).join('')}
+  </div>
+  ${foot("INSEE · Eurostat · Dette publique au sens de Maastricht")}`);
+
+/* ============ F7 · CLASSEMENT ============ */
+const RANK = [
+  {f:'fr',n:'France',v:57,hl:1},{f:'eu',n:'Zone euro',v:49},{f:'us',n:'États-Unis',v:38}
+];
+const F7 = slide('f-rank','07-CLASSEMENT',`
+  ${LOGO}
+  <div class="title">La dépense publique<br>la plus élevée de <span class="red">l'OCDE</span></div>
+  <div class="sub kicker">Dépense publique totale, en % du PIB · 2024</div>
+  <div class="body">
+    ${RANK.map(r=>`<div class="r ${r.hl?'hl':''}">
+      <span class="flag">${FLAGS[r.f]}</span><span class="nm">${r.n}</span>
+      <span class="track"><span class="fill" style="width:${r.v/57*100}%"></span></span>
+      <span class="v">${r.v}<em class="pc">%</em></span>
+    </div>`).join('')}
+  </div>
+  ${foot("OCDE, Études économiques : France 2026 · Dépenses publiques en % du PIB")}`);
+
+/* ============ F8 · GRAPHIQUE COMPLEXE ============ */
+function chartSVG(){
+  const W=980,H=545,pad={l:64,r:170,t:30,b:52};
+  const years=[2008,2012,2016,2020,2025];
+  const dep=[53.3,56.7,56.6,61.4,56.2], rec=[49.9,51.8,52.5,52.3,51.2];
+  const xmin=2008,xmax=2025,ymin=46,ymax=63;
+  const X=y=>pad.l+(y-xmin)/(xmax-xmin)*(W-pad.l-pad.r);
+  const Y=v=>pad.t+(ymax-v)/(ymax-ymin)*(H-pad.t-pad.b);
+  const path=a=>a.map((v,i)=>`${i?'L':'M'}${X(years[i]).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
+  const area=`${path(dep)} L${X(years.at(-1))},${Y(rec.at(-1))} ${[...rec].reverse().map((v,i)=>`L${X([...years].reverse()[i])},${Y(v)}`).join(' ')} Z`;
+  const gl=[50,55,60].map(v=>`<line x1="${pad.l}" y1="${Y(v)}" x2="${W-pad.r}" y2="${Y(v)}" stroke="rgba(255,255,255,.07)"/><text class="ax" x="${pad.l-12}" y="${Y(v)+5}" text-anchor="end">${v}</text>`).join('');
+  const xt=years.map(y=>`<text class="ax" x="${X(y)}" y="${H-pad.b+28}" text-anchor="middle">${y}</text>`).join('');
+  const dots=(a,c)=>a.map((v,i)=>`<circle cx="${X(years[i])}" cy="${Y(v)}" r="5" fill="${c}"/>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}">
+    ${gl}${xt}
+    <path d="${area}" fill="rgba(255,71,87,.16)"/>
+    <path d="${path(dep)}" fill="none" stroke="#ff4757" stroke-width="4.5" stroke-linejoin="round"/>
+    <path d="${path(rec)}" fill="none" stroke="#00d4ff" stroke-width="4.5" stroke-linejoin="round"/>
+    ${dots(dep,'#ff4757')}${dots(rec,'#00d4ff')}
+    <text class="lbl" x="${X(2025)+16}" y="${Y(56.2)-8}" fill="#ff4757">Dépenses</text>
+    <text class="lblv" x="${X(2025)+16}" y="${Y(56.2)+20}" fill="#ff4757">+2,9</text>
+    <text class="lbl" x="${X(2025)+16}" y="${Y(51.2)+4}" fill="#00d4ff">Recettes</text>
+    <text class="lblv" x="${X(2025)+16}" y="${Y(51.2)+32}" fill="#00d4ff">+1,3</text>
+  </svg>`;
+}
+const F8 = slide('f-chart','08-GRAPHIQUE',`
+  ${LOGO}
+  <div class="title">Les dépenses filent,<br><span class="red">pas les recettes</span></div>
+  <div class="sub kicker">France · en % du PIB · 2008-2025</div>
+  <div class="body">${chartSVG()}</div>
+  ${foot("OCDE, Études économiques : France 2026 · Dépenses / recettes 2008-2025 (graph. 1.7)")}`);
+
+/* ============ F9 · FLUX 100 € ============ */
+const FLUX=[
+  {n:'Protection sociale',v:42,c:'#ff4757'},{n:'Santé',v:14,c:'#ff9f43'},
+  {n:'Services de l'+"'"+'État et dette',v:11,c:'#a855f7'},{n:'Économie',v:10,c:'#ffd700'},
+  {n:'École',v:9,c:'#00d4ff'},{n:'Régalien',v:6,c:'#00ff88'},{n:'Le reste',v:8,c:'#5b6b7d'}
+];
+const F9 = slide('f-flux','09-FLUX',`
+  ${LOGO}
+  <div class="title">Où vont <span class="red">100 €</span><br>de dépense publique ?</div>
+  <div class="sub kicker">Répartition par fonction · France</div>
+  <div class="body">
+    <div class="stack">${FLUX.map(f=>`<i style="width:${f.v}%;background:${f.c}"></i>`).join('')}</div>
+    <div class="lines">${FLUX.map(f=>`<div class="ln"><span class="sw" style="background:${f.c}"></span><span class="nm">${f.n}</span><span class="amt" style="color:${f.c}">${f.v}<em class="eu">€</em></span></div>`).join('')}</div>
+  </div>
+  ${foot("Eurostat · Classification COFOG des dépenses publiques, France (arrondis)")}`);
+
+
+/* ============ F10 · MOSAÏQUE EUROPE ============ */
+const tile = (f,n,v,wide) => `<div class="tile ${wide?'wide':''}">
+  <div class="top"><span class="fl">${FLAGS[f]}</span><span class="nm">${n}</span></div>
+  <div class="vl">${v}<em class="pc">%</em></div></div>`;
+const F10 = slide('f-map','10-MOSAIQUE',`
+  ${LOGO}
+  <div class="title">La France dépense plus<br>que <span class="red">tous ses voisins</span></div>
+  <div class="sub kicker">Dépense publique · % du PIB · 2024</div>
+  <div class="body">
+    <div class="band">${tile('nl','Pays-Bas','44,4')}${tile('de','Allemagne','49,4')}</div>
+    <div class="band">${tile('fr','France','57,3',true)}</div>
+    <div class="band">${tile('es','Espagne','45,5')}${tile('it','Italie','50,4')}</div>
+  </div>
+  ${foot("Eurostat · Fipeco · Dépenses publiques totales en % du PIB, 2024")}`);
+
+document.getElementById('root').outerHTML = [F1,F2,F3,F4,F5,F6,F7,F8,F9,F10].join('');
+</script>
+</body>
+</html>

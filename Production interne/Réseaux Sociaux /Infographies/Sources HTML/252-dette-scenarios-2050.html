@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La dette publique de la France pourrait atteindre 203 % du PIB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-deep: #0a1220; --bg-mid: #142b48; --text-primary: #f0f4f8; --text-secondary: #8899a8; --text-muted: #4a5a6a; --accent-electric: #00d4ff; --accent-red: #ff4757; --glass-border: rgba(255,255,255,0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255,71,87,0.10) 0%, transparent 70%); top: -200px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,71,87,0.07) 0%, transparent 70%); bottom: -150px; left: -150px; }
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 60px 40px; display: flex; flex-direction: column; }
+        .header { display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #fff; line-height: 1; }
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 3.9rem; font-style: normal; text-align: center; color: #fff; line-height: 1.06; margin-top: 12px; letter-spacing: -1.2px; text-wrap: balance; }
+        .chart-title .accent { color: var(--accent-red); font-style: normal; text-decoration: underline; text-decoration-color: #fff; text-decoration-thickness: 4px; text-underline-offset: 8px; white-space: nowrap; }
+        .kicker { text-align: center; margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-secondary); }
+        .chart-area { flex: 1; display: flex; align-items: flex-end; justify-content: center; padding: 34px 0 6px; min-height: 0; }
+        .bars-row { display: flex; align-items: flex-end; justify-content: center; gap: 150px; border-bottom: 2px solid rgba(255,255,255,0.14); }
+        .bar-group { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 18px; }
+        .bar-label { font-family: 'Instrument Serif', serif; font-size: 2.6rem; text-align: center; line-height: 1.05; white-space: nowrap; }
+        .bar-fill { width: 270px; border-radius: 12px 12px 0 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.12); position: relative; }
+        .bar-num { position: absolute; top: 24px; left: 0; right: 0; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 3rem; font-weight: 700; color: #ffffff; }
+        .b-green { background: linear-gradient(180deg, #00ff88 0%, #059c58 100%); }
+        .b-gold  { background: linear-gradient(180deg, #ffd700 0%, #b89600 100%); }
+        .b-red   { background: linear-gradient(180deg, #ff4757 0%, #b02a36 100%); box-shadow: 0 0 45px rgba(255,71,87,0.45), inset 0 1px 0 rgba(255,255,255,0.12); }
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; margin-top: 6px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.95rem; color: var(--text-muted); max-width: 640px; } .source span { color: var(--text-secondary); }
+        .website-url { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow-1"></div><div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header"><div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div></div>
+            <h2 class="chart-title">Selon l'OCDE, la dette de la France pourrait atteindre <span class="accent">203 % du PIB</span> en 2050</h2>
+            <div class="kicker">Scénario de l'OCDE · juin 2026</div>
+            <div class="chart-area">
+                <div class="bars-row">
+                    <div class="bar-group">
+                        <div class="bar-label" style="color:#00ff88">Avec réformes</div>
+                        <div class="bar-fill b-green" style="height: 258px;"><span class="bar-num">97 %</span></div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-label" style="color:#ff4757">Sans réforme</div>
+                        <div class="bar-fill b-red" style="height: 540px;"><span class="bar-num">203 %</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="source">Source : <span>Où Va l'Argent · OCDE, Études économiques : France 2026 · Graphique 1.8, scénarios de dette publique (horizon 2050)</span></div>
+                <div class="website-url">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

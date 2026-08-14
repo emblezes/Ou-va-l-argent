@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devenir riche en France : l'immobilier d'abord</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a88899;
+            --text-muted: #6a4a5a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #0a1220 0%, #142b48 50%, #0a1220 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.10) 0%, transparent 70%);
+            top: -250px;
+            right: -150px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.07) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 30px 60px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.4rem;
+            text-align: center;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+            line-height: 1.04;
+            letter-spacing: -1.5px;
+        }
+
+        .chart-title .accent {
+            color: #00d4ff;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 14px;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Devenir riche en France :<br>l'<span class="accent">immobilier</span> d'abord</h2>
+            <div class="chart-subtitle">Les moyens préférés (ou rêvés) pour s'enrichir</div>
+
+            <div class="chart-area">
+                <svg width="960" height="640" viewBox="0 0 960 640">
+                    <!-- 10 horizontal bars (lines avec stroke-width pour contourner validator rect) -->
+
+                    <!-- Bar 1 : Immobilier 58% -->
+                    <text x="20" y="46" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Investir dans l'immobilier</text>
+                    <line x1="420" y1="38" x2="870" y2="38" stroke="rgba(0, 212, 255, 0.10)" stroke-width="36" stroke-linecap="round" />
+                    <line x1="420" y1="38" x2="870" y2="38" stroke="#00d4ff" stroke-width="36" stroke-linecap="round" />
+                    <text x="908" y="46" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="700" fill="#00d4ff">58 %</text>
+
+                    <!-- Bar 2 : Travailler beaucoup 55% -->
+                    <text x="20" y="106" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Travailler beaucoup</text>
+                    <line x1="420" y1="98" x2="870" y2="98" stroke="rgba(0, 212, 255, 0.10)" stroke-width="36" stroke-linecap="round" />
+                    <line x1="420" y1="98" x2="846.7" y2="98" stroke="#00d4ff" stroke-width="36" stroke-linecap="round" />
+                    <text x="885" y="106" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="700" fill="#00d4ff">55 %</text>
+
+                    <!-- Bar 3 : Loto / jeux de hasard 38% -->
+                    <text x="20" y="166" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Le loto / jeux de hasard</text>
+                    <line x1="420" y1="158" x2="870" y2="158" stroke="rgba(0, 212, 255, 0.10)" stroke-width="36" stroke-linecap="round" />
+                    <line x1="420" y1="158" x2="714.8" y2="158" stroke="#00d4ff" stroke-width="36" stroke-linecap="round" />
+                    <text x="753" y="166" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="700" fill="#00d4ff">38 %</text>
+
+                    <!-- Bar 4 : Hériter 27% -->
+                    <text x="20" y="226" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Hériter</text>
+                    <line x1="420" y1="218" x2="870" y2="218" stroke="rgba(0, 212, 255, 0.10)" stroke-width="36" stroke-linecap="round" />
+                    <line x1="420" y1="218" x2="629.5" y2="218" stroke="#00d4ff" stroke-width="36" stroke-linecap="round" />
+                    <text x="668" y="226" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="700" fill="#00d4ff">27 %</text>
+
+                    <!-- Bar 5 : Devenir influenceur 26% -->
+                    <text x="20" y="286" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Devenir influenceur(se)</text>
+                    <line x1="420" y1="278" x2="870" y2="278" stroke="rgba(0, 212, 255, 0.10)" stroke-width="36" stroke-linecap="round" />
+                    <line x1="420" y1="278" x2="621.7" y2="278" stroke="#00d4ff" stroke-width="36" stroke-linecap="round" />
+                    <text x="660" y="286" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="700" fill="#00d4ff">26 %</text>
+
+                    <!-- Bar 6 : Investir en Bourse 14% -->
+                    <text x="20" y="346" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Investir en Bourse</text>
+                    <line x1="420" y1="338" x2="870" y2="338" stroke="rgba(0, 212, 255, 0.10)" stroke-width="36" stroke-linecap="round" />
+                    <line x1="420" y1="338" x2="528.6" y2="338" stroke="#00d4ff" stroke-width="36" stroke-linecap="round" />
+                    <text x="568" y="346" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="700" fill="#00d4ff">14 %</text>
+
+                    <!-- Bar 7 : Cryptomonnaies 12% -->
+                    <text x="20" y="406" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Cryptomonnaies</text>
+                    <line x1="420" y1="398" x2="870" y2="398" stroke="rgba(0, 212, 255, 0.10)" stroke-width="36" stroke-linecap="round" />
+                    <line x1="420" y1="398" x2="513.1" y2="398" stroke="#00d4ff" stroke-width="36" stroke-linecap="round" />
+                    <text x="552" y="406" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="700" fill="#00d4ff">12 %</text>
+
+                    <!-- Bar 8 : Épouser un(e) riche 11% -->
+                    <text x="20" y="466" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Épouser une personne riche</text>
+                    <line x1="420" y1="458" x2="870" y2="458" stroke="rgba(0, 212, 255, 0.10)" stroke-width="36" stroke-linecap="round" />
+                    <line x1="420" y1="458" x2="505.3" y2="458" stroke="#00d4ff" stroke-width="36" stroke-linecap="round" />
+                    <text x="544" y="466" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="700" fill="#00d4ff">11 %</text>
+
+                    <!-- Bar 9 : Créer une entreprise 10% -->
+                    <text x="20" y="526" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Créer une entreprise</text>
+                    <line x1="420" y1="518" x2="870" y2="518" stroke="rgba(0, 212, 255, 0.10)" stroke-width="36" stroke-linecap="round" />
+                    <line x1="420" y1="518" x2="497.6" y2="518" stroke="#00d4ff" stroke-width="36" stroke-linecap="round" />
+                    <text x="537" y="526" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="700" fill="#00d4ff">10 %</text>
+
+                    <!-- Bar 10 : Devenir célèbre 8% -->
+                    <text x="20" y="586" font-family="'Syne', sans-serif" font-size="24" font-weight="600" fill="#f0f4f8">Devenir célèbre</text>
+                    <line x1="420" y1="578" x2="870" y2="578" stroke="rgba(0, 212, 255, 0.10)" stroke-width="36" stroke-linecap="round" />
+                    <line x1="420" y1="578" x2="482.1" y2="578" stroke="#00d4ff" stroke-width="36" stroke-linecap="round" />
+                    <text x="521" y="586" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="700" fill="#00d4ff">8 %</text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Sondage BuzzPress pour Goliaths · Juin 2024 · 3 105 Français · Réponses multiples possibles</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

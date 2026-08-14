@@ -388,8 +388,12 @@ body { padding: 0 !important; margin: 0 !important; }
   font-size: 1.5rem !important;
 }
 
-.website {
+.website-url {
   font-size: 1.8rem !important;
+}
+
+.website-handle {
+  font-size: 1.55rem !important;
 }
 
 /* --- Bar charts (salaires) : supprimer les barres, montrer les valeurs --- */
@@ -1452,8 +1456,12 @@ body { padding: 0 !important; margin: 0 !important; }
   font-size: 0.6rem !important;
 }
 
-.website {
+.website-url {
   font-size: 0.85rem !important;
+}
+
+.website-handle {
+  font-size: 0.72rem !important;
 }
 
 /* ===== NOUVEAUX TYPES — Rectangle Horizontal ===== */
@@ -1961,6 +1969,43 @@ const INFOGRAPHICS = [
   ['197-cpf-1800-euros-par-francais.html', 0, '197-cpf-1800-euros-par-francais'],
   ['200-top-10-associations-subventionnees-etat.html', 0, '200-top-10-associations-subventionnees-etat'],
   ['201-ou-va-argent-etat-associations-postes.html', 0, '201-ou-va-argent-etat-associations-postes'],
+  ['208-cout-travail-decomposition-1951-2024.html', 0, '208-cout-travail-decomposition-1951-2024'],
+  ['209-salaires-enseignants-declassement-1980-2024.html', 0, '209-salaires-enseignants-declassement-1980-2024'],
+  ['210-medecins-hospitaliers-declassement-1980-2024.html', 0, '210-medecins-hospitaliers-declassement-1980-2024'],
+  ['211-dette-critere-vote-presidentielle-2027.html', 0, '211-dette-critere-vote-presidentielle-2027'],
+  ['212-moyens-reves-devenir-riche-francais.html', 0, '212-moyens-reves-devenir-riche-francais'],
+  ['213-salaires-soignants-vs-smic.html', 0, '213-salaires-soignants-vs-smic'],
+  ['214-salaires-infirmieres-europe.html', 0, '214-salaires-infirmieres-europe'],
+  ['215-salaires-profs-france-ocde.html', 0, '215-salaires-profs-france-ocde'],
+  ['216-depenses-militaires-monde-sipri-2025.html', 0, '216-depenses-militaires-monde-sipri-2025'],
+  ['217-bulletin-paie-mathilde-aide-soignante.html', 0, '217-bulletin-paie-mathilde-aide-soignante'],
+  ['218-dette-france-grece-trimestriel-2023-2025.html', 0, '218-dette-france-grece-trimestriel-2023-2025'],
+  ['219-rendement-norvege-vs-repartition-france.html', 0, '219-rendement-norvege-vs-repartition-france'],
+  ['220-construction-effondrement-2022-2023.html', 0, '220-construction-effondrement-2022-2023'],
+  ['221-poids-logement-budget-menages-1985-2020.html', 0, '221-poids-logement-budget-menages-1985-2020'],
+  ['222-france-vs-ue-depense-logement-pib.html', 0, '222-france-vs-ue-depense-logement-pib'],
+  ['223-prix-immo-vs-salaires-inflation-2001-2020.html', 0, '223-prix-immo-vs-salaires-inflation-2001-2020'],
+  ['224-pib-hab-indice-italie-france-2014-2024.html', 0, '224-pib-hab-indice-italie-france-2014-2024'],
+  ['225-pib-hab-spa-italie-france-2014-2024.html', 0, '225-pib-hab-spa-italie-france-2014-2024'],
+  ['226-deficit-public-6-2-2027.html', 0, '226-deficit-public-6-2-2027'],
+  ['227-budget-justice-par-habitant-europe.html', 0, '227-budget-justice-par-habitant-europe'],
+  ['228-repartition-budget-justice-2025.html', 0, '228-repartition-budget-justice-2025'],
+  ['229-evolution-budget-justice-2017-2027.html', 0, '229-evolution-budget-justice-2017-2027'],
+  ['231-deficit-secu-double-2023-2025.html', 0, '231-deficit-secu-double-2023-2025'],
+  ['232-deficit-secu-par-branche-2025.html', 0, '232-deficit-secu-par-branche-2025'],
+  ['233-dette-secu-acoss-68-md-2026.html', 0, '233-dette-secu-acoss-68-md-2026'],
+  ['234-reforme-retraites-2023-gain-net.html', 0, '234-reforme-retraites-2023-gain-net'],
+  ['235-ondam-depenses-sante-265-md-2025.html', 0, '235-ondam-depenses-sante-265-md-2025'],
+  ['236-hopital-30000-lits-inadequats.html', 0, '236-hopital-30000-lits-inadequats'],
+  ['237-soins-dentaires-15-7-md-2024.html', 0, '237-soins-dentaires-15-7-md-2024'],
+  ['238-transport-patients-6-md-2025.html', 0, '238-transport-patients-6-md-2025'],
+  ['239-natalite-naissances-2014-2025.html', 0, '239-natalite-naissances-2014-2025'],
+  ['240-pension-actifs-pib-tous-pays-ocde.html', 0, '240-pension-actifs-pib-tous-pays-ocde'],
+  ['241-pension-actifs-pib-duel-france-paysbas.html', 0, '241-pension-actifs-pib-duel-france-paysbas'],
+  ['242-pension-actifs-pib-trois-pays.html', 0, '242-pension-actifs-pib-trois-pays'],
+  ['243-depense-publique-retraite-france-ocde.html', 0, '243-depense-publique-retraite-france-ocde'],
+  ['244-emploi-public-evolution-1980-2023.html', 0, '244-emploi-public-evolution-1980-2023'],
+  ['245-ciseau-social-regalien-pib.html', 0, '245-ciseau-social-regalien-pib'],
 
 ];
 

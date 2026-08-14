@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La France manque de juges</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --bg-mid:  #142b48;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-red: #ff4757;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%); top: -200px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 212, 255, 0.07) 0%, transparent 70%); bottom: -150px; left: -150px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 60px 40px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 5.4rem; text-align: center; color: var(--text-primary); line-height: 1.02; margin-top: 18px; letter-spacing: -1.8px; }
+        .chart-title .accent { color: var(--accent-red); font-style: italic; }
+        .subtitle { text-align: center; font-size: 1.7rem; color: var(--text-secondary); margin-top: 16px; letter-spacing: 1px; font-weight: 600; }
+
+        .chart-area { flex: 1; display: flex; align-items: center; justify-content: center; padding: 28px 0 8px; min-height: 0; }
+
+        .bars-row { display: flex; align-items: flex-end; justify-content: center; gap: 26px; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+        .bar-value { font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 700; color: var(--text-primary); line-height: 1; }
+        .bar-value.france  { color: var(--accent-red); font-size: 2.4rem; }
+        .bar-value.moyenne { color: var(--accent-electric); font-size: 2.2rem; }
+        .bar-fill { width: 116px; border-radius: 10px 10px 0 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
+        .bar-fill.neutral { background: linear-gradient(180deg, #4a6580 0%, #2d4060 100%); }
+        .bar-fill.france  { background: linear-gradient(180deg, #ff4757 0%, #b02a36 100%); box-shadow: 0 0 45px rgba(255, 71, 87, 0.55); }
+        .bar-fill.moyenne { background: linear-gradient(180deg, #00d4ff 0%, #0090c0 100%); box-shadow: 0 0 40px rgba(0, 212, 255, 0.45); }
+        .flag { width: 48px; height: 32px; border-radius: 4px; box-shadow: 0 0 0 1px rgba(255,255,255,0.18); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .flag.fr { background: linear-gradient(90deg, #0055A4 0 33.33%, #ffffff 33.33% 66.66%, #EF4135 66.66% 100%); }
+        .flag.it { background: linear-gradient(90deg, #009246 0 33.33%, #f4f5f0 33.33% 66.66%, #CE2B37 66.66% 100%); }
+        .flag.de { background: linear-gradient(180deg, #000000 0 33.33%, #DD0000 33.33% 66.66%, #FFCE00 66.66% 100%); }
+        .flag.be { background: linear-gradient(90deg, #000000 0 33.33%, #FAE042 33.33% 66.66%, #ED2939 66.66% 100%); }
+        .flag.nl { background: linear-gradient(180deg, #AE1C28 0 33.33%, #ffffff 33.33% 66.66%, #21468B 66.66% 100%); }
+        .flag.eu { background: #003399; }
+        .flag.eu .ring { width: 16px; height: 16px; border: 2px solid #FFCC00; border-radius: 50%; }
+        .bar-label { font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; color: var(--text-secondary); font-weight: 600; text-align: center; }
+        .bar-label.france  { color: var(--accent-red); }
+        .bar-label.moyenne { color: var(--accent-electric); }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 18px; margin-top: 6px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; }
+        .website-url { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-electric); line-height: 1; }
+        .socials { display: flex; align-items: center; gap: 9px; }
+        .socials svg { width: 17px; height: 17px; fill: var(--text-secondary); display: block; }
+        .socials .handle { font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--text-secondary); letter-spacing: 0.2px; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+            </div>
+
+            <h2 class="chart-title">La France manque de <span class="accent">juges</span></h2>
+            <div class="subtitle">Nombre de magistrats pour 100 000 habitants</div>
+
+            <div class="chart-area">
+                <div class="bars-row">
+                    <div class="bar-group">
+                        <div class="bar-value">24,2</div>
+                        <div class="bar-fill neutral" style="height: 430px;"></div>
+                        <div class="flag de"></div>
+                        <div class="bar-label">Allemagne</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value moyenne">21,9</div>
+                        <div class="bar-fill moyenne" style="height: 389px;"></div>
+                        <div class="flag eu"><span class="ring"></span></div>
+                        <div class="bar-label moyenne">Moyenne UE</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value">15,1</div>
+                        <div class="bar-fill neutral" style="height: 268px;"></div>
+                        <div class="flag nl"></div>
+                        <div class="bar-label">Pays-Bas</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value">14,0</div>
+                        <div class="bar-fill neutral" style="height: 249px;"></div>
+                        <div class="flag be"></div>
+                        <div class="bar-label">Belgique</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value">12,2</div>
+                        <div class="bar-fill neutral" style="height: 217px;"></div>
+                        <div class="flag it"></div>
+                        <div class="bar-label">Italie</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value france">11,3</div>
+                        <div class="bar-fill france" style="height: 201px;"></div>
+                        <div class="flag fr"></div>
+                        <div class="bar-label france">France</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Où Va l'Argent, Emmanuel Blézès, CEPEJ · Conseil de l'Europe · Rapport 2024 (données 2022)</span></div>
+                <div class="website">
+                    <span class="website-url">ouvalargent.com</span>
+                    <span class="socials">
+                        <svg viewBox="0 0 24 24" aria-label="LinkedIn"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-label="Instagram"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.12 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.12.66.66 1.33 1.07 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.7 5.7 0 0 0 2.12-1.38 5.7 5.7 0 0 0 1.38-2.12c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.7 5.7 0 0 0-1.38-2.12A5.7 5.7 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 12 18.16 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
+                        <svg viewBox="0 0 24 24" aria-label="X"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3L17.61 20.65z"/></svg>
+                        <span class="handle">@ouvalargentfr</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

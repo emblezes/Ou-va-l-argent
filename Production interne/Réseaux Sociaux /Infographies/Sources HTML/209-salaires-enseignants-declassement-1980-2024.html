@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salaire des profs : le grand déclassement — 1980-2024</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a88899;
+            --text-muted: #6a4a5a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #0a1220 0%, #142b48 50%, #0a1220 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%);
+            top: -250px;
+            right: -150px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.07) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 22px 60px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5.6rem;
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            line-height: 1.02;
+            letter-spacing: -2px;
+        }
+
+        .chart-title .accent {
+            color: #ff4757;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Salaire des profs :<br>le <span class="accent">grand déclassement</span></h2>
+            <div class="chart-subtitle">France · Brut hors primes rapporté au SMIC · 1980-2024</div>
+
+            <div class="chart-area">
+                <svg width="960" height="700" viewBox="0 0 960 700">
+                    <!-- Y-axis unit caption -->
+                    <text x="84" y="30" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="500" font-style="italic" text-anchor="end">× SMIC</text>
+
+                    <!-- Axes -->
+                    <line x1="90" y1="10" x2="90" y2="620" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1" />
+                    <line x1="90" y1="620" x2="830" y2="620" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1" />
+
+                    <!-- Y-axis grid + labels -->
+                    <line x1="90" y1="532.86" x2="830" y2="532.86" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="80" y="538" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">1,5×</text>
+
+                    <line x1="90" y1="445.71" x2="830" y2="445.71" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="80" y="451" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">2,0×</text>
+
+                    <line x1="90" y1="358.57" x2="830" y2="358.57" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="80" y="364" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">2,5×</text>
+
+                    <line x1="90" y1="271.43" x2="830" y2="271.43" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="80" y="276.7" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">3,0×</text>
+
+                    <line x1="90" y1="184.29" x2="830" y2="184.29" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="80" y="189.6" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">3,5×</text>
+
+                    <line x1="90" y1="97.14" x2="830" y2="97.14" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="80" y="102.4" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">4,0×</text>
+
+                    <!-- 1.0 baseline tick -->
+                    <text x="80" y="625.4" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">1,0×</text>
+
+                    <!-- X-axis labels -->
+                    <text x="90" y="655" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">1980</text>
+                    <text x="258.18" y="655" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">1990</text>
+                    <text x="426.36" y="655" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">2000</text>
+                    <text x="594.55" y="655" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">2010</text>
+                    <text x="830" y="655" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">2024</text>
+
+                    <!-- Salaire fin de carrière (rouge) -->
+                    <path d="M90,79.71 L123.64,88.43 L157.27,184.29 L190.91,236.57 L224.55,254 L258.18,271.43 L291.82,297.57 L325.45,280.14 L359.09,288.86 L392.73,297.57 L426.36,315 L460,341.14 L493.64,376 L527.27,367.29 L560.91,376 L594.55,384.71 L628.18,402.14 L661.82,419.57 L695.45,428.29 L729.09,437 L762.73,445.71 L796.36,454.43 L830,463.14"
+                          fill="none" stroke="#ff4757" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="90" cy="79.71" r="6" fill="#ff4757" stroke="#0a1220" stroke-width="2" />
+                    <circle cx="830" cy="463.14" r="6" fill="#ff4757" stroke="#0a1220" stroke-width="2" />
+
+                    <!-- Salaire d'entrée (cyan) -->
+                    <path d="M90,428.29 L123.64,445.71 L157.27,471.86 L190.91,498 L224.55,515.43 L258.18,515.43 L291.82,524.14 L325.45,532.86 L359.09,541.57 L392.73,550.29 L426.36,550.29 L460,550.29 L493.64,567.71 L527.27,567.71 L560.91,576.43 L594.55,585.14 L628.18,593.86 L661.82,593.86 L695.45,602.57 L729.09,593.86 L762.73,585.14 L796.36,593.86 L830,602.57"
+                          fill="none" stroke="#00d4ff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="90" cy="428.29" r="6" fill="#00d4ff" stroke="#0a1220" stroke-width="2" />
+                    <circle cx="830" cy="602.57" r="6" fill="#00d4ff" stroke="#0a1220" stroke-width="2" />
+
+                    <!-- Start anchor values (1980) — au-dessus du point, juste à droite de l'axe Y -->
+                    <text x="95" y="40" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="34" font-weight="700" text-anchor="start">4,1×<tspan x="95" dy="28" font-size="24" font-weight="600">SMIC</tspan></text>
+
+                    <text x="95" y="385" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="34" font-weight="700" text-anchor="start">2,1×<tspan x="95" dy="28" font-size="24" font-weight="600">SMIC</tspan></text>
+
+                    <!-- Inline curve labels (proches des courbes) -->
+                    <text x="370" y="240" fill="#ff4757" font-family="'Syne', sans-serif" font-size="34" font-weight="700" text-anchor="start">Salaire en fin<tspan x="370" dy="38">de carrière</tspan></text>
+
+                    <text x="395" y="497" fill="#00d4ff" font-family="'Syne', sans-serif" font-size="34" font-weight="700" text-anchor="start">Salaire<tspan x="395" dy="38">d'entrée</tspan></text>
+
+                    <!-- End anchor values (2024) -->
+                    <text x="845" y="458" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="34" font-weight="700" text-anchor="start">1,9×<tspan x="845" dy="28" font-size="24" font-weight="600">SMIC</tspan></text>
+
+                    <text x="845" y="595" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="34" font-weight="700" text-anchor="start">1,1×<tspan x="845" dy="28" font-size="24" font-weight="600">SMIC</tspan></text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Lucas Chancel · lucaschancel.com/enseignants · Sept. 2024 · Professeurs certifiés, hors primes</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

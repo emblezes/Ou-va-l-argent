@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Test typo — Canadair</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Anton&family=IBM+Plex+Mono:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-deep:#0a1220; --bg-mid:#142b48;
+  --text-primary:#f0f4f8; --text-secondary:#8899a8; --text-muted:#4a5a6a;
+  --accent-red:#ff4757; --accent-electric:#00d4ff; --accent-gold:#ffd700;
+  --glass-border:rgba(255,255,255,.1);
+
+  /* defaults (variante A) */
+  --font-display:'Instrument Serif',serif;
+  --font-logo:'Instrument Serif',serif;
+  --font-body:'Syne',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --title-size:5.0rem; --title-weight:400; --title-ls:-1.8px; --title-lh:1.03;
+  --logo-size:3.6rem; --logo-text-size:1.7rem; --logo-style:italic;
+}
+
+/* ---------- VARIANTES TYPOGRAPHIQUES ---------- */
+.typo-A{}
+.typo-B{
+  --font-display:'Bricolage Grotesque',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --title-size:3.9rem; --title-weight:700; --title-ls:-1.6px; --title-lh:1.08;
+  --logo-size:3.1rem; --logo-text-size:1.45rem; --logo-style:normal;
+}
+.typo-C{
+  --font-display:'Playfair Display',serif;
+  --font-body:'Archivo',sans-serif;
+  --font-mono:'Space Mono',monospace;
+  --title-size:4.0rem; --title-weight:700; --title-ls:-1.2px; --title-lh:1.1;
+  --logo-size:3.2rem; --logo-text-size:1.5rem; --logo-style:italic;
+}
+.typo-D{
+  --font-display:'Anton',sans-serif;
+  --font-body:'Archivo',sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
+  --title-size:4.0rem; --title-weight:400; --title-ls:-.5px; --title-lh:1.08;
+  --logo-size:3.0rem; --logo-text-size:1.4rem; --logo-style:normal;
+}
+.typo-F{ /* hybride : logo historique conservé, titre modernisé */
+  --font-display:'Bricolage Grotesque',sans-serif;
+  --font-logo:'Instrument Serif',serif;
+  --font-body:'Inter',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --title-size:3.9rem; --title-weight:700; --title-ls:-1.6px; --title-lh:1.08;
+  --logo-size:3.6rem; --logo-text-size:1.7rem; --logo-style:italic;
+}
+.typo-E{
+  --font-display:'Fraunces',serif;
+  --font-body:'Manrope',sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
+  --title-size:3.9rem; --title-weight:600; --title-ls:-1.2px; --title-lh:1.1;
+  --logo-size:3.1rem; --logo-text-size:1.45rem; --logo-style:italic;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d0d16;padding:2rem;display:flex;flex-direction:column;align-items:center;gap:2.5rem}
+
+.infographic{width:1080px;height:1080px;position:relative;overflow:hidden;font-family:var(--font-body)}
+.bg-base{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%)}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.04) 1px,transparent 1px);background-size:40px 40px}
+.bg-glow-1{position:absolute;width:760px;height:760px;background:radial-gradient(circle,rgba(255,71,87,.11) 0%,transparent 70%);top:-230px;right:-220px}
+.bg-glow-2{position:absolute;width:520px;height:520px;background:radial-gradient(circle,rgba(0,212,255,.07) 0%,transparent 70%);bottom:-160px;left:-160px}
+
+.content{position:relative;z-index:1;height:100%;padding:40px 46px 28px;display:flex;flex-direction:column}
+
+.header{display:flex;align-items:center}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{font-family:var(--font-logo,var(--font-display));font-size:var(--logo-size);color:var(--accent-electric);line-height:1}
+.logo-text{font-family:var(--font-logo,var(--font-display));font-size:var(--logo-text-size);font-style:var(--logo-style);color:#fff;line-height:1}
+
+.chart-title{
+  font-family:var(--font-display);font-size:var(--title-size);font-weight:var(--title-weight);
+  letter-spacing:var(--title-ls);line-height:var(--title-lh);
+  text-align:center;color:var(--text-primary);margin-top:16px;text-wrap:balance;
+}
+.chart-title .accent{color:var(--accent-red);font-style:italic}
+.typo-D .chart-title .accent{font-style:normal}
+.subtitle{text-align:center;font-size:1.05rem;color:var(--text-secondary);margin-top:14px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600}
+
+/* ---------- ZONE GRAPHIQUE : PICTOGRAMMES ---------- */
+.chart-area{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:20px;padding:10px 0 4px}
+
+.fleet-row{display:flex;flex-direction:column;gap:9px}
+.fleet-head{display:flex;align-items:center;gap:14px}
+.flag{width:48px;height:32px;border-radius:3px;overflow:hidden;flex-shrink:0;box-shadow:0 0 0 1px rgba(255,255,255,.18)}
+.flag svg{display:block;width:100%;height:100%}
+.country{font-family:var(--font-body);font-size:1.6rem;font-weight:700;color:var(--text-primary);letter-spacing:.6px}
+.typo-D .country,.typo-C .country{letter-spacing:.2px}
+.count{margin-left:auto;font-family:var(--font-mono);font-size:2.9rem;font-weight:700;color:var(--text-primary);line-height:1}
+.fleet-row.highlight .count{color:var(--accent-red)}
+.fleet-row.highlight .country{color:var(--accent-red)}
+
+.planes{display:flex;gap:3px;align-items:center}
+.plane{width:51px;height:47px;flex-shrink:0}
+.plane svg{display:block;width:100%;height:100%}
+.plane.ghost{opacity:.15}
+
+.footer{display:flex;justify-content:space-between;align-items:center;padding-top:18px;margin-top:14px;border-top:1px solid var(--glass-border)}
+.source{font-size:.9rem;color:var(--text-muted);max-width:640px;line-height:1.4}
+.source span{color:var(--text-secondary)}
+.website{display:flex;flex-direction:column;align-items:flex-end;gap:7px;line-height:1.1}
+.website-url{font-family:var(--font-mono);font-size:1.3rem;font-weight:600;color:var(--accent-electric)}
+.socials{display:flex;align-items:center;gap:9px}
+.socials svg{width:16px;height:16px;fill:var(--text-secondary);display:block}
+.socials .handle{font-family:var(--font-mono);font-size:.95rem;color:var(--text-secondary)}
+
+.label-variant{color:#7a8899;font-family:'JetBrains Mono',monospace;font-size:1rem;letter-spacing:2px;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<!-- ============ TEMPLATES SVG ============ -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <!-- Canadair vu de dessus : fuselage + aile haute + 2 moteurs + flotteurs + empennage -->
+    <g id="canadair">
+      <!-- fuselage (coque d'hydravion : nez pointu, ventre large) -->
+      <path d="M50 2 C57 11 60 26 60 43 L60 70 C60 81 56 89 50 89 C44 89 40 81 40 70 L40 43 C40 26 43 11 50 2 Z"/>
+      <!-- aile haute effilée -->
+      <path d="M1 30 L99 30 L94 44 L6 44 Z"/>
+      <!-- moteurs turbopropulseurs -->
+      <path d="M23 21 L35 21 L34 47 L24 47 Z"/>
+      <path d="M65 21 L77 21 L76 47 L66 47 Z"/>
+      <!-- flotteurs de bout d'aile -->
+      <path d="M5 43 L15 43 L14 57 L7 57 Z"/>
+      <path d="M85 43 L95 43 L93 57 L86 57 Z"/>
+      <!-- empennage horizontal -->
+      <path d="M25 72 L75 72 L71 82 L29 82 Z"/>
+      <!-- dérive -->
+      <path d="M46 66 L54 66 L54 91 L46 91 Z"/>
+    </g>
+  </defs>
+</svg>
+
+<script>
+const FLAGS = {
+  italie: `<svg viewBox="0 0 30 20"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ce2b37"/></svg>`,
+  grece: `<svg viewBox="0 0 27 18"><rect width="27" height="18" fill="#0d5eaf"/><g fill="#fff"><rect y="2" width="27" height="2"/><rect y="6" width="27" height="2"/><rect y="10" width="27" height="2"/><rect y="14" width="27" height="2"/></g><rect width="10" height="10" fill="#0d5eaf"/><g fill="#fff"><rect x="4" width="2" height="10"/><rect y="4" width="10" height="2"/></g></svg>`,
+  espagne: `<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#aa151b"/><rect y="5" width="30" height="10" fill="#f1bf00"/></svg>`,
+  france: `<svg viewBox="0 0 30 20"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ed2939"/></svg>`
+};
+
+const DATA = [
+  { key:'italie',  nom:'Italie',  n:18, total:18 },
+  { key:'grece',   nom:'Grèce',   n:18, total:18 },
+  { key:'espagne', nom:'Espagne', n:14, total:18 },
+  { key:'france',  nom:'France',  n:12, total:18, highlight:true }
+];
+
+function planeSVG(color){
+  return `<svg viewBox="0 0 100 93"><use href="#canadair" fill="${color}"/></svg>`;
+}
+
+function fleetHTML(){
+  return DATA.map(d => {
+    const color = d.highlight ? '#ff4757' : '#93b0c8';
+    const full = Array.from({length:d.n}, () => `<span class="plane">${planeSVG(color)}</span>`).join('');
+    const ghosts = Array.from({length:d.total-d.n}, () => `<span class="plane ghost">${planeSVG(color)}</span>`).join('');
+    return `
+      <div class="fleet-row ${d.highlight?'highlight':''}">
+        <div class="fleet-head">
+          <span class="flag">${FLAGS[d.key]}</span>
+          <span class="country">${d.nom}</span>
+          <span class="count">${d.n}</span>
+        </div>
+        <div class="planes">${full}${ghosts}</div>
+      </div>`;
+  }).join('');
+}
+
+const SOCIALS = `<span class="socials">
+  <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+  <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.12 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.12.66.66 1.33 1.07 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.7 5.7 0 0 0 2.12-1.38 5.7 5.7 0 0 0 1.38-2.12c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.7 5.7 0 0 0-1.38-2.12A5.7 5.7 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 12 18.16 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
+  <svg viewBox="0 0 24 24"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3L17.61 20.65z"/></svg>
+  <span class="handle">@ouvalargentfr</span>
+</span>`;
+
+const VARIANTS = [
+  ['A','Instrument Serif / Syne / JetBrains Mono (actuel)'],
+  ['B','Bricolage Grotesque / Inter / JetBrains Mono'],
+  ['C','Playfair Display / Archivo / Space Mono'],
+  ['D','Anton / Archivo / IBM Plex Mono'],
+  ['E','Fraunces / Manrope / IBM Plex Mono'],
+  ['F','HYBRIDE : logo Instrument Serif + Bricolage Grotesque / Inter / JetBrains Mono']
+];
+
+document.body.insertAdjacentHTML('beforeend', VARIANTS.map(([id,desc]) => `
+  <div class="label-variant">Variante ${id} — ${desc}</div>
+  <div class="infographic typo-${id}" data-name="canadair-typo-${id}">
+    <div class="bg-base"></div><div class="bg-grid"></div>
+    <div class="bg-glow-1"></div><div class="bg-glow-2"></div>
+    <div class="content">
+      <div class="header"><div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div></div>
+      <h2 class="chart-title">12 Canadair en France,<br>18 en <span class="accent">Italie</span></h2>
+      <div class="subtitle">Avions amphibies bombardiers d'eau en service · Été 2026</div>
+      <div class="chart-area">${fleetHTML()}</div>
+      <div class="footer">
+        <div class="source">Source : <span>Sécurité civile (FR) · Vigili del Fuoco (IT) · Armée de l'air (GR) · 43 Grupo (ES) · CL-215, CL-215T et CL-415 en service, été 2026</span></div>
+        <div class="website"><span class="website-url">ouvalargent.com</span>${SOCIALS}</div>
+      </div>
+    </div>
+  </div>
+`).join(''));
+</script>
+</body>
+</html>

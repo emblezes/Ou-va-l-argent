@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dette publique : la France va-t-elle dépasser la Grèce ?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0c0608;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a88899;
+            --text-muted: #6a4a5a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #03080f 0%, #0a1a2e 50%, #03080f 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%);
+            top: -250px;
+            right: -150px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(33, 150, 243, 0.10) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 35px 50px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 4rem; color: #ff4757; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.8rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5.4rem;
+            text-align: center;
+            margin-top: 14px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            line-height: 1.02;
+            letter-spacing: -1.8px;
+        }
+
+        .chart-title .accent-fr { color: #ff4757; font-style: italic; }
+        .chart-title .accent-gr { color: #2196F3; font-style: italic; }
+        .chart-title .accent-w  { color: #ffffff; font-style: italic; }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 24px;
+            padding: 0 4px;
+        }
+
+        .chart-svg-wrap {
+            flex: 0 0 auto;
+        }
+
+        svg { overflow: visible; }
+
+        .delta-block {
+            flex: 0 0 230px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding-top: 8px;
+        }
+        .delta-block-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1.6px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .delta-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.4rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .delta-line .flag { font-size: 1.7rem; }
+        .delta-line .country-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .delta-line .arrow { font-size: 1rem; }
+        .delta-line.up { color: #ff4757; }
+        .delta-line.down { color: #2196F3; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #ff4757; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Dette publique : la <span class="accent-fr">France</span><br>va-t-elle <span class="accent-w">dépasser</span> la <span class="accent-gr">Grèce</span>&nbsp;?</h2>
+            <div class="chart-subtitle">% du PIB · Évolution trimestrielle</div>
+
+            <div class="chart-area">
+                <div class="chart-svg-wrap">
+                <svg width="720" height="560" viewBox="0 0 720 560">
+                    <text x="64" y="20" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="500" font-style="italic" text-anchor="end">%</text>
+
+                    <!-- Axes : x: 70→700, y: 10→500 (490px utiles), échelle 100→190 -->
+                    <line x1="70" y1="10" x2="70" y2="500" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1" />
+                    <line x1="70" y1="500" x2="700" y2="500" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1" />
+
+                    <!-- Y gridlines : 120, 140, 160, 180 ; y(v) = 500 - (v-100)*490/90 = 500 - (v-100)*5.4444 -->
+                    <line x1="70" y1="391.11" x2="700" y2="391.11" stroke="#c8b0bd" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="60" y="396" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="16" font-weight="500" text-anchor="end">120</text>
+
+                    <line x1="70" y1="282.22" x2="700" y2="282.22" stroke="#c8b0bd" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="60" y="287" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="16" font-weight="500" text-anchor="end">140</text>
+
+                    <line x1="70" y1="173.33" x2="700" y2="173.33" stroke="#c8b0bd" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="60" y="178" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="16" font-weight="500" text-anchor="end">160</text>
+
+                    <line x1="70" y1="64.44" x2="700" y2="64.44" stroke="#c8b0bd" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="60" y="69" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="16" font-weight="500" text-anchor="end">180</text>
+
+                    <!-- X labels : T1 2023, T1 2024, T1 2025, T4 2025 ; step = (700-70)/11 = 57.273 -->
+                    <text x="70" y="528" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="middle">T1 2023</text>
+                    <text x="299.09" y="528" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="middle">T1 2024</text>
+                    <text x="528.18" y="528" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="middle">T1 2025</text>
+                    <text x="700" y="528" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="middle">T4 2025</text>
+
+                    <!-- France (rouge) - path : i*57.273 + 70 -->
+                    <defs>
+                      <linearGradient id="grad-FRA" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#ff4757" stop-opacity="0.28"/>
+                        <stop offset="100%" stop-color="#ff4757" stop-opacity="0.02"/>
+                      </linearGradient>
+                    </defs>
+                    <!-- France points: 111.9, 111.3, 111.2, 109.8, 110.6, 112.4, 113.7, 113.2, 114.2, 115.9, 117.8, 116.2 -->
+                    <!-- y values: 435.2, 438.5, 439.1, 446.7, 442.3, 432.5, 425.4, 428.1, 422.7, 413.4, 402.5, 411.3 -->
+                    <path d="M70.0,435.2 L127.27,438.5 L184.55,439.1 L241.82,446.7 L299.09,442.3 L356.36,432.5 L413.64,425.4 L470.91,428.1 L528.18,422.7 L585.45,413.4 L642.73,402.5 L700.0,411.3 L700.0,500.0 L70.0,500.0 Z" fill="url(#grad-FRA)" />
+                    <path d="M70.0,435.2 L127.27,438.5 L184.55,439.1 L241.82,446.7 L299.09,442.3 L356.36,432.5 L413.64,425.4 L470.91,428.1 L528.18,422.7 L585.45,413.4 L642.73,402.5 L700.0,411.3" fill="none" stroke="#ff4757" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+
+                    <!-- Greece (or) -->
+                    <defs>
+                      <linearGradient id="grad-GRC" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#2196F3" stop-opacity="0.28"/>
+                        <stop offset="100%" stop-color="#2196F3" stop-opacity="0.02"/>
+                      </linearGradient>
+                    </defs>
+                    <!-- Greece points: 174.0, 171.5, 168.9, 164.3, 162.1, 160.3, 158.6, 154.2, 152.9, 152.0, 149.8, 146.1 -->
+                    <!-- y values: 97.3, 110.9, 125.1, 150.1, 162.1, 171.9, 181.2, 205.1, 212.2, 217.1, 229.1, 249.2 -->
+                    <path d="M70.0,97.3 L127.27,110.9 L184.55,125.1 L241.82,150.1 L299.09,162.1 L356.36,171.9 L413.64,181.2 L470.91,205.1 L528.18,212.2 L585.45,217.1 L642.73,229.1 L700.0,249.2 L700.0,500.0 L70.0,500.0 Z" fill="url(#grad-GRC)" />
+                    <path d="M70.0,97.3 L127.27,110.9 L184.55,125.1 L241.82,150.1 L299.09,162.1 L356.36,171.9 L413.64,181.2 L470.91,205.1 L528.18,212.2 L585.45,217.1 L642.73,229.1 L700.0,249.2" fill="none" stroke="#2196F3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+
+                    <!-- Greece intermediate points -->
+                    <circle cx="127.27" cy="110.9" r="3.5" fill="#2196F3" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="184.55" cy="125.1" r="3.5" fill="#2196F3" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="241.82" cy="150.1" r="3.5" fill="#2196F3" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="299.09" cy="162.1" r="3.5" fill="#2196F3" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="356.36" cy="171.9" r="3.5" fill="#2196F3" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="413.64" cy="181.2" r="3.5" fill="#2196F3" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="470.91" cy="205.1" r="3.5" fill="#2196F3" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="585.45" cy="217.1" r="3.5" fill="#2196F3" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="642.73" cy="229.1" r="3.5" fill="#2196F3" stroke="#0c0608" stroke-width="1.5" />
+
+                    <!-- Greece annotated points : start, T1 2025, end -->
+                    <circle cx="70.0" cy="97.3" r="7" fill="#2196F3" stroke="#0c0608" stroke-width="2.5" />
+                    <text x="86" y="82" fill="#2196F3" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="800" text-anchor="start">174,0%</text>
+                    <circle cx="528.18" cy="212.2" r="5" fill="#2196F3" stroke="#0c0608" stroke-width="2" />
+                    <text x="528.18" y="198" fill="#2196F3" font-family="'JetBrains Mono', monospace" font-size="18" font-weight="700" text-anchor="middle">152,9%</text>
+                    <circle cx="700.0" cy="249.2" r="8" fill="#2196F3" stroke="#0c0608" stroke-width="2.5" />
+                    <text x="694" y="285" fill="#2196F3" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="800" text-anchor="end">146,1%</text>
+
+                    <!-- Greece label collé à la courbe (juste au-dessus) -->
+                    <text x="320" y="138" fill="#2196F3" font-family="'Syne', sans-serif" font-size="34" font-weight="700" text-anchor="start">🇬🇷 Grèce</text>
+
+                    <!-- France intermediate points -->
+                    <circle cx="127.27" cy="438.5" r="3.5" fill="#ff4757" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="184.55" cy="439.1" r="3.5" fill="#ff4757" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="241.82" cy="446.7" r="3.5" fill="#ff4757" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="299.09" cy="442.3" r="3.5" fill="#ff4757" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="356.36" cy="432.5" r="3.5" fill="#ff4757" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="413.64" cy="425.4" r="3.5" fill="#ff4757" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="470.91" cy="428.1" r="3.5" fill="#ff4757" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="585.45" cy="413.4" r="3.5" fill="#ff4757" stroke="#0c0608" stroke-width="1.5" />
+                    <circle cx="642.73" cy="402.5" r="3.5" fill="#ff4757" stroke="#0c0608" stroke-width="1.5" />
+
+                    <!-- France annotated points : start, T1 2025, end -->
+                    <circle cx="70.0" cy="435.2" r="7" fill="#ff4757" stroke="#0c0608" stroke-width="2.5" />
+                    <text x="78" y="473" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="800" text-anchor="start">111,9%</text>
+                    <circle cx="528.18" cy="422.7" r="5" fill="#ff4757" stroke="#0c0608" stroke-width="2" />
+                    <text x="528.18" y="463" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="18" font-weight="700" text-anchor="middle">114,2%</text>
+                    <circle cx="700.0" cy="411.3" r="8" fill="#ff4757" stroke="#0c0608" stroke-width="2.5" />
+                    <text x="694" y="378" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="800" text-anchor="end">116,2%</text>
+
+                    <!-- France label collé à la courbe (juste en-dessous) -->
+                    <text x="320" y="486" fill="#ff4757" font-family="'Syne', sans-serif" font-size="34" font-weight="700" text-anchor="start">🇫🇷 France</text>
+                </svg>
+                </div>
+
+                <div class="delta-block">
+                    <div class="delta-block-title">Évolution<br>2023 → 2025</div>
+                    <div class="delta-line up">
+                        <span class="flag">🇫🇷</span>
+                        <span class="country-name">France</span>
+                        <span class="arrow">▲</span>
+                        <span>+4,3 pts</span>
+                    </div>
+                    <div class="delta-line down">
+                        <span class="flag">🇬🇷</span>
+                        <span class="country-name">Grèce</span>
+                        <span class="arrow">▼</span>
+                        <span>−27,9 pts</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Eurostat · gov_10q_ggdebt · T1 2023 – T4 2025</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

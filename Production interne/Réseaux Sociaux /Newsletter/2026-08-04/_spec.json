@@ -1,0 +1,57 @@
+{
+  "infographics": [
+    {
+      "name": "ovla-2026-08-04-oat4",
+      "type": "hero",
+      "glow": "red",
+      "titleLines": [
+        [{"t":"L'État emprunte "},{"t":"à 4 %","accent":true,"color":"#ff4757"}],
+        [{"t":"pour la première fois"}]
+      ],
+      "sub": "OAT 10 ANS · 23 JUILLET 2026 · TAUX NOMINAL",
+      "value": "4,01",
+      "valueColor": "#ff4757",
+      "unit": "% — taux de l'OAT française à 10 ans",
+      "context": [
+        "Du jamais-vu depuis la crise de 2008.",
+        "Écart avec l'Allemagne : ≈ 80 points de base."
+      ],
+      "src": "Agence France Trésor, juillet 2026"
+    },
+    {
+      "name": "ovla-2026-08-04-deficit",
+      "type": "bars",
+      "glow": "red",
+      "titleLines": [
+        [{"t":"Le "},{"t":"déficit","accent":true,"color":"#ff4757"},{"t":" ne"}],
+        [{"t":"décolle pas"}]
+      ],
+      "sub": "DÉFICIT PUBLIC · EN % DU PIB · 2022-2025",
+      "bars": [
+        {"label":"2022","value":"4,7 %","h":318},
+        {"label":"2023","value":"5,5 %","h":372},
+        {"label":"2024","value":"5,8 %","h":392},
+        {"label":"2025","value":"5,1 %","h":345,"highlight":true,"hlColor":"red"}
+      ],
+      "src": "INSEE, comptes nationaux (mars 2026)"
+    },
+    {
+      "name": "ovla-2026-08-04-inflation",
+      "type": "hero",
+      "glow": "elec",
+      "titleLines": [
+        [{"t":"L'inflation "},{"t":"repasse","accent":true,"color":"#00d4ff"}],
+        [{"t":"au-dessus de 2 %"}]
+      ],
+      "sub": "PRIX À LA CONSOMMATION · SUR UN AN · JUILLET 2026",
+      "value": "2,1",
+      "valueColor": "#00d4ff",
+      "unit": "% sur un an (estimation provisoire)",
+      "context": [
+        "Tirée par l'énergie : +12,4 % sur un an.",
+        "Chiffre définitif attendu le 14 août."
+      ],
+      "src": "INSEE, informations rapides n°188"
+    }
+  ]
+}

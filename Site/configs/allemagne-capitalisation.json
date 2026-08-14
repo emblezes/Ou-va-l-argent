@@ -1,0 +1,15 @@
+{
+  "date": "2026-06-24",
+  "batchSlug": "allemagne-capitalisation",
+  "cards": [
+    {
+      "name": "allemagne-bascule-capitalisation",
+      "photo": "photos/reichstag.jpg",
+      "photoPos": "center 22%",
+      "fontScale": 1.18,
+      "headline": "L'Allemagne s'apprête à introduire une retraite par capitalisation obligatoire.",
+      "reveal": "<big>+2 %</big> du salaire placés sur les marchés, dès 2028.",
+      "source": "Alterssicherungskommission, rapport du 23 juin 2026"
+    }
+  ]
+}

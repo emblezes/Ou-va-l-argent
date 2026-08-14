@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>PIB par habitant : l'Italie rattrape la France (indice UE27=100)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --bg-mid:  #142b48;
+            --text-primary: #f0f4f8;
+            --text-secondary: #8899a8;
+            --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff;
+            --accent-red: #ff4757;
+            --glass-border: rgba(255, 255, 255, 0.1);
+
+            --c-fr: #ff4757;   /* France */
+            --c-it: #00d4ff;   /* Italie */
+            --c-eu: #8899a8;   /* Moyenne UE27 */
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0, 212, 255, 0.10) 0%, transparent 70%); top: -200px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255, 71, 87, 0.06) 0%, transparent 70%); bottom: -150px; left: -150px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 36px 14px 28px; display: flex; flex-direction: column; }
+
+        .header { display: flex; align-items: center; padding-left: 16px; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 4.6rem; text-align: center; color: var(--text-primary); line-height: 1.06; margin-top: 18px; letter-spacing: -2px; }
+        .chart-title .it { color: var(--c-it); font-style: italic; }
+        .chart-title .fr { color: var(--c-fr); font-style: italic; }
+        .subtitle { text-align: center; font-size: 1.2rem; color: var(--text-secondary); margin-top: 12px; letter-spacing: 1.4px; text-transform: uppercase; font-weight: 500; }
+
+        .chart-area { flex: 1; display: flex; align-items: stretch; justify-content: center; padding: 80px 0 0; min-height: 0; overflow: hidden; }
+        .chart-wrap { width: 100%; max-width: 1080px; min-height: 0; }
+        .chart-wrap svg { width: 100%; height: 100%; display: block; }
+
+        .axis-label { font-family: 'JetBrains Mono', monospace; font-size: 1rem; fill: var(--text-primary); }
+        .tick       { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; fill: var(--text-primary); font-weight: 500; }
+        .ref-label  { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; fill: var(--c-eu); letter-spacing: 0.5px; }
+        .end-value  { font-family: 'JetBrains Mono', monospace; font-size: 3.2rem; font-weight: 800; }
+        .end-name   { font-family: 'Syne', sans-serif; font-size: 1.55rem; font-weight: 600; }
+        .start-tag  { font-family: 'JetBrains Mono', monospace; font-size: 1.7rem; font-weight: 700; }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; margin-top: 8px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.85rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header">
+                <div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div>
+            </div>
+
+            <h2 class="chart-title">PIB par habitant :<br><span class="it">l'Italie</span> rattrape <span class="fr">la France</span></h2>
+            <div class="subtitle">Indice · base UE27 = 100 · 2014-2024</div>
+
+            <div class="chart-area">
+                <div class="chart-wrap">
+                    <svg viewBox="0 0 1080 680" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Echelle Y : 90 a 110. Zone y[40..600], plage 560. 1pt = 28. y(val) = 600 - (val-90)*28 -->
+                        <g>
+                            <line x1="70" y1="40" x2="70" y2="600" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            <text class="axis-label" x="58" y="46"  text-anchor="end">110</text>
+                            <text class="axis-label" x="58" y="186" text-anchor="end">105</text>
+                            <text class="axis-label" x="58" y="326" text-anchor="end">100</text>
+                            <text class="axis-label" x="58" y="466" text-anchor="end">95</text>
+                            <text class="axis-label" x="58" y="606" text-anchor="end">90</text>
+                            <line x1="70" y1="180" x2="680" y2="180" stroke="rgba(255,255,255,0.04)"/>
+                            <line x1="70" y1="460" x2="680" y2="460" stroke="rgba(255,255,255,0.04)"/>
+                            <line x1="70" y1="600" x2="680" y2="600" stroke="rgba(255,255,255,0.20)" stroke-width="1.5"/>
+                        </g>
+
+                        <!-- Ligne de reference Moyenne UE27 = 100 (y=320) -->
+                        <line x1="70" y1="320" x2="680" y2="320" stroke="var(--c-eu)" stroke-width="1.6" stroke-dasharray="7 6" opacity="0.65"/>
+                        <text class="ref-label" x="80" y="310">Moyenne UE27 = 100</text>
+
+                        <!-- FRANCE (rouge) : 108 106 105 103 103 105 104 101 97 99 98 -->
+                        <polyline fill="none" stroke="var(--c-fr)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"
+                                  points="80,96 140,152 200,180 260,236 320,236 380,180 440,208 500,292 560,404 620,348 680,376"/>
+
+                        <!-- ITALIE (cyan) : 98 97 99 98 97 96 93 96 98 98 98 -->
+                        <polyline fill="none" stroke="var(--c-it)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"
+                                  points="80,376 140,404 200,348 260,376 320,404 380,432 440,516 500,432 560,376 620,376 680,376"/>
+
+                        <!-- Depart France 2014 = 108 -->
+                        <circle cx="80" cy="96" r="6" fill="var(--c-fr)"/>
+                        <text class="start-tag" fill="var(--c-fr)" x="92" y="84">108</text>
+
+                        <!-- Point de convergence 2024 (les deux a 98) -->
+                        <circle cx="680" cy="376" r="9" fill="#ffffff"/>
+
+                        <!-- Label France (au-dessus) -->
+                        <text fill="var(--c-fr)" x="700" y="322">
+                            <tspan class="end-value">98</tspan>
+                            <tspan class="end-name" x="700" dy="30">France</tspan>
+                        </text>
+                        <!-- Label Italie (en dessous) -->
+                        <text fill="var(--c-it)" x="700" y="452">
+                            <tspan class="end-value">98</tspan>
+                            <tspan class="end-name" x="700" dy="30">Italie</tspan>
+                        </text>
+
+                        <!-- Axe X annees (tous les 2 ans) -->
+                        <g>
+                            <text class="tick" x="80"  y="624" text-anchor="middle">2014</text>
+                            <text class="tick" x="200" y="624" text-anchor="middle">2016</text>
+                            <text class="tick" x="320" y="624" text-anchor="middle">2018</text>
+                            <text class="tick" x="440" y="624" text-anchor="middle">2020</text>
+                            <text class="tick" x="560" y="624" text-anchor="middle">2022</text>
+                            <text class="tick" x="680" y="624" text-anchor="middle">2024</text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Eurostat — PIB/hab en SPA, indice UE27=100 (tec00114)</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

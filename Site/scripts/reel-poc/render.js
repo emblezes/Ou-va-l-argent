@@ -27,8 +27,8 @@ const DURATION_S = parseFloat(args.duration ?? '10');
 const FPS        = parseInt(args.fps ?? '30', 10);
 const TOTAL      = Math.round(DURATION_S * FPS);
 const HTML_FILE  = path.resolve(args.html ?? path.join(__dirname, 'reel-209.html'));
-const FRAMES_DIR = '/tmp/reel-frames-209';
 const OUTPUT     = args.output ?? '/tmp/reel-209.mp4';
+const FRAMES_DIR = '/tmp/reel-frames-' + path.basename(OUTPUT, '.mp4');
 
 (async () => {
   if (!fs.existsSync(HTML_FILE)) {

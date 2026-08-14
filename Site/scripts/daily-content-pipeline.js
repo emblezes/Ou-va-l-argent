@@ -578,7 +578,9 @@ function generateDataInfographic(idea, name, num) {
         .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--glass-border); }
         .source { font-size: 1rem; color: var(--text-muted); }
         .source span { color: var(--text-secondary); }
-        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 500; color: var(--accent-electric); }
+        .website { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; line-height: 1.1; }
+                .website-url { font-family: 'JetBrains Mono', monospace; font-size: 1.35rem; font-weight: 600; color: var(--accent-electric); }
+                .website-handle { font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; font-weight: 500; color: var(--text-secondary, #94a3b8); letter-spacing: 0.3px; }
     </style>
 </head>
 <body>
@@ -594,7 +596,10 @@ function generateDataInfographic(idea, name, num) {
             ${centerContent}
             <div class="footer">
                 <div class="source">Sources : <span>${idea.source}</span></div>
-                <div class="website">ouvalargent.com</div>
+                <div class="website">
+                    <span class="website-url">ouvalargent.com</span>
+                    <span class="website-handle">@ouvalargentfr</span>
+                </div>
             </div>
         </div>
     </div>

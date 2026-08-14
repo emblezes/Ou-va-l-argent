@@ -138,11 +138,25 @@
 
         /* FOOTER */
         .website {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 3px;
+            line-height: 1.1;
+        }
+        .website-url {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.6rem;
+            font-size: 1.45rem;
             font-weight: 600;
             color: var(--accent-electric);
             letter-spacing: 0.02em;
+        }
+        .website-handle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--text-secondary, #94a3b8);
+            letter-spacing: 0.3px;
         }
 
         /* Export button */
@@ -183,7 +197,7 @@
             </div>
 
             <!-- BAS : URL -->
-            <span class="website">ouvalargent.com</span>
+            <span class="website"><span class="website-url">ouvalargent.com</span><span class="website-handle">@ouvalargentfr</span></span>
         </div>
     </div>
 

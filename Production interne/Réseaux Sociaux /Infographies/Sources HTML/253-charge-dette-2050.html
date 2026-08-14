@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Les intérêts de la dette pourraient atteindre 5 % du PIB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-deep: #0a1220; --bg-mid: #142b48; --text-primary: #f0f4f8; --text-secondary: #8899a8; --text-muted: #4a5a6a; --accent-electric: #00d4ff; --accent-red: #ff4757; --glass-border: rgba(255,255,255,0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255,71,87,0.10) 0%, transparent 70%); top: -200px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,71,87,0.07) 0%, transparent 70%); bottom: -150px; left: -150px; }
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 60px 40px; display: flex; flex-direction: column; }
+        .header { display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #fff; line-height: 1; }
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 5rem; font-style: normal; text-align: center; color: #fff; line-height: 1.03; margin-top: 12px; letter-spacing: -1.6px; text-wrap: balance; }
+        .chart-title .accent { color: var(--accent-red); font-style: normal; text-decoration: underline; text-decoration-color: #fff; text-decoration-thickness: 5px; text-underline-offset: 9px; white-space: nowrap; }
+        .kicker { text-align: center; margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-secondary); }
+        .chart-area { flex: 1; display: flex; align-items: flex-end; justify-content: center; padding: 30px 0 6px; min-height: 0; }
+        .bars-row { display: flex; align-items: flex-end; justify-content: center; gap: 66px; border-bottom: 2px solid rgba(255,255,255,0.14); }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+        .proj-tag { font-family: 'JetBrains Mono', monospace; font-size: 1.55rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #ffffff; }
+        .bar-value { font-family: 'JetBrains Mono', monospace; font-size: 1.95rem; font-weight: 700; color: var(--text-primary); line-height: 1; white-space: nowrap; }
+        .bar-value.fr { color: var(--accent-red); }
+        .bar-fill { width: 160px; border-radius: 9px 9px 0 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); position: relative; }
+        .bar-fill.neutral { background: linear-gradient(180deg, #5d7494 0%, #2d4060 100%); }
+        .bar-fill.fr { background: linear-gradient(180deg, #ff4757 0%, #b02a36 100%); box-shadow: 0 0 40px rgba(255, 71, 87, 0.5); }
+        .bar-fill.proj { background: repeating-linear-gradient(135deg, rgba(255,71,87,0.62) 0 13px, rgba(255,71,87,0.32) 13px 26px); }
+        .bar-name { font-family: 'Syne', sans-serif; font-size: 1.85rem; color: var(--text-secondary); font-weight: 700; text-align: center; white-space: nowrap; padding-top: 4px; }
+        .bar-name.fr { color: var(--accent-red); }
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; margin-top: 6px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.95rem; color: var(--text-muted); max-width: 640px; } .source span { color: var(--text-secondary); }
+        .website-url { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-electric); }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow-1"></div><div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header"><div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div></div>
+            <h2 class="chart-title">Les intérêts de la dette pourraient atteindre <span class="accent">5 % du PIB</span></h2>
+            <div class="chart-area">
+                <div class="bars-row">
+                    <div class="bar-group">
+                        <div class="bar-value">1,3 %</div>
+                        <div class="bar-fill neutral" style="height: 130px;"></div>
+                        <div class="bar-name">2020</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value fr">2,1 %</div>
+                        <div class="bar-fill fr" style="height: 210px;"></div>
+                        <div class="bar-name fr">2025</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value fr">2,6 %</div>
+                        <div class="bar-fill proj" style="height: 260px;"></div>
+                        <div class="bar-name fr">2027</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="proj-tag">Projection</div>
+                        <div class="bar-value fr">5 %</div>
+                        <div class="bar-fill proj" style="height: 500px;"></div>
+                        <div class="bar-name fr">2050</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="source">Source : <span>Où Va l'Argent · OCDE, Études économiques : France 2026 · Charge d'intérêts des administrations publiques</span></div>
+                <div class="website-url">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

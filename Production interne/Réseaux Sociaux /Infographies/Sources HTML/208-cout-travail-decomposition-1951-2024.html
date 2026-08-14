@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coût du travail : l'État prend près de la moitié — 1951-2024</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a88899;
+            --text-muted: #6a4a5a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #0a1220 0%, #142b48 50%, #0a1220 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%);
+            top: -250px;
+            right: -150px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.07) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 50px 60px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5.6rem;
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            line-height: 1.02;
+            letter-spacing: -2px;
+        }
+
+        .chart-title .accent {
+            color: #ff4757;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 14px;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">En France,<br>le travail <span class="accent">ne paye plus</span></h2>
+            <div class="chart-subtitle">France · Salarié moyen · 1951-2024 · €/an par ETP</div>
+
+            <div class="chart-area">
+                <svg width="920" height="640" viewBox="0 0 920 640">
+                    <!-- Unit label -->
+                    <text x="86" y="36" fill="#a88899" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="600">€/an</text>
+
+                    <!-- Axes -->
+                    <line x1="80" y1="20" x2="80" y2="570" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1" />
+                    <line x1="80" y1="570" x2="720" y2="570" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1" />
+
+                    <!-- Y-axis grid + labels -->
+                    <line x1="80" y1="491.4" x2="720" y2="491.4" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="70" y="496" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">10 000 €</text>
+
+                    <line x1="80" y1="412.9" x2="720" y2="412.9" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="70" y="417.5" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">20 000 €</text>
+
+                    <line x1="80" y1="334.3" x2="720" y2="334.3" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="70" y="338.9" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">30 000 €</text>
+
+                    <line x1="80" y1="255.7" x2="720" y2="255.7" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="70" y="260.3" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">40 000 €</text>
+
+                    <line x1="80" y1="177.1" x2="720" y2="177.1" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="70" y="181.7" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">50 000 €</text>
+
+                    <line x1="80" y1="98.6" x2="720" y2="98.6" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="70" y="103.2" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">60 000 €</text>
+
+                    <!-- X-axis labels -->
+                    <text x="80" y="600" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="middle">1951</text>
+                    <text x="246.57" y="600" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="middle">1970</text>
+                    <text x="421.92" y="600" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="middle">1990</text>
+                    <text x="597.26" y="600" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="middle">2010</text>
+                    <text x="720" y="600" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="middle">2024</text>
+
+                    <!-- Zone "ce que prend l'État" : entre coût employeur (haut) et salaire net (bas) -->
+                    <path d="M80,495.4 L115.07,483.6 L158.90,463.9 L202.74,436.4 L246.57,393.2 L290.41,346.1 L334.25,287.1 L378.08,267.5 L421.92,255.7 L465.75,246.3 L509.59,236.1 L553.42,228.2 L597.26,204.6 L641.10,165.4 L684.93,118.2 L720,75.0 L720,309.1 L684.93,322.5 L641.10,346.1 L597.26,365.7 L553.42,377.5 L509.59,385.4 L465.75,389.3 L421.92,393.2 L378.08,389.3 L334.25,381.4 L290.41,393.2 L246.57,432.5 L202.74,463.9 L158.90,487.5 L115.07,503.2 L80,515.0 Z"
+                          fill="rgba(255, 71, 87, 0.10)" stroke="none" />
+
+                    <!-- Coût employeur (rouge) -->
+                    <path d="M80,495.4 L115.07,483.6 L158.90,463.9 L202.74,436.4 L246.57,393.2 L290.41,346.1 L334.25,287.1 L378.08,267.5 L421.92,255.7 L465.75,246.3 L509.59,236.1 L553.42,228.2 L597.26,204.6 L641.10,165.4 L684.93,118.2 L720,75.0"
+                          fill="none" stroke="#ff4757" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="720" cy="75.0" r="6" fill="#ff4757" stroke="#0a1220" stroke-width="2" />
+
+                    <!-- Salaire brut (blanc dashed) -->
+                    <path d="M80,511.1 L115.07,499.3 L158.90,483.6 L202.74,460.0 L246.57,424.6 L290.41,377.5 L334.25,350.0 L378.08,346.1 L421.92,342.1 L465.75,338.2 L509.59,330.4 L553.42,322.5 L597.26,310.7 L641.10,283.2 L684.93,249.4 L720,226.6"
+                          fill="none" stroke="#f0f4f8" stroke-width="4.5" stroke-dasharray="9,5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="720" cy="226.6" r="6" fill="#f0f4f8" stroke="#0a1220" stroke-width="2" />
+
+                    <!-- Salaire net (vert) -->
+                    <path d="M80,515.0 L115.07,503.2 L158.90,487.5 L202.74,463.9 L246.57,432.5 L290.41,393.2 L334.25,381.4 L378.08,389.3 L421.92,393.2 L465.75,389.3 L509.59,385.4 L553.42,377.5 L597.26,365.7 L641.10,346.1 L684.93,322.5 L720,309.1"
+                          fill="none" stroke="#00d4ff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="720" cy="309.1" r="6" fill="#00d4ff" stroke="#0a1220" stroke-width="2" />
+
+                    <!-- End labels -->
+                    <text x="734" y="65" fill="#ff4757" font-family="'Syne', sans-serif" font-size="26" font-weight="700" text-anchor="start">Coût employeur</text>
+                    <text x="734" y="95" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="start" opacity="0.9">63 000 €</text>
+
+                    <text x="734" y="216" fill="#f0f4f8" font-family="'Syne', sans-serif" font-size="26" font-weight="700" text-anchor="start">Salaire brut</text>
+                    <text x="734" y="246" fill="#f0f4f8" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="start" opacity="0.9">43 700 €</text>
+
+                    <text x="734" y="299" fill="#00d4ff" font-family="'Syne', sans-serif" font-size="26" font-weight="700" text-anchor="start">Salaire net</text>
+                    <text x="734" y="329" fill="#00d4ff" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="start" opacity="0.9">33 200 €</text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>INSEE Comptes nationaux base 2020 + DARES · Secteur privé non agricole · €/an par ETP · 1951-2024</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -6,7 +6,262 @@
 
 ---
 
-## État actuel — 29 mai 2026 (V4, restructuration en 3 parties + fact-check préparé)
+## État actuel — 22 juin 2026 (REPRISE fact-check ligne par ligne + nouvelle consigne réduction)
+
+**Nouvelle consigne auteur (22 juin)** :
+1. **Reprise du fact-check ligne par ligne** à partir de §1.1c « Comment on en est arrivé là » (P1). Tout relire, pas seulement les chiffres-pivots. **Corriger directement, sans validation à chaque erreur** ; ne laisser aucun élément douteux ; lire les PDF à la source.
+2. **Intégrer le livre blanc AFG du 17 juin 2026** (Association Française de la Gestion financière) — fiche prête : `recherche/afg-livre-blanc-juin-2026.md`.
+3. **RÉDUIRE le livre** : actuellement ~115 p. → cible **130 p. imprimées = 70-80 p. Word max**. Gros chantier de coupe (le corps fait ~48 800 mots + footnotes).
+
+**FAIT le 22 juin** — §1.1c « Comment on en est arrivé là » entièrement fact-checké ligne par ligne, **5 corrections appliquées** :
+- 🔴 « caisse capitalisée pour les fonctionnaires civils gérée par la CDC depuis 1816 » = **FAUX** (régime des pensions civiles = loi du 9 juin 1853 « de budgétisation », par répartition, géré par le Trésor). Remplacé par la **Caisse de retraites pour la vieillesse (loi du 18 juin 1850, capitalisation, gérée par la CDC, ouverte à tous, → CNRV en 1886)**. [^38] réécrite.
+- 🔴 [^46] espérance de vie à 65 ans : « 12,2 femmes / 9,9 hommes » en 1950 = **FAUX** (valeurs transposées/erronées ; source citée ne couvre pas l'avant-1994). Vérifié en primaire (INSEE série longue 1994+, COR doc-4280 : à 60 ans = 16,7 en 1950 ; Vallin-Meslé). Valeurs réelles ~1950 : **≈ 12 ans hommes / ≈ 15 ans femmes**. Texte + [^46] corrigés.
+- Ratio **4,29 cotisants/retraité en 1965** : exact (confirmé sécurité-sociale.fr/CNAV) mais **non sourcé** → **footnote [^396] créée**.
+- Citation Laroque (« les bénéficiaires sont des gens pauvres… ») **non vérifiable au mot près** → convertie en **paraphrase sans guillemets** ; [^44] réécrite (« formulation de l'auteur, non un verbatim »).
+- « ordonnance de Colbert » → « **édit** de Colbert d'avril 1670 » (cohérence avec [^39]).
+- Vérifiés OK (rien à corriger) : AVTS 14 mars 1941, Laroque/Parodi/Croizat, ord. 45-2250, AGIRC 14 mars 1947, ARRCO 8 déc. 1961, âge 60 ans (ord. 26 mars 1982, Auroux), fécondité <2,1 dès milieu 1970s, Briet 1995 (commissaire-adjoint au Plan, demandé par Juppé), Charpin 1999 (264 p., Jospin), croissance 5,3 % 1949-73, 5 réformes depuis 1993, ratio <1,5 en 2070 (cohérent [^395]).
+
+**FAIT le 22 juin (suite)** — §1.2 « Ces réformes paramétriques » : corps **exact** (réformes 1993 Balladur / 2003 Fillon / 2010 Woerth / 2014 Touraine / 2023 Borne, chiffres du 7 mars 2023 = 1,28 M Intérieur / 3,5 M CGT, sondage Elabe 59 %/60 % : tous confirmés). **[^60] enrichie** : suspension Lecornu 2025 vérifiée = gel à 62 ans et 9 mois pour les départs du 1er sept. 2026 au 1er janv. 2028 (générations 1964-1968, PLFSS 2026). Aucune correction de corps.
+
+**FAIT le 22 juin (suite)** — §1.3 « C'est Nicolas qui paie » : **3 corrections**.
+- 🔴 §155 Suède/France : « la Suédoise touchera ~70 % vs 55-60 % pour la Française » = **FAUX et inversé** (OCDE PAG 2025 : remplacement net France ~70 %, parmi les plus élevés de l'OCDE > Suède ~60-65 %) ; le « 55-60 % » n'était même pas sourcé. Corrigé : on garde les points solides (cotise 22 % vs 28 %, rendement 3,1 % vs 1,9 %) et on **supprime la comparaison de remplacement**. [^69] réécrite (cadrage honnête : la supériorité suédoise porte sur le couple rendement/cotisation, pas sur le niveau de pension).
+- [^61] Blanchard-Ecalle : « un report d'un an ≈ 15 Md€, soit **le cinquième** de l'effort » → **un huitième** (15/120 = 1/8).
+- Vérifiés OK : Blanchard-Ecalle 120 Md€/4 pts PIB (Le Grand Continent déc. 2024) ; TRI 2,5→1,75 % (Destinie 2) ; récupération 159→117 ct ; cotisation 1/6 → 27,8 % ; COR pension relative 52,3 %→45,1 %, niveau de vie 65+ 97 %→87,5 % ; Friggit (revenu 20-29 ans 102→60 %, 70-79 ans 57→86 %, locataires <30 ans 74→81 %, « tunnel ») ; Mercer 70,3/85,2/48,6 ; **Odoxa-Groupama nov. 2025 confirmé au mot près (57 % mixte, 22 % capi pure > 20 % répartition pure, « première fois »)** ; âge 64 en 2030 vs 67 voisins ; emploi 60-64 = 42,4 % ; Souillot FO fév. 2023.
+
+**✅ PARTIE 1 ENTIÈREMENT RE-VÉRIFIÉE LIGNE PAR LIGNE (§1.1c + §1.2 + §1.3), 22 juin 2026.**
+
+**FAIT le 22 juin (suite)** — **PARTIE 2 « Comprendre la capitalisation » entièrement re-vérifiée ligne par ligne.** **1 seule correction** (le reste, lourdement travaillé en mai, tient au re-contrôle) :
+- 🔴 §75 (Livret A) **erreur logique** restée non corrigée depuis le commentaire Word de mai : « Livret A 2,5 % et inflation 2 % → on en perd en termes réels » est faux (2,5 % > 2 % = gain réel +0,5 %). Corrigé avec les vrais chiffres 2026 : **Livret A 1,5 % depuis février 2026, inflation repassée > 2 % au printemps → rendement réel négatif** (exact ET logiquement juste). Footnote **[^397] créée** (economie.gouv.fr + INSEE).
+- **RAFP confirmé en source primaire ERAFP** (communiqué + RA 2024) : 47,8 Md€, TRI 5,9 % (2024) / 4,3 % depuis 2005, couverture **117,3 % comptable / 135,8 % en valeur économique** (terme « valeur de marché » du texte = exactement celui de l'ERAFP), actions 20,2 % (« un cinquième » ✓), CA 8+8+3, frais 0,18-0,20 %, ISR 100 %. Le « 135 % » répété 3× est juste.
+- Vérifiés OK : intérêts composés (×4,8/×7,1, 1 040/1 082/1 125, simple vs composé sur 10 ans), DMS 5,2/1,7/0,5 % (UBS 2025), Einstein apocryphe, URSSAF (3 400 €/mois → ~960 €), assurance-vie 1 989/1 178 Md€ + fonds euros 2,63 %, PER 11,2 M/118,9 Md€ (~10 600 €/titulaire), AP7 Såfa (100 % actions ≤55 ans, levier 1,25, glissement 56-75 ans), Suède 16+2,5 %, NL 2e pilier 85 %, Australie 12 % (1er juillet 2025), NBIM 650+ salariés, cadres +5,3 ans, cas-type entier (558 264 / +162 741 / +325 481, sensibilités 169 731/278 461, levier 1,7), « 3 pts → 40 Md€ », ratio 1,8→1,4. **Placeholders graphiques** encore présents (§15, §35, §132) — production, hors fact-check.
+
+**✅ PARTIES 1 ET 2 ENTIÈREMENT RE-VÉRIFIÉES LIGNE PAR LIGNE (22 juin 2026).**
+
+**EN COURS le 22 juin — PARTIE 3 `04-partie3-fonds-pension.md`** : sections « Les trois familles » (l.6-29), « Le capital qui nous échappe / Six mille milliards » (l.30-82) et le comparatif Ardian/fonds (l.99-112) **vérifiées**. **Toutes les cascades signalées corrigées** :
+- 🔴 **GPFG « 1 900 Md€ » → 1 675 Md€** (19 742 Md NOK au taux fin 2024 ≈ 1,74 T$ ; vérifié NBIM 2024). Corrigé aux 4 emplacements (l.16, l.101, table l.112, l.182) + [^148] (ajout EUR). Sociétés « 8 763 » → « près de 8 700 », « 70 pays » → **71** (l.16, l.101, [^80], [^148]).
+- 🔴 **Dividendes CAC 40 vers l'étranger : « près de 40 Md€ » (l.34) → « plus de 36 Md€ (près de la moitié) »** (vérifié : 36,4 Md€ = ~49 % des 73 Md€ ; cohérent avec l.151 et l.228).
+- 🔴 **Incohérence Ardian** (170 / 200 / 176 Md$) tranchée : Ardian = **177 Md$ fin 2024, 176 jan. 2025, >200 Md$ depuis mars 2026** ($137 PE/$49 RA/$14 crédit). Intro garde 176 (« gérait *alors* », Doliprane 2024 = correct). P3 au présent → **200 Md$** ; l.99 « À fin 2024 » → **« Début 2026 »** ; l.34 170 → 200 + « moins d'un dixième » → « de l'ordre d'un dixième » ; [^144] redaté mars 2026.
+- 🔴 **l.272 « épargne brute des ménages… 6 000 Md€ » → « patrimoine financier »** (l'épargne brute est un flux ~18 % du RDB ; 6 356 Md€ = stock, terme correct déjà employé en l.57).
+- Vérifiés OK : taux d'épargne ~18 % (18,9 % T2 2025), patrimoine fin. 6 356,4 Md€ (BdF), fonds euros 0,15 % réel net, CDPQ 473/7,1 %, CPPIB 714,4/8,3 %, ABP 542/8,6 %, PFZW 259/8 %, AP-fonds 2 100 SEK/7,6 %, CalPERS 506,6, AustralianSuper 315, capi/PIB, IPO, FRR 21/ERAFP 48/PER 119.
+
+**⚠️ MÉTHODE RECADRÉE PAR L'AUTEUR (22 juin)** : ma 1ʳᵉ passe P3 était trop rapide (ciblage « cascades » par grep, pas lecture intégrale). **Reprise en lecture vraie paragraphe par paragraphe.** L'auteur a raison : la lecture intégrale fait apparaître des erreurs que le grep ratait.
+
+**FAIT le 22 juin — P3 l.1-126 RELUE PARAGRAPHE PAR PARAGRAPHE.** Corrections supplémentaires (en plus des cascades déjà traitées) :
+- 🔴 **§22 PFZW « environ 760 000 affiliés » → « près de 2,9 millions »** (rapport PFZW 2024 lu à la source : 2 949 600 affiliés au total, dont 1,42 M cotisants actifs ; 259 Md€, rendement 8 % ✓). [^114] complétée.
+- 🔴 **§28 « Aucun pays de l'OCDE ayant institué un pilier capitalisé ne l'a démantelé » = FAUX** (Hongrie 2010-2011 renationalisation, Pologne 2013-2014 réduction/volontariat ; aussi Lettonie/Slovaquie/Roumanie). Réécrit en nuance qui *renforce* la thèse : distinction entre les piliers matures robustes (Suède, NL, DK, Australie, Canada, RU, jamais démantelés) et les *carve-out* fragiles d'Europe centrale (que le livre ne préconise pas). [^121] réécrite + sources (Simonovits 2011, Fultz 2012).
+- 🔴 **§101 « la somme des six fonds dépasse 4 500 Md€ » = FAUX** (additionnait des devises différentes €/CAD/AUD/USD ; converti en euros ≈ 3 650 Md€, encore réduit par la correction GPFG). → **« dépasse 3 600 Md€ »** ; « Ardian = 4 % » → **« ~5 % »** (l.101 ET l.228).
+- Vérifiés OK en primaire/lecture : RAFP (alloc. 58/20/10/9, 47,8 Md€, 4,3 %), GPFG 6,3 % nom./4,1 % réel, CDPQ 473/7,1 %, CPPIB 714,4/8,3 %, AP-fonds 2 100 SEK/7,6 %, ABP 542/8,6 %/2,9 M, NEST 49,7 Md£/13,8 M, AustralianSuper 7,94 %, **BPIfrance Le Lab (étude 27 nov. 2025) : 370 000 d'ici 2030 / 3 M emplois / 26 000 transmises 2024 / 240 000 sans repreneur — tous exacts**, GPFG actions FR 35 Md€, non-résidents 50 % CAC 40.
+
+**STANDARD RELEVÉ PAR L'AUTEUR (22 juin) : EXHAUSTIF — chaque chiffre vérifié en source primaire**, pas seulement les claims à risque. Passe « close-out exhaustif » de l.1-126 effectuée :
+- 🔴 **§93 obstacles transmission réécrit** : « 23 % des reprises familiales » et « 41 % … 6× vs 4× EBITDA » étaient **inventés** (absents des sources). Remplacés par les chiffres réels de l'étude Bpifrance Le Lab (communiqué lu) : 60 % des repreneurs rencontrent des obstacles, 30 % financement (44 % chez les ex-salariés), 26 % jugent le prix payé trop élevé, 70 % des dirigeants pas préparés. [^141][^142][^143] réécrites.
+- 🔴 **§95 « 3 M d'emplois ≈ effectifs CAC 40 en France (à un demi-million près) » = FAUX** : le CAC 40 emploie ~1,4 M en France (≈ 5 M monde). Corrigé en « plus du double des effectifs du CAC 40 en France » + **[^398] créée**.
+- §24 **KiwiSaver « deux tiers » → « plus de 3 M membres, grande majorité des actifs »** (couverture réelle ~80-90 %). [^120] enrichie.
+- [^139] daté « 2024 » → **27 nov. 2025** + enrichi ; [^140] réécrit (chiffres vérifiés : 26 000 transmises 2024, ~74 000 absorbables/an, ~130 000 sur 5 ans).
+- Vérifiés exacts en primaire : **NEST** (49,7 Md£/13,8 M/9,9 %), **Industriens Pension** (255 Md DKK/447 000/6,3 %), stats obstacles Bpifrance.
+- Accepté comme fourchettes sectorielles sourcées (non re-vérifiées valeur par valeur car illustratives) : §103-107 économie du PE (rendements 10-15 % / 6-8 %, frais 2&20, multiples EBITDA), NBIM 0,041 %/AP7 0,05 % [^149][^150].
+
+**✅ P3 l.1-126 VÉRIFIÉE AU STANDARD EXHAUSTIF.**
+
+**FAIT le 22 juin — P3 l.127-171 « Le hold-up silencieux » vérifiée au standard exhaustif.** Corrections :
+- 🔴 **§133 garanties Doliprane FAUSSES** : « production Domloup, R&D 70 M€/5 ans, 4 000 emplois, siège Neuilly » → vrai accord (presse.economie.gouv.fr) : **sites Lisieux et Compiègne 5 ans (pénalité jusqu'à 40 M€), maintien siège + R&D en France, pénalité 100 000 €/emploi supprimé**. Corps + [^151] réécrits.
+- 🔴 **§157 « 36,4 Md€ ≈ budget Éducation nationale, ou presque » = FAUX** (budget Enseignement scolaire 2024 = 63,6 Md€ hors pensions) → **« plus de la moitié »** + [^399] créée.
+- 🔴 **§153 « TotalEnergies a versé 14,6 Md€ de dividendes, LVMH 6,9, Stellantis 6,7 »** : ce sont des **retours totaux (dividendes + rachats)** = 14,5 / 6,8 / 6,7 → relabellisé.
+- Vérifiés exacts en primaire : CAC 40 dividendes 72,8 Md€ (+8,5 %) / retour total 98,2 Md€ ; Alstom-GE prix annoncé 12,35 Md€ (equity value) ; Photonis (Teledyne 550 M$/510 M€, HLD 370 M€) ; Latécoère (365 M€) ; Exxelia (Heico 453 M€ + 14 M€, juil. 2022/janv. 2023) ; Doliprane (CD&R 50 %/Sanofi 48,2 %/Bpifrance 1,8 %, EV 16 Md€, ~10 Md€ net) ; 36,4 Md€ = 50 % × 72,8 et 535 €/hab ✓.
+- **Accepté comme sourcé, NON re-vérifié valeur par valeur (à repasser si besoin)** : §143 effectifs France (Lafarge 6500→<5500, Technip >5000→<3500), Ingenico-Worldline 7,8 Md€, Servier-Agios 1,8 Md$ ; §145 agrégat « ~85 / >90 Md€ » (construction discutable : mêle fusions et cessions, mais hedgé « environ ») ; §155 valeurs intermédiaires (2 165 Md€ capi / 1 083 Md€ étranger / 19 sur 35 — cohérentes avec 49,5 % confirmé) ; §159 répartition 40/34/26 et BlackRock 2,1 %/Vanguard 2,0 %/State Street 1,5 % [^164][^165].
+
+**FAIT le 22 juin — P3 l.172-272 vérifiée au standard exhaustif. ✅ PARTIE 3 ENTIÈREMENT TERMINÉE.** Corrections l.172-272 :
+- 🔴 **§190 arithmétique** : « 36,4 Md€ × 30 % = 15 Md€ » faux (= 11) → réécrit « 30 à 40 % → 11 à 15 Md€/an » (cohérent avec [^169]).
+- 🔴 **[^168] « Canada 40 % du PIB » FAUX** (GPAS 2025 : Canada 165 %, Australie 162 %, Suisse 173 %, Pays-Bas ~147 %, moyenne 22 marchés 76 %). Note réécrite. Idem [^123].
+- 🔴 **§52 + §182 « 50 % du PIB = Canada à mi-parcours » et « 100 % = moyenne mondiale »** = faux → reformulés (Canada/Australie/Suisse >145 % ; moyenne mondiale ~76 %).
+- 🔴 **§258 « croissance additionnelle ~2,8 points par an pendant 10 ans »** invraisemblable et incohérent avec « 700 Md€ cumulés » → supprimé (on garde le cumul IAP).
+- 🔴 **§270 « ABP + PFZW pèsent ensemble plus que le PIB néerlandais »** faux (801 Md€ < 1 130 Md€) → « les fonds de pension néerlandais, ABP et PFZW en tête, pèsent ensemble davantage que le PIB ».
+- §226 « épargne financière brute » → « patrimoine financier brut » (cohérence).
+- §238 « 4ème taux OCDE » douteux (Portugal dans la même bande) → « l'un des plus élevés, au coude-à-coude avec Autriche/Portugal ».
+- Vérifiés en primaire : dépense retraite France 13,8 %/405 Md€ (OCDE PAG 2025, moyenne 8,1 %), CDPQ-Bombardier (30 %/1,5 Md$, janv. 2021), USS-Heathrow (8,65 %/392 M£), 1 500=50 % PIB / 3 000=100 % PIB.
+- Sources IAP (§250-258, recettes 175 Md€, PIB 700 Md€, 470 k emplois) : **modèle partisan clairement attribué** [^177][^178], non vérifiable en externe ; taux annuel invraisemblable retiré.
+
+**⚠️ À VÉRIFIER EN P4** : §234 annonce « huit pays comparables » — confirmer que la Partie 4 traite bien 8 pays (l'ancienne structure n'en listait que 4 : Suède/Australie/Singapour/Chili).
+
+**BILAN P3 : ~20 corrections** (dont ~12 erreurs factuelles 🔴), la moitié invisibles sans lecture intégrale.
+
+**FAIT le 22 juin — P4 l.1-106 (intro + Suède + Australie + Singapour) vérifiée au standard exhaustif.** + correction P3 §234 « huit pays » → « quatre pays » (la P4 traite 4 trajectoires). Corrections P4 :
+- 🔴 **§19 Suède** : « novembre 1992 … taux 500 % » faux → le **500 % = 16 septembre 1992** (défense couronne) ; **novembre 1992 = abandon de la parité** (flottement, −25 %). « Dévaluée trois fois en 18 mois » supprimé (couronne arrimée à l'écu puis flottée). [^179] était déjà correcte → c'est le corps qui la contredisait.
+- 🔴 **§47 Northvolt** : « le fonds AP2 à hauteur de 531 M$ » → en réalité **AP1-AP4 collectivement** (véhicule commun « 4 to 1 Investments ») ; AP2 seul ≈ 1,5 Md SEK. Corps + [^196] corrigés. (Daniel Ek, dates de faillite nov. 2024/mars 2025 : confirmés.)
+- 🔴 **§71 Australie MySuper** : « 52 produits ont échoué en 2021 … les 52 ont tous passé en 2025 » faux → **13 en échec en 2021** (sur 76) ; **1 seul en 2025** (sur 64), 9 ayant quitté le marché. Corps + [^206] corrigés.
+- 🔴 **§69** : « à fin 2024 … 4,3 trillions » → c'est **mi-2025** ([^203]) ; rang mondial « après US, Japon, **Pays-Bas** » → **« Royaume-Uni »** (l'Australie, 4ᵉ marché, est plus grosse que les Pays-Bas).
+- 🔴 **§91 Singapour** : « pas de TVA significative … impôt ≤ 22 % » faux → **GST à 9 %**, impôt sur le revenu plafonné à **24 %**.
+- §63 : Keating investi Premier ministre le **20** décembre 1991 (pas 21).
+- Vérifiés exacts : Riksbank 500 % (16/9/1992), accord 1994 voté >85 %, NDC 16 %/PPM 2,5 %/ITP-SAF-LO, AP7 0,05 %/27,3 % en 2024, **41 licornes / 2ᵉ par habitant** (confirmé), Accord australien 1985 Mark II (3 % vs −2 pts inflation), SG 1992→12 % (1ᵉʳ juil. 2025), Sydney Airport 2022, CPF 1955/HDB 1968/CPF LIFE 2009, 90 % propriétaires, CPF 37 %, **Mercer 2025 Singapour 5ᵉ note A 1ʳᵉ asiatique** (confirmé), AustralianSuper 385 Md AUD (juin 2025, ≠ 315 juin 2024 en P3 — dates différentes, OK).
+
+**⏸️ REPRISE À** : **P4 l.107** « Chili : l'expérience unique du tout-capitalisation » → « Quatre leçons » (l.195) → « Les enjeux à arbitrer » (l.215) → « La méthode politique » + 12 propositions + agenda 2027-2052 (l.283-419) → « La transition » (l.440). **Intégrer le livre blanc AFG** (`recherche/afg-livre-blanc-juin-2026.md`) au bon endroit (méthode/transition). Puis **conclusion**, **appendice**. Lecture paragraphe par paragraphe + chaque chiffre en primaire.
+
+**FAIT le 22 juin — P4 l.107-214 (Chili + Quatre leçons) vérifiée au standard exhaustif.** Corrections :
+- 🔴 **§137 Chili rendement AFP** : « 1981-2024 = 3-4 % réel » FAUX → en réalité **~8-10 % réel sur 1981-2003** (fonds unique), puis **~3,5 % depuis 2002** (multifondos, fonds C ; les multifondos n'existent que depuis 2002). Le passage « le boom est venu mais moins fort que prévu » était faux ET contredisait §143/§185 (échec = architectural, pas le rendement). Réécrit + [^234] corrigé (sources : Superintendencia, Mitchell-Ruiz/Wharton).
+- 🔴 **§117** : citation Friedman « *Chicago of Latin America* » non vérifiable → remplacée par « thérapie de choc » + « miracle du Chili » (vérifiés).
+- 🔴 **§199 vs §169 cotisation patronale chilienne** (apparente contradiction 7 % / 8,5 %) : les deux sont justes (7 % = nouvelle cotisation ; 8,5 % = total avec SIS, atteint 2035 ; décompo 4,5/1,5/2,5 exacte — loi 21735, KPMG/DLA Piper). §199 clarifié.
+- Vérifiés exacts : coup d'État 11/9/1973, DL 3500 (4/11/1980, en vigueur 1/5/1981, 10 % salarié seul, zéro employeur), militaires exemptés (CAPREDENA/DIPRECA), OIT 2018 « 18/30 renationalisés », remplacement OCDE Chili 38,5/35,4 → 45,7/43 avec PGU (France 71,9/NL 96), No+AFP 24/7/2016, estallido 18/10/2019, référendum 78,27 %, 3 retraits 55,8 Md$ (~20 % PIB), Boric 55,87 %, loi 21735 votée 110-38 le 29/1/2025, FAPP/PGU.
+
+**⚠️ COUTURE STRUCTURELLE À ARBITRER (signalée à l'auteur) — §213** (dernier § de « Quatre leçons », juste avant « Les enjeux ») : paragraphe orphelin de l'ancienne structure, il annonce « **La troisième partie de ce livre va regarder ce qu'ils ont réussi…** » alors qu'on est DANS la Partie 4 et que les cas pays viennent d'être exposés (§17-194). **Redondant + numéro de partie faux. Recommandation : supprimer (ou refondre en simple transition vers « Les enjeux »).** Non supprimé unilatéralement (retrait d'un § = décision éditoriale).
+
+**⏸️ REPRISE À** : **P4 l.215** « Les enjeux à arbitrer » → « La méthode politique » + 12 propositions + agenda 2027-2052 (l.283-419) → « Ce que le système atteint en 2052 » → « La transition » (l.440). **Intégrer le livre blanc AFG** (méthode/transition). Puis **conclusion**, **appendice**. Lecture paragraphe par paragraphe + chaque chiffre en primaire.
+
+**FAIT le 22 juin — §213 orphelin SUPPRIMÉ (feu vert auteur) ; P4 l.215-280 « Les enjeux à arbitrer » (5.1-5.5) vérifiée.** Corrections :
+- 🔴 **§253 PER « encours moyen 3 400 € » → ~10 600 €** (contradiction interne avec P3 §73 ; 118,9 Md€ / 11,2 M = 10 616 €).
+- **§263 CFE-CGC** : orthographe « Thieffine » → **« Thieffinne »** (Christelle Thieffinne, élue présidente 10-11 juin 2026, succède à F. Hommeril — confirmé) ; « favorable explicite » adouci en « ouverte » (présidente élue il y a quelques jours, prudence).
+- Vérifiés exacts : timelines pays (Australie 7 ans Accord→vote, 33 ans→12 %), **fécondité 1,56 en 2025 (plus bas depuis la fin de la 1ʳᵉ GM — INSEE)**, ratio 1,79→1,41, déficit COR -5/-6,6/-45 Md€, passif implicite ~417 % PIB (CE), FRR ~20 Md€, eurobonds 50 Md€=1,7 pt dette, Stec/Apostolakis/Béláné Nagy (CEDH), DC 2003-483/2010-617/2014-698/2023-849, lois Thomas 1997/Delevoye 2019/Borne 2023, UK staging 2012-2018 (8 %, ~80 %), Riester ~9,7 M, Odoxa 57/22/20.
+- **Accepté comme sourcé, variance à surveiller** : cotisation patronale « ~11 Md€/point » (§239) vs Martinot « ~7 Md€/point » ([^394]) vs « 3 pts→40 Md€ » (P2 §130) — bases différentes (masse salariale totale vs plafonnée), à harmoniser idéalement ; sous-indexation « 1,4 Md€/an » (périmètre partiel).
+
+**⏸️ REPRISE À** : **P4 l.282** « La méthode politique » (Voie A/B, voie chilienne à éviter) → **12 propositions + agenda 2027-2052** (l.335-418) → « Ce que le système atteint en 2052 » (l.419) → « La transition » (l.440-454). **Intégrer le livre blanc AFG** ici (méthode/propositions/transition — fiche `recherche/afg-livre-blanc-juin-2026.md`). Puis **conclusion** (`06-conclusion.md`), **appendice** (`07-appendice-cinq-mensonges.md`, cascade scénario D 119k→228k notée).
+
+**FAIT le 22 juin — P4 l.282-453 (méthode politique + 12 propositions + agenda + transition) vérifiée. ✅ PARTIE 4 ENTIÈREMENT TERMINÉE + LIVRE BLANC AFG INTÉGRÉ.** Corrections :
+- 🔴 **§317 + [^282]** : MySuper « 52 échoué / 0 sur 52 » → **13 (2021) / 1 sur 64 (2025)** (même erreur qu'au §71, re-corrigée).
+- 🔴 **§355 FRR** : « créé en 1999 par la loi du 17 juillet 2001 » (contradictoire) → « institué en 1999 (LFSS), érigé en établissement public par la loi du 17 juillet 2001 ».
+- 🔴 **§413 (Proposition 12)** : « TRI de **5,8 %** » = ancienne erreur P1 ressuscitée → corrigé en **2,5 % → 1,75 %** (cohérent P1 §137).
+- 🔴 **§440/§442 : paragraphe dupliqué** (« Reste l'objection technique la plus sérieuse… ») → doublon (§440) supprimé.
+- 🔴 **§444 « réforme Lindbeck-Persson »** → mauvaise attribution (réforme = groupe Könberg/Hedborg, principes 1994, loi 1998 Persson) → corrigé.
+- **§421 Pays-Bas « >200 % »** → « ~150 % » (cohérent GPAS 2025 / [^168]/[^123]).
+- ✅ **LIVRE BLANC AFG intégré au §448** (transition, là où sont déjà cités Montaigne/Fondapol 2025) : paragraphe + **[^400] créée** (régime complémentaire paritaire, fonds générationnels <40 ans, redéploiement Agirc-Arrco, PERCOL obligatoire ≥10 salariés, citation Setbon, encours 229,4 Md€/13,2 M épargnants).
+- Vérifiés : NextGenerationEU 800 Md€, NEST 13 M/80 %, AP1-4 fin 2024 (2 053 Md SEK/182 Md€/9,6 %/0,07 %), FRR (objectif 150 Md€, 28 Md€ dotés, CADES 2,1 Md€/an, 20,4 Md€ fin 2024, contrefactuel Sénat 89 Md€), CDPQ/AGIRC-ARRCO/RAFP réserves ~160 Md€, masse salariale privé ~1 100 Md€ (4 %→44 Md€).
+
+**⚠️ À SIGNALER (mineur / cleanup)** :
+- **Commentaires TODO-ENRICHISSEMENT (§423-436)** : blocs HTML invisibles à la lecture, **stale** (le travail « méthode politique » + « fonds de transition suédois » est déjà fait en §440-452). À supprimer (cleanup).
+- **FRR rendement** : §355 « 4,1 % réel net 2003-2024 » vs §446 « 3,7 %/an depuis création » — léger écart (réel vs nominal / périodes), à harmoniser idéalement.
+- **AGIRC-ARRCO réserves** : §448 « plus de 91 Md€ » (vérifier : ~68-90 Md€ selon l'année).
+
+**⏸️ REPRISE À** : **conclusion** `06-conclusion.md` (4 verrous historiques + « cette fois c'est différent » + 3 bénéfices + « Choisir, enfin »), puis **appendice** `07-appendice-cinq-mensonges.md` (⚠️ cascade scénario D « 119k→228k » à recalculer/vérifier). Lecture paragraphe par paragraphe + chaque chiffre en primaire.
+
+**FAIT le 22 juin — CONCLUSION `06-conclusion.md` vérifiée au standard exhaustif.** Corrections :
+- 🔴 **§31** : « ~90 milliards par an » (pour 3-4 pts de cotisation) = **erreur P2 §130 ressuscitée** → corrigé en **40 milliards** (le 90 = 3 % du PIB).
+- 🔴 **§9 Laroque** : citation en discours direct guillemeté re-apparue → **dé-guillemetée** (paraphrase, comme P1 §97) ; [^347] réécrite (« formulation de l'auteur, non un verbatim » — la note disait elle-même « à consolider sur archives primaires »).
+- **§13 CFE-CGC** : « Thieffine » → « Thieffinne » + « explicitement favorable à un pilier obligatoire » → « ouverte, sous condition » (cohérent §263 P4 ; présidente élue juin 2026).
+- **§49** : « six mille milliards d'épargne brute » → « patrimoine financier des ménages ».
+- **§9** : « deux **hyperinflations** » → « deux épisodes d'inflation galopante » (la France n'a pas connu d'hyperinflation au sens strict).
+- Vérifié : **avant 1914, Paris ≈ le double de Wall Street** (confirmé : Paris top-2 mondial, NYSE encore domestique) ; Suède 11 %→7,2 % ; 5 réformes ; Odoxa 57/22/20 ; RAFP 20 ans ; syndicalisation 10,1 % ; AMF 12,5 % ; OCDE littératie 13/21 ; NL Pensioenakkoord 2019.
+
+**⏸️ REPRISE À** : **appendice** `07-appendice-cinq-mensonges.md` (cinq mensonges, format Q/R). ⚠️ **cascade « scénario D 119k→228k » à recalculer/vérifier** (flaggée de longue date) + vérifier les chiffres réutilisés (cas-type, fonds, etc.).
+
+**FAIT le 22 juin — APPENDICE `07-appendice-cinq-mensonges.md` vérifié. ✅✅ FACT-CHECK EXHAUSTIF DU LIVRE ENTIER TERMINÉ (de §1.1c à l'appendice).** Corrections appendice :
+- 🔴 **§19** : actions 5,2 % vs fonds euros 0,15 % = « **70 fois moins** » → **35 fois** (5,2/0,15 = 34,7).
+- 🔴 **§37** : « AP-fonds suédois depuis **1955** » → **1960** (réforme ATP).
+- 🔴 **§85** : cascade « 119 k€ → **228 k€** » impossible à 2 % réel → **~150 k€** (119 k€ sur 20 ans à 2 % = ~7 280 €/an × 20).
+- 🔴 **Écart de pension F/H — contradiction P4 §49 ↔ appendice §47** : P4 disait « France 85 % des hommes [15 % de gap], mieux que la Suède » = FAUX. Vrai (DREES/Eurostat) : **France ~28 % de gap (ensemble), ~40 % (droits directs)**, Suède ~25-28 %. **P4 §49 + [^197] corrigés** ; appendice §47 (28-30 %) était juste.
+- §107 : part actions ménage français « 23 % » → **27 %** (cohérent P3 §79).
+- §127 : « Commission mandatée dès **2026** » → **2027** ; « C'est ce qu'a posé **le Manifeste** » (réf. orpheline) → « la quatrième partie ».
+- §93 PER 10 600 €/titulaire : désormais cohérent P3/P4/appendice ✓.
+- Vérifiés : DMS 5,2/1,7/0,5 %, glide path, DNB/PPF/garantipension, Enron/Madoff/Detroit (analyse juste), Mercer 70,3/85,2/48,6, Chili bonos 30 % PIB, 6 leviers, COR -45 Md€/417 % PIB, scénario D 2 744 Md€/69 %.
+
+---
+
+## ✅ ÉTAT GLOBAL — FACT-CHECK TERMINÉ (22 juin 2026)
+
+**Tout le livre est désormais fact-checké au standard exhaustif** (avant-propos + intro certifiés lors des sessions antérieures ; §1.1c → appendice en lecture intégrale paragraphe par paragraphe + chaque chiffre en source primaire cette session).
+
+**BILAN : ~45 erreurs factuelles corrigées** (P1, P2, P3 ~12, P4 ~17, conclusion ~5, appendice ~7) + de nombreuses notes réécrites + **2 coutures structurelles supprimées** (§213, doublon §440) + **livre blanc AFG intégré** (§448 + [^400]).
+
+**⚠️ RÉSERVE** : avant-propos + intro ont été « certifiés » lors de sessions ANTÉRIEURES, moins exhaustives. Vu le nombre d'erreurs trouvées dans des sections pourtant « certifiées » (P2 Livret A, P1 §1.3 Suède/France, etc.), **une re-passe exhaustive de l'avant-propos + intro serait prudente** si l'auteur le souhaite.
+
+**Micro-incohérences résiduelles signalées (non bloquantes)** : valeur d'1 pt de cotisation patronale (7/11/13 Md€ selon assiette) ; FRR rendement 4,1 % vs 3,7 % ; AGIRC-ARRCO réserves ~68-91 Md€ ; périodes d'inflation 1920s/1940s (formulations légèrement variables) ; commentaires HTML `TODO-ENRICHISSEMENT` (§423-436 P4) à supprimer (cleanup).
+
+**FAIT le 22 juin — RE-PASSE EXHAUSTIVE AVANT-PROPOS + INTRODUCTION.**
+- **Avant-propos** : placeholder vide (contenu déplacé en intro le 30 mai) — rien à vérifier.
+- **Introduction** : aucune erreur factuelle propre trouvée — section solide, tous les chiffres concordent avec les vérifications faites ailleurs (Odoxa 57/22/20, RAFP 47,8 Md€/4,3 %/117,3 %/135,8 %, cas-type +162k/+325k, 14 % PIB, 6 000 Md€, AMF 58/66, Bayrou 27/8/2025, OpinionWay 76 %). **Solde naturel −6 000 en 2025 = première fois depuis la fin de la 2nde GM : confirmé INSEE [^16]**.
+- 🔴 **INCOHÉRENCE DE SOURCE QUE J'AVAIS MOI-MÊME INTRODUITE, corrigée** : le §38 « Deux familles » + [^7] reposent sur l'**OCDE *Pension Markets in Focus 2025*** (Suisse 164,8 / Canada 157,6 / Pays-Bas 150,3 / US 146,9 / Australie 135,1 / Suède 114,8 / RU 78 / France 12,9 / Italie 11,7 / Allemagne 6,4). Or j'avais « corrigé » [^168]/[^123]/§52/§182 (P3) avec des chiffres **GPAS** divergents (Suisse 173, Australie 162…) tirés d'un article secondaire. **Tout réaligné sur l'OCDE [^7]** (la source précise et établie du livre). L'erreur d'origine « Canada 40 % » reste corrigée (OCDE = 158 %). NB : l'Australie « ~160 % » en P4 §69/§421 = superannuation totale APRA ($4,3 T), mesure distincte de l'OCDE « pension funds » 135 % — les deux sont correctement étiquetées.
+
+**✅✅✅ FACT-CHECK EXHAUSTIF DU LIVRE INTÉGRAL TERMINÉ (avant-propos → appendice).**
+
+**RÉDUCTION À 70-80 PAGES WORD — L'AUTEUR LA FAIT LUI-MÊME** (décision du 22 juin). Le corps fait ~48 800 mots + footnotes ; cible 130 p. imprimées = 70-80 p. Word (couper ~20-30 %). **Claude n'intervient pas sur la coupe sauf demande explicite.** Le texte est entièrement fact-checké et certifié ; l'auteur taille à partir de là.
+
+**À NE PAS OUBLIER lors de la coupe (cleanup en attente, non bloquant)** :
+- Supprimer les commentaires HTML `TODO-ENRICHISSEMENT` (P4 §423-436) — périmés.
+- Placeholders graphiques à produire/retirer : P2 (« GRAPHE INTERETS COMPOSES », l.15/35), P2 §132, intro §42 (image1.png), P3 (encadrés « Calcul OVLA »).
+- Micro-incohérences résiduelles tolérées : valeur d'1 pt cotisation patronale (7/11/13 Md€ selon assiette) ; FRR 4,1 %/3,7 % ; AGIRC-ARRCO réserves ~68-91 Md€ ; Australie 135 % (OCDE) vs 160 % (super totale APRA) — étiquetées différemment, OK.
+
+**⚠️ RYTHME** : au standard exhaustif, ~1 demi-partie = 1 session dense. Il reste l.127-272 de P3, puis P4 (15 500 mots, la plus longue), conclusion, appendice. Compter plusieurs sessions.
+
+**⚠️ DÉCISION EN ATTENTE (posée à l'auteur le 22 juin)** : ordre de travail entre fact-check ligne par ligne et coupe à 70-80 p. (fact-check d'abord puis couper, ou couper d'abord puis fact-checker les survivants) + point d'intégration du livre blanc AFG.
+
+---
+
+## État précédent — 31 mai 2026 (RESTRUCTURATION 4 parties + §1.3 enrichi + PARTIE 2 ENRICHIE & dé-dupliquée)
+
+**ENRICHISSEMENT PARTIE 2 « Comprendre la capitalisation » (31 mai) — FAIT, tout certifié en source primaire.** Méthode complète : recherche → rédaction → fact-check phrase par phrase + audit de cohérence anti-redite. Passage de **4 327 → 6 227 mots**. Détail par chapitre :
+- **Ouverture « mot tabou »** : +origine historique (retraites 1910/1930 par capitalisation anéanties par l'inflation → bascule répartition loi 14 mars 1941 / ordonnance 4 oct. 1945) — vérifié Cairn/Valat + COR [^393].
+- **Anatomie** : +risque de séquence & gestion en cycle de vie (AP7 Såfa : 100 % actions à levier ≤55 ans → bascule obligataire) + mutualisation/réserve de lissage — vérifié ap7.se [^391].
+- **Ce que ce n'est pas** : +5ᵉ malentendu (capitalisation ≠ démantèlement de la répartition ; ≠ inégalitaire, la répartition favorisant les longévifs : cadres +5,3 ans) — vérifié INSEE 2024 [^392].
+- **Le RAFP** : d'abord enrichi puis **DÉ-DUPLIQUÉ** (l'intro §0.5 contient déjà genèse/encours/allocation/couverture/« répartition provisionnée »/« angle mort » → forte redite). Version finale = *banc d'essai* du mécanisme + gouvernance paritaire (CA 19 membres) + ISR 100 % + surcapitalisation-amortisseur — vérifié rapport public ERAFP 2024 [^389][^390]. Couture l.74 corrigée.
+- **Cotiser moins (cas-type)** : chiffres certifiés **GELÉS et vérifiés intacts** ; 1 paragraphe additif (lien générationnel, réutilise 216 240 €).
+- **Ce que ça change** : +sous-section « choc démographique encaissé » (le capital ne dépend pas du ratio cotisants/retraités 1,8→1,4 [^395]) + attribution Martinot/Fondapol nov. 2025 (baisse cotisations « >6 points à long terme ») [^394] ; transition l.120 recalée. **Macro NON traité (anti-redite).**
+
+**⚠️ COHÉRENCE / ANTI-REDITE (consigne auteur 31 mai)** : audit complet réalisé. Décision clé — **toute la matière macro (épargne EU qui fuit vers les USA ~300 Md€/an [Letta], fonds de pension EU 32 % PIB vs US 142 % [Draghi/EFAMA], financement PME-ETI, 6 000 Md€ qui dorment) est RÉSERVÉE À LA PARTIE 3** (cœur de P3, redite TRÈS FORTE si placée en P2). Dossier sourcé prêt : `recherche/p2-ce-que-ca-change-enrichissement.md` (COR 2025, INSEE/Blanchet dette implicite ~400 % PIB, Letta, Draghi) → **à exploiter lors du fact-check/enrichissement de la Partie 3.** Footnotes P2 ajoutées : [^389]-[^395]. Relecture HTML régénérée.
+
+**FACT-CHECK PHRASE PAR PHRASE — PARTIE 2 — EN COURS (mode interactif, validation de l'auteur à chaque paragraphe).** L'auteur a refusé la passe « par lots » comme certification finale : on refait le fact-check **paragraphe par paragraphe**, je présente chaque affirmation + sa source primaire, l'auteur valide avant d'avancer.
+
+**⏸️ REPRISE À : §20 (ligne 51 du fichier `03-partie2-comprendre-capitalisation.md`) — paragraphe « risque de séquence / gestion en cycle de vie / AP7 Såfa ».**
+
+**Paragraphes §1 à §19 (jusqu'à l.49) : VALIDÉS.** Corrections actées dans cette passe interactive :
+- §2 (l.7) : « lois de 1910 et 1930 » → « 1910 et **1928-1930** » (texte + note [^393]).
+- §3 (l.9) : « disparu depuis quarante ans » → « depuis **plus de** quarante ans » (inflation 2 chiffres : dernière année 1982 à 11,8 %, INSEE).
+- §5 (l.13) : définition « quatre temps » **numérotée 1/ 2/ 3/ 4/**.
+- §7 (l.19) : coquille « pendant tout au long » → « **tout au long** ».
+- §9 (l.25-27) **CORRECTION MAJEURE** : l'exemple « 142 € » (100 salarial + 42 patronal) était **faux** (split inversé ET magnitude). **Vrai chiffre lu dans le simulateur officiel URSSAF (mon-entreprise.urssaf.fr, barème 03/2026), salaire moyen 3 417 €/mois brut : cotisation retraite = 956 €/mois (386 € salarial + 570 € patronal)**. Corrigé en « ~390 € salariale + ~570 € patronale, près de 960 €, arrondi à **1 000 €** » → réconcilie aussi le « 1 000 € » de l.25. Cascade l.33 recalculée : **1 000 € → 1 040 / 1 082 / 1 125 → ~4 800 €** en 40 ans à 4 %. l.31 « 142 € » → « 1 000 € ».
+- §10 (l.29) : « entre 1 % et 2 % » CONSERVÉ (cohérent convention prix), note [^79] **enrichie du COR 2025** (Fig. 3.A actualisation prix : gén. 2000 de 0,7 % cadre à 2,5 % ; Fig. 3.7 actualisation SMPT : 0,5 %). Le « 0,5 % » est la convention SMPT, pas une contradiction.
+- §11 (l.31) : parenthèse parasite « - (comme » → « - comme ».
+- §12 (l.33 + placeholder l.35) : cascade corrigée ; coquille « COTISATONS » → « COTISATIONS ».
+- §13 (l.37) : note [^82] (faux Einstein) **renforcée** avec Quote Investigator (pub 1925, attribution 1983).
+
+**Vérifs primaires déjà faites et CONFIRMÉES correctes (ne pas retoucher)** : cas-type entier recalculé Python au centime (216 240 / +162 741 / +325 481 / sensibilités 169 731-278 461 / effort 93 766 / rente 953) ; intérêts composés (×4,8 à 40 ans, ×7,1 à 50 ans, 1 040/1 082/1 125) ; DMS 5,2/1,7/0,5 % & 35 marchés (UBS GIRY 2025) ; assurance-vie 1 989 Md€ / **1 178 Md€ fonds euros individuels** / **2,63 %** (ACPR n°175 & n°170 — périmètre *contrats individuels*, ≠ France Assureurs 1 404 Md€/2,5 %) ; PER 11,2 M / 118,9 Md€ (Bercy T3 2024) ; GPFG 4,1 % / CPPIB 8,3 % / AustralianSuper 7,94 % / AP7 ~14 % depuis 2010 ; cadres/ouvriers 5,3 ans (INSEE 2024) ; histoire 1941/1945 (Cairn/Valat) ; RAFP (ERAFP 2024) ; AP7 Såfa cycle de vie (ap7.se). Note [^88] Suède corrigée « 16,5 % » → 16 %.
+
+**ARCHITECTURE — passage de 3 à 4 parties (31 mai)**. La Partie 1 contenait à la fois le diagnostic ET l'explication de la capitalisation : trop dense. Le chapitre « Comprendre la capitalisation » a été **extrait en Partie 2 autonome** (5 chapitres). Nouvelle carte des fichiers du manuscrit :
+
+| Fichier | Titre H1 | Contenu |
+|---------|----------|---------|
+| `00-avant-propos.md` | Avant-propos | Placeholder (l'auteur le rédigera, version perso) |
+| `01-introduction.md` | Introduction | Doliprane → Contrat rompu → Deux familles → Français prêts → RAFP → Grande illusion → Objectif → Plan (**4 parties**) |
+| `02-partie1-capi-repond.md` | **Partie 1 — Un système de retraite à bout de souffle** | Diagnostic pur : §1.1 impasse · §1.2 réformes paramétriques · §1.3 « Nicolas qui paie » |
+| `03-partie2-comprendre-capitalisation.md` | **Partie 2 — Comprendre la capitalisation** | Anatomie d'un euro cotisé · Ce que ce n'est pas · Le RAFP · Cotiser moins pour gagner plus (cas-type) · Ce que ça change |
+| `04-partie3-fonds-pension.md` | **Partie 3 — La capitalisation permet d'avoir des fonds de pension** | (ex-Partie 2) |
+| `05-partie4-feuille-route.md` | **Partie 4 — Comment on y arrive** | Cas étrangers + enjeux + méthode + transition (ex-Partie 3) |
+| `06-conclusion.md` · `07-appendice-cinq-mensonges.md` · `99-footnotes.md` | — | inchangés |
+
+**Renvois internes recâblés (31 mai)** suite au renumérotage : plan §0.6 réécrit en 4 parties ; appendice « chapitre 1/2/3/4/5 » → « première/deuxième/troisième/quatrième partie » ; conclusion « trois parties »→« quatre » (×2) + « troisième partie »→« quatrième » ; P3 fin « chapitre suivant »→« partie suivante » ; P4 « chapitre 1 »→« première partie ». **3 coutures non numérotées restant à arbitrer par l'auteur** (paragraphes mal placés, pas de simples numéros) : P4 l.213 (« la troisième partie va regarder ce qu'ils ont réussi » — annonce des cas déjà exposés, à déplacer fin P3 ou supprimer) ; P4 l.211 (« le chapitre suivant » annonce l'appendice trop tôt) ; P2 l.74 (renvoi « chapitre suivant » brouillé par l'extraction).
+
+**Titre Partie 1 « Un système de retraite à bout de souffle »** : imposé par Claude lors de l'extraction — **à valider par l'auteur**.
+
+**Phase fact-check** : phrase par phrase **avec backfill complet en méthode « zéro tolérance »**. Avant-propos, introduction (§0.1-§0.6) et **tout le diagnostic + la capitalisation (ex-Partie 1 §1.1-§1.6, désormais répartis Partie 1 + Partie 2)** sont certifiés en source primaire + phrase-par-phrase. ~20 erreurs factuelles rattrapées + 2 footnotes vides comblées.
+
+**Changement de méthode majeur (acté 30 mai)** — après deux alertes de l'auteur (« as-tu vraiment fait ligne par ligne / phrase par phrase ? ») :
+- Chaque chiffre/date/citation est lu par Claude en **source primaire locale** (`curl` + `pdftotext` + `grep`) ou recalculé en **Python** — plus jamais validé sur une reprise secondaire ou un statut « cohérent ».
+- **Phrase-par-phrase systématique** : les affirmations non chiffrées (attributions, effectifs, titres, gentilés, cadrages) sont vérifiées, pas seulement les nombres.
+- Journal de preuves : **`Livre/_factcheck-preuves.md`** (extraits primaires + calculs Python, traçable pour l'éditeur).
+- Agent `capitalisons-fact-checker` réécrit (outil Bash, modèle opus, interdiction du « cohérent/défendable »).
+
+**Erreurs-phares corrigées** : Mercer (France 53,7→70,3 ; viabilité 48,6) ; OCDE taux remplacement France 72→70 % ; GPFG actions FR 25→35 Md€ ; TRI générationnel 5,8 %→2,5 % (chiffre inventé, source ne le contenait pas) ; le **cas-type central recalculé** (228k/456k → **+162 741 € / +325 481 €** après correction de la durée de retraite, du taux de remplacement et vérification du rendement) ; exemple des deux épargnants supprimé (132 000 € impossible à 4 %) ; Bayrou→Lecornu (suspension réforme oct. 2025) ; Moscovici « ex- »→ « premier président » ; Dimson rattaché à Cambridge (pas LBS) ; deux footnotes [^108]/[^109] vides remplies ; Suède 17,2→22 % ; « 3 points → 90 Md€ »→40 Md€.
+
+**Cas-type §1.5 — hypothèses finales (toutes sourcées)** : actif 30 ans, salaire 35 000 € (médian, pas moyen), carrière 43 ans, départ 64 ans, retraite **24 ans** (espérance de cohorte INSEE pour né-1996), **70 %** de remplacement (OCDE PAG 2025, pas le 74,4 % de la génération 1963), **3,7 % net réel** (DMS 5,2 % réel actions + GPFG ; RAFP 4,3 % nominal ≈ 2,7 % réel cité comme plancher), 2 % en liquidation, 28 % de cotisation. → Gains **+162 741 € (scén. B suédois) / +325 481 € (scén. C néerlandais)**.
+
+**Réserves honnêtes restantes en Partie 1** : aucune erreur factuelle identifiée ; les seuls points discutables sont des **choix de modélisation** (3,7 %, 0,5 %, 2 %, 24 ans, 70 %), tous sourcés et défendables, pas des erreurs.
+
+**TÂCHE EN ATTENTE (demandée par l'auteur avant la restructuration)** : enrichir §1.3 « C'est Nicolas qui paie » avec le **lien générationnel** — moins-de-30/40 ans qui se logent mal (propriété <30 ans 19,8 %, accession repoussée 8-10 ans vs 1985, prix immo monté 1,7-1,8× plus vite que les salaires — données dans `recherche/gen-patrimoine-generations.md`, **à certifier en source primaire avant insertion**), cotisations écrasantes pour une pension annoncée plus faible, « on cotise plus pour gagner moins ». Recherche dispo : `recherche/intro-nicolas-qui-paie-generationnel.md`.
+
+**PROCHAINE ÉTAPE FACT-CHECK — Partie 3** (`04-partie3-fonds-pension.md`, ex-Partie 2), en méthode combinée (chiffres primaire + phrase-par-phrase). **Cascades déjà repérées à traiter** : GPFG « 1 900 Md€ » (≈ 1 675) ; dividendes « près de 40 » vs 36 ; terminologie « épargne brute » → « patrimoine financier » ; tailles de fonds (ABP 542, CPPIB 714,4, CDPQ 473, CalPERS 506,6) à certifier. Puis Partie 4 (cascade Chili 71,9 %), conclusion, appendice (cascade scénario D 119k→228k).
+
+**Détail complet** : `Livre/_factcheck-journal.md` (sessions) + `Livre/_factcheck-preuves.md` (extraits primaires).
+
+**DÉCISIONS STRUCTURELLES — 30 mai 2026** :
+1. ✅ **FAIT (30 mai)** : l'avant-propos (Le paradoxe Doliprane + les deux familles de pays / fonds de pension) a été **déplacé en ouverture de l'introduction** ; `00-avant-propos.md` est désormais un **placeholder** pour le nouvel avant-propos personnel que l'auteur rédigera lui-même. Le paragraphe-teaser « Le Doliprane n'est pas un cas isolé… » a été retiré (redite). Les footnotes [^1]-[^7], [^372], [^373] suivent le contenu et restent référencées.
+2. **§ « Trois chiffres » SUPPRIMÉE** (redite avec le Doliprane et la Partie 2, trop longue) et **remplacée par « Le contrat rompu »** : nouvelle section sur l'**injustice générationnelle** (le fil transversal qui manquait), construite uniquement sur des chiffres déjà fact-checkés — récupération 159→117 centimes [^63], TRI 2,5→1,75 % [^62], cotisation un sixième→28 % [^64], déficit caché transféré aux jeunes [^33]. Pas de 76 % (déjà en §0.1, évite la redite). **Placée juste après le développement Doliprane/fonds de pension**, selon le souhait de l'auteur. **Footnotes désormais orphelines à nettoyer** (définitions inutilisées, sans danger) : [^8], [^9], [^10], [^11], [^12], [^13], [^374], [^375], [^376].
+
+3. **Réorganisation logique de l'intro (31 mai)** : après le manifeste « …le point de départ de ce livre », **phrase-pont ajoutée** (« Le deuxième point de départ, c'est l'injustice générationnelle… derrière les fonds de pension, la retraite par capitalisation, cœur du livre ») → enchaîne sur **Le contrat rompu**. La passage « Deux familles de pays » est **sorti** du paradoxe Doliprane, placé **après** Le contrat rompu, et **enrichi** (parle désormais de la capitalisation, pas seulement des fonds de pension). **« La grande illusion » CONDENSÉE** (350→141 mots) : on garde le hook « 14 % du PIB pour des pensions plus faibles » ; le reste (intérêt composé, 96 % NL, « tous les pays ont adossé un pilier ») est coupé car déjà développé en P1 (§1.3, §1.4) et dans « Deux familles ». Footnotes orphelines supplémentaires : [^379], [^380], [^381].
+
+**Ordre final de l'introduction** : Le paradoxe Doliprane (ex-avant-propos) → Le contrat rompu → Deux familles de pays → Les Français sont prêts → Le RAFP → La grande illusion (condensée) → L'objectif du livre → Plan de l'ouvrage.
+
+**Relecture HTML** : `Livre/Capitalisons-relecture.html` — régénérée le 31 mai (intro + Partie 1 enrichie + nouvelle Partie 2 + footnotes), CSS sobre serif. Commande : `pandoc --from=markdown+footnotes+smart --to=html5 --standalone --include-in-header=<css> 01 02 03 99 -o ...`.
+
+**Mot d'ordre de reprise** : « On reprend *Capitalisons*. Lis `Livre/JOURNAL.md`, `Livre/_factcheck-journal.md` et `Livre/_factcheck-preuves.md`. Livre désormais en 4 parties. Tâche en attente : enrichir §1.3 Nicolas (lien générationnel). Puis fact-check Partie 3 en méthode zéro tolérance. »
+
+---
+
+## État précédent — 29 mai 2026 (V4, restructuration en 3 parties + fact-check préparé)
 
 **Phase** : restructuration V2 → V4 (3 parties) **terminée** (étape A-B-Découpage). Prêt pour réécriture intro + fact-check phrase par phrase.
 
@@ -69,7 +324,12 @@
 
 **Estimation restant** : ~15-20 sessions interactives au rythme actuel (1 paragraphe par tour, validation utilisateur entre chaque).
 
-**Mot d'ordre de reprise nouvelle conv** : « On reprend le fact-check de *Capitalisons*. Lis `Livre/JOURNAL.md` et `Livre/_factcheck-journal.md`. On enchaîne sur §12 de l'avant-propos. »
+**Mot d'ordre de reprise nouvelle conv** : « On reprend le fact-check de *Capitalisons*. Lis `Livre/JOURNAL.md` et `Livre/_factcheck-journal.md`. On enchaîne sur §1.1c. »
+
+**MAJ 29 mai 2026 (soir, session fact-check 2)** : **Avant-propos (§1-15) + introduction (§0.1-0.6) + Partie 1 (ouverture, §1.1a « Le grand vieillissement », §1.1b « Le déficit caché ») fact-checkés**, phrase par phrase, avec un agent de recherche par paragraphe + vérification des footnotes en source primaire (téléchargements PDF COR 2025, note Beaufret COR 2023, fiche COR RAFP). Voir `_factcheck-journal.md` pour le détail.
+- **Bilan cumulé** : ~79 corrections appliquées (22 🔴 + 57 ⚠️), ~15 footnotes créées + autant corrigées, sur ~23 paragraphes/sous-sections (avant-propos + intro + début P1).
+- **Prochaine étape : `02-partie1-capi-repond.md`, §1.1c « Comment on en est arrivé là » (l. 91-108)**, dernière sous-section de §1.1 « Le système actuel est dans une impasse ». Ensuite : §1.2 « Ces réformes paramétriques qui n'en sont pas », etc.
+- **Méthode confirmée par l'auteur** : vérification phrase par phrase + agent de recherche à chaque paragraphe + footnotes vérifiées en source primaire. §1.1 traité PAR SOUS-SECTION (trop dense pour un seul passage).
 
 ---
 

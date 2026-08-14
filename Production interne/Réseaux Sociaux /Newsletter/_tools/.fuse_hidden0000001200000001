@@ -1,0 +1,40 @@
+/* OVLA infographic renderer (no browser). Types: bars | hero | dotplot.
+   Usage: node render-infographics.js <spec.json> <outDir>
+   Requires @resvg/resvg-js + repo fonts in Templates/PPT/workspace/fonts. */
+const { Resvg } = require('@resvg/resvg-js');
+const fs = require('fs'), path = require('path');
+const specPath = process.argv[2], outDir = process.argv[3] || '.';
+const spec = JSON.parse(fs.readFileSync(specPath, 'utf8'));
+const fontsDir = path.resolve(__dirname, '../../../../Templates/PPT/workspace/fonts');
+const fontFiles = ['InstrumentSerif-Regular.ttf','InstrumentSerif-Italic.ttf','Syne-Regular.ttf','Syne-Bold.ttf','JetBrainsMono-Regular.ttf','JetBrainsMono-Medium.ttf','JetBrainsMono-Bold.ttf'].map(f=>path.join(fontsDir,f));
+const C={bgDeep:'#0a1220',bgMid:'#142b48',textPrimary:'#f0f4f8',textSecondary:'#8899a8',textMuted:'#4a5a6a',red:'#ff4757',elec:'#00d4ff'};
+const IS="Instrument Serif",SY="Syne",JB="JetBrains Mono";
+function defs(glow){const g=glow==='elec'?'0,212,255':'255,71,87';const o=glow==='elec'?0.12:0.10;return `<defs><linearGradient id="bg" x1="0" y1="0" x2="1080" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="${C.bgDeep}"/><stop offset="50%" stop-color="${C.bgMid}"/><stop offset="100%" stop-color="${C.bgDeep}"/></linearGradient><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="rgba(0,212,255,0.04)" stroke-width="1"/></pattern><radialGradient id="glow1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(${g},${o})"/><stop offset="70%" stop-color="rgba(${g},0)"/></radialGradient><radialGradient id="glow2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(0,212,255,0.06)"/><stop offset="70%" stop-color="rgba(0,212,255,0)"/></radialGradient><linearGradient id="barNeutral" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4a6580"/><stop offset="100%" stop-color="#2d4060"/></linearGradient><linearGradient id="barRed" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff4757"/><stop offset="100%" stop-color="#c0263a"/></linearGradient></defs>`;}
+const frame=()=>`<rect width="1080" height="1080" fill="url(#bg)"/><rect width="1080" height="1080" fill="url(#grid)"/><rect x="380" y="-250" width="700" height="700" fill="url(#glow1)"/><rect x="-150" y="780" width="500" height="500" fill="url(#glow2)"/>`;
+const logo=()=>`<text x="60" y="98" font-family="${IS}" font-size="58" fill="${C.elec}">€</text><text x="108" y="92" font-family="${IS}" font-size="27" font-style="italic" fill="#ffffff">Où Va l'Argent ?</text>`;
+const footer=s=>`<line x1="60" y1="1006" x2="1020" y2="1006" stroke="rgba(255,255,255,0.1)" stroke-width="1"/><text x="60" y="1042" font-family="${SY}" font-size="15" fill="${C.textMuted}">Source : <tspan fill="${C.textSecondary}">${s}</tspan></text><text x="1020" y="1036" text-anchor="end" font-family="${JB}" font-size="22" font-weight="600" fill="${C.elec}">ouvalargent.com</text><text x="1020" y="1060" text-anchor="end" font-family="${JB}" font-size="18" fill="${C.textSecondary}">@ouvalargentfr</text>`;
+function title(lines,y0){const lh=88;let o='';lines.forEach((segs,i)=>{const y=y0+i*lh;o+=`<text x="540" y="${y}" text-anchor="middle" font-family="${IS}" font-size="86" letter-spacing="-1.8" fill="${C.textPrimary}">`;segs.forEach(s=>{o+=s.accent?`<tspan font-style="italic" fill="${s.color}">${s.t}</tspan>`:`<tspan>${s.t}</tspan>`;});o+=`</text>`;});return o;}
+const subtitle=(t,y)=>`<text x="540" y="${y}" text-anchor="middle" font-family="${SY}" font-size="18" font-weight="500" letter-spacing="1.5" fill="${C.textSecondary}">${String(t).toUpperCase()}</text>`;
+function heroSVG(d){let ctx='';d.context.forEach((l,i)=>ctx+=`<tspan x="540" dy="${i===0?0:32}">${l}</tspan>`);const sh=d.valueColor===C.elec?'rgba(0,212,255,0.4)':'rgba(255,71,87,0.4)';return `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">${defs(d.glow)}${frame()}${logo()}${title(d.titleLines,248)}${subtitle(d.sub,398)}<text x="540" y="650" text-anchor="middle" font-family="${JB}" font-size="192" font-weight="700" letter-spacing="-3" fill="${d.valueColor}" style="filter:drop-shadow(0 0 60px ${sh})">${d.value}</text><text x="540" y="718" text-anchor="middle" font-family="${IS}" font-size="48" font-style="italic" fill="${C.textPrimary}">${d.unit}</text><text x="540" y="800" text-anchor="middle" font-family="${SY}" font-size="22" fill="${C.textSecondary}">${ctx}</text>${footer(d.src)}</svg>`;}
+function barsSVG(d){const bw=180,gap=64,baseline=882;const total=d.bars.length*bw+(d.bars.length-1)*gap;let x=540-total/2,b='';d.bars.forEach(bar=>{const top=baseline-bar.h;const fill=bar.highlight?'url(#barRed)':'url(#barNeutral)';const filt=bar.highlight?' style="filter:drop-shadow(0 0 40px rgba(255,71,87,0.55))"':'';b+=`<rect x="${x}" y="${top}" width="${bw}" height="${bar.h}" rx="10" fill="${fill}"${filt}/>`;const vC=bar.highlight?C.red:C.textSecondary,vS=bar.highlight?43:37;b+=`<text x="${x+bw/2}" y="${top-20}" text-anchor="middle" font-family="${JB}" font-size="${vS}" font-weight="700" fill="${vC}">${bar.value}</text>`;b+=`<text x="${x+bw/2}" y="${baseline+38}" text-anchor="middle" font-family="${JB}" font-size="23" font-weight="600" fill="${bar.highlight?C.red:C.textSecondary}">${bar.label}</text>`;x+=bw+gap;});return `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">${defs(d.glow)}${frame()}${logo()}${title(d.titleLines,248)}${subtitle(d.sub,398)}${b}${footer(d.src)}</svg>`;}
+function dotplotSVG(d){
+  const xL=300,xR=930,vCol=1015,maxX=d.maxX;
+  const px=v=>xL+(v/maxX)*(xR-xL);
+  const n=d.rows.length;const y0=d.rowsY||520,step=d.rowStep||100;
+  const yTop=y0-40,yBot=y0+(n-1)*step+34;
+  let g='';
+  // median reference line
+  if(d.median){const mx=px(d.median.value);g+=`<line x1="${mx}" y1="${yTop}" x2="${mx}" y2="${yBot}" stroke="rgba(240,244,248,0.35)" stroke-width="2" stroke-dasharray="6 7"/>`;g+=`<text x="${mx}" y="${yTop-14}" text-anchor="middle" font-family="${SY}" font-size="17" font-weight="600" fill="${C.textSecondary}">${d.median.label}</text>`;}
+  d.rows.forEach((r,i)=>{const y=y0+i*step;const hl=r.highlight;
+    g+=`<line x1="${xL}" y1="${y}" x2="${xR}" y2="${y}" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>`;
+    g+=`<text x="${xL-30}" y="${y+9}" text-anchor="end" font-family="${SY}" font-size="${hl?29:26}" font-weight="${hl?700:500}" font-style="${hl?'italic':'normal'}" fill="${hl?C.elec:C.textSecondary}">${r.country}</text>`;
+    const dx=px(r.value);const rad=hl?14:9;const col=hl?C.elec:C.textSecondary;
+    if(hl)g+=`<circle cx="${dx}" cy="${y}" r="22" fill="rgba(0,212,255,0.18)"/>`;
+    g+=`<circle cx="${dx}" cy="${y}" r="${rad}" fill="${col}"${hl?' style="filter:drop-shadow(0 0 14px rgba(0,212,255,0.7))"':''}/>`;
+    g+=`<text x="${vCol}" y="${y+10}" text-anchor="end" font-family="${JB}" font-size="${hl?32:29}" font-weight="700" fill="${hl?C.elec:C.textPrimary}">${r.value}</text>`;
+  });
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">${defs(d.glow)}${frame()}${logo()}${title(d.titleLines,248)}${subtitle(d.sub,398)}${g}${footer(d.src)}</svg>`;
+}
+const build=ig=>ig.type==='bars'?barsSVG(ig):ig.type==='dotplot'?dotplotSVG(ig):heroSVG(ig);
+fs.mkdirSync(outDir,{recursive:true});
+for(const ig of spec.infographics){const svg=build(ig);fs.writeFileSync(path.join(outDir,ig.name+'.svg'),svg);const r=new Resvg(svg,{fitTo:{mode:'width',value:2160},font:{fontFiles,loadSystemFonts:false,defaultFontFamily:'Syne'}});fs.writeFileSync(path.join(outDir,ig.name+'.png'),r.render().asPng());console.log('rendered',ig.name+'.png');}

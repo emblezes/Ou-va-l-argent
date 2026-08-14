@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>OVLA — Série A : salaires & placements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-deep:#0a1220; --bg-mid:#142b48;
+  --text-primary:#f2f6fa; --text-secondary:#8fa3b6; --text-muted:#4a5a6a;
+  --red:#ff4757; --cyan:#00d4ff; --gold:#ffd700; --green:#00ff88; --neutral:#93b0c8;
+  --border:rgba(255,255,255,.10);
+  --font-logo:'Instrument Serif',serif; --font-display:'Bricolage Grotesque',sans-serif;
+  --font-body:'Inter',sans-serif; --font-mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b0b12;font-family:var(--font-body);padding:2rem;display:flex;flex-direction:column;align-items:center;gap:2rem}
+.vlabel{color:#6f8296;font-family:var(--font-mono);font-size:.95rem;letter-spacing:2.5px;text-transform:uppercase}
+.slide{width:1080px;height:1080px;position:relative;overflow:hidden;color:var(--text-primary)}
+.bg{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.04) 1px,transparent 1px);background-size:40px 40px}
+.glow{position:absolute;border-radius:50%}
+.glow.a{width:780px;height:780px;top:-250px;right:-230px;background:radial-gradient(circle,rgba(255,71,87,.13) 0%,transparent 70%)}
+.glow.b{width:540px;height:540px;bottom:-180px;left:-170px;background:radial-gradient(circle,rgba(0,212,255,.07) 0%,transparent 70%)}
+.slide.green-mood .glow.a{background:radial-gradient(circle,rgba(0,255,136,.10) 0%,transparent 70%)}
+.wrap{position:relative;z-index:2;height:100%;padding:40px 46px 26px;display:flex;flex-direction:column}
+.logo{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.logo i{font-family:var(--font-logo);font-size:4.2rem;color:var(--cyan);line-height:.9;font-style:normal}
+.logo b{font-family:var(--font-logo);font-size:2rem;font-style:italic;font-weight:400;color:#fff;line-height:1}
+.title{font-family:var(--font-display);font-weight:800;font-size:5rem;line-height:1.02;letter-spacing:-2.4px;text-align:center;margin-top:16px}
+.title .red{color:var(--red)} .title .gr{color:var(--green)} .title .gd{color:var(--gold)}
+.kicker{font-family:var(--font-mono);font-size:1.7rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-secondary);font-weight:500;text-align:center;margin-top:14px}
+.plot{flex:1;display:flex;align-items:center;justify-content:center;padding:12px 0 4px}
+.plot svg{width:100%;height:100%;overflow:visible}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;padding-top:16px;margin-top:auto;border-top:1px solid var(--border);flex-shrink:0}
+.foot .src{font-size:1.22rem;color:var(--text-muted);max-width:680px;line-height:1.4}
+.foot .src span{color:var(--text-secondary)}
+.foot .url{font-family:var(--font-mono);font-size:1.65rem;font-weight:700;color:var(--cyan)}
+.v      {font-family:'JetBrains Mono',monospace;font-weight:800;font-size:36px;fill:#f2f6fa}
+.v.hi   {font-size:48px;fill:#ff4757}
+.v.dim  {fill:#93b0c8}
+.cat    {font-family:'Inter',sans-serif;font-weight:700;font-size:29px;fill:#c3d2df}
+.cat.hi {fill:#ff4757;font-weight:800}
+.tick   {font-family:'JetBrains Mono',monospace;font-weight:600;font-size:28px;fill:#9db0c2}
+.ser    {font-family:'Inter',sans-serif;font-weight:800;font-size:30px}
+.note   {font-family:'Inter',sans-serif;font-weight:800;font-size:38px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const LOGO=`<div class="logo"><i>€</i><b>Où Va l'Argent ?</b></div>`;
+const foot=s=>`<div class="foot"><div class="src">Source : <span>${s}</span></div><div class="url">ouvalargent.com</div></div>`;
+const slide=(name,cls,title,kicker,body,src)=>`
+<div class="vlabel">${name}</div>
+<div class="slide ${cls||''}" data-name="${name}">
+  <div class="bg"></div><div class="grid"></div><div class="glow a"></div><div class="glow b"></div>
+  <div class="wrap">${LOGO}
+    <div class="title">${title}</div>
+    <div class="kicker">${kicker}</div>
+    <div class="plot">${body}</div>
+    ${foot(src)}
+  </div></div>`;
+const W=1000,H=520, svg=i=>`<svg viewBox="0 0 ${W} ${H}">${i}</svg>`;
+const C={red:'#ff4757',cyan:'#00d4ff',gold:'#ffd700',green:'#00ff88',neutral:'#93b0c8'};
+const eur=n=>n.toLocaleString('fr-FR').replace(/ | /g,' ');
+const gl=(x1,y,x2)=>`<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="rgba(255,255,255,.07)"/>`;
+const S_LONG="INSEE, séries longues de salaires du privé · salariés à temps complet · euros constants";
+const S_2024="INSEE, Les salaires dans le secteur privé en 2024 · net mensuel EQTP";
+const S_IGEDD="IGEDD (J. Friggit), séries longues 1800-2020 · calcul OVLA, inflation déduite";
+
+/* ===== 265 · COURBE : le salaire médian décroche (valeurs au-dessus des points) ===== */
+const MED=[[1951,606],[1960,949],[1970,1349],[1980,1822],[1990,1950],[2000,2029],[2010,2135],[2024,2191]];
+function courbeMedian(){
+  const pad={l:46,r:66,t:100,b:84}, xmin=1951,xmax=2024,ymin=0,ymax=2650;
+  const X=x=>pad.l+(x-xmin)/(xmax-xmin)*(W-pad.l-pad.r), Y=v=>H-pad.b-(v-ymin)/(ymax-ymin)*(H-pad.t-pad.b);
+  const d=MED.map((p,i)=>`${i?'L':'M'}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join(' ');
+  const area=`${d} L${X(2024)},${H-pad.b} L${X(1951)},${H-pad.b} Z`;
+  const xt=[1951,1970,1990,2024].map(y=>`<text class="tick" x="${X(y)}" y="${H-pad.b+46}" text-anchor="middle">${y}</text>`).join('');
+  const dots=MED.map(p=>`<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="7" fill="${C.red}"/>`).join('');
+  return svg(xt+`<path d="${area}" fill="${C.red}" opacity=".15"/>
+    <path d="${d}" fill="none" stroke="${C.red}" stroke-width="6" stroke-linejoin="round"/>${dots}
+    <circle cx="${X(1951)}" cy="${Y(606)}" r="11" fill="${C.red}"/>
+    <circle cx="${X(2024)}" cy="${Y(2191)}" r="14" fill="${C.red}"/>
+    <text class="v" x="${X(1951)+10}" y="${Y(606)-40}" text-anchor="start">606 €</text>
+    <text class="v" x="${X(1970)}" y="${Y(1349)-40}" text-anchor="middle">1 349 €</text>
+    <text class="v hi" x="${X(2024)}" y="${Y(2191)-40}" text-anchor="end">2 191 €</text>`);
+}
+const I265=slide('265-salaire-median-decroche','',
+  'Le salaire médian ne<br>progresse plus depuis <span class="red">1990</span>',
+  'Salaire net médian du privé, en euros d\'aujourd\'hui',
+  courbeMedian(), S_LONG);
+
+/* ===== 266 · BARRES : la hausse s'effondre ===== */
+function barresPeriodes(data,{max}={}){
+  const pad={l:30,r:30,t:74,b:120}, step=(W-pad.l-pad.r)/data.length, bw=Math.min(150,step*0.58);
+  const h0=H-pad.b, hMax=h0-pad.t;
+  return svg(data.map((d,i)=>{
+    const x=pad.l+step*i+step/2, bh=d.v/max*hMax, y=h0-bh;
+    const c=i===0?C.green:(d.hi?C.red:C.neutral);
+    return `<rect x="${x-bw/2}" y="${y}" width="${bw}" height="${bh}" rx="6" fill="${c}" opacity="${(d.hi||i===0)?1:.72}"/>
+      <text class="v" x="${x}" y="${y-22}" text-anchor="middle" style="font-size:${(d.hi||i===0)?46:38}px" fill="${c==C.neutral?'#f2f6fa':c}">+${d.v} %</text>
+      <text class="cat" x="${x}" y="${h0+46}" text-anchor="middle" style="font-size:30px">${d.p1}</text>
+      <text class="cat" x="${x}" y="${h0+86}" text-anchor="middle" style="font-size:27px" fill="#7f93a6">${d.p2}</text>`;
+  }).join('')+`<line x1="${pad.l-10}" y1="${h0}" x2="${W-pad.r+10}" y2="${h0}" stroke="rgba(255,255,255,.18)" stroke-width="2"/>`);
+}
+const I266=slide('266-hausse-seffondre','',
+  'La hausse des salaires<br>s\'effondre depuis <span class="red">1970</span>',
+  'Hausse du salaire médian sur chaque période, inflation déduite',
+  barresPeriodes([
+    {v:123,p1:'1951-1970',p2:'19 ans'},
+    {v:45,p1:'1970-1990',p2:'20 ans'},
+    {v:9,p1:'1990-2010',p2:'20 ans'},
+    {v:3,p1:'2010-2024',p2:'14 ans',hi:1}
+  ],{max:135}), S_LONG);
+
+/* ===== 267 · PYRAMIDE DE DISTRIBUTION ===== */
+/* modèle validé sur l'infographie 184 : barre pleine largeur, libellé DANS la barre,
+   valeur alignée en colonne à droite, dégradé du bas vers le haut de l'échelle */
+const GRAD=['#e02f43','#ff4757','#ff7a5c','#ff9f43','#ffd700','#c9e64a','#7dff6b','#00ff88'];
+function distribution(rows,{max,vcol=760,synth}={}){
+  const gap=9, top=2, hSynth=synth?76:0, bh=(H-top*2-hSynth)/rows.length-gap, track=vcol-30;
+  const bars=rows.map((r,i)=>{
+    const y=top+i*(bh+gap), w=Math.max(132,r.pct/max*track), c=GRAD[i]||'#93b0c8';
+    return `<defs><linearGradient id="g${i}" x1="0" x2="1"><stop offset="0" stop-color="${c}" stop-opacity=".95"/><stop offset="1" stop-color="${c}" stop-opacity=".3"/></linearGradient></defs>
+      <rect x="0" y="${y}" width="${w}" height="${bh}" rx="7" fill="url(#g${i})"/>
+      <text class="cat" x="22" y="${y+bh/2+11}" style="font-size:30px" font-weight="800" fill="#ffffff">${r.n}</text>
+      <text class="v" x="${W}" y="${y+bh/2+12}" text-anchor="end" fill="${c}" style="font-size:36px">${r.pct.toFixed(1).replace('.',',')} %</text>`;
+  }).join('');
+  const ys=H-hSynth+6;
+  const foot=synth?`<rect x="0" y="${ys}" width="${W}" height="${hSynth-14}" rx="7" fill="rgba(255,255,255,.06)"/>
+    <rect x="0" y="${ys}" width="7" height="${hSynth-14}" rx="3" fill="${C.gold}"/>
+    <text class="cat" x="26" y="${ys+(hSynth-14)/2+10}" style="font-size:30px" fill="#c3d2df">${synth.n}</text>
+    <text class="v" x="${W-14}" y="${ys+(hSynth-14)/2+12}" text-anchor="end" fill="${C.gold}" style="font-size:40px">${synth.v}</text>`:'';
+  return svg(bars+foot);
+}
+const I267=slide('267-pyramide-salaires','',
+  'La pyramide des salaires<br>en <span class="red">France</span>',
+  'Part des salariés du privé par tranche · 2024',
+  distribution([
+    {n:'Moins de 1 500 €',pct:10.4},
+    {n:'1 500 – 2 000 €',pct:30.0},
+    {n:'2 000 – 2 500 €',pct:21.5},
+    {n:'2 500 – 3 000 €',pct:12.8},
+    {n:'3 000 – 4 000 €',pct:12.9},
+    {n:'4 000 – 6 000 €',pct:8.2},
+    {n:'6 000 – 8 000 €',pct:2.2},
+    {n:'Plus de 8 000 €',pct:1.9}
+  ],{max:30,synth:{n:'Salaire médian net mensuel',v:'2 190 €'}}),
+  "INSEE, Les salaires dans le secteur privé en 2024 (figure 2) · net mensuel EQTP");
+
+/* ===== 268 · SALAIRE PAR ÂGE ===== */
+function hbars(data,{max,labelW=330,unit=' €',fmt=eur}={}){
+  const pad={l:labelW,r:210,t:20,b:20}, step=(H-pad.t-pad.b)/data.length, bh=Math.min(62,step*0.66), track=W-pad.l-pad.r;
+  return svg(data.map((d,i)=>{
+    const y=pad.t+step*i+step/2, bw=Math.max(5,d.v/max*track), c=d.c||(d.hi?C.red:C.neutral);
+    return `<text class="cat" x="${pad.l-26}" y="${y+10}" text-anchor="end" fill="${d.hi?c:'#c3d2df'}" font-weight="${d.hi?800:700}">${d.n}</text>
+      <rect x="${pad.l}" y="${y-bh/2}" width="${bw}" height="${bh}" rx="6" fill="${c}" opacity="${d.hi?1:.75}"/>
+      <text class="v ${d.hi?'hi':''}" x="${pad.l+bw+24}" y="${y+13}" fill="${d.hi?c:'#f2f6fa'}">${fmt(d.v)}${unit}</text>`;
+  }).join(''));
+}
+const I268=slide('268-salaire-par-age','',
+  'À 60 ans, on gagne<br><span class="red">deux fois plus</span> qu\'à 25',
+  'Salaire net moyen dans le privé, par âge · 2024',
+  hbars([
+    {n:'Moins de 26 ans',v:1614},{n:'26-30 ans',v:2303},{n:'31-40 ans',v:2661},
+    {n:'41-50 ans',v:2992},{n:'51-60 ans',v:3115},{n:'Plus de 60 ans',v:3442,hi:1}
+  ],{max:3700}), S_LONG);
+
+/* ===== 269 · QUI PROGRESSE DEPUIS 1990 ===== */
+const I269=slide('269-bas-salaires-progressent','',
+  'Ce sont les <span class="gr">bas salaires</span><br>qui progressent le plus',
+  'Hausse du salaire net depuis 1990, inflation déduite',
+  hbars([
+    {n:'10 % les moins payés',v:22,c:C.green,hi:1},
+    {n:'Salaire médian',v:12},
+    {n:'10 % les mieux payés',v:11}
+  ],{max:25,labelW:400,unit:' %',fmt:v=>'+'+v}), S_LONG);
+
+/* ===== 270 · CATÉGORIES DEPUIS 1996 (barres divergentes) ===== */
+function barresDiv(data,{max,dec=0,labelW=360}={}){
+  const pad={l:labelW,r:250,t:30,b:30}, step=(H-pad.t-pad.b)/data.length, bh=Math.min(66,step*0.58);
+  const x0=pad.l, track=W-pad.l-pad.r;
+  return svg(`<line x1="${x0}" y1="${pad.t-16}" x2="${x0}" y2="${H-pad.b+16}" stroke="rgba(255,255,255,.3)" stroke-width="2"/>`
+   +data.map((d,i)=>{
+    const y=pad.t+step*i+step/2, w=Math.max(4,Math.abs(d.v)/max*track), pos=d.v>=0, c=pos?C.green:C.red;
+    const x=pos?x0:x0-w;
+    const txt=(d.v>0?'+':'−')+Math.abs(d.v).toFixed(dec).replace('.',',')+' %';
+    const lx = pos ? x0-28 : x0+28, la = pos ? 'end' : 'start';
+    const vx = pos ? x0+w+26 : x-26,  va = pos ? 'start' : 'end';
+    return `<text class="cat" x="${lx}" y="${y+10}" text-anchor="${la}" fill="${c}" font-weight="800" style="font-size:30px">${d.n}</text>
+      <rect x="${x}" y="${y-bh/2}" width="${w}" height="${bh}" rx="5" fill="${c}" opacity=".92"/>
+      <text class="v" x="${vx}" y="${y+13}" text-anchor="${va}" fill="${c}">${txt}</text>`;
+  }).join(''));
+}
+const I270=slide('270-cadres-ouvriers','',
+  'Les ouvriers rattrapent,<br>les cadres <span class="red">stagnent</span>',
+  'Évolution du salaire net moyen depuis 1996, inflation déduite',
+  barresDiv([
+    {n:'Ouvriers',v:20},{n:'Employés',v:9},
+    {n:'Cadres',v:0.5},{n:'Professions interm.',v:-0.3}
+  ],{max:22,dec:1}), S_LONG);
+
+/* ===== 271 · LE TOP 1 % RECULE ===== */
+function deuxBarres(a,b,{max}={}){
+  const pad={t:86,b:116}, h0=H-pad.b, hMax=h0-pad.t, bw=215;
+  const mk=(d,x,c)=>{
+    const bh=d.v/max*hMax, y=h0-bh;
+    return `<rect x="${x-bw/2}" y="${y}" width="${bw}" height="${bh}" rx="8" fill="${c}" opacity="${d.hi?1:.7}"/>
+      <text class="v ${d.hi?'hi':''}" x="${x}" y="${y-24}" text-anchor="middle" fill="${d.hi?C.red:'#f2f6fa'}">${eur(d.v)} €</text>
+      <text class="cat" x="${x}" y="${h0+50}" text-anchor="middle" style="font-size:36px" fill="${d.hi?C.red:'#c3d2df'}">${d.n}</text>`;
+  };
+  return svg(mk(a,W*0.32,C.neutral)+mk(b,W*0.68,C.red)
+    +`<line x1="50" y1="${h0}" x2="${W-50}" y2="${h0}" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
+`);
+}
+const I271=slide('271-top1-recule','',
+  'Même les <span class="red">1 %</span> les mieux<br>payés ont reculé',
+  'Les 1 % les mieux payés du privé, inflation déduite',
+  deuxBarres({n:'2010',v:10071},{n:'2024',v:9798,hi:1},{max:11800}), S_LONG);
+
+/* ===== 272 · 1 000 € PLACÉS EN 1900 (courbes log) ===== */
+const YRS=[1900,1920,1940,1960,1980,2000,2020];
+const SERIES=[
+  {n:'Actions',c:C.green,v:[1000,827,1533,2720,2246,24082,32659],val:'32 659 €',dy:0},
+  {n:'Logement Paris',c:C.cyan,v:[1000,321,361,497,1503,2028,5763],val:'5 763 €',dy:-30},
+  {n:'Or',c:C.gold,v:[1000,550,1407,746,4058,912,3383],val:'3 383 €',dy:34},
+  {n:'Obligations',c:C.neutral,v:[1000,288,402,48,38,172,360],val:'360 €',dy:-16},
+  {n:'Compte',c:C.red,v:[1000,514,421,30,31,68,66],val:'66 €',dy:20}
+];
+function courbesLog(){
+  const pad={l:118,r:270,t:42,b:80}, ymin=Math.log10(20), ymax=Math.log10(60000);
+  const X=y=>pad.l+(y-1900)/120*(W-pad.l-pad.r), Y=v=>H-pad.b-(Math.log10(v)-ymin)/(ymax-ymin)*(H-pad.t-pad.b);
+  const grid=[100,1000,10000].map(t=>gl(pad.l,Y(t),W-pad.r)+`<text class="tick" x="${pad.l-16}" y="${Y(t)+9}" text-anchor="end">${eur(t)}</text>`).join('');
+  const xt=[1900,1940,1980,2020].map(y=>`<text class="tick" x="${X(y)}" y="${H-pad.b+44}" text-anchor="middle">${y}</text>`).join('');
+  // positions des etiquettes : on part de la courbe puis on force 82 px d'ecart minimum
+  const raw=SERIES.map(s=>Y(s.v.at(-1))); const lab=[...raw];
+  for(let i=1;i<lab.length;i++) if(lab[i]-lab[i-1]<96) lab[i]=lab[i-1]+96;
+  const shift=Math.max(0,lab.at(-1)-(H-90)); lab.forEach((_,i)=>lab[i]-=shift);
+  return svg(grid+xt+SERIES.map((s,k)=>{
+    const d=s.v.map((v,i)=>`${i?'L':'M'}${X(YRS[i]).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
+    const yy=lab[k];
+    return `<path d="${d}" fill="none" stroke="${s.c}" stroke-width="${k===0?6:4.5}" stroke-linejoin="round" opacity="${k===0?1:.92}"/>
+      <circle cx="${X(2020)}" cy="${Y(s.v.at(-1))}" r="10" fill="${s.c}"/>
+      <text class="ser" x="${X(2020)+22}" y="${yy-20}" fill="${s.c}" style="font-size:26px">${s.n}</text>
+      <text class="v" x="${X(2020)+22}" y="${yy+32}" fill="${s.c}" style="font-size:32px">${s.val}</text>`;
+  }).join(''));
+}
+const I272=slide('272-1000-euros-1900','green-mood',
+  '1 000 € placés en 1900,<br>ce qu\'ils sont <span class="gr">devenus</span>',
+  'Valeur en 2020, inflation déduite',
+  courbesLog(), S_IGEDD);
+
+/* ===== 273 · L'ARGENT QUI DORT ===== */
+function courbeCompte(){
+  const pad={l:66,r:86,t:80,b:84}, ymin=Math.log10(20), ymax=Math.log10(1600);
+  const X=y=>pad.l+(y-1900)/120*(W-pad.l-pad.r), Y=v=>H-pad.b-(Math.log10(v)-ymin)/(ymax-ymin)*(H-pad.t-pad.b);
+  const v=[1000,514,421,30,31,68,66];
+  const d=v.map((x,i)=>`${i?'L':'M'}${X(YRS[i]).toFixed(1)},${Y(x).toFixed(1)}`).join(' ');
+  const area=`${d} L${X(2020)},${H-pad.b} L${X(1900)},${H-pad.b} Z`;
+  const xt=[1900,1940,1980,2020].map(y=>`<text class="tick" x="${X(y)}" y="${H-pad.b+44}" text-anchor="middle">${y}</text>`).join('');
+  return svg(xt+`<path d="${area}" fill="${C.red}" opacity=".14"/>
+    <path d="${d}" fill="none" stroke="${C.red}" stroke-width="6" stroke-linejoin="round"/>
+    ${v.map((x,i)=>`<circle cx="${X(YRS[i])}" cy="${Y(x)}" r="7" fill="${C.red}"/>`).join('')}
+    <circle cx="${X(1900)}" cy="${Y(1000)}" r="12" fill="${C.red}"/>
+    <circle cx="${X(2020)}" cy="${Y(66)}" r="14" fill="${C.red}"/>
+    <text class="v" x="${X(1900)}" y="${Y(1000)-30}" text-anchor="start">1 000 €</text>
+    <text class="v hi" x="${X(2020)}" y="${Y(66)-34}" text-anchor="end">66 €</text>`);
+}
+const I273=slide('273-argent-qui-dort','',
+  'L\'argent qui dort<br>perd <span class="red">presque tout</span>',
+  '1 000 € laissés sur un compte en 1900, valeur inflation déduite',
+  courbeCompte(), S_IGEDD);
+
+/* ===== 274 · RENDEMENT RÉEL ANNUALISÉ ===== */
+const I274=slide('274-rendement-reel','green-mood',
+  'Ce que rapporte vraiment<br>chaque <span class="gr">placement</span>',
+  'Rendement annuel moyen sur 120 ans, inflation déduite',
+  barresDiv([
+    {n:'Actions',v:2.95},{n:'Logement à Paris',v:1.47},{n:'Or',v:1.02},
+    {n:'Obligations',v:-0.85},{n:'Compte en banque',v:-2.24}
+  ],{max:3.6,dec:2,labelW:390}), S_IGEDD);
+
+document.getElementById('root').outerHTML=[I265,I266,I267,I268,I269,I270,I271,I272,I273,I274].join('');
+</script>
+</body>
+</html>

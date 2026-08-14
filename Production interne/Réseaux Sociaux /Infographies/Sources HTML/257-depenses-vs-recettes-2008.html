@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>La dépense grimpe deux fois plus vite que les recettes</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:#0a1220;--bg-mid:#142b48;--text-muted:#4a5a6a;--text-secondary:#8899a8;--accent-electric:#00d4ff;--accent-red:#ff4757;--glass-border:rgba(255,255,255,0.1);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Syne',sans-serif;background:#1a1a2e;padding:2rem;display:flex;justify-content:center;}
+.infographic{width:1080px;height:1080px;position:relative;overflow:hidden;}
+.bg-base{position:absolute;inset:0;background:linear-gradient(145deg,var(--bg-deep) 0%,var(--bg-mid) 50%,var(--bg-deep) 100%);}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.bg-glow-1{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(255,71,87,0.10) 0%,transparent 70%);top:-200px;right:-200px;}
+.bg-glow-2{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(255,71,87,0.07) 0%,transparent 70%);bottom:-150px;left:-150px;}
+.content{position:relative;z-index:1;height:100%;padding:50px 50px 40px;display:flex;flex-direction:column;}
+.header{display:flex;align-items:center;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-icon{font-family:'Instrument Serif',serif;font-size:3.6rem;color:var(--accent-electric);line-height:1;}
+.logo-text{font-family:'Instrument Serif',serif;font-size:1.7rem;font-style:italic;color:#fff;line-height:1;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:1.05rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);text-align:center;margin-top:14px;}
+.chart-title{font-family:'Instrument Serif',serif;font-size:5rem;text-align:center;color:#fff;line-height:1.03;margin-top:6px;letter-spacing:-1.6px;text-wrap:balance;}
+.chart-title .accent{color:var(--accent-red);text-decoration:underline;text-decoration-color:#fff;text-decoration-thickness:5px;text-underline-offset:9px;white-space:nowrap;}
+.subtitle{font-family:'JetBrains Mono',monospace;font-size:1.15rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);text-align:center;margin-top:16px;}
+.chart-area{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;}
+svg{overflow:visible;}
+.footer{display:flex;justify-content:space-between;align-items:center;padding-top:16px;margin-top:6px;border-top:1px solid var(--glass-border);}
+.source{font-size:0.95rem;color:var(--text-muted);max-width:660px;}.source span{color:var(--text-secondary);}
+.website-url{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:var(--accent-electric);}
+</style></head>
+<body><div class="infographic">
+<div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow-1"></div><div class="bg-glow-2"></div>
+<div class="content">
+<div class="header"><div class="logo"><span class="logo-icon">&euro;</span><span class="logo-text">Où Va l'Argent ?</span></div></div>
+<h2 class="chart-title">Depuis 2008, la dépense publique a augmenté <span class="accent">deux fois plus vite</span> que les recettes</h2>
+<div class="chart-area"><svg width="980" height="600" viewBox="0 0 980 600">
+<!-- baseline -->
+<line x1="120" y1="520" x2="860" y2="520" stroke="#4a5a6a" stroke-opacity="0.5" stroke-width="2"/>
+<!-- Dépenses bar -->
+<rect x="230" y="120" width="200" height="400" rx="8" fill="#ff4757"/>
+<text x="330" y="98" fill="#ff4757" font-family="'Instrument Serif',serif" font-size="66" text-anchor="middle">+2,9 <tspan font-family="'JetBrains Mono',monospace" font-size="30" fill="#8899a8" font-weight="600">PIB</tspan></text>
+<text x="330" y="566" fill="#ffffff" font-family="'Syne',sans-serif" font-size="30" font-weight="700" text-anchor="middle">Dépenses publiques</text>
+<!-- Recettes bar -->
+<rect x="600" y="338" width="200" height="182" rx="8" fill="#00d4ff"/>
+<text x="700" y="316" fill="#00d4ff" font-family="'Instrument Serif',serif" font-size="66" text-anchor="middle">+1,3 <tspan font-family="'JetBrains Mono',monospace" font-size="30" fill="#8899a8" font-weight="600">PIB</tspan></text>
+<text x="700" y="566" fill="#c9d4de" font-family="'Syne',sans-serif" font-size="30" font-weight="600" text-anchor="middle">Recettes publiques</text>
+</svg></div>
+<div class="footer"><div class="source">Source : <span>Où Va l'Argent · OCDE, Études économiques : France 2026 · Variation dépenses / recettes publiques 2008-2025 (graph. 1.7)</span></div><div class="website-url">ouvalargent.com</div></div>
+</div></div></body></html>

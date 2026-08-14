@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Médecins de l'hôpital : le grand déclassement — 1980-2024</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a88899;
+            --text-muted: #6a4a5a;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #1a1a2e;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .infographic {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #0a1220 0%, #142b48 50%, #0a1220 100%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%);
+            top: -250px;
+            right: -150px;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.07) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 22px 60px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: #00d4ff; line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.8rem;
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            line-height: 1.04;
+            letter-spacing: -1.5px;
+        }
+
+        .chart-title .accent {
+            color: #ff4757;
+            font-style: italic;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+
+        .chart-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+        }
+
+        svg { overflow: visible; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .source { font-size: 0.95rem; color: var(--text-muted); }
+        .source span { color: var(--text-secondary); }
+        .website { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo">
+                    <span class="logo-icon">€</span>
+                    <span class="logo-text">Où Va l'Argent ?</span>
+                </div>
+            </div>
+
+            <h2 class="chart-title">Médecins de l'hôpital :<br>le <span class="accent">déclassement salarial</span></h2>
+            <div class="chart-subtitle">France · Brut hors primes rapporté au SMIC · Public exclusif · 1980-2024</div>
+
+            <div class="chart-area">
+                <svg width="960" height="700" viewBox="0 0 960 700">
+                    <!-- Axes (Y-axis va de 1.8 à 7) -->
+                    <line x1="90" y1="10" x2="90" y2="620" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1" />
+                    <line x1="90" y1="620" x2="830" y2="620" stroke="#6a4a5a" stroke-opacity="0.5" stroke-width="1" />
+
+                    <!-- Y-axis grid + labels (2 à 7) -->
+                    <line x1="90" y1="596.54" x2="830" y2="596.54" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="80" y="601.54" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">2,0×</text>
+
+                    <line x1="90" y1="479.23" x2="830" y2="479.23" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="80" y="484.23" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">3,0×</text>
+
+                    <line x1="90" y1="361.92" x2="830" y2="361.92" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="80" y="366.92" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">4,0×</text>
+
+                    <line x1="90" y1="244.62" x2="830" y2="244.62" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="80" y="249.62" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">5,0×</text>
+
+                    <line x1="90" y1="127.31" x2="830" y2="127.31" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="80" y="132.31" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">6,0×</text>
+
+                    <line x1="90" y1="10" x2="830" y2="10" stroke="#6a4a5a" stroke-opacity="0.25" stroke-dasharray="4,4" />
+                    <text x="80" y="15" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="500" text-anchor="end">7,0×</text>
+
+                    <!-- X-axis labels -->
+                    <text x="90" y="655" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">1980</text>
+                    <text x="258.18" y="655" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">1990</text>
+                    <text x="426.36" y="655" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">2000</text>
+                    <text x="594.55" y="655" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">2010</text>
+                    <text x="830" y="655" fill="#c8b0bd" font-family="'JetBrains Mono', monospace" font-size="22" font-weight="600" text-anchor="middle">2024</text>
+
+                    <!-- Praticien hospitalier titulaire, échelon 13, fin de carrière (rouge) -->
+                    <path d="M90,68.65 L123.64,68.65 L157.27,80.38 L190.91,92.12 L224.55,127.31 L258.18,150.77 L291.82,174.23 L325.45,185.96 L359.09,185.96 L392.73,197.69 L426.36,185.96 L460,209.42 L493.64,232.88 L527.27,244.62 L560.91,250.48 L594.55,262.21 L628.18,268.08 L661.82,273.95 L695.45,273.95 L729.09,279.81 L762.73,291.54 L796.36,303.27 L830,221.16"
+                          fill="none" stroke="#ff4757" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="90" cy="68.65" r="6" fill="#ff4757" stroke="#0a1220" stroke-width="2" />
+                    <circle cx="830" cy="221.16" r="6" fill="#ff4757" stroke="#0a1220" stroke-width="2" />
+
+                    <!-- Assistant spécialiste hospitalier, échelon 1, début de carrière (vert) -->
+                    <path d="M90,479.24 L123.64,479.24 L157.27,490.97 L190.91,496.84 L224.55,514.43 L258.18,526.16 L291.82,532.03 L325.45,543.76 L359.09,549.63 L392.73,555.49 L426.36,561.36 L460,567.22 L493.64,573.09 L527.27,573.09 L560.91,573.09 L594.55,578.95 L628.18,578.95 L661.82,584.82 L695.45,584.82 L729.09,590.69 L762.73,596.55 L796.36,608.28 L830,596.55"
+                          fill="none" stroke="#00ff88" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="90" cy="479.24" r="6" fill="#00ff88" stroke="#0a1220" stroke-width="2" />
+                    <circle cx="830" cy="596.55" r="6" fill="#00ff88" stroke="#0a1220" stroke-width="2" />
+
+                    <!-- Start anchor values (1980) -->
+                    <text x="95" y="32" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="700" text-anchor="start">6,5×<tspan x="95" dy="25" font-size="22" font-weight="600">SMIC</tspan></text>
+
+                    <text x="95" y="438" fill="#00ff88" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="700" text-anchor="start">3,0×<tspan x="95" dy="25" font-size="22" font-weight="600">SMIC</tspan></text>
+
+                    <!-- Inline curve labels (centrés sur l'axe x=460) -->
+                    <text x="460" y="120" fill="#ff4757" font-family="'Syne', sans-serif" font-size="34" font-weight="700" text-anchor="middle">Praticien hospitalier <tspan font-family="'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif" font-size="38">🩺</tspan><tspan x="460" dy="38" font-size="28" font-family="'Syne', sans-serif">(fin de carrière)</tspan></text>
+
+                    <text x="460" y="480" fill="#00ff88" font-family="'Syne', sans-serif" font-size="34" font-weight="700" text-anchor="middle">Assistant spécialiste <tspan font-family="'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif" font-size="38">🏥</tspan><tspan x="460" dy="38" font-size="28" font-family="'Syne', sans-serif">(début de carrière)</tspan></text>
+
+                    <!-- End anchor values (2024) -->
+                    <text x="845" y="215" fill="#ff4757" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="700" text-anchor="start">5,2×<tspan x="845" dy="25" font-size="22" font-weight="600">SMIC</tspan></text>
+
+                    <text x="845" y="585" fill="#00ff88" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="700" text-anchor="start">2,0×<tspan x="845" dy="25" font-size="22" font-weight="600">SMIC</tspan></text>
+                </svg>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Grilles indiciaires praticien hospitalier (DGOS) · SMIC brut annuel INSEE · Hors primes · 1980-2024</span></div>
+                <div class="website">ouvalargent.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

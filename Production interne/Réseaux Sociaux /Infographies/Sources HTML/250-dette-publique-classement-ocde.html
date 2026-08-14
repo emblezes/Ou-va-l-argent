@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>La dette publique française atteint 115 % du PIB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a1220; --bg-mid: #142b48;
+            --text-primary: #f0f4f8; --text-secondary: #8899a8; --text-muted: #4a5a6a;
+            --accent-electric: #00d4ff; --accent-red: #ff4757;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Syne', sans-serif; background: #1a1a2e; padding: 2rem; display: flex; justify-content: center; }
+        .infographic { width: 1080px; height: 1080px; position: relative; overflow: hidden; }
+        .bg-base { position: absolute; inset: 0; background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%); }
+        .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-glow-1 { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 71, 87, 0.10) 0%, transparent 70%); top: -200px; right: -200px; }
+        .bg-glow-2 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255, 71, 87, 0.07) 0%, transparent 70%); bottom: -150px; left: -150px; }
+
+        .content { position: relative; z-index: 1; height: 100%; padding: 50px 60px 40px; display: flex; flex-direction: column; }
+        .header { display: flex; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-family: 'Instrument Serif', serif; font-size: 3.6rem; color: var(--accent-electric); line-height: 1; }
+        .logo-text { font-family: 'Instrument Serif', serif; font-size: 1.7rem; font-style: italic; color: #ffffff; line-height: 1; }
+
+        .chart-title { font-family: 'Instrument Serif', serif; font-size: 5.4rem; font-style: normal; text-align: center; color: #ffffff; line-height: 1.04; margin-top: 10px; letter-spacing: -1.8px; text-wrap: balance; }
+        .chart-title .accent { color: var(--accent-red); font-style: normal; text-decoration: underline; text-decoration-color: #ffffff; text-decoration-thickness: 5px; text-underline-offset: 9px; white-space: nowrap; }
+        .kicker { text-align: center; margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-secondary); }
+
+        .chart-area { flex: 1; display: flex; align-items: flex-end; justify-content: center; padding: 26px 0 6px; min-height: 0; }
+        .bars-row { display: flex; align-items: flex-end; justify-content: center; gap: 22px; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .bar-value { font-family: 'JetBrains Mono', monospace; font-size: 1.85rem; font-weight: 700; color: var(--text-primary); line-height: 1; white-space: nowrap; }
+        .bar-value.fr { color: var(--accent-red); }
+        .bar-value.avg { color: var(--accent-electric); }
+        .bar-fill { width: 100px; border-radius: 9px 9px 0 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
+        .bar-fill.neutral { background: linear-gradient(180deg, #5d7494 0%, #2d4060 100%); }
+        .bar-fill.avg { background: linear-gradient(180deg, #2a6f8a 0%, #163a49 100%); }
+        .bar-fill.fr { background: linear-gradient(180deg, #ff4757 0%, #b02a36 100%); box-shadow: 0 0 40px rgba(255, 71, 87, 0.5); }
+        .flag { font-size: 2.6rem; line-height: 1; }
+        .bar-name { font-family: 'Syne', sans-serif; font-size: 1.2rem; color: var(--text-secondary); font-weight: 700; text-align: center; white-space: nowrap; }
+        .bar-name.fr { color: var(--accent-red); }
+        .bar-name.avg { color: var(--accent-electric); }
+
+        .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 18px; margin-top: 6px; border-top: 1px solid var(--glass-border); }
+        .source { font-size: 0.95rem; color: var(--text-muted); max-width: 560px; } .source span { color: var(--text-secondary); }
+        .website { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; }
+        .website-url { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 600; color: var(--accent-electric); line-height: 1; }
+        .socials { display: flex; align-items: center; gap: 9px; }
+        .socials svg { width: 17px; height: 17px; fill: var(--text-secondary); display: block; }
+        .socials .handle { font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--text-secondary); letter-spacing: 0.2px; }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="bg-base"></div><div class="bg-grid"></div><div class="bg-glow-1"></div><div class="bg-glow-2"></div>
+        <div class="content">
+            <div class="header"><div class="logo"><span class="logo-icon">€</span><span class="logo-text">Où Va l'Argent ?</span></div></div>
+
+            <h2 class="chart-title">La dette française atteint <span class="accent">115 % du PIB</span></h2>
+            <div class="kicker">Dette publique brute · % du PIB · 2025</div>
+
+            <div class="chart-area">
+                <div class="bars-row">
+                    <div class="bar-group">
+                        <div class="bar-value">205 %</div>
+                        <div class="bar-fill neutral" style="height: 500px;"></div>
+                        <div class="flag">🇯🇵</div>
+                        <div class="bar-name">Japon</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value">137 %</div>
+                        <div class="bar-fill neutral" style="height: 334px;"></div>
+                        <div class="flag">🇮🇹</div>
+                        <div class="bar-name">Italie</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value">126 %</div>
+                        <div class="bar-fill neutral" style="height: 307px;"></div>
+                        <div class="flag">🇺🇸</div>
+                        <div class="bar-name">USA</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value fr">115 %</div>
+                        <div class="bar-fill fr" style="height: 282px;"></div>
+                        <div class="flag">🇫🇷</div>
+                        <div class="bar-name fr">France</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value avg">109 %</div>
+                        <div class="bar-fill avg" style="height: 267px;"></div>
+                        <div class="flag">🌐</div>
+                        <div class="bar-name avg">Moy. OCDE</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value">63 %</div>
+                        <div class="bar-fill neutral" style="height: 154px;"></div>
+                        <div class="flag">🇩🇪</div>
+                        <div class="bar-name">Allemagne</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value">35 %</div>
+                        <div class="bar-fill neutral" style="height: 85px;"></div>
+                        <div class="flag">🇸🇪</div>
+                        <div class="bar-name">Suède</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-value">24 %</div>
+                        <div class="bar-fill neutral" style="height: 59px;"></div>
+                        <div class="flag">🇪🇪</div>
+                        <div class="bar-name">Estonie</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="source">Source : <span>Où Va l'Argent · OCDE, Études économiques : France 2026 · Dette brute des administrations publiques (2025)</span></div>
+                <div class="website"><span class="website-url">ouvalargent.com</span></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
