@@ -1,0 +1,106 @@
+{
+  "actuShort": [
+    {
+      "slug": "piratage-dgfip-678000-comptes",
+      "photo": "hacker dark room cybersecurity laptop",
+      "headline": "Une cyberattaque contre le fisc a exposé les données fiscales de centaines de milliers de Français.",
+      "reveal": "<big>678 000</big> comptes de contribuables ont été piratés à la DGFiP fin juin, données personnelles et fiscales à l'appui.",
+      "source": "Le Figaro, DGFiP · 17 août 2026",
+      "theme": "Fiscalité",
+      "caption": "Fin juin, une intrusion dans les systèmes de la DGFiP a permis le vol des données fiscales de 678 000 comptes de contribuables : identités, adresses, revenus fiscaux de référence, taux de prélèvement à la source. Le gouvernement a convoqué une cellule de crise interministérielle ce lundi et le parquet de Paris a ouvert une enquête. Sur les personnes concernées, environ 393 000 sont des particuliers et 286 000 des professionnels. #Fiscalité #Cybersécurité #DGFiP"
+    },
+    {
+      "slug": "oat-10-ans-4-pourcent-budget-2027",
+      "photo": "financial chart red arrow rising stock market",
+      "headline": "Emprunter coûte à la France son prix le plus élevé depuis près de vingt ans.",
+      "reveal": "<big>4,01 %</big> : le taux auquel la France emprunte sur 10 ans, un plus haut depuis plus de 17 ans.",
+      "source": "Marchés obligataires, Agence France Trésor · 11 août 2026",
+      "theme": "Dette",
+      "caption": "La France emprunte désormais à 4,01 % sur 10 ans, un niveau plus vu depuis plus de dix-sept ans. Le seuil symbolique des 4 % a été franchi le 23 juillet, sous l'effet des inquiétudes des marchés sur la trajectoire du budget 2027. Cette remontée des taux renchérit directement le coût de la dette publique française, déjà en forte hausse. #Dette #TauxDIntérêt #Budget2027"
+    },
+    {
+      "slug": "australie-raffinerie-terres-rares-chine",
+      "photo": "mining industrial minerals refinery",
+      "headline": "L'Australie tente de briser la mainmise de la Chine sur un secteur stratégique.",
+      "reveal": "<big>70 %</big> de la production mondiale de terres rares vient aujourd'hui de Chine.",
+      "source": "China Briefing, Statista, Le Monde · 17 août 2026",
+      "theme": "International",
+      "caption": "L'Australie mise sur de nouvelles raffineries pour réduire la dépendance mondiale aux terres rares chinoises. Pékin concentre aujourd'hui près de 70 % de la production minière mondiale de ces métaux stratégiques, indispensables aux technologies vertes, à l'électronique et à la défense. Un enjeu de souveraineté industrielle majeur pour l'Occident. #TerresRares #Chine #Industrie"
+    },
+    {
+      "slug": "japon-croissance-t2-2026-decevante",
+      "photo": "tokyo skyline japan business district",
+      "headline": "La troisième économie mondiale déçoit de nouveau les attentes des marchés.",
+      "reveal": "<big>+0,3 %</big> seulement au 2e trimestre au Japon, contre +0,5 % attendu par les économistes.",
+      "source": "Boursorama · 17 août 2026",
+      "theme": "International",
+      "caption": "L'économie japonaise a de nouveau déçu au deuxième trimestre 2026, avec une croissance limitée à 0,3 % sur le trimestre, contre 0,5 % attendu par les économistes. Sur un an, la hausse n'atteint que 1,1 %, loin des 2 % anticipés. Un signal supplémentaire de fragilité pour la troisième économie mondiale. #Japon #Croissance #Économie"
+    },
+    {
+      "slug": "easyjet-greve-98-vols-annules-aout",
+      "photo": "airport terminal departure board empty",
+      "headline": "Une grève du personnel de cabine a désorganisé le trafic aérien en France mi-août.",
+      "reveal": "<big>98 vols</big> EasyJet ont été annulés en France sur un seul week-end, selon le syndicat SNPNC-FO.",
+      "source": "franceinfo, Le Figaro, SNPNC-FO · 15-16 août 2026",
+      "theme": "Entreprises",
+      "caption": "Le week-end du 15 août, une grève du personnel de cabine a entraîné l'annulation de 98 vols EasyJet en France selon le syndicat SNPNC-FO — 47 samedi et 51 dimanche, plus de la moitié des vols prévus à Lyon. En cause : des changements de planning jugés trop fréquents et imprévisibles par les salariés. La compagnie propose des transferts gratuits vers d'autres vols. #EasyJet #Grève #Aérien"
+    },
+    {
+      "slug": "climb-up-5-salles-redressement-judiciaire",
+      "photo": "indoor rock climbing gym colorful wall",
+      "headline": "Le numéro un français de l'escalade en salle vacille financièrement.",
+      "reveal": "<big>5 salles</big> Climb Up sont désormais placées en redressement judiciaire.",
+      "source": "Lyon Mag, PlanetGrimpe · août 2026",
+      "theme": "Entreprises",
+      "caption": "Climb Up, numéro un français des salles d'escalade indoor, a placé sa holding et cinq de ses salles (Cergy, Aubervilliers, Caen, Orléans, Mulhouse) en redressement judiciaire. En cause : un modèle économique fragile, avec des investissements initiaux pouvant atteindre 2 millions d'euros par salle. Le secteur, en forte croissance ces dernières années, montre ses premiers signes d'essoufflement. #Escalade #Entreprises #ClimbUp"
+    }
+  ],
+  "graphics": [
+    {
+      "id": "anssi-cyberattaques-2022-2025",
+      "type": "bars",
+      "title": "Les cyberattaques contre l'État ne <em>faiblissent</em> pas.",
+      "metric": "Incidents de cybersécurité traités par l'ANSSI",
+      "source": "ANSSI, Panorama de la cybermenace 2025 · mars 2026",
+      "accent": "#ff4757",
+      "unit": "",
+      "bars": [
+        { "label": "2022", "value": 831 },
+        { "label": "2023", "value": 1112 },
+        { "label": "2024", "value": 1361 },
+        { "label": "2025", "value": 1366, "hi": true }
+      ],
+      "caption": "L'ANSSI a traité 1 366 incidents de cybersécurité en France en 2025, contre 831 seulement en 2022 : une hausse de 64 % en trois ans. Éducation, ministères et collectivités territoriales concentrent l'essentiel des attaques. Un contexte qui éclaire d'un jour nouveau le piratage récent des données de 678 000 contribuables à la DGFiP. #Cybersécurité #ANSSI #ÉtatNumérique"
+    },
+    {
+      "id": "smic-comparaison-europe-2026",
+      "type": "dot",
+      "title": "Le SMIC français, loin du <em>podium</em> européen.",
+      "metric": "Salaire minimum mensuel brut, 2e semestre 2026",
+      "source": "Eurostat · 2026",
+      "accent": "#00d4ff",
+      "unit": "€",
+      "dots": [
+        { "label": "Luxembourg", "value": 2771 },
+        { "label": "Irlande", "value": 2391 },
+        { "label": "Allemagne", "value": 2343 },
+        { "label": "Pays-Bas", "value": 2338 },
+        { "label": "Belgique", "value": 2234 },
+        { "label": "France", "value": 1867, "hi": true },
+        { "label": "Bulgarie", "value": 620 }
+      ],
+      "caption": "Avec 1 867 € bruts par mois, le SMIC français se classe 6e sur 22 pays de l'Union européenne, loin derrière le Luxembourg (2 771 €), l'Irlande (2 391 €) ou l'Allemagne (2 343 €). Il reste toutefois très supérieur au minimum bulgare, à 620 €. #SMIC #Europe #SalaireMinimum"
+    }
+  ],
+  "micro": [
+    {
+      "id": "ecotaxe-abandon-1-milliard",
+      "headline": "L'abandon de l'écotaxe poids lourds pèse encore sur les finances publiques.",
+      "figure": "1 Md€",
+      "detail": "Indemnités versées par l'État aux sociétés concessionnaires après l'abandon du dispositif en 2014, toujours comptabilisées par la Cour des comptes en 2026.",
+      "source": "Cour des comptes, rapport public annuel · mars 2026",
+      "accent": "#ff4757",
+      "caption": "En 2014, l'État renonçait à l'écotaxe poids lourds face à la fronde des Bonnets rouges. Douze ans plus tard, la facture des indemnités versées aux sociétés concessionnaires atteint 1 milliard d'euros, selon la Cour des comptes. Un renoncement politique qui continue de coûter cher aux contribuables. #Écotaxe #ArgentPublic #CourDesComptes"
+    }
+  ]
+}
