@@ -1,0 +1,130 @@
+{
+  "actuShort": [
+    {
+      "slug": "piratage-fisc-678000-usagers",
+      "photo": "data security server room",
+      "headline": "Le fisc victime d'un piratage massif de données.",
+      "reveal": "<big>678 000</big> contribuables concernés.",
+      "source": "DGFiP, 17-18 août 2026",
+      "theme": "État",
+      "caption": "678 000 particuliers et entreprises ont été notifiés depuis le 17 août que leurs données fiscales et cadastrales avaient été volées lors du piratage du système d'information de la DGFiP fin juin. Le groupe ZeroBytes affirme avoir déjà revendu ces informations à deux acheteurs. Sébastien Lecornu a demandé un audit approfondi pour comprendre l'origine de la faille. #DGFiP #cybersécurité #fisc"
+    },
+    {
+      "slug": "retraites-desindexation-6md",
+      "photo": "elderly couple finances",
+      "headline": "Bercy veut sous-indexer les retraites les plus aisées.",
+      "reveal": "<big>6 Md€</big> d'économies visées pour 2027.",
+      "source": "Bercy, 17 août 2026",
+      "theme": "Retraites",
+      "caption": "Le ministère de l'Économie étudie une revalorisation des pensions inférieure à l'inflation pour les retraités les plus aisés (au-delà de 3 000 € par mois), dans le budget 2027. L'objectif affiché est de dégager jusqu'à 6 milliards d'euros d'économies. Reste à définir le seuil exact de ce qu'est un retraité « aisé ». #retraites #budget2027 #Bercy"
+    },
+    {
+      "slug": "allocation-rentree-scolaire-2026",
+      "photo": "school supplies backpack",
+      "headline": "L'allocation de rentrée scolaire est versée dès aujourd'hui.",
+      "reveal": "<big>3 millions</big> de familles concernées.",
+      "source": "CAF, 18 août 2026",
+      "theme": "Dépense publique",
+      "caption": "À partir de ce mardi 18 août, la CAF verse l'allocation de rentrée scolaire à environ 3 millions de familles sous conditions de ressources. Le montant varie de 426,87 € pour un enfant de 6-10 ans à 466,02 € pour un enfant de 15-18 ans. Cette aide vise à couvrir une partie des fournitures et frais de scolarité. #rentréescolaire #CAF #pouvoirdachat"
+    },
+    {
+      "slug": "incendies-gironde-aides-100m",
+      "photo": "forest fire aftermath",
+      "headline": "L'État débloque des aides d'urgence après les incendies.",
+      "reveal": "<big>100 M€</big> pour la Gironde et les Landes.",
+      "source": "Matignon, 17 août 2026",
+      "theme": "Dépense publique",
+      "caption": "Sébastien Lecornu a annoncé plus de 100 millions d'euros d'aides pour la Gironde et les Landes après les mégafeux de l'été : exonérations sociales, dispositions fiscales et soutien à la reconstruction. Au Porge, 183 maisons ont brûlé. Le secteur des entreprises juge toutefois que « le compte n'y est pas » face à l'ampleur des dégâts. #incendies #Gironde #financespubliques"
+    },
+    {
+      "slug": "edf-reacteurs-canicule-2026",
+      "photo": "nuclear power plant river",
+      "headline": "La canicule met les centrales nucléaires sous tension.",
+      "reveal": "<big>3 réacteurs</big> à l'arrêt cet été.",
+      "source": "EDF, 12-17 août 2026",
+      "theme": "Énergie",
+      "caption": "Deux réacteurs de Chooz et un de Cattenom sont à l'arrêt, et quatre autres tournent au ralenti, car l'eau des rivières est trop chaude pour refroidir les centrales en toute sécurité. La canicule qui frappe la France cet été fragilise ainsi une partie du parc nucléaire, pourtant source de 68 % de l'électricité française. #nucléaire #canicule #EDF"
+    },
+    {
+      "slug": "shein-ipo-hong-kong-2026",
+      "photo": "fashion warehouse clothes",
+      "headline": "Shein vise une entrée en Bourse à Hong Kong.",
+      "reveal": "<big>27 Md$</big> de valorisation visée en Bourse.",
+      "source": "Bloomberg, 17 août 2026",
+      "theme": "Bourse",
+      "caption": "Le géant chinois de la mode ultrarapide Shein prépare son introduction en Bourse à Hong Kong cette semaine, avec une valorisation visée de 25 à 27 milliards de dollars. C'est près de 4 fois moins que les 98 milliards de dollars visés lors de sa précédente tentative d'IPO en 2022. Ralentissement des ventes et amendes réglementaires pèsent sur le dossier. #Shein #Bourse #HongKong"
+    },
+    {
+      "slug": "scpi-bureaux-crise-2026",
+      "photo": "office building empty",
+      "headline": "Des épargnants piégés par la crise des SCPI de bureaux.",
+      "reveal": "<big>-60 %</big> de distribution pour certaines SCPI.",
+      "source": "La Française REM, 2026",
+      "theme": "Investissement",
+      "caption": "La crise de l'immobilier de bureau frappe de plein fouet les épargnants en SCPI : certaines sociétés comme La Française REM ont réduit leurs distributions jusqu'à 60 % en 2026, avec un rendement sur 5 ans devenu négatif. Des milliers d'épargnants voient leur épargne « pierre-papier » gelée ou dévalorisée. Un rappel que l'immobilier de bureau n'est pas un placement sans risque. #SCPI #épargne #immobilier"
+    },
+    {
+      "slug": "epargne-francais-6596md",
+      "photo": "piggy bank coins savings",
+      "headline": "L'épargne des Français attire les convoitises de l'État.",
+      "reveal": "<big>6 596 Md€</big> d'actifs financiers accumulés.",
+      "source": "Banque de France, fin 2025",
+      "theme": "Épargne",
+      "caption": "Les Français ont accumulé 6 596 milliards d'euros d'actifs financiers fin 2025, un pactole qui ne cesse de grossir. La ministre de la Transition écologique a évoqué la piste de mobiliser cette épargne pour financer l'adaptation au changement climatique. De quoi relancer le débat sur la tentation de l'État de piocher dans l'épargne privée plutôt que de réduire ses dépenses. #épargne #BanquedeFrance #financespubliques"
+    },
+    {
+      "slug": "canada-hydroelectricite-70md",
+      "photo": "hydroelectric dam canada",
+      "headline": "Le Canada mise gros sur l'hydroélectricité et l'éolien.",
+      "reveal": "<big>70 Md$ CAD</big> pour l'énergie propre.",
+      "source": "Gouvernement du Canada, 17 août 2026",
+      "theme": "International",
+      "caption": "Le Premier ministre Mark Carney a annoncé un investissement de 70 milliards de dollars canadiens pour agrandir les barrages de Churchill Falls et Gull Island et développer l'éolien au Labrador, soit 14 000 mégawatts d'énergie propre visés. Objectif affiché : alimenter Toronto, Montréal et Vancouver en électricité décarbonée. Un contraste avec les difficultés du nucléaire français cet été. #Canada #énergie #hydroélectricité"
+    }
+  ],
+  "graphics": [
+    {
+      "id": "dgfip-effectifs-fondent-2026",
+      "type": "line",
+      "title": "Les effectifs du <em>fisc</em> ont fondu d'un quart en quinze ans.",
+      "metric": "Effectifs de la DGFiP, en ETPT",
+      "source": "Cour des comptes / Solidaires Finances Publiques, 2024",
+      "accent": "#ff4757",
+      "unit": "",
+      "points": [
+        { "x": "2008", "y": 130000 },
+        { "x": "2023", "y": 94000 },
+        { "x": "2024", "y": 93378 }
+      ],
+      "caption": "La Direction générale des finances publiques comptait 130 000 agents en 2008, contre 94 000 en 2023 — soit un quart des effectifs en moins en quinze ans, et 3 000 suppressions de postes supplémentaires prévues d'ici 2027. La Cour des comptes relie cette baisse continue à la dégradation des résultats du contrôle fiscal. Un sujet d'autant plus sensible après le piratage massif de données révélé cette semaine. #DGFiP #fiscalité #Coursdescomptes"
+    },
+    {
+      "id": "agents-publics-par-habitant-europe",
+      "type": "bars",
+      "title": "La France compte moins d'agents publics que ses voisins <em>nordiques</em>.",
+      "metric": "Agents publics pour 1 000 habitants, 2021-2023",
+      "source": "OCDE, Government at a Glance 2023",
+      "accent": "#00d4ff",
+      "unit": "",
+      "bars": [
+        { "label": "Danemark", "value": 144, "hi": false },
+        { "label": "Suède", "value": 120, "hi": false },
+        { "label": "France", "value": 83, "hi": true },
+        { "label": "Italie", "value": 52, "hi": false },
+        { "label": "Allemagne", "value": 50, "hi": false }
+      ],
+      "caption": "La France compte 83 agents publics pour 1 000 habitants, loin derrière le Danemark (144) et la Suède (120), mais bien plus que l'Allemagne (50) ou l'Italie (52), selon l'OCDE. Le périmètre diffère selon les pays : la France y inclut les hôpitaux et les enseignants du privé sous contrat, contrairement à l'Allemagne. Un écart qui pèse directement sur le débat autour de la dépense publique française. #fonctionpublique #Europe #OCDE"
+    }
+  ],
+  "micro": [
+    {
+      "id": "transport-patients-secu-6md",
+      "headline": "Le transport des patients coûte une fortune à la Sécurité sociale.",
+      "figure": "6 Md€",
+      "detail": "VSL, ambulances et taxis conventionnés — dont environ 640 M€ de fraude estimée, selon la Cour des comptes.",
+      "source": "Cour des comptes, rapport Sécurité sociale 2026, mai 2026",
+      "accent": "#ff4757",
+      "caption": "Le transport des patients (VSL, ambulances, taxis conventionnés) coûte désormais plus de 6 milliards d'euros par an à la Sécurité sociale, dont environ 640 millions d'euros de fraude selon la Cour des comptes. L'institution propose des quotas, la géolocalisation des trajets et le covoiturage médical pour limiter les dérives. Un poste de dépense méconnu, déjà comparable à plusieurs budgets ministériels. #Sécu #transportsanitaire #Coursdescomptes"
+    }
+  ]
+}
