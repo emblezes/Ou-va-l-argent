@@ -71,6 +71,7 @@ async function deliverAll(items) {
     const meta = g.kind === 'actu' ? `${g.theme || ''} · ${g.source || ''}` : `${(g.metric ? g.metric + ' · ' : '')}${g.source || ''}`;
     try {
       await sendTelegramPhoto(g.png, `📊 <b>${escapeHtml(title)}</b>\n🔖 ${escapeHtml(meta)}`);
+      console.log(`  → envoyé: ${g.slug || g.name || title}`);
       await sleep(700);
       if (g.caption) { await sendTelegram(`✏️ ${escapeHtml(cleanMarkdown(g.caption))}`); await sleep(1000); }
     } catch (e) { console.error('  ⚠ Telegram:', e.message); }

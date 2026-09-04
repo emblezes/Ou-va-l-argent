@@ -8,11 +8,14 @@ const { secret, escapeHtml, cleanMarkdown, cleanForTelegram, stripBig } = requir
 const API = () => `https://api.telegram.org/bot${secret('TELEGRAM_BOT_TOKEN')}`;
 const CHAT = () => secret('TELEGRAM_CHAT_ID');
 
+const REQUEST_TIMEOUT_MS = 20000;
+
 async function sendTelegram(text) {
   try {
     const res = await fetch(`${API()}/sendMessage`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: CHAT(), text, parse_mode: 'HTML', disable_web_page_preview: true })
+      body: JSON.stringify({ chat_id: CHAT(), text, parse_mode: 'HTML', disable_web_page_preview: true }),
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS)
     });
     return (await res.json()).ok;
   } catch (e) { console.error('  ⚠ Telegram:', e.message); return false; }
@@ -33,7 +36,8 @@ async function sendTelegramPhoto(photoPath, caption = '') {
   parts.push(Buffer.from(`\r\n--${boundary}--\r\n`));
   try {
     const res = await fetch(`${API()}/sendPhoto`, {
-      method: 'POST', headers: { 'Content-Type': `multipart/form-data; boundary=${boundary}` }, body: Buffer.concat(parts)
+      method: 'POST', headers: { 'Content-Type': `multipart/form-data; boundary=${boundary}` }, body: Buffer.concat(parts),
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS)
     });
     const data = await res.json();
     if (!data.ok) console.error('  ⚠ Telegram photo:', data.description);
